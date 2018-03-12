@@ -4,7 +4,7 @@
 \alias{e_charts}
 \title{Initialise}
 \usage{
-e_charts(data, width = NULL, height = NULL, elementId = NULL)
+e_charts(data, x = NULL, width = NULL, height = NULL, elementId = NULL)
 }
 \arguments{
 \item{data}{A \code{data.frame}.}
@@ -17,4 +17,13 @@ string and have \code{'px'} appended.}
 }
 \description{
 Initialise a chart.
+}
+\examples{
+USArrests \%>\% 
+  dplyr::mutate(
+    state = row.names(.)
+  ) \%>\% 
+  e_charts(state) \%>\%
+  e_bar(Rape)
+
 }
