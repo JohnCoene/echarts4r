@@ -1,4 +1,4 @@
-Package: echarts4
+Package: echarts4r
 Title: htmlwidget for echarts version 4
 Version: 0.0.0.9000
 Authors@R: person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre"))
