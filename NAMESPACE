@@ -2,7 +2,10 @@
 
 export("%>%")
 export(e_bar)
+export(e_candle)
 export(e_charts)
+export(e_line)
+export(e_scatter)
 export(echarts4Output)
 export(renderEcharts4)
 import(htmlwidgets)
