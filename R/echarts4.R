@@ -7,6 +7,14 @@
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
 #'   string and have \code{'px'} appended.
 #' @param elementId Id of element.
+#' 
+#' @examples 
+#' USArrests %>% 
+#'   dplyr::mutate(
+#'     state = row.names(.)
+#'   ) %>% 
+#'   e_charts(state) %>%
+#'   e_line(Rape)
 #'
 #' @import htmlwidgets
 #'
@@ -23,10 +31,10 @@ e_charts <- function(data, x = NULL, width = NULL, height = NULL, elementId = NU
   x = list(
     data = data,
     opts = list(
-      title = list(),
-      tooltip = list(),
       xAxis = xAxis,
-      yAxis = list()
+      yAxis = list(
+        show = TRUE
+      )
     )
   )
 
