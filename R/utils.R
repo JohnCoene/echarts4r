@@ -79,3 +79,104 @@
   
   apply(edges, 1, as.list)
 }
+
+.build_graph_nodes <- function(nodes, names, value, symbolSize, category){
+  
+  nodes %>%
+    dplyr::select(
+      !!names,
+      !!value,
+      !!symbolSize,
+      !!category
+    ) -> data
+  
+  names(data) <- c("name", "value", "symbolSize", "category")[1:ncol(data)]
+  
+  if(!is.null(data[["category"]]))
+    data[["category"]] <- as.numeric(as.factor(data[["category"]])) - 1
+  
+  apply(data, 1, as.list)
+}
+
+.build_graph_edges <- function(edges, source, target){
+  
+  edges %>%
+    dplyr::select(
+      !!source,
+      !!target
+    ) -> data
+  
+  names(data) <- c("source", "target")
+  
+  apply(data, 1, as.list)
+}
+
+.build_graph_category <- function(nodes, cat){
+  nodes %>%
+    dplyr::select(
+      !!cat
+    ) -> data
+  
+  names(data) <- c("name")
+  
+  data[["name"]] <- as.numeric(as.factor(data[["name"]])) - 1
+  
+  apply(data, 1, as.list)
+}
+
+.graph_cat_legend <- function(nodes, cat){
+  nodes %>%
+    dplyr::select(
+      !!cat
+    ) %>% 
+    unlist() %>% 
+    unname() %>% 
+    unique()
+}
+
+.build_boxplot <- function(data, serie){
+  data %>%
+    dplyr::select(
+      !!serie
+    ) %>%  
+    unname() %>% 
+    unlist() -> x
+  
+  boxplot.stats(x)$stats
+}
+
+.get_outliers <- function(data, serie){
+  data %>%
+    dplyr::select(
+      !!serie
+    ) %>%  
+    unname() %>% 
+    unlist() -> x
+  
+  boxplot.stats(x)$out
+}
+
+.build_outliers <- function(e, out){
+  x <- length(e$x$opts$series[[1]]$data) - 1
+  x <- rep(x, length(out))
+  matrix <- cbind(x, out)
+  apply(unname(matrix), 1, as.list)
+}
+
+.add_outliers <- function(e, serie){
+  
+  outliers <- .get_outliers(e$x$data, serie)
+  outliers <- .build_outliers(e, outliers)
+  
+  scatter <- list(
+    type = "scatter",
+    data = outliers
+  )
+  
+  if(length(e$x$opts$series) == 2)
+    e$x$opts$series[[2]]$data <- append(e$x$opts$series[[2]]$data, outliers)
+  else 
+    e$x$opts$series <- append(e$x$opts$series, list(scatter))
+  
+  e
+}

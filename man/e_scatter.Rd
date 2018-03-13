@@ -9,7 +9,7 @@ e_scatter(e, serie, size, scale = "* 1", name = NULL, ...)
 \arguments{
 \item{e}{An \code{echarts4} object as returned by \code{e_charts}.}
 
-\item{serie}{Column name of serie to plot on y axis.}
+\item{serie}{Column name of serie to plot.}
 
 \item{size}{Column name containing size of points.}
 

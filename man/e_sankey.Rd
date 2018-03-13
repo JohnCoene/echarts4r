@@ -11,9 +11,10 @@ Sankey
 }
 \examples{
 sankey <- data.frame(
-  source = sample(LETTERS[1:10], 20, replace = TRUE),
-  target = sample(LETTERS[1:10], 20, replace = TRUE),
-  value = rnorm(10)
+  source = sample(LETTERS[1:2], 5, replace = TRUE),
+  target = sample(LETTERS[1:3], 5, replace = TRUE),
+  value = rnorm(10),
+  stringsAsFactors = FALSE
 )
 
 sankey \%>\% 
