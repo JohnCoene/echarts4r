@@ -20,9 +20,9 @@
     x = x
   )
   
-  df <- cbind.data.frame(lhs, rhs)
+  df <- cbind(lhs, rhs)
   
-  matrix <- unname(as.matrix(df))
+  matrix <- unname(df)
   
   apply(matrix, 1, as.list)
 }

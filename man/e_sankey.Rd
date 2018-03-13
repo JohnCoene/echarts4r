@@ -6,19 +6,30 @@
 \usage{
 e_sankey(e, source, target, value, layout = "none", ...)
 }
+\arguments{
+\item{e}{An \code{echarts4} object as returned by \code{e_charts}.}
+
+\item{source, target}{Source and target columns.}
+
+\item{value}{Value change from \code{source} to \code{target}.}
+
+\item{layout}{Layout of sankey.}
+
+\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+}
 \description{
-Sankey
+Draw a sankey diagram.
 }
 \examples{
 sankey <- data.frame(
-  source = sample(LETTERS[1:2], 5, replace = TRUE),
-  target = sample(LETTERS[1:3], 5, replace = TRUE),
-  value = rnorm(10),
+  source = c("a", "b", "c", "d", "c"),
+  target = c("b", "c", "d", "e", "e"),
+  value = ceiling(rnorm(5, 10, 1)),
   stringsAsFactors = FALSE
 )
 
 sankey \%>\% 
   e_charts() \%>\% 
-  e_sankey(source, target, value)
+  e_sankey(source, target, value) 
 
 }

@@ -208,17 +208,24 @@ e_funnel <- function(e, values, labels, name = NULL, ...){
 
 #' Sankey
 #' 
+#' Draw a sankey diagram.
+#' 
+#' @inheritParams e_bar
+#' @param layout Layout of sankey.
+#' @param source,target Source and target columns.
+#' @param value Value change from \code{source} to \code{target}.
+#' 
 #' @examples
 #' sankey <- data.frame(
-#'   source = sample(LETTERS[1:2], 5, replace = TRUE),
-#'   target = sample(LETTERS[1:3], 5, replace = TRUE),
-#'   value = rnorm(10),
+#'   source = c("a", "b", "c", "d", "c"),
+#'   target = c("b", "c", "d", "e", "e"),
+#'   value = ceiling(rnorm(5, 10, 1)),
 #'   stringsAsFactors = FALSE
 #' )
 #' 
 #' sankey %>% 
 #'   e_charts() %>% 
-#'   e_sankey(source, target, value)
+#'   e_sankey(source, target, value) 
 #' 
 #' @export
 e_sankey <- function(e, source, target, value, layout = "none", ...){
@@ -248,7 +255,7 @@ e_sankey <- function(e, source, target, value, layout = "none", ...){
   serie <- list(
     type = "sankey",
     layout = layout,
-    data = nodes,
+    nodes = nodes,
     links = edges,
     ...
   )
@@ -365,6 +372,8 @@ e_graph_edges <- function(e, edges, source, target){
 #' Draw boxplot.
 #' 
 #' @inheritParams e_bar
+#' @param outliers Whether to plot outliers.
+#
 #' 
 #' @examples 
 #' df <- data.frame(

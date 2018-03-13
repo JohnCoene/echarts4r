@@ -13,6 +13,8 @@ e_boxplot(e, serie, name = NULL, outliers = TRUE, ...)
 
 \item{name}{name of the serie.}
 
+\item{outliers}{Whether to plot outliers.}
+
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
 \description{
@@ -20,13 +22,13 @@ Draw boxplot.
 }
 \examples{
 df <- data.frame(
-  x = rnorm(10),
-  y = rnorm(10, 2, 1)
+  x = c(1:10, 25),
+  y = c(1:10, -6)
 )
 
 df \%>\% 
   e_charts() \%>\% 
-  e_boxplot(y) \%>\% 
-  e_boxplot(x)
+  e_boxplot(y, outliers = TRUE) \%>\% 
+  e_boxplot(x, outliers = TRUE)
 
 }
