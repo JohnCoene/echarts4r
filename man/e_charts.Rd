@@ -24,6 +24,6 @@ USArrests \%>\%
     state = row.names(.)
   ) \%>\% 
   e_charts(state) \%>\%
-  e_bar(Rape)
+  e_line(Rape)
 
 }

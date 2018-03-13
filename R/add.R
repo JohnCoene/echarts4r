@@ -3,7 +3,7 @@
 #' Add bar or line serie.
 #' 
 #' @param e An \code{echarts4} object as returned by \code{e_charts}.
-#' @param serie Column name of serie to plot on y axis.
+#' @param serie Column name of serie to plot.
 #' @param name name of the serie.
 #' @param ... Any other option to pass to \code{bar} or \code{line} char types.
 #' 
@@ -162,5 +162,160 @@ e_candle <- function(e, opening, closing, low, high, name = NULL, ...){
   e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' Graph
+#' 
+#' Create a graph.
+#' 
+#' @param e An \code{echarts4} object as returned by \code{e_charts}.
+#' @param name Name of graph.
+#' @param nodes Data.frame of nodes.
+#' @param names Names of nodes, unique.
+#' @param value values of nodes.
+#' @param size Size of nodes.
+#' @param category Group of nodes (i.e.: group membership).
+#' @param edges Data.frame of edges.
+#' @param source,target Column names of source and target.
+#' @param ... Any other parameter.
+#' 
+#' @examples 
+#' nodes <- data.frame(
+#'   name = LETTERS,
+#'   value = rnorm(26),
+#'   size = rnorm(26) * 15,
+#'   grp = rep(c("grp1", "grp2"), 13),
+#'   stringsAsFactors = FALSE
+#' )
+#' 
+#' edges <- data.frame(
+#'   source = sample(LETTERS, 40, replace = TRUE),
+#'   target = sample(LETTERS, 40, replace = TRUE),
+#'   stringsAsFactors = FALSE
+#' )
+#' 
+#' e_charts() %>% 
+#'   e_graph() %>% 
+#'   e_graph_nodes(nodes, name, value, size, grp) %>% 
+#'   e_graph_edges(edges, source, target)
+#' 
+#' @rdname graph
+#' @export
+e_graph <- function(e, name = NULL, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  serie <- list(
+    name = name,
+    type = "graph",
+    layout = "force",
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' @rdname graph
+#' @export
+e_graph_nodes <- function(e, nodes, names, value, size, category){
+  
+  if(missing(nodes) || missing(names))
+    stop("must pass nodes and names", call. = FALSE)
+  
+  if(!missing(category)){
+    e$x$opts$series[[length(e$x$opts$series)]]$categories <- .build_graph_category(nodes, enquo(category))
+    # e$x$opts$legend$data <- .graph_cat_legend(nodes, enquo(category))
+  }
+  
+  value <- enquo(value)
+  symbolSize <- enquo(size)
+  names <- enquo(names)
+  
+  nodes <- .build_graph_nodes(
+    nodes, 
+    names, 
+    value,
+    symbolSize,
+    enquo(category)
+  )
+  
+  # build JSON data
+  e$x$opts$series[[length(e$x$opts$series)]]$data <- nodes
+  e
+}
+
+#' @rdname graph
+#' @export
+e_graph_edges <- function(e, edges, source, target){
+  if(missing(edges) || missing(source) || missing(target))
+    stop("must pass edges, source and target", call. = FALSE)
+  
+  source <- enquo(source)
+  target <- enquo(target)
+  
+  data <- .build_graph_edges(
+    edges, 
+    source, 
+    target
+  )
+  
+  # build JSON data
+  e$x$opts$series[[length(e$x$opts$series)]]$links <- data
+  e
+}
+
+#' Boxplot
+#' 
+#' Draw boxplot.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @examples 
+#' df <- data.frame(
+#'   x = rnorm(10),
+#'   y = rnorm(10, 2, 1)
+#' )
+#' 
+#' df %>% 
+#'   e_charts() %>% 
+#'   e_boxplot(y) %>% 
+#'   e_boxplot(x)
+#' 
+#' @export
+e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  if(is.null(name)) # defaults to column name
+    name <- deparse(substitute(serie))
+  
+  # build JSON data
+  serie <- dplyr::enquo(serie)
+  vector <- .build_boxplot(e$x$data, serie)
+
+  # data/serie  
+  e$x$opts$series$name <- name
+  e$x$opts$series$type <- "boxplot"
+  e$x$opts$series$data[[length(e$x$opts$series$data) + 1]] <- vector
+  
+  # data/outliers
+  outliers <- list(...)
+  outliers$type <- "scatter"
+  outliers$data <- .build_outliers(data, serie)
+  e$x$opts$series <- append(e$x$opts$series, outliers)
+
+  # xaxis
+  e$x$opts$xAxis$data <- append(e$x$opts$xAxis$data, list(name))
+  e$x$opts$xAxis$type <- "category"
+  
+  # legend
+  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
   e
 }

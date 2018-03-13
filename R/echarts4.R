@@ -17,6 +17,7 @@
 #'   e_line(Rape)
 #'
 #' @import htmlwidgets
+#' @import rlang
 #'
 #' @export
 e_charts <- function(data, x = NULL, width = NULL, height = NULL, elementId = NULL) {
@@ -29,7 +30,6 @@ e_charts <- function(data, x = NULL, width = NULL, height = NULL, elementId = NU
 
   # forward options using x
   x = list(
-    data = data,
     opts = list(
       xAxis = xAxis,
       yAxis = list(
@@ -37,6 +37,9 @@ e_charts <- function(data, x = NULL, width = NULL, height = NULL, elementId = NU
       )
     )
   )
+  
+  if(!missing(data))
+    x$data <- data
 
   # create widget
   htmlwidgets::createWidget(
