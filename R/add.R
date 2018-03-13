@@ -327,7 +327,7 @@ e_graph_nodes <- function(e, nodes, names, value, size, category){
   
   if(!missing(category)){
     e$x$opts$series[[length(e$x$opts$series)]]$categories <- .build_graph_category(nodes, enquo(category))
-    # e$x$opts$legend$data <- .graph_cat_legend(nodes, enquo(category))
+    #e$x$opts$legend$data <- .graph_cat_legend(nodes, enquo(category))
   }
   
   value <- enquo(value)
@@ -427,5 +427,54 @@ e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
   # legend
   e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   
+  e
+}
+
+#' Heatmap
+#' 
+#' @examples 
+#' v <- LETTERS[1:10]
+#' matrix <- data.frame(
+#'   x = sample(v, 300, replace = TRUE), 
+#'   y = sample(v, 300, replace = TRUE), 
+#'   z = rnorm(300, 10, 1)
+#' ) %>% 
+#'   dplyr::group_by(x, y) %>% 
+#'   dplyr::summarise(z = sum(z)) %>% 
+#'   dplyr::ungroup()
+#' 
+#' matrix %>% 
+#'   e_charts() %>% 
+#'   e_heatmap(x, y, z) %>% 
+#'   e_visual_map()
+#' 
+#' @export
+e_heatmap <- function(e, x, y, z, name = NULL, ...){
+  if(missing(x) || missing(y) || missing(z))
+    stop("must pass x, y and z", call. = FALSE)
+  
+  # build JSON data
+  xyz <- .build_3d(e$x$data, dplyr::enquo(x), dplyr::enquo(y), dplyr::enquo(z))
+  
+  serie <- list(
+    name = name,
+    type = "heatmap",
+    data = xyz,
+    ...
+  )
+  
+  e$x$opts$xAxis <- list(
+    data = unique(
+      .build_vector(e$x$data, dplyr::enquo(x)
+    ))
+  )
+  
+  e$x$opts$yAxis <- list(
+    data = unique(
+      .build_vector(e$x$data, dplyr::enquo(y)
+    ))
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }

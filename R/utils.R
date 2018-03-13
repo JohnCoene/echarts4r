@@ -131,7 +131,7 @@
     ) %>% 
     unlist() %>% 
     unname() %>% 
-    unique()
+    unique() 
 }
 
 .build_boxplot <- function(data, serie){
@@ -179,4 +179,16 @@
     e$x$opts$series <- append(e$x$opts$series, list(scatter))
   
   e
+}
+
+.build_3d <- function(data, x, y , z){
+  data %>%
+    dplyr::select(
+      !!x,
+      !!y,
+      !!z
+    ) %>%
+    unname() -> data
+  
+  apply(data, 1, as.list)
 }
