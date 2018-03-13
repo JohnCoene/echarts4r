@@ -164,3 +164,95 @@ e_candle <- function(e, opening, closing, low, high, name = NULL, ...){
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }
+
+#' Funnel
+#' 
+#' Add a funnel.
+#' 
+#' @inheritParams e_bar
+#' @param values,labels Values and labels of funnel.
+#' 
+#' @examples 
+#' funnel <- data.frame(stage = c("View", "Click", "Purchase"), value = c(80, 30, 20))
+#' 
+#' funnel %>% 
+#'   e_charts() %>% 
+#'   e_funnel(value, stage)
+#' 
+#' @export
+e_funnel <- function(e, values, labels, name = NULL, ...){
+  
+  if(missing(values) || missing(labels))
+    stop("missing values or labels", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  e$x$opts$legend <- NULL # remove
+  
+  # build JSON data
+  funnel <- .build_funnel(e$x$data, dplyr::enquo(values), dplyr::enquo(labels))
+  
+  serie <- list(
+    name = name,
+    type = "funnel",
+    data = funnel,
+    ...
+  )
+  
+  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+  
+}
+
+#' Sankey
+#' 
+#' @examples
+#' sankey <- data.frame(
+#'   source = sample(LETTERS[1:2], 5, replace = TRUE),
+#'   target = sample(LETTERS[1:3], 5, replace = TRUE),
+#'   value = rnorm(10),
+#'   stringsAsFactors = FALSE
+#' )
+#' 
+#' sankey %>% 
+#'   e_charts() %>% 
+#'   e_sankey(source, target, value)
+#' 
+#' @export
+e_sankey <- function(e, source, target, value, layout = "none", ...){
+  
+  if(missing(source) || missing(target) || missing(value))
+    stop("missing source, target or values", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  e$x$opts$legend <- NULL # remove
+  
+  # build JSON data
+  nodes <- .build_sankey_nodes(
+    e$x$data, 
+    dplyr::enquo(source), 
+    dplyr::enquo(target)
+  )
+  
+  # build JSON data
+  edges <- .build_sankey_edges(
+    e$x$data, 
+    dplyr::enquo(source), 
+    dplyr::enquo(target),
+    dplyr::enquo(value)
+  )
+  
+  serie <- list(
+    type = "sankey",
+    layout = layout,
+    data = nodes,
+    links = edges,
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}

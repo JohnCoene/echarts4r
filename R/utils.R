@@ -40,3 +40,42 @@
   
   apply(matrix, 1, as.list)
 }
+
+.build_funnel <- function(data, x, y){
+  data %>%
+    dplyr::select(!!x, !!y) -> df
+  
+  names(df) <- c("value", "name")
+  
+  apply(df, 1, as.list)
+}
+
+.build_sankey_nodes <- function(data, source, target){
+  
+  nodes <- c(
+    unlist(
+      dplyr::select(data, !!source)
+    ),
+    unlist(
+      dplyr::select(data, !!target)
+    )
+  )
+  
+  nodes <- data.frame(
+    name = unique(nodes),
+    stringsAsFactors = FALSE
+  )
+  
+  apply(nodes, 1, as.list)
+  
+  
+}
+
+.build_sankey_edges <- function(data, source, target, values){
+  data %>%
+    dplyr::select(!!source, !!target, !!values) -> edges
+  
+  names(edges) <- c("source", "target", "value")
+  
+  apply(edges, 1, as.list)
+}

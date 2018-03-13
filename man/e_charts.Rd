@@ -9,6 +9,8 @@ e_charts(data, x = NULL, width = NULL, height = NULL, elementId = NULL)
 \arguments{
 \item{data}{A \code{data.frame}.}
 
+\item{x}{Column name containing x axis.}
+
 \item{width, height}{Must be a valid CSS unit (like \code{'100\%'},
 \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
 string and have \code{'px'} appended.}
@@ -24,6 +26,6 @@ USArrests \%>\%
     state = row.names(.)
   ) \%>\% 
   e_charts(state) \%>\%
-  e_bar(Rape)
+  e_line(Rape)
 
 }

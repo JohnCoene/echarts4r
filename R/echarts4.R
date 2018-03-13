@@ -3,6 +3,7 @@
 #' Initialise a chart.
 #'
 #' @param data A \code{data.frame}.
+#' @param x Column name containing x axis.
 #' @param width,height Must be a valid CSS unit (like \code{'100\%'},
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
 #'   string and have \code{'px'} appended.
