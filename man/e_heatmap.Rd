@@ -6,11 +6,20 @@
 \usage{
 e_heatmap(e, x, y, z, name = NULL, ...)
 }
+\arguments{
+\item{e}{An \code{echarts4} object as returned by \code{e_charts}.}
+
+\item{x, y, z}{Coordinates and values.}
+
+\item{name}{name of the serie.}
+
+\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+}
 \description{
-Heatmap
+Draw heatmap by coordinates.
 }
 \examples{
-v <- c(1:10)
+v <- LETTERS[1:10]
 matrix <- data.frame(
   x = sample(v, 300, replace = TRUE), 
   y = sample(v, 300, replace = TRUE), 
@@ -22,6 +31,7 @@ matrix <- data.frame(
 
 matrix \%>\% 
   e_charts() \%>\% 
-  e_heatmap(x, y, z)
+  e_heatmap(x, y, z) \%>\% 
+  e_visual_map()
 
 }

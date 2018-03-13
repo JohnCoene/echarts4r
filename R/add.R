@@ -432,6 +432,11 @@ e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
 
 #' Heatmap
 #' 
+#' Draw heatmap by coordinates.
+#' 
+#' @inheritParams e_bar
+#' @param x,y,z Coordinates and values.
+#' 
 #' @examples 
 #' v <- LETTERS[1:10]
 #' matrix <- data.frame(
@@ -476,5 +481,64 @@ e_heatmap <- function(e, x, y, z, name = NULL, ...){
   )
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' Parallel
+#' 
+#' Draw parallel coordinates.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @examples 
+#' df <- data.frame(
+#'   price = rnorm(5, 10),
+#'   amount = rnorm(5, 15),
+#'   letter = LETTERS[1:5]
+#' )
+#' 
+#' df %>% 
+#'   e_charts() %>% 
+#'   e_parallel(price, amount, letter)
+#' 
+#' @export
+e_parallel <- function(e, ..., name = NULL){
+  if(missing(e))
+    stop("must pass e", call. = FALSE) 
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  e$x$data %>% 
+    dplyr::select(...) -> df
+  
+  # remove names
+  data <- df
+  row.names(data) <- NULL
+  data <- unname(data)
+  
+  data <- apply(data, 1, as.list)
+  
+  serie <- list(
+    name = name,
+    type = "parallel",
+    data = data
+  )
+  
+  para <- list()
+  for(i in 1:ncol(df)){
+    line <- list()
+    line$dim <- i - 1
+    line$name <- names(df)[i]
+    if(inherits(df[,i], "character") || inherits(df[, i], "factor")){
+      line$type <- "category"
+      line$data <- unique(df[,i])
+    }
+    
+    para[[i]] <- line
+  }
+  
+  e$x$opts$series <- append(e$x$opts$series, serie)
+  e$x$opts$parallelAxis <- para
   e
 }

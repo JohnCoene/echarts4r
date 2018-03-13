@@ -4,7 +4,16 @@
 \alias{e_visual_map}
 \title{Visual Map}
 \usage{
-e_visual_map(e, calculable = TRUE, ...)
+e_visual_map(e, calculable = TRUE, type = c("continuous", "piecewise"), ...)
+}
+\arguments{
+\item{e}{An \code{echarts4} object as returned by \code{e_charts}.}
+
+\item{calculable}{Whether show handles, which can be dragged to adjust "selected range".}
+
+\item{type}{One of \code{continuous} or \code{piecewise}.}
+
+\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
 \description{
 Visual Map
