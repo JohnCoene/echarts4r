@@ -7,7 +7,7 @@
 e_treemap(e, parent, child, value, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4} object as returned by \code{e_charts}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{parent, child}{Edges.}
 
@@ -19,6 +19,7 @@ e_treemap(e, parent, child, value, ...)
 Build a treemap.
 }
 \examples{
+\dontrun{
 df <- data.frame(
   parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
   child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster"),
@@ -28,5 +29,6 @@ df <- data.frame(
 df \%>\% 
   e_charts() \%>\% 
   e_treemap(parent, child, value)
+}
 
 }

@@ -2,7 +2,7 @@
 #' 
 #' Add bar or line serie.
 #' 
-#' @param e An \code{echarts4} object as returned by \code{e_charts}.
+#' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
 #' @param serie Column name of serie to plot.
 #' @param name name of the serie.
 #' @param ... Any other option to pass to \code{bar} or \code{line} char types.
@@ -602,7 +602,7 @@ e_pie <- function(e, serie, label, name = NULL, ...){
 #' 
 #' df %>% 
 #'   e_charts() %>% 
-#'   e_treemap(parent, child)
+#'   e_tree(parent, child)
 #' 
 #' @export
 e_tree <- function(e, parent, child, ...){
@@ -641,6 +641,7 @@ e_tree <- function(e, parent, child, ...){
 #' @param value Value of edges.
 #' 
 #' @examples 
+#' \dontrun{
 #' df <- data.frame(
 #'   parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
 #'   child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster"),
@@ -650,6 +651,7 @@ e_tree <- function(e, parent, child, ...){
 #' df %>% 
 #'   e_charts() %>% 
 #'   e_treemap(parent, child, value)
+#' }
 #' 
 #' @export
 e_treemap <- function(e, parent, child, value, ...){
@@ -677,5 +679,67 @@ e_treemap <- function(e, parent, child, value, ...){
   )
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' River
+#' 
+#' Build a theme river.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @examples 
+#' dates <- seq.Date(Sys.Date() - 30, Sys.Date(), by = "day")
+#' 
+#' df <- data.frame(
+#'   dates = dates,
+#'   apples = runif(length(dates)),
+#'   bananas = runif(length(dates)),
+#'   pears = runif(length(dates))
+#' )
+#' 
+#' df %>% 
+#'   e_charts(dates) %>% 
+#'   e_river(apples) %>% 
+#'   e_river(bananas) %>% 
+#'   e_river(pears)
+#' 
+#' @export
+e_river <- function(e, serie, name = NULL, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  if(is.null(name)) # defaults to column name
+    name <- deparse(substitute(serie))
+  
+  if(length(e$x$opts$xAxis$data))
+    e$X <- e$x$opts$xAxis$data
+  
+  # build JSON data
+  data <- .build_river(
+    e, 
+    dplyr::enquo(serie), 
+    name
+  )
+  
+  if(!length(e$x$opts$series)){
+    serie <- list(
+      type = "themeRiver",
+      data = data,
+      ...
+    )
+    e$x$opts$series <- append(e$x$opts$series, list(serie))
+  } else {
+    e$x$opts$series[[1]]$data <- append(e$x$opts$series[[1]]$data, data)
+  }
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  e$x$opts$singleAxis <- list(type = "time")
+  
   e
 }

@@ -7,7 +7,7 @@
 e_visual_map(e, calculable = TRUE, type = c("continuous", "piecewise"), ...)
 }
 \arguments{
-\item{e}{An \code{echarts4} object as returned by \code{e_charts}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{calculable}{Whether show handles, which can be dragged to adjust "selected range".}
 

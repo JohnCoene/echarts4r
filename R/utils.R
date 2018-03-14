@@ -2,8 +2,9 @@
 .build_vector <- function(data, x){
   data %>%
     dplyr::select(!!x) %>%
-    unlist() %>%
-    unname()
+    unname() -> x
+  
+  x[[1]]
 }
 
 .build_xy <- function(data, x, serie, size){
@@ -226,4 +227,16 @@
   
   tree <- data.tree::FromDataFrameNetwork(df)
   data.tree::ToListExplicit(tree, unname = TRUE)
+}
+
+.build_river <- function(e, serie, label){
+  e$x$data %>%
+    dplyr::select(
+      !!serie
+    ) -> data
+  
+  label <- data.frame(name = rep(label, nrow(data)))
+  data <- cbind(e$X, data, label)
+  
+  apply(unname(data), 1, as.list)
 }

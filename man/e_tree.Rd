@@ -7,7 +7,7 @@
 e_tree(e, parent, child, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4} object as returned by \code{e_charts}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{parent, child}{Edges.}
 
@@ -24,6 +24,6 @@ df <- data.frame(
 
 df \%>\% 
   e_charts() \%>\% 
-  e_treemap(parent, child)
+  e_tree(parent, child)
 
 }
