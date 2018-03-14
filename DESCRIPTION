@@ -11,5 +11,6 @@ Imports:
   htmlwidgets,
   magrittr,
   rlang,
-  dplyr
+  dplyr,
+  data.tree
 RoxygenNote: 6.0.1

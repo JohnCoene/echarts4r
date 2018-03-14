@@ -22,10 +22,10 @@
 #' @importFrom grDevices boxplot.stats
 #'
 #' @export
-e_charts <- function(data, x = NULL, width = NULL, height = NULL, elementId = NULL) {
+e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL) {
 
   xAxis <- list()
-  if(!is.null(rlang::enexpr(x)))
+  if(!missing(x))
     xAxis <- list(
       data = .build_vector(data, dplyr::enquo(x))
     )
@@ -45,39 +45,39 @@ e_charts <- function(data, x = NULL, width = NULL, height = NULL, elementId = NU
 
   # create widget
   htmlwidgets::createWidget(
-    name = 'echarts4',
+    name = 'echarts4r',
     x,
     width = width,
     height = height,
-    package = 'echarts4',
+    package = 'echarts4r',
     elementId = elementId
   )
 }
 
-#' Shiny bindings for echarts4
+#' Shiny bindings for echarts4r
 #'
-#' Output and render functions for using echarts4 within Shiny
+#' Output and render functions for using echarts4r within Shiny
 #' applications and interactive Rmd documents.
 #'
 #' @param outputId output variable to read from.
 #' @param width,height Must be a valid CSS unit (like \code{'100\%'},
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
 #'   string and have \code{'px'} appended.
-#' @param expr An expression that generates a echarts4
+#' @param expr An expression that generates a echarts4r
 #' @param env The environment in which to evaluate \code{expr}.
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
 #'
-#' @name echarts4-shiny
+#' @name echarts4r-shiny
 #'
 #' @export
-echarts4Output <- function(outputId, width = '100%', height = '400px'){
-  htmlwidgets::shinyWidgetOutput(outputId, 'echarts4', width, height, package = 'echarts4')
+echarts4rOutput <- function(outputId, width = '100%', height = '400px'){
+  htmlwidgets::shinyWidgetOutput(outputId, 'echarts4r', width, height, package = 'echarts4r')
 }
 
-#' @rdname echarts4-shiny
+#' @rdname echarts4r-shiny
 #' @export
-renderEcharts4 <- function(expr, env = parent.frame(), quoted = FALSE) {
+renderEcharts4r <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, echarts4Output, env, quoted = TRUE)
+  htmlwidgets::shinyRenderWidget(expr, echarts4rOutput, env, quoted = TRUE)
 }

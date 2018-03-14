@@ -4,12 +4,12 @@
 \alias{e_heatmap}
 \title{Heatmap}
 \usage{
-e_heatmap(e, x, y, z, name = NULL, ...)
+e_heatmap(e, y, z, name = NULL, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4} object as returned by \code{e_charts}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{x, y, z}{Coordinates and values.}
+\item{y, z}{Coordinates and values.}
 
 \item{name}{name of the serie.}
 
@@ -23,15 +23,16 @@ v <- LETTERS[1:10]
 matrix <- data.frame(
   x = sample(v, 300, replace = TRUE), 
   y = sample(v, 300, replace = TRUE), 
-  z = rnorm(300, 10, 1)
+  z = rnorm(300, 10, 1),
+  stringsAsFactors = FALSE
 ) \%>\% 
   dplyr::group_by(x, y) \%>\% 
   dplyr::summarise(z = sum(z)) \%>\% 
   dplyr::ungroup()
 
 matrix \%>\% 
-  e_charts() \%>\% 
-  e_heatmap(x, y, z) \%>\% 
+  e_charts(x) \%>\% 
+  e_heatmap(y, z) \%>\% 
   e_visual_map()
 
 }

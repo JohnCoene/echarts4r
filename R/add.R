@@ -2,23 +2,23 @@
 #' 
 #' Add bar or line serie.
 #' 
-#' @param e An \code{echarts4} object as returned by \code{e_charts}.
+#' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
 #' @param serie Column name of serie to plot.
 #' @param name name of the serie.
 #' @param ... Any other option to pass to \code{bar} or \code{line} char types.
 #' 
 #' @examples 
 #' USArrests %>% 
-#'   dplyr::mutate(
-#'     state = row.names(.)
-#'   ) %>% 
-#'   e_charts(state) %>% 
+#'   e_charts(Assault) %>% 
 #'   e_bar(Murder, name = "Euwww") %>% 
 #'   e_line(Rape)
 #' 
 #' @rdname barline
 #' @export
 e_bar <- function(e, serie, name = NULL, ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
 
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
@@ -435,31 +435,32 @@ e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
 #' Draw heatmap by coordinates.
 #' 
 #' @inheritParams e_bar
-#' @param x,y,z Coordinates and values.
+#' @param y,z Coordinates and values.
 #' 
 #' @examples 
 #' v <- LETTERS[1:10]
 #' matrix <- data.frame(
 #'   x = sample(v, 300, replace = TRUE), 
 #'   y = sample(v, 300, replace = TRUE), 
-#'   z = rnorm(300, 10, 1)
+#'   z = rnorm(300, 10, 1),
+#'   stringsAsFactors = FALSE
 #' ) %>% 
 #'   dplyr::group_by(x, y) %>% 
 #'   dplyr::summarise(z = sum(z)) %>% 
 #'   dplyr::ungroup()
 #' 
 #' matrix %>% 
-#'   e_charts() %>% 
-#'   e_heatmap(x, y, z) %>% 
+#'   e_charts(x) %>% 
+#'   e_heatmap(y, z) %>% 
 #'   e_visual_map()
 #' 
 #' @export
-e_heatmap <- function(e, x, y, z, name = NULL, ...){
-  if(missing(x) || missing(y) || missing(z))
-    stop("must pass x, y and z", call. = FALSE)
+e_heatmap <- function(e, y, z, name = NULL, ...){
+  if(missing(y) || missing(z))
+    stop("must pass y, z", call. = FALSE)
   
   # build JSON data
-  xyz <- .build_3d(e$x$data, dplyr::enquo(x), dplyr::enquo(y), dplyr::enquo(z))
+  xyz <- .build_3d(e$x$data, e$x$opts$xAxis$data, dplyr::enquo(y), dplyr::enquo(z))
   
   serie <- list(
     name = name,
@@ -470,8 +471,8 @@ e_heatmap <- function(e, x, y, z, name = NULL, ...){
   
   e$x$opts$xAxis <- list(
     data = unique(
-      .build_vector(e$x$data, dplyr::enquo(x)
-    ))
+      e$x$opts$xAxis$data
+    )
   )
   
   e$x$opts$yAxis <- list(
@@ -540,5 +541,264 @@ e_parallel <- function(e, ..., name = NULL){
   
   e$x$opts$series <- append(e$x$opts$series, serie)
   e$x$opts$parallelAxis <- para
+  e
+}
+
+#' Pie
+#' 
+#' Draw pie and donut charts.
+#' 
+#' @inheritParams e_bar
+#' @param label Labels of slices.
+#' 
+#' @examples 
+#' mtcars %>% 
+#'   head() %>% 
+#'   dplyr::mutate(model = row.names(.)) %>% 
+#'   e_charts() %>% 
+#'   e_pie(carb, model)
+#' 
+#' @export
+e_pie <- function(e, serie, label, name = NULL, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie) || missing(label))
+    stop("must pass serie and label", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  if(is.null(name)) # defaults to column name
+    name <- deparse(substitute(serie))
+  
+  # build JSON data
+  data <- .build_pie(e$x$data, dplyr::enquo(serie), dplyr::enquo(label))
+  
+  serie <- list(
+    name = name,
+    type = "pie",
+    data = data,
+    ...
+  )
+  
+  e$x$opts$legend$data <- append(e$x$opts$legend$data, .graph_cat_legend(e$x$data, dplyr::enquo(label)))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' Tree
+#' 
+#' Build a tree.
+#' 
+#' @inheritParams e_bar
+#' @param parent,child Edges.
+#' 
+#' @examples 
+#' df <- data.frame(
+#'   parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
+#'   child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster")
+#' )
+#' 
+#' df %>% 
+#'   e_charts() %>% 
+#'   e_tree(parent, child)
+#' 
+#' @export
+e_tree <- function(e, parent, child, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(parent) || missing(child))
+    stop("must pass parent and child", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  # build JSON data
+  data <- .build_tree(
+    e$x$data, 
+    dplyr::enquo(parent), 
+    dplyr::enquo(child)
+  )
+  
+  serie <- list(
+    type = "tree",
+    data = list(data),
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' Treemap
+#' 
+#' Build a treemap.
+#' 
+#' @inheritParams e_bar
+#' @param parent,child Edges.
+#' @param value Value of edges.
+#' 
+#' @examples 
+#' \dontrun{
+#' df <- data.frame(
+#'   parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
+#'   child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster"),
+#'   value = rnorm(8)
+#' )
+#' 
+#' df %>% 
+#'   e_charts() %>% 
+#'   e_treemap(parent, child, value)
+#' }
+#' 
+#' @export
+e_treemap <- function(e, parent, child, value, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(parent) || missing(child) || missing(value))
+    stop("must pass parent, child and value", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  # build JSON data
+  data <- .build_treemap(
+    e$x$data, 
+    dplyr::enquo(parent), 
+    dplyr::enquo(child),
+    dplyr::enquo(value)
+  )
+  
+  serie <- list(
+    type = "treemap",
+    data = list(data),
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' River
+#' 
+#' Build a theme river.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @examples 
+#' dates <- seq.Date(Sys.Date() - 30, Sys.Date(), by = "day")
+#' 
+#' df <- data.frame(
+#'   dates = dates,
+#'   apples = runif(length(dates)),
+#'   bananas = runif(length(dates)),
+#'   pears = runif(length(dates))
+#' )
+#' 
+#' df %>% 
+#'   e_charts(dates) %>% 
+#'   e_river(apples) %>% 
+#'   e_river(bananas) %>% 
+#'   e_river(pears)
+#' 
+#' @export
+e_river <- function(e, serie, name = NULL, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  if(is.null(name)) # defaults to column name
+    name <- deparse(substitute(serie))
+  
+  if(length(e$x$opts$xAxis$data))
+    e$X <- e$x$opts$xAxis$data
+  
+  # build JSON data
+  data <- .build_river(
+    e, 
+    dplyr::enquo(serie), 
+    name
+  )
+  
+  if(!length(e$x$opts$series)){
+    serie <- list(
+      type = "themeRiver",
+      data = data,
+      ...
+    )
+    e$x$opts$series <- append(e$x$opts$series, list(serie))
+  } else {
+    e$x$opts$series[[1]]$data <- append(e$x$opts$series[[1]]$data, data)
+  }
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  e$x$opts$singleAxis <- list(type = "time")
+  
+  e
+}
+
+#' Calendar
+#' 
+#' @examples 
+#' dates <- seq.Date(
+#'   as.Date("2017-01-01"), 
+#'   as.Date("2017-12-30"), 
+#'   by = "day"
+#' )
+#' 
+#' val <- rnorm(length(dates), 20, 3)
+#' 
+#' calendar <- data.frame(
+#'   day = dates,
+#'   value = val
+#' )
+#' 
+#' calendar %>% 
+#'   e_charts(day) %>% 
+#'   e_calendar(value, range = "2017") %>% 
+#'   e_visual_map(
+#'     min = min(val),
+#'     max = max(val)
+#'   ) %>% 
+#'   e_tooltip()
+#' 
+#' @export
+e_calendar <- function(e, serie, range, name = NULL, ...){
+  if(missing(serie) || missing(range))
+    stop("must pass serie and range", call. = FALSE)
+  
+  # build JSON data
+  cal <- .build_cal(e, dplyr::enquo(serie))
+  
+  index <- length(e$x$opts$series)
+  
+  serie <- list(
+    name = name,
+    type = "heatmap",
+    coordinateSystem= 'calendar',
+    calendarIndex = index,
+    data = cal,
+    ...
+  )
+  
+  if(!is.null(e$x$opts$calendar)){
+    e$x$opts$calendar <- append(e$x$opts$calendar, list(range = range))
+  } else {
+    e$x$opts$calendar <- list(list(range = range))
+  }
+  
+  
+  e$x$opts$xAxis <- NULL
+  e$x$opts$yAxis <- NULL
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }

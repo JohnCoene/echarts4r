@@ -1,5 +1,5 @@
 dependencies:
- - name: echarts4
+ - name: echarts4r
    version: 4.0.4
    src: htmlwidgets/lib/echarts-4.0.4
    script: echarts.min.js

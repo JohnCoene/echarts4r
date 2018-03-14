@@ -7,7 +7,7 @@
 e_scatter(e, serie, size, scale = "* 1", name = NULL, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4} object as returned by \code{e_charts}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{serie}{Column name of serie to plot.}
 

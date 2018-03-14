@@ -11,7 +11,7 @@ e_tooltip(e, show = TRUE, trigger = c("item", "axis"),
   ...)
 }
 \arguments{
-\item{e}{An \code{echarts4} object as returned by \code{e_charts}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{show}{Set to \code{FALSE} to hide the tooltip.}
 

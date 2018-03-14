@@ -7,7 +7,7 @@
 e_parallel(e, ..., name = NULL)
 }
 \arguments{
-\item{e}{An \code{echarts4} object as returned by \code{e_charts}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 

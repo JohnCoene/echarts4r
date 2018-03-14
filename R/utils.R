@@ -2,8 +2,9 @@
 .build_vector <- function(data, x){
   data %>%
     dplyr::select(!!x) %>%
-    unlist() %>%
-    unname()
+    unname() -> x
+  
+  x[[1]]
 }
 
 .build_xy <- function(data, x, serie, size){
@@ -20,7 +21,7 @@
     x = x
   )
   
-  df <- cbind(lhs, rhs)
+  df <- cbind(lhs, rhs[[1]])
   
   matrix <- unname(df)
   
@@ -184,11 +185,72 @@
 .build_3d <- function(data, x, y , z){
   data %>%
     dplyr::select(
-      !!x,
       !!y,
       !!z
     ) %>%
     unname() -> data
   
+  data <- cbind(x, data)
+  data <- unname(data)
+  
   apply(data, 1, as.list)
+}
+
+.build_pie <- function(data, serie, label){
+  data %>%
+    dplyr::select(
+      !!serie,
+      !!label
+    ) -> data
+  
+  names(data) <- c("value", "name")
+  
+  apply(data, 1, as.list)
+}
+
+.build_tree <- function(data, parent, child){
+  data %>%
+    dplyr::select(
+      !!parent,
+      !!child
+    ) -> df
+  
+  tree <- data.tree::FromDataFrameNetwork(df)
+  data.tree::ToListExplicit(tree, unname = TRUE)
+}
+
+.build_treemap <- function(data, parent, child, value){
+  data %>%
+    dplyr::select(
+      !!parent,
+      !!child,
+      !!value
+    ) -> df
+  
+  tree <- data.tree::FromDataFrameNetwork(df)
+  data.tree::ToListExplicit(tree, unname = TRUE)
+}
+
+.build_river <- function(e, serie, label){
+  e$x$data %>%
+    dplyr::select(
+      !!serie
+    ) -> data
+  
+  label <- data.frame(name = rep(label, nrow(data)))
+  data <- cbind(e$X, data, label)
+  
+  apply(unname(data), 1, as.list)
+}
+
+.build_cal <- function(e, serie){
+  e$x$data %>% 
+    dplyr::select(!!serie) %>% 
+    unname() -> rhs
+  
+  lhs <- as.character(e$x$opts$xAxis$data)
+  
+  df <- cbind(lhs, rhs)
+  
+  apply(unname(df), 1, as.list)
 }
