@@ -9,16 +9,16 @@
 #' 
 #' @examples 
 #' USArrests %>% 
-#'   dplyr::mutate(
-#'     state = row.names(.)
-#'   ) %>% 
-#'   e_charts(state) %>% 
+#'   e_charts(Assault) %>% 
 #'   e_bar(Murder, name = "Euwww") %>% 
 #'   e_line(Rape)
 #' 
 #' @rdname barline
 #' @export
 e_bar <- function(e, serie, name = NULL, ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
 
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
@@ -540,5 +540,94 @@ e_parallel <- function(e, ..., name = NULL){
   
   e$x$opts$series <- append(e$x$opts$series, serie)
   e$x$opts$parallelAxis <- para
+  e
+}
+
+#' Pie
+#' 
+#' Draw pie and donut charts.
+#' 
+#' @inheritParams e_bar
+#' @param label Labels of slices.
+#' 
+#' @examples 
+#' mtcars %>% 
+#'   head() %>% 
+#'   dplyr::mutate(model = row.names(.)) %>% 
+#'   e_charts() %>% 
+#'   e_pie(carb, model)
+#' 
+#' @export
+e_pie <- function(e, serie, label, name = NULL, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie) || missing(label))
+    stop("must pass serie and label", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  if(is.null(name)) # defaults to column name
+    name <- deparse(substitute(serie))
+  
+  # build JSON data
+  data <- .build_pie(e$x$data, dplyr::enquo(serie), dplyr::enquo(label))
+  
+  serie <- list(
+    name = name,
+    type = "pie",
+    data = data,
+    ...
+  )
+  
+  e$x$opts$legend$data <- append(e$x$opts$legend$data, .graph_cat_legend(e$x$data, dplyr::enquo(label)))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' Tree
+#' 
+#' Build a treemap.
+#' 
+#' @inheritParams e_bar
+#' @param parent,child Edges.
+#' 
+#' @examples 
+#' df <- data.frame(
+#'   parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
+#'   child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster")
+#' )
+#' 
+#' df %>% 
+#'   e_charts() %>% 
+#'   e_treemap(parent, child)
+#' 
+#' @export
+e_treemap <- function(e, parent, child, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(parent) || missing(child))
+    stop("must pass parent and child", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  # build JSON data
+  data <- .build_tree(
+    e$x$data, 
+    dplyr::enquo(parent), 
+    dplyr::enquo(child)
+  )
+  
+  serie <- list(
+    type = "tree",
+    data = list(data),
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }

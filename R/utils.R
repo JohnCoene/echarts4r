@@ -192,3 +192,26 @@
   
   apply(data, 1, as.list)
 }
+
+.build_pie <- function(data, serie, label){
+  data %>%
+    dplyr::select(
+      !!serie,
+      !!label
+    ) -> data
+  
+  names(data) <- c("value", "name")
+  
+  apply(data, 1, as.list)
+}
+
+.build_tree <- function(data, parent, child){
+  data %>%
+    dplyr::select(
+      !!parent,
+      !!child
+    ) -> df
+  
+  tree <- data.tree::FromDataFrameNetwork(df)
+  data.tree::ToListExplicit(tree, unname = TRUE)
+}

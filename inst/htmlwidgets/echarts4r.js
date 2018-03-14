@@ -1,6 +1,6 @@
 HTMLWidgets.widget({
 
-  name: 'echarts4',
+  name: 'echarts4r',
 
   type: 'output',
 

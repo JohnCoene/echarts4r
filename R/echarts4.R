@@ -45,11 +45,11 @@ e_charts <- function(data, x = NULL, width = NULL, height = NULL, elementId = NU
 
   # create widget
   htmlwidgets::createWidget(
-    name = 'echarts4',
+    name = 'echarts4r',
     x,
     width = width,
     height = height,
-    package = 'echarts4',
+    package = 'echarts4r',
     elementId = elementId
   )
 }
