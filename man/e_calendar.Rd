@@ -4,7 +4,7 @@
 \alias{e_calendar}
 \title{Calendar}
 \usage{
-e_calendar(e, serie, range, ...)
+e_calendar(e, serie, range, name = NULL, ...)
 }
 \description{
 Calendar
@@ -12,17 +12,24 @@ Calendar
 \examples{
 dates <- seq.Date(
   as.Date("2017-01-01"), 
-  as.Date("2017-12-31"), 
+  as.Date("2017-12-30"), 
   by = "day"
 )
 
+val <- rnorm(length(dates), 20, 3)
+
 calendar <- data.frame(
   day = dates,
-  value = rnorm(length(dates))
+  value = val
 )
 
 calendar \%>\% 
-  e_chart(day) \%>\% 
-  e_calendar(value, range = "2017")
+  e_charts(day) \%>\% 
+  e_calendar(value, range = "2017") \%>\% 
+  e_visual_map(
+    min = min(val),
+    max = max(val)
+  ) \%>\% 
+  e_tooltip()
 
 }
