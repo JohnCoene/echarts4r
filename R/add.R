@@ -435,31 +435,32 @@ e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
 #' Draw heatmap by coordinates.
 #' 
 #' @inheritParams e_bar
-#' @param x,y,z Coordinates and values.
+#' @param y,z Coordinates and values.
 #' 
 #' @examples 
 #' v <- LETTERS[1:10]
 #' matrix <- data.frame(
 #'   x = sample(v, 300, replace = TRUE), 
 #'   y = sample(v, 300, replace = TRUE), 
-#'   z = rnorm(300, 10, 1)
+#'   z = rnorm(300, 10, 1),
+#'   stringsAsFactors = FALSE
 #' ) %>% 
 #'   dplyr::group_by(x, y) %>% 
 #'   dplyr::summarise(z = sum(z)) %>% 
 #'   dplyr::ungroup()
 #' 
 #' matrix %>% 
-#'   e_charts() %>% 
-#'   e_heatmap(x, y, z) %>% 
+#'   e_charts(x) %>% 
+#'   e_heatmap(y, z) %>% 
 #'   e_visual_map()
 #' 
 #' @export
-e_heatmap <- function(e, x, y, z, name = NULL, ...){
-  if(missing(x) || missing(y) || missing(z))
-    stop("must pass x, y and z", call. = FALSE)
+e_heatmap <- function(e, y, z, name = NULL, ...){
+  if(missing(y) || missing(z))
+    stop("must pass y, z", call. = FALSE)
   
   # build JSON data
-  xyz <- .build_3d(e$x$data, dplyr::enquo(x), dplyr::enquo(y), dplyr::enquo(z))
+  xyz <- .build_3d(e$x$data, e$x$opts$xAxis$data, dplyr::enquo(y), dplyr::enquo(z))
   
   serie <- list(
     name = name,
@@ -470,8 +471,8 @@ e_heatmap <- function(e, x, y, z, name = NULL, ...){
   
   e$x$opts$xAxis <- list(
     data = unique(
-      .build_vector(e$x$data, dplyr::enquo(x)
-    ))
+      e$x$opts$xAxis$data
+    )
   )
   
   e$x$opts$yAxis <- list(
@@ -742,4 +743,11 @@ e_river <- function(e, serie, name = NULL, ...){
   e$x$opts$singleAxis <- list(type = "time")
   
   e
+}
+
+#' Calendar
+#' 
+#' @export
+e_calendar <- function(){
+  
 }

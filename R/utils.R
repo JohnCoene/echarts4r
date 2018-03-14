@@ -185,11 +185,13 @@
 .build_3d <- function(data, x, y , z){
   data %>%
     dplyr::select(
-      !!x,
       !!y,
       !!z
     ) %>%
     unname() -> data
+  
+  data <- cbind(x, data)
+  data <- unname(data)
   
   apply(data, 1, as.list)
 }
