@@ -6,17 +6,15 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
-    var myChart = null;
+    var myChart;
 
     return {
 
       renderValue: function(x) {
-        
-        if(myChart === null){
-          myChart = echarts.init(document.getElementById(el.id));
-          var option = x.opts;
-          myChart.setOption(option);
-        }
+      
+        myChart = echarts.init(document.getElementById(el.id));
+        var option = x.opts;
+        myChart.setOption(option);
 
       },
       
