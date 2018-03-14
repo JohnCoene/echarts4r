@@ -1,5 +1,11 @@
 #' Mark point
 #' 
+#' Mark a point on the plot.
+#' 
+#' @inheritParams e_bar
+#' @param serie Serie to mark point on, defaults to last added.
+#' @param data Point placement.
+#' 
 #' @examples 
 #' USA
 #' 

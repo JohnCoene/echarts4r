@@ -2,4 +2,7 @@ dependencies:
  - name: echarts4r
    version: 4.0.4
    src: htmlwidgets/lib/echarts-4.0.4
-   script: echarts.min.js
+   script: 
+      - echarts.min.js
+      - china.js
+      - world.js

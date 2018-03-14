@@ -6,10 +6,19 @@
 \usage{
 e_mark_point(e, serie = NULL, data = NULL, ...)
 }
+\arguments{
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+
+\item{serie}{Serie to mark point on, defaults to last added.}
+
+\item{data}{Point placement.}
+
+\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+}
 \description{
-Mark point
+Mark a point on the plot.
 }
 \examples{
-
+USA
 
 }
