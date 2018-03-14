@@ -589,7 +589,7 @@ e_pie <- function(e, serie, label, name = NULL, ...){
 
 #' Tree
 #' 
-#' Build a treemap.
+#' Build a tree.
 #' 
 #' @inheritParams e_bar
 #' @param parent,child Edges.
@@ -605,7 +605,7 @@ e_pie <- function(e, serie, label, name = NULL, ...){
 #'   e_treemap(parent, child)
 #' 
 #' @export
-e_treemap <- function(e, parent, child, ...){
+e_tree <- function(e, parent, child, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -624,6 +624,54 @@ e_treemap <- function(e, parent, child, ...){
   
   serie <- list(
     type = "tree",
+    data = list(data),
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' Treemap
+#' 
+#' Build a treemap.
+#' 
+#' @inheritParams e_bar
+#' @param parent,child Edges.
+#' @param value Value of edges.
+#' 
+#' @examples 
+#' df <- data.frame(
+#'   parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
+#'   child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster"),
+#'   value = rnorm(8)
+#' )
+#' 
+#' df %>% 
+#'   e_charts() %>% 
+#'   e_treemap(parent, child, value)
+#' 
+#' @export
+e_treemap <- function(e, parent, child, value, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(parent) || missing(child) || missing(value))
+    stop("must pass parent, child and value", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  # build JSON data
+  data <- .build_treemap(
+    e$x$data, 
+    dplyr::enquo(parent), 
+    dplyr::enquo(child),
+    dplyr::enquo(value)
+  )
+  
+  serie <- list(
+    type = "treemap",
     data = list(data),
     ...
   )

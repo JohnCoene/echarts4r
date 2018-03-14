@@ -215,3 +215,15 @@
   tree <- data.tree::FromDataFrameNetwork(df)
   data.tree::ToListExplicit(tree, unname = TRUE)
 }
+
+.build_treemap <- function(data, parent, child, value){
+  data %>%
+    dplyr::select(
+      !!parent,
+      !!child,
+      !!value
+    ) -> df
+  
+  tree <- data.tree::FromDataFrameNetwork(df)
+  data.tree::ToListExplicit(tree, unname = TRUE)
+}
