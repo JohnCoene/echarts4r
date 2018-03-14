@@ -6,21 +6,29 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
-    // TODO: define shared variables for this instance
+    var myChart = null;
 
     return {
 
       renderValue: function(x) {
+        
+        if(myChart === null){
+          myChart = echarts.init(document.getElementById(el.id));
+          var option = x.opts;
+          myChart.setOption(option);
+        }
 
-        var myChart = echarts.init(document.getElementById(el.id));
-        var option = x.opts;
-         myChart.setOption(option);
-
+      },
+      
+      getChart: function(){
+        return myChart;
       },
 
       resize: function(width, height) {
 
-        // TODO: code to re-render the widget with a new size
+        if(myChart){
+          myChart.resize();
+        }
 
       }
 
