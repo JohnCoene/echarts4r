@@ -68,3 +68,37 @@ e_tooltip <- function(e, show = TRUE, trigger = c("item", "axis"), show.content 
   
   e
 }
+
+#' Legend
+#' 
+#' Customise the legend.
+#' 
+#' @inheritParams e_bar
+#' @param show Set to \code{FALSE} to hide the legend.
+#' @param type Type of legend, \code{plain} or \code{scroll}.
+#' 
+#' @examples 
+#' mtcars %>% 
+#'   head() %>% 
+#'   dplyr::mutate(model = row.names(.)) %>% 
+#'   e_charts() %>% 
+#'   e_pie(carb, model) %>% 
+#'   e_legend(FALSE)
+#' 
+#' @export
+e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  legend <- list(
+    show = show,
+    type = type[1],
+    ...
+  )
+  
+  e$x$opts$legend <- append(e$x$opts$legend, legend)
+  
+  e
+  
+}
