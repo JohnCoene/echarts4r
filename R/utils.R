@@ -180,7 +180,7 @@
 
 .add_outliers <- function(e, serie){
   
-  outliers <- .get_outliers(e$x$data, serie)
+  outliers <- .get_outliers(e$x$mapping$data, serie)
   outliers <- .build_outliers(e, outliers)
   
   scatter <- list(
@@ -196,15 +196,14 @@
   e
 }
 
-.build_3d <- function(data, x, y , z){
-  data %>%
-    dplyr::select(
-      !!y,
-      !!z
+.build_3d <- function(data, y , z){
+  e$x$mapping$data %>%
+    dplyr::select_(
+      y, z
     ) %>%
     unname() -> data
   
-  data <- cbind(x, data)
+  data <- cbind(e$x$mapping$data[[e$x$mapping$x]], data)
   data <- unname(data)
   
   apply(data, 1, as.list)

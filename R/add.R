@@ -140,7 +140,7 @@ e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, ...){
 e_candle <- function(e, opening, closing, low, high, name = NULL, ...){
   
   data <- .build_candle(
-    e$x$data, 
+    e$x$mapping$data, 
     dplyr::enquo(opening), 
     dplyr::enquo(closing), 
     dplyr::enquo(low), 
@@ -185,7 +185,7 @@ e_funnel <- function(e, values, labels, name = NULL, ...){
   e$x$opts$legend <- NULL # remove
   
   # build JSON data
-  funnel <- .build_funnel(e$x$data, dplyr::enquo(values), dplyr::enquo(labels))
+  funnel <- .build_funnel(e$x$mapping$data, dplyr::enquo(values), dplyr::enquo(labels))
   
   serie <- list(
     name = name,
@@ -234,14 +234,14 @@ e_sankey <- function(e, source, target, value, layout = "none", ...){
   
   # build JSON data
   nodes <- .build_sankey_nodes(
-    e$x$data, 
+    e$x$mapping$data, 
     dplyr::enquo(source), 
     dplyr::enquo(target)
   )
   
   # build JSON data
   edges <- .build_sankey_edges(
-    e$x$data, 
+    e$x$mapping$data, 
     dplyr::enquo(source), 
     dplyr::enquo(target),
     dplyr::enquo(value)
@@ -392,7 +392,7 @@ e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
   
   # build JSON data
   serie <- dplyr::enquo(serie)
-  vector <- .build_boxplot(e$x$data, serie)
+  vector <- .build_boxplot(e$x$mapping$data, serie)
   
   if(length(e$x$opts$series) >= 1){
     e$x$opts$series[[1]]$data <- append(
@@ -455,7 +455,7 @@ e_heatmap <- function(e, y, z, name = NULL, ...){
     stop("must pass y, z", call. = FALSE)
   
   # build JSON data
-  xyz <- .build_3d(e$x$data, e$x$opts$xAxis$data, dplyr::enquo(y), dplyr::enquo(z))
+  xyz <- .build_3d(e, deparse(substitute(y)), deparse(substitute(z)))
   
   serie <- list(
     name = name,
@@ -466,14 +466,15 @@ e_heatmap <- function(e, y, z, name = NULL, ...){
   
   e$x$opts$xAxis <- list(
     data = unique(
-      e$x$opts$xAxis$data
+      e$x$mapping$data[[e$x$mapping$x]]
     )
   )
   
   e$x$opts$yAxis <- list(
     data = unique(
-      .build_vector(e$x$data, dplyr::enquo(y)
-    ))
+      .build_vect(e, deparse(substitute(y))
+      )
+    )
   )
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
