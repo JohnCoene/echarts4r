@@ -7,6 +7,7 @@
 #' @inheritParams e_bar
 #' @param serie Values to plot.
 #' @param region Names of regions/countries or states.
+#' @param type Map type.
 #' 
 #' @examples 
 #' choropleth <- data.frame(

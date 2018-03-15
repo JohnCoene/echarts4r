@@ -13,6 +13,8 @@ e_choropleth(e, serie, region, type = "world", name = NULL, ...)
 
 \item{region}{Names of regions/countries or states.}
 
+\item{type}{Map type.}
+
 \item{name}{name of the serie.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
