@@ -266,3 +266,22 @@ globalVariables(c("e", "."))
   
   apply(unname(df), 1, as.list)
 }
+
+.build_map <- function(e, serie, type = "world", name = NULL, t = "map", ...){
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  # build JSON data
+  data <- .build_xy(e, serie)
+  
+  serie <- list(
+    name = name,
+    type = t,
+    mapType = type,
+    data = data,
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}

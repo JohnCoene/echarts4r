@@ -4,5 +4,8 @@ dependencies:
    src: htmlwidgets/lib/echarts-4.0.4
    script: 
       - echarts.min.js
+      - echarts-gl.min.js
+      - ecStat.min.js
+      - dataTool.min.js
       - china.js
       - world.js

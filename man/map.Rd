@@ -2,9 +2,12 @@
 % Please edit documentation in R/map.R
 \name{e_choropleth}
 \alias{e_choropleth}
+\alias{e_map3d}
 \title{Choropleth}
 \usage{
 e_choropleth(e, serie, type = "world", name = NULL, ...)
+
+e_map3d(e, serie, type = "world", name = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
