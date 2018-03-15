@@ -506,7 +506,7 @@ e_parallel <- function(e, ..., name = NULL){
   e$x$opts$xAxis <- NULL # remove
   e$x$opts$yAxis <- NULL # remove
   
-  e$x$data %>% 
+  e$x$mapping$data %>% 
     dplyr::select(...) -> df
   
   # remove names
