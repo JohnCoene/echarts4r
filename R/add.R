@@ -614,7 +614,7 @@ e_tree <- function(e, parent, child, ...){
   
   # build JSON data
   data <- .build_tree(
-    e$x$data, 
+    e$x$mapping$data, 
     dplyr::enquo(parent), 
     dplyr::enquo(child)
   )
