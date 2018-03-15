@@ -663,7 +663,7 @@ e_treemap <- function(e, parent, child, value, ...){
   
   # build JSON data
   data <- .build_treemap(
-    e$x$data, 
+    e$x$mapping$data, 
     dplyr::enquo(parent), 
     dplyr::enquo(child),
     dplyr::enquo(value)
