@@ -7,7 +7,21 @@
 #' @param data Point placement.
 #' 
 #' @examples 
-#' USA
+#' max <- list(
+#'   name = "Max",
+#'   type = "max"
+#' )
+#' 
+#' min <- list(
+#'   name = "Min",
+#'   type = "min"
+#' )
+#' 
+#' USArrests %>% 
+#'   e_charts(Murder) %>% 
+#'   e_bar(Rape) %>% 
+#'   e_mark_point(data = max) %>% 
+#'   e_mark_point(data = min)
 #' 
 #' @export
 e_mark_point <- function(e, serie = NULL, data = NULL, ...){
@@ -15,7 +29,7 @@ e_mark_point <- function(e, serie = NULL, data = NULL, ...){
   if(is.null(serie))
     index <- length(e$x$opts$series)
   else 
-    index <- grep(serie, series)
+    index <- grep(serie, e$x$opts$series)
   
   point <- list(
     data = list(data),
