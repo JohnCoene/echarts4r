@@ -19,6 +19,20 @@ e_mark_point(e, serie = NULL, data = NULL, ...)
 Mark a point on the plot.
 }
 \examples{
-USA
+max <- list(
+  name = "Max",
+  type = "max"
+)
+
+min <- list(
+  name = "Min",
+  type = "min"
+)
+
+USArrests \%>\% 
+  e_charts(Murder) \%>\% 
+  e_bar(Rape) \%>\% 
+  e_mark_point(data = max) \%>\% 
+  e_mark_point(data = min)
 
 }
