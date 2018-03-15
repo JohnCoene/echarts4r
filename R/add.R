@@ -747,6 +747,11 @@ e_river <- function(e, serie, name = NULL, ...){
 
 #' Calendar
 #' 
+#' Heatmap as calendar.
+#' 
+#' @inheritParams e_bar
+#' @param range Range of calendar.
+#' 
 #' @examples 
 #' dates <- seq.Date(
 #'   as.Date("2017-01-01"), 

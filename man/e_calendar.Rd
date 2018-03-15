@@ -6,8 +6,19 @@
 \usage{
 e_calendar(e, serie, range, name = NULL, ...)
 }
+\arguments{
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+
+\item{serie}{Column name of serie to plot.}
+
+\item{range}{Range of calendar.}
+
+\item{name}{name of the serie.}
+
+\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+}
 \description{
-Calendar
+Heatmap as calendar.
 }
 \examples{
 dates <- seq.Date(

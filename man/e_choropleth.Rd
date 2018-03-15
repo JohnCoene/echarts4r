@@ -9,14 +9,16 @@ e_choropleth(e, serie, region, type = "world", name = NULL, ...)
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{serie}{Column name of serie to plot.}
+\item{serie}{Values to plot.}
+
+\item{region}{Names of regions/countries or states.}
 
 \item{name}{name of the serie.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
 \description{
-Choropleth
+Draw a choropleth map.
 }
 \examples{
 choropleth <- data.frame(
