@@ -24,24 +24,30 @@
 #' @export
 e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL) {
 
-  xAxis <- list()
+  xmap <- NULL
   if(!missing(x))
-    xAxis <- list(
-      data = .build_vector(data, dplyr::enquo(x))
-    )
+    xmap <- deparse(substitute(x))
 
   # forward options using x
   x = list(
+    mapping = list(),
     opts = list(
-      xAxis = xAxis,
       yAxis = list(
         show = TRUE
       )
     )
   )
   
-  if(!missing(data))
-    x$data <- data
+  if(!missing(data)){
+    row.names(data) <- NULL
+    x$mapping$data <- data
+  }
+  
+  if(!is.null(xmap)){
+    x$mapping$x <- xmap
+    x$mapping$x_class <- class(data[[xmap]])
+    x <- .assign_axis(x)
+  }
 
   # create widget
   htmlwidgets::createWidget(

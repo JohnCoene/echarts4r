@@ -1,31 +1,45 @@
-# build vector
-.build_vector <- function(data, x){
-  data %>%
-    dplyr::select(!!x) %>%
-    unname() -> x
-  
-  x[[1]]
+.assign_axis <- function(x){
+  x$mapping$include_x <- FALSE
+  if(x$mapping$x_class == "character" || x$mapping$x_class == "factor"){
+    x$opts$xAxis <- list(data = x$mapping$data[[x$mapping$x]], type = "category")
+  } else if(x$mapping$x_class == "POSIXct" || x$mapping$x_class == "POSIXlt" || x$mapping$x_class == "Date") {
+    x$opts$xAxis <- list(data = x$mapping$data[[x$mapping$x]], type = "time")
+  } else {
+    x$mapping$data <- x$mapping$data %>% 
+      dplyr::arrange_(x$mapping$x)
+    x$mapping$include_x <- TRUE
+    x$opts$xAxis <- list(type = "value")
+  }
+  x
 }
 
-.build_xy <- function(data, x, serie, size){
-  
-  if(!missing(size)){
-    data %>%
-      dplyr::select(!!serie, !!size) -> rhs
+# redirect
+.redirect_vect_xy <- function(e, serie){
+  if(isTRUE(e$x$mapping$include_x)){
+    .build_xy(e, serie)
   } else {
-    data %>%
-      dplyr::select(!!serie) -> rhs
+    .build_vect(e, serie)
   }
-  
-  lhs <- data.frame(
-    x = x
-  )
-  
-  df <- cbind(lhs, rhs[[1]])
-  
-  matrix <- unname(df)
-  
-  apply(matrix, 1, as.list)
+}
+
+.build_xy <- function(e, serie){
+  e$x$mapping$data %>% 
+    dplyr::select_(e$x$mapping$x, serie) %>% 
+    unname() %>% 
+    apply(., 1, as.list)
+}
+
+.build_vect <- function(e, serie){
+  e$x$mapping$data %>% 
+    dplyr::select_(serie) %>% 
+    .[[1]]
+}
+
+.build_xyz <- function(e, y, z){
+  e$x$mapping$data %>% 
+    dplyr::select_(e$x$mapping$x, y, z) %>%
+    unname() %>% 
+    apply(., 1, as.list)
 }
 
 .build_candle <- function(data, opening, closing, low, high){

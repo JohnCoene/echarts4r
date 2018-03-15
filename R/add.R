@@ -25,9 +25,9 @@ e_bar <- function(e, serie, name = NULL, ...){
 
   if(is.null(name)) # defaults to column name
     name <- deparse(substitute(serie))
-
+  
   # build JSON data
-  vector <- .build_vector(e$x$data, dplyr::enquo(serie))
+  vector <- .redirect_vect_xy(e, deparse(substitute(serie)))
 
   serie <- list(
     name = name,
@@ -52,7 +52,7 @@ e_line <- function(e, serie, name = NULL, ...){
   if(is.null(name))
     name <- deparse(substitute(serie))
   
-  vector <- .build_vector(e$x$data, dplyr::enquo(serie))
+  vector <- .redirect_vect_xy(e, deparse(substitute(serie)))
   
   serie <- list(
     name = name,
@@ -90,13 +90,10 @@ e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, ...){
   if(is.null(name))
     name <- deparse(substitute(serie))
   
-  x <- e$x$opts$xAxis$data # extract x
-  e$x$opts$xAxis$data <- NULL # remove
-  
   if(!missing(size))
-    xy <- .build_xy(e$x$data, x, dplyr::enquo(serie), dplyr::enquo(size))
+    xy <- .build_xyz(e, deparse(substitute(serie)), deparse(substitute(size)))
   else
-    xy <- .build_xy(e$x$data, x, dplyr::enquo(serie))
+    xy <- .build_xy(e, deparse(substitute(serie)))
   
   serie <- list(
     name = name,
@@ -107,9 +104,7 @@ e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, ...){
   
   if(!missing(size))
     serie$symbolSize <- htmlwidgets::JS(
-      paste0("function(data){
-          return data[2] ", scale, ";
-      }")
+      paste("function(data){ return data[2]", scale, ";}")
     )
   
   e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
