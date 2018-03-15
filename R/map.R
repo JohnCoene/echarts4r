@@ -1,6 +1,12 @@
 #' Choropleth
 #' 
+#' Draw a choropleth map.
+#' 
 #' @inheritParams e_bar
+#' 
+#' @inheritParams e_bar
+#' @param serie Values to plot.
+#' @param region Names of regions/countries or states.
 #' 
 #' @examples 
 #' choropleth <- data.frame(
