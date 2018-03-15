@@ -14,8 +14,6 @@ e_pie(e, serie, name = NULL, ...)
 \item{name}{name of the serie.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
-
-\item{label}{Labels of slices.}
 }
 \description{
 Draw pie and donut charts.

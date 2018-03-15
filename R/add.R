@@ -141,10 +141,10 @@ e_candle <- function(e, opening, closing, low, high, name = NULL, ...){
   
   data <- .build_candle(
     e$x$mapping$data, 
-    dplyr::enquo(opening), 
-    dplyr::enquo(closing), 
-    dplyr::enquo(low), 
-    dplyr::enquo(high)
+    deparse(substitute(opening)), 
+    deparse(substitute(closing)), 
+    deparse(substitute(low)), 
+    deparse(substitute(high))
   )
   
   serie <- list(
@@ -185,7 +185,7 @@ e_funnel <- function(e, values, labels, name = NULL, ...){
   e$x$opts$legend <- NULL # remove
   
   # build JSON data
-  funnel <- .build_funnel(e$x$mapping$data, dplyr::enquo(values), dplyr::enquo(labels))
+  funnel <- .build_funnel(e$x$mapping$data, deparse(substitute(values)), deparse(substitute(labels)))
   
   serie <- list(
     name = name,
@@ -235,8 +235,8 @@ e_sankey <- function(e, source, target, value, layout = "none", ...){
   # build JSON data
   nodes <- .build_sankey_nodes(
     e$x$mapping$data, 
-    dplyr::enquo(source), 
-    dplyr::enquo(target)
+    deparse(substitute(source)), 
+    deparse(substitute(target))
   )
   
   # build JSON data
@@ -545,7 +545,6 @@ e_parallel <- function(e, ..., name = NULL){
 #' Draw pie and donut charts.
 #' 
 #' @inheritParams e_bar
-#' @param label Labels of slices.
 #' 
 #' @examples 
 #' mtcars %>% 
@@ -614,9 +613,9 @@ e_tree <- function(e, parent, child, ...){
   
   # build JSON data
   data <- .build_tree(
-    e$x$mapping$data, 
-    dplyr::enquo(parent), 
-    dplyr::enquo(child)
+    e, 
+    deparse(substitute(parent)), 
+    deparse(substitute(child))
   )
   
   serie <- list(
@@ -663,10 +662,10 @@ e_treemap <- function(e, parent, child, value, ...){
   
   # build JSON data
   data <- .build_treemap(
-    e$x$mapping$data, 
-    dplyr::enquo(parent), 
-    dplyr::enquo(child),
-    dplyr::enquo(value)
+    e, 
+    deparse(substitute(parent)), 
+    deparse(substitute(child)),
+    deparse(substitute(value))
   )
   
   serie <- list(
@@ -716,11 +715,7 @@ e_river <- function(e, serie, name = NULL, ...){
     e$X <- e$x$opts$xAxis$data
   
   # build JSON data
-  data <- .build_river(
-    e, 
-    dplyr::enquo(serie), 
-    name
-  )
+  data <- .build_river(e, deparse(substitute(serie)), name)
   
   if(!length(e$x$opts$series)){
     serie <- list(
@@ -777,14 +772,14 @@ e_calendar <- function(e, serie, range, name = NULL, ...){
     stop("must pass serie and range", call. = FALSE)
   
   # build JSON data
-  cal <- .build_cal(e, dplyr::enquo(serie))
+  cal <- .build_cal(e, deparse(substitute(serie)))
   
   index <- length(e$x$opts$series)
   
   serie <- list(
     name = name,
     type = "heatmap",
-    coordinateSystem= 'calendar',
+    coordinateSystem = 'calendar',
     calendarIndex = index,
     data = cal,
     ...

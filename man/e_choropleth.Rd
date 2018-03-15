@@ -4,14 +4,12 @@
 \alias{e_choropleth}
 \title{Choropleth}
 \usage{
-e_choropleth(e, serie, region, type = "world", name = NULL, ...)
+e_choropleth(e, serie, type = "world", name = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{serie}{Values to plot.}
-
-\item{region}{Names of regions/countries or states.}
 
 \item{type}{Map type.}
 
@@ -23,13 +21,15 @@ e_choropleth(e, serie, region, type = "world", name = NULL, ...)
 Draw a choropleth map.
 }
 \examples{
+\dontrun{
 choropleth <- data.frame(
   countries = c("France", "Brazil", "China", "Russia", "Canada", "India"),
   values = round(runif(6, 10, 25))
 )
 
 choropleth \%>\% 
-  e_charts() \%>\% 
-  e_choropleth(values, countries)
+  e_charts(countries) \%>\% 
+  e_choropleth(values)
+}
 
 }

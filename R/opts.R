@@ -81,8 +81,8 @@ e_tooltip <- function(e, show = TRUE, trigger = c("item", "axis"), show.content 
 #' mtcars %>% 
 #'   head() %>% 
 #'   dplyr::mutate(model = row.names(.)) %>% 
-#'   e_charts() %>% 
-#'   e_pie(carb, model) %>% 
+#'   e_charts(model) %>% 
+#'   e_pie(carb) %>% 
 #'   e_legend(FALSE)
 #' 
 #' @export

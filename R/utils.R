@@ -1,3 +1,5 @@
+globalVariables(c("e", "."))
+
 .assign_axis <- function(x){
   x$mapping$include_x <- FALSE
   if(x$mapping$x_class == "character" || x$mapping$x_class == "factor"){
@@ -44,23 +46,21 @@
 
 .build_candle <- function(data, opening, closing, low, high){
   data %>%
-    dplyr::select(
-      !!opening, 
-      !!closing, 
-      !!low, 
-      !!high
-    ) -> data
-  
-  matrix <- unname(as.matrix(data))
+    dplyr::select_(
+      opening, 
+      closing, 
+      low, 
+      high
+    ) %>% 
+    as.matrix(.) %>% 
+    unname(.) -> matrix
   
   apply(matrix, 1, as.list)
 }
 
 .build_funnel <- function(data, x, y){
   data %>%
-    dplyr::select(!!x, !!y) -> df
-  
-  names(df) <- c("value", "name")
+    dplyr::select_(value = x, name = y) -> df
   
   apply(df, 1, as.list)
 }
@@ -69,10 +69,10 @@
   
   nodes <- c(
     unlist(
-      dplyr::select(data, !!source)
+      dplyr::select_(data, source)
     ),
     unlist(
-      dplyr::select(data, !!target)
+      dplyr::select_(data, target)
     )
   )
   
@@ -139,7 +139,7 @@
   apply(data, 1, as.list)
 }
 
-.graph_cat_legend <- function(nodes){
+.graph_cat_legend <- function(e){
   e$x$mapping$data[[e$x$mapping$x]]
 }
 
@@ -190,7 +190,7 @@
   e
 }
 
-.build_3d <- function(data, y , z){
+.build_3d <- function(e, y , z){
   e$x$mapping$data %>%
     dplyr::select_(
       y, z
@@ -203,7 +203,7 @@
   apply(data, 1, as.list)
 }
 
-.build_pie <- function(data, serie){
+.build_pie <- function(e, serie){
   e$x$mapping$data %>%
     dplyr::select_(
       value = serie
@@ -219,8 +219,8 @@
   apply(data, 1, as.list)
 }
 
-.build_tree <- function(data, parent, child){
-  data %>%
+.build_tree <- function(e, parent, child){
+  e$x$mapping$data %>%
     dplyr::select(
       !!parent,
       !!child
@@ -230,12 +230,12 @@
   data.tree::ToListExplicit(tree, unname = TRUE)
 }
 
-.build_treemap <- function(data, parent, child, value){
-  data %>%
-    dplyr::select(
-      !!parent,
-      !!child,
-      !!value
+.build_treemap <- function(e, parent, child, value){
+  e$x$mapping$data %>%
+    dplyr::select_(
+      parent,
+      child,
+      value
     ) -> df
   
   tree <- data.tree::FromDataFrameNetwork(df)
@@ -243,20 +243,21 @@
 }
 
 .build_river <- function(e, serie, label){
-  e$x$data %>%
-    dplyr::select(
-      !!serie
-    ) -> data
   
-  label <- data.frame(name = rep(label, nrow(data)))
-  data <- cbind(e$X, data, label)
+  x <- e$x$mapping$data[[e$x$mapping$x]]
+  label <- rep(label, length(x))
+  
+  e$x$mapping$data %>%
+    dplyr::select_(serie) -> data
+  
+  data <- cbind(x, data, label)
   
   apply(unname(data), 1, as.list)
 }
 
 .build_cal <- function(e, serie){
-  e$x$data %>% 
-    dplyr::select(!!serie) %>% 
+  e$x$mapping$data %>% 
+    dplyr::select_(serie) %>% 
     unname() -> rhs
   
   lhs <- as.character(e$x$opts$xAxis$data)
