@@ -4,18 +4,18 @@
 \alias{e_pie}
 \title{Pie}
 \usage{
-e_pie(e, serie, label, name = NULL, ...)
+e_pie(e, serie, name = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{serie}{Column name of serie to plot.}
 
-\item{label}{Labels of slices.}
-
 \item{name}{name of the serie.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+
+\item{label}{Labels of slices.}
 }
 \description{
 Draw pie and donut charts.
@@ -24,7 +24,7 @@ Draw pie and donut charts.
 mtcars \%>\% 
   head() \%>\% 
   dplyr::mutate(model = row.names(.)) \%>\% 
-  e_charts() \%>\% 
-  e_pie(carb, model)
+  e_charts(model) \%>\% 
+  e_pie(carb)
 
 }

@@ -139,14 +139,8 @@
   apply(data, 1, as.list)
 }
 
-.graph_cat_legend <- function(nodes, cat){
-  nodes %>%
-    dplyr::select(
-      !!cat
-    ) %>% 
-    unlist() %>% 
-    unname() %>% 
-    unique() 
+.graph_cat_legend <- function(nodes){
+  e$x$mapping$data[[e$x$mapping$x]]
 }
 
 .build_boxplot <- function(data, serie){
@@ -209,14 +203,18 @@
   apply(data, 1, as.list)
 }
 
-.build_pie <- function(data, serie, label){
-  data %>%
-    dplyr::select(
-      !!serie,
-      !!label
+.build_pie <- function(data, serie){
+  e$x$mapping$data %>%
+    dplyr::select_(
+      value = serie
     ) -> data
   
-  names(data) <- c("value", "name")
+  data <- cbind.data.frame(
+    data,
+    data.frame(
+      name = e$x$mapping$data[[e$x$mapping$x]]
+    )
+  )
   
   apply(data, 1, as.list)
 }

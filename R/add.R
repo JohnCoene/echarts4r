@@ -551,16 +551,16 @@ e_parallel <- function(e, ..., name = NULL){
 #' mtcars %>% 
 #'   head() %>% 
 #'   dplyr::mutate(model = row.names(.)) %>% 
-#'   e_charts() %>% 
-#'   e_pie(carb, model)
+#'   e_charts(model) %>% 
+#'   e_pie(carb)
 #' 
 #' @export
-e_pie <- function(e, serie, label, name = NULL, ...){
+e_pie <- function(e, serie, name = NULL, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  if(missing(serie) || missing(label))
-    stop("must pass serie and label", call. = FALSE)
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
   
   e$x$opts$xAxis <- NULL # remove
   e$x$opts$yAxis <- NULL # remove
@@ -569,7 +569,7 @@ e_pie <- function(e, serie, label, name = NULL, ...){
     name <- deparse(substitute(serie))
   
   # build JSON data
-  data <- .build_pie(e$x$data, dplyr::enquo(serie), dplyr::enquo(label))
+  data <- .build_pie(e, deparse(substitute(serie)))
   
   serie <- list(
     name = name,
@@ -578,7 +578,7 @@ e_pie <- function(e, serie, label, name = NULL, ...){
     ...
   )
   
-  e$x$opts$legend$data <- append(e$x$opts$legend$data, .graph_cat_legend(e$x$data, dplyr::enquo(label)))
+  e$x$opts$legend$data <- append(e$x$opts$legend$data, .graph_cat_legend(e))
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
