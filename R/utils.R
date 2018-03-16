@@ -3,14 +3,14 @@ globalVariables(c("e", "."))
 .assign_axis <- function(x){
   x$mapping$include_x <- FALSE
   if(x$mapping$x_class == "character" || x$mapping$x_class == "factor"){
-    x$opts$xAxis <- list(data = x$mapping$data[[x$mapping$x]], type = "category")
+    x$opts$xAxis <- list(list(data = x$mapping$data[[x$mapping$x]], type = "category"))
   } else if(x$mapping$x_class == "POSIXct" || x$mapping$x_class == "POSIXlt" || x$mapping$x_class == "Date") {
-    x$opts$xAxis <- list(data = x$mapping$data[[x$mapping$x]], type = "time")
+    x$opts$xAxis <- list(list(data = x$mapping$data[[x$mapping$x]], type = "time"))
   } else {
     x$mapping$data <- x$mapping$data %>% 
       dplyr::arrange_(x$mapping$x)
     x$mapping$include_x <- TRUE
-    x$opts$xAxis <- list(type = "value")
+    x$opts$xAxis <- list(list(type = "value"))
   }
   x
 }
@@ -260,7 +260,7 @@ globalVariables(c("e", "."))
     dplyr::select_(serie) %>% 
     unname() -> rhs
   
-  lhs <- as.character(e$x$opts$xAxis$data)
+  lhs <- as.character(.get_data(e, e$x$mapping$x))
   
   df <- cbind(lhs, rhs)
   
@@ -283,5 +283,62 @@ globalVariables(c("e", "."))
   )
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+.get_class <- function(e, serie){
+  class(.get_data(e, serie))
+}
+
+.get_type <- function(e, serie){
+  cl <- .get_class(e, serie)
+  
+  if(cl == "character" || cl == "factor"){
+    "category"
+  } else if(cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
+    "time"
+  } else {
+    "value"
+  }
+}
+
+.get_data <- function(e, serie){
+  e$x$mapping$data %>% 
+    dplyr::select_(serie) %>% 
+    unname() %>% 
+    .[[1]]
+}
+
+.set_y_axis <- function(e, serie, y.index){
+  
+  if(length(e$x$opts$yAxis) - 1 < y.index){
+    type <- .get_type(e, serie)
+    
+    axis <- list(type = type)
+    
+    if(type != "value"){
+      axis$data <- .get_data(e, serie)
+    }
+    
+    e$x$opts$yAxis[[y.index + 1]] <- axis
+  }
+  e
+}
+
+.set_x_axis <- function(e, x.index){
+  
+  serie <- e$x$mapping$x
+  
+  if(length(e$x$opts$xAxis) - 1 < x.index){
+    type <- .get_type(e, serie)
+    
+    axis <- list(type = type, show = TRUE)
+    
+    if(type != "value"){
+      axis$data <- .get_data(e, serie)
+    }
+    
+    e$x$opts$xAxis[[x.index + 1]] <- axis
+  }
   e
 }
