@@ -4,7 +4,8 @@
 \alias{e_scatter}
 \title{Scatter}
 \usage{
-e_scatter(e, serie, size, scale = "* 1", name = NULL, ...)
+e_scatter(e, serie, size, scale = "* 1", name = NULL, y.index = 0,
+  x.index = 0, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -21,11 +22,13 @@ by \code{1} (equivalent to no multiplier).}
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
 \description{
-Add a scatter serie.
+Add scatter serie.
 }
 \examples{
 USArrests \%>\% 
   e_charts(Assault) \%>\% 
-  e_scatter(Murder, Rape)
+  e_scatter(Murder, Rape) \%>\% 
+  e_scatter(Rape, Murder, y.index = 1) \%>\% 
+  e_tooltip()
 
 }

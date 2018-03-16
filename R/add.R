@@ -1,6 +1,6 @@
 #' Bar & Line chart
 #' 
-#' Add bar or line serie.
+#' Add bar serie.
 #' 
 #' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
 #' @param serie Column name of serie to plot.
@@ -9,13 +9,16 @@
 #' 
 #' @examples 
 #' USArrests %>% 
-#'   e_charts(Assault) %>% 
-#'   e_bar(Murder, name = "Euwww") %>% 
-#'   e_line(Rape)
+#'   dplyr::mutate(
+#'     State = row.names(.),
+#'     Rape = -Rape
+#'   ) %>% 
+#'   e_charts(State) %>% 
+#'   e_bar(Murder) %>% 
+#'   e_bar(Rape, name = "Sick basterd", x.index = 1) # second y axis
 #' 
-#' @rdname barline
 #' @export
-e_bar <- function(e, serie, name = NULL, ...){
+e_bar <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -23,16 +26,26 @@ e_bar <- function(e, serie, name = NULL, ...){
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
 
+  serie <- deparse(substitute(serie))
+  
   if(is.null(name)) # defaults to column name
-    name <- deparse(substitute(serie))
+    name <- serie
+  
+  if(y.index != 0)
+    e <- .set_y_axis(e, serie, y.index)
+  
+  if(x.index != 0)
+    e <- .set_x_axis(e, x.index)
   
   # build JSON data
-  vector <- .redirect_vect_xy(e, deparse(substitute(serie)))
+  vector <- .redirect_vect_xy(e, serie)
 
   serie <- list(
     name = name,
     type = "bar",
     data = vector,
+    yAxisIndex = y.index,
+    xAxisIndex = x.index,
     ...
   )
 
@@ -42,24 +55,154 @@ e_bar <- function(e, serie, name = NULL, ...){
   e
 }
 
-#' @rdname barline
+#' Line 
+#' 
+#' Add line serie.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @examples 
+#' USArrests %>% 
+#'   e_charts(Assault) %>% 
+#'   e_line(Murder) %>% 
+#'   e_line(UrbanPop, y.index = 1) # second y axis
+#' 
 #' @export
-e_line <- function(e, serie, name = NULL, ...){
-  # SEE e_bar
+e_line <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  if(is.null(name))
-    name <- deparse(substitute(serie))
+  serie <- deparse(substitute(serie))
   
-  vector <- .redirect_vect_xy(e, deparse(substitute(serie)))
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
+  if(y.index != 0)
+    e <- .set_y_axis(e, serie, y.index)
+  
+  if(x.index != 0)
+    e <- .set_x_axis(e, x.index)
+  
+  # build JSON data
+  vector <- .redirect_vect_xy(e, serie)
   
   serie <- list(
     name = name,
     type = "line",
     data = vector,
+    yAxisIndex = y.index,
+    xAxisIndex = x.index,
     ...
   )
+  
+  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' Area 
+#' 
+#' Add area serie.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @examples 
+#' USArrests %>% 
+#'   e_charts(Assault) %>% 
+#'   e_area(Murder, stack = "grp") %>% 
+#'   e_area(UrbanPop, stack = "grp") 
+#' 
+#' @export
+e_area <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  serie <- deparse(substitute(serie))
+  
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
+  if(y.index != 0)
+    e <- .set_y_axis(e, serie, y.index)
+  
+  if(x.index != 0)
+    e <- .set_x_axis(e, x.index)
+  
+  # build JSON data
+  vector <- .redirect_vect_xy(e, serie)
+  
+  serie <- list(
+    name = name,
+    type = "line",
+    data = vector,
+    yAxisIndex = y.index,
+    xAxisIndex = x.index,
+    areaStyle = list(normal = list()),
+    ...
+  )
+  
+  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' Step 
+#' 
+#' Add step serie.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @examples 
+#' USArrests %>% 
+#'   dplyr::mutate(State = row.names(.)) %>% 
+#'   e_charts(State) %>%
+#'   e_step(Murder, name = "Start", step = "start", fill = TRUE) %>% 
+#'   e_step(Rape, name = "Middle", step = "middle") %>% 
+#'   e_step(Assault, name = "End", step = "end") %>% 
+#'   e_tooltip(trigger = "axis")
+#' 
+#' @export
+e_step <- function(e, serie, step = c("start", "middle", "end"), fill = FALSE, 
+                   name = NULL, y.index = 0, x.index = 0, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  serie <- deparse(substitute(serie))
+  
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
+  if(y.index != 0)
+    e <- .set_y_axis(e, serie, y.index)
+  
+  if(x.index != 0)
+    e <- .set_x_axis(e, x.index)
+  
+  # build JSON data
+  vector <- .redirect_vect_xy(e, serie)
+  
+  serie <- list(
+    name = name,
+    type = "line",
+    data = vector,
+    yAxisIndex = y.index,
+    xAxisIndex = x.index,
+    step = step[1],
+    ...
+  )
+  
+  if(isTRUE(fill)) serie$areaStyle <- list(normal = list())
   
   e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   
@@ -69,7 +212,7 @@ e_line <- function(e, serie, name = NULL, ...){
 
 #' Scatter
 #' 
-#' Add a scatter serie.
+#' Add scatter serie.
 #' 
 #' @inheritParams e_bar
 #' @param size Column name containing size of points.
@@ -79,26 +222,38 @@ e_line <- function(e, serie, name = NULL, ...){
 #' @examples 
 #' USArrests %>% 
 #'   e_charts(Assault) %>% 
-#'   e_scatter(Murder, Rape)
+#'   e_scatter(Murder, Rape) %>% 
+#'   e_scatter(Rape, Murder, y.index = 1) %>% 
+#'   e_tooltip()
 #' 
 #' @export
-e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, ...){
+e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, y.index = 0, x.index = 0, ...){
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  if(is.null(name))
-    name <- deparse(substitute(serie))
+  serie <- deparse(substitute(serie))
+  
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
+  if(y.index != 0)
+    e <- .set_y_axis(e, serie, y.index)
+  
+  if(x.index != 0)
+    e <- .set_x_axis(e, x.index)
   
   if(!missing(size))
-    xy <- .build_xyz(e, deparse(substitute(serie)), deparse(substitute(size)))
+    xy <- .build_xyz(e, serie, deparse(substitute(size)))
   else
-    xy <- .build_xy(e, deparse(substitute(serie)))
+    xy <- .build_xy(e, serie)
   
   serie <- list(
     name = name,
     type = "scatter",
     data = xy,
+    yAxisIndex = y.index,
+    xAxisIndex = x.index,
     ...
   )
   
@@ -698,7 +853,8 @@ e_treemap <- function(e, parent, child, value, ...){
 #'   e_charts(dates) %>% 
 #'   e_river(apples) %>% 
 #'   e_river(bananas) %>% 
-#'   e_river(pears)
+#'   e_river(pears) %>% 
+#'   e_tooltip(trigger = "axis")
 #' 
 #' @export
 e_river <- function(e, serie, name = NULL, ...){

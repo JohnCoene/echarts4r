@@ -33,7 +33,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL) {
     mapping = list(),
     opts = list(
       yAxis = list(
-        show = TRUE
+        list(show = TRUE)
       )
     )
   )
