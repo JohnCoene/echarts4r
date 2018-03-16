@@ -18,8 +18,6 @@
 #' choropleth %>% 
 #'   e_charts(countries) %>% 
 #'   e_choropleth(values)
-#'   
-#' 
 #' }
 #' 
 #' @rdname map
