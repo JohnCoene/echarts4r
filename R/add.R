@@ -227,6 +227,7 @@ e_step <- function(e, serie, step = c("start", "middle", "end"), fill = FALSE,
 #'   e_charts(Assault) %>% 
 #'   e_scatter(Murder, Rape) %>% 
 #'   e_scatter(Rape, Murder, y.index = 1) %>% 
+#'   e_grid(index = c(0, 1)) %>% 
 #'   e_tooltip()
 #' 
 #' @export
@@ -955,5 +956,38 @@ e_calendar <- function(e, serie, range, name = NULL, ...){
   e$x$opts$yAxis <- NULL
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' Gauge
+#' 
+#' PLot a gauge.
+#' 
+#' @inheritParams e_bar
+#' @param value Value to gauge.
+#' @param name Text on gauge.
+#' 
+#' @examples 
+#' e_charts() %>% 
+#'   e_gauge(57, "PERCENT")
+#' 
+#' @export
+e_gauge <- function(e, value, name, ...){
+  
+  if(missing(e) || missing(value) || missing(name))
+    stop("missing e, name, or value", call. = FALSE)
+  
+  if(!inherits(value, "numeric"))
+    stop("must pass numeric or interger", call. = FALSE)
+    
+  e$x$opts$yAxis <- NULL
+  e$x$opts$xAxis <- NULL
+  
+  e$x$opts$series <- list(
+    list(
+      type = "gauge",
+      data = list(list(value = value, name = name))
+    )
+  )
   e
 }

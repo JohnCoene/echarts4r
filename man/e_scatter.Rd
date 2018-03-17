@@ -33,6 +33,7 @@ USArrests \%>\%
   e_charts(Assault) \%>\% 
   e_scatter(Murder, Rape) \%>\% 
   e_scatter(Rape, Murder, y.index = 1) \%>\% 
+  e_grid(index = c(0, 1)) \%>\% 
   e_tooltip()
 
 }
