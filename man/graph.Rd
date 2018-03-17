@@ -6,7 +6,7 @@
 \alias{e_graph_edges}
 \title{Graph}
 \usage{
-e_graph(e, name = NULL, ...)
+e_graph(e, layout = "force", name = NULL, ...)
 
 e_graph_nodes(e, nodes, names, value, size, category)
 
@@ -52,7 +52,7 @@ edges <- data.frame(
 )
 
 e_charts() \%>\% 
-  e_graph() \%>\% 
+  e_graph(focusNodeAdjacency = TRUE) \%>\% 
   e_graph_nodes(nodes, name, value, size, grp) \%>\% 
   e_graph_edges(edges, source, target)
 

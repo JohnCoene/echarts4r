@@ -176,3 +176,32 @@ e_datazoom <- function(e, x.index = NULL, y.index = NULL, ...){
   
   e
 }
+
+#' Brush
+#' 
+#' @export
+e_brush <- function(e, x.index = NULL, y.index = NULL, ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(!is.null(x.index) && !is.null(y.index))
+    stop("pass x.index or y.index, not both", call. = FALSE)
+  
+  if(!length(e$x$opts$brush)) # initiatilise if not existing
+    e$x$opts$brush <- list()
+  
+  if(!length(e$x$opts$toolbox$feature$brush))
+    e <- e_toolbox_interface(e, "brush")
+  
+  opts <- list(
+    brushLink = "all",
+    ...
+  )
+  opts$xAxisIndex <- x.index
+  opts$yAxisIndex <- y.index
+  
+  e$x$opts$brush <- append(e$x$opts$brush, opts)
+  
+  e
+}

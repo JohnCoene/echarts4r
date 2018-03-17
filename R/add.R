@@ -448,13 +448,13 @@ e_sankey <- function(e, source, target, value, layout = "none", ...){
 #' )
 #' 
 #' e_charts() %>% 
-#'   e_graph() %>% 
+#'   e_graph(focusNodeAdjacency = TRUE) %>% 
 #'   e_graph_nodes(nodes, name, value, size, grp) %>% 
 #'   e_graph_edges(edges, source, target)
 #' 
 #' @rdname graph
 #' @export
-e_graph <- function(e, name = NULL, ...){
+e_graph <- function(e, layout = "force", name = NULL, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -464,7 +464,7 @@ e_graph <- function(e, name = NULL, ...){
   serie <- list(
     name = name,
     type = "graph",
-    layout = "force",
+    layout = layout,
     ...
   )
   
@@ -579,7 +579,7 @@ e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
   e$x$opts$xAxis$type <- "category"
   
   # legend
-  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  # e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   
   e
 }
@@ -655,7 +655,7 @@ e_heatmap <- function(e, y, z, name = NULL, ...){
 #' 
 #' df %>% 
 #'   e_charts() %>% 
-#'   e_parallel(price, amount, letter)
+#'   e_parallel(price, amount, letter) 
 #' 
 #' @export
 e_parallel <- function(e, ..., name = NULL){

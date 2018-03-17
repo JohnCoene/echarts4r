@@ -25,6 +25,6 @@ df <- data.frame(
 
 df \%>\% 
   e_charts() \%>\% 
-  e_parallel(price, amount, letter)
+  e_parallel(price, amount, letter) 
 
 }

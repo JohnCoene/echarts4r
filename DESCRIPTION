@@ -12,5 +12,6 @@ Imports:
   magrittr,
   rlang,
   dplyr,
-  data.tree
+  data.tree,
+  crosstalk
 RoxygenNote: 6.0.1

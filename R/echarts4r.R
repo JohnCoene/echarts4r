@@ -27,6 +27,19 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL) {
   xmap <- NULL
   if(!missing(x))
     xmap <- deparse(substitute(x))
+  
+  if(!missing(data)){
+    if (crosstalk::is.SharedData(data)) {
+      # Using Crosstalk
+      key <- data$key()
+      group <- data$groupName()
+      data <- data$origData()
+    } else {
+      # Not using Crosstalk
+      key <- NULL
+      group <- NULL
+    }
+  }
 
   # forward options using x
   x = list(
@@ -49,12 +62,23 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL) {
     x <- .assign_axis(x)
   }
 
+  if(!missing(data)){
+    if(crosstalk::is.SharedData(data)){
+      settings = list(
+        crosstalk_key = key,
+        crosstalk_group = group
+      )
+      x$settings <- settings
+    }
+  }
+  
   # create widget
   htmlwidgets::createWidget(
     name = 'echarts4r',
     x,
     width = width,
     height = height,
+    dependencies = crosstalk::crosstalkLibs(),
     package = 'echarts4r',
     elementId = elementId
   )
