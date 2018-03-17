@@ -12,7 +12,15 @@ e_step(e, serie, step = c("start", "middle", "end"), fill = FALSE,
 
 \item{serie}{Column name of serie to plot.}
 
+\item{step}{Step type, one of \code{start}, \code{middle} or \code{end}.}
+
+\item{fill}{Set to \code{TRUE} to fill like an \code{e_area} chart.}
+
 \item{name}{name of the serie.}
+
+\item{y.index}{Indexes of x and y axis.}
+
+\item{x.index}{Indexes of x and y axis.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }

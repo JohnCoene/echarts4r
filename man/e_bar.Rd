@@ -13,6 +13,8 @@ e_bar(e, serie, name = NULL, y.index = 0, x.index = 0, ...)
 
 \item{name}{name of the serie.}
 
+\item{x.index, y.index}{Indexes of x and y axis.}
+
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
 \description{

@@ -3,9 +3,9 @@ globalVariables(c("e", "."))
 .assign_axis <- function(x){
   x$mapping$include_x <- FALSE
   if(x$mapping$x_class == "character" || x$mapping$x_class == "factor"){
-    x$opts$xAxis <- list(list(data = x$mapping$data[[x$mapping$x]], type = "category"))
+    x$opts$xAxis <- list(list(data = x$mapping$data[[x$mapping$x]], type = "category", boundaryGap = FALSE))
   } else if(x$mapping$x_class == "POSIXct" || x$mapping$x_class == "POSIXlt" || x$mapping$x_class == "Date") {
-    x$opts$xAxis <- list(list(data = x$mapping$data[[x$mapping$x]], type = "time"))
+    x$opts$xAxis <- list(list(data = x$mapping$data[[x$mapping$x]], type = "time", boundaryGap = FALSE))
   } else {
     x$mapping$data <- x$mapping$data %>% 
       dplyr::arrange_(x$mapping$x)
@@ -332,7 +332,7 @@ globalVariables(c("e", "."))
   if(length(e$x$opts$xAxis) - 1 < x.index){
     type <- .get_type(e, serie)
     
-    axis <- list(type = type, show = TRUE)
+    axis <- list(type = type, show = TRUE, boundaryGap = FALSE)
     
     if(type != "value"){
       axis$data <- .get_data(e, serie)
@@ -341,4 +341,8 @@ globalVariables(c("e", "."))
     e$x$opts$xAxis[[x.index + 1]] <- axis
   }
   e
+}
+
+.r2axis <- function(x){
+  ifelse(x == "x", "xAxis", "yAxis")
 }

@@ -102,3 +102,77 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), ...){
   e
   
 }
+
+#' Toolbox
+#' 
+#' Add a toolbox.
+#' 
+#' @inheritParams e_bar
+#' @param feature Feature to add, defaults to all.
+#' 
+#' @examples 
+#' USArrests %>% 
+#'   e_charts(UrbanPop) %>% 
+#'   e_line(Assault) %>% 
+#'   e_area(Murder, y.index = 1, x.index = 1) %>% 
+#'   e_datazoom(x.index = 0) 
+#' 
+#' @export
+e_toolbox_interface <- function(e, feature){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(feature))
+    feature <- c("saveAsImage", "restore", "dataView", "dataView", "dataZoom", "magicType", "brush")
+  
+  if(!length(e$x$opts$toolbox))
+    e$x$opts$toolbox <- list(feature = list())
+  
+  for(i in 1:length(feature)){
+    e$x$opts$toolbox$feature[[feature[i]]] <- list()
+  }
+  
+  e
+}
+
+#' Data zoom
+#' 
+#' Add data zoom.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @examples 
+#' USArrests %>% 
+#'   e_charts(UrbanPop) %>% 
+#'   e_line(Assault) %>% 
+#'   e_area(Murder, y.index = 1, x.index = 1) %>% 
+#'   e_y_axis(gridIndex = 1) %>%
+#'   e_x_axis(gridIndex = 1) %>% 
+#'   e_grid(height = "35%") %>% 
+#'   e_grid(height = "35%", top = "50%") %>% 
+#'   e_datazoom(x.index = c(0, 1))
+#' 
+#' @export
+e_datazoom <- function(e, x.index = NULL, y.index = NULL, ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(!is.null(x.index) && !is.null(y.index))
+    stop("pass x.index or y.index, not both", call. = FALSE)
+  
+  if(!length(e$x$opts$dataZoom)) # initiatilise if not existing
+    e$x$opts$dataZoom <- list()
+  
+  if(!length(e$x$opts$toolbox$feature$dataZoom))
+    e <- e_toolbox_interface(e, "dataZoom")
+  
+  opts <- list(...)
+  opts$xAxisIndex <- x.index
+  opts$yAxisIndex <- y.index
+  
+  e$x$opts$dataZoom <- append(e$x$opts$dataZoom, opts)
+  
+  e
+}

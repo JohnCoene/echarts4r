@@ -19,6 +19,10 @@ by \code{1} (equivalent to no multiplier).}
 
 \item{name}{name of the serie.}
 
+\item{y.index}{Indexes of x and y axis.}
+
+\item{x.index}{Indexes of x and y axis.}
+
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
 \description{

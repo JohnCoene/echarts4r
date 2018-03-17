@@ -6,6 +6,7 @@
 #' @param serie Column name of serie to plot.
 #' @param name name of the serie.
 #' @param ... Any other option to pass to \code{bar} or \code{line} char types.
+#' @param x.index,y.index Indexes of x and y axis.
 #' 
 #' @examples 
 #' USArrests %>% 
@@ -113,8 +114,8 @@ e_line <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
 #' @examples 
 #' USArrests %>% 
 #'   e_charts(Assault) %>% 
-#'   e_area(Murder, stack = "grp") %>% 
-#'   e_area(UrbanPop, stack = "grp") 
+#'   e_area(Murder, stack = "grp") %>% # stacking
+#'   e_area(UrbanPop, stack = "grp") # stacking
 #' 
 #' @export
 e_area <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
@@ -159,6 +160,8 @@ e_area <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
 #' Add step serie.
 #' 
 #' @inheritParams e_bar
+#' @param step Step type, one of \code{start}, \code{middle} or \code{end}.
+#' @param fill Set to \code{TRUE} to fill like an \code{e_area} chart.
 #' 
 #' @examples 
 #' USArrests %>% 

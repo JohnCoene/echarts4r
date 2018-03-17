@@ -32,6 +32,7 @@ df \%>\%
   e_charts(dates) \%>\% 
   e_river(apples) \%>\% 
   e_river(bananas) \%>\% 
-  e_river(pears)
+  e_river(pears) \%>\% 
+  e_tooltip(trigger = "axis")
 
 }
