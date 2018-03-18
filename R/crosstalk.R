@@ -2,19 +2,38 @@
 #' 
 #' @examples 
 #' \dontrun{
-#' library(crosstalk)
+#' library(shiny)
+#' library(DT)
 #' 
-#' sd <- sharedData$new(mtcars)
-#' bscols(
-#'   mtcars %>% 
-#'     e_charts(mpg, width="100%", height=300) %>% 
-#'     e_line(qsec) %>% 
-#'     e_brush(),
-#'  mtcars %>% 
-#'    e_charts(qsec, width="100%", height=300) %>% 
-#'    e_line(mpg) %>% 
-#'    e_brush()
+#' ui <- fluidPage(
+#'   fluidRow(
+#'     column(
+#'       6,
+#'       DT::dataTableOutput("table")
+#'     ),
+#'     column(
+#'       6,
+#'       echarts4rOutput("plot")
+#'     )
+#'   )
 #' )
+#' 
+#' server <- function(input, output){
+#'   sd <- SharedData$new(dplyr::select(mtcars, qsec, mpg))
+#'   
+#'   output$table <- DT::renderDataTable({
+#'     DT::datatable(sd)
+#'   }, server = FALSE)
+#'   
+#'   output$plot <- renderEcharts4r({
+#'     sd %>% 
+#'       e_charts(qsec) %>% 
+#'       e_scatter(mpg) %>% 
+#'       e_brush()
+#'   })
+#' }
+#' 
+#' shinyApp(ui, server)
 #' }
 #' 
 #' @noRd

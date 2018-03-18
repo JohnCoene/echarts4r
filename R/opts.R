@@ -105,7 +105,7 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), ...){
 
 #' Toolbox
 #' 
-#' Add a toolbox.
+#' Add toolbox interface.
 #' 
 #' @inheritParams e_bar
 #' @param feature Feature to add, defaults to all.
@@ -178,6 +178,10 @@ e_datazoom <- function(e, x.index = NULL, y.index = NULL, ...){
 }
 
 #' Brush
+#' 
+#' Add a brush.
+#' 
+#' @inheritParams e_bar
 #' 
 #' @export
 e_brush <- function(e, x.index = NULL, y.index = NULL, ...){

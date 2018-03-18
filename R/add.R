@@ -430,31 +430,35 @@ e_sankey <- function(e, source, target, value, layout = "none", ...){
 #' @param category Group of nodes (i.e.: group membership).
 #' @param edges Data.frame of edges.
 #' @param source,target Column names of source and target.
+#' @param layout Layout, one of \code{force}, \code{none} or \code{circular}.
+#' @param type Graph type, \code{graph} or \code{graphGL}
 #' @param ... Any other parameter.
 #' 
 #' @examples 
+#' # use graph GL for large networks
+#' # 1000 nodes
 #' nodes <- data.frame(
-#'   name = LETTERS,
-#'   value = rnorm(26),
-#'   size = rnorm(26) * 15,
-#'   grp = rep(c("grp1", "grp2"), 13),
+#'   name = paste0(LETTERS, 1:1000),
+#'   value = rnorm(1000, 10, 2),
+#'   size = rnorm(1000, 10, 2),
+#'   grp = rep(c("grp1", "grp2"), 500),
 #'   stringsAsFactors = FALSE
 #' )
 #' 
 #' edges <- data.frame(
-#'   source = sample(LETTERS, 40, replace = TRUE),
-#'   target = sample(LETTERS, 40, replace = TRUE),
+#'   source = sample(nodes$name, 1500, replace = TRUE),
+#'   target = sample(nodes$name, 1500, replace = TRUE),
 #'   stringsAsFactors = FALSE
 #' )
 #' 
 #' e_charts() %>% 
-#'   e_graph(focusNodeAdjacency = TRUE) %>% 
+#'   e_graph(type = "graphGL") %>% 
 #'   e_graph_nodes(nodes, name, value, size, grp) %>% 
 #'   e_graph_edges(edges, source, target)
 #' 
 #' @rdname graph
 #' @export
-e_graph <- function(e, layout = "force", name = NULL, ...){
+e_graph <- function(e, layout = "force", type = "graph", name = NULL, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -463,7 +467,7 @@ e_graph <- function(e, layout = "force", name = NULL, ...){
   
   serie <- list(
     name = name,
-    type = "graph",
+    type = type,
     layout = layout,
     ...
   )
@@ -779,6 +783,34 @@ e_tree <- function(e, parent, child, ...){
   
   serie <- list(
     type = "tree",
+    data = list(data),
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' Sunburst
+#' 
+#' Build a sunburst.
+#' 
+#' @inheritParams e_bar
+#' @param value Name of column containing values.
+#' 
+#' @export
+e_sunburst <- function(e, value, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  # build JSON data
+  data <- .build_sun(e, deparse(substitute(value)))
+  
+  serie <- list(
+    type = "sunburst",
     data = list(data),
     ...
   )

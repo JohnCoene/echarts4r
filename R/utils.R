@@ -230,6 +230,12 @@ globalVariables(c("e", "."))
   data.tree::ToListExplicit(tree, unname = TRUE)
 }
 
+.build_sun <- function(e, value){
+  
+  tree <- data.tree::FromDataFrameNetwork(e$x$mapping$data, check = "no-check")
+  data.tree::ToListExplicit(tree, unname = TRUE)
+}
+
 .build_treemap <- function(e, parent, child, value){
   e$x$mapping$data %>%
     dplyr::select_(

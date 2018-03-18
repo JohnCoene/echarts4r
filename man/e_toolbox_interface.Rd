@@ -12,7 +12,7 @@ e_toolbox_interface(e, feature)
 \item{feature}{Feature to add, defaults to all.}
 }
 \description{
-Add a toolbox.
+Add toolbox interface.
 }
 \examples{
 USArrests \%>\% 

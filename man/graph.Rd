@@ -6,7 +6,7 @@
 \alias{e_graph_edges}
 \title{Graph}
 \usage{
-e_graph(e, layout = "force", name = NULL, ...)
+e_graph(e, layout = "force", type = "graph", name = NULL, ...)
 
 e_graph_nodes(e, nodes, names, value, size, category)
 
@@ -14,6 +14,10 @@ e_graph_edges(e, edges, source, target)
 }
 \arguments{
 \item{e}{An \code{echarts4} object as returned by \code{e_charts}.}
+
+\item{layout}{Layout, one of \code{force}, \code{none} or \code{circular}.}
+
+\item{type}{Graph type, \code{graph} or \code{graphGL}}
 
 \item{name}{Name of graph.}
 
