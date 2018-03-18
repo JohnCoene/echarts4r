@@ -41,22 +41,24 @@ e_graph_edges(e, edges, source, target)
 Create a graph.
 }
 \examples{
+# use graph GL for large networks
+# 1000 nodes
 nodes <- data.frame(
-  name = LETTERS,
-  value = rnorm(26),
-  size = rnorm(26) * 15,
-  grp = rep(c("grp1", "grp2"), 13),
+  name = paste0(LETTERS, 1:1000),
+  value = rnorm(1000, 10, 2),
+  size = rnorm(1000, 10, 2),
+  grp = rep(c("grp1", "grp2"), 500),
   stringsAsFactors = FALSE
 )
 
 edges <- data.frame(
-  source = sample(LETTERS, 40, replace = TRUE),
-  target = sample(LETTERS, 40, replace = TRUE),
+  source = sample(nodes$name, 1500, replace = TRUE),
+  target = sample(nodes$name, 1500, replace = TRUE),
   stringsAsFactors = FALSE
 )
 
 e_charts() \%>\% 
-  e_graph(focusNodeAdjacency = TRUE) \%>\% 
+  e_graph(type = "graphGL") \%>\% 
   e_graph_nodes(nodes, name, value, size, grp) \%>\% 
   e_graph_edges(edges, source, target)
 

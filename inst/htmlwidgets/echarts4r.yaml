@@ -7,5 +7,4 @@ dependencies:
       - echarts-gl.min.js
       - ecStat.min.js
       - dataTool.min.js
-      - china.js
       - world.js

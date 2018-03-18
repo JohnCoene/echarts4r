@@ -352,3 +352,19 @@ globalVariables(c("e", "."))
 .r2axis <- function(x){
   ifelse(x == "x", "xAxis", "yAxis")
 }
+
+.map_lines <- function(e, source.lon, source.lat, target.lon, target.lat){
+  
+  e$x$mapping$data %>% 
+    dplyr::select_(
+      source.lon, source.lat, target.lon, target.lat
+    ) %>% 
+    apply(., 1, function(x){
+      x <- unname(x)
+      list(
+        c(x[1], x[2]),
+        c(x[3], x[4])
+      )
+    }) 
+  
+}
