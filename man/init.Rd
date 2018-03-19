@@ -2,9 +2,12 @@
 % Please edit documentation in R/echarts4r.R
 \name{e_charts}
 \alias{e_charts}
+\alias{e_data}
 \title{Initialise}
 \usage{
 e_charts(data, x, width = NULL, height = NULL, elementId = NULL)
+
+e_data(e, data)
 }
 \arguments{
 \item{data}{A \code{data.frame}.}

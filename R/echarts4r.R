@@ -20,7 +20,8 @@
 #' @import htmlwidgets
 #' @import rlang
 #' @importFrom grDevices boxplot.stats
-#'
+#' 
+#' @rdname init
 #' @export
 e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL) {
 
@@ -74,6 +75,16 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL) {
     package = 'echarts4r',
     elementId = elementId
   )
+}
+
+#' @rdname init
+#' @export
+e_data <- function(e, data){
+  
+  row.names(data) <- NULL
+  e$x$mapping$data <- data
+  
+  e
 }
 
 #' Shiny bindings for echarts4r
