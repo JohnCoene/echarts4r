@@ -24,18 +24,15 @@
 #'          "master/2011_february_aa_flight_paths.csv")
 #' )
 #' 
-#' choropleth %>% 
-#'   e_charts(countries) %>% 
-#'   e_map3d(height) %>% 
-#'   e_data(flights) %>% 
+#' flights %>% 
+#'   e_charts() %>% 
 #'   e_geo3d_lines(
 #'     start_lon, 
 #'     start_lat, 
 #'     end_lon, 
 #'     end_lat,
 #'     name = "flights",
-#'   ) %>% 
-#'   e_visual_map(min = 1, max = 5)
+#'   ) 
 #' 
 #' @rdname geo3d
 #' @export
