@@ -3,14 +3,19 @@
 \name{e_map_texture}
 \alias{e_map_texture}
 \alias{e_stars_texture}
+\alias{e_convert_texture}
 \title{Textures}
 \usage{
 e_map_texture(convert = TRUE)
 
 e_stars_texture(convert = TRUE)
+
+e_convert_texture(file)
 }
 \arguments{
 \item{convert}{Converts image to JSON formatted arrays.}
+
+\item{file}{Path to file.}
 }
 \description{
 Path to textures.
@@ -24,4 +29,20 @@ see
 References to file locations work in Shiny apps, but not in stand-alone
 examples. The \code{*texture} functions facilitates transfer of image
 texture data from R into textures when \code{convert} is set to \code{TRUE}.
+}
+\section{Functions}{
+
+\itemize{
+  \item{\code{e_map_texture} globe texture}
+  \item{\code{e_stars_texture} starts texture}
+  \item{\code{e_mconvert_texture} convert file to JSON formatted array}
+}
+}
+
+\examples{
+\dontrun{
+e_map_texture(FALSE) # returns path to file
+e_convert_texture("path/to/file.png") # converts file
+}
+
 }

@@ -2,7 +2,15 @@
 #' 
 #' Path to textures.
 #' 
+#' @param file Path to file.
 #' @param convert Converts image to JSON formatted arrays. 
+#' 
+#' @section Functions:
+#' \itemize{
+#'   \item{\code{e_map_texture} globe texture}
+#'   \item{\code{e_stars_texture} starts texture}
+#'   \item{\code{e_mconvert_texture} convert file to JSON formatted array}
+#' }
 #' 
 #' @details
 #' Due to browser
@@ -14,6 +22,12 @@
 #' examples. The \code{*texture} functions facilitates transfer of image
 #' texture data from R into textures when \code{convert} is set to \code{TRUE}.
 #' 
+#' @examples 
+#' \dontrun{
+#' e_map_texture(FALSE) # returns path to file
+#' e_convert_texture("path/to/file.png") # converts file
+#' }
+#' 
 #' @rdname textures 
 #' @export
 e_map_texture <- function(convert = TRUE){
@@ -24,4 +38,12 @@ e_map_texture <- function(convert = TRUE){
 #' @export
 e_stars_texture <- function(convert = TRUE){
   .get_file("assets/starfield.jpg", convert)
+}
+
+#' @rdname textures 
+#' @export
+e_convert_texture <- function(file){
+  if(missing(file))
+    stop("missing file", call. = FALSE)
+  paste0("data:image/png;base64,", base64enc::base64encode(file))
 }

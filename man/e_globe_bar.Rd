@@ -30,7 +30,8 @@ names(data) <- c("lon", "lat", "value")
 
 data \%>\% 
   e_charts() \%>\% 
-  e_globe_bar(lon, lat, value)
+  e_globe_bar(lon, lat, value) \%>\% 
+  e_visual_map()
 }
 
 }

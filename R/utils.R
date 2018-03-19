@@ -381,6 +381,29 @@ globalVariables(c("e", "."))
 .get_file <- function(file, convert){
   file <- system.file(file, package = "echarts4r")
   if(isTRUE(convert))
-    paste0("data:image/png;base64,", base64enc::base64encode(file)) -> file
+    e_convert_texture(file) -> file
   file
+}
+
+
+.build_height <- function(e, serie, color){
+  e$x$mapping$data %>%
+    dplyr::select_(
+      name = e$x$mapping$x,
+      height = serie
+    ) -> data
+  
+  color <- e$x$mapping$data[[color]]
+  
+  names(data) <- c("name", "height")
+  
+  apply(data, 1, as.list) -> l
+  
+  for(i in 1:length(l)){
+    is <- list(
+      color = color[i]
+    )
+    l[[i]]$itemStyle <- is
+  }
+  l
 }
