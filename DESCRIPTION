@@ -14,5 +14,6 @@ Imports:
   dplyr,
   data.tree,
   crosstalk,
-  htmltools
+  htmltools,
+  jsonlite
 RoxygenNote: 6.0.1

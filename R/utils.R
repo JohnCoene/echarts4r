@@ -366,5 +366,14 @@ globalVariables(c("e", "."))
         c(x[3], x[4])
       )
     }) 
+}
+
+.build_globexyz <- function(e, x, y, z){
+  e$x$mapping$data %>%
+    dplyr::select_(
+      x, y, z
+    ) %>%
+    unname() -> df
   
+  apply(df, 1, as.list)
 }
