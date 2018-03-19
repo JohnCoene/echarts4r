@@ -21,6 +21,7 @@ e_globe_bar(e, lon, lat, value, name = NULL, ...)
 Globe
 }
 \examples{
+\dontrun{
 url <- paste0("https://ecomfe.github.io/echarts-examples/",
               "public/data-gl/asset/data/population.json")
 data <- jsonlite::fromJSON(url)
@@ -30,5 +31,6 @@ names(data) <- c("lon", "lat", "value")
 data \%>\% 
   e_charts() \%>\% 
   e_globe_bar(lon, lat, value)
+}
 
 }

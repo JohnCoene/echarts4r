@@ -377,3 +377,10 @@ globalVariables(c("e", "."))
   
   apply(df, 1, as.list)
 }
+
+.get_file <- function(file, convert){
+  file <- system.file(file, package = "echarts4r")
+  if(isTRUE(convert))
+    paste0("data:image/png;base64,", base64enc::base64encode(file)) -> file
+  file
+}

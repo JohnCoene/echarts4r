@@ -15,5 +15,6 @@ Imports:
   data.tree,
   crosstalk,
   htmltools,
-  jsonlite
+  base64enc
 RoxygenNote: 6.0.1
+Suggests: jsonlite

@@ -5,10 +5,23 @@
 \alias{e_stars_texture}
 \title{Textures}
 \usage{
-e_map_texture()
+e_map_texture(convert = TRUE)
 
-e_stars_texture()
+e_stars_texture(convert = TRUE)
+}
+\arguments{
+\item{convert}{Converts image to JSON formatted arrays.}
 }
 \description{
 Path to textures.
+}
+\details{
+Due to browser
+"same origin policy" security restrictions, loading textures
+from a file system in three.js may lead to a security exception,
+see
+\url{https://github.com/mrdoob/three.js/wiki/How-to-run-things-locally}.
+References to file locations work in Shiny apps, but not in stand-alone
+examples. The \code{*texture} functions facilitates transfer of image
+texture data from R into textures when \code{convert} is set to \code{TRUE}.
 }

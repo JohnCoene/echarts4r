@@ -5,6 +5,7 @@
 #' @param value Bar height.
 #' 
 #' @examples 
+#' \dontrun{
 #' url <- paste0("https://ecomfe.github.io/echarts-examples/",
 #'               "public/data-gl/asset/data/population.json")
 #' data <- jsonlite::fromJSON(url)
@@ -14,6 +15,7 @@
 #' data %>% 
 #'   e_charts() %>% 
 #'   e_globe_bar(lon, lat, value)
+#' }
 #' 
 #' @export
 e_globe_bar <- function(e, lon, lat, value, name = NULL, ...){
