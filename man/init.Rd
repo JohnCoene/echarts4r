@@ -19,6 +19,8 @@ e_data(e, data)
 string and have \code{'px'} appended.}
 
 \item{elementId}{Id of element.}
+
+\item{e}{An object of class \code{echarts4r} as returned by \code{e_charts}.}
 }
 \description{
 Initialise a chart.

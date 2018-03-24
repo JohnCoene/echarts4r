@@ -4,10 +4,12 @@
 \alias{e_bar_3d}
 \title{Bars 3D}
 \usage{
-e_bar_3d(e, x, y, z, coord.system = "cartesian3D", name = NULL, ...)
+e_bar_3d(e, x, y, z, n, coord.system = "cartesian3D", name = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+
+\item{x, y, z}{Coordinates.}
 
 \item{coord.system}{Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.}
 
@@ -33,5 +35,21 @@ data \%>\%
   ) \%>\% 
   e_bar_3d(lon, lat, value, "globe") \%>\% 
   e_visual_map()
+  
+v <- LETTERS[1:10]
+matrix <- data.frame(
+  x = sample(v, 300, replace = TRUE), 
+  y = sample(v, 300, replace = TRUE), 
+  z = rnorm(300, 10, 1),
+  stringsAsFactors = FALSE
+) \%>\% 
+  dplyr::group_by(x, y) \%>\% 
+  dplyr::summarise(z = sum(z)) \%>\% 
+  dplyr::ungroup() \%>\% 
+  dplyr::mutate(name = paste("n", 1:n()))
+  
+matrix \%>\% 
+  e_charts(x) \%>\% 
+  e_bar_3d(x, y, z, name)
 
 }

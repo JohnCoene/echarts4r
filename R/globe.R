@@ -3,6 +3,9 @@
 #' Add globe.
 #' 
 #' @inheritParams e_bar
+#' @param environment Texture of background.
+#' @param base.texture Base texture of globe.
+#' @param height.texture Texture of height.
 #' 
 #' @examples 
 #' \dontrun{
@@ -23,7 +26,7 @@
 #' }
 #' 
 #' @export
-e_globe <- function(e, environment = NULL, height.texture = NULL, base.texture = NULL, ...){
+e_globe <- function(e, environment = NULL, base.texture = NULL, height.texture = NULL, ...){
   
   ls <- list(
     environment = environment,

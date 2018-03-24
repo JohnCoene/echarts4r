@@ -4,13 +4,16 @@
 \alias{e_axis}
 \alias{e_x_axis}
 \alias{e_y_axis}
+\alias{e_z_axis}
 \title{Axis}
 \usage{
-e_axis(e, axis = c("x", "y"), index = 0, ...)
+e_axis(e, axis = c("x", "y", "z"), index = 0, ...)
 
 e_x_axis(e, index = 0, ...)
 
 e_y_axis(e, index = 0, ...)
+
+e_z_axis(e, index = 0, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

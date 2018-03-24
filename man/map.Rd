@@ -3,28 +3,22 @@
 \name{e_choropleth}
 \alias{e_choropleth}
 \alias{e_map_3d}
-\alias{e_map_lines}
 \title{Choropleth}
 \usage{
-e_choropleth(e, serie, type = "world", name = NULL, ...)
+e_choropleth(e, serie, map = "world", name = NULL, ...)
 
-e_map_3d(e, serie, type = "world", name = NULL, ...)
-
-e_map_lines(e, source.lon, source.lat, target.lon, target.lat, type = "world",
-  name = NULL, ...)
+e_map_3d(e, serie, map = "world", name = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{serie}{Values to plot.}
 
-\item{type}{Map type.}
+\item{map}{Map type.}
 
 \item{name}{name of the serie.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
-
-\item{source.lon, source.lat, target.lat, target.lon}{Coordinates.}
 }
 \description{
 Draw maps.
@@ -39,29 +33,13 @@ choropleth <- data.frame(
 
 choropleth \%>\% 
   e_charts(countries) \%>\% 
-  e_map_3d(values, shading = "lambert") \%>\% 
-  e_visual_map(min = 10, max = 30)
-  
-choropleth \%>\% 
-  e_charts(countries) \%>\% 
   e_choropleth(values) \%>\% 
   e_visual_map(min = 10, max = 25)
-  
-flights <- read.csv(
-  paste0("https://raw.githubusercontent.com/plotly/datasets/",
-         "master/2011_february_aa_flight_paths.csv")
-)
 
-flights \%>\% 
-  e_charts() \%>\% 
-  e_map_lines(
-    start_lon, 
-    start_lat, 
-    end_lon, 
-    end_lat,
-    name = "flights",
-    lineStyle = list(normal = list(curveness = 0.3))
-   )
+choropleth \%>\% 
+  e_charts(countries) \%>\% 
+  e_map_3d(values, shading = "lambert") \%>\% 
+  e_visual_map(min = 10, max = 30)
 }
 
 }

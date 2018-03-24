@@ -23,7 +23,7 @@
 #' 
 #' @rdname axis
 #' @export
-e_axis <- function(e, axis = c("x", "y"), index = 0, ...){
+e_axis <- function(e, axis = c("x", "y", "z"), index = 0, ...){
   
   if(missing(e))
     stop("missing e", call. = FALSE)
@@ -64,6 +64,15 @@ e_y_axis<- function(e, index = 0, ...){
   if(missing(e))
     stop("missing e", call. = FALSE)
   e <- e_axis(e = e, axis = "y",index =  index, ...)
+  e
+}
+
+#' @rdname axis
+#' @export
+e_z_axis<- function(e, index = 0, ...){
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  e <- e_axis(e = e, axis = "z",index =  index, ...)
   e
 }
 

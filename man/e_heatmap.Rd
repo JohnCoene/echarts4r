@@ -33,6 +33,6 @@ matrix <- data.frame(
 matrix \%>\% 
   e_charts(x) \%>\% 
   e_heatmap(y, z) \%>\% 
-  e_visual_map()
+  e_visual_map(min = 1, max = max(matrix$z))
 
 }

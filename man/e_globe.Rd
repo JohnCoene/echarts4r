@@ -4,11 +4,17 @@
 \alias{e_globe}
 \title{Globe}
 \usage{
-e_globe(e, environment = NULL, height.texture = NULL, base.texture = NULL,
+e_globe(e, environment = NULL, base.texture = NULL, height.texture = NULL,
   ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+
+\item{environment}{Texture of background.}
+
+\item{base.texture}{Base texture of globe.}
+
+\item{height.texture}{Texture of height.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }

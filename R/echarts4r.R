@@ -3,6 +3,7 @@
 #' Initialise a chart.
 #'
 #' @param data A \code{data.frame}.
+#' @param e An object of class \code{echarts4r} as returned by \code{e_charts}.
 #' @param x Column name containing x axis.
 #' @param width,height Must be a valid CSS unit (like \code{'100\%'},
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a

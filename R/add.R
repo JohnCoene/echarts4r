@@ -615,7 +615,7 @@ e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
 #' matrix %>% 
 #'   e_charts(x) %>% 
 #'   e_heatmap(y, z) %>% 
-#'   e_visual_map()
+#'   e_visual_map(min = 1, max = max(matrix$z))
 #' 
 #' @export
 e_heatmap <- function(e, y, z, name = NULL, ...){
@@ -634,13 +634,13 @@ e_heatmap <- function(e, y, z, name = NULL, ...){
   
   e$x$opts$xAxis <- list(
     data = unique(
-      e$x$mapping$data[[e$x$mapping$x]]
+      .get_data(e, e$x$mapping$x)
     )
   )
   
   e$x$opts$yAxis <- list(
     data = unique(
-      .build_vect(e, deparse(substitute(y))
+      .get_data(e, deparse(substitute(y))
       )
     )
   )
@@ -1034,6 +1034,7 @@ e_gauge <- function(e, value, name, ...){
 #' Add 3D lines.
 #' 
 #' @inheritParams e_bar
+#' @param coord.system Coordinate system to use, one of \code{cartesian3D}, \code{globe}.
 #' @param source.lon,source.lat,target.lon,target.lat coordinates.
 #' 
 #' @examples 
@@ -1106,6 +1107,7 @@ e_line_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = 
 #' Add 3D bars
 #' 
 #' @inheritParams e_bar
+#' @param x,y,z Coordinates.
 #' @param coord.system Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.
 #' 
 #' @examples 
@@ -1123,9 +1125,25 @@ e_line_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = 
 #'   ) %>% 
 #'   e_bar_3d(lon, lat, value, "globe") %>% 
 #'   e_visual_map()
+#'   
+#' v <- LETTERS[1:10]
+#' matrix <- data.frame(
+#'   x = sample(v, 300, replace = TRUE), 
+#'   y = sample(v, 300, replace = TRUE), 
+#'   z = rnorm(300, 10, 1),
+#'   stringsAsFactors = FALSE
+#' ) %>% 
+#'   dplyr::group_by(x, y) %>% 
+#'   dplyr::summarise(z = sum(z)) %>% 
+#'   dplyr::ungroup() %>% 
+#'   dplyr::mutate(name = paste("n", 1:n()))
+#'   
+#' matrix %>% 
+#'   e_charts(x) %>% 
+#'   e_bar_3d(x, y, z, name)
 #' 
 #' @export
-e_bar_3d <- function(e, x, y, z, coord.system = "cartesian3D", name = NULL, ...){
+e_bar_3d <- function(e, x, y, z, n, coord.system = "cartesian3D", name = NULL, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1135,15 +1153,91 @@ e_bar_3d <- function(e, x, y, z, coord.system = "cartesian3D", name = NULL, ...)
   if(is.null(name)) # defaults to column name
     name <- deparse(substitute(z))
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
-  
-  # build JSON data
-  data <- .build_globexyz(e, deparse(substitute(x)), deparse(substitute(y)), deparse(substitute(z)))
+  if(coord.system != "cartersian3D"){
+    e$x$opts$xAxis <- NULL # remove
+    e$x$opts$yAxis <- NULL # remove
+    data <- .build_globexyz(e, deparse(substitute(x)), deparse(substitute(y)), deparse(substitute(z)))
+  } else {
+    data <- .build_cartesian3D(
+      e, 
+      deparse(substitute(n)), 
+      deparse(substitute(x)), 
+      deparse(substitute(y)), 
+      deparse(substitute(z))
+    )
+  }
   
   serie <- list(
     name = name,
     type = "bar3D",
+    coordinateSystem = coord.system,
+    data = data,
+    ...
+  )
+  
+  if(coord.system == "cartesian3D" && !length(e$x$opts$grid3D))
+    e$x$opts$grid3D <- list()
+  
+  if(coord.system == "cartesian3D" && !length(e$x$opts$zAxis)){
+    e <- .set_axis(e, "x", deparse(substitute(x)), 0)
+    e <- .set_axis(e, "y", deparse(substitute(y)), 0)
+    e <- .set_axis(e, "z", deparse(substitute(z)), 0)
+  }
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
+  e
+}
+
+#' Lines
+#' 
+#' Add lines.
+#' 
+#' @inheritParams e_bar
+#' @param source.lon,source.lat,target.lon,target.lat coordinates.
+#' @param coord.system Coordinate system to use, one of \code{geo}, or \code{cartesian2D}.
+#' 
+#' @examples 
+#' flights <- read.csv(
+#'   paste0("https://raw.githubusercontent.com/plotly/datasets/",
+#'          "master/2011_february_aa_flight_paths.csv")
+#' )
+#' 
+#' flights %>% 
+#'   e_charts() %>% 
+#'   e_geo() %>% 
+#'   e_lines(
+#'     start_lon, 
+#'     start_lat, 
+#'     end_lon, 
+#'     end_lat,
+#'     name = "flights",
+#'     lineStyle = list(normal = list(curveness = 0.3))
+#'    )
+#' 
+#' @export
+e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.system = "geo", name = NULL, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(source.lat) || missing(source.lon) || missing(target.lat) || missing(target.lon))
+    stop("missing coordinates", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  # build JSON data
+  data <- .map_lines(
+    e, 
+    deparse(substitute(source.lon)), 
+    deparse(substitute(source.lat)), 
+    deparse(substitute(target.lon)), 
+    deparse(substitute(target.lat))
+  )
+  
+  serie <- list(
+    name = name,
+    type = "lines",
     coordinateSystem = coord.system,
     data = data,
     ...

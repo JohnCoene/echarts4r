@@ -1,6 +1,6 @@
 #' Geo 3D
 #' 
-#' Create a 3d geo plot.
+#' Initialise geo 3D.
 #' 
 #' @inheritParams e_bar
 #' @param color Color.
@@ -19,7 +19,6 @@
 #'   e_charts(countries) %>% 
 #'   e_geo_3d(height, color)
 #' 
-#' @rdname geo3d
 #' @export
 e_geo_3d <- function(e, serie, color, type = "world", ...){
   if(missing(e))
@@ -38,5 +37,42 @@ e_geo_3d <- function(e, serie, color, type = "world", ...){
   
   e$x$opts$geo3D <- series
   
+  e
+}
+
+#' Geo
+#' 
+#' Initialise geo.
+#' 
+#' @inheritParams e_bar
+#' @param map Map type.
+#' 
+#' @examples 
+#' flights <- read.csv(
+#'   paste0("https://raw.githubusercontent.com/plotly/datasets/",
+#'          "master/2011_february_aa_flight_paths.csv")
+#' )
+#' 
+#' flights %>% 
+#'   e_charts() %>% 
+#'   e_geo() %>% 
+#'   e_lines(
+#'     start_lon, 
+#'     start_lat, 
+#'     end_lon, 
+#'     end_lat,
+#'     name = "flights",
+#'     lineStyle = list(normal = list(curveness = 0.3))
+#'    )
+#' 
+#' @export
+e_geo <- function(e, map = "world", ...){
+  
+  opts <- list(
+    map = map,
+    ...
+  )
+  
+  e$x$opts$geo <- opts
   e
 }

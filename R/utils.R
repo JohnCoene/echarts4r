@@ -2,9 +2,10 @@ globalVariables(c("e", "."))
 
 .assign_axis <- function(x){
   x$mapping$include_x <- FALSE
-  if(x$mapping$x_class == "character" || x$mapping$x_class == "factor"){
+  cl <- x$mapping$x_class
+  if(cl == "character" || cl == "factor"){
     x$opts$xAxis <- list(list(data = x$mapping$data[[x$mapping$x]], type = "category", boundaryGap = FALSE))
-  } else if(x$mapping$x_class == "POSIXct" || x$mapping$x_class == "POSIXlt" || x$mapping$x_class == "Date") {
+  } else if(cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
     x$opts$xAxis <- list(list(data = x$mapping$data[[x$mapping$x]], type = "time", boundaryGap = FALSE))
   } else {
     x$mapping$data <- x$mapping$data %>% 
@@ -246,25 +247,6 @@ globalVariables(c("e", "."))
   apply(unname(df), 1, as.list)
 }
 
-.build_map <- function(e, serie, type = "world", name = NULL, t = "map", ...){
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
-  
-  # build JSON data
-  data <- .build_xy(e, serie)
-  
-  serie <- list(
-    name = name,
-    type = t,
-    mapType = type,
-    data = data,
-    ...
-  )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
-}
-
 .get_class <- function(e, serie){
   class(.get_data(e, serie))
 }
@@ -304,6 +286,24 @@ globalVariables(c("e", "."))
   e
 }
 
+.set_axis <- function(e, axis, serie, index){
+  
+  ax <- paste0(axis, "Axis")
+  
+  if(length(e$x$opts$yAxis) - 1 < index){
+    type <- .get_type(e, serie)
+    
+    axis <- list(type = type)
+    
+    if(type != "value"){
+      axis$data <- unique(.get_data(e, serie))
+    }
+    
+    e$x$opts[[ax]][[index + 1]] <- axis
+  }
+  e
+}
+
 .set_x_axis <- function(e, x.index){
   
   serie <- e$x$mapping$x
@@ -322,8 +322,24 @@ globalVariables(c("e", "."))
   e
 }
 
-.r2axis <- function(x){
-  ifelse(x == "x", "xAxis", "yAxis")
+.set_z_axis <- function(e, serie, y.index){
+  
+  if(length(e$x$opts$yAxis) - 1 < y.index){
+    type <- .get_type(e, serie)
+    
+    axis <- list(type = type)
+    
+    if(type != "value"){
+      axis$data <- .get_data(e, serie)
+    }
+    
+    e$x$opts$zAxis[[y.index + 1]] <- axis
+  }
+  e
+}
+
+.r2axis <- function(axis){
+  paste0(axis, "Axis")
 }
 
 .map_lines <- function(e, source.lon, source.lat, target.lon, target.lat){
@@ -356,6 +372,25 @@ globalVariables(c("e", "."))
   if(isTRUE(convert))
     e_convert_texture(file) -> file
   file
+}
+
+.build_cartesian3D <- function(e, n, x, y, z){
+  e$x$mapping$data %>%
+    dplyr::select_(
+      n, x, y, z
+    ) %>%
+    unname() -> df
+  
+  l <- list()
+  for(i in 1:nrow(df)){
+    l <- append(l, list(
+      name = df[i, 1],
+      value = list(
+        df[i, 2], df[i, 3], df[i, 4]
+      )
+    ))
+  }
+  l
 }
 
 

@@ -18,7 +18,7 @@ e_geo_3d(e, serie, color, type = "world", ...)
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
 \description{
-Create a 3d geo plot.
+Initialise geo 3D.
 }
 \examples{
 choropleth <- data.frame(
