@@ -17,7 +17,7 @@
 #' 
 #' choropleth %>% 
 #'   e_charts(countries) %>% 
-#'   e_map3d(values, shading = "lambert") %>% 
+#'   e_map_3d(values, shading = "lambert") %>% 
 #'   e_visual_map(min = 10, max = 30)
 #'   
 #' choropleth %>% 
@@ -76,7 +76,7 @@ e_choropleth <- function(e, serie, type = "world", name = NULL, ...){
 
 #' @rdname map
 #' @export
-e_map3d <- function(e, serie, type = "world", name = NULL, ...){
+e_map_3d <- function(e, serie, type = "world", name = NULL, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -113,9 +113,6 @@ e_map_lines <- function(e, source.lon, source.lat, target.lon, target.lat, type 
   
   if(missing(source.lat) || missing(source.lon) || missing(target.lat) || missing(target.lon))
     stop("missing coordinates", call. = FALSE)
-  
-  if(is.null(name)) # defaults to column name
-    name <- deparse(substitute(serie))
   
   e$x$opts$xAxis <- NULL # remove
   e$x$opts$yAxis <- NULL # remove

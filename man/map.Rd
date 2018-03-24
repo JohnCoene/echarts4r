@@ -2,13 +2,13 @@
 % Please edit documentation in R/map.R
 \name{e_choropleth}
 \alias{e_choropleth}
-\alias{e_map3d}
+\alias{e_map_3d}
 \alias{e_map_lines}
 \title{Choropleth}
 \usage{
 e_choropleth(e, serie, type = "world", name = NULL, ...)
 
-e_map3d(e, serie, type = "world", name = NULL, ...)
+e_map_3d(e, serie, type = "world", name = NULL, ...)
 
 e_map_lines(e, source.lon, source.lat, target.lon, target.lat, type = "world",
   name = NULL, ...)
@@ -39,7 +39,7 @@ choropleth <- data.frame(
 
 choropleth \%>\% 
   e_charts(countries) \%>\% 
-  e_map3d(values, shading = "lambert") \%>\% 
+  e_map_3d(values, shading = "lambert") \%>\% 
   e_visual_map(min = 10, max = 30)
   
 choropleth \%>\% 

@@ -36,6 +36,16 @@ e_map_texture <- function(convert = TRUE){
 
 #' @rdname textures 
 #' @export
+e_globe_texture <- e_map_texture
+
+#' @rdname textures 
+#' @export
+e_composite_texture <- function(convert = TRUE){
+  .get_file("assets/bathymetry_bw_composite_4k.jpg", convert)
+}
+
+#' @rdname textures 
+#' @export
 e_stars_texture <- function(convert = TRUE){
   .get_file("assets/starfield.jpg", convert)
 }

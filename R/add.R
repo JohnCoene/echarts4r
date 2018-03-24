@@ -26,7 +26,7 @@ e_bar <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
 
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
-
+  
   serie <- deparse(substitute(serie))
   
   if(is.null(name)) # defaults to column name
@@ -248,9 +248,9 @@ e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, y.index = 0, x
     e <- .set_x_axis(e, x.index)
   
   if(!missing(size))
-    xy <- .build_xyz(e, serie, deparse(substitute(size)))
+    xy <- .build_data(e, e$x$mapping$x, serie, deparse(substitute(size)))
   else
-    xy <- .build_xy(e, serie)
+    xy <- .build_data(e, e$x$mapping$x, serie)
   
   serie <- list(
     name = name,
@@ -298,8 +298,8 @@ e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, y.index = 0, x
 #' @export
 e_candle <- function(e, opening, closing, low, high, name = NULL, ...){
   
-  data <- .build_candle(
-    e$x$mapping$data, 
+  data <- .build_data(
+    e, 
     deparse(substitute(opening)), 
     deparse(substitute(closing)), 
     deparse(substitute(low)), 
@@ -344,7 +344,12 @@ e_funnel <- function(e, values, labels, name = NULL, ...){
   e$x$opts$legend <- NULL # remove
   
   # build JSON data
-  funnel <- .build_funnel(e$x$mapping$data, deparse(substitute(values)), deparse(substitute(labels)))
+  funnel <- .build_data(
+    e, 
+    deparse(substitute(values)), 
+    deparse(substitute(labels)),
+    names = c("value", "name")
+  )
   
   serie <- list(
     name = name,
@@ -618,7 +623,7 @@ e_heatmap <- function(e, y, z, name = NULL, ...){
     stop("must pass y, z", call. = FALSE)
   
   # build JSON data
-  xyz <- .build_3d(e, deparse(substitute(y)), deparse(substitute(z)))
+  xyz <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
   
   serie <- list(
     name = name,
@@ -731,7 +736,7 @@ e_pie <- function(e, serie, name = NULL, ...){
     name <- deparse(substitute(serie))
   
   # build JSON data
-  data <- .build_pie(e, deparse(substitute(serie)))
+  data <- .build_data(e, e$x$mapping$x, deparse(substitute(serie)), names = c("name", "value"))
   
   serie <- list(
     name = name,
@@ -1021,5 +1026,130 @@ e_gauge <- function(e, value, name, ...){
       data = list(list(value = value, name = name))
     )
   )
+  e
+}
+
+#' Lines 3D
+#' 
+#' Add 3D lines.
+#' 
+#' @inheritParams e_bar
+#' @param source.lon,source.lat,target.lon,target.lat coordinates.
+#' 
+#' @examples 
+#' flights <- read.csv(
+#'   paste0("https://raw.githubusercontent.com/plotly/datasets/",
+#'          "master/2011_february_aa_flight_paths.csv")
+#' )
+#' 
+#' flights %>% 
+#'   e_charts() %>% 
+#'   e_globe(
+#'     base.texture = e_map_texture()
+#'   ) %>% 
+#'   e_line_3d(
+#'     start_lon, 
+#'     start_lat, 
+#'     end_lon, 
+#'     end_lat,
+#'     name = "flights"
+#'   )
+#'   
+#' flights %>% 
+#'   e_charts() %>% 
+#'   e_geo_3d() %>% 
+#'   e_line_3d(
+#'     start_lon, 
+#'     start_lat, 
+#'     end_lon, 
+#'     end_lat,
+#'     coord.system = "geo3D"
+#'   )
+#' 
+#' @export
+e_line_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = NULL, coord.system = "globe", ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(source.lat) || missing(source.lon) || missing(target.lat) || missing(target.lon))
+    stop("missing coordinates", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  if(!is.null(name))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, name)
+  
+  # build JSON data
+  data <- .map_lines(
+    e, 
+    deparse(substitute(source.lon)), 
+    deparse(substitute(source.lat)), 
+    deparse(substitute(target.lon)), 
+    deparse(substitute(target.lat))
+  )
+  
+  serie <- list(
+    type = "lines3D",
+    coordinateSystem = coord.system,
+    data = data,
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
+  e
+}
+
+#' Bars 3D
+#' 
+#' Add 3D bars
+#' 
+#' @inheritParams e_bar
+#' @param coord.system Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.
+#' 
+#' @examples 
+#' url <- paste0("https://ecomfe.github.io/echarts-examples/",
+#'               "public/data-gl/asset/data/population.json")
+#' data <- jsonlite::fromJSON(url)
+#' data <- as.data.frame(data)
+#' names(data) <- c("lon", "lat", "value")
+#' 
+#' data %>% 
+#'   e_charts() %>% 
+#'   e_globe(
+#'     environment = e_stars_texture(),
+#'     base.texture = e_globe_texture()
+#'   ) %>% 
+#'   e_bar_3d(lon, lat, value, "globe") %>% 
+#'   e_visual_map()
+#' 
+#' @export
+e_bar_3d <- function(e, x, y, z, coord.system = "cartesian3D", name = NULL, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(x) || missing(y) || missing(z))
+    stop("must pass x, y and z", call. = FALSE)
+  
+  if(is.null(name)) # defaults to column name
+    name <- deparse(substitute(z))
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  # build JSON data
+  data <- .build_globexyz(e, deparse(substitute(x)), deparse(substitute(y)), deparse(substitute(z)))
+  
+  serie <- list(
+    name = name,
+    type = "bar3D",
+    coordinateSystem = coord.system,
+    data = data,
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
   e
 }

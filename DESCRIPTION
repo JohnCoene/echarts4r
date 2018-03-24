@@ -12,6 +12,7 @@ Imports:
   magrittr,
   rlang,
   dplyr,
+  purrr,
   data.tree,
   crosstalk,
   htmltools,

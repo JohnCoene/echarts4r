@@ -17,52 +17,22 @@ globalVariables(c("e", "."))
 
 # redirect
 .redirect_vect_xy <- function(e, serie){
-  if(isTRUE(e$x$mapping$include_x)){
-    .build_xy(e, serie)
-  } else {
-    .build_vect(e, serie)
-  }
-}
-
-.build_xy <- function(e, serie){
-  e$x$mapping$data %>% 
-    dplyr::select_(e$x$mapping$x, serie) %>% 
-    unname() %>% 
-    apply(., 1, as.list)
-}
-
-.build_vect <- function(e, serie){
-  e$x$mapping$data %>% 
-    dplyr::select_(serie) %>% 
-    .[[1]]
-}
-
-.build_xyz <- function(e, y, z){
-  e$x$mapping$data %>% 
-    dplyr::select_(e$x$mapping$x, y, z) %>%
-    unname() %>% 
-    apply(., 1, as.list)
-}
-
-.build_candle <- function(data, opening, closing, low, high){
-  data %>%
-    dplyr::select_(
-      opening, 
-      closing, 
-      low, 
-      high
-    ) %>% 
-    as.matrix(.) %>% 
-    unname(.) -> matrix
+  if(isTRUE(e$x$mapping$include_x))
+    .build_data(e, e$x$mapping$x, serie, vector = FALSE)
+  else
+    .build_data(e, serie, vector = TRUE)
   
-  apply(matrix, 1, as.list)
 }
 
-.build_funnel <- function(data, x, y){
-  data %>%
-    dplyr::select_(value = x, name = y) -> df
+.build_data <- function(e, ..., names = NULL, vector = FALSE){
+  e$x$mapping$data %>% 
+    dplyr::select_(...) %>% 
+    purrr::set_names(names) -> data
   
-  apply(df, 1, as.list)
+  if(isTRUE(vector))
+    unlist(data)
+  else
+    apply(data, 1, as.list)
 }
 
 .build_sankey_nodes <- function(data, source, target){
@@ -226,6 +196,10 @@ globalVariables(c("e", "."))
       !!child
     ) -> df
   
+  .tree_that(df)
+}
+
+.tree_that <- function(df){
   tree <- data.tree::FromDataFrameNetwork(df)
   data.tree::ToListExplicit(tree, unname = TRUE)
 }
@@ -244,13 +218,12 @@ globalVariables(c("e", "."))
       value
     ) -> df
   
-  tree <- data.tree::FromDataFrameNetwork(df)
-  data.tree::ToListExplicit(tree, unname = TRUE)
+  .tree_that(df)
 }
 
 .build_river <- function(e, serie, label){
   
-  x <- e$x$mapping$data[[e$x$mapping$x]]
+  x <- .get_data(e, e$x$mapping$x)
   label <- rep(label, length(x))
   
   e$x$mapping$data %>%
