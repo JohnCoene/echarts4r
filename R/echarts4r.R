@@ -21,6 +21,7 @@
 #' @import htmlwidgets
 #' @import rlang
 #' @importFrom grDevices boxplot.stats
+#' @importFrom grDevices colorRampPalette
 #' 
 #' @rdname init
 #' @export
