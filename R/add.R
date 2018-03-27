@@ -1258,3 +1258,96 @@ e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.sys
   
   e
 }
+
+#' Scatter 3D
+#' 
+#' Add 3D scatter.
+#' 
+#' @inheritParams e_bar
+#' @param y,z Coordinates.
+#' @param coord.system Coordinate system to use, one of \code{geo3D}, \code{globe}, or \code{cartesian3D}.
+#' 
+#' @examples 
+#' v <- LETTERS[1:10]
+#' matrix <- data.frame(
+#'   x = sample(v, 300, replace = TRUE), 
+#'   y = sample(v, 300, replace = TRUE), 
+#'   z = rnorm(300, 10, 1),
+#'   stringsAsFactors = FALSE
+#' ) %>% 
+#'   dplyr::group_by(x, y) %>% 
+#'   dplyr::summarise(
+#'     z = sum(z), 
+#'     size = sum(size),
+#'     color = sum(color)
+#'   ) %>% 
+#'   dplyr::ungroup() 
+#'   
+#' matrix %>% 
+#'   e_charts(x) %>% 
+#'   e_scatter_3d(y, z) %>% 
+#'   e_visual_map()
+#'   
+#' airports <- read.csv(
+#'   paste0("https://raw.githubusercontent.com/plotly/datasets/",
+#'          "master/2011_february_us_airport_traffic.csv")
+#' )
+#' 
+#' airports %>% 
+#'   e_charts(long) %>% 
+#'   e_globe(
+#'     environment = e_stars_texture(),
+#'     base.texture = e_globe_texture(), 
+#'     globeOuterRadius = 100
+#'   ) %>% 
+#'   e_scatter_3d(lat, cnt, coord.system = "globe", blendMode = 'lighter') %>% 
+#'   e_visual_map(inRange = list(symbolSize = c(1, 10)))
+#' 
+#' @export
+e_scatter_3d <- function(e, y, z, color, size, coord.system = "cartesian3D", name = NULL, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(y) || missing(z))
+    stop("must pass y and z", call. = FALSE)
+  
+  if(is.null(name)) # defaults to column name
+    name <- deparse(substitute(z))
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  # globe
+  if(coord.system != "cartesian3D"){
+    
+    data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
+  
+    
+  } else { # cartesian
+    
+    if(!length(e$x$opts$zAxis3D))
+      e$x$opts$zAxis3D <- list(show = TRUE)
+    
+    if(!length(e$x$opts$grid3D))
+      e$x$opts$grid3D <- list(show = TRUE)
+    
+    e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
+    e <- .set_axis_3D(e, "y", deparse(substitute(y)), 0)
+    e <- .set_axis_3D(e, "z", deparse(substitute(z)), 0)
+    
+    data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
+
+  }
+  
+  serie <- list(
+    name = name,
+    type = "scatter3D",
+    coordinateSystem = coord.system,
+    data = data,
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
+  e
+}
