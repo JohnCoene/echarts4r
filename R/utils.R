@@ -4,9 +4,9 @@ globalVariables(c("e", "."))
   x$mapping$include_x <- FALSE
   cl <- x$mapping$x_class
   if(cl == "character" || cl == "factor"){
-    x$opts$xAxis <- list(list(data = x$mapping$data[[x$mapping$x]], type = "category", boundaryGap = FALSE))
+    x$opts$xAxis <- list(list(data = unique(x$mapping$data[[x$mapping$x]]), type = "category", boundaryGap = TRUE))
   } else if(cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
-    x$opts$xAxis <- list(list(data = x$mapping$data[[x$mapping$x]], type = "time", boundaryGap = FALSE))
+    x$opts$xAxis <- list(list(data = unique(x$mapping$data[[x$mapping$x]]), type = "time", boundaryGap = FALSE))
   } else {
     x$mapping$data <- x$mapping$data %>% 
       dplyr::arrange_(x$mapping$x)
@@ -286,18 +286,17 @@ globalVariables(c("e", "."))
   e
 }
 
-.set_axis <- function(e, axis, serie, index){
+.set_axis_3D <- function(e, axis, serie, index){
   
-  ax <- paste0(axis, "Axis")
+  ax <- .r2axis3D(axis)
   
   if(length(e$x$opts$yAxis) - 1 < index){
     type <- .get_type(e, serie)
     
     axis <- list(type = type)
     
-    if(type != "value"){
+    if(type != "value")
       axis$data <- unique(.get_data(e, serie))
-    }
     
     e$x$opts[[ax]][[index + 1]] <- axis
   }
@@ -342,6 +341,10 @@ globalVariables(c("e", "."))
   paste0(axis, "Axis")
 }
 
+.r2axis3D <- function(axis){
+  paste0(axis, "Axis3D")
+}
+
 .map_lines <- function(e, source.lon, source.lat, target.lon, target.lat){
   
   e$x$mapping$data %>% 
@@ -357,16 +360,6 @@ globalVariables(c("e", "."))
     }) 
 }
 
-.build_globexyz <- function(e, x, y, z){
-  e$x$mapping$data %>%
-    dplyr::select_(
-      x, y, z
-    ) %>%
-    unname() -> df
-  
-  apply(df, 1, as.list)
-}
-
 .get_file <- function(file, convert){
   file <- system.file(file, package = "echarts4r")
   if(isTRUE(convert))
@@ -374,44 +367,50 @@ globalVariables(c("e", "."))
   file
 }
 
-.build_cartesian3D <- function(e, n, x, y, z){
+.build_cartesian3D <- function(e, x, y, z){
   e$x$mapping$data %>%
     dplyr::select_(
-      n, x, y, z
+      x, y, z
     ) %>%
     unname() -> df
   
-  l <- list()
-  for(i in 1:nrow(df)){
-    l <- append(l, list(
-      name = df[i, 1],
-      value = list(
-        df[i, 2], df[i, 3], df[i, 4]
-      )
-    ))
-  }
-  l
+  apply(df, 1, function(x){
+    list(value = x)
+  })
 }
 
 
 .build_height <- function(e, serie, color){
+  
+  #data <- .build_data(e, e$x$mapping$x, serie, names = c("name", "height"))
   e$x$mapping$data %>%
     dplyr::select_(
       name = e$x$mapping$x,
       height = serie
     ) -> data
   
-  color <- e$x$mapping$data[[color]]
-  
   names(data) <- c("name", "height")
   
   apply(data, 1, as.list) -> l
   
-  for(i in 1:length(l)){
-    is <- list(
-      color = color[i]
-    )
-    l[[i]]$itemStyle <- is
+  if(!missing(color)){
+    color <- e$x$mapping$data[[color]]
+    
+    for(i in 1:length(l)){
+      is <- list(
+        color = color[i]
+      )
+      l[[i]]$itemStyle <- is
+    }
   }
   l
+}
+
+.correct_countries <- function(x){
+  x <- gsub("^United States of America$", "United States", x)
+  x <- gsub("^Viet Nam$", "Vietnam", x)
+  x <- gsub("^United Kingdom of Great Britain and Northern Ireland$", "United Kingdom", x)
+  x <- gsub("^Republic of Korea$", "Korea", x)
+  x <- gsub("^Russian Federation$", "Russia", x)
+  x
 }
