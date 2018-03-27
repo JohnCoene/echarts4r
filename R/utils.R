@@ -367,10 +367,10 @@ globalVariables(c("e", "."))
   file
 }
 
-.build_cartesian3D <- function(e, x, y, z){
+.build_cartesian3D <- function(e, ...){
   e$x$mapping$data %>%
     dplyr::select_(
-      x, y, z
+      ...
     ) %>%
     unname() -> df
   

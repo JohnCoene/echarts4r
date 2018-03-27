@@ -36,6 +36,12 @@ data \%>\%
   e_bar_3d(lat, value, coord.system = "globe") \%>\% 
   e_visual_map()
   
+data \%>\% 
+  e_charts(lon) \%>\% 
+  e_geo_3d() \%>\% 
+  e_bar_3d(lat, value, coord.system = "geo3D") \%>\% 
+  e_visual_map()
+  
 v <- LETTERS[1:10]
 matrix <- data.frame(
   x = sample(v, 300, replace = TRUE), 
@@ -49,6 +55,7 @@ matrix <- data.frame(
   
 matrix \%>\% 
   e_charts(x) \%>\% 
-  e_bar_3d(y, z)
+  e_bar_3d(y, z) \%>\% 
+  e_visual_map()
 
 }
