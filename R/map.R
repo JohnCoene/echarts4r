@@ -25,6 +25,8 @@
 #'   e_visual_map(min = 10, max = 30)
 #' }
 #' 
+#' @seealso \code{\link{e_country_names}}
+#' 
 #' @rdname map
 #' @export
 e_choropleth <- function(e, serie, map = "world", name = NULL, ...){

@@ -43,3 +43,6 @@ choropleth \%>\%
 }
 
 }
+\seealso{
+\code{\link{e_country_names}}
+}
