@@ -18,6 +18,8 @@
 #' choropleth %>% 
 #'   e_charts(countries) %>% 
 #'   e_geo_3d(height, color)
+#'   
+#' @seealso \code{\link{e_country_names}}
 #' 
 #' @export
 e_geo_3d <- function(e, serie, color, type = "world", ...){
@@ -32,8 +34,10 @@ e_geo_3d <- function(e, serie, color, type = "world", ...){
     ...
   )
   
-  if(!missing(serie) && !missing(color))
+  if(!missing(color) && !missing(serie))
     series$regions <- .build_height(e, deparse(substitute(serie)), deparse(substitute(color)))
+  else if(missing(color) && !missing(serie))
+    series$regions <- .build_height(e, deparse(substitute(serie)))
   
   e$x$opts$geo3D <- series
   

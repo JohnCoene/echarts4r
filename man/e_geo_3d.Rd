@@ -32,5 +32,8 @@ choropleth <- data.frame(
 choropleth \%>\% 
   e_charts(countries) \%>\% 
   e_geo_3d(height, color)
-
+  
+}
+\seealso{
+\code{\link{e_country_names}}
 }
