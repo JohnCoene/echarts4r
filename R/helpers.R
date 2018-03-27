@@ -57,3 +57,73 @@ e_convert_texture <- function(file){
     stop("missing file", call. = FALSE)
   paste0("data:image/png;base64,", base64enc::base64encode(file))
 }
+
+#' Country names
+#' 
+#' Convert country names to echarts format.
+#' 
+#' @param data Data.frame in which to find column names.
+#' @param input,output Input and output columns.
+#' @param type Passed to \link[countrycode]{countrycode} \code{origin} parameter.
+#' @param ... Any other parameter to pass to \link[countrycode]{countrycode}.
+#' 
+#' @details Taiwan and Hong Kong cannot be plotted.
+#' 
+#' @examples 
+#' cns <- data.frame(country = c("US", "BE"))
+#' 
+#' # replace
+#' cns %>% 
+#'   e_country_names(country)
+#'   
+#' # specify output
+#' cns %>% 
+#'   e_country_names(country, country.name)
+#' 
+#' @export
+e_country_names <- function(data, input, output, type = "iso2c", ...){
+  
+  if(missing(data) || missing(input))
+    stop("must pass data and input", call. = FALSE)
+  
+  src <- deparse(substitute(input))
+  cn <- countrycode::countrycode(data[[src]], origin = type, destination = "country.name", ...)
+  
+  if(missing(output))
+    output <- src
+  else
+    output <- deparse(substitute(output))
+  
+  data[[output]] <- .correct_countries(cn)
+  data
+}
+
+#' Color range
+#' 
+#' Build manual color range
+#' 
+#' @param data Data.frame in which to find column names.
+#' @param input,output Input and output columns.
+#' @param colors Colors to pass to \code{\link{colorRampPalette}}.
+#' @param ... Any other argument to pass to \code{\link{colorRampPalette}}.
+#' 
+#' @examples 
+#' df <- data.frame(val = 1:10)
+#' 
+#' df %>% 
+#'   e_color_range(val, colors)
+#' 
+#' @export
+e_color_range <- function(data, input, output, colors = c("#bf444c", "#d88273", "#f6efa6"), ...){
+  
+  if(missing(data) || missing(input) || missing(output))
+    stop("must pass data, input and output", call. = FALSE)
+  
+  input <- deparse(substitute(input))
+  output <- deparse(substitute(output))
+  
+  serie <- data[[input]]
+  
+  data[[output]] <- colorRampPalette(colors, ...)(length(serie))
+  data
+}
