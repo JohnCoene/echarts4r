@@ -1107,7 +1107,7 @@ e_line_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = 
 #' Add 3D bars
 #' 
 #' @inheritParams e_bar
-#' @param x,y,z Coordinates.
+#' @param y,z Coordinates.
 #' @param coord.system Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.
 #' 
 #' @examples 
@@ -1118,12 +1118,18 @@ e_line_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = 
 #' names(data) <- c("lon", "lat", "value")
 #' 
 #' data %>% 
-#'   e_charts() %>% 
+#'   e_charts(lon) %>% 
 #'   e_globe(
 #'     environment = e_stars_texture(),
 #'     base.texture = e_globe_texture()
 #'   ) %>% 
-#'   e_bar_3d(lon, lat, value, "globe") %>% 
+#'   e_bar_3d(lat, value, coord.system = "globe") %>% 
+#'   e_visual_map()
+#'   
+#' data %>% 
+#'   e_charts(lon) %>% 
+#'   e_geo_3d() %>% 
+#'   e_bar_3d(lat, value, coord.system = "geo3D") %>% 
 #'   e_visual_map()
 #'   
 #' v <- LETTERS[1:10]
@@ -1135,33 +1141,47 @@ e_line_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = 
 #' ) %>% 
 #'   dplyr::group_by(x, y) %>% 
 #'   dplyr::summarise(z = sum(z)) %>% 
-#'   dplyr::ungroup() %>% 
-#'   dplyr::mutate(name = paste("n", 1:n()))
+#'   dplyr::ungroup() 
 #'   
 #' matrix %>% 
 #'   e_charts(x) %>% 
-#'   e_bar_3d(x, y, z, name)
+#'   e_bar_3d(y, z) %>% 
+#'   e_visual_map()
 #' 
 #' @export
-e_bar_3d <- function(e, x, y, z, n, coord.system = "cartesian3D", name = NULL, ...){
+e_bar_3d <- function(e, y, z, coord.system = "cartesian3D", name = NULL, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  if(missing(x) || missing(y) || missing(z))
-    stop("must pass x, y and z", call. = FALSE)
+  if(missing(y) || missing(z))
+    stop("must pass y and z", call. = FALSE)
   
   if(is.null(name)) # defaults to column name
     name <- deparse(substitute(z))
   
-  if(coord.system != "cartersian3D"){
-    e$x$opts$xAxis <- NULL # remove
-    e$x$opts$yAxis <- NULL # remove
-    data <- .build_globexyz(e, deparse(substitute(x)), deparse(substitute(y)), deparse(substitute(z)))
-  } else {
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  # globe
+  if(coord.system != "cartesian3D"){
+  
+    data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
+    
+  } else { # cartesian
+    
+    if(!length(e$x$opts$zAxis3D))
+      e$x$opts$zAxis3D <- list(show = TRUE)
+    
+    if(!length(e$x$opts$grid3D))
+      e$x$opts$grid3D <- list(show = TRUE)
+    
+    e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
+    e <- .set_axis_3D(e, "y", deparse(substitute(y)), 0)
+    e <- .set_axis_3D(e, "z", deparse(substitute(z)), 0)
+    
     data <- .build_cartesian3D(
       e, 
-      deparse(substitute(n)), 
-      deparse(substitute(x)), 
+      e$x$mapping$x, 
       deparse(substitute(y)), 
       deparse(substitute(z))
     )
@@ -1174,15 +1194,6 @@ e_bar_3d <- function(e, x, y, z, n, coord.system = "cartesian3D", name = NULL, .
     data = data,
     ...
   )
-  
-  if(coord.system == "cartesian3D" && !length(e$x$opts$grid3D))
-    e$x$opts$grid3D <- list()
-  
-  if(coord.system == "cartesian3D" && !length(e$x$opts$zAxis)){
-    e <- .set_axis(e, "x", deparse(substitute(x)), 0)
-    e <- .set_axis(e, "y", deparse(substitute(y)), 0)
-    e <- .set_axis(e, "z", deparse(substitute(z)), 0)
-  }
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   

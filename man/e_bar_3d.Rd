@@ -4,12 +4,12 @@
 \alias{e_bar_3d}
 \title{Bars 3D}
 \usage{
-e_bar_3d(e, x, y, z, n, coord.system = "cartesian3D", name = NULL, ...)
+e_bar_3d(e, y, z, coord.system = "cartesian3D", name = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{x, y, z}{Coordinates.}
+\item{y, z}{Coordinates.}
 
 \item{coord.system}{Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.}
 
@@ -28,12 +28,12 @@ data <- as.data.frame(data)
 names(data) <- c("lon", "lat", "value")
 
 data \%>\% 
-  e_charts() \%>\% 
+  e_charts(lon) \%>\% 
   e_globe(
     environment = e_stars_texture(),
     base.texture = e_globe_texture()
   ) \%>\% 
-  e_bar_3d(lon, lat, value, "globe") \%>\% 
+  e_bar_3d(lat, value, coord.system = "globe") \%>\% 
   e_visual_map()
   
 v <- LETTERS[1:10]
@@ -45,11 +45,10 @@ matrix <- data.frame(
 ) \%>\% 
   dplyr::group_by(x, y) \%>\% 
   dplyr::summarise(z = sum(z)) \%>\% 
-  dplyr::ungroup() \%>\% 
-  dplyr::mutate(name = paste("n", 1:n()))
+  dplyr::ungroup() 
   
 matrix \%>\% 
   e_charts(x) \%>\% 
-  e_bar_3d(x, y, z, name)
+  e_bar_3d(y, z)
 
 }
