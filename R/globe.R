@@ -25,6 +25,8 @@
 #'   e_visual_map()
 #' }
 #' 
+#' @seealso \code{\link{e_country_names}}
+#' 
 #' @export
 e_globe <- function(e, environment = NULL, base.texture = NULL, height.texture = NULL, ...){
   
