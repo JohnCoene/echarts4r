@@ -2,7 +2,7 @@
 % Please edit documentation in R/add.R
 \name{e_bar_3d}
 \alias{e_bar_3d}
-\title{Bars 3D}
+\title{Bar 3D}
 \usage{
 e_bar_3d(e, y, z, coord.system = "cartesian3D", name = NULL, ...)
 }

@@ -2,11 +2,8 @@
 % Please edit documentation in R/add.R
 \name{e_line}
 \alias{e_line}
-\alias{e_line}
 \title{Line}
 \usage{
-e_line(e, serie, name = NULL, y.index = 0, x.index = 0, ...)
-
 e_line(e, serie, name = NULL, y.index = 0, x.index = 0, ...)
 }
 \arguments{
@@ -24,15 +21,8 @@ e_line(e, serie, name = NULL, y.index = 0, x.index = 0, ...)
 }
 \description{
 Add line serie.
-
-Add line serie.
 }
 \examples{
-USArrests \%>\% 
-  e_charts(Assault) \%>\% 
-  e_line(Murder) \%>\% 
-  e_line(UrbanPop, y.index = 1) # second y axis
-
 USArrests \%>\% 
   e_charts(Assault) \%>\% 
   e_line(Murder) \%>\% 

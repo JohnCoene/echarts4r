@@ -917,55 +917,6 @@ e_river <- function(e, serie, name = NULL, ...){
   e
 }
 
-#' Line 
-#' 
-#' Add line serie.
-#' 
-#' @inheritParams e_bar
-#' 
-#' @examples 
-#' USArrests %>% 
-#'   e_charts(Assault) %>% 
-#'   e_line(Murder) %>% 
-#'   e_line(UrbanPop, y.index = 1) # second y axis
-#' 
-#' @export
-e_line <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
-  if(missing(e))
-    stop("must pass e", call. = FALSE)
-  
-  if(missing(serie))
-    stop("must pass serie", call. = FALSE)
-  
-  serie <- deparse(substitute(serie))
-  
-  if(is.null(name)) # defaults to column name
-    name <- serie
-  
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
-  # build JSON data
-  vector <- .redirect_vect_xy(e, serie)
-  
-  serie <- list(
-    name = name,
-    type = "line",
-    data = vector,
-    yAxisIndex = y.index,
-    xAxisIndex = x.index,
-    ...
-  )
-  
-  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
-}
-
 #' Area 
 #' 
 #' Add area serie.
@@ -1447,7 +1398,7 @@ e_line_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = 
   e
 }
 
-#' Bars 3D
+#' Bar 3D
 #' 
 #' Add 3D bars
 #' 
