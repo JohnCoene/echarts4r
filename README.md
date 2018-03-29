@@ -49,7 +49,7 @@ devtools::install_github("JohnCoene/echarts4r")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+[echarts](http://john-coene.com/img/echarts4r.png)
 
 ```r
 library(echarts4r)
