@@ -44,6 +44,7 @@ e_graph_edges(e, edges, source, target)
 Create a graph.
 }
 \examples{
+#Use graphGL for larger networks
 nodes <- data.frame(
   name = paste0(LETTERS, 1:1000),
   value = rnorm(1000, 10, 2),
@@ -53,8 +54,8 @@ nodes <- data.frame(
 )
 
 edges <- data.frame(
-  source = sample(nodes$name, 1500, replace = TRUE),
-  target = sample(nodes$name, 1500, replace = TRUE),
+  source = sample(nodes$name, 2000, replace = TRUE),
+  target = sample(nodes$name, 2000, replace = TRUE),
   stringsAsFactors = FALSE
 )
 
