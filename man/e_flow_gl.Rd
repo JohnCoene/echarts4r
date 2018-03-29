@@ -4,7 +4,7 @@
 \alias{e_flow_gl}
 \title{Flow GL}
 \usage{
-e_flow_gl(e, y, sx, sy, color, name = NULL, ...)
+e_flow_gl(e, y, sx, sy, color, name = NULL, coord.system = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -23,6 +23,7 @@ e_flow_gl(e, y, sx, sy, color, name = NULL, ...)
 Flow GL
 }
 \examples{
+# coordinates
 vectors <- expand.grid(0:9, 0:9)
 names(vectors) <- c("x", "y")
 vectors$sx <- rnorm(100)
@@ -47,5 +48,40 @@ vectors \%>\%
   e_y_axis(
     splitLine = list(show = FALSE)
   )   
+  
+# map
+latlong <- seq(-180, 180, by = 5)
+wind = expand.grid(lng = latlong, lat = latlong)
+wind$slng <- rnorm(nrow(wind), 0, 200)
+wind$slat <- rnorm(nrow(wind), 0, 200)
+wind$color <- abs(wind$slat) - abs(wind$slng)
+rng <- range(wind$color)
+
+trans <- list(opacity = 0.5) # transparency
+
+wind \%>\% 
+  e_charts(lng, backgroundColor = '#333') \%>\% 
+  e_geo(
+    itemStyle = list(
+      normal = list(
+        areaColor = "#323c48",
+        borderColor = "#111"
+      )
+    )
+  ) \%>\% 
+  e_flow_gl(lat, slng, slat, color, 
+    coord.system = "geo", 
+    itemStyle = trans,
+    particleSize = 2
+  ) \%>\% 
+  e_visual_map(
+    min = rng[1], max = rng[2], # range
+    dimension = 4, # lng = 0, lat = 1, slng = 2, slat = 3, color = 4
+    show = FALSE, # hide
+    inRange = list(
+      color = c('#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', 
+                '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026')
+    )
+  )
 
 }
