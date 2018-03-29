@@ -41,7 +41,7 @@ matrix <- data.frame(
   
 matrix \%>\% 
   e_charts(x) \%>\% 
-  e_scatter_3d(y, z, color, size) \%>\% 
+  e_scatter_3d(y, z, size, color) \%>\% 
   e_visual_map(
     min = 1, max = 100,
     inRange = list(symbolSize = c(1, 30)), # scale size
