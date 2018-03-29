@@ -1,0 +1,49 @@
+#' Themes
+#' 
+#' Add theme.
+#' 
+#' @param theme Theme, see below.
+#' 
+#' @section Themes: 
+#' \itemize{
+#'   \item{\code{dark}}
+#'   \item{\code{vintage}}
+#'   \item{\code{westeros}}
+#'   \item{\code{essos}}
+#'   \item{\code{wonderland}}
+#'   \item{\code{walden}}
+#'   \item{\code{chalk}}
+#'   \item{\code{infographic}}
+#'   \item{\code{macarons}}
+#'   \item{\code{roma}}
+#'   \item{\code{shine}}
+#'   \item{\code{purple-passion}}
+#'   \item{\code{halloween}}
+#' }
+#' 
+#' @examples
+#' mtcars %>% 
+#'   e_charts(mpg) %>%
+#'   e_line(disp) %>% 
+#'   e_area(hp) %>% 
+#'   e_x_axis(min = 10) -> p
+#'   
+#' p %>% e_theme_("chalk")
+#' p %>% e_theme("westeros")
+#' 
+#' @export
+e_theme <- function(e, theme){
+  
+  if(missing(theme))
+    stop("must pass theme", call. = FALSE)
+  
+  themes <- c("dark", "vintage", "westeros", "essos", "wonderland", 
+              "walden", "chalk", "infographic", "macarons", "roma",
+              "shine", "purple-passion", "halloween")
+  
+  if(!tolower(theme) %in% themes)
+    stop("Incorrect theme", call. = FALSE)
+  
+  e$x$theme <- tolower(theme)
+  e
+}

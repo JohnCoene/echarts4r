@@ -8,3 +8,16 @@ dependencies:
       - ecStat.min.js
       - dataTool.min.js
       - world.js
+      - /themes/dark.js
+      - /themes/vintage.js
+      - /themes/westeros.js
+      - /themes/essos.js
+      - /themes/wonderland.js
+      - /themes/walden.js
+      - /themes/chalk.js
+      - /themes/infographic.js
+      - /themes/macarons.js
+      - /themes/roma.js
+      - /themes/shine.js
+      - /themes/purple-passion.js
+      - /themes/halloween.js

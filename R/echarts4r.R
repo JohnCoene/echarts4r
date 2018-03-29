@@ -45,6 +45,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, ...
 
   # forward options using x
   x = list(
+    theme = "",
     mapping = list(),
     settings = list(
       crosstalk_key = key,

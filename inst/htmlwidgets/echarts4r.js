@@ -6,12 +6,13 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
-    var chart = echarts.init(document.getElementById(el.id));
+    var chart;
     
     return {
 
       renderValue: function(x) {
         
+        chart = echarts.init(document.getElementById(el.id), x.theme);
         chart.setOption(x.opts);
 
       },
