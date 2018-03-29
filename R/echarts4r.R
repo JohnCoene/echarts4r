@@ -60,7 +60,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, ...
   
   if(!missing(data)){
     row.names(data) <- NULL
-    x$mapping$data <- data
+    x$data <- data
   }
   
   if(!is.null(xmap)){
@@ -77,7 +77,13 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, ...
     height = height,
     dependencies = crosstalk::crosstalkLibs(),
     package = 'echarts4r',
-    elementId = elementId
+    elementId = elementId,
+    sizingPolicy = htmlwidgets::sizingPolicy(
+      viewer.defaultHeight = "100%",
+      viewer.defaultWidth = "100%",
+      knitr.figure = FALSE,
+      browser.fill = TRUE
+    )
   )
 }
 
@@ -86,7 +92,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, ...
 e_data <- function(e, data){
   
   row.names(data) <- NULL
-  e$x$mapping$data <- data
+  e$x$data <- data
   
   e
 }
@@ -104,6 +110,8 @@ e_data <- function(e, data){
 #' @param env The environment in which to evaluate \code{expr}.
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
+#' @param id Target chart id.
+#' @param session Shiny session.
 #'
 #' @name echarts4r-shiny
 #'
@@ -117,4 +125,14 @@ echarts4rOutput <- function(outputId, width = '100%', height = '400px'){
 renderEcharts4r <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
   htmlwidgets::shinyRenderWidget(expr, echarts4rOutput, env, quoted = TRUE)
+}
+
+#' @rdname echarts4r-shiny
+#' @export
+echarts4rProxy <- function(id, session = shiny::getDefaultReactiveDomain()){
+  
+  proxy <- list(id = id, session = session)
+  class(proxy) <- "echarts4rProxy"
+  
+  return(proxy)
 }

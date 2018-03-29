@@ -1,14 +1,18 @@
 globalVariables(c("e", "."))
 
+`%||%` <- function(x, y) {
+  if (!is.null(x)) x else y
+}
+
 .assign_axis <- function(x){
   x$mapping$include_x <- FALSE
   cl <- x$mapping$x_class
   if(cl == "character" || cl == "factor"){
-    x$opts$xAxis <- list(list(data = unique(x$mapping$data[[x$mapping$x]]), type = "category", boundaryGap = TRUE))
+    x$opts$xAxis <- list(list(data = unique(x$data[[x$mapping$x]]), type = "category", boundaryGap = TRUE))
   } else if(cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
-    x$opts$xAxis <- list(list(data = unique(x$mapping$data[[x$mapping$x]]), type = "time", boundaryGap = FALSE))
+    x$opts$xAxis <- list(list(data = unique(x$data[[x$mapping$x]]), type = "time", boundaryGap = FALSE))
   } else {
-    x$mapping$data <- x$mapping$data %>% 
+    x$data <- x$data %>% 
       dplyr::arrange_(x$mapping$x)
     x$mapping$include_x <- TRUE
     x$opts$xAxis <- list(list(type = "value"))
@@ -26,7 +30,7 @@ globalVariables(c("e", "."))
 }
 
 .build_data <- function(e, ..., names = NULL, vector = FALSE){
-  e$x$mapping$data %>% 
+  e$x$data %>% 
     dplyr::select_(...) %>% 
     purrr::set_names(names) -> data
   
@@ -111,7 +115,7 @@ globalVariables(c("e", "."))
 }
 
 .graph_cat_legend <- function(e){
-  e$x$mapping$data[[e$x$mapping$x]]
+  e$x$data[[e$x$mapping$x]]
 }
 
 .build_boxplot <- function(data, serie){
@@ -145,7 +149,7 @@ globalVariables(c("e", "."))
 
 .add_outliers <- function(e, serie){
   
-  outliers <- .get_outliers(e$x$mapping$data, serie)
+  outliers <- .get_outliers(e$x$data, serie)
   outliers <- .build_outliers(e, outliers)
   
   scatter <- list(
@@ -162,20 +166,20 @@ globalVariables(c("e", "."))
 }
 
 .build_3d <- function(e, y , z){
-  e$x$mapping$data %>%
+  e$x$data %>%
     dplyr::select_(
       y, z
     ) %>%
     unname() -> data
   
-  data <- cbind(e$x$mapping$data[[e$x$mapping$x]], data)
+  data <- cbind(e$x$data[[e$x$mapping$x]], data)
   data <- unname(data)
   
   apply(data, 1, as.list)
 }
 
 .build_pie <- function(e, serie){
-  e$x$mapping$data %>%
+  e$x$data %>%
     dplyr::select_(
       value = serie
     ) -> data
@@ -183,7 +187,7 @@ globalVariables(c("e", "."))
   data <- cbind.data.frame(
     data,
     data.frame(
-      name = e$x$mapping$data[[e$x$mapping$x]]
+      name = e$x$data[[e$x$mapping$x]]
     )
   )
   
@@ -191,7 +195,7 @@ globalVariables(c("e", "."))
 }
 
 .build_tree <- function(e, parent, child){
-  e$x$mapping$data %>%
+  e$x$data %>%
     dplyr::select(
       !!parent,
       !!child
@@ -207,12 +211,12 @@ globalVariables(c("e", "."))
 
 .build_sun <- function(e, value){
   
-  tree <- data.tree::FromDataFrameNetwork(e$x$mapping$data, check = "no-check")
+  tree <- data.tree::FromDataFrameNetwork(e$x$data, check = "no-check")
   data.tree::ToListExplicit(tree, unname = TRUE)
 }
 
 .build_treemap <- function(e, parent, child, value){
-  e$x$mapping$data %>%
+  e$x$data %>%
     dplyr::select_(
       parent,
       child,
@@ -227,7 +231,7 @@ globalVariables(c("e", "."))
   x <- .get_data(e, e$x$mapping$x)
   label <- rep(label, length(x))
   
-  e$x$mapping$data %>%
+  e$x$data %>%
     dplyr::select_(serie) -> data
   
   data <- cbind(x, data, label)
@@ -236,7 +240,7 @@ globalVariables(c("e", "."))
 }
 
 .build_cal <- function(e, serie){
-  e$x$mapping$data %>% 
+  e$x$data %>% 
     dplyr::select_(serie) %>% 
     unname() -> rhs
   
@@ -264,7 +268,7 @@ globalVariables(c("e", "."))
 }
 
 .get_data <- function(e, serie){
-  e$x$mapping$data %>% 
+  e$x$data %>% 
     dplyr::select_(serie) %>% 
     unname() %>% 
     .[[1]]
@@ -347,7 +351,7 @@ globalVariables(c("e", "."))
 
 .map_lines <- function(e, source.lon, source.lat, target.lon, target.lat){
   
-  e$x$mapping$data %>% 
+  e$x$data %>% 
     dplyr::select_(
       source.lon, source.lat, target.lon, target.lat
     ) %>% 
@@ -368,7 +372,7 @@ globalVariables(c("e", "."))
 }
 
 .build_cartesian3D <- function(e, ...){
-  e$x$mapping$data %>%
+  e$x$data %>%
     dplyr::select_(
       ...
     ) %>%
@@ -383,7 +387,7 @@ globalVariables(c("e", "."))
 .build_height <- function(e, serie, color){
   
   #data <- .build_data(e, e$x$mapping$x, serie, names = c("name", "height"))
-  e$x$mapping$data %>%
+  e$x$data %>%
     dplyr::select_(
       name = e$x$mapping$x,
       height = serie
@@ -394,7 +398,7 @@ globalVariables(c("e", "."))
   apply(data, 1, as.list) -> l
   
   if(!missing(color)){
-    color <- e$x$mapping$data[[color]]
+    color <- e$x$data[[color]]
     
     for(i in 1:length(l)){
       is <- list(
