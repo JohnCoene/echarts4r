@@ -1,18 +1,6 @@
----
-output: github_document
----
+# echarts4r
 
 [![Travis-CI Build Status](https://travis-ci.org/JohnCoene/echarts4r.svg?branch=master)](https://travis-ci.org/JohnCoene/echarts4r)
-
-```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "README-"
-)
-```
-
-# echarts4r
 
 ECharts 4 for R.
 
@@ -63,7 +51,7 @@ devtools::install_github("JohnCoene/echarts4r")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example, eval=FALSE}
+```r
 library(echarts4r)
 
 #' ol' mtcars example
