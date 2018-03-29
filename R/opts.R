@@ -7,11 +7,17 @@
 #' @export
 e_visual_map <- function(e, calculable = TRUE, type = c("continuous", "piecewise"), ...){
   
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(!length(e$x$opts$visualMap))
+    e$x$opts$visualMap <- list()
+  
   vm <- list(...)
   vm$calculable <- calculable
   vm$type <- type[1]
   
-  e$x$opts$visualMap <- vm
+  e$x$opts$visualMap <- append(e$x$opts$visualMap, list(vm))
   e
 }
 

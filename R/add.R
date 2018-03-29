@@ -1273,20 +1273,32 @@ e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.sys
 #'   x = sample(v, 300, replace = TRUE), 
 #'   y = sample(v, 300, replace = TRUE), 
 #'   z = rnorm(300, 10, 1),
+#'   color = rnorm(300, 10, 1),
+#'   size = rnorm(300, 10, 1),
 #'   stringsAsFactors = FALSE
 #' ) %>% 
 #'   dplyr::group_by(x, y) %>% 
 #'   dplyr::summarise(
-#'     z = sum(z), 
-#'     size = sum(size),
-#'     color = sum(color)
+#'     z = sum(z),
+#'     color = sum(color),
+#'     size = sum(size)
 #'   ) %>% 
 #'   dplyr::ungroup() 
 #'   
 #' matrix %>% 
 #'   e_charts(x) %>% 
-#'   e_scatter_3d(y, z) %>% 
-#'   e_visual_map()
+#'   e_scatter_3d(y, z, color, size) %>% 
+#'   e_visual_map(
+#'     min = 1, max = 100,
+#'     inRange = list(symbolSize = c(1, 30)), # scale size
+#'     dimension = 3 # third dimension 0 = x, y = 1, z = 2, size = 3
+#'   ) %>% 
+#'   e_visual_map(
+#'     min = 1, max = 100,
+#'     inRange = list(color = c('#bf444c', '#d88273', '#f6efa6')), # scale colors
+#'     dimension = 4, # third dimension 0 = x, y = 1, z = 2, size = 3, color = 4
+#'     bottom = 300 # padding to avoid visual maps overlap
+#'   )
 #'   
 #' airports <- read.csv(
 #'   paste0("https://raw.githubusercontent.com/plotly/datasets/",
@@ -1335,7 +1347,13 @@ e_scatter_3d <- function(e, y, z, color, size, coord.system = "cartesian3D", nam
     e <- .set_axis_3D(e, "y", deparse(substitute(y)), 0)
     e <- .set_axis_3D(e, "z", deparse(substitute(z)), 0)
     
-    data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
+    if(missing(color))
+      data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
+    else if(!missing(color) && missing(size))
+      data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)), deparse(substitute(color)))
+    else if(!missing(color) && !missing(size))
+      data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)), deparse(substitute(color)),
+                          deparse(substitute(size)))
 
   }
   
