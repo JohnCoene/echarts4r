@@ -14,7 +14,7 @@ e_step(e, serie, step = c("start", "middle", "end"), fill = FALSE,
 
 \item{step}{Step type, one of \code{start}, \code{middle} or \code{end}.}
 
-\item{fill}{Set to \code{TRUE} to fill like an \code{e_area} chart.}
+\item{fill}{Set to fill as area.}
 
 \item{name}{name of the serie.}
 

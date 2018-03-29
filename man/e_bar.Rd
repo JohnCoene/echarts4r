@@ -2,7 +2,7 @@
 % Please edit documentation in R/add.R
 \name{e_bar}
 \alias{e_bar}
-\title{Bar & Line chart}
+\title{Bar and Line chart}
 \usage{
 e_bar(e, serie, name = NULL, y.index = 0, x.index = 0, ...)
 }

@@ -30,7 +30,10 @@ flights <- read.csv(
 flights \%>\% 
   e_charts() \%>\% 
   e_globe(
-    base.texture = e_map_texture()
+    base.texture = e_map_texture(),
+    height.texture = e_map_texture(),
+    environment = e_stars_texture(),
+    displacementScale = 0.05
   ) \%>\% 
   e_line_3d(
     start_lon, 

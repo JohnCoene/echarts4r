@@ -76,4 +76,29 @@ if (HTMLWidgets.shinyMode) {
       }
   });
   
+  // TOOLTIP
+  
+  Shiny.addCustomMessageHandler('e_showtip_p',
+    function(data) {
+      var chart = get_e_charts(data.id);
+      if (typeof chart != 'undefined') {
+        chart.dispatchAction({
+          type: 'showTip',
+          seriesIndex: data.seriesIndex,
+          name: data.name,
+          position: data.position
+        });
+      }
+  });
+  
+  Shiny.addCustomMessageHandler('e_hidetip_p',
+    function(data) {
+      var chart = get_e_charts(data.id);
+      if (typeof chart != 'undefined') {
+        chart.dispatchAction({
+          type: 'hideTip'
+        });
+      }
+  });
+  
 }

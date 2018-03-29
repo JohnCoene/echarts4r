@@ -1,4 +1,4 @@
-#' Bar & Line chart
+#' Bar and Line chart
 #' 
 #' Add bar serie.
 #' 
@@ -159,9 +159,9 @@ e_area <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
 #' 
 #' Add step serie.
 #' 
-#' @inheritParams e_bar
+#' @inheritParams  e_bar
 #' @param step Step type, one of \code{start}, \code{middle} or \code{end}.
-#' @param fill Set to \code{TRUE} to fill like an \code{e_area} chart.
+#' @param fill Set to fill as area.
 #' 
 #' @examples 
 #' USArrests %>% 
@@ -180,6 +180,9 @@ e_step <- function(e, serie, step = c("start", "middle", "end"), fill = FALSE,
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
+  
+  if(!step %in% c("start", "middle", "end"))
+    stop("wrong step", call. = FALSE)
   
   serie <- deparse(substitute(serie))
   
@@ -219,8 +222,9 @@ e_step <- function(e, serie, step = c("start", "middle", "end"), fill = FALSE,
 #' 
 #' @inheritParams e_bar
 #' @param size Column name containing size of points.
-#' @param scale Scale for \code{size}, defaults to \code{* 1} which multiplies the size 
-#' by \code{1} (equivalent to no multiplier).
+#' @param scale Scale for \code{size}, defaults to \code{* 1} which multiplies the size
+#'  by \code{1} (equivalent to no multiplier).
+#' @param coord.system Coordinate system to plot against.
 #' 
 #' @examples 
 #' USArrests %>% 
@@ -391,7 +395,9 @@ e_candle <- function(e, opening, closing, low, high, name = NULL, ...){
 #' 
 #' Add a funnel.
 #' 
-#' @inheritParams e_bar
+#' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
+#' @param name name of the serie.
+#' @param ... Any other option to pass to \code{bar} or \code{line} char types.
 #' @param values,labels Values and labels of funnel.
 #' 
 #' @examples 
@@ -504,7 +510,6 @@ e_sankey <- function(e, source, target, value, layout = "none", ...){
 #' @param edges Data.frame of edges.
 #' @param source,target Column names of source and target.
 #' @param layout Layout, one of \code{force}, \code{none} or \code{circular}.
-#' @param type Graph type, \code{graph} or \code{graphGL}
 #' @param ... Any other parameter.
 #' 
 #' @examples 
@@ -614,69 +619,6 @@ e_graph_edges <- function(e, edges, source, target){
   
   # build JSON data
   e$x$opts$series[[length(e$x$opts$series)]]$links <- data
-  e
-}
-
-#' Boxplot
-#' 
-#' Draw boxplot.
-#' 
-#' @inheritParams e_bar
-#' @param outliers Whether to plot outliers.
-#
-#' 
-#' @examples 
-#' df <- data.frame(
-#'   x = c(1:10, 25),
-#'   y = c(1:10, -6)
-#' )
-#' 
-#' df %>% 
-#'   e_charts() %>% 
-#'   e_boxplot(y, outliers = TRUE) %>% 
-#'   e_boxplot(x, outliers = TRUE)
-#' 
-#' @export
-e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
-  
-  if(missing(serie))
-    stop("must pass serie", call. = FALSE)
-  
-  if(is.null(name)) # defaults to column name
-    name <- deparse(substitute(serie))
-  
-  # build JSON data
-  serie <- dplyr::enquo(serie)
-  vector <- .build_boxplot(e$x$data, serie)
-  
-  if(length(e$x$opts$series) >= 1){
-    e$x$opts$series[[1]]$data <- append(
-      e$x$opts$series[[1]]$data, 
-      list(vector)
-    )
-  } else {
-    # boxplot + opts
-    box <- list(
-      name = name,
-      type = "boxplot",
-      data = list(vector),
-      ...
-    )
-    e$x$opts$series <- append(e$x$opts$series, list(box))
-  }
-  
-  # data/outliers
-  if(isTRUE(outliers)){
-    e <- .add_outliers(e, serie)
-  }
-
-  # xaxis
-  e$x$opts$xAxis$data <- append(e$x$opts$xAxis$data, list(name))
-  e$x$opts$xAxis$type <- "category"
-  
-  # legend
-  # e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
   e
 }
 
@@ -838,51 +780,6 @@ e_pie <- function(e, serie, name = NULL, ...){
   e
 }
 
-#' Tree
-#' 
-#' Build a tree.
-#' 
-#' @inheritParams e_bar
-#' @param parent,child Edges.
-#' 
-#' @examples 
-#' df <- data.frame(
-#'   parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
-#'   child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster")
-#' )
-#' 
-#' df %>% 
-#'   e_charts() %>% 
-#'   e_tree(parent, child)
-#' 
-#' @export
-e_tree <- function(e, parent, child, ...){
-  if(missing(e))
-    stop("must pass e", call. = FALSE)
-  
-  if(missing(parent) || missing(child))
-    stop("must pass parent and child", call. = FALSE)
-  
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
-  
-  # build JSON data
-  data <- .build_tree(
-    e, 
-    deparse(substitute(parent)), 
-    deparse(substitute(child))
-  )
-  
-  serie <- list(
-    type = "tree",
-    data = list(data),
-    ...
-  )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
-}
-
 #' Sunburst
 #' 
 #' Build a sunburst.
@@ -1020,6 +917,364 @@ e_river <- function(e, serie, name = NULL, ...){
   e
 }
 
+#' Line 
+#' 
+#' Add line serie.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @examples 
+#' USArrests %>% 
+#'   e_charts(Assault) %>% 
+#'   e_line(Murder) %>% 
+#'   e_line(UrbanPop, y.index = 1) # second y axis
+#' 
+#' @export
+e_line <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  serie <- deparse(substitute(serie))
+  
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
+  if(y.index != 0)
+    e <- .set_y_axis(e, serie, y.index)
+  
+  if(x.index != 0)
+    e <- .set_x_axis(e, x.index)
+  
+  # build JSON data
+  vector <- .redirect_vect_xy(e, serie)
+  
+  serie <- list(
+    name = name,
+    type = "line",
+    data = vector,
+    yAxisIndex = y.index,
+    xAxisIndex = x.index,
+    ...
+  )
+  
+  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' Area 
+#' 
+#' Add area serie.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @examples 
+#' USArrests %>% 
+#'   e_charts(Assault) %>% 
+#'   e_area(Murder, stack = "grp") %>% # stacking
+#'   e_area(UrbanPop, stack = "grp") # stacking
+#' 
+#' @export
+e_area <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  serie <- deparse(substitute(serie))
+  
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
+  if(y.index != 0)
+    e <- .set_y_axis(e, serie, y.index)
+  
+  if(x.index != 0)
+    e <- .set_x_axis(e, x.index)
+  
+  # build JSON data
+  vector <- .redirect_vect_xy(e, serie)
+  
+  serie <- list(
+    name = name,
+    type = "line",
+    data = vector,
+    yAxisIndex = y.index,
+    xAxisIndex = x.index,
+    areaStyle = list(normal = list()),
+    ...
+  )
+  
+  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' @rdname scatter
+#' @export
+e_effect_scatter <- function(e, serie, size, scale = "* 1", name = NULL, coord.system = "cartesian2D", y.index = 0, x.index = 0, ...){
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  serie <- deparse(substitute(serie))
+  
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
+  if(y.index != 0)
+    e <- .set_y_axis(e, serie, y.index)
+  
+  if(x.index != 0)
+    e <- .set_x_axis(e, x.index)
+  
+  if(!missing(size))
+    xy <- .build_data(e, e$x$mapping$x, serie, deparse(substitute(size)))
+  else
+    xy <- .build_data(e, e$x$mapping$x, serie)
+  
+  if(coord.system != "cartesian2D"){
+    e$x$opts$xAxis <- NULL
+    e$x$opts$yAxis <- NULL
+  } else {
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  }
+  
+  serie <- list(
+    name = name,
+    type = "effectScatter",
+    data = xy,
+    coordinateSystem = coord.system,
+    yAxisIndex = y.index,
+    xAxisIndex = x.index,
+    ...
+  )
+  
+  if(!missing(size))
+    serie$symbolSize <- htmlwidgets::JS(
+      paste("function(data){ return data[2]", scale, ";}")
+    )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' Boxplot
+#' 
+#' Draw boxplot.
+#' 
+#' @inheritParams e_bar
+#' @param outliers Whether to plot outliers.
+#
+#' 
+#' @examples 
+#' df <- data.frame(
+#'   x = c(1:10, 25),
+#'   y = c(1:10, -6)
+#' )
+#' 
+#' df %>% 
+#'   e_charts() %>% 
+#'   e_boxplot(y, outliers = TRUE) %>% 
+#'   e_boxplot(x, outliers = TRUE)
+#' 
+#' @export
+e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  if(is.null(name)) # defaults to column name
+    name <- deparse(substitute(serie))
+  
+  # build JSON data
+  serie <- dplyr::enquo(serie)
+  vector <- .build_boxplot(e$x$data, serie)
+  
+  if(length(e$x$opts$series) >= 1){
+    e$x$opts$series[[1]]$data <- append(
+      e$x$opts$series[[1]]$data, 
+      list(vector)
+    )
+  } else {
+    # boxplot + opts
+    box <- list(
+      name = name,
+      type = "boxplot",
+      data = list(vector),
+      ...
+    )
+    e$x$opts$series <- append(e$x$opts$series, list(box))
+  }
+  
+  # data/outliers
+  if(isTRUE(outliers)){
+    e <- .add_outliers(e, serie)
+  }
+  
+  # xaxis
+  e$x$opts$xAxis$data <- append(e$x$opts$xAxis$data, list(name))
+  e$x$opts$xAxis$type <- "category"
+  
+  # legend
+  # e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e
+}
+
+#' Parallel
+#' 
+#' Draw parallel coordinates.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @examples 
+#' df <- data.frame(
+#'   price = rnorm(5, 10),
+#'   amount = rnorm(5, 15),
+#'   letter = LETTERS[1:5]
+#' )
+#' 
+#' df %>% 
+#'   e_charts() %>% 
+#'   e_parallel(price, amount, letter) 
+#' 
+#' @export
+e_parallel <- function(e, ..., name = NULL){
+  if(missing(e))
+    stop("must pass e", call. = FALSE) 
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  e$x$data %>% 
+    dplyr::select(...) -> df
+  
+  # remove names
+  data <- df
+  row.names(data) <- NULL
+  data <- unname(data)
+  
+  data <- apply(data, 1, as.list)
+  
+  serie <- list(
+    name = name,
+    type = "parallel",
+    data = data
+  )
+  
+  para <- list()
+  for(i in 1:ncol(df)){
+    line <- list()
+    line$dim <- i - 1
+    line$name <- names(df)[i]
+    if(inherits(df[,i], "character") || inherits(df[, i], "factor")){
+      line$type <- "category"
+      line$data <- unique(df[,i])
+    }
+    
+    para[[i]] <- line
+  }
+  
+  e$x$opts$series <- append(e$x$opts$series, serie)
+  e$x$opts$parallelAxis <- para
+  e
+}
+
+#' Pie
+#' 
+#' Draw pie and donut charts.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @examples 
+#' mtcars %>% 
+#'   head() %>% 
+#'   dplyr::mutate(model = row.names(.)) %>% 
+#'   e_charts(model) %>% 
+#'   e_pie(carb)
+#' 
+#' @export
+e_pie <- function(e, serie, name = NULL, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  if(is.null(name)) # defaults to column name
+    name <- deparse(substitute(serie))
+  
+  # build JSON data
+  data <- .build_data(e, e$x$mapping$x, deparse(substitute(serie)), names = c("name", "value"))
+  
+  serie <- list(
+    name = name,
+    type = "pie",
+    data = data,
+    ...
+  )
+  
+  e$x$opts$legend$data <- append(e$x$opts$legend$data, .graph_cat_legend(e))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' Tree
+#' 
+#' Build a tree.
+#' 
+#' @inheritParams e_bar
+#' @param parent,child Edges.
+#' 
+#' @examples 
+#' df <- data.frame(
+#'   parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
+#'   child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster")
+#' )
+#' 
+#' df %>% 
+#'   e_charts() %>% 
+#'   e_tree(parent, child)
+#' 
+#' @export
+e_tree <- function(e, parent, child, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(parent) || missing(child))
+    stop("must pass parent and child", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  # build JSON data
+  data <- .build_tree(
+    e, 
+    deparse(substitute(parent)), 
+    deparse(substitute(child))
+  )
+  
+  serie <- list(
+    type = "tree",
+    data = list(data),
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
 #' Calendar
 #' 
 #' Heatmap as calendar.
@@ -1103,7 +1358,7 @@ e_gauge <- function(e, value, name, ...){
   
   if(!inherits(value, "numeric"))
     stop("must pass numeric or interger", call. = FALSE)
-    
+  
   e$x$opts$yAxis <- NULL
   e$x$opts$xAxis <- NULL
   
@@ -1133,7 +1388,10 @@ e_gauge <- function(e, value, name, ...){
 #' flights %>% 
 #'   e_charts() %>% 
 #'   e_globe(
-#'     base.texture = e_map_texture()
+#'     base.texture = e_map_texture(),
+#'     height.texture = e_map_texture(),
+#'     environment = e_stars_texture(),
+#'     displacementScale = 0.05
 #'   ) %>% 
 #'   e_line_3d(
 #'     start_lon, 
@@ -1360,6 +1618,7 @@ e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.sys
 #' 
 #' @inheritParams e_bar
 #' @param y,z Coordinates.
+#' @param color,size Color and Size of bubbles.
 #' @param coord.system Coordinate system to use, one of \code{geo3D}, \code{globe}, or \code{cartesian3D}.
 #' 
 #' @examples 
@@ -1470,8 +1729,8 @@ e_scatter_3d <- function(e, y, z, color, size, coord.system = "cartesian3D", nam
 #' @inheritParams e_bar
 #' @param y Vector position on the y axis.
 #' @param sx,sy Velocity in respective axis.
-#' @param Color Vector color.
-#' 
+#' @param color Vector color.
+#' @param coord.system Coordinate system to use.
 #' 
 #' @examples 
 #' # coordinates

@@ -2,6 +2,7 @@
 #' 
 #' Add theme.
 #' 
+#' @inheritParams e_bar
 #' @param theme Theme, see below.
 #' 
 #' @section Themes: 
@@ -28,7 +29,7 @@
 #'   e_area(hp) %>% 
 #'   e_x_axis(min = 10) -> p
 #'   
-#' p %>% e_theme_("chalk")
+#' p %>% e_theme("chalk")
 #' p %>% e_theme("westeros")
 #' 
 #' @export

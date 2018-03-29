@@ -37,8 +37,6 @@ e_graph_edges(e, edges, source, target)
 \item{edges}{Data.frame of edges.}
 
 \item{source, target}{Column names of source and target.}
-
-\item{type}{Graph type, \code{graph} or \code{graphGL}}
 }
 \description{
 Create a graph.

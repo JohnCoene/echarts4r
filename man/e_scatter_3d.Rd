@@ -12,6 +12,8 @@ e_scatter_3d(e, y, z, color, size, coord.system = "cartesian3D",
 
 \item{y, z}{Coordinates.}
 
+\item{color, size}{Color and Size of bubbles.}
+
 \item{coord.system}{Coordinate system to use, one of \code{geo3D}, \code{globe}, or \code{cartesian3D}.}
 
 \item{name}{name of the serie.}

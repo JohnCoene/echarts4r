@@ -7,6 +7,8 @@
 e_theme(e, theme)
 }
 \arguments{
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+
 \item{theme}{Theme, see below.}
 }
 \description{
@@ -38,7 +40,7 @@ mtcars \%>\%
   e_area(hp) \%>\% 
   e_x_axis(min = 10) -> p
   
-p \%>\% e_theme_("chalk")
+p \%>\% e_theme("chalk")
 p \%>\% e_theme("westeros")
 
 }

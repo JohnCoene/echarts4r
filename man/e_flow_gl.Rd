@@ -13,11 +13,13 @@ e_flow_gl(e, y, sx, sy, color, name = NULL, coord.system = NULL, ...)
 
 \item{sx, sy}{Velocity in respective axis.}
 
+\item{color}{Vector color.}
+
 \item{name}{name of the serie.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{coord.system}{Coordinate system to use.}
 
-\item{Color}{Vector color.}
+\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
 \description{
 Flow GL

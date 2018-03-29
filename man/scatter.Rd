@@ -3,9 +3,13 @@
 \name{e_scatter}
 \alias{e_scatter}
 \alias{e_effect_scatter}
+\alias{e_effect_scatter}
 \title{Scatter}
 \usage{
 e_scatter(e, serie, size, scale = "* 1", name = NULL,
+  coord.system = "cartesian2D", y.index = 0, x.index = 0, ...)
+
+e_effect_scatter(e, serie, size, scale = "* 1", name = NULL,
   coord.system = "cartesian2D", y.index = 0, x.index = 0, ...)
 
 e_effect_scatter(e, serie, size, scale = "* 1", name = NULL,
@@ -18,10 +22,12 @@ e_effect_scatter(e, serie, size, scale = "* 1", name = NULL,
 
 \item{size}{Column name containing size of points.}
 
-\item{scale}{Scale for \code{size}, defaults to \code{* 1} which multiplies the size 
+\item{scale}{Scale for \code{size}, defaults to \code{* 1} which multiplies the size
 by \code{1} (equivalent to no multiplier).}
 
 \item{name}{name of the serie.}
+
+\item{coord.system}{Coordinate system to plot against.}
 
 \item{y.index}{Indexes of x and y axis.}
 
