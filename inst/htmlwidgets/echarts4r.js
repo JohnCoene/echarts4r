@@ -6,42 +6,24 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
-    var myChart;
-    
-    var sel_handle = new crosstalk.SelectionHandle();
+    var chart = echarts.init(document.getElementById(el.id));
     
     return {
 
       renderValue: function(x) {
-      
-        myChart = echarts.init(document.getElementById(el.id));
-        var option = x.opts;
-        myChart.setOption(option);
         
-        myChart.on("brush", function(keys) {
-          // sel_handle.set(keys);
-          console.log(keys);
-        });
-    
-        sel_handle.on("change", function(e) {
-          if (e.sender !== sel_handle) {
-            myChart.clearBrush();
-          }
-          myChart.selection(e.value);
-        });
-        
-        sel_handle.setGroup(x.settings.crosstalk_group);
+        chart.setOption(x.opts);
 
       },
       
       getChart: function(){
-        return myChart;
+        return chart;
       },
 
       resize: function(width, height) {
 
         if(myChart){
-          myChart.resize();
+          chart.resize();
         }
 
       }
@@ -49,3 +31,48 @@ HTMLWidgets.widget({
     };
   }
 });
+
+function get_e_charts(id){
+
+  // Get the HTMLWidgets object
+  var htmlWidgetsObj = HTMLWidgets.find("#" + id);
+
+  // Use the getChart method we created to get the underlying C3 chart
+  var echarts;
+
+  if (typeof htmlWidgetsObj != 'undefined') {
+    echarts = htmlWidgetsObj.getChart();
+  }
+
+  return(echarts);
+}
+
+if (HTMLWidgets.shinyMode) {
+  
+  // HIGHLIGHT AND DOWNPLAY
+  
+  Shiny.addCustomMessageHandler('e_highlight_p',
+    function(data) {
+      var chart = get_e_charts(data.id);
+      if (typeof chart != 'undefined') {
+        chart.dispatchAction({
+          type: 'highlight',
+          seriesIndex: data.seriesIndex,
+          seriesName: data.seriesName
+        });
+      }
+  });
+  
+  Shiny.addCustomMessageHandler('e_downplay_p',
+    function(data) {
+      var chart = get_e_charts(data.id);
+      if (typeof chart != 'undefined') {
+        chart.dispatchAction({
+          type: 'downplay',
+          seriesIndex: data.seriesIndex,
+          seriesName: data.seriesName
+        });
+      }
+  });
+  
+}
