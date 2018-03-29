@@ -9,6 +9,7 @@
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
 #'   string and have \code{'px'} appended.
 #' @param elementId Id of element.
+#' @param ... Any other argument.
 #' 
 #' @examples 
 #' USArrests %>% 
@@ -25,7 +26,7 @@
 #' 
 #' @rdname init
 #' @export
-e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL) {
+e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, ...) {
 
   key <- NULL
   group <- NULL
@@ -50,6 +51,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL) {
       crosstalk_group = group
     ),
     opts = list(
+      ...,
       yAxis = list(
         list(show = TRUE)
       )

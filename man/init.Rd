@@ -5,7 +5,7 @@
 \alias{e_data}
 \title{Initialise}
 \usage{
-e_charts(data, x, width = NULL, height = NULL, elementId = NULL)
+e_charts(data, x, width = NULL, height = NULL, elementId = NULL, ...)
 
 e_data(e, data)
 }
@@ -19,6 +19,8 @@ e_data(e, data)
 string and have \code{'px'} appended.}
 
 \item{elementId}{Id of element.}
+
+\item{...}{Any other argument.}
 
 \item{e}{An object of class \code{echarts4r} as returned by \code{e_charts}.}
 }
