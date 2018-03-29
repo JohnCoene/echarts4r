@@ -440,8 +440,7 @@ e_sankey <- function(e, source, target, value, layout = "none", ...){
 #' @param ... Any other parameter.
 #' 
 #' @examples 
-#' # use graph GL for large networks
-#' # 1000 nodes
+#' #Use graphGL for larger networks
 #' nodes <- data.frame(
 #'   name = paste0(LETTERS, 1:1000),
 #'   value = rnorm(1000, 10, 2),
@@ -451,19 +450,19 @@ e_sankey <- function(e, source, target, value, layout = "none", ...){
 #' )
 #' 
 #' edges <- data.frame(
-#'   source = sample(nodes$name, 1500, replace = TRUE),
-#'   target = sample(nodes$name, 1500, replace = TRUE),
+#'   source = sample(nodes$name, 2000, replace = TRUE),
+#'   target = sample(nodes$name, 2000, replace = TRUE),
 #'   stringsAsFactors = FALSE
 #' )
 #' 
 #' e_charts() %>% 
-#'   e_graph(type = "graphGL") %>% 
+#'   e_graph_gl() %>% 
 #'   e_graph_nodes(nodes, name, value, size, grp) %>% 
 #'   e_graph_edges(edges, source, target)
 #' 
 #' @rdname graph
 #' @export
-e_graph <- function(e, layout = "force", type = "graph", name = NULL, ...){
+e_graph <- function(e, layout = "force", name = NULL, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -472,7 +471,27 @@ e_graph <- function(e, layout = "force", type = "graph", name = NULL, ...){
   
   serie <- list(
     name = name,
-    type = type,
+    type = "graph",
+    layout = layout,
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' @rdname graph
+#' @export
+e_graph_gl <- function(e, layout = "force", name = NULL, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  serie <- list(
+    name = name,
+    type = "graphGL",
     layout = layout,
     ...
   )
@@ -1287,7 +1306,7 @@ e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.sys
 #'   
 #' matrix %>% 
 #'   e_charts(x) %>% 
-#'   e_scatter_3d(y, z, color, size) %>% 
+#'   e_scatter_3d(y, z, size, color) %>% 
 #'   e_visual_map(
 #'     min = 1, max = 100,
 #'     inRange = list(symbolSize = c(1, 30)), # scale size
@@ -1364,6 +1383,83 @@ e_scatter_3d <- function(e, y, z, color, size, coord.system = "cartesian3D", nam
     data = data,
     ...
   )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
+  e
+}
+
+#' Flow GL
+#' 
+#' @inheritParams e_bar
+#' @param y Vector position on the y axis.
+#' @param sx,sy Velocity in respective axis.
+#' @param Color Vector color.
+#' 
+#' 
+#' @examples 
+#' vectors <- expand.grid(0:9, 0:9)
+#' names(vectors) <- c("x", "y")
+#' vectors$sx <- rnorm(100)
+#' vectors$sy <- rnorm(100)
+#' vectors$color <- log10(runif(100, 1, 10))
+#' 
+#' vectors %>% 
+#'   e_charts(x) %>% 
+#'   e_flow_gl(y, sx, sy, color) %>% 
+#'   e_visual_map(
+#'     min = 0, max = 1, # log 10
+#'     dimension = 4, # x = 0, y = 1, sx = 3, sy = 4
+#'     show = FALSE, # hide
+#'     inRange = list(
+#'       color = c('#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8',
+#'                 '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026')
+#'     )
+#'   ) %>% 
+#'   e_x_axis(
+#'     splitLine = list(show = FALSE)
+#'   ) %>% 
+#'   e_y_axis(
+#'     splitLine = list(show = FALSE)
+#'   )   
+#' 
+#' @export
+e_flow_gl <- function(e, y, sx, sy, color, name = NULL, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(y) || missing(sx) || missing(sy))
+    stop("must pass y and z", call. = FALSE)
+  
+  e <- .set_x_axis(e, 0)
+  e <- .set_y_axis(e, deparse(substitute(y)), 0)
+  
+  if(missing(color))
+    data <- .build_data(
+      e, 
+      e$x$mapping$x, 
+      deparse(substitute(y)), 
+      deparse(substitute(sx)), 
+      deparse(substitute(sy))
+    )
+  else 
+    data <- .build_data(
+      e, 
+      e$x$mapping$x, 
+      deparse(substitute(y)), 
+      deparse(substitute(sx)), 
+      deparse(substitute(sy)),
+      deparse(substitute(color))
+    )
+  
+  serie <- list(
+    type = "flowGL",
+    data = data,
+    ...
+  )
+  
+  if(!is.null(name))
+    serie$name <- name
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   

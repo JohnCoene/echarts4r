@@ -2,11 +2,14 @@
 % Please edit documentation in R/add.R
 \name{e_graph}
 \alias{e_graph}
+\alias{e_graph_gl}
 \alias{e_graph_nodes}
 \alias{e_graph_edges}
 \title{Graph}
 \usage{
-e_graph(e, layout = "force", type = "graph", name = NULL, ...)
+e_graph(e, layout = "force", name = NULL, ...)
+
+e_graph_gl(e, layout = "force", name = NULL, ...)
 
 e_graph_nodes(e, nodes, names, value, size, category)
 
@@ -16,8 +19,6 @@ e_graph_edges(e, edges, source, target)
 \item{e}{An \code{echarts4} object as returned by \code{e_charts}.}
 
 \item{layout}{Layout, one of \code{force}, \code{none} or \code{circular}.}
-
-\item{type}{Graph type, \code{graph} or \code{graphGL}}
 
 \item{name}{Name of graph.}
 
@@ -36,13 +37,13 @@ e_graph_edges(e, edges, source, target)
 \item{edges}{Data.frame of edges.}
 
 \item{source, target}{Column names of source and target.}
+
+\item{type}{Graph type, \code{graph} or \code{graphGL}}
 }
 \description{
 Create a graph.
 }
 \examples{
-# use graph GL for large networks
-# 1000 nodes
 nodes <- data.frame(
   name = paste0(LETTERS, 1:1000),
   value = rnorm(1000, 10, 2),
@@ -58,7 +59,7 @@ edges <- data.frame(
 )
 
 e_charts() \%>\% 
-  e_graph(type = "graphGL") \%>\% 
+  e_graph_gl() \%>\% 
   e_graph_nodes(nodes, name, value, size, grp) \%>\% 
   e_graph_edges(edges, source, target)
 
