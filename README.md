@@ -4,7 +4,7 @@
 
 ECharts 4 for R.
 
-[echarts](http://john-coene.com/img/echarts4r.png)
+![echarts](http://john-coene.com/img/echarts4r.png)
 
 * [EN](https://ecomfe.github.io/)
 * [ZH](http://echarts.baidu.com/index.html)
