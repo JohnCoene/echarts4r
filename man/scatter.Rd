@@ -2,10 +2,14 @@
 % Please edit documentation in R/add.R
 \name{e_scatter}
 \alias{e_scatter}
+\alias{e_effect_scatter}
 \title{Scatter}
 \usage{
-e_scatter(e, serie, size, scale = "* 1", name = NULL, y.index = 0,
-  x.index = 0, ...)
+e_scatter(e, serie, size, scale = "* 1", name = NULL,
+  coord.system = "cartesian2D", y.index = 0, x.index = 0, ...)
+
+e_effect_scatter(e, serie, size, scale = "* 1", name = NULL,
+  coord.system = "cartesian2D", y.index = 0, x.index = 0, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -35,5 +39,17 @@ USArrests \%>\%
   e_scatter(Rape, Murder, y.index = 1) \%>\% 
   e_grid(index = c(0, 1)) \%>\% 
   e_tooltip()
+
+quakes \%>\% 
+  e_charts(long) \%>\% 
+  e_geo(
+    roam = TRUE,
+    boundingCoords = list(
+      c(185, - 10),
+      c(165, -40)
+    )
+  ) \%>\% 
+  e_effect_scatter(lat, mag, coord.system = "geo") \%>\% 
+  e_visual_map(min = 4, max = 6.5)
 
 }

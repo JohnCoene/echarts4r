@@ -230,8 +230,21 @@ e_step <- function(e, serie, step = c("start", "middle", "end"), fill = FALSE,
 #'   e_grid(index = c(0, 1)) %>% 
 #'   e_tooltip()
 #' 
+#' quakes %>% 
+#'   e_charts(long) %>% 
+#'   e_geo(
+#'     roam = TRUE,
+#'     boundingCoords = list(
+#'       c(185, - 10),
+#'       c(165, -40)
+#'     )
+#'   ) %>% 
+#'   e_effect_scatter(lat, mag, coord.system = "geo") %>% 
+#'   e_visual_map(min = 4, max = 6.5)
+#' 
+#' @rdname scatter
 #' @export
-e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, y.index = 0, x.index = 0, ...){
+e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, coord.system = "cartesian2D", y.index = 0, x.index = 0, ...){
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
@@ -252,10 +265,18 @@ e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, y.index = 0, x
   else
     xy <- .build_data(e, e$x$mapping$x, serie)
   
+  if(coord.system != "cartesian2D"){
+    e$x$opts$xAxis <- NULL
+    e$x$opts$yAxis <- NULL
+  } else {
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  }
+  
   serie <- list(
     name = name,
     type = "scatter",
     data = xy,
+    coordinateSystem = coord.system,
     yAxisIndex = y.index,
     xAxisIndex = x.index,
     ...
@@ -266,7 +287,54 @@ e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, y.index = 0, x
       paste("function(data){ return data[2]", scale, ";}")
     )
   
-  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' @rdname scatter
+#' @export
+e_effect_scatter <- function(e, serie, size, scale = "* 1", name = NULL, coord.system = "cartesian2D", y.index = 0, x.index = 0, ...){
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  serie <- deparse(substitute(serie))
+  
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
+  if(y.index != 0)
+    e <- .set_y_axis(e, serie, y.index)
+  
+  if(x.index != 0)
+    e <- .set_x_axis(e, x.index)
+  
+  if(!missing(size))
+    xy <- .build_data(e, e$x$mapping$x, serie, deparse(substitute(size)))
+  else
+    xy <- .build_data(e, e$x$mapping$x, serie)
+  
+  if(coord.system != "cartesian2D"){
+    e$x$opts$xAxis <- NULL
+    e$x$opts$yAxis <- NULL
+  } else {
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  }
+  
+  serie <- list(
+    name = name,
+    type = "effectScatter",
+    data = xy,
+    coordinateSystem = coord.system,
+    yAxisIndex = y.index,
+    xAxisIndex = x.index,
+    ...
+  )
+  
+  if(!missing(size))
+    serie$symbolSize <- htmlwidgets::JS(
+      paste("function(data){ return data[2]", scale, ";}")
+    )
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
@@ -398,14 +466,14 @@ e_sankey <- function(e, source, target, value, layout = "none", ...){
   
   # build JSON data
   nodes <- .build_sankey_nodes(
-    e$x$mapping$data, 
+    e$x$data, 
     deparse(substitute(source)), 
     deparse(substitute(target))
   )
   
   # build JSON data
   edges <- .build_sankey_edges(
-    e$x$mapping$data, 
+    e$x$data, 
     dplyr::enquo(source), 
     dplyr::enquo(target),
     dplyr::enquo(value)
@@ -579,7 +647,7 @@ e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
   
   # build JSON data
   serie <- dplyr::enquo(serie)
-  vector <- .build_boxplot(e$x$mapping$data, serie)
+  vector <- .build_boxplot(e$x$data, serie)
   
   if(length(e$x$opts$series) >= 1){
     e$x$opts$series[[1]]$data <- append(
@@ -693,7 +761,7 @@ e_parallel <- function(e, ..., name = NULL){
   e$x$opts$xAxis <- NULL # remove
   e$x$opts$yAxis <- NULL # remove
   
-  e$x$mapping$data %>% 
+  e$x$data %>% 
     dplyr::select(...) -> df
   
   # remove names
