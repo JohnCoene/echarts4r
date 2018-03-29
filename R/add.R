@@ -1155,17 +1155,25 @@ e_line_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = 
 #' matrix <- data.frame(
 #'   x = sample(v, 300, replace = TRUE), 
 #'   y = sample(v, 300, replace = TRUE), 
-#'   z = rnorm(300, 10, 1),
+#'   z1 = rnorm(300, 10, 1),
+#'   z2 = rnorm(300, 10, 1),
 #'   stringsAsFactors = FALSE
 #' ) %>% 
 #'   dplyr::group_by(x, y) %>% 
-#'   dplyr::summarise(z = sum(z)) %>% 
+#'   dplyr::summarise(
+#'     z1 = sum(z1),
+#'     z2 = sum(z2)
+#'   ) %>% 
 #'   dplyr::ungroup() 
+#'   
+#' trans <- list(opacity = 0.4) # transparency
+#' emphasis <- list(itemStyle = list(color = "#313695"))
 #'   
 #' matrix %>% 
 #'   e_charts(x) %>% 
-#'   e_bar_3d(y, z) %>% 
-#'   e_visual_map()
+#'   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) %>%
+#'   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) %>% 
+#'   e_legend()
 #' 
 #' @export
 e_bar_3d <- function(e, y, z, coord.system = "cartesian3D", name = NULL, ...){
@@ -1398,6 +1406,7 @@ e_scatter_3d <- function(e, y, z, color, size, coord.system = "cartesian3D", nam
 #' 
 #' 
 #' @examples 
+#' # coordinates
 #' vectors <- expand.grid(0:9, 0:9)
 #' names(vectors) <- c("x", "y")
 #' vectors$sx <- rnorm(100)
@@ -1422,17 +1431,57 @@ e_scatter_3d <- function(e, y, z, color, size, coord.system = "cartesian3D", nam
 #'   e_y_axis(
 #'     splitLine = list(show = FALSE)
 #'   )   
+#'   
+#' # map
+#' latlong <- seq(-180, 180, by = 5)
+#' wind = expand.grid(lng = latlong, lat = latlong)
+#' wind$slng <- rnorm(nrow(wind), 0, 200)
+#' wind$slat <- rnorm(nrow(wind), 0, 200)
+#' wind$color <- abs(wind$slat) - abs(wind$slng)
+#' rng <- range(wind$color)
+#' 
+#' trans <- list(opacity = 0.5) # transparency
+#' 
+#' wind %>% 
+#'   e_charts(lng, backgroundColor = '#333') %>% 
+#'   e_geo(
+#'     itemStyle = list(
+#'       normal = list(
+#'         areaColor = "#323c48",
+#'         borderColor = "#111"
+#'       )
+#'     )
+#'   ) %>% 
+#'   e_flow_gl(lat, slng, slat, color, 
+#'     coord.system = "geo", 
+#'     itemStyle = trans,
+#'     particleSize = 2
+#'   ) %>% 
+#'   e_visual_map(
+#'     min = rng[1], max = rng[2], # range
+#'     dimension = 4, # lng = 0, lat = 1, slng = 2, slat = 3, color = 4
+#'     show = FALSE, # hide
+#'     inRange = list(
+#'       color = c('#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', 
+#'                 '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026')
+#'     )
+#'   )
 #' 
 #' @export
-e_flow_gl <- function(e, y, sx, sy, color, name = NULL, ...){
+e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord.system = NULL, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(y) || missing(sx) || missing(sy))
     stop("must pass y and z", call. = FALSE)
   
-  e <- .set_x_axis(e, 0)
-  e <- .set_y_axis(e, deparse(substitute(y)), 0)
+  if(is.null(coord.system)){
+    e <- .set_x_axis(e, 0)
+    e <- .set_y_axis(e, deparse(substitute(y)), 0)
+  } else {
+    e$x$opts$xAxis <- NULL # remove
+    e$x$opts$yAxis <- NULL # remove
+  }
   
   if(missing(color))
     data <- .build_data(
@@ -1460,6 +1509,9 @@ e_flow_gl <- function(e, y, sx, sy, color, name = NULL, ...){
   
   if(!is.null(name))
     serie$name <- name
+  
+  if(!is.null(coord.system))
+    serie$coordinateSystem <- coord.system
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   
