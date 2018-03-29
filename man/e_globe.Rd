@@ -30,13 +30,15 @@ data <- as.data.frame(data)
 names(data) <- c("lon", "lat", "value")
 
 data \%>\% 
-  e_charts() \%>\% 
+  e_charts(lon) \%>\% 
   e_globe(
     environment = e_stars_texture(),
-    base.texture = e_globe_texture()
+    base.texture = e_globe_texture(),
+    height.texture = e_globe_texture(),
+    displacementScale = 0.04
   ) \%>\% 
-  e_bar_3d(lon, lat, value, "globe") \%>\% 
-  e_visual_map()
+  e_bar_3d(lat, value, "globe") \%>\% 
+  e_visual_map(show = FALSE)
 }
 
 }
