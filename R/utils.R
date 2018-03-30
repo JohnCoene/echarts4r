@@ -176,35 +176,6 @@ globalVariables(c("e", "."))
   e
 }
 
-.build_3d <- function(e, y , z){
-  e$x$data %>%
-    dplyr::select_(
-      y, z
-    ) %>%
-    unname() -> data
-  
-  data <- cbind(e$x$data[[e$x$mapping$x]], data)
-  data <- unname(data)
-  
-  apply(data, 1, as.list)
-}
-
-.build_pie <- function(e, serie){
-  e$x$data %>%
-    dplyr::select_(
-      value = serie
-    ) -> data
-  
-  data <- cbind.data.frame(
-    data,
-    data.frame(
-      name = e$x$data[[e$x$mapping$x]]
-    )
-  )
-  
-  apply(data, 1, as.list)
-}
-
 .build_tree <- function(e, parent, child){
   e$x$data %>%
     dplyr::select(
@@ -217,12 +188,6 @@ globalVariables(c("e", "."))
 
 .tree_that <- function(df){
   tree <- data.tree::FromDataFrameNetwork(df)
-  data.tree::ToListExplicit(tree, unname = TRUE)
-}
-
-.build_sun <- function(e, value){
-  
-  tree <- data.tree::FromDataFrameNetwork(e$x$data, check = "no-check")
   data.tree::ToListExplicit(tree, unname = TRUE)
 }
 
