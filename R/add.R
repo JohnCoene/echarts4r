@@ -69,7 +69,7 @@ e_bar <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
 #'   e_line(UrbanPop, y.index = 1) # second y axis
 #' 
 #' @export
-e_line <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
+e_line <- function(e, serie, name = NULL, y.index = 0, x.index = 0, coord.system = "cartesian2d", ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -81,27 +81,31 @@ e_line <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
   if(is.null(name)) # defaults to column name
     name <- serie
   
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
   # build JSON data
   vector <- .redirect_vect_xy(e, serie)
   
-  serie <- list(
+  l <- list(
     name = name,
     type = "line",
     data = vector,
-    yAxisIndex = y.index,
-    xAxisIndex = x.index,
+    coordinateSystem = coord.system,
     ...
   )
   
+  if(coord.system == "cartesian2d"){
+    if(y.index != 0)
+      e <- .set_y_axis(e, serie, y.index)
+    
+    if(x.index != 0)
+      e <- .set_x_axis(e, x.index)
+    
+    l$yAxisIndex <- y.index
+    l$xAxisIndex <- x.index
+  }
+  
   e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e$x$opts$series <- append(e$x$opts$series, list(l))
   e
 }
 

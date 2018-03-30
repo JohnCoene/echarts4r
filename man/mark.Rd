@@ -2,21 +2,24 @@
 % Please edit documentation in R/mark.R
 \name{e_mark_point}
 \alias{e_mark_point}
+\alias{e_mark_line}
 \title{Mark point}
 \usage{
 e_mark_point(e, serie = NULL, data = NULL, ...)
+
+e_mark_line(e, serie = NULL, data = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{serie}{Serie to mark point on, defaults to last added.}
+\item{serie}{Serie to mark on, defaults to last added.}
 
-\item{data}{Point placement.}
+\item{data}{Placement.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
 \description{
-Mark a point on the plot.
+Mark points and lines.
 }
 \examples{
 max <- list(
@@ -29,10 +32,16 @@ min <- list(
   type = "min"
 )
 
+avg <- list(
+  type = "average",
+  name = "AVG"
+)
+
 USArrests \%>\% 
   e_charts(Murder) \%>\% 
-  e_bar(Rape) \%>\% 
+  e_line(Rape) \%>\% 
   e_mark_point(data = max) \%>\% 
-  e_mark_point(data = min)
+  e_mark_point(data = min) \%>\% 
+  e_mark_line(data = avg)
 
 }

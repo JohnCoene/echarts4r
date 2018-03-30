@@ -288,14 +288,28 @@ e_title <- function(e, text, subtext = NULL, link = NULL, sublink = NULL, ...){
 #' Customise polar coordinates.
 #' 
 #' @inheritParams e_bar
+#' @param show Whether to display the axis.
+#' 
+#' @examples 
+#' df <- data.frame(x = 1:10, y = seq(1, 20, by = 2))
+#' 
+#' df %>% 
+#'   e_charts(x) %>% 
+#'   e_polar() %>% 
+#'   e_angle_axis() %>% 
+#'   e_radius_axis() %>% 
+#'   e_line(y, coord.system = "polar", smooth = TRUE) 
 #' 
 #' @export
-e_polar <- function(e, ...){
+e_polar <- function(e, show = TRUE, ...){
   
   if(missing(e))
     stop("missing e", call. = FALSE)
   
-  e$x$opts$polar <- list(...)
+  e$x$opts$yAxis <- NULL
+  e$x$opts$xAxis <- NULL
+  
+  e$x$opts$polar <- list(show = show, ...)
   
   e
 }

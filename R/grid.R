@@ -117,14 +117,25 @@ e_grid <- function(e, index = NULL, ...){
 #' Customise radius axis.
 #' 
 #' @inheritParams e_bar
+#' @param show Whether to display the axis.
+#' 
+#' @examples 
+#' df <- data.frame(x = 1:10, y = seq(1, 20, by = 2))
+#' 
+#' df %>% 
+#'   e_charts(x) %>% 
+#'   e_polar() %>% 
+#'   e_angle_axis() %>% 
+#'   e_radius_axis(FALSE) %>% 
+#'   e_line(y, coord.system = "polar", smooth = TRUE) 
 #' 
 #' @export
-e_radius_axis <- function(e, ...){
+e_radius_axis <- function(e, show = TRUE, ...){
   
   if(missing(e))
     stop("missing e", call. = FALSE)
   
-  e$x$opts$radiusAxis <- list(...)
+  e$x$opts$radiusAxis <- list(show = show, ...)
   
   e
 }
@@ -134,14 +145,26 @@ e_radius_axis <- function(e, ...){
 #' Customise angle axis.
 #' 
 #' @inheritParams e_bar
+#' @param show Whether to display the axis.
+#' 
+#' @examples 
+#' df <- data.frame(x = 1:100, y = seq(1, 200, by = 2))
+#' 
+#' df %>% 
+#'   e_charts(x) %>% 
+#'   e_polar(FALSE) %>% 
+#'   e_angle_axis(FALSE) %>% 
+#'   e_radius_axis(FALSE) %>% 
+#'   e_line(y, coord.system = "polar", smooth = TRUE) %>% 
+#'   e_legend(show = FALSE)
 #' 
 #' @export
-e_angle_axis <- function(e, ...){
+e_angle_axis <- function(e, show = TRUE, ...){
   
   if(missing(e))
     stop("missing e", call. = FALSE)
   
-  e$x$opts$angleAxis <- list(...)
+  e$x$opts$angleAxis <- list(show = show, ...)
   
   e
 }

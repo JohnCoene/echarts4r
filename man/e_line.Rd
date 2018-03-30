@@ -4,7 +4,8 @@
 \alias{e_line}
 \title{Line}
 \usage{
-e_line(e, serie, name = NULL, y.index = 0, x.index = 0, ...)
+e_line(e, serie, name = NULL, y.index = 0, x.index = 0,
+  coord.system = "cartesian2d", ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

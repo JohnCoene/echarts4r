@@ -2,11 +2,11 @@
 
 [![Travis-CI Build Status](https://travis-ci.org/JohnCoene/echarts4r.svg?branch=master)](https://travis-ci.org/JohnCoene/echarts4r)
 
-ECharts 4 for R.
-
 ![echarts](http://john-coene.com/img/echarts4r.png)
 
-* [EN](https://ecomfe.github.io/)
+ECharts 4 for R.
+
+* [EN](https://ecomfe.github.io/echarts-doc/public/en/index.html)
 * [ZH](http://echarts.baidu.com/index.html)
 
 ## Installation
@@ -48,6 +48,7 @@ devtools::install_github("JohnCoene/echarts4r")
 * Map 3D
 * Geo 3D
 * Globe 3D
+* Polar charts
 * Themes
 * Animations
 
@@ -71,7 +72,9 @@ USArrests %>%
   ) %>% 
   e_charts(State) %>% 
   e_area(Murder) %>%
-  e_bar(Rape, name = "Sick basterd", x.index = 1) # second y axis
+  e_bar(Rape, name = "Sick basterd", x.index = 1) %>% # second y axis 
+  e_mark_line("Sick basterd", data = list(type = "average")) %>% 
+  e_mark_point("Murder", data = list(type = "max"))
 
 # Sankey
 sankey <- data.frame(
@@ -83,7 +86,9 @@ sankey <- data.frame(
  
 sankey %>%
   e_charts() %>% 
-  e_sankey(source, target, value) 
+  e_sankey(source, target, value) %>% 
+  e_title("Sankey") %>% 
+  e_theme("dark")
 
 # Graph
 nodes <- data.frame(
@@ -146,5 +151,5 @@ vectors %>%
   ) %>% 
   e_y_axis(
     splitLine = list(show = FALSE)
-  )
+  ) 
 ```

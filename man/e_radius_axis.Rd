@@ -4,13 +4,26 @@
 \alias{e_radius_axis}
 \title{Radius axis}
 \usage{
-e_radius_axis(e, ...)
+e_radius_axis(e, show = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+
+\item{show}{Whether to display the axis.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
 \description{
 Customise radius axis.
+}
+\examples{
+df <- data.frame(x = 1:10, y = seq(1, 20, by = 2))
+
+df \%>\% 
+  e_charts(x) \%>\% 
+  e_polar() \%>\% 
+  e_angle_axis() \%>\% 
+  e_radius_axis(FALSE) \%>\% 
+  e_line(y, coord.system = "polar", smooth = TRUE) 
+
 }

@@ -8,7 +8,7 @@ globalVariables(c("e", "."))
   x$mapping$include_x <- FALSE
   cl <- x$mapping$x_class
   if(cl == "character" || cl == "factor"){
-    x$opts$xAxis <- list(list(data = unique(x$data[[x$mapping$x]]), type = "category", boundaryGap = TRUE))
+    x$opts$xAxis <- list(list(data = unique(x$data[[x$mapping$x]]), type = "category", boundaryGap = FALSE))
   } else if(cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
     x$opts$xAxis <- list(list(data = unique(x$data[[x$mapping$x]]), type = "time", boundaryGap = FALSE))
   } else {
