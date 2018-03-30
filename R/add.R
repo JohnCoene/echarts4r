@@ -826,10 +826,25 @@ e_pie <- function(e, serie, name = NULL, ...){
 #' Build a sunburst.
 #' 
 #' @inheritParams e_bar
+#' @param parent,child Edges.
+#' @param value Value of edges.
 #' @param value Name of column containing values.
 #' 
+#' @examples 
+#' \dontrun{
+#' df <- data.frame(
+#'   parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
+#'   child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster"),
+#'   value = rnorm(8, 10, 2)
+#' )
+#' 
+#' df %>% 
+#'   e_charts() %>% 
+#'   e_sunburst(parent, child, value)
+#' }
+#' 
 #' @export
-e_sunburst <- function(e, value, ...){
+e_sunburst <- function(e, parent, child, value, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -837,7 +852,12 @@ e_sunburst <- function(e, value, ...){
   e$x$opts$yAxis <- NULL # remove
   
   # build JSON data
-  data <- .build_sun(e, deparse(substitute(value)))
+  data <- .build_treemap(
+    e, 
+    deparse(substitute(parent)), 
+    deparse(substitute(child)),
+    deparse(substitute(value))
+  )
   
   serie <- list(
     type = "sunburst",

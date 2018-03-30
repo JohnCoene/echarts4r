@@ -4,15 +4,33 @@
 \alias{e_sunburst}
 \title{Sunburst}
 \usage{
-e_sunburst(e, value, ...)
+e_sunburst(e, parent, child, value, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{value}{Name of column containing values.}
+\item{parent, child}{Edges.}
+
+\item{value}{Value of edges.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+
+\item{value}{Name of column containing values.}
 }
 \description{
 Build a sunburst.
+}
+\examples{
+\dontrun{
+df <- data.frame(
+  parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
+  child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster"),
+  value = rnorm(8, 10, 2)
+)
+
+df \%>\% 
+  e_charts() \%>\% 
+  e_sunburst(parent, child, value)
+}
+
 }
