@@ -1,6 +1,23 @@
 #' Calendar
 #' 
 #' @inheritParams e_bar
+#' @param range Range of calendar format, string or vector.
+#' 
+#' @examples 
+#' # year
+#' mtcars %>% 
+#'   e_charts() %>% 
+#'   e_calendar(range = "2017")
+#'   
+#' # month
+#' mtcars %>% 
+#'   e_charts() %>% 
+#'   e_calendar(range = "2018-01")
+#'   
+#' # range
+#' mtcars %>% 
+#'   e_charts() %>% 
+#'   e_calendar(range = c("2018-01", "2018-07"))
 #' 
 #' @export
 e_calendar <- function(e, range, ...){

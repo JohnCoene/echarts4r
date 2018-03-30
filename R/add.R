@@ -248,7 +248,7 @@ e_step <- function(e, serie, step = c("start", "middle", "end"), fill = FALSE,
 #'   
 #' # Calendar
 #' year <- seq.Date(as.Date("2017-01-01"), as.Date("2017-12-31"), by = "day")
-#' values <- rnorm(length(dates), 20, 6)
+#' values <- rnorm(length(year), 20, 6)
 #' 
 #' year <- data.frame(year = year, values = values)
 #' 

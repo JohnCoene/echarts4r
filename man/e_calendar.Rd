@@ -9,8 +9,27 @@ e_calendar(e, range, ...)
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
+\item{range}{Range of calendar format, string or vector.}
+
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
 \description{
 Calendar
+}
+\examples{
+# year
+mtcars \%>\% 
+  e_charts() \%>\% 
+  e_calendar(range = "2017")
+  
+# month
+mtcars \%>\% 
+  e_charts() \%>\% 
+  e_calendar(range = "2018-01")
+  
+# range
+mtcars \%>\% 
+  e_charts() \%>\% 
+  e_calendar(range = c("2018-01", "2018-07"))
+
 }
