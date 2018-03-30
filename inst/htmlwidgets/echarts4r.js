@@ -76,7 +76,7 @@ if (HTMLWidgets.shinyMode) {
       }
   });
   
-  // TOOLTIP
+  // TOOLTIP  
   
   Shiny.addCustomMessageHandler('e_showtip_p',
     function(data) {

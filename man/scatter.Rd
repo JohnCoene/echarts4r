@@ -7,7 +7,7 @@
 \title{Scatter}
 \usage{
 e_scatter(e, serie, size, scale = "* 1", name = NULL,
-  coord.system = "cartesian2D", y.index = 0, x.index = 0, ...)
+  coord.system = "cartesian2d", y.index = 0, x.index = 0, ...)
 
 e_effect_scatter(e, serie, size, scale = "* 1", name = NULL,
   coord.system = "cartesian2D", y.index = 0, x.index = 0, ...)

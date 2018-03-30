@@ -248,7 +248,7 @@ e_step <- function(e, serie, step = c("start", "middle", "end"), fill = FALSE,
 #' 
 #' @rdname scatter
 #' @export
-e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, coord.system = "cartesian2D", y.index = 0, x.index = 0, ...){
+e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, coord.system = "cartesian2d", y.index = 0, x.index = 0, ...){
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
@@ -269,7 +269,7 @@ e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, coord.system =
   else
     xy <- .build_data(e, e$x$mapping$x, serie)
   
-  if(coord.system != "cartesian2D"){
+  if(coord.system != "cartesian2d"){
     e$x$opts$xAxis <- NULL
     e$x$opts$yAxis <- NULL
   } else {
@@ -1076,108 +1076,6 @@ e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
   # legend
   # e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   
-  e
-}
-
-#' Parallel
-#' 
-#' Draw parallel coordinates.
-#' 
-#' @inheritParams e_bar
-#' 
-#' @examples 
-#' df <- data.frame(
-#'   price = rnorm(5, 10),
-#'   amount = rnorm(5, 15),
-#'   letter = LETTERS[1:5]
-#' )
-#' 
-#' df %>% 
-#'   e_charts() %>% 
-#'   e_parallel(price, amount, letter) 
-#' 
-#' @export
-e_parallel <- function(e, ..., name = NULL){
-  if(missing(e))
-    stop("must pass e", call. = FALSE) 
-  
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
-  
-  e$x$data %>% 
-    dplyr::select(...) -> df
-  
-  # remove names
-  data <- df
-  row.names(data) <- NULL
-  data <- unname(data)
-  
-  data <- apply(data, 1, as.list)
-  
-  serie <- list(
-    name = name,
-    type = "parallel",
-    data = data
-  )
-  
-  para <- list()
-  for(i in 1:ncol(df)){
-    line <- list()
-    line$dim <- i - 1
-    line$name <- names(df)[i]
-    if(inherits(df[,i], "character") || inherits(df[, i], "factor")){
-      line$type <- "category"
-      line$data <- unique(df[,i])
-    }
-    
-    para[[i]] <- line
-  }
-  
-  e$x$opts$series <- append(e$x$opts$series, serie)
-  e$x$opts$parallelAxis <- para
-  e
-}
-
-#' Pie
-#' 
-#' Draw pie and donut charts.
-#' 
-#' @inheritParams e_bar
-#' 
-#' @examples 
-#' mtcars %>% 
-#'   head() %>% 
-#'   dplyr::mutate(model = row.names(.)) %>% 
-#'   e_charts(model) %>% 
-#'   e_pie(carb)
-#' 
-#' @export
-e_pie <- function(e, serie, name = NULL, ...){
-  if(missing(e))
-    stop("must pass e", call. = FALSE)
-  
-  if(missing(serie))
-    stop("must pass serie", call. = FALSE)
-  
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
-  
-  if(is.null(name)) # defaults to column name
-    name <- deparse(substitute(serie))
-  
-  # build JSON data
-  data <- .build_data(e, e$x$mapping$x, deparse(substitute(serie)), names = c("name", "value"))
-  
-  serie <- list(
-    name = name,
-    type = "pie",
-    data = data,
-    ...
-  )
-  
-  e$x$opts$legend$data <- append(e$x$opts$legend$data, .graph_cat_legend(e))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }
 

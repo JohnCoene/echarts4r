@@ -2,11 +2,8 @@
 % Please edit documentation in R/add.R
 \name{e_parallel}
 \alias{e_parallel}
-\alias{e_parallel}
 \title{Parallel}
 \usage{
-e_parallel(e, ..., name = NULL)
-
 e_parallel(e, ..., name = NULL)
 }
 \arguments{
@@ -18,20 +15,8 @@ e_parallel(e, ..., name = NULL)
 }
 \description{
 Draw parallel coordinates.
-
-Draw parallel coordinates.
 }
 \examples{
-df <- data.frame(
-  price = rnorm(5, 10),
-  amount = rnorm(5, 15),
-  letter = LETTERS[1:5]
-)
-
-df \%>\% 
-  e_charts() \%>\% 
-  e_parallel(price, amount, letter) 
-
 df <- data.frame(
   price = rnorm(5, 10),
   amount = rnorm(5, 15),

@@ -2,11 +2,8 @@
 % Please edit documentation in R/add.R
 \name{e_pie}
 \alias{e_pie}
-\alias{e_pie}
 \title{Pie}
 \usage{
-e_pie(e, serie, name = NULL, ...)
-
 e_pie(e, serie, name = NULL, ...)
 }
 \arguments{
@@ -20,16 +17,8 @@ e_pie(e, serie, name = NULL, ...)
 }
 \description{
 Draw pie and donut charts.
-
-Draw pie and donut charts.
 }
 \examples{
-mtcars \%>\% 
-  head() \%>\% 
-  dplyr::mutate(model = row.names(.)) \%>\% 
-  e_charts(model) \%>\% 
-  e_pie(carb)
-
 mtcars \%>\% 
   head() \%>\% 
   dplyr::mutate(model = row.names(.)) \%>\% 

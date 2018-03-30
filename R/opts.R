@@ -157,7 +157,7 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), ...){
 #'   e_datazoom(x.index = 0) 
 #' 
 #' @export
-e_toolbox_interface <- function(e, feature){
+e_toolbox <- function(e, feature){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -205,7 +205,7 @@ e_datazoom <- function(e, x.index = NULL, y.index = NULL, ...){
     e$x$opts$dataZoom <- list()
   
   if(!length(e$x$opts$toolbox$feature$dataZoom))
-    e <- e_toolbox_interface(e, "dataZoom")
+    e <- e_toolbox(e, "dataZoom")
   
   opts <- list(...)
   opts$xAxisIndex <- x.index
@@ -235,7 +235,7 @@ e_brush <- function(e, x.index = NULL, y.index = NULL, ...){
     e$x$opts$brush <- list()
   
   if(!length(e$x$opts$toolbox$feature$brush))
-    e <- e_toolbox_interface(e, "brush")
+    e <- e_toolbox(e, "brush")
   
   opts <- list(
     brushLink = "all",
@@ -246,5 +246,141 @@ e_brush <- function(e, x.index = NULL, y.index = NULL, ...){
   
   e$x$opts$brush <- append(e$x$opts$brush, opts)
   
+  e
+}
+
+#' Title
+#' 
+#' Add title.
+#' 
+#' @inheritParams e_bar
+#' @param text,subtext Title and Subtitle.
+#' @param link,sublink Title and Subtitle link.
+#' 
+#' @examples 
+#' quakes %>% 
+#'   dplyr::mutate(mag = exp(mag) / 60) %>% 
+#'   e_charts(stations) %>% 
+#'   e_scatter(depth, mag) %>% 
+#'   e_visual_map(min = 3, max = 7) %>% 
+#'   e_title("Quakes", "Stations and Magnitude")
+#' 
+#' @export
+e_title <- function(e, text, subtext = NULL, link = NULL, sublink = NULL, ...){
+  
+  if(missing(e) || missing(text))
+    stop("missing e or text", call. = FALSE)
+  
+  title <- list(...)
+  title$text <- text
+  title$subtext <- subtext
+  title$link <- link
+  title$sublink <- sublink
+  
+  e$x$opts$title <- title
+  
+  e
+  
+}
+
+#' Polar
+#' 
+#' Customise polar coordinates.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @export
+e_polar <- function(e, ...){
+  
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  e$x$opts$polar <- list(...)
+  
+  e
+}
+
+#' Radar
+#' 
+#' Customise radar.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @export
+e_radar <- function(e, ...){
+  
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  e$x$opts$radar <- list(...)
+  
+  e
+}
+
+#' Axis pointer
+#' 
+#' Customise axis pointer.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @export
+e_axis_pointer <- function(e, ...){
+  
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  e$x$opts$axisPointer <- list(...)
+  
+  e
+}
+
+#' Animation
+#' 
+#' Customise animations.
+#' 
+#' @inheritParams e_bar
+#' @param show Set to show animation.
+#' @param threshold Whether to set graphic number threshold to animation. 
+#' Animation will be disabled when graphic number is larger than threshold.
+#' @param duration Duration of the first animation.
+#' @param easing Easing method used for the first animation. 
+#' @param delay Delay before updating the first animation.
+#' @param duration.update Time for animation to complete.
+#' @param easing.update Easing method used for animation.
+#' @param delay.update Delay before updating animation.
+#' 
+#' 
+#' @examples 
+#' mtcars %>% 
+#'   e_charts(mpg) %>% 
+#'   e_area(drat) %>% 
+#'   e_animation(duration = 10000)
+#' 
+#' @export
+e_animation <- function(e, show = TRUE, threshold = NULL, duration = NULL, easing = NULL, delay = NULL,
+                        duration.update = NULL, easing.update = NULL, delay.update = NULL){
+  
+  e$x$opts$animation <- show
+  e$x$opts$animationThreshold <- threshold
+  e$x$opts$animationDuration <- duration
+  e$x$opts$animationEasing <- easing
+  e$x$opts$animationDelay <- delay
+  e$x$opts$animationDurationUpdate <- duration.update
+  e$x$opts$animationEasingUpdate <- easing.update
+  e$x$opts$animationDelayUpdate <- delay.update
+  
+  e
+  
+}
+
+#' Use UTC
+#' 
+#' Use UTC
+#' 
+#' @inheritParams e_bar
+#' 
+#' @export
+e_utc <- function(e){
+  e$useUTC <- TRUE
   e
 }

@@ -111,3 +111,37 @@ e_grid <- function(e, index = NULL, ...){
   
   e
 }
+
+#' Radius axis
+#' 
+#' Customise radius axis.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @export
+e_radius_axis <- function(e, ...){
+  
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  e$x$opts$radiusAxis <- list(...)
+  
+  e
+}
+
+#' Angle axis
+#' 
+#' Customise angle axis.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @export
+e_angle_axis <- function(e, ...){
+  
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  e$x$opts$angleAxis <- list(...)
+  
+  e
+}
