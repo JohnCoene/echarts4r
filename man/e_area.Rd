@@ -2,11 +2,8 @@
 % Please edit documentation in R/add.R
 \name{e_area}
 \alias{e_area}
-\alias{e_area}
 \title{Area}
 \usage{
-e_area(e, serie, name = NULL, y.index = 0, x.index = 0, ...)
-
 e_area(e, serie, name = NULL, y.index = 0, x.index = 0, ...)
 }
 \arguments{
@@ -24,15 +21,8 @@ e_area(e, serie, name = NULL, y.index = 0, x.index = 0, ...)
 }
 \description{
 Add area serie.
-
-Add area serie.
 }
 \examples{
-USArrests \%>\% 
-  e_charts(Assault) \%>\% 
-  e_area(Murder, stack = "grp") \%>\% # stacking
-  e_area(UrbanPop, stack = "grp") # stacking
-
 USArrests \%>\% 
   e_charts(Assault) \%>\% 
   e_area(Murder, stack = "grp") \%>\% # stacking

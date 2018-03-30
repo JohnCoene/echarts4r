@@ -35,7 +35,7 @@ devtools::install_github("JohnCoene/echarts4r")
 * Pie
 * Tree
 * Treemap
-* River
+* River (streamgraph)
 * Sunburst
 * Boxplot
 * Calendar
@@ -48,8 +48,12 @@ devtools::install_github("JohnCoene/echarts4r")
 * Map 3D
 * Geo 3D
 * Globe 3D
+* Themes
+* Animations
 
 ## Examples
+
+Some examples
 
 ```r
 library(echarts4r)
@@ -116,4 +120,31 @@ data %>%
   ) %>% 
   e_bar_3d(lat, value, coord.system = "globe") %>% 
   e_visual_map()
+  
+# Flow GL
+# coordinates
+vectors <- expand.grid(0:9, 0:9)
+names(vectors) <- c("x", "y")
+vectors$sx <- rnorm(100)
+vectors$sy <- rnorm(100)
+vectors$color <- log10(runif(100, 1, 10))
+
+vectors %>% 
+  e_charts(x) %>% 
+  e_flow_gl(y, sx, sy, color) %>% 
+  e_visual_map(
+    min = 0, max = 1, # log 10
+    dimension = 4, # x = 0, y = 1, sx = 3, sy = 4
+    show = FALSE, # hide
+    inRange = list(
+      color = c('#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8',
+                '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026')
+    )
+  ) %>% 
+  e_x_axis(
+    splitLine = list(show = FALSE)
+  ) %>% 
+  e_y_axis(
+    splitLine = list(show = FALSE)
+  )
 ```

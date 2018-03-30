@@ -16,7 +16,7 @@ e_gauge(e, value, name, ...)
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
 \description{
-PLot a gauge.
+Plot a gauge.
 }
 \examples{
 e_charts() \%>\% 
