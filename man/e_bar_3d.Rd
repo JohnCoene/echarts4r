@@ -21,6 +21,7 @@ e_bar_3d(e, y, z, coord.system = "cartesian3D", name = NULL, ...)
 Add 3D bars
 }
 \examples{
+\dontrun{
 url <- paste0("https://ecomfe.github.io/echarts-examples/",
               "public/data-gl/asset/data/population.json")
 data <- jsonlite::fromJSON(url)
@@ -65,5 +66,6 @@ matrix \%>\%
   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) \%>\%
   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) \%>\% 
   e_legend()
+}
 
 }

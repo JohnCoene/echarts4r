@@ -1407,6 +1407,7 @@ e_line_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = 
 #' @param coord.system Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.
 #' 
 #' @examples 
+#' \dontrun{
 #' url <- paste0("https://ecomfe.github.io/echarts-examples/",
 #'               "public/data-gl/asset/data/population.json")
 #' data <- jsonlite::fromJSON(url)
@@ -1451,6 +1452,7 @@ e_line_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = 
 #'   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) %>%
 #'   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) %>% 
 #'   e_legend()
+#' }
 #' 
 #' @export
 e_bar_3d <- function(e, y, z, coord.system = "cartesian3D", name = NULL, ...){
