@@ -155,8 +155,8 @@ e_showtip_p <- function(proxy, position = c(10, 10), series.index = NULL, name =
     stop("must pass echarts4rProxy object", call. = FALSE)
   
   data <- list(id = proxy$id)
-  if(!is.null(series.index)) data$seriesIndex <- series.index
-  if(!is.null(name)) data$name <- name
+  data$seriesIndex <- series.index
+  data$name <- name
   
   proxy$session$sendCustomMessage("e_showtip_p", data)
   
