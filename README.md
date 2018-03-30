@@ -13,7 +13,7 @@ ECharts 4 for R.
 
 You can install echarts4r from github with:
 
-```{r gh-installation, eval = FALSE}
+```r
 # install.packages("devtools")
 devtools::install_github("JohnCoene/echarts4r")
 ```
@@ -42,6 +42,7 @@ devtools::install_github("JohnCoene/echarts4r")
 * Boxplot
 * Calendar
 * Gauge
+* Polar 
 * Line 3D
 * Bar 3D
 * Scatter 3D
@@ -50,7 +51,6 @@ devtools::install_github("JohnCoene/echarts4r")
 * Map 3D
 * Geo 3D
 * Globe 3D
-* Polar 
 
 #### Other
 
