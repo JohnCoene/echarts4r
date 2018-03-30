@@ -20,6 +20,8 @@ devtools::install_github("JohnCoene/echarts4r")
 
 ## Features
 
+#### Chart types
+
 * Bar
 * Line
 * Area
@@ -48,7 +50,11 @@ devtools::install_github("JohnCoene/echarts4r")
 * Map 3D
 * Geo 3D
 * Globe 3D
-* Polar charts
+* Polar 
+
+#### Other
+
+* Proxies (`*_p`)
 * Themes
 * Animations
 

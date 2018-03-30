@@ -18,6 +18,8 @@ e_line(e, serie, name = NULL, y.index = 0, x.index = 0,
 
 \item{x.index}{Indexes of x and y axis.}
 
+\item{coord.system}{Coordinate system to plot against.}
+
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
 \description{

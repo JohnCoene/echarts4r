@@ -10,7 +10,6 @@ LazyData: true
 Imports:
   htmlwidgets,
   magrittr,
-  rlang,
   dplyr,
   purrr,
   data.tree,
@@ -19,4 +18,4 @@ Imports:
   base64enc,
   countrycode
 RoxygenNote: 6.0.1
-Suggests: jsonlite
+Suggests: jsonlite, shiny

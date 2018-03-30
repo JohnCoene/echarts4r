@@ -23,7 +23,7 @@ HTMLWidgets.widget({
 
       resize: function(width, height) {
 
-        if(myChart){
+        if(chart){
           chart.resize();
         }
 
@@ -97,6 +97,18 @@ if (HTMLWidgets.shinyMode) {
       if (typeof chart != 'undefined') {
         chart.dispatchAction({
           type: 'hideTip'
+        });
+      }
+  });
+  
+    Shiny.addCustomMessageHandler('e_append_p',
+    function(opts) {
+      var chart = get_e_charts(opts.id);
+      if (typeof chart != 'undefined') {
+        console.log(opts);
+        chart.appendData({
+          seriesIndex: opts.seriesIndex,
+          data: opts.data
         });
       }
   });

@@ -61,6 +61,7 @@ e_bar <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
 #' Add line serie.
 #' 
 #' @inheritParams e_bar
+#' @param coord.system Coordinate system to plot against.
 #' 
 #' @examples 
 #' USArrests %>% 
@@ -598,20 +599,20 @@ e_graph_nodes <- function(e, nodes, names, value, size, category){
     stop("must pass nodes and names", call. = FALSE)
   
   if(!missing(category)){
-    e$x$opts$series[[length(e$x$opts$series)]]$categories <- .build_graph_category(nodes, enquo(category))
-    #e$x$opts$legend$data <- .graph_cat_legend(nodes, enquo(category))
+    e$x$opts$series[[length(e$x$opts$series)]]$categories <- .build_graph_category(nodes, dplyr::enquo(category))
+    #e$x$opts$legend$data <- .graph_cat_legend(nodes, dplyr::enquo(category))
   }
   
-  value <- enquo(value)
-  symbolSize <- enquo(size)
-  names <- enquo(names)
+  value <- dplyr::enquo(value)
+  symbolSize <- dplyr::enquo(size)
+  names <- dplyr::enquo(names)
   
   nodes <- .build_graph_nodes(
     nodes, 
     names, 
     value,
     symbolSize,
-    enquo(category)
+    dplyr::enquo(category)
   )
   
   # build JSON data
@@ -625,8 +626,8 @@ e_graph_edges <- function(e, edges, source, target){
   if(missing(edges) || missing(source) || missing(target))
     stop("must pass edges, source and target", call. = FALSE)
   
-  source <- enquo(source)
-  target <- enquo(target)
+  source <- dplyr::enquo(source)
+  target <- dplyr::enquo(target)
   
   data <- .build_graph_edges(
     edges, 

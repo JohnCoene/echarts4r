@@ -40,6 +40,17 @@ globalVariables(c("e", "."))
     apply(data, 1, as.list)
 }
 
+.build_data_p <- function(data, ..., names = NULL, vector = FALSE){
+  data %>% 
+    dplyr::select_(...) %>% 
+    purrr::set_names(names) -> data
+  
+  if(isTRUE(vector))
+    unlist(data)
+  else
+    apply(data, 1, as.list)
+}
+
 .build_sankey_nodes <- function(data, source, target){
   
   nodes <- c(
