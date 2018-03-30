@@ -9,7 +9,7 @@
 #' @examples 
 #' USArrests %>% 
 #'   e_charts(Assault) %>% 
-#'   e_line(Murder) %>% 
+#'   e_line(Murder, smooth = TRUE) %>% 
 #'   e_line(Rape, y.index = 1) %>% # add secondary axis
 #'   e_y_axis(index = 1, show = FALSE) # hide secondary axis
 #' 
@@ -19,7 +19,7 @@
 #'   dplyr::mutate(State = row.names(.)) %>% 
 #'   e_charts(State) %>% 
 #'   e_area(Murder) %>% 
-#'   e_x_axis(axisLabel = list(interval = 0, rotate = 45))
+#'   e_x_axis(axisLabel = list(interval = 0, rotate = 45)) # rotate
 #' 
 #' @rdname axis
 #' @export
@@ -86,12 +86,12 @@ e_z_axis<- function(e, index = 0, ...){
 #' @examples 
 #' USArrests %>% 
 #'   e_charts(UrbanPop) %>% 
-#'   e_line(Assault) %>% 
+#'   e_line(Assault, smooth = TRUE) %>% 
 #'   e_area(Murder, y.index = 1, x.index = 1) %>% 
 #'   e_y_axis(gridIndex = 1) %>%
 #'   e_x_axis(gridIndex = 1) %>% 
 #'   e_grid(height = "40%") %>% 
-#'   e_grid(height = "40%", top = "55%") 
+#'   e_grid(height = "40%", top = "55%")
 #' 
 #' @export
 e_grid <- function(e, index = NULL, ...){

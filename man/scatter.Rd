@@ -3,14 +3,10 @@
 \name{e_scatter}
 \alias{e_scatter}
 \alias{e_effect_scatter}
-\alias{e_effect_scatter}
 \title{Scatter}
 \usage{
 e_scatter(e, serie, size, scale = "* 1", name = NULL,
   coord.system = "cartesian2d", y.index = 0, x.index = 0, ...)
-
-e_effect_scatter(e, serie, size, scale = "* 1", name = NULL,
-  coord.system = "cartesian2D", y.index = 0, x.index = 0, ...)
 
 e_effect_scatter(e, serie, size, scale = "* 1", name = NULL,
   coord.system = "cartesian2D", y.index = 0, x.index = 0, ...)
@@ -57,5 +53,21 @@ quakes \%>\%
   ) \%>\% 
   e_effect_scatter(lat, mag, coord.system = "geo") \%>\% 
   e_visual_map(min = 4, max = 6.5)
+  
+# Calendar
+year1 <- seq.Date(as.Date("2018-01-01"), as.Date("2018-12-31"), by = "day")
+year2 <- seq.Date(as.Date("2017-01-01"), as.Date("2017-12-31"), by = "day")
+values <- rnorm(length(dates), 20, 6)
+
+year <- data.frame(year1 = year1, year2 = year2, values = values)
+
+year \%>\% 
+  e_charts(year1) \%>\% 
+  e_calendar(range = "2017") \%>\% 
+  e_scatter(values, coord.system = "calendar", calendarIndex = 0) \%>\% 
+  e_data(year, year2) \%>\% 
+  e_calendar(range = "2018", top = 300) \%>\% 
+  e_scatter(values, coord.system = "calendar", calendarIndex = 1) \%>\% 
+  e_visual_map(max = 30)
 
 }

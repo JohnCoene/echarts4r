@@ -47,7 +47,7 @@ devtools::install_github("JohnCoene/echarts4r")
 * Graph GL
 * Map 3D
 * Geo 3D
-* Globe
+* Globe 3D
 
 ## Examples
 
@@ -81,7 +81,7 @@ sankey %>%
   e_charts() %>% 
   e_sankey(source, target, value) 
 
-# Use graphGL for larger networks
+# Graph
 nodes <- data.frame(
   name = paste0(LETTERS, 1:1000),
   value = rnorm(1000, 10, 2),
@@ -100,4 +100,20 @@ e_charts() %>%
   e_graph_gl() %>% 
   e_graph_nodes(nodes, name, value, size, grp) %>% 
   e_graph_edges(edges, source, target)
+  
+# globe
+url <- paste0("https://ecomfe.github.io/echarts-examples/",
+              "public/data-gl/asset/data/population.json")
+data <- jsonlite::fromJSON(url)
+data <- as.data.frame(data)
+names(data) <- c("lon", "lat", "value")
+
+data %>% 
+  e_charts(lon) %>% 
+  e_globe(
+    environment = e_stars_texture(),
+    base.texture = e_globe_texture()
+  ) %>% 
+  e_bar_3d(lat, value, coord.system = "globe") %>% 
+  e_visual_map()
 ```

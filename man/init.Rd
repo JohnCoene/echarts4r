@@ -7,7 +7,7 @@
 \usage{
 e_charts(data, x, width = NULL, height = NULL, elementId = NULL, ...)
 
-e_data(e, data)
+e_data(e, data, x)
 }
 \arguments{
 \item{data}{A \code{data.frame}.}

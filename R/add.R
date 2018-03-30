@@ -245,6 +245,19 @@ e_step <- function(e, serie, step = c("start", "middle", "end"), fill = FALSE,
 #'   ) %>% 
 #'   e_effect_scatter(lat, mag, coord.system = "geo") %>% 
 #'   e_visual_map(min = 4, max = 6.5)
+#'   
+#' # Calendar
+#' year <- seq.Date(as.Date("2017-01-01"), as.Date("2017-12-31"), by = "day")
+#' values <- rnorm(length(dates), 20, 6)
+#' 
+#' year <- data.frame(year = year, values = values)
+#' 
+#' year %>% 
+#'   e_charts(year) %>% 
+#'   e_calendar(range = "2018") %>% 
+#'   e_scatter(values, coord.system = "calendar") %>% 
+#'   e_visual_map(max = 30)
+#'   
 #' 
 #' @rdname scatter
 #' @export
@@ -269,22 +282,22 @@ e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, coord.system =
   else
     xy <- .build_data(e, e$x$mapping$x, serie)
   
-  if(coord.system != "cartesian2d"){
-    e$x$opts$xAxis <- NULL
-    e$x$opts$yAxis <- NULL
-  } else {
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  }
-  
   serie <- list(
     name = name,
     type = "scatter",
     data = xy,
     coordinateSystem = coord.system,
-    yAxisIndex = y.index,
-    xAxisIndex = x.index,
     ...
   )
+  
+  if(coord.system != "cartesian2d"){
+    e$x$opts$xAxis <- NULL
+    e$x$opts$yAxis <- NULL
+  } else {
+    serie$yAxisIndex = y.index
+    serie$xAxisIndex = x.index
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  }
   
   if(!missing(size))
     serie$symbolSize <- htmlwidgets::JS(
@@ -628,6 +641,8 @@ e_graph_edges <- function(e, edges, source, target){
 #' 
 #' @inheritParams e_bar
 #' @param y,z Coordinates and values.
+#' @param coord.system Coordinate system to plot against, takes 
+#' \code{cartesian2d}, \code{geo} or \code{calendar}.
 #' 
 #' @examples 
 #' v <- LETTERS[1:10]
@@ -645,34 +660,55 @@ e_graph_edges <- function(e, edges, source, target){
 #'   e_charts(x) %>% 
 #'   e_heatmap(y, z) %>% 
 #'   e_visual_map(min = 1, max = max(matrix$z))
+#'
+#' # calendar   
+#' dates <- seq.Date(as.Date("2018-01-01"), as.Date("2018-12-31"), by = "day")
+#' values <- rnorm(length(dates), 20, 6)
+#' 
+#' year <- data.frame(date = dates, values = values)
+#' 
+#' year %>% 
+#'   e_charts(date) %>% 
+#'   e_calendar(range = "2018") %>% 
+#'   e_heatmap(values, coord.system = "calendar") %>% 
+#'   e_visual_map(max = 30)
 #' 
 #' @export
-e_heatmap <- function(e, y, z, name = NULL, ...){
-  if(missing(y) || missing(z))
-    stop("must pass y, z", call. = FALSE)
+e_heatmap <- function(e, y, z, name = NULL, coord.system = "cartesian2d", ...){
+  if(missing(y))
+    stop("must pass y", call. = FALSE)
   
   # build JSON data
-  xyz <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
+  if(!missing(z))
+    xyz <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
+  else 
+    xyz <- .build_data(e, e$x$mapping$x, deparse(substitute(y)))
   
   serie <- list(
     name = name,
     type = "heatmap",
     data = xyz,
+    coordinateSystem = coord.system,
     ...
   )
   
-  e$x$opts$xAxis <- list(
-    data = unique(
-      .get_data(e, e$x$mapping$x)
-    )
-  )
-  
-  e$x$opts$yAxis <- list(
-    data = unique(
-      .get_data(e, deparse(substitute(y))
+  if(coord.system != "cartesian2d"){
+    e$x$opts$xAxis <- NULL
+    e$x$opts$yAxis <- NULL
+  } else {
+    e$x$opts$xAxis <- list(
+      data = unique(
+        .get_data(e, e$x$mapping$x)
       )
     )
-  )
+    
+    e$x$opts$yAxis <- list(
+      data = unique(
+        .get_data(e, deparse(substitute(y))
+        )
+      )
+    )
+  }
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
@@ -967,55 +1003,6 @@ e_area <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
   e
 }
 
-#' @rdname scatter
-#' @export
-e_effect_scatter <- function(e, serie, size, scale = "* 1", name = NULL, coord.system = "cartesian2D", y.index = 0, x.index = 0, ...){
-  
-  if(missing(serie))
-    stop("must pass serie", call. = FALSE)
-  
-  serie <- deparse(substitute(serie))
-  
-  if(is.null(name)) # defaults to column name
-    name <- serie
-  
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
-  if(!missing(size))
-    xy <- .build_data(e, e$x$mapping$x, serie, deparse(substitute(size)))
-  else
-    xy <- .build_data(e, e$x$mapping$x, serie)
-  
-  if(coord.system != "cartesian2D"){
-    e$x$opts$xAxis <- NULL
-    e$x$opts$yAxis <- NULL
-  } else {
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  }
-  
-  serie <- list(
-    name = name,
-    type = "effectScatter",
-    data = xy,
-    coordinateSystem = coord.system,
-    yAxisIndex = y.index,
-    xAxisIndex = x.index,
-    ...
-  )
-  
-  if(!missing(size))
-    serie$symbolSize <- htmlwidgets::JS(
-      paste("function(data){ return data[2]", scale, ";}")
-    )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
-}
-
 #' Boxplot
 #' 
 #' Draw boxplot.
@@ -1119,69 +1106,6 @@ e_tree <- function(e, parent, child, ...){
     data = list(data),
     ...
   )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
-}
-
-#' Calendar
-#' 
-#' Heatmap as calendar.
-#' 
-#' @inheritParams e_bar
-#' @param range Range of calendar.
-#' 
-#' @examples 
-#' dates <- seq.Date(
-#'   as.Date("2017-01-01"), 
-#'   as.Date("2017-12-30"), 
-#'   by = "day"
-#' )
-#' 
-#' val <- rnorm(length(dates), 20, 3)
-#' 
-#' calendar <- data.frame(
-#'   day = dates,
-#'   value = val
-#' )
-#' 
-#' calendar %>% 
-#'   e_charts(day) %>% 
-#'   e_calendar(value, range = "2017") %>% 
-#'   e_visual_map(
-#'     min = min(val),
-#'     max = max(val)
-#'   ) %>% 
-#'   e_tooltip()
-#' 
-#' @export
-e_calendar <- function(e, serie, range, name = NULL, ...){
-  if(missing(serie) || missing(range))
-    stop("must pass serie and range", call. = FALSE)
-  
-  # build JSON data
-  cal <- .build_cal(e, deparse(substitute(serie)))
-  
-  index <- length(e$x$opts$series)
-  
-  serie <- list(
-    name = name,
-    type = "heatmap",
-    coordinateSystem = 'calendar',
-    calendarIndex = index,
-    data = cal,
-    ...
-  )
-  
-  if(!is.null(e$x$opts$calendar)){
-    e$x$opts$calendar <- append(e$x$opts$calendar, list(range = range))
-  } else {
-    e$x$opts$calendar <- list(list(range = range))
-  }
-  
-  
-  e$x$opts$xAxis <- NULL
-  e$x$opts$yAxis <- NULL
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e

@@ -4,7 +4,7 @@
 \alias{e_heatmap}
 \title{Heatmap}
 \usage{
-e_heatmap(e, y, z, name = NULL, ...)
+e_heatmap(e, y, z, name = NULL, coord.system = "cartesian2d", ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -12,6 +12,9 @@ e_heatmap(e, y, z, name = NULL, ...)
 \item{y, z}{Coordinates and values.}
 
 \item{name}{name of the serie.}
+
+\item{coord.system}{Coordinate system to plot against, takes 
+\code{cartesian2d}, \code{geo} or \code{calendar}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
@@ -34,5 +37,17 @@ matrix \%>\%
   e_charts(x) \%>\% 
   e_heatmap(y, z) \%>\% 
   e_visual_map(min = 1, max = max(matrix$z))
+
+# calendar   
+dates <- seq.Date(as.Date("2018-01-01"), as.Date("2018-12-31"), by = "day")
+values <- rnorm(length(dates), 20, 6)
+
+year <- data.frame(date = dates, values = values)
+
+year \%>\% 
+  e_charts(date) \%>\% 
+  e_calendar(range = "2018") \%>\% 
+  e_heatmap(values, coord.system = "calendar") \%>\% 
+  e_visual_map(max = 30)
 
 }

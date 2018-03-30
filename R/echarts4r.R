@@ -90,7 +90,16 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, ...
 
 #' @rdname init
 #' @export
-e_data <- function(e, data){
+e_data <- function(e, data, x){
+  
+  if(!missing(x))
+    xmap <- deparse(substitute(x))
+  
+  if(!is.null(xmap)){
+    e$x$mapping$x <- xmap
+    e$x$mapping$x_class <- class(data[[xmap]])
+    e$x <- .assign_axis(e$x)
+  }
   
   row.names(data) <- NULL
   e$x$data <- data

@@ -30,7 +30,7 @@ Customise axis.
 \examples{
 USArrests \%>\% 
   e_charts(Assault) \%>\% 
-  e_line(Murder) \%>\% 
+  e_line(Murder, smooth = TRUE) \%>\% 
   e_line(Rape, y.index = 1) \%>\% # add secondary axis
   e_y_axis(index = 1, show = FALSE) # hide secondary axis
 
@@ -40,6 +40,6 @@ USArrests \%>\%
   dplyr::mutate(State = row.names(.)) \%>\% 
   e_charts(State) \%>\% 
   e_area(Murder) \%>\% 
-  e_x_axis(axisLabel = list(interval = 0, rotate = 45))
+  e_x_axis(axisLabel = list(interval = 0, rotate = 45)) # rotate
 
 }
