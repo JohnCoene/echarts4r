@@ -834,7 +834,7 @@ e_pie <- function(e, serie, name = NULL, ...){
 #' df <- data.frame(
 #'   parent = c("earth", "earth", "earth", "mars", "mars"), 
 #'   child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
-#'   value = ceiling(rnorm(6, 10, 2))
+#'   value = ceiling(rnorm(5, 10, 2))
 #' )
 #' 
 #' df %>% 
