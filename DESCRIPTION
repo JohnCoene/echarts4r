@@ -20,3 +20,5 @@ Imports:
   countrycode
 RoxygenNote: 6.0.1
 Suggests: jsonlite, shiny
+URL: https://github.com/JohnCoene/echarts4r
+BugReports: https://github.com/JohnCoene/echarts4r/issues
