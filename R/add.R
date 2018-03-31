@@ -827,15 +827,14 @@ e_pie <- function(e, serie, name = NULL, ...){
 #' 
 #' @inheritParams e_bar
 #' @param parent,child Edges.
-#' @param value Value of edges.
 #' @param value Name of column containing values.
 #' 
 #' @examples 
 #' \dontrun{
 #' df <- data.frame(
-#'   parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
-#'   child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster"),
-#'   value = rnorm(8, 10, 2)
+#'   parent = c("earth", "earth", "earth", "mars", "mars"), 
+#'   child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
+#'   value = ceiling(rnorm(6, 10, 2))
 #' )
 #' 
 #' df %>% 
@@ -852,7 +851,7 @@ e_sunburst <- function(e, parent, child, value, ...){
   e$x$opts$yAxis <- NULL # remove
   
   # build JSON data
-  data <- .build_treemap(
+  data <- .build_sun(
     e, 
     deparse(substitute(parent)), 
     deparse(substitute(child)),
@@ -861,7 +860,7 @@ e_sunburst <- function(e, parent, child, value, ...){
   
   serie <- list(
     type = "sunburst",
-    data = list(data),
+    data = data,
     ...
   )
   
@@ -880,9 +879,9 @@ e_sunburst <- function(e, parent, child, value, ...){
 #' @examples 
 #' \dontrun{
 #' df <- data.frame(
-#'   parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
-#'   child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster"),
-#'   value = rnorm(8)
+#'   parent = c("earth", "earth", "earth", "mars", "mars"), 
+#'   child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
+#'   value = ceiling(rnorm(5, 10, 2))
 #' )
 #' 
 #' df %>% 
@@ -902,7 +901,7 @@ e_treemap <- function(e, parent, child, value, ...){
   e$x$opts$yAxis <- NULL # remove
   
   # build JSON data
-  data <- .build_treemap(
+  data <- .build_sun(
     e, 
     deparse(substitute(parent)), 
     deparse(substitute(child)),
@@ -911,7 +910,7 @@ e_treemap <- function(e, parent, child, value, ...){
   
   serie <- list(
     type = "treemap",
-    data = list(data),
+    data = data,
     ...
   )
   

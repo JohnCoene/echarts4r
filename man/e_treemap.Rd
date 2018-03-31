@@ -21,9 +21,9 @@ Build a treemap.
 \examples{
 \dontrun{
 df <- data.frame(
-  parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
-  child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster"),
-  value = rnorm(8)
+  parent = c("earth", "earth", "earth", "mars", "mars"), 
+  child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
+  value = ceiling(rnorm(5, 10, 2))
 )
 
 df \%>\% 

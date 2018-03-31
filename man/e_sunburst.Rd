@@ -11,11 +11,9 @@ e_sunburst(e, parent, child, value, ...)
 
 \item{parent, child}{Edges.}
 
-\item{value}{Value of edges.}
+\item{value}{Name of column containing values.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
-
-\item{value}{Name of column containing values.}
 }
 \description{
 Build a sunburst.
@@ -23,9 +21,9 @@ Build a sunburst.
 \examples{
 \dontrun{
 df <- data.frame(
-  parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
-  child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster"),
-  value = rnorm(8, 10, 2)
+  parent = c("earth", "earth", "earth", "mars", "mars"), 
+  child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
+  value = ceiling(rnorm(5, 10, 2))
 )
 
 df \%>\% 

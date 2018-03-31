@@ -11,6 +11,7 @@ Imports:
   htmlwidgets,
   magrittr,
   dplyr,
+  tidyr,
   purrr,
   data.tree,
   crosstalk,

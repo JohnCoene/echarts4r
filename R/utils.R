@@ -191,15 +191,17 @@ globalVariables(c("e", "."))
   data.tree::ToListExplicit(tree, unname = TRUE)
 }
 
-.build_treemap <- function(e, parent, child, value){
+.build_sun <- function(e, parent, child, value){
   e$x$data %>%
     dplyr::select_(
       parent,
-      child,
+      name = child,
       value
-    ) -> df
-  
-  .tree_that(df)
+    ) %>% 
+    dplyr::group_by(parent) %>% 
+    tidyr::nest() %>% 
+    purrr::set_names(c("name", "children")) %>% 
+    jsonlite::toJSON(., auto_unbox = TRUE, pretty = FALSE)
 }
 
 .build_river <- function(e, serie, label){
@@ -213,18 +215,6 @@ globalVariables(c("e", "."))
   data <- cbind(x, data, label)
   
   apply(unname(data), 1, as.list)
-}
-
-.build_cal <- function(e, serie){
-  e$x$data %>% 
-    dplyr::select_(serie) %>% 
-    unname() -> rhs
-  
-  lhs <- as.character(.get_data(e, e$x$mapping$x))
-  
-  df <- cbind(lhs, rhs)
-  
-  apply(unname(df), 1, as.list)
 }
 
 .get_class <- function(e, serie){
