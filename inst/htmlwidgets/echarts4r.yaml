@@ -8,6 +8,7 @@ dependencies:
       - ecStat.min.js
       - dataTool.min.js
       - world.js
+      - /plugins/echarts-wordcloud.min.js
       - /themes/dark.js
       - /themes/vintage.js
       - /themes/westeros.js

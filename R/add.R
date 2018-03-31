@@ -839,7 +839,8 @@ e_pie <- function(e, serie, name = NULL, ...){
 #' 
 #' df %>% 
 #'   e_charts() %>% 
-#'   e_sunburst(parent, child, value)
+#'   e_sunburst(parent, child, value) %>% 
+#'   e_theme("westeros")
 #' }
 #' 
 #' @export
@@ -1145,7 +1146,8 @@ e_gauge <- function(e, value, name, ...){
 #'     start_lat, 
 #'     end_lon, 
 #'     end_lat,
-#'     name = "flights"
+#'     name = "flights",
+#'     effect = list(show = TRUE)
 #'   )
 #'   
 #' flights %>% 

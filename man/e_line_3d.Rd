@@ -40,7 +40,8 @@ flights \%>\%
     start_lat, 
     end_lon, 
     end_lat,
-    name = "flights"
+    name = "flights",
+    effect = list(show = TRUE)
   )
   
 flights \%>\% 

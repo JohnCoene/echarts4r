@@ -129,13 +129,13 @@ e_downplay_p <- function(proxy, series.index = NULL, series.name = NULL){
 #'        mtcars %>% 
 #'          e_charts(mpg) %>% 
 #'          e_line(disp) %>% 
-#'          e_theme("westeros") %>% 
-#'          e_tooltip(show = FALSE)
+#'          e_x_axis(min = 10) %>% 
+#'          e_theme("westeros") 
 #'      })
 #'      
 #'      observeEvent(input$show, {
 #'        echarts4rProxy("plot") %>% 
-#'          e_showtip_p()
+#'          e_showtip_p(0)
 #'      })
 #'      
 #'      observeEvent(input$hide, {
@@ -157,6 +157,7 @@ e_showtip_p <- function(proxy, position = c(10, 10), series.index = NULL, name =
   data <- list(id = proxy$id)
   data$seriesIndex <- series.index
   data$name <- name
+  data$position <- position
   
   proxy$session$sendCustomMessage("e_showtip_p", data)
   

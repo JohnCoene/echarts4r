@@ -33,13 +33,13 @@ e_hidetip_p(proxy)
        mtcars %>% 
          e_charts(mpg) %>% 
          e_line(disp) %>% 
-         e_theme("westeros") %>% 
-         e_tooltip(show = FALSE)
+         e_x_axis(min = 10) %>% 
+         e_theme("westeros") 
      })
      
      observeEvent(input$show, {
        echarts4rProxy("plot") %>% 
-         e_showtip_p()
+         e_showtip_p(0)
      })
      
      observeEvent(input$hide, {

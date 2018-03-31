@@ -45,10 +45,8 @@ HTMLWidgets.widget({
 
 function get_e_charts(id){
 
-  // Get the HTMLWidgets object
   var htmlWidgetsObj = HTMLWidgets.find("#" + id);
 
-  // Use the getChart method we created to get the underlying C3 chart
   var echarts;
 
   if (typeof htmlWidgetsObj != 'undefined') {

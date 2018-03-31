@@ -28,7 +28,8 @@ df <- data.frame(
 
 df \%>\% 
   e_charts() \%>\% 
-  e_sunburst(parent, child, value)
+  e_sunburst(parent, child, value) \%>\% 
+  e_theme("westeros")
 }
 
 }
