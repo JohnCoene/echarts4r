@@ -13,8 +13,12 @@ HTMLWidgets.widget({
       renderValue: function(x) {
         
         if(x.theme2 === true){
-          var obj = JSON.parse(x.customTheme);
-          echarts.registerTheme(x.theme, obj);
+          var th = JSON.parse(x.customTheme);
+          echarts.registerTheme(x.theme, th);
+        }
+        
+        if(x.registerMap === true){
+          echarts.registerMap(x.mapName, x.geoJSON);
         }
         
         chart = echarts.init(document.getElementById(el.id), x.theme);
