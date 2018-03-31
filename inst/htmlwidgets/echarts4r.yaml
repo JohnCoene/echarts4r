@@ -9,6 +9,7 @@ dependencies:
       - dataTool.min.js
       - world.js
       - /plugins/echarts-wordcloud.min.js
+      - /plugins/echarts-liquidfill.min.js
       - /themes/dark.js
       - /themes/vintage.js
       - /themes/westeros.js

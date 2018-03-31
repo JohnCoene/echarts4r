@@ -58,3 +58,44 @@ e_cloud <- function(e, word, freq, color, ...){
   e
   
 }
+
+#' Liquid fill
+#' 
+#' Draw liquid fill.
+#' 
+#' @inheritParams e_bar
+#' @param color Color to plot.
+#' 
+#' @examples 
+#' df <- data.frame(val = c(0.6, 0.5, 0.4))
+#' 
+#' df %>% 
+#'   e_charts() %>% 
+#'   e_liquid(val) %>% 
+#'   e_theme("dark")
+#' 
+#' @seealso \href{official documentation}{https://github.com/ecomfe/echarts-liquidfill}
+#' 
+#' @export
+e_liquid <- function(e, serie, color, ...){
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  data <- .build_data(e, deparse(substitute(serie)))
+  
+  serie <- list(
+    type = "liquidFill",
+    data = data,
+    ...
+  )
+  
+  if(!missing(color))
+    serie$color <- .build_data(e, deparse(substitute(color)))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
+  e
+}

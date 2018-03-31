@@ -43,6 +43,8 @@ devtools::install_github("JohnCoene/echarts4r")
 * Calendar
 * Gauge
 * Polar 
+* wordcloud
+* liquidFill
 * Line 3D
 * Bar 3D
 * Scatter 3D
