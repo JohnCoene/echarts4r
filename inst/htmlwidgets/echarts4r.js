@@ -12,6 +12,11 @@ HTMLWidgets.widget({
 
       renderValue: function(x) {
         
+        if(x.theme2 === true){
+          var obj = JSON.parse(x.customTheme);
+          echarts.registerTheme(x.theme, obj);
+        }
+        
         chart = echarts.init(document.getElementById(el.id), x.theme);
         chart.setOption(x.opts);
         
@@ -20,8 +25,8 @@ HTMLWidgets.widget({
         } else {
           chart.hideLoading();
         }
-        
-        $(document).on('shiny:recalculating', function(event) {
+
+        $(document).on('shiny:recalculating', function() {
           chart.showLoading();
         });
 

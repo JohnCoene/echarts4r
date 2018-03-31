@@ -30,8 +30,9 @@
 #'   e_x_axis(min = 10) -> p
 #'   
 #' p %>% e_theme("chalk")
-#' p %>% e_theme("westeros")
+#' p %>% e_theme_custom('{"color":["#ff715e","#ffaf51"]}')
 #' 
+#' @rdname theme
 #' @export
 e_theme <- function(e, theme){
   
@@ -46,5 +47,14 @@ e_theme <- function(e, theme){
     stop("Incorrect theme", call. = FALSE)
   
   e$x$theme <- tolower(theme)
+  e
+}
+
+#' @rdname theme
+#' @export
+e_theme_custom <- function(e, theme){
+  e$x$theme2 <- TRUE
+  e$x$customTheme <- theme
+  e$x$theme <- "custom"
   e
 }

@@ -2,9 +2,12 @@
 % Please edit documentation in R/themes.R
 \name{e_theme}
 \alias{e_theme}
+\alias{e_theme_custom}
 \title{Themes}
 \usage{
 e_theme(e, theme)
+
+e_theme_custom(e, theme)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -41,6 +44,6 @@ mtcars \%>\%
   e_x_axis(min = 10) -> p
   
 p \%>\% e_theme("chalk")
-p \%>\% e_theme("westeros")
+p \%>\% e_theme_custom('{"color":["#ff715e","#ffaf51"]}')
 
 }
