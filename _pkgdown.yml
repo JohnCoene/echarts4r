@@ -8,11 +8,14 @@ articles:
       Get Familiar with echarts4r.
     contents:
     - get_started
+    - advanced
     - chart_types
     - map
     - geo
     - map3d
     - geo3d
+    - globe
+    - threeD
     - themes
 
 navbar:
@@ -24,6 +27,8 @@ navbar:
       menu: 
         - text: "Get Started"
           href: articles/get_started.html
+        - text: "Advanced"
+          href: articles/advanced.html
         - text: "Chart types"
           href: articles/chart_types.html
         - text: "Map"
@@ -34,6 +39,10 @@ navbar:
           href: articles/map3d.html
         - text: "Geo 3D"
           href: articles/geo3d.html
+        - text: "Globe"
+          href: articles/globe.html
+        - text: "3D"
+          href: articles/threeD.html
         - text: "Themes"
           href: articles/themes.html
     - text: "Reference"

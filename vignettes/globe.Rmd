@@ -1,0 +1,87 @@
+---
+title: "Globe"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Globe}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(echarts4r)
+```
+
+`e_globe` family is similar to `e_geo_3d` `e_map`, or `e_map_3d`.
+
+### Scatter 3D
+
+```{r}
+airports <- read.csv(
+  paste0("https://raw.githubusercontent.com/plotly/datasets/",
+         "master/2011_february_us_airport_traffic.csv")
+)
+
+airports %>% 
+  e_charts(long) %>% 
+  e_globe(
+    environment = e_stars_texture(),
+    base.texture = e_globe_texture(), 
+    globeOuterRadius = 100
+  ) %>% 
+  e_scatter_3d(lat, cnt, coord.system = "globe", blendMode = 'lighter') %>% 
+  e_visual_map(inRange = list(symbolSize = c(1, 10)))
+```
+
+### Bar
+
+```{r}
+url <- paste0("https://ecomfe.github.io/echarts-examples/",
+              "public/data-gl/asset/data/population.json")
+data <- jsonlite::fromJSON(url)
+data <- as.data.frame(data)
+names(data) <- c("lon", "lat", "value")
+
+data %>% 
+  e_charts(lon) %>% 
+  e_globe(
+    environment = e_stars_texture(),
+    base.texture = e_globe_texture(),
+    height.texture = e_globe_texture(),
+    displacementScale = 0.04
+  ) %>% 
+  e_bar_3d(lat, value, "globe") %>% 
+  e_visual_map(show = FALSE)
+```
+
+### Lines
+
+```{r}
+flights <- read.csv(
+  paste0("https://raw.githubusercontent.com/plotly/datasets/",
+         "master/2011_february_aa_flight_paths.csv")
+)
+
+flights %>% 
+  e_charts() %>% 
+  e_globe(
+    base.texture = e_map_texture(),
+    height.texture = e_map_texture(),
+    environment = e_stars_texture(),
+    displacementScale = 0.05
+  ) %>% 
+  e_line_3d(
+    start_lon, 
+    start_lat, 
+    end_lon, 
+    end_lat,
+    name = "flights",
+    effect = list(show = TRUE)
+  )
+```

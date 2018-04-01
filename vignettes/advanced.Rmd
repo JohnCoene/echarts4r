@@ -1,0 +1,96 @@
+---
+title: "Vignette Title"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(echarts4r)
+```
+
+This document details more advanced usage of the `echarts4r` package.
+
+### coord.system
+
+Chart types are not only applicable to the standard 2d cartesian coordinate system. Most chart types will default to the `cartesian2d` coordinate system but may be applied to others.
+
+Let's look at the heatmap. First a regular heatmap.
+
+```{r}
+v <- LETTERS[1:10]
+matrix <- data.frame(
+  x = sample(v, 300, replace = TRUE), 
+  y = sample(v, 300, replace = TRUE), 
+  z = rnorm(300, 10, 1),
+  stringsAsFactors = FALSE
+) %>% 
+  dplyr::group_by(x, y) %>% 
+  dplyr::summarise(z = sum(z)) %>% 
+  dplyr::ungroup()
+
+matrix %>% 
+  e_charts(x) %>% 
+  e_heatmap(y, z) %>% 
+  e_visual_map(min = 1, max = max(matrix$z))
+```
+
+One could also plot the heatmap on different coordinates, such as a calendar by first adding a calendar with `e_calendar` then specifying `coord.system = "calendar"`.
+
+```{r}
+# blank calendar
+e_charts() %>% e_calendar(range = 2017)
+```
+
+```{r}
+dates <- seq.Date(as.Date("2018-01-01"), as.Date("2018-12-31"), by = "day")
+values <- rnorm(length(dates), 20, 6)
+
+year <- data.frame(date = dates, values = values)
+
+year %>% 
+  e_charts(date) %>% 
+  e_calendar(range = "2018") %>% 
+  e_heatmap(values, coord.system = "calendar") %>% 
+  e_visual_map(max = 30)
+```
+
+There are numerous coordinate system available in `echarts4r`; `globe`, `cartesian3d` and `polar` to name a few.
+
+### Customise the Axis
+
+Use multiple axis.
+
+```{r}
+USArrests %>% 
+  e_charts(Assault) %>% 
+  e_line(Murder, smooth = TRUE) %>% 
+  e_line(Rape, y.index = 1) %>% # add secondary axis
+  e_y_axis(index = 1, show = FALSE) # hide secondary axis
+```
+
+### Mark Points and Lines
+
+Highlight points and lines on your plot.
+
+```{r}
+USArrests %>% 
+  dplyr::mutate(
+    State = row.names(.),
+    Rape = -Rape
+  ) %>% 
+  e_charts(State) %>% 
+  e_area(Murder) %>%
+  e_bar(Rape, name = "Sick basterd", x.index = 1) %>% # second y axis 
+  e_mark_line("Sick basterd", data = list(type = "average")) %>% 
+  e_mark_point("Murder", data = list(type = "min"))
+```

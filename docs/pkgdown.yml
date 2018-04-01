@@ -2,11 +2,14 @@ pandoc: 2.1.3
 pkgdown: 0.1.0.9000
 pkgdown_sha: b074c575119c35459f544f15e3dae3a6d617d9bb
 articles:
+  advanced: advanced.html
   chart_types: chart_types.html
   geo: geo.html
   geo3d: geo3d.html
   get_started: get_started.html
+  globe: globe.html
   map: map.html
   map3d: map3d.html
   themes: themes.html
+  threeD: threeD.html
 
