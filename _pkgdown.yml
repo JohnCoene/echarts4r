@@ -1,0 +1,44 @@
+template:
+  params:
+    bootswatch: journal
+
+articles:
+  - title: "Usage"
+    desc: >
+      Get Familiar with echarts4r.
+    contents:
+    - get_started
+    - chart_types
+    - map
+    - geo
+    - map3d
+    - geo3d
+    - themes
+
+navbar:
+  title: "echarts"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Usage"
+      menu: 
+        - text: "Get Started"
+          href: articles/get_started.html
+        - text: "Chart types"
+          href: articles/chart_types.html
+        - text: "Map"
+          href: articles/map.html
+        - text: "Geo"
+          href: articles/geo.html
+        - text: "Map 3D"
+          href: articles/map3d.html
+        - text: "Geo 3D"
+          href: articles/geo3d.html
+        - text: "Themes"
+          href: articles/themes.html
+    - text: "Reference"
+      href: "reference/"
+  right:
+    - icon: fa-github
+      href: https://github.com/rstudio/sparklyr
+
