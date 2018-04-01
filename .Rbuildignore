@@ -5,3 +5,5 @@
 ^\.travis\.yml$
 ^usa\.json$
 docs
+_pkgdown.yml
+index.Rmd

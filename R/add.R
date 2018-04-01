@@ -186,7 +186,7 @@ e_step <- function(e, serie, step = c("start", "middle", "end"), fill = FALSE,
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  if(!step %in% c("start", "middle", "end"))
+  if(!step[1] %in% c("start", "middle", "end"))
     stop("wrong step", call. = FALSE)
   
   serie <- deparse(substitute(serie))
