@@ -40,5 +40,5 @@ navbar:
       href: "reference/"
   right:
     - icon: fa-github
-      href: https://github.com/rstudio/sparklyr
+      href: https://github.com/JohnCoene/echarts4r
 

@@ -103,7 +103,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/rstudio/sparklyr">
+  <a href="https://github.com/JohnCoene/echarts4r">
     <span class="fa fa-github"></span>
      
   </a>
@@ -167,7 +167,7 @@
 <span class='co'># plot all labels &amp; rotate</span>
 <span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>head</span>(<span class='fl'>10</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>State</span> <span class='kw'>=</span> <span class='fu'>row.names</span>(<span class='no'>.</span>)) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/mutate'>mutate</a></span>(<span class='kw'>State</span> <span class='kw'>=</span> <span class='fu'>row.names</span>(<span class='no'>.</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>State</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_area.html'>e_area</a></span>(<span class='no'>Murder</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_x_axis</span>(<span class='kw'>axisLabel</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>interval</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rotate</span> <span class='kw'>=</span> <span class='fl'>45</span>)) <span class='co'># rotate</span></div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>

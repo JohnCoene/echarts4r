@@ -103,7 +103,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/rstudio/sparklyr">
+  <a href="https://github.com/JohnCoene/echarts4r">
     <span class="fa fa-github"></span>
      
   </a>
@@ -153,7 +153,7 @@
 <span class='no'>json</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>jsonlite</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/jsonlite/topics/read_json'>read_json</a></span>(<span class='st'>"http://www.echartsjs.com/gallery/data/asset/geo/USA.json"</span>)
 
 <span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>states</span> <span class='kw'>=</span> <span class='fu'>row.names</span>(<span class='no'>.</span>)) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/mutate'>mutate</a></span>(<span class='kw'>states</span> <span class='kw'>=</span> <span class='fu'>row.names</span>(<span class='no'>.</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>states</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_map_register</span>(<span class='st'>"USA"</span>, <span class='no'>json</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='map.html'>e_map</a></span>(<span class='no'>Murder</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='st'>"USA"</span>) <span class='kw'>%&gt;%</span>

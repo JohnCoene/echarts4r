@@ -103,7 +103,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/rstudio/sparklyr">
+  <a href="https://github.com/JohnCoene/echarts4r">
     <span class="fa fa-github"></span>
      
   </a>
@@ -162,13 +162,13 @@
   <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span>),
   <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 ) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>x</span>, <span class='no'>y</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span>(
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/group_by'>group_by</a></span>(<span class='no'>x</span>, <span class='no'>y</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/summarise'>summarise</a></span>(
     <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'>sum</span>(<span class='no'>z</span>),
     <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>sum</span>(<span class='no'>color</span>),
     <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'>sum</span>(<span class='no'>size</span>)
   ) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span>()
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/group_by'>ungroup</a></span>()
 
 <span class='no'>matrix</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
