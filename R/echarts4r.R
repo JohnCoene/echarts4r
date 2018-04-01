@@ -79,8 +79,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, ...
     package = 'echarts4r',
     elementId = elementId,
     sizingPolicy = htmlwidgets::sizingPolicy(
-      viewer.defaultHeight = "100%",
-      viewer.defaultWidth = "100%",
+      defaultWidth = "100%",
       knitr.figure = FALSE,
       browser.fill = TRUE
     )
