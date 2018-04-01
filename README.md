@@ -4,7 +4,7 @@
 
 ![echarts](http://john-coene.com/img/echarts4rSticker2.png)
 
-ECharts 4 for R.
+ECharts 4 for R. Official documentation:
 
 * [EN](https://ecomfe.github.io/echarts-doc/public/en/index.html)
 * [ZH](http://echarts.baidu.com/index.html)
@@ -17,6 +17,10 @@ You can install echarts4r from github with:
 # install.packages("devtools")
 devtools::install_github("JohnCoene/echarts4r")
 ```
+
+## Documentation
+
+See the [website](https://johncoene.github.io/echarts4r) for documentation, examples, and tutorials.
 
 ## Features
 
@@ -45,7 +49,6 @@ devtools::install_github("JohnCoene/echarts4r")
 * Polar 
 * wordcloud 
 * liquidFill 
-* Choropleth
 * Map
 * Line 3D
 * Bar 3D
