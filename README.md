@@ -2,7 +2,7 @@
 
 [![Travis-CI Build Status](https://travis-ci.org/JohnCoene/echarts4r.svg?branch=master)](https://travis-ci.org/JohnCoene/echarts4r)
 
-![echarts](http://john-coene.com/img/echarts4rSticker.png)
+![echarts](http://john-coene.com/img/echarts4rSticker2.png)
 
 ECharts 4 for R.
 
