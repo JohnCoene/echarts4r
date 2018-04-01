@@ -1,0 +1,107 @@
+---
+title: "Chart Types"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Chart types}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(quantmod)
+
+getSymbols("GS") #Goldman Sachs
+GS <- as.data.frame(GS)
+GS$date <- row.names(GS)
+```
+
+Below are the standard chart types (exlcluding webGL).
+
+* Bar
+* Line
+* Area
+* Step
+* Scatter
+* Effect Scatter
+* Candlestick
+* Funnel
+* Sankey
+* Graph
+* Heatmap
+* Parallel
+* Pie
+* Tree
+* Treemap
+* River (streamgraph)
+* Sunburst
+* Boxplot
+* Calendar
+* Gauge
+* Polar 
+* wordcloud 
+* liquidFill 
+* Choropleth
+* Map
+
+### Line and Area
+
+```{r}
+library(echarts4r)
+
+df <- data.frame(
+  x = seq(50),
+  y = rnorm(50, 10, 3),
+  z = rnorm(50, 11, 2),
+  w = rnorm(50, 9, 2)
+)
+
+df %>% 
+  e_charts(x) %>% 
+  e_line(z) %>% 
+  e_area(w) %>% 
+  e_title("Line and area charts")
+```
+
+### Bar and step
+
+```{r}
+df %>% 
+  e_charts(x) %>% 
+  e_bar(y, name = "Serie 1") %>% 
+  e_step(z, name = "Serie 2") %>% 
+  e_title("Bar and step charts")
+```
+
+### Scatter
+
+```{r}
+df %>% 
+  e_charts(x) %>% 
+  e_scatter(y, z) %>% 
+  e_visual_map(min = 4, max = 17) %>% # scale color
+  e_legend(FALSE) # hide legend
+```
+
+### Candlestick
+
+```{r, eval=FALSE}
+library(quantmod)
+
+getSymbols("GS") #Goldman Sachs
+GS <- as.data.frame(GS)
+GS$date <- row.names(GS)
+```
+
+```{r}
+GS %>% 
+  e_charts(date) %>% 
+  e_candle(GS.Open, GS.Close, GS.Low, GS.High, name = "Goldman Sachs") %>% 
+  e_datazoom(type = "slider")
+```

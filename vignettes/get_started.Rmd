@@ -1,0 +1,51 @@
+---
+title: "Get Started"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Get Started}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+All functions of the `echarts4r` package start with `e_`, and all its [Shiny](https://shiny.rstudio.com/) proxies end with `_p`. All `echarts4r` plots are initialised with `e_charts`.
+
+### Your first plots
+
+```{r}
+library(echarts4r) # load echarts4r
+
+mtcars %>% 
+  e_charts(wt) %>% # initialise and set x
+  e_line(mpg) # add a line
+```
+
+Use the `%>%` operator to add plots and options.
+
+```{r}
+mtcars %>% 
+  e_charts(wt) %>% # initialise
+  e_line(mpg) %>% # add line
+  e_area(qsec) %>% # add area
+  e_x_axis(min = 1) # change x axis minimum
+```
+
+There are numerous options to customise your plot.
+
+```{r}
+mtcars %>% 
+  e_charts(wt) %>% # initialise
+  e_line(mpg, smooth = TRUE) %>% # add smooth line
+  e_area(qsec, smooth = TRUE) %>% # add area
+  e_x_axis(min = 1) %>%  # change x axis minimum
+  e_title("Ol' mtcars example") %>%  # Add title
+  e_color(c("#D81159", "#00B0A1"))
+```

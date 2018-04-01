@@ -19,6 +19,9 @@ Imports:
   base64enc,
   countrycode
 RoxygenNote: 6.0.1
-Suggests: jsonlite, shiny
+Suggests: jsonlite, shiny,
+    knitr,
+    rmarkdown
 URL: https://github.com/JohnCoene/echarts4r
 BugReports: https://github.com/JohnCoene/echarts4r/issues
+VignetteBuilder: knitr
