@@ -1,0 +1,92 @@
+---
+title: "Themes"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Themes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(echarts4r)
+```
+
+You can easily customise the appearance of your chart using one of the 13 themes provided, or even build you own theme: use the online [theme builder](http://echarts.baidu.com/download-theme.html) to create your own.
+
+```{r}
+p <- USArrests %>% 
+  dplyr::mutate(
+    State = row.names(.),
+    Rape = -Rape
+  ) %>% 
+  e_charts(State) %>% 
+  e_line(Murder) %>% 
+  e_area(Rape, name = "Sick basterd", x.index = 1) %>%  # second y axis
+  e_title("Your plot", "Subtext", sublink = "https://john-coene.com") %>% 
+  e_x_axis(1, show = FALSE) # hide scond X Axis
+
+p # default plot
+```
+
+```{r}
+p %>% e_theme("dark")
+```
+
+```{r}
+p %>% e_theme("vintage")
+```
+
+```{r}
+p %>% e_theme("westeros")
+```
+
+```{r}
+p %>% e_theme("essos")
+```
+
+```{r}
+p %>% e_theme("wonderland")
+```
+
+```{r}
+p %>% e_theme("walden")
+```
+
+```{r}
+p %>% e_theme("chalk")
+```
+
+```{r}
+p %>% e_theme("infographic")
+```
+
+```{r}
+p %>% e_theme("macarons")
+```
+
+```{r}
+p %>% e_theme("roma")
+```
+
+```{r}
+p %>% e_theme("shine")
+```
+
+```{r}
+p %>% e_theme("purple-passion")
+```
+
+```{r}
+p %>% e_theme("halloween")
+```
+
+```{r}
+p %>% e_theme_custom('{"color":["#ff715e","#ffaf51"]}')
+```

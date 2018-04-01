@@ -1,0 +1,36 @@
+---
+title: "Map 3D"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Map 3D}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(echarts4r)
+```
+
+`e_map_3d` family is similar to `e_geo_3d` `e_map`, or `e_globe`.
+
+### Choropleth
+
+```{r}
+choropleth <- data.frame(
+  countries = c("France", "Brazil", "China", "Russia", "Canada", "India", "United States",
+                "Argentina", "Australia"),
+  values = round(runif(9, 10, 25))
+)
+
+choropleth %>% 
+  e_charts(countries) %>% 
+  e_map_3d(values, shading = "lambert") %>% 
+  e_visual_map(min = 10, max = 30)
+```

@@ -15,6 +15,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
+library(echarts4r)
 library(quantmod)
 
 getSymbols("GS") #Goldman Sachs
@@ -22,33 +23,7 @@ GS <- as.data.frame(GS)
 GS$date <- row.names(GS)
 ```
 
-Below are the standard chart types (exlcluding webGL).
-
-* Bar
-* Line
-* Area
-* Step
-* Scatter
-* Effect Scatter
-* Candlestick
-* Funnel
-* Sankey
-* Graph
-* Heatmap
-* Parallel
-* Pie
-* Tree
-* Treemap
-* River (streamgraph)
-* Sunburst
-* Boxplot
-* Calendar
-* Gauge
-* Polar 
-* wordcloud 
-* liquidFill 
-* Choropleth
-* Map
+This document include the **standard** chart types (does not include maps and the more fancy type).
 
 ### Line and Area
 
@@ -103,5 +78,214 @@ GS$date <- row.names(GS)
 GS %>% 
   e_charts(date) %>% 
   e_candle(GS.Open, GS.Close, GS.Low, GS.High, name = "Goldman Sachs") %>% 
-  e_datazoom(type = "slider")
+  e_datazoom(type = "slider") %>% 
+  e_title("Candlestick chart", "Quantmod data")
+```
+
+### Funnel
+
+```{r}
+funnel <- data.frame(stage = c("View", "Click", "Purchase"), value = c(80, 30, 20))
+
+funnel %>% 
+  e_charts() %>% 
+  e_funnel(value, stage) %>% 
+  e_title("Funnel")
+```
+
+### Sankey
+
+```{r}
+sankey <- data.frame(
+  source = c("a", "b", "c", "d", "c"),
+  target = c("b", "c", "d", "e", "e"),
+  value = ceiling(rnorm(5, 10, 1)),
+  stringsAsFactors = FALSE
+)
+
+sankey %>% 
+  e_charts() %>% 
+  e_sankey(source, target, value) %>% 
+  e_title("Sankey chart")
+```
+
+### Heatmap
+
+```{r}
+v <- LETTERS[1:10]
+matrix <- data.frame(
+  x = sample(v, 300, replace = TRUE), 
+  y = sample(v, 300, replace = TRUE), 
+  z = rnorm(300, 10, 1),
+  stringsAsFactors = FALSE
+) %>% 
+  dplyr::group_by(x, y) %>% 
+  dplyr::summarise(z = sum(z)) %>% 
+  dplyr::ungroup()
+
+matrix %>% 
+  e_charts(x) %>% 
+  e_heatmap(y, z) %>% 
+  e_visual_map(min = 1, max = max(matrix$z)) %>% 
+  e_title("Heatmap")
+```
+
+### Parallel
+
+```{r}
+df <- data.frame(
+  price = rnorm(5, 10),
+  amount = rnorm(5, 15),
+  letter = LETTERS[1:5]
+)
+
+df %>% 
+  e_charts() %>% 
+  e_parallel(price, amount, letter) %>% 
+  e_title("Parallel chart")
+```
+
+### Pie
+
+```{r}
+mtcars %>% 
+  head() %>% 
+  dplyr::mutate(model = row.names(.)) %>% 
+  e_charts(model) %>% 
+  e_pie(carb) %>% 
+  e_title("Pie chart")
+```
+
+### Sunburst
+
+```{r}
+df <- data.frame(
+  parent = c("earth", "earth", "earth", "mars", "mars"), 
+  child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
+  value = ceiling(rnorm(5, 10, 2))
+)
+
+df %>% 
+  e_charts() %>% 
+  e_sunburst(parent, child, value) %>% 
+  e_title("Sunburst")
+```
+
+### Tree
+
+```{r}
+tree <- data.frame(
+  parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
+  child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster")
+)
+
+tree %>% 
+  e_charts() %>% 
+  e_tree(parent, child) %>% 
+  e_title("Tree graph")
+```
+
+### Treemap
+
+```{r}
+tm <- data.frame(
+  parent = c("earth", "earth", "earth", "mars", "mars"), 
+  child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
+  value = ceiling(rnorm(5, 10, 2))
+)
+
+tm %>% 
+  e_charts() %>% 
+  e_treemap(parent, child, value) %>% 
+  e_title("Treemap charts")
+```
+
+### River
+
+```{r}
+dates <- seq.Date(Sys.Date() - 30, Sys.Date(), by = "day")
+
+river <- data.frame(
+  dates = dates,
+  apples = runif(length(dates)),
+  bananas = runif(length(dates)),
+  pears = runif(length(dates))
+)
+
+river %>% 
+  e_charts(dates) %>% 
+  e_river(apples) %>% 
+  e_river(bananas) %>% 
+  e_river(pears) %>% 
+  e_tooltip(trigger = "axis") %>% 
+  e_title("River charts", "(Streamgraphs)")
+```
+
+### Boxplot
+
+```{r}
+df <- data.frame(
+  x = c(1:10, 25, 30),
+  y = c(1:10, -6, 15)
+)
+
+df %>% 
+  e_charts() %>% 
+  e_boxplot(y, outliers = TRUE) %>% 
+  e_boxplot(x, outliers = TRUE) %>% 
+  e_title("Boxplot")
+```
+
+### Calendar
+
+```{r}
+dates <- seq.Date(as.Date("2018-01-01"), as.Date("2018-12-31"), by = "day")
+values <- rnorm(length(dates), 20, 6)
+
+year <- data.frame(date = dates, values = values)
+
+year %>% 
+  e_charts(date) %>% 
+  e_calendar(range = "2018") %>% 
+  e_heatmap(values, coord.system = "calendar") %>% 
+  e_visual_map(max = 30) %>% 
+  e_title("Calendar", "Heatmap")
+```
+
+### Gauge
+
+```{r}
+e_charts() %>% 
+  e_gauge(41, "PERCENT") %>% 
+  e_title("Gauge")
+```
+
+### Wordcloud
+
+```{r}
+words <- function(n = 5000) {
+  a <- do.call(paste0, replicate(5, sample(LETTERS, n, TRUE), FALSE))
+  paste0(a, sprintf("%04d", sample(9999, n, TRUE)), sample(LETTERS, n, TRUE))
+}
+
+tf <- data.frame(terms = words(100), 
+  freq = rnorm(100, 55, 10)) %>% 
+  dplyr::arrange(-freq)
+
+tf %>% 
+  e_color_range(freq, color) %>% 
+  e_charts() %>% 
+  e_cloud(terms, freq, color, shape = "circle", sizeRange = c(3, 15)) %>% 
+  e_title("Wordcloud", "Random strings")
+```
+
+### Liquifill
+
+```{r}
+liquid <- data.frame(val = c(0.6, 0.5, 0.4))
+
+liquid %>% 
+  e_charts() %>% 
+  e_liquid(val) %>% 
+  e_theme("dark")
 ```

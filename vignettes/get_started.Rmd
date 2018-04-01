@@ -38,7 +38,7 @@ mtcars %>%
   e_x_axis(min = 1) # change x axis minimum
 ```
 
-There are numerous options to customise your plot.
+Use one of the 13 built-in themes.
 
 ```{r}
 mtcars %>% 
@@ -47,5 +47,5 @@ mtcars %>%
   e_area(qsec, smooth = TRUE) %>% # add area
   e_x_axis(min = 1) %>%  # change x axis minimum
   e_title("Ol' mtcars example") %>%  # Add title
-  e_color(c("#D81159", "#00B0A1"))
+  e_theme("westeros")
 ```

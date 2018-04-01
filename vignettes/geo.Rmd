@@ -1,0 +1,62 @@
+---
+title: "Geo"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(echarts4r)
+```
+
+`e_geo` family is similar to `e_geo_3d` `e_map`, `e_map_3d` or `e_globe`.
+
+### Points
+
+```{r}
+quakes %>% 
+  e_charts(long) %>% 
+  e_geo(
+    roam = TRUE,
+    boundingCoords = list(
+      c(185, - 10),
+      c(165, -40)
+    )
+  ) %>% 
+  e_effect_scatter(
+    lat, mag, 
+    coord.system = "geo", 
+    scale = "* 1.5",
+    rippleEffect = list(brushType = "stroke")) %>% 
+  e_visual_map(min = 4, max = 6.5)
+```
+
+### Lines
+
+```{r}
+flights <- read.csv(
+  paste0("https://raw.githubusercontent.com/plotly/datasets/",
+         "master/2011_february_aa_flight_paths.csv")
+)
+
+flights %>% 
+  e_charts() %>% 
+  e_geo() %>% 
+  e_lines(
+    start_lon, 
+    start_lat, 
+    end_lon, 
+    end_lat,
+    name = "flights",
+    lineStyle = list(normal = list(curveness = 0.3))
+   )
+```

@@ -1,0 +1,76 @@
+---
+title: "Maps"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Maps}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(echarts4r)
+```
+
+This document describes the maps.
+
+### Choropleth
+
+Pass countries as `x` argument.
+
+```{r}
+sessions <- read.csv(
+  paste0("https://raw.githubusercontent.com/JohnCoene/projects/",
+         "gh-pages/htmlwidgets/echarts/data/sessions.csv")
+)
+
+sessions %>% 
+  e_country_names(Country, Country, type = "country.name") %>% # helper
+  e_charts(Country) %>% 
+  e_map(Sessions) %>% 
+  e_visual_map(min = 1, max = 870)
+```
+
+### Lines
+
+Use `e_lines` (not ~~`e_line`~~)
+
+```{r}
+flights <- read.csv(
+  paste0("https://raw.githubusercontent.com/plotly/datasets/",
+         "master/2011_february_aa_flight_paths.csv")
+)
+
+flights %>% 
+  e_charts() %>% 
+  e_geo() %>% 
+  e_lines(
+    start_lon, 
+    start_lat, 
+    end_lon, 
+    end_lat,
+    name = "flights",
+    lineStyle = list(normal = list(curveness = 0.3))
+   )
+```
+
+### GeoJSON support
+
+Use a custom [geojson](http://geojson.org/) map; 1) read the json and register it with `e_register_map`.
+
+```{r}
+json <- jsonlite::read_json("http://www.echartsjs.com/gallery/data/asset/geo/USA.json")
+
+USArrests %>%
+  dplyr::mutate(states = row.names(.)) %>%
+  e_charts(states) %>%
+  e_map_register("USA", json) %>%
+  e_map(Murder, map = "USA") %>% 
+  e_visual_map(min = 0, max = 18)
+```
