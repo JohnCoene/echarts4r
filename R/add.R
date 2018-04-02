@@ -531,6 +531,27 @@ e_sankey <- function(e, source, target, value, layout = "none", ...){
 #' @param ... Any other parameter.
 #' 
 #' @examples 
+#' value <- rnorm(10, 10, 2)
+#' 
+#' nodes <- data.frame(
+#'   name = sample(LETTERS, 10),
+#'   value = value,
+#'   size = value,
+#'   grp = rep(c("grp1", "grp2"), 5),
+#'   stringsAsFactors = FALSE
+#' )
+#' 
+#' edges <- data.frame(
+#'   source = sample(nodes$name, 20, replace = TRUE),
+#'   target = sample(nodes$name, 20, replace = TRUE),
+#'   stringsAsFactors = FALSE
+#' )
+#' 
+#' e_charts() %>% 
+#'   e_graph() %>% 
+#'   e_graph_nodes(nodes, name, value, size, grp) %>% 
+#'   e_graph_edges(edges, source, target)
+#' 
 #' #Use graphGL for larger networks
 #' nodes <- data.frame(
 #'   name = paste0(LETTERS, 1:1000),
@@ -568,6 +589,7 @@ e_graph <- function(e, layout = "force", name = NULL, ...){
   )
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
   e
 }
 
@@ -598,22 +620,30 @@ e_graph_nodes <- function(e, nodes, names, value, size, category){
   if(missing(nodes) || missing(names))
     stop("must pass nodes and names", call. = FALSE)
   
-  if(!missing(category)){
-    e$x$opts$series[[length(e$x$opts$series)]]$categories <- .build_graph_category(nodes, dplyr::enquo(category))
-    #e$x$opts$legend$data <- .graph_cat_legend(nodes, dplyr::enquo(category))
-  }
-  
   value <- dplyr::enquo(value)
   symbolSize <- dplyr::enquo(size)
   names <- dplyr::enquo(names)
   
-  nodes <- .build_graph_nodes(
-    nodes, 
-    names, 
-    value,
-    symbolSize,
-    dplyr::enquo(category)
-  )
+  if(!missing(category)){
+    
+    e$x$opts$series[[length(e$x$opts$series)]]$categories <- .build_graph_category(nodes, dplyr::enquo(category))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, unique(nodes[[deparse(substitute(category))]]))
+    
+    nodes <- .build_graph_nodes(
+      nodes, 
+      names, 
+      value,
+      symbolSize,
+      dplyr::enquo(category)
+    )
+  } else {
+    nodes <- .build_graph_nodes_no_cat(
+      nodes, 
+      names, 
+      value,
+      symbolSize
+    )
+  }
   
   # build JSON data
   e$x$opts$series[[length(e$x$opts$series)]]$data <- nodes
@@ -974,6 +1004,8 @@ e_river <- function(e, serie, name = NULL, ...){
   e$x$opts$yAxis <- NULL # remove
   
   e$x$opts$singleAxis <- list(type = "time")
+  
+  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   
   e
 }

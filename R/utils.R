@@ -93,10 +93,46 @@ globalVariables(c("e", "."))
   
   names(data) <- c("name", "value", "symbolSize", "category")[1:ncol(data)]
   
-  if(!is.null(data[["category"]]))
-    data[["category"]] <- as.numeric(as.factor(data[["category"]])) - 1
+  data$id <- as.numeric(as.factor(data$name)) - 1
   
-  apply(data, 1, as.list)
+  data %>% 
+    dplyr::arrange_("id") -> data
+  
+  x <- apply(data, 1, as.list)
+  
+  for(i in 1:length(x)){
+    x[[i]]$symbolSize <- as.numeric(paste(x[[i]]$symbolSize))
+    x[[i]]$value <- as.numeric(paste(x[[i]]$value))
+    x[[i]]$id <- as.numeric(x[[i]]$id)
+    x[[i]]$category <- as.numeric(x[[i]]$category)
+  }
+  x
+}
+
+.build_graph_nodes_no_cat <- function(nodes, names, value, symbolSize){
+  
+  nodes %>%
+    dplyr::select(
+      !!names,
+      !!value,
+      !!symbolSize
+    ) -> data
+  
+  names(data) <- c("name", "value", "symbolSize")[1:ncol(data)]
+  
+  data$id <- as.numeric(as.factor(data$name)) - 1
+  
+  data %>% 
+    dplyr::arrange_("id") -> data
+  
+  x <- apply(data, 1, as.list)
+  
+  for(i in 1:length(x)){
+    x[[i]]$symbolSize <- as.numeric(paste(x[[i]]$symbolSize))
+    x[[i]]$value <- as.numeric(paste(x[[i]]$value))
+    x[[i]]$id <- as.numeric(x[[i]]$id)
+  }
+  x
 }
 
 .build_graph_edges <- function(edges, source, target){
@@ -109,20 +145,29 @@ globalVariables(c("e", "."))
   
   names(data) <- c("source", "target")
   
-  apply(data, 1, as.list)
+  data$id <- as.character(1:nrow(data) - 1)
+  data$source <- as.numeric(as.factor(data$source)) - 1
+  data$target <- as.numeric(as.factor(data$target)) - 1
+  
+  apply(data, 1, as.list) -> x
+  for(i in 1:length(x)){
+    x[[i]]$source <- as.numeric(paste(x[[i]]$source))
+    x[[i]]$target <- as.numeric(paste(x[[i]]$target))
+    x[[i]]$id <- as.numeric(x[[i]]$id)
+  }
+  x
 }
 
 .build_graph_category <- function(nodes, cat){
   nodes %>%
     dplyr::select(
-      !!cat
-    ) -> data
+      name = !!cat
+    ) %>% 
+    unique() -> data
   
-  names(data) <- c("name")
-  
-  data[["name"]] <- as.numeric(as.factor(data[["name"]])) - 1
-  
-  apply(data, 1, as.list)
+  apply(data, 1, as.list) -> x
+  names(x) <- NULL
+  x
 }
 
 .graph_cat_legend <- function(e){
