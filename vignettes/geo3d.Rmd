@@ -1,10 +1,10 @@
 ---
-title: "Vignette Title"
+title: "Geo 3D"
 author: "Vignette Author"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Geo 3D}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -47,7 +47,7 @@ flights <- read.csv(
 flights %>% 
   e_charts() %>% 
   e_geo_3d() %>% 
-  e_line_3d(
+  e_lines_3d(
     start_lon, 
     start_lat, 
     end_lon, 

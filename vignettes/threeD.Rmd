@@ -81,3 +81,18 @@ matrix %>%
     bottom = 300 # padding to avoid visual maps overlap
   )
 ```
+
+### Line
+
+```{r}
+df <- data.frame(
+  x = 1:100,
+  y = runif(100, 10, 25),
+  z = rnorm(100, 100, 50)
+)
+
+df %>% 
+  e_charts(x) %>% 
+  e_line_3d(y, z, smooth = TRUE) %>% 
+  e_visual_map()
+```

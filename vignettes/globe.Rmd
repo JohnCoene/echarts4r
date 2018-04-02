@@ -76,7 +76,7 @@ flights %>%
     environment = e_stars_texture(),
     displacementScale = 0.05
   ) %>% 
-  e_line_3d(
+  e_lines_3d(
     start_lon, 
     start_lat, 
     end_lon, 

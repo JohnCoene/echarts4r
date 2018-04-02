@@ -1,10 +1,10 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "Advanced"
+author: "John Coene"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Advanced}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -22,7 +22,7 @@ This document details more advanced usage of the `echarts4r` package.
 
 ### coord.system
 
-Chart types are not only applicable to the standard 2d cartesian coordinate system. Most chart types will default to the `cartesian2d` coordinate system but may be applied to others.
+Chart types are not only applicable to the standard 2D cartesian coordinate system, though most charts will default to the `cartesian2d` coordinate system they may be applied to others.
 
 Let's look at the heatmap. First a regular heatmap.
 
@@ -62,6 +62,26 @@ year %>%
   e_calendar(range = "2018") %>% 
   e_heatmap(values, coord.system = "calendar") %>% 
   e_visual_map(max = 30)
+```
+
+Another example, using polar coordinates.
+
+
+```{r}
+df <- data.frame(x = 1:10, y = seq(1, 20, by = 2))
+
+df %>% 
+  e_charts(x) %>% 
+  e_line(y) 
+```
+
+```{r}
+df %>% 
+  e_charts(x) %>% 
+  e_polar() %>% 
+  e_angle_axis() %>% 
+  e_radius_axis() %>% 
+  e_line(y, coord.system = "polar", smooth = TRUE) 
 ```
 
 There are numerous coordinate system available in `echarts4r`; `globe`, `cartesian3d` and `polar` to name a few.
