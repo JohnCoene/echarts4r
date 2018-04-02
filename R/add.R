@@ -1124,15 +1124,19 @@ e_gauge <- function(e, value, name, ...){
 #' Add 3D lines.
 #' 
 #' @inheritParams e_bar
-#' @param coord.system Coordinate system to use, one of \code{cartesian3D}, \code{globe}.
+#' @param coord.system Coordinate system to use, such as \code{cartesian3D}, or \code{globe}.
+#' @param y,z Coordinates of lines.
 #' @param source.lon,source.lat,target.lon,target.lat coordinates.
 #' 
 #' @examples 
+#' # get data
 #' flights <- read.csv(
 #'   paste0("https://raw.githubusercontent.com/plotly/datasets/",
 #'          "master/2011_february_aa_flight_paths.csv")
 #' )
 #' 
+#' # Lines 3D
+#' # Globe
 #' flights %>% 
 #'   e_charts() %>% 
 #'   e_globe(
@@ -1141,7 +1145,7 @@ e_gauge <- function(e, value, name, ...){
 #'     environment = e_stars_texture(),
 #'     displacementScale = 0.05
 #'   ) %>% 
-#'   e_line_3d(
+#'   e_lines_3d(
 #'     start_lon, 
 #'     start_lat, 
 #'     end_lon, 
@@ -1149,20 +1153,35 @@ e_gauge <- function(e, value, name, ...){
 #'     name = "flights",
 #'     effect = list(show = TRUE)
 #'   )
-#'   
+#' 
+#' # Geo 3D
 #' flights %>% 
 #'   e_charts() %>% 
 #'   e_geo_3d() %>% 
-#'   e_line_3d(
+#'   e_lines_3d(
 #'     start_lon, 
 #'     start_lat, 
 #'     end_lon, 
 #'     end_lat,
 #'     coord.system = "geo3D"
 #'   )
+#'  
+#' # line 3D 
+#' df <- data.frame(
+#'   x = 1:100,
+#'   y = runif(100, 10, 25),
+#'   z = rnorm(100, 100, 50)
+#' )
 #' 
+#' df %>% 
+#'   e_charts(x) %>% 
+#'   e_line_3d(y, z) %>% 
+#'   e_visual_map() %>% 
+#'   e_title("nonsense")
+#' 
+#' @rdname line3D
 #' @export
-e_line_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = NULL, coord.system = "globe", ...){
+e_lines_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = NULL, coord.system = "globe", ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1190,6 +1209,53 @@ e_line_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = 
     data = data,
     ...
   )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
+  e
+}
+
+#' @rdname line3D
+#' @export
+e_line_3d <- function(e, y, z, name = NULL, coord.system = NULL, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(y) || missing(z))
+    stop("missing coordinates", call. = FALSE)
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  if(!is.null(name))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, name)
+  
+  if(!length(e$x$opts$zAxis3D))
+    e$x$opts$zAxis3D <- list()
+  
+  if(!length(e$x$opts$grid3D))
+    e$x$opts$grid3D <- list(show = TRUE)
+  
+  e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
+  e <- .set_axis_3D(e, "y", deparse(substitute(y)), 0)
+  e <- .set_axis_3D(e, "z", deparse(substitute(z)), 0)
+  
+  # build JSON data
+  data <- .build_data(
+    e, 
+    e$x$mapping$x, 
+    deparse(substitute(y)), 
+    deparse(substitute(z))
+  )
+  
+  serie <- list(
+    type = "line3D",
+    data = data,
+    ...
+  )
+  
+  if(!is.null(coord.system))
+    serie$coordinateSystem <- coord.system
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   
@@ -1590,6 +1656,68 @@ e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord.system = NULL, ...
   
   if(!is.null(coord.system))
     serie$coordinateSystem <- coord.system
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
+  e
+}
+
+#' Scatter GL
+#' 
+#' Draw scatter GL.
+#' 
+#' @inheritParams e_bar
+#' @param y,z Column names containing y and z data.
+#' @param coord.system Coordinate system to plot against.
+#' 
+#' @examples 
+#' quakes %>% 
+#'   e_charts(long) %>% 
+#'   e_geo(
+#'     roam = TRUE,
+#'     boundingCoords = list(
+#'       c(185, - 10),
+#'       c(165, -40)
+#'      )
+#'   ) %>% 
+#'   e_scatter_gl(lat, depth)
+#' 
+#' @export
+e_scatter_gl <- function(e, y, z, name = NULL, coord.system = "geo", ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(y) || missing(z))
+    stop("must pass y and z", call. = FALSE)
+  
+  if(is.null(name)) # defaults to column name
+    name <- deparse(substitute(z))
+  
+  e$x$opts$xAxis <- NULL # remove
+  e$x$opts$yAxis <- NULL # remove
+  
+  data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
+  
+  # globe
+  if(coord.system == "cartesian3D"){
+    if(!length(e$x$opts$zAxis3D))
+      e$x$opts$zAxis3D <- list(show = TRUE)
+    
+    if(!length(e$x$opts$grid3D))
+      e$x$opts$grid3D <- list(show = TRUE)
+    
+    e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
+    e <- .set_axis_3D(e, "y", deparse(substitute(y)), 0)
+    e <- .set_axis_3D(e, "z", deparse(substitute(z)), 0)
+  } 
+  
+  serie <- list(
+    name = name,
+    type = "scatterGL",
+    coordinateSystem = coord.system,
+    data = data,
+    ...
+  )
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   
