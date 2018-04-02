@@ -53,11 +53,12 @@ See the [website](https://johncoene.github.io/echarts4r) for documentation, exam
 * Line 3D
 * Bar 3D
 * Scatter 3D
-* Flow GL
-* Graph GL
 * Map 3D
 * Geo 3D
 * Globe 3D
+* Flow GL
+* Graph GL
+* Scatter GL
 
 #### Other
 
