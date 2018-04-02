@@ -3,7 +3,7 @@
 \name{e_highlight_p}
 \alias{e_highlight_p}
 \alias{e_downplay_p}
-\title{Highlight}
+\title{Highlight Proxy}
 \usage{
 e_highlight_p(proxy, series.index = NULL, series.name = NULL)
 

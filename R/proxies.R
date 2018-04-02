@@ -1,4 +1,4 @@
-#' Highlight
+#' Highlight Proxy
 #' 
 #' Proxies to highlight and downplay series.
 #' 
@@ -101,7 +101,7 @@ e_downplay_p <- function(proxy, series.index = NULL, series.name = NULL){
   return(proxy)
 }
 
-#' Tooltip
+#' Tooltip Proxy
 #' 
 #' Proxies to show or hide tooltip.
 #' 

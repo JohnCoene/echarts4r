@@ -3,7 +3,7 @@
 \name{e_showtip_p}
 \alias{e_showtip_p}
 \alias{e_hidetip_p}
-\title{Tooltip}
+\title{Tooltip Proxy}
 \usage{
 e_showtip_p(proxy, position = c(10, 10), series.index = NULL, name = NULL)
 
