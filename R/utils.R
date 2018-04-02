@@ -260,7 +260,7 @@ globalVariables(c("e", "."))
   
   ax <- .r2axis3D(axis)
   
-  if(length(e$x$opts$yAxis) - 1 < index){
+  if(length(e$x$opts[[ax]]) - 1 < index){
     type <- .get_type(e, serie)
     
     axis <- list(type = type)
