@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Polar — e_polar • echarts4r</title>
+<title>Changelog • echarts4r</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,9 +25,7 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Polar — e_polar" />
-
-<meta property="og:description" content="Customise polar coordinates." />
+<meta property="og:title" content="Changelog" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -59,7 +57,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -152,54 +150,61 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Polar</h1>
-    <small>Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/opts.R'><code>R/opts.R</code></a></small>
+      <h1>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    
-    <p>Customise polar coordinates.</p>
-    
-
-    <pre class="usage"><span class='fu'>e_polar</span>(<span class='no'>e</span>, <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>show</th>
-      <td><p>Whether to display the axis.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Any other option to pass to <code>bar</code> or <code>line</code> char types.</p></td>
-    </tr>
-    </table>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>seq</span>(<span class='fl'>1</span>, <span class='fl'>20</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>2</span>))
-
-<span class='no'>df</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_polar</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_angle_axis.html'>e_angle_axis</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_radius_axis.html'>e_radius_axis</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>y</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"polar"</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
-</div></pre>
+    <div id="echarts4r-0-0-1-9000" class="section level1">
+<h1 class="page-header">
+<a href="#echarts4r-0-0-1-9000" class="anchor"></a>echarts4r 0.0.1.9000</h1>
+<p>Initial version with chart types:</p>
+<ul>
+<li>Bar</li>
+<li>Line</li>
+<li>Area</li>
+<li>Step</li>
+<li>Scatter</li>
+<li>Effect Scatter</li>
+<li>Candlestick</li>
+<li>Funnel</li>
+<li>Sankey</li>
+<li>Graph</li>
+<li>Heatmap</li>
+<li>Parallel</li>
+<li>Pie</li>
+<li>Tree</li>
+<li>Treemap</li>
+<li>River (streamgraph)</li>
+<li>Sunburst</li>
+<li>Boxplot</li>
+<li>Calendar</li>
+<li>Gauge</li>
+<li>Polar</li>
+<li>wordcloud</li>
+<li>liquidFill</li>
+<li>Map</li>
+<li>Line 3D</li>
+<li>Bar 3D</li>
+<li>Scatter 3D</li>
+<li>Map 3D</li>
+<li>Geo 3D</li>
+<li>Globe 3D</li>
+<li>Flow GL</li>
+<li>Graph GL</li>
+<li>Scatter GL</li>
+</ul>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+    <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#echarts4r-0-0-1-9000">0.0.1.9000</a></li>
+      </ul>
+    </div>
   </div>
+
 </div>
 
       <footer>

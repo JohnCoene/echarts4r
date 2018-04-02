@@ -9,8 +9,10 @@ articles:
   get_started: get_started.html
   gl: gl.html
   globe: globe.html
+  graph: graph.html
   map: map.html
   map3d: map3d.html
+  proxies: proxies.html
   themes: themes.html
   threeD: threeD.html
 
