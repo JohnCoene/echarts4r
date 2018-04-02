@@ -18,6 +18,8 @@ articles:
     - globe
     - threeD
     - gl
+    - graph
+    - proxies
     - themes
 
 development:
@@ -51,6 +53,10 @@ navbar:
           href: articles/threeD.html
         - text: "webGL"
           href: articles/gl.html
+        - text: "Graph"
+          href: articles/graph.html
+        - text: "Proxies"
+          href: articles/proxies.html
         - text: "Themes"
           href: articles/themes.html
     - text: "Reference"

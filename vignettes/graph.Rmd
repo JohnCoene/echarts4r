@@ -1,0 +1,102 @@
+---
+title: "Graph"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Graph}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(echarts4r)
+```
+
+There are two core functions that let you build graphs in `echarts4r`; `e_graph` and `e_graph_gl`. The latter is the webGL "version."
+
+### Basic
+
+Initialise your graph with `e_charts` then add nodes and edges with `e_graph_nodes` and `e_graph_edges` respectively.
+
+```{r}
+value <- rnorm(10, 10, 2)
+
+nodes <- data.frame(
+  name = sample(LETTERS, 10),
+  value = value,
+  size = value,
+  stringsAsFactors = FALSE
+)
+
+edges <- data.frame(
+  source = sample(nodes$name, 20, replace = TRUE),
+  target = sample(nodes$name, 20, replace = TRUE),
+  stringsAsFactors = FALSE
+)
+
+e_charts() %>% 
+  e_graph() %>% 
+  e_graph_nodes(nodes, name, value, size) %>% 
+  e_graph_edges(edges, source, target) %>% 
+  e_tooltip()
+```
+
+### Groups
+
+The same but with groups.
+
+```{r}
+value <- rnorm(10, 10, 2)
+
+nodes <- data.frame(
+  name = sample(LETTERS, 10),
+  value = value,
+  size = value,
+  grp = rep(c("grp1", "grp2"), 5),
+  stringsAsFactors = FALSE
+)
+
+edges <- data.frame(
+  source = sample(nodes$name, 20, replace = TRUE),
+  target = sample(nodes$name, 20, replace = TRUE),
+  stringsAsFactors = FALSE
+)
+
+e_charts() %>% 
+  e_graph() %>% 
+  e_graph_nodes(nodes, name, value, size, grp) %>% 
+  e_graph_edges(edges, source, target) %>% 
+  e_tooltip()
+```
+
+### Graph GL
+
+Simply use `e_graph_gl` instead of `e_graph`.
+
+```{r}
+nodes <- data.frame(
+  name = paste0(LETTERS, 1:1000),
+  value = rnorm(1000, 10, 2),
+  size = rnorm(1000, 10, 2),
+  grp = rep(c("grp1", "grp2"), 500),
+  stringsAsFactors = FALSE
+)
+
+edges <- data.frame(
+  source = sample(nodes$name, 2000, replace = TRUE),
+  target = sample(nodes$name, 2000, replace = TRUE),
+  stringsAsFactors = FALSE
+)
+
+e_charts() %>% 
+  e_graph_gl() %>% 
+  e_graph_nodes(nodes, name, value, size, grp) %>% 
+  e_graph_edges(edges, source, target) %>% 
+  e_tooltip()
+```

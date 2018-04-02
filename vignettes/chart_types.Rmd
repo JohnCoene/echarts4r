@@ -286,6 +286,5 @@ liquid <- data.frame(val = c(0.6, 0.5, 0.4))
 
 liquid %>% 
   e_charts() %>% 
-  e_liquid(val) %>% 
-  e_theme("dark")
+  e_liquid(val) 
 ```
