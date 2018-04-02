@@ -16,6 +16,7 @@ articles:
     - geo3d
     - globe
     - threeD
+    - gl
     - themes
 
 navbar:
@@ -43,6 +44,8 @@ navbar:
           href: articles/globe.html
         - text: "3D"
           href: articles/threeD.html
+        - text: "webGL"
+          href: articles/gl.html
         - text: "Themes"
           href: articles/themes.html
     - text: "Reference"
