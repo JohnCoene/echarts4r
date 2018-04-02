@@ -104,7 +104,6 @@ globalVariables(c("e", "."))
     x[[i]]$symbolSize <- as.numeric(paste(x[[i]]$symbolSize))
     x[[i]]$value <- as.numeric(paste(x[[i]]$value))
     x[[i]]$id <- as.numeric(x[[i]]$id)
-    x[[i]]$category <- as.numeric(x[[i]]$category)
   }
   x
 }
