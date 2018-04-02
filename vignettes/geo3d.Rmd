@@ -58,3 +58,19 @@ flights %>%
     effect = list(show = TRUE)
    )
 ```
+
+### Bars
+
+```{r}
+url <- paste0("https://ecomfe.github.io/echarts-examples/",
+              "public/data-gl/asset/data/population.json")
+data <- jsonlite::fromJSON(url)
+data <- as.data.frame(data)
+names(data) <- c("lon", "lat", "value")
+
+data %>% 
+  e_charts(lon) %>% 
+  e_geo_3d() %>% 
+  e_bar_3d(lat, value, coord.system = "geo3D") %>% 
+  e_visual_map()
+```
