@@ -66,7 +66,6 @@ year %>%
 
 Another example, using polar coordinates.
 
-
 ```{r}
 df <- data.frame(x = 1:10, y = seq(1, 20, by = 2))
 
@@ -113,4 +112,34 @@ USArrests %>%
   e_bar(Rape, name = "Sick basterd", x.index = 1) %>% # second y axis 
   e_mark_line("Sick basterd", data = list(type = "average")) %>% 
   e_mark_point("Murder", data = list(type = "min"))
+```
+
+### Look for arguments
+
+Look for more arguments, with `echarts4r` are often only one argument away from from what you want.
+
+```{r}
+df <- data.frame(
+  parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
+  child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster")
+)
+
+df %>% 
+  e_charts() %>% 
+  e_tree(
+    parent, 
+    child
+  )
+```
+
+to radial:
+
+```{r}
+df %>% 
+  e_charts() %>% 
+  e_tree(
+    parent, 
+    child,
+    layout = "radial" # radial
+  )
 ```
