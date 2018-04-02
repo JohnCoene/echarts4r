@@ -21,7 +21,8 @@ articles:
     - themes
 
 development:
-  mode: auto
+  destination: dev
+  version_label: danger
 
 navbar:
   title: "echarts"
