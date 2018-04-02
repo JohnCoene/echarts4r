@@ -54,3 +54,6 @@ navbar:
     - icon: fa-github
       href: https://github.com/JohnCoene/echarts4r
 
+authors:
+  John Coene:
+    href: http://john-coene.com
