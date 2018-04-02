@@ -1,6 +1,7 @@
 template:
   params:
     bootswatch: journal
+    ganalytics: UA-75544116-1
 
 articles:
   - title: "Usage"
@@ -18,6 +19,9 @@ articles:
     - threeD
     - gl
     - themes
+
+development:
+  mode: auto
 
 navbar:
   title: "echarts"
