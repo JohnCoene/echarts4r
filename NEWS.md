@@ -1,4 +1,4 @@
-# echarts4r 0.0.1
+# echarts4r 0.0.1.9000
 
 Initial version with chart types:
 
