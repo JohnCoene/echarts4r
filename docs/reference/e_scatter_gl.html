@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Scatter GL — e_scatterGL • echarts4r</title>
+<title>Scatter GL — e_scatter_gl • echarts4r</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,9 +25,11 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Scatter GL — e_scatterGL" />
+<meta property="og:title" content="Scatter GL — e_scatter_gl" />
 
-<meta property="og:description" content="Scatter GL" />
+<meta property="og:description" content="Draw scatter GL." />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -101,6 +103,9 @@
       <a href="../articles/threeD.html">3D</a>
     </li>
     <li>
+      <a href="../articles/gl.html">webGL</a>
+    </li>
+    <li>
       <a href="../articles/themes.html">Themes</a>
     </li>
   </ul>
@@ -130,14 +135,14 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Scatter GL</h1>
-    <small>Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/webGL.R'><code>R/webGL.R</code></a></small>
+    <small>Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add.R'><code>R/add.R</code></a></small>
     </div>
 
     
-    <p>Scatter GL</p>
+    <p>Draw scatter GL.</p>
     
 
-    <pre class="usage"><span class='fu'>e_scatterGL</span>(<span class='no'>e</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_scatter_gl</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -147,18 +152,44 @@
       <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code>.</p></td>
     </tr>
     <tr>
+      <th>y, z</th>
+      <td><p>Column names containing y and z data.</p></td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td><p>name of the serie.</p></td>
+    </tr>
+    <tr>
+      <th>coord.system</th>
+      <td><p>Coordinate system to plot against.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Any other option to pass to <code>bar</code> or <code>line</code> char types.</p></td>
     </tr>
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>quakes</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>long</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_geo.html'>e_geo</a></span>(
+    <span class='kw'>roam</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+    <span class='kw'>boundingCoords</span> <span class='kw'>=</span> <span class='fu'>list</span>(
+      <span class='fu'>c</span>(<span class='fl'>185</span>, - <span class='fl'>10</span>),
+      <span class='fu'>c</span>(<span class='fl'>165</span>, -<span class='fl'>40</span>)
+     )
+  ) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_scatter_gl</span>(<span class='no'>lat</span>, <span class='no'>depth</span>)</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

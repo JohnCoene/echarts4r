@@ -7,6 +7,7 @@ articles:
   geo: geo.html
   geo3d: geo3d.html
   get_started: get_started.html
+  gl: gl.html
   globe: globe.html
   map: map.html
   map3d: map3d.html

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Lines 3D — e_line_3d • echarts4r</title>
+<title>Lines 3D — e_lines_3d • echarts4r</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,9 +25,11 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Lines 3D — e_line_3d" />
+<meta property="og:title" content="Lines 3D — e_lines_3d" />
 
 <meta property="og:description" content="Add 3D lines." />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -101,6 +103,9 @@
       <a href="../articles/threeD.html">3D</a>
     </li>
     <li>
+      <a href="../articles/gl.html">webGL</a>
+    </li>
+    <li>
       <a href="../articles/themes.html">Themes</a>
     </li>
   </ul>
@@ -137,8 +142,10 @@
     <p>Add 3D lines.</p>
     
 
-    <pre class="usage"><span class='fu'>e_line_3d</span>(<span class='no'>e</span>, <span class='no'>source.lon</span>, <span class='no'>source.lat</span>, <span class='no'>target.lon</span>, <span class='no'>target.lat</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"globe"</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_lines_3d</span>(<span class='no'>e</span>, <span class='no'>source.lon</span>, <span class='no'>source.lat</span>, <span class='no'>target.lon</span>, <span class='no'>target.lat</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"globe"</span>, <span class='no'>...</span>)
+
+<span class='fu'>e_line_3d</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -157,21 +164,28 @@
     </tr>
     <tr>
       <th>coord.system</th>
-      <td><p>Coordinate system to use, one of <code>cartesian3D</code>, <code>globe</code>.</p></td>
+      <td><p>Coordinate system to use, such as <code>cartesian3D</code>, or <code>globe</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>Any other option to pass to <code>bar</code> or <code>line</code> char types.</p></td>
     </tr>
+    <tr>
+      <th>y, z</th>
+      <td><p>Coordinates of lines.</p></td>
+    </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>flights</span> <span class='kw'>&lt;-</span> <span class='fu'>read.csv</span>(
+    <pre class="examples"><div class='input'><span class='co'># get data</span>
+<span class='no'>flights</span> <span class='kw'>&lt;-</span> <span class='fu'>read.csv</span>(
   <span class='fu'>paste0</span>(<span class='st'>"https://raw.githubusercontent.com/plotly/datasets/"</span>,
          <span class='st'>"master/2011_february_aa_flight_paths.csv"</span>)
 )
 
+<span class='co'># Lines 3D</span>
+<span class='co'># Globe</span>
 <span class='no'>flights</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_globe.html'>e_globe</a></span>(
@@ -180,7 +194,7 @@
     <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='textures.html'>e_stars_texture</a></span>(),
     <span class='kw'>displacementScale</span> <span class='kw'>=</span> <span class='fl'>0.05</span>
   ) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_line_3d</span>(
+  <span class='fu'>e_lines_3d</span>(
     <span class='no'>start_lon</span>,
     <span class='no'>start_lat</span>,
     <span class='no'>end_lon</span>,
@@ -188,16 +202,29 @@
     <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"flights"</span>,
     <span class='kw'>effect</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
   )</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
+<span class='co'># Geo 3D</span>
 <span class='no'>flights</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_geo_3d.html'>e_geo_3d</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_line_3d</span>(
+  <span class='fu'>e_lines_3d</span>(
     <span class='no'>start_lon</span>,
     <span class='no'>start_lat</span>,
     <span class='no'>end_lon</span>,
     <span class='no'>end_lat</span>,
     <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"geo3D"</span>
   )</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
+<span class='co'># line 3D </span>
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>100</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='fl'>100</span>, <span class='fl'>10</span>, <span class='fl'>25</span>),
+  <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>100</span>, <span class='fl'>100</span>, <span class='fl'>50</span>)
+)
+
+<span class='no'>df</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_line_3d</span>(<span class='no'>y</span>, <span class='no'>z</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_title.html'>e_title</a></span>(<span class='st'>"nonsense"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
