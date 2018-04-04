@@ -5,6 +5,7 @@
 #' @inheritParams e_bar
 #' @param color Color.
 #' @param type Map type.
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' choropleth <- data.frame(
@@ -22,12 +23,12 @@
 #' @seealso \code{\link{e_country_names}}
 #' 
 #' @export
-e_geo_3d <- function(e, serie, color, type = "world", ...){
+e_geo_3d <- function(e, serie, color, type = "world", rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   series <- list(
     map = type,

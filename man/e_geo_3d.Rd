@@ -4,7 +4,7 @@
 \alias{e_geo_3d}
 \title{Geo 3D}
 \usage{
-e_geo_3d(e, serie, color, type = "world", ...)
+e_geo_3d(e, serie, color, type = "world", rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -14,6 +14,8 @@ e_geo_3d(e, serie, color, type = "world", ...)
 \item{color}{Color.}
 
 \item{type}{Map type.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
