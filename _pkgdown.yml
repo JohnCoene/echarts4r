@@ -57,6 +57,8 @@ navbar:
           href: articles/graph.html
         - text: "Proxies"
           href: articles/proxies.html
+        - text: "Brush"
+          href: articles/brush.html
         - text: "Themes"
           href: articles/themes.html
     - text: "Reference"
