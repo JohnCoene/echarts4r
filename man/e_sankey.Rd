@@ -4,7 +4,8 @@
 \alias{e_sankey}
 \title{Sankey}
 \usage{
-e_sankey(e, source, target, value, layout = "none", ...)
+e_sankey(e, source, target, value, layout = "none", rm.x = TRUE,
+  rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -14,6 +15,8 @@ e_sankey(e, source, target, value, layout = "none", ...)
 \item{value}{Value change from \code{source} to \code{target}.}
 
 \item{layout}{Layout of sankey.}
+
+\item{rm.x, rm.y}{Whether to remove the x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }

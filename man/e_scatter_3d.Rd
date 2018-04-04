@@ -5,7 +5,7 @@
 \title{Scatter 3D}
 \usage{
 e_scatter_3d(e, y, z, color, size, coord.system = "cartesian3D",
-  name = NULL, ...)
+  name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -17,6 +17,8 @@ e_scatter_3d(e, y, z, color, size, coord.system = "cartesian3D",
 \item{coord.system}{Coordinate system to use, one of \code{geo3D}, \code{globe}, or \code{cartesian3D}.}
 
 \item{name}{name of the serie.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }

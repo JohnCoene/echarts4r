@@ -4,12 +4,14 @@
 \alias{e_area}
 \title{Area}
 \usage{
-e_area(e, serie, name = NULL, y.index = 0, x.index = 0, ...)
+e_area(e, serie, bind, name = NULL, y.index = 0, x.index = 0, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{serie}{Column name of serie to plot.}
+
+\item{bind}{Binding between datasets, namely for use of \code{\link{e_brush}}.}
 
 \item{name}{name of the serie.}
 

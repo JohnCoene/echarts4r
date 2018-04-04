@@ -4,7 +4,7 @@
 \alias{e_pie}
 \title{Pie}
 \usage{
-e_pie(e, serie, name = NULL, ...)
+e_pie(e, serie, name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -12,6 +12,8 @@ e_pie(e, serie, name = NULL, ...)
 \item{serie}{Column name of serie to plot.}
 
 \item{name}{name of the serie.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }

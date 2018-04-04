@@ -33,13 +33,16 @@ e_axis <- function(e, axis = c("x", "y", "z"), index = 0, ...){
   r.index <- index + 1
   max <- length(e$x$opts[[axis]])
   
-  if(r.index > max)
-    stop("invalid axis", call. = FALSE)
-  
   attrs <- list(...)
   
   if(!length(attrs))
     stop("no attribute", call. = FALSE)
+  
+  # initiatlise if wrong index
+  if(r.index > max){
+    r.index <- 1
+    e$x$opts[[axis]] <- list(list())
+  }
   
   for(i in 1:length(attrs)){
     arg <- names(attrs)[i]

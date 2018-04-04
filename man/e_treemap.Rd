@@ -4,7 +4,7 @@
 \alias{e_treemap}
 \title{Treemap}
 \usage{
-e_treemap(e, parent, child, value, ...)
+e_treemap(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -12,6 +12,8 @@ e_treemap(e, parent, child, value, ...)
 \item{parent, child}{Edges.}
 
 \item{value}{Value of edges.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }

@@ -17,6 +17,9 @@ e_heatmap(e, y, z, name = NULL, coord.system = "cartesian2d", ...)
 \code{cartesian2d}, \code{geo} or \code{calendar}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, only applies if \code{coord.system} is not 
+set to \code{cartesian2d}.}
 }
 \description{
 Draw heatmap by coordinates.

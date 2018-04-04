@@ -4,13 +4,15 @@
 \alias{e_step}
 \title{Step}
 \usage{
-e_step(e, serie, step = c("start", "middle", "end"), fill = FALSE,
+e_step(e, serie, bind, step = c("start", "middle", "end"), fill = FALSE,
   name = NULL, y.index = 0, x.index = 0, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{serie}{Column name of serie to plot.}
+
+\item{bind}{Binding between datasets, namely for use of \code{\link{e_brush}}.}
 
 \item{step}{Step type, one of \code{start}, \code{middle} or \code{end}.}
 

@@ -4,7 +4,7 @@
 \alias{e_sunburst}
 \title{Sunburst}
 \usage{
-e_sunburst(e, parent, child, value, ...)
+e_sunburst(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -12,6 +12,8 @@ e_sunburst(e, parent, child, value, ...)
 \item{parent, child}{Edges.}
 
 \item{value}{Name of column containing values.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }

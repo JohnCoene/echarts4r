@@ -5,11 +5,12 @@
 \alias{e_effect_scatter}
 \title{Scatter}
 \usage{
-e_scatter(e, serie, size, scale = "* 1", name = NULL,
-  coord.system = "cartesian2d", y.index = 0, x.index = 0, ...)
+e_scatter(e, serie, size, bind, scale = "* 1", name = NULL,
+  coord.system = "cartesian2d", y.index = 0, x.index = 0, rm.x = TRUE,
+  rm.y = TRUE, ...)
 
-e_effect_scatter(e, serie, size, scale = "* 1", name = NULL,
-  coord.system = "cartesian2D", y.index = 0, x.index = 0, ...)
+e_effect_scatter(e, serie, size, bind, scale = "* 1", name = NULL,
+  coord.system = "cartesian2d", y.index = 0, x.index = 0, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -17,6 +18,8 @@ e_effect_scatter(e, serie, size, scale = "* 1", name = NULL,
 \item{serie}{Column name of serie to plot.}
 
 \item{size}{Column name containing size of points.}
+
+\item{bind}{Binding between datasets, namely for use of \code{\link{e_brush}}.}
 
 \item{scale}{Scale for \code{size}, defaults to \code{* 1} which multiplies the size
 by \code{1} (equivalent to no multiplier).}
@@ -29,6 +32,9 @@ by \code{1} (equivalent to no multiplier).}
 
 \item{x.index}{Indexes of x and y axis.}
 
+\item{rm.x, rm.y}{Whether to remove x and y axis, only applies if \code{coord.system} is not 
+set to \code{cartesian2d}.}
+
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
 \description{
@@ -38,7 +44,7 @@ Add scatter serie.
 USArrests \%>\% 
   e_charts(Assault) \%>\% 
   e_scatter(Murder, Rape) \%>\% 
-  e_scatter(Rape, Murder, y.index = 1) \%>\% 
+  e_effect_scatter(Rape, Murder, y.index = 1) \%>\% 
   e_grid(index = c(0, 1)) \%>\% 
   e_tooltip()
 

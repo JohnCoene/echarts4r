@@ -7,9 +7,10 @@
 \alias{e_graph_edges}
 \title{Graph}
 \usage{
-e_graph(e, layout = "force", name = NULL, ...)
+e_graph(e, layout = "force", name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
 
-e_graph_gl(e, layout = "force", name = NULL, ...)
+e_graph_gl(e, layout = "force", name = NULL, rm.x = TRUE, rm.y = TRUE,
+  ...)
 
 e_graph_nodes(e, nodes, names, value, size, category)
 
@@ -21,6 +22,8 @@ e_graph_edges(e, edges, source, target)
 \item{layout}{Layout, one of \code{force}, \code{none} or \code{circular}.}
 
 \item{name}{Name of graph.}
+
+\item{rm.x, rm.y}{Whether to remove the x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other parameter.}
 

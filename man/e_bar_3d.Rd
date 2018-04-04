@@ -4,7 +4,8 @@
 \alias{e_bar_3d}
 \title{Bar 3D}
 \usage{
-e_bar_3d(e, y, z, coord.system = "cartesian3D", name = NULL, ...)
+e_bar_3d(e, y, z, coord.system = "cartesian3D", name = NULL, rm.x = TRUE,
+  rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -14,6 +15,8 @@ e_bar_3d(e, y, z, coord.system = "cartesian3D", name = NULL, ...)
 \item{coord.system}{Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.}
 
 \item{name}{name of the serie.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }

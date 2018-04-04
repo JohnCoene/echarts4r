@@ -4,7 +4,7 @@
 \alias{e_gauge}
 \title{Gauge}
 \usage{
-e_gauge(e, value, name, ...)
+e_gauge(e, value, name, rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -12,6 +12,8 @@ e_gauge(e, value, name, ...)
 \item{value}{Value to gauge.}
 
 \item{name}{Text on gauge.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }

@@ -4,6 +4,7 @@
 #' 
 #' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
 #' @param serie Column name of serie to plot.
+#' @param bind Binding between datasets, namely for use of \code{\link{e_brush}}.
 #' @param name name of the serie.
 #' @param ... Any other option to pass to \code{bar} or \code{line} char types.
 #' @param x.index,y.index Indexes of x and y axis.
@@ -16,10 +17,10 @@
 #'   ) %>% 
 #'   e_charts(State) %>% 
 #'   e_bar(Murder) %>% 
-#'   e_bar(Rape, name = "Sick basterd", x.index = 1) # second y axis
+#'   e_bar(Rape, name = "Sick basterd", x.index = 1) # secondary x axis
 #' 
 #' @export
-e_bar <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
+e_bar <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -39,7 +40,10 @@ e_bar <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
     e <- .set_x_axis(e, x.index)
   
   # build JSON data
-  vector <- .redirect_vect_xy(e, serie)
+  .build_data(e, e$x$mapping$x, serie) -> vector
+  
+  if(!missing(bind))
+    vector <- .add_bind(e, vector, deparse(substitute(bind)))
 
   serie <- list(
     name = name,
@@ -65,12 +69,14 @@ e_bar <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
 #' 
 #' @examples 
 #' USArrests %>% 
+#'   dplyr::mutate(State = row.names(.)) %>% 
 #'   e_charts(Assault) %>% 
 #'   e_line(Murder) %>% 
-#'   e_line(UrbanPop, y.index = 1) # second y axis
-#' 
+#'   e_line(UrbanPop, State, y.index = 1) %>%  # second y axis
+#'   e_tooltip(trigger = "axis")
+#'   
 #' @export
-e_line <- function(e, serie, name = NULL, y.index = 0, x.index = 0, coord.system = "cartesian2d", ...){
+e_line <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, coord.system = "cartesian2d", ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -81,9 +87,12 @@ e_line <- function(e, serie, name = NULL, y.index = 0, x.index = 0, coord.system
   
   if(is.null(name)) # defaults to column name
     name <- serie
-  
+
   # build JSON data
-  vector <- .redirect_vect_xy(e, serie)
+  .build_data(e, e$x$mapping$x, serie) -> vector
+  
+  if(!missing(bind))
+    vector <- .add_bind(e, vector, deparse(substitute(bind)))
   
   l <- list(
     name = name,
@@ -123,7 +132,7 @@ e_line <- function(e, serie, name = NULL, y.index = 0, x.index = 0, coord.system
 #'   e_area(UrbanPop, stack = "grp") # stacking
 #' 
 #' @export
-e_area <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
+e_area <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -142,7 +151,10 @@ e_area <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
     e <- .set_x_axis(e, x.index)
   
   # build JSON data
-  vector <- .redirect_vect_xy(e, serie)
+  .build_data(e, e$x$mapping$x, serie) -> vector
+  
+  if(!missing(bind))
+    vector <- .add_bind(e, vector, deparse(substitute(bind)))
   
   serie <- list(
     name = name,
@@ -178,7 +190,7 @@ e_area <- function(e, serie, name = NULL, y.index = 0, x.index = 0, ...){
 #'   e_tooltip(trigger = "axis")
 #' 
 #' @export
-e_step <- function(e, serie, step = c("start", "middle", "end"), fill = FALSE, 
+e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FALSE, 
                    name = NULL, y.index = 0, x.index = 0, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -201,7 +213,10 @@ e_step <- function(e, serie, step = c("start", "middle", "end"), fill = FALSE,
     e <- .set_x_axis(e, x.index)
   
   # build JSON data
-  vector <- .redirect_vect_xy(e, serie)
+  .build_data(e, e$x$mapping$x, serie) -> vector
+  
+  if(!missing(bind))
+    vector <- .add_bind(e, vector, deparse(substitute(bind)))
   
   serie <- list(
     name = name,
@@ -230,12 +245,14 @@ e_step <- function(e, serie, step = c("start", "middle", "end"), fill = FALSE,
 #' @param scale Scale for \code{size}, defaults to \code{* 1} which multiplies the size
 #'  by \code{1} (equivalent to no multiplier).
 #' @param coord.system Coordinate system to plot against.
+#' @param rm.x,rm.y Whether to remove x and y axis, only applies if \code{coord.system} is not 
+#' set to \code{cartesian2d}.
 #' 
 #' @examples 
 #' USArrests %>% 
 #'   e_charts(Assault) %>% 
 #'   e_scatter(Murder, Rape) %>% 
-#'   e_scatter(Rape, Murder, y.index = 1) %>% 
+#'   e_effect_scatter(Rape, Murder, y.index = 1) %>% 
 #'   e_grid(index = c(0, 1)) %>% 
 #'   e_tooltip()
 #' 
@@ -266,7 +283,9 @@ e_step <- function(e, serie, step = c("start", "middle", "end"), fill = FALSE,
 #' 
 #' @rdname scatter
 #' @export
-e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, coord.system = "cartesian2d", y.index = 0, x.index = 0, ...){
+e_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL, 
+                      coord.system = "cartesian2d", y.index = 0, x.index = 0,
+                      rm.x = TRUE, rm.y = TRUE, ...){
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
@@ -287,6 +306,9 @@ e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, coord.system =
   else
     xy <- .build_data(e, e$x$mapping$x, serie)
   
+  if(!missing(bind))
+    xy <- .add_bind(e, xy, deparse(substitute(bind)))
+  
   serie <- list(
     name = name,
     type = "scatter",
@@ -296,8 +318,8 @@ e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, coord.system =
   )
   
   if(coord.system != "cartesian2d"){
-    e$x$opts$xAxis <- NULL
-    e$x$opts$yAxis <- NULL
+    e <- .rm_axis(e, rm.x, "x")
+    e <- .rm_axis(e, rm.y, "y")
   } else {
     serie$yAxisIndex = y.index
     serie$xAxisIndex = x.index
@@ -315,7 +337,7 @@ e_scatter <- function(e, serie, size, scale = "* 1", name = NULL, coord.system =
 
 #' @rdname scatter
 #' @export
-e_effect_scatter <- function(e, serie, size, scale = "* 1", name = NULL, coord.system = "cartesian2D", y.index = 0, x.index = 0, ...){
+e_effect_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL, coord.system = "cartesian2d", y.index = 0, x.index = 0, ...){
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
@@ -336,9 +358,12 @@ e_effect_scatter <- function(e, serie, size, scale = "* 1", name = NULL, coord.s
   else
     xy <- .build_data(e, e$x$mapping$x, serie)
   
-  if(coord.system != "cartesian2D"){
-    e$x$opts$xAxis <- NULL
-    e$x$opts$yAxis <- NULL
+  if(!missing(bind))
+    xy <- .add_bind(e, xy, deparse(substitute(bind)))
+  
+  if(coord.system != "cartesian2d"){
+    e <- .rm_axis(e, rm.x, "x")
+    e <- .rm_axis(e, rm.y, "y")
   } else {
     e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   }
@@ -386,7 +411,7 @@ e_effect_scatter <- function(e, serie, size, scale = "* 1", name = NULL, coord.s
 #'   e_candle(opening, closing, low, high)
 #' 
 #' @export
-e_candle <- function(e, opening, closing, low, high, name = NULL, ...){
+e_candle <- function(e, opening, closing, low, high, bind, name = NULL, ...){
   
   data <- .build_data(
     e, 
@@ -395,6 +420,9 @@ e_candle <- function(e, opening, closing, low, high, name = NULL, ...){
     deparse(substitute(low)), 
     deparse(substitute(high))
   )
+  
+  if(!missing(bind))
+    data <- .add_bind(e, data, deparse(substitute(bind)))
   
   serie <- list(
     name = name,
@@ -417,6 +445,9 @@ e_candle <- function(e, opening, closing, low, high, name = NULL, ...){
 #' @param name name of the serie.
 #' @param ... Any other option to pass to \code{bar} or \code{line} char types.
 #' @param values,labels Values and labels of funnel.
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
+#' 
+#' @details No \code{bind} argument here, with a funnel \code{bind} = \code{labels}.
 #' 
 #' @examples 
 #' funnel <- data.frame(stage = c("View", "Click", "Purchase"), value = c(80, 30, 20))
@@ -426,22 +457,22 @@ e_candle <- function(e, opening, closing, low, high, name = NULL, ...){
 #'   e_funnel(value, stage)
 #' 
 #' @export
-e_funnel <- function(e, values, labels, name = NULL, ...){
+e_funnel <- function(e, values, labels, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   
   if(missing(values) || missing(labels))
     stop("missing values or labels", call. = FALSE)
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
-  e$x$opts$legend <- NULL # remove
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   # build JSON data
   funnel <- .build_data(
     e, 
-    deparse(substitute(values)), 
-    deparse(substitute(labels)),
-    names = c("value", "name")
+    deparse(substitute(values))
   )
+  
+  funnel <- .add_bind(e, funnel, deparse(substitute(labels)))
   
   serie <- list(
     name = name,
@@ -450,7 +481,9 @@ e_funnel <- function(e, values, labels, name = NULL, ...){
     ...
   )
   
-  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  # addlegend
+  legend <- e$x$data[[deparse(substitute(labels))]] %>% as.character()
+  e$x$opts$legend$data <- append(e$x$opts$legend$data, legend)
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
@@ -465,6 +498,7 @@ e_funnel <- function(e, values, labels, name = NULL, ...){
 #' @param layout Layout of sankey.
 #' @param source,target Source and target columns.
 #' @param value Value change from \code{source} to \code{target}.
+#' @param rm.x,rm.y Whether to remove the x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples
 #' sankey <- data.frame(
@@ -479,14 +513,13 @@ e_funnel <- function(e, values, labels, name = NULL, ...){
 #'   e_sankey(source, target, value) 
 #' 
 #' @export
-e_sankey <- function(e, source, target, value, layout = "none", ...){
+e_sankey <- function(e, source, target, value, layout = "none", rm.x = TRUE, rm.y = TRUE, ...){
   
   if(missing(source) || missing(target) || missing(value))
     stop("missing source, target or values", call. = FALSE)
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
-  e$x$opts$legend <- NULL # remove
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   # build JSON data
   nodes <- .build_sankey_nodes(
@@ -528,6 +561,7 @@ e_sankey <- function(e, source, target, value, layout = "none", ...){
 #' @param edges Data.frame of edges.
 #' @param source,target Column names of source and target.
 #' @param layout Layout, one of \code{force}, \code{none} or \code{circular}.
+#' @param rm.x,rm.y Whether to remove the x and y axis, defaults to \code{TRUE}.
 #' @param ... Any other parameter.
 #' 
 #' @examples 
@@ -574,12 +608,12 @@ e_sankey <- function(e, source, target, value, layout = "none", ...){
 #' 
 #' @rdname graph
 #' @export
-e_graph <- function(e, layout = "force", name = NULL, ...){
+e_graph <- function(e, layout = "force", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   serie <- list(
     name = name,
@@ -595,12 +629,12 @@ e_graph <- function(e, layout = "force", name = NULL, ...){
 
 #' @rdname graph
 #' @export
-e_graph_gl <- function(e, layout = "force", name = NULL, ...){
+e_graph_gl <- function(e, layout = "force", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   serie <- list(
     name = name,
@@ -678,6 +712,8 @@ e_graph_edges <- function(e, edges, source, target){
 #' @param y,z Coordinates and values.
 #' @param coord.system Coordinate system to plot against, takes 
 #' \code{cartesian2d}, \code{geo} or \code{calendar}.
+#' @param rm.x,rm.y Whether to remove x and y axis, only applies if \code{coord.system} is not 
+#' set to \code{cartesian2d}.
 #' 
 #' @examples 
 #' v <- LETTERS[1:10]
@@ -728,8 +764,8 @@ e_heatmap <- function(e, y, z, name = NULL, coord.system = "cartesian2d", ...){
   )
   
   if(coord.system != "cartesian2d"){
-    e$x$opts$xAxis <- NULL
-    e$x$opts$yAxis <- NULL
+    e <- .rm_axis(e, rm.x, "x")
+    e <- .rm_axis(e, rm.y, "y")
   } else {
     e$x$opts$xAxis <- list(
       data = unique(
@@ -754,6 +790,7 @@ e_heatmap <- function(e, y, z, name = NULL, coord.system = "cartesian2d", ...){
 #' Draw parallel coordinates.
 #' 
 #' @inheritParams e_bar
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' df <- data.frame(
@@ -767,12 +804,12 @@ e_heatmap <- function(e, y, z, name = NULL, coord.system = "cartesian2d", ...){
 #'   e_parallel(price, amount, letter) 
 #' 
 #' @export
-e_parallel <- function(e, ..., name = NULL){
+e_parallel <- function(e, ..., name = NULL, rm.x = TRUE, rm.y = TRUE){
   if(missing(e))
     stop("must pass e", call. = FALSE) 
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   e$x$data %>% 
     dplyr::select(...) -> df
@@ -813,6 +850,7 @@ e_parallel <- function(e, ..., name = NULL){
 #' Draw pie and donut charts.
 #' 
 #' @inheritParams e_bar
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' mtcars %>% 
@@ -822,21 +860,22 @@ e_parallel <- function(e, ..., name = NULL){
 #'   e_pie(carb)
 #' 
 #' @export
-e_pie <- function(e, serie, name = NULL, ...){
+e_pie <- function(e, serie, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   if(is.null(name)) # defaults to column name
     name <- deparse(substitute(serie))
   
   # build JSON data
-  data <- .build_data(e, e$x$mapping$x, deparse(substitute(serie)), names = c("name", "value"))
+  data <- .build_data(e, deparse(substitute(serie)))
+  data <- .add_bind(e, data, e$x$mapping$x)
   
   serie <- list(
     name = name,
@@ -858,6 +897,7 @@ e_pie <- function(e, serie, name = NULL, ...){
 #' @inheritParams e_bar
 #' @param parent,child Edges.
 #' @param value Name of column containing values.
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' \dontrun{
@@ -874,12 +914,12 @@ e_pie <- function(e, serie, name = NULL, ...){
 #' }
 #' 
 #' @export
-e_sunburst <- function(e, parent, child, value, ...){
+e_sunburst <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   # build JSON data
   data <- .build_sun(
@@ -906,6 +946,7 @@ e_sunburst <- function(e, parent, child, value, ...){
 #' @inheritParams e_bar
 #' @param parent,child Edges.
 #' @param value Value of edges.
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' \dontrun{
@@ -921,15 +962,15 @@ e_sunburst <- function(e, parent, child, value, ...){
 #' }
 #' 
 #' @export
-e_treemap <- function(e, parent, child, value, ...){
+e_treemap <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(parent) || missing(child) || missing(value))
     stop("must pass parent, child and value", call. = FALSE)
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   # build JSON data
   data <- .build_sun(
@@ -954,6 +995,7 @@ e_treemap <- function(e, parent, child, value, ...){
 #' Build a theme river.
 #' 
 #' @inheritParams e_bar
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' dates <- seq.Date(Sys.Date() - 30, Sys.Date(), by = "day")
@@ -973,7 +1015,7 @@ e_treemap <- function(e, parent, child, value, ...){
 #'   e_tooltip(trigger = "axis")
 #' 
 #' @export
-e_river <- function(e, serie, name = NULL, ...){
+e_river <- function(e, serie, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1000,8 +1042,8 @@ e_river <- function(e, serie, name = NULL, ...){
     e$x$opts$series[[1]]$data <- append(e$x$opts$series[[1]]$data, data)
   }
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   e$x$opts$singleAxis <- list(type = "time")
   
@@ -1079,6 +1121,7 @@ e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
 #' 
 #' @inheritParams e_bar
 #' @param parent,child Edges.
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' df <- data.frame(
@@ -1091,15 +1134,16 @@ e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
 #'   e_tree(parent, child)
 #' 
 #' @export
-e_tree <- function(e, parent, child, ...){
+e_tree <- function(e, parent, child, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(parent) || missing(child))
     stop("must pass parent and child", call. = FALSE)
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   # build JSON data
   data <- .build_tree(
@@ -1125,13 +1169,14 @@ e_tree <- function(e, parent, child, ...){
 #' @inheritParams e_bar
 #' @param value Value to gauge.
 #' @param name Text on gauge.
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' e_charts() %>% 
 #'   e_gauge(57, "PERCENT")
 #' 
 #' @export
-e_gauge <- function(e, value, name, ...){
+e_gauge <- function(e, value, name, rm.x = TRUE, rm.y = TRUE, ...){
   
   if(missing(e) || missing(value) || missing(name))
     stop("missing e, name, or value", call. = FALSE)
@@ -1139,8 +1184,9 @@ e_gauge <- function(e, value, name, ...){
   if(!inherits(value, "numeric"))
     stop("must pass numeric or interger", call. = FALSE)
   
-  e$x$opts$yAxis <- NULL
-  e$x$opts$xAxis <- NULL
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   e$x$opts$series <- list(
     list(
@@ -1159,6 +1205,7 @@ e_gauge <- function(e, value, name, ...){
 #' @param coord.system Coordinate system to use, such as \code{cartesian3D}, or \code{globe}.
 #' @param y,z Coordinates of lines.
 #' @param source.lon,source.lat,target.lon,target.lat coordinates.
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' # get data
@@ -1213,15 +1260,17 @@ e_gauge <- function(e, value, name, ...){
 #' 
 #' @rdname line3D
 #' @export
-e_lines_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = NULL, coord.system = "globe", ...){
+e_lines_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = NULL, coord.system = "globe",
+                       rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(source.lat) || missing(source.lon) || missing(target.lat) || missing(target.lon))
     stop("missing coordinates", call. = FALSE)
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   if(!is.null(name))
     e$x$opts$legend$data <- append(e$x$opts$legend$data, name)
@@ -1249,15 +1298,16 @@ e_lines_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name =
 
 #' @rdname line3D
 #' @export
-e_line_3d <- function(e, y, z, name = NULL, coord.system = NULL, ...){
+e_line_3d <- function(e, y, z, name = NULL, coord.system = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(y) || missing(z))
     stop("missing coordinates", call. = FALSE)
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   if(!is.null(name))
     e$x$opts$legend$data <- append(e$x$opts$legend$data, name)
@@ -1301,6 +1351,7 @@ e_line_3d <- function(e, y, z, name = NULL, coord.system = NULL, ...){
 #' @inheritParams e_bar
 #' @param y,z Coordinates.
 #' @param coord.system Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' \dontrun{
@@ -1351,7 +1402,7 @@ e_line_3d <- function(e, y, z, name = NULL, coord.system = NULL, ...){
 #' }
 #' 
 #' @export
-e_bar_3d <- function(e, y, z, coord.system = "cartesian3D", name = NULL, ...){
+e_bar_3d <- function(e, y, z, coord.system = "cartesian3D", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1361,8 +1412,9 @@ e_bar_3d <- function(e, y, z, coord.system = "cartesian3D", name = NULL, ...){
   if(is.null(name)) # defaults to column name
     name <- deparse(substitute(z))
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   # globe
   if(coord.system != "cartesian3D"){
@@ -1408,7 +1460,8 @@ e_bar_3d <- function(e, y, z, coord.system = "cartesian3D", name = NULL, ...){
 #' 
 #' @inheritParams e_bar
 #' @param source.lon,source.lat,target.lon,target.lat coordinates.
-#' @param coord.system Coordinate system to use, one of \code{geo}, or \code{cartesian2D}.
+#' @param coord.system Coordinate system to use, one of \code{geo}, or \code{cartesian2d}.
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' flights <- read.csv(
@@ -1429,15 +1482,17 @@ e_bar_3d <- function(e, y, z, coord.system = "cartesian3D", name = NULL, ...){
 #'    )
 #' 
 #' @export
-e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.system = "geo", name = NULL, ...){
+e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.system = "geo", name = NULL, 
+                    rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(source.lat) || missing(source.lon) || missing(target.lat) || missing(target.lon))
     stop("missing coordinates", call. = FALSE)
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   # build JSON data
   data <- .map_lines(
@@ -1469,6 +1524,7 @@ e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.sys
 #' @param y,z Coordinates.
 #' @param color,size Color and Size of bubbles.
 #' @param coord.system Coordinate system to use, one of \code{geo3D}, \code{globe}, or \code{cartesian3D}.
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' v <- LETTERS[1:10]
@@ -1519,7 +1575,8 @@ e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.sys
 #'   e_visual_map(inRange = list(symbolSize = c(1, 10)))
 #' 
 #' @export
-e_scatter_3d <- function(e, y, z, color, size, coord.system = "cartesian3D", name = NULL, ...){
+e_scatter_3d <- function(e, y, z, color, size, coord.system = "cartesian3D", name = NULL, 
+                         rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1529,8 +1586,9 @@ e_scatter_3d <- function(e, y, z, color, size, coord.system = "cartesian3D", nam
   if(is.null(name)) # defaults to column name
     name <- deparse(substitute(z))
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   # globe
   if(coord.system != "cartesian3D"){
@@ -1580,6 +1638,7 @@ e_scatter_3d <- function(e, y, z, color, size, coord.system = "cartesian3D", nam
 #' @param sx,sy Velocity in respective axis.
 #' @param color Vector color.
 #' @param coord.system Coordinate system to use.
+#' @param rm.x,rm.y Whether to remove x and y axis, only applies if \code{coord.system} is not \code{null}.
 #' 
 #' @examples 
 #' # coordinates
@@ -1644,7 +1703,7 @@ e_scatter_3d <- function(e, y, z, color, size, coord.system = "cartesian3D", nam
 #'   )
 #' 
 #' @export
-e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord.system = NULL, ...){
+e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord.system = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1655,8 +1714,9 @@ e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord.system = NULL, ...
     e <- .set_x_axis(e, 0)
     e <- .set_y_axis(e, deparse(substitute(y)), 0)
   } else {
-    e$x$opts$xAxis <- NULL # remove
-    e$x$opts$yAxis <- NULL # remove
+    # remove axis
+    e <- .rm_axis(e, rm.x, "x")
+    e <- .rm_axis(e, rm.y, "y")
   }
   
   if(missing(color))
@@ -1701,6 +1761,7 @@ e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord.system = NULL, ...
 #' @inheritParams e_bar
 #' @param y,z Column names containing y and z data.
 #' @param coord.system Coordinate system to plot against.
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' quakes %>% 
@@ -1715,7 +1776,7 @@ e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord.system = NULL, ...
 #'   e_scatter_gl(lat, depth)
 #' 
 #' @export
-e_scatter_gl <- function(e, y, z, name = NULL, coord.system = "geo", ...){
+e_scatter_gl <- function(e, y, z, name = NULL, coord.system = "geo", rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1725,8 +1786,9 @@ e_scatter_gl <- function(e, y, z, name = NULL, coord.system = "geo", ...){
   if(is.null(name)) # defaults to column name
     name <- deparse(substitute(z))
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
   

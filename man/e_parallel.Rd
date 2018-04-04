@@ -4,7 +4,7 @@
 \alias{e_parallel}
 \title{Parallel}
 \usage{
-e_parallel(e, ..., name = NULL)
+e_parallel(e, ..., name = NULL, rm.x = TRUE, rm.y = TRUE)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -12,6 +12,8 @@ e_parallel(e, ..., name = NULL)
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 
 \item{name}{name of the serie.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 }
 \description{
 Draw parallel coordinates.

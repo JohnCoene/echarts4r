@@ -4,7 +4,7 @@
 \alias{e_funnel}
 \title{Funnel}
 \usage{
-e_funnel(e, values, labels, name = NULL, ...)
+e_funnel(e, values, labels, name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -13,10 +13,15 @@ e_funnel(e, values, labels, name = NULL, ...)
 
 \item{name}{name of the serie.}
 
+\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
+
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
 \description{
 Add a funnel.
+}
+\details{
+No \code{bind} argument here, with a funnel \code{bind} = \code{labels}.
 }
 \examples{
 funnel <- data.frame(stage = c("View", "Click", "Purchase"), value = c(80, 30, 20))

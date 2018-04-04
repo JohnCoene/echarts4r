@@ -4,12 +4,14 @@
 \alias{e_tree}
 \title{Tree}
 \usage{
-e_tree(e, parent, child, ...)
+e_tree(e, parent, child, rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{parent, child}{Edges.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }

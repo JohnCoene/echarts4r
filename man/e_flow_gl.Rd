@@ -4,7 +4,8 @@
 \alias{e_flow_gl}
 \title{Flow GL}
 \usage{
-e_flow_gl(e, y, sx, sy, color, name = NULL, coord.system = NULL, ...)
+e_flow_gl(e, y, sx, sy, color, name = NULL, coord.system = NULL,
+  rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -18,6 +19,8 @@ e_flow_gl(e, y, sx, sy, color, name = NULL, coord.system = NULL, ...)
 \item{name}{name of the serie.}
 
 \item{coord.system}{Coordinate system to use.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, only applies if \code{coord.system} is not \code{null}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }

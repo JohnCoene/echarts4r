@@ -8,7 +8,7 @@ globalVariables(c("e", "."))
   x$mapping$include_x <- FALSE
   cl <- x$mapping$x_class
   if(cl == "character" || cl == "factor"){
-    x$opts$xAxis <- list(list(data = unique(x$data[[x$mapping$x]]), type = "category", boundaryGap = FALSE))
+    x$opts$xAxis <- list(list(data = unique(x$data[[x$mapping$x]]), type = "category", boundaryGap = TRUE))
   } else if(cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
     x$opts$xAxis <- list(list(data = unique(x$data[[x$mapping$x]]), type = "time", boundaryGap = FALSE))
   } else {
@@ -20,24 +20,32 @@ globalVariables(c("e", "."))
   x
 }
 
-# redirect
-.redirect_vect_xy <- function(e, serie){
-  if(isTRUE(e$x$mapping$include_x))
-    .build_data(e, e$x$mapping$x, serie, vector = FALSE)
-  else
-    .build_data(e, serie, vector = TRUE)
-  
+.rm_axis <- function(e, rm.x, axis){
+  if(isTRUE(rm.x)){
+    axis <- .r2axis(axis)
+    e$x$opts[[axis]] <- NULL
+  }
+  e
 }
 
-.build_data <- function(e, ..., names = NULL, vector = FALSE){
+.build_data <- function(e, ...){
   e$x$data %>% 
-    dplyr::select_(...) %>% 
-    purrr::set_names(names) -> data
+    dplyr::select_(...) -> data
   
-  if(isTRUE(vector))
-    unlist(data)
-  else
-    apply(data, 1, as.list)
+  apply(unname(data), 1, function(x){
+    list(value = unlist(x))
+  }) 
+    
+}
+
+.add_bind <- function(e, l, bind){
+  e$x$data %>% 
+    dplyr::select_(bind) %>% unname() %>% unlist() -> bind
+  
+  for(i in 1:length(l)){
+    l[[i]]$name <- bind[i]
+  }
+  l
 }
 
 .build_data_p <- function(data, ..., names = NULL, vector = FALSE){

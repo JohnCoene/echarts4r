@@ -1,0 +1,45 @@
+---
+title: "Vignette Title"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(echarts4r)
+```
+
+Leverage `echarts4r` build-in crosstalk.
+
+```{r}
+quakes %>% 
+    e_charts(long) %>% 
+    e_geo(
+        boundingCoords = list(
+            c(190, -10),
+            c(180, -40)
+        )
+    ) %>% 
+    e_scatter(lat, mag, stations, coord.system = "geo", scale = "* 1.5", name = "mag", rm.y = FALSE, rm.x = FALSE) %>% # do not remove axis
+    e_data(quakes, depth) %>% # use e_data to add data and/or change value on x axis
+    e_scatter(depth, mag, stations, scale = "* 3", name = "mag & depth") %>%  # plot scatter
+    e_grid(right = 40, top = 100, width = "30%") %>% # adjust grid to avoid overlap
+    e_y_axis(name = "depth", min = 3.5) %>% # add y axis name
+    e_x_axis(name = "magnitude") %>% # add x axis name
+    e_legend(FALSE) %>%  # hide legend
+    e_title("Built-in crosstalk", "Use the brush") %>% # title
+    e_theme("chalk") %>% 
+    e_brush() %>% # add the brush
+    e_tooltip() # Add tooltips
+```
+
+The key to the above is 1) use the `bind` argument in both `e_scatter` to bind the data, in this case `stations`, think of it as a key, and 2) not removing the axis on the first `e_scatter`

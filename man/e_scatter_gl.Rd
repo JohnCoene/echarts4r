@@ -4,7 +4,8 @@
 \alias{e_scatter_gl}
 \title{Scatter GL}
 \usage{
-e_scatter_gl(e, y, z, name = NULL, coord.system = "geo", ...)
+e_scatter_gl(e, y, z, name = NULL, coord.system = "geo", rm.x = TRUE,
+  rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -14,6 +15,8 @@ e_scatter_gl(e, y, z, name = NULL, coord.system = "geo", ...)
 \item{name}{name of the serie.}
 
 \item{coord.system}{Coordinate system to plot against.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }

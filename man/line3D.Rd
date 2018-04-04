@@ -6,9 +6,10 @@
 \title{Lines 3D}
 \usage{
 e_lines_3d(e, source.lon, source.lat, target.lon, target.lat, name = NULL,
-  coord.system = "globe", ...)
+  coord.system = "globe", rm.x = TRUE, rm.y = TRUE, ...)
 
-e_line_3d(e, y, z, name = NULL, coord.system = NULL, ...)
+e_line_3d(e, y, z, name = NULL, coord.system = NULL, rm.x = TRUE,
+  rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -18,6 +19,8 @@ e_line_3d(e, y, z, name = NULL, coord.system = NULL, ...)
 \item{name}{name of the serie.}
 
 \item{coord.system}{Coordinate system to use, such as \code{cartesian3D}, or \code{globe}.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 

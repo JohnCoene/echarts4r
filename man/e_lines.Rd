@@ -5,16 +5,18 @@
 \title{Lines}
 \usage{
 e_lines(e, source.lon, source.lat, target.lon, target.lat,
-  coord.system = "geo", name = NULL, ...)
+  coord.system = "geo", name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{source.lon, source.lat, target.lon, target.lat}{coordinates.}
 
-\item{coord.system}{Coordinate system to use, one of \code{geo}, or \code{cartesian2D}.}
+\item{coord.system}{Coordinate system to use, one of \code{geo}, or \code{cartesian2d}.}
 
 \item{name}{name of the serie.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
