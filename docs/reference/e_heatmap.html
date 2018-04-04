@@ -160,7 +160,8 @@
     <p>Draw heatmap by coordinates.</p>
     
 
-    <pre class="usage"><span class='fu'>e_heatmap</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_heatmap</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,6 +182,11 @@
       <th>coord.system</th>
       <td><p>Coordinate system to plot against, takes 
 <code>cartesian2d</code>, <code>geo</code> or <code>calendar</code>.</p></td>
+    </tr>
+    <tr>
+      <th>rm.x, rm.y</th>
+      <td><p>Whether to remove x and y axis, only applies if <code>coord.system</code> is not 
+set to <code>cartesian2d</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>

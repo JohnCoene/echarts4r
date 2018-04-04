@@ -4,7 +4,8 @@
 \alias{e_heatmap}
 \title{Heatmap}
 \usage{
-e_heatmap(e, y, z, name = NULL, coord.system = "cartesian2d", ...)
+e_heatmap(e, y, z, name = NULL, coord.system = "cartesian2d", rm.x = TRUE,
+  rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -16,10 +17,10 @@ e_heatmap(e, y, z, name = NULL, coord.system = "cartesian2d", ...)
 \item{coord.system}{Coordinate system to plot against, takes 
 \code{cartesian2d}, \code{geo} or \code{calendar}.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
-
 \item{rm.x, rm.y}{Whether to remove x and y axis, only applies if \code{coord.system} is not 
 set to \code{cartesian2d}.}
+
+\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
 \description{
 Draw heatmap by coordinates.

@@ -160,7 +160,8 @@
     <p>Add 3D bars</p>
     
 
-    <pre class="usage"><span class='fu'>e_bar_3d</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian3D"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_bar_3d</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian3D"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -180,6 +181,10 @@
     <tr>
       <th>name</th>
       <td><p>name of the serie.</p></td>
+    </tr>
+    <tr>
+      <th>rm.x, rm.y</th>
+      <td><p>Whether to remove x and y axis, defaults to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>

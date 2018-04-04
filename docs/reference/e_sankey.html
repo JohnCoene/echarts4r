@@ -160,7 +160,8 @@
     <p>Draw a sankey diagram.</p>
     
 
-    <pre class="usage"><span class='fu'>e_sankey</span>(<span class='no'>e</span>, <span class='no'>source</span>, <span class='no'>target</span>, <span class='no'>value</span>, <span class='kw'>layout</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_sankey</span>(<span class='no'>e</span>, <span class='no'>source</span>, <span class='no'>target</span>, <span class='no'>value</span>, <span class='kw'>layout</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -180,6 +181,10 @@
     <tr>
       <th>layout</th>
       <td><p>Layout of sankey.</p></td>
+    </tr>
+    <tr>
+      <th>rm.x, rm.y</th>
+      <td><p>Whether to remove the x and y axis, defaults to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>

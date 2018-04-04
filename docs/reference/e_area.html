@@ -160,7 +160,7 @@
     <p>Add area serie.</p>
     
 
-    <pre class="usage"><span class='fu'>e_area</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_area</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='no'>bind</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -172,6 +172,10 @@
     <tr>
       <th>serie</th>
       <td><p>Column name of serie to plot.</p></td>
+    </tr>
+    <tr>
+      <th>bind</th>
+      <td><p>Binding between datasets, namely for use of <code><a href='e_brush.html'>e_brush</a></code>.</p></td>
     </tr>
     <tr>
       <th>name</th>

@@ -10,7 +10,8 @@ e_scatter(e, serie, size, bind, scale = "* 1", name = NULL,
   rm.y = TRUE, ...)
 
 e_effect_scatter(e, serie, size, bind, scale = "* 1", name = NULL,
-  coord.system = "cartesian2d", y.index = 0, x.index = 0, ...)
+  coord.system = "cartesian2d", y.index = 0, x.index = 0, rm.x = TRUE,
+  rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

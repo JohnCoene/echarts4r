@@ -337,7 +337,9 @@ e_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
 
 #' @rdname scatter
 #' @export
-e_effect_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL, coord.system = "cartesian2d", y.index = 0, x.index = 0, ...){
+e_effect_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL, 
+                             coord.system = "cartesian2d", y.index = 0, x.index = 0, 
+                             rm.x = TRUE, rm.y = TRUE, ...){
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
@@ -745,7 +747,7 @@ e_graph_edges <- function(e, edges, source, target){
 #'   e_visual_map(max = 30)
 #' 
 #' @export
-e_heatmap <- function(e, y, z, name = NULL, coord.system = "cartesian2d", ...){
+e_heatmap <- function(e, y, z, name = NULL, coord.system = "cartesian2d", rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(y))
     stop("must pass y", call. = FALSE)
   

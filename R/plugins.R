@@ -34,7 +34,7 @@ e_cloud <- function(e, word, freq, color, rm.x = TRUE, rm.y = TRUE, ...){
   e <- .rm_axis(e, rm.y, "y")
   
   data <- .build_data(e, deparse(substitute(freq)))
-  data <- .add_bind(deparse(substitute(word)))
+  data <- .add_bind(e, data, deparse(substitute(word)))
   
   if(!missing(color)){
     color <- e$x$data[[deparse(substitute(color))]]
@@ -86,7 +86,9 @@ e_liquid <- function(e, serie, color, rm.x = TRUE, rm.y = TRUE, ...){
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
   
-  data <- .build_data(e, deparse(substitute(serie)))
+  data <- e$x$data[[substitute(serie)]] %>% 
+    unlist() %>% 
+    unname()
   
   serie <- list(
     type = "liquidFill",

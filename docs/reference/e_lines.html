@@ -161,7 +161,7 @@
     
 
     <pre class="usage"><span class='fu'>e_lines</span>(<span class='no'>e</span>, <span class='no'>source.lon</span>, <span class='no'>source.lat</span>, <span class='no'>target.lon</span>, <span class='no'>target.lat</span>,
-  <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -176,11 +176,15 @@
     </tr>
     <tr>
       <th>coord.system</th>
-      <td><p>Coordinate system to use, one of <code>geo</code>, or <code>cartesian2D</code>.</p></td>
+      <td><p>Coordinate system to use, one of <code>geo</code>, or <code>cartesian2d</code>.</p></td>
     </tr>
     <tr>
       <th>name</th>
       <td><p>name of the serie.</p></td>
+    </tr>
+    <tr>
+      <th>rm.x, rm.y</th>
+      <td><p>Whether to remove x and y axis, defaults to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>

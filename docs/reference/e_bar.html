@@ -160,7 +160,7 @@
     <p>Add bar serie.</p>
     
 
-    <pre class="usage"><span class='fu'>e_bar</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_bar</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='no'>bind</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -172,6 +172,10 @@
     <tr>
       <th>serie</th>
       <td><p>Column name of serie to plot.</p></td>
+    </tr>
+    <tr>
+      <th>bind</th>
+      <td><p>Binding between datasets, namely for use of <code><a href='e_brush.html'>e_brush</a></code>.</p></td>
     </tr>
     <tr>
       <th>name</th>
@@ -196,7 +200,7 @@
   ) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>State</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_bar</span>(<span class='no'>Murder</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_bar</span>(<span class='no'>Rape</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Sick basterd"</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='co'># second y axis</span></div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
+  <span class='fu'>e_bar</span>(<span class='no'>Rape</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Sick basterd"</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='co'># secondary x axis</span></div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -160,7 +160,8 @@
     <p>Flow GL</p>
     
 
-    <pre class="usage"><span class='fu'>e_flow_gl</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>sx</span>, <span class='no'>sy</span>, <span class='no'>color</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_flow_gl</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>sx</span>, <span class='no'>sy</span>, <span class='no'>color</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -188,6 +189,10 @@
     <tr>
       <th>coord.system</th>
       <td><p>Coordinate system to use.</p></td>
+    </tr>
+    <tr>
+      <th>rm.x, rm.y</th>
+      <td><p>Whether to remove x and y axis, only applies if <code>coord.system</code> is not <code>null</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>

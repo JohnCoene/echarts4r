@@ -160,7 +160,7 @@
     <p>Add a candlestick chart.</p>
     
 
-    <pre class="usage"><span class='fu'>e_candle</span>(<span class='no'>e</span>, <span class='no'>opening</span>, <span class='no'>closing</span>, <span class='no'>low</span>, <span class='no'>high</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_candle</span>(<span class='no'>e</span>, <span class='no'>opening</span>, <span class='no'>closing</span>, <span class='no'>low</span>, <span class='no'>high</span>, <span class='no'>bind</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -172,6 +172,10 @@
     <tr>
       <th>opening, closing, low, high</th>
       <td><p>Stock prices</p></td>
+    </tr>
+    <tr>
+      <th>bind</th>
+      <td><p>Binding between datasets, namely for use of <code><a href='e_brush.html'>e_brush</a></code>.</p></td>
     </tr>
     <tr>
       <th>name</th>

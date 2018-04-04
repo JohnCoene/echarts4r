@@ -78,7 +78,8 @@ e_map_3d <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = T
   e <- .rm_axis(e, rm.y, "y")
   
   # build JSON data
-  data <- .build_data(e, e$x$mapping$x, deparse(substitute(serie)), names = c("name", "value"))
+  data <- .build_data(e, deparse(substitute(serie)))
+  data <- .add_bind(e, data, e$x$mapping$x)
   
   app <- list(
     name = name,
