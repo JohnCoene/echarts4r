@@ -5,6 +5,7 @@
 #' @inheritParams e_bar
 #' @param serie Values to plot.
 #' @param map Map type.
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' \dontrun{
@@ -29,7 +30,7 @@
 #' 
 #' @rdname map
 #' @export
-e_map <- function(e, serie, map = "world", name = NULL, ...){
+e_map <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -40,8 +41,8 @@ e_map <- function(e, serie, map = "world", name = NULL, ...){
   if(is.null(name)) # defaults to column name
     name <- deparse(substitute(serie))
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   app <- list(
     name = name,
@@ -50,8 +51,11 @@ e_map <- function(e, serie, map = "world", name = NULL, ...){
     ...
   )
   
-  if(!missing(serie))
-    app$data <- .build_data(e, e$x$mapping$x, deparse(substitute(serie)), names = c("name", "value"))
+  if(!missing(serie)){
+    data <- .build_data(e, deparse(substitute(serie)))
+    data <- .add_bind(e, data, e$x$mapping$x)
+    app$data <- data
+  }
   
   e$x$opts$series <- append(e$x$opts$series, list(app))
   
@@ -60,7 +64,7 @@ e_map <- function(e, serie, map = "world", name = NULL, ...){
 
 #' @rdname map
 #' @export
-e_map_3d <- function(e, serie, map = "world", name = NULL, ...){
+e_map_3d <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -70,8 +74,8 @@ e_map_3d <- function(e, serie, map = "world", name = NULL, ...){
   if(is.null(name)) # defaults to column name
     name <- deparse(substitute(serie))
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   # build JSON data
   data <- .build_data(e, e$x$mapping$x, deparse(substitute(serie)), names = c("name", "value"))
@@ -83,8 +87,11 @@ e_map_3d <- function(e, serie, map = "world", name = NULL, ...){
     ...
   )
   
-  if(!missing(app))
-    app$data <- .build_data(e, e$x$mapping$x, deparse(substitute(serie)), names = c("name", "value"))
+  if(!missing(serie)){
+    data <- .build_data(e, deparse(substitute(serie)))
+    data <- .add_bind(e, data, e$x$mapping$x)
+    app$data <- data
+  }
   
   e$x$opts$series <- append(e$x$opts$series, list(app))
   

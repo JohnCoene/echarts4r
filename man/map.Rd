@@ -5,9 +5,11 @@
 \alias{e_map_3d}
 \title{Choropleth}
 \usage{
-e_map(e, serie, map = "world", name = NULL, ...)
+e_map(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE,
+  ...)
 
-e_map_3d(e, serie, map = "world", name = NULL, ...)
+e_map_3d(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE,
+  ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -17,6 +19,8 @@ e_map_3d(e, serie, map = "world", name = NULL, ...)
 \item{map}{Map type.}
 
 \item{name}{name of the serie.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
