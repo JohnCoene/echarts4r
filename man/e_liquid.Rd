@@ -4,7 +4,7 @@
 \alias{e_liquid}
 \title{Liquid fill}
 \usage{
-e_liquid(e, serie, color, ...)
+e_liquid(e, serie, color, rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -12,6 +12,8 @@ e_liquid(e, serie, color, ...)
 \item{serie}{Column name of serie to plot.}
 
 \item{color}{Color to plot.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }

@@ -5,6 +5,7 @@
 #' @inheritParams e_bar
 #' @param word,freq Terms and their frequencies.
 #' @param color Word color.
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' words <- function(n = 5000) {
@@ -24,16 +25,16 @@
 #' @seealso \href{official documentation}{https://github.com/ecomfe/echarts-wordcloud}
 #' 
 #' @export
-e_cloud <- function(e, word, freq, color, ...){
+e_cloud <- function(e, word, freq, color, rm.x = TRUE, rm.y = TRUE, ...){
   
   if(missing(e))
     stop("missing e", call. = FALSE)
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
-  data <- .build_data(e, deparse(substitute(word)), deparse(substitute(freq)),
-                      names = c("name", "value"))
+  data <- .build_data(e, deparse(substitute(freq)))
+  data <- .add_bind(deparse(substitute(word)))
   
   if(!missing(color)){
     color <- e$x$data[[deparse(substitute(color))]]
@@ -65,6 +66,7 @@ e_cloud <- function(e, word, freq, color, ...){
 #' 
 #' @inheritParams e_bar
 #' @param color Color to plot.
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' df <- data.frame(val = c(0.6, 0.5, 0.4))
@@ -77,12 +79,12 @@ e_cloud <- function(e, word, freq, color, ...){
 #' @seealso \href{official documentation}{https://github.com/ecomfe/echarts-liquidfill}
 #' 
 #' @export
-e_liquid <- function(e, serie, color, ...){
+e_liquid <- function(e, serie, color, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("missing e", call. = FALSE)
   
-  e$x$opts$xAxis <- NULL # remove
-  e$x$opts$yAxis <- NULL # remove
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
   
   data <- .build_data(e, deparse(substitute(serie)))
   

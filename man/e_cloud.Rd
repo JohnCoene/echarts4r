@@ -4,7 +4,7 @@
 \alias{e_cloud}
 \title{Wordcloud}
 \usage{
-e_cloud(e, word, freq, color, ...)
+e_cloud(e, word, freq, color, rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -12,6 +12,8 @@ e_cloud(e, word, freq, color, ...)
 \item{word, freq}{Terms and their frequencies.}
 
 \item{color}{Word color.}
+
+\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }
