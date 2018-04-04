@@ -208,10 +208,10 @@ e_datazoom <- function(e, x.index = NULL, y.index = NULL, ...){
     e <- e_toolbox(e, "dataZoom")
   
   opts <- list(...)
-  opts$xAxisIndex <- x.index
-  opts$yAxisIndex <- y.index
+  if(!is.null(x.index)) opts$xAxisIndex <- x.index
+  if(!is.null(y.index)) opts$yAxisIndex <- y.index
   
-  e$x$opts$dataZoom <- append(e$x$opts$dataZoom, opts)
+  e$x$opts$dataZoom <- append(e$x$opts$dataZoom, list(opts))
   
   e
 }

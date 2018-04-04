@@ -59,6 +59,7 @@ devtools::install_github("JohnCoene/echarts4r")
 
 * Proxies (`*_p`)
 * Themes
+* Built-in brush
 * Animations
 
 ## Examples
