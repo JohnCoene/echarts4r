@@ -8,3 +8,4 @@ docs
 _pkgdown.yml
 index.Rmd
 logo.png
+.gitattributes
