@@ -6,11 +6,12 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
-    var chart;
+    var chart = echarts.init(document.getElementById(el.id));
     
     return {
 
       renderValue: function(x) {
+        chart.dispose();
         
         if(x.theme2 === true){
           var th = JSON.parse(x.customTheme);
