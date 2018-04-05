@@ -1,3 +1,5 @@
+url: http://echarts4r.john-coene.com
+
 template:
   params:
     bootswatch: journal
