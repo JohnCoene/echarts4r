@@ -70,6 +70,8 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
     x <- .assign_axis(x)
   }
   
+  x$dispose <- dispose
+  
   # create widget
   htmlwidgets::createWidget(
     name = 'echarts4r',
