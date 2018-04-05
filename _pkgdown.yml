@@ -65,7 +65,7 @@ navbar:
     - text: "Reference"
       href: "reference/"
   right:
-    - icon: fa-github
+    - icon: fa-github fa-lg
       href: https://github.com/JohnCoene/echarts4r
 
 authors:
