@@ -10,7 +10,7 @@ globalVariables(c("e", "."))
   if(cl == "character" || cl == "factor"){
     x$opts$xAxis <- list(list(data = unique(x$data[[x$mapping$x]]), type = "category", boundaryGap = TRUE))
   } else if(cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
-    x$opts$xAxis <- list(list(data = unique(x$data[[x$mapping$x]]), type = "time", boundaryGap = FALSE))
+    x$opts$xAxis <- list(list(data = unique(x$data[[x$mapping$x]]), type = "time", boundaryGap = TRUE))
   } else {
     x$data <- x$data %>% 
       dplyr::arrange_(x$mapping$x)
