@@ -1,8 +1,9 @@
 Package: echarts4r
-Title: htmlwidget for echarts version 4
+Title: htmlwidget for Echarts Version 4
+Date: 2018-05-04
 Version: 0.0.1.9000
 Authors@R: person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre"))
-Description: htmlwidget for echarts version 4.
+Description: An htmlwidget for echarts version 4.
 Depends: R (>= 3.4.2)
 License: MIT + file LICENSE
 Encoding: UTF-8

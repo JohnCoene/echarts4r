@@ -20,7 +20,7 @@ articles:
     - gl
     - graph
     - brush
-    - proxies
+    - shiny
     - themes
 
 development:
@@ -57,7 +57,7 @@ navbar:
         - text: "Graph"
           href: articles/graph.html
         - text: "Proxies"
-          href: articles/proxies.html
+          href: articles/shiny.html
         - text: "Brush"
           href: articles/brush.html
         - text: "Themes"
