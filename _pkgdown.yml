@@ -2,6 +2,9 @@ template:
   params:
     bootswatch: journal
     ganalytics: UA-75544116-1
+    docsearch:
+      api_key: f67fcda57c44388a248e49a457aa4fe7
+      index_name: echarts4r
 
 articles:
   - title: "Usage"
