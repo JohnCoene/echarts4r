@@ -20,7 +20,10 @@ library(echarts4r)
 
 `echarts4r` comes with proxies (functions ending on `_p`) as well as the ability access selected data.
 
-```{r}
+* `elementId` + `_brush`
+* `elementId` + `_legend_change`
+
+```{r, eval=FALSE}
 library(shiny)
 library(echarts4r)
 
@@ -53,7 +56,7 @@ server <- function(input, output, session){
   })
   
   output$selected <- renderPrint({
-    input$plot_selected
+    input$plot_brush
   })
   
 }

@@ -5,6 +5,8 @@ HTMLWidgets.widget({
   type: 'output',
 
   factory: function(el, width, height) {
+    
+    var initialized = false;
 
     var chart;
     
@@ -12,27 +14,47 @@ HTMLWidgets.widget({
 
       renderValue: function(x) {
         
-        if(x.theme2 === true){
-          var th = JSON.parse(x.customTheme);
-          echarts.registerTheme(x.theme, th);
+        if(x.dispose === true){
+          chart = echarts.init(document.getElementById(el.id));
+          chart.dispose();
         }
         
-        if(x.registerMap === true){
-          echarts.registerMap(x.mapName, x.geoJSON);
+        if (!initialized) {
+          initialized = true;
+          if(x.theme2 === true){
+            var th = JSON.parse(x.customTheme);
+            echarts.registerTheme(x.theme, th);
+          }
+          
+          if(x.registerMap === true){
+            echarts.registerMap(x.mapName, x.geoJSON);
+          }
         }
         
         chart = echarts.init(document.getElementById(el.id), x.theme);
         chart.setOption(x.opts);
-        
-        if(x.loading === true){
-          chart.showLoading('default', x.loadingOpts);
-        } else {
-          chart.hideLoading();
-        }
 
         $(document).on('shiny:recalculating', function() {
-          chart.showLoading();
+          if(x.loading === true){
+            chart.showLoading('default', x.loadingOpts);
+          } else if(x.loading === false) {
+            chart.hideLoading();
+          }
         });
+        
+        $(document).on('shiny:value', function() {
+          chart.hideLoading();
+        });
+        
+        if (HTMLWidgets.shinyMode) {
+          chart.on("brushselected", function(e){
+            Shiny.onInputChange(el.id + '_brush' + ":echarts4rParse", e.batch[0].selected);
+          });
+          
+          chart.on("legendselectchanged", function(e){
+            Shiny.onInputChange(el.id + '_legend_change' + ":echarts4rParse", e.name);
+          });
+        }
 
       },
       

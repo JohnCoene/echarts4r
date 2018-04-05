@@ -13,7 +13,7 @@ articles:
   graph: graph.html
   map: map.html
   map3d: map3d.html
-  proxies: proxies.html
+  shiny: shiny.html
   themes: themes.html
   threeD: threeD.html
 

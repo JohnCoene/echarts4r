@@ -56,6 +56,9 @@
 
 
 
+<!-- docsearch -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
   </head>
 
   <body>
@@ -121,7 +124,7 @@
       <a href="../articles/graph.html">Graph</a>
     </li>
     <li>
-      <a href="../articles/proxies.html">Proxies</a>
+      <a href="../articles/shiny.html">Proxies</a>
     </li>
     <li>
       <a href="../articles/brush.html">Brush</a>
@@ -139,11 +142,17 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/JohnCoene/echarts4r">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -200,13 +209,17 @@ Only these types of series support it: <code><a href='scatter.html'>e_scatter</a
   <span class='fu'>library</span>(<span class='no'>shiny</span>)
 
   <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidPage</a></span>(
-    <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>"add"</span>, <span class='st'>"Add Data"</span>),
-    <span class='fu'><a href='echarts4r-shiny.html'>echarts4rOutput</a></span>(<span class='st'>"plot"</span>)
+    <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>"add"</span>, <span class='st'>"Add Data to y"</span>),
+    <span class='fu'><a href='echarts4r-shiny.html'>echarts4rOutput</a></span>(<span class='st'>"plot"</span>),
+    <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/builder'>h4</a></span>(<span class='st'>"Brush"</span>),
+    <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='st'>"selected"</span>),
+    <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/builder'>h4</a></span>(<span class='st'>"Legend select change"</span>),
+    <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='st'>"legend"</span>)
   )
 
   <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>){
 
-    <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>5</span>, <span class='fl'>3</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>12</span>))
+    <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>5</span>, <span class='fl'>3</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>12</span>), <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>5</span>))
 
     <span class='no'>react</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/observeEvent'>eventReactive</a></span>(<span class='no'>input</span>$<span class='no'>add</span>, {
       <span class='fu'>set.seed</span>(<span class='fu'>sample</span>(<span class='fl'>1</span>:<span class='fl'>1000</span>, <span class='fl'>1</span>))
@@ -216,12 +229,22 @@ Only these types of series support it: <code><a href='scatter.html'>e_scatter</a
     <span class='no'>output</span>$<span class='no'>plot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span>({
       <span class='no'>data</span> <span class='kw'>%&gt;%</span>
        <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
-       <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>y</span>)
+       <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>y</span>) <span class='kw'>%&gt;%</span>
+       <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>z</span>) <span class='kw'>%&gt;%</span>
+       <span class='fu'><a href='e_brush.html'>e_brush</a></span>(<span class='kw'>throttleType</span> <span class='kw'>=</span> <span class='st'>"debounce"</span>)
     })
 
     <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>add</span>, {
       <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"plot"</span>) <span class='kw'>%&gt;%</span>
         <span class='fu'>e_append1_p</span>(<span class='fl'>0</span>, <span class='fu'>react</span>(), <span class='no'>x</span>, <span class='no'>y</span>)
+    })
+
+    <span class='no'>output</span>$<span class='no'>selected</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>({
+      <span class='no'>input</span>$<span class='no'>plot_brush</span>
+    })
+
+    <span class='no'>output</span>$<span class='no'>legend</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>({
+      <span class='no'>input</span>$<span class='no'>plot_legend_change</span>
     })
 
   }
@@ -257,6 +280,17 @@ Only these types of series support it: <code><a href='scatter.html'>e_scatter</a
    </div>
 
   
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+  docsearch({
+    
+    apiKey: 'f67fcda57c44388a248e49a457aa4fe7',
+    indexName: 'echarts4r',
+    inputSelector: 'input#search-input.form-control',
+    debug: false // Set debug to true if you want to inspect the dropdown
+  });
+</script>
+
 
   </body>
 </html>

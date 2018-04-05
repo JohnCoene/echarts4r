@@ -56,6 +56,9 @@
 
 
 
+<!-- docsearch -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
   </head>
 
   <body>
@@ -121,7 +124,7 @@
       <a href="../articles/graph.html">Graph</a>
     </li>
     <li>
-      <a href="../articles/proxies.html">Proxies</a>
+      <a href="../articles/shiny.html">Proxies</a>
     </li>
     <li>
       <a href="../articles/brush.html">Brush</a>
@@ -139,11 +142,17 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/JohnCoene/echarts4r">
-    <span class="fa fa-github"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -163,7 +172,8 @@
     <p>Initialise a chart.</p>
     
 
-    <pre class="usage"><span class='fu'>e_charts</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>e_charts</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dispose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_data</span>(<span class='no'>e</span>, <span class='no'>data</span>, <span class='no'>x</span>)</pre>
     
@@ -187,6 +197,10 @@ string and have <code>'px'</code> appended.</p></td>
     <tr>
       <th>elementId</th>
       <td><p>Id of element.</p></td>
+    </tr>
+    <tr>
+      <th>dispose</th>
+      <td><p>Set to <code>TRUE</code> to force redraw of chart, set to <code>FALSE</code> to update.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -232,6 +246,17 @@ string and have <code>'px'</code> appended.</p></td>
    </div>
 
   
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+  docsearch({
+    
+    apiKey: 'f67fcda57c44388a248e49a457aa4fe7',
+    indexName: 'echarts4r',
+    inputSelector: 'input#search-input.form-control',
+    debug: false // Set debug to true if you want to inspect the dropdown
+  });
+</script>
+
 
   </body>
 </html>
