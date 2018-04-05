@@ -5,7 +5,8 @@
 \alias{e_data}
 \title{Initialise}
 \usage{
-e_charts(data, x, width = NULL, height = NULL, elementId = NULL, ...)
+e_charts(data, x, width = NULL, height = NULL, elementId = NULL,
+  dispose = TRUE, ...)
 
 e_data(e, data, x)
 }
@@ -19,6 +20,8 @@ e_data(e, data, x)
 string and have \code{'px'} appended.}
 
 \item{elementId}{Id of element.}
+
+\item{dispose}{Set to \code{TRUE} to force redraw of chart, set to \code{FALSE} to update.}
 
 \item{...}{Any other argument.}
 

@@ -8,12 +8,16 @@ HTMLWidgets.widget({
     
     var initialized = false;
 
-    var chart = echarts.init(document.getElementById(el.id));
+    var chart;
     
     return {
 
       renderValue: function(x) {
-        chart.dispose();
+        
+        if(x.dispose === true){
+          chart = echarts.init(document.getElementById(el.id));
+          chart.dispose();
+        }
         
         if (!initialized) {
           initialized = true;
@@ -35,10 +39,22 @@ HTMLWidgets.widget({
             chart.showLoading('default', x.loadingOpts);
           } else if(x.loading === false) {
             chart.hideLoading();
-          } else {
-            chart.showLoading();
           }
         });
+        
+        $(document).on('shiny:value', function() {
+          chart.hideLoading();
+        });
+        
+        if (HTMLWidgets.shinyMode) {
+          chart.on("brushselected", function(e){
+            Shiny.onInputChange(el.id + '_brush' + ":echarts4rParse", e.batch[0].selected);
+          });
+          
+          chart.on("legendselectchanged", function(e){
+            Shiny.onInputChange(el.id + '_legend_change' + ":echarts4rParse", e.name);
+          });
+        }
 
       },
       

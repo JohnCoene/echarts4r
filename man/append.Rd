@@ -31,13 +31,17 @@ if(interactive()){
   library(shiny)
   
   ui <- fluidPage(
-    actionButton("add", "Add Data"),
-    echarts4rOutput("plot")
+    actionButton("add", "Add Data to y"),
+    echarts4rOutput("plot"),
+    h4("Brush"),
+    verbatimTextOutput("selected"),
+    h4("Legend select change"),
+    verbatimTextOutput("legend")
   )
   
   server <- function(input, output, session){
   
-    data <- data.frame(x = rnorm(10, 5, 3), y = rnorm(10, 50, 12))
+    data <- data.frame(x = rnorm(10, 5, 3), y = rnorm(10, 50, 12), z = rnorm(10, 50, 5))
     
     react <- eventReactive(input$add, {
       set.seed(sample(1:1000, 1))
@@ -47,12 +51,22 @@ if(interactive()){
     output$plot <- renderEcharts4r({
       data \%>\% 
        e_charts(x) \%>\% 
-       e_scatter(y)
+       e_scatter(y) \%>\%
+       e_scatter(z) \%>\% 
+       e_brush(throttleType = "debounce")
     })
     
     observeEvent(input$add, {
       echarts4rProxy("plot") \%>\% 
         e_append1_p(0, react(), x, y)
+    })
+    
+    output$selected <- renderPrint({
+      input$plot_brush
+    })
+    
+    output$legend <- renderPrint({
+      input$plot_legend_change
     })
     
   }
