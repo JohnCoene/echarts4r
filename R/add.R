@@ -394,7 +394,7 @@ e_effect_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
 #' Add a candlestick chart.
 #' 
 #' @inheritParams e_bar
-#' @param opening,closing,low,high Stock prices
+#' @param opening,closing,low,high Stock prices.
 #' 
 #' @examples 
 #' date <- c("2017-01-01", "2017-01-02", "2017-01-03", "2017-01-04", "2017-03-05", 

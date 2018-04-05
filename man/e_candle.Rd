@@ -9,7 +9,7 @@ e_candle(e, opening, closing, low, high, bind, name = NULL, ...)
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{opening, closing, low, high}{Stock prices}
+\item{opening, closing, low, high}{Stock prices.}
 
 \item{bind}{Binding between datasets, namely for use of \code{\link{e_brush}}.}
 
