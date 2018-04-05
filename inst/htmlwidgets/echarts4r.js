@@ -29,15 +29,15 @@ HTMLWidgets.widget({
         
         chart = echarts.init(document.getElementById(el.id), x.theme);
         chart.setOption(x.opts);
-        
-        if(x.loading === true){
-          chart.showLoading('default', x.loadingOpts);
-        } else {
-          chart.hideLoading();
-        }
 
         $(document).on('shiny:recalculating', function() {
-          chart.showLoading();
+          if(x.loading === true){
+            chart.showLoading('default', x.loadingOpts);
+          } else if(x.loading === false) {
+            chart.hideLoading();
+          } else {
+            chart.showLoading();
+          }
         });
 
       },
