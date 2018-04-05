@@ -61,7 +61,7 @@ navbar:
           href: articles/gl.html
         - text: "Graph"
           href: articles/graph.html
-        - text: "Proxies"
+        - text: "Shiny"
           href: articles/shiny.html
         - text: "Brush"
           href: articles/brush.html

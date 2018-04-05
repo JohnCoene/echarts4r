@@ -11,7 +11,7 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><meta property="og:title" content="Shiny">
 <meta property="og:description" content="">
-<meta property="og:image" content="/logo.png">
+<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -22,7 +22,7 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-75544116-1', 'auto');
+  ga('create', 'UA-74544116-1', 'auto');
   ga('send', 'pageview');
 
 </script><!-- docsearch --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
@@ -89,7 +89,7 @@
       <a href="../articles/graph.html">Graph</a>
     </li>
     <li>
-      <a href="../articles/shiny.html">Proxies</a>
+      <a href="../articles/shiny.html">Shiny</a>
     </li>
     <li>
       <a href="../articles/brush.html">Brush</a>
@@ -140,6 +140,7 @@
     
     
 <p><code>echarts4r</code> comes with proxies (functions ending on <code>_p</code>) as well as the ability access selected data.</p>
+<p>Get data from shiny with the following:</p>
 <ul>
 <li>
 <code>elementId</code> + <code>_brush</code>
@@ -148,6 +149,7 @@
 <code>elementId</code> + <code>_legend_change</code>
 </li>
 </ul>
+<p>See the example below.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(echarts4r)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"></a>

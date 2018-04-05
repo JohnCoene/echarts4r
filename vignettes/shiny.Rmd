@@ -20,8 +20,12 @@ library(echarts4r)
 
 `echarts4r` comes with proxies (functions ending on `_p`) as well as the ability access selected data.
 
+Get data from shiny with the following:
+
 * `elementId` + `_brush`
 * `elementId` + `_legend_change`
+
+See the example below.
 
 ```{r, eval=FALSE}
 library(shiny)

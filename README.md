@@ -18,9 +18,7 @@ You can install echarts4r from github with:
 devtools::install_github("JohnCoene/echarts4r")
 ```
 
-## Documentation
-
-See the [website](https://johncoene.github.io/echarts4r) for documentation, examples, and tutorials.
+## [website](https://echarts4r.john-coene.com)
 
 ## Features
 
