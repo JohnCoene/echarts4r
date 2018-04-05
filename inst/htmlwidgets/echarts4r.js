@@ -5,6 +5,8 @@ HTMLWidgets.widget({
   type: 'output',
 
   factory: function(el, width, height) {
+    
+    var initialized = false;
 
     var chart = echarts.init(document.getElementById(el.id));
     
@@ -13,13 +15,16 @@ HTMLWidgets.widget({
       renderValue: function(x) {
         chart.dispose();
         
-        if(x.theme2 === true){
-          var th = JSON.parse(x.customTheme);
-          echarts.registerTheme(x.theme, th);
-        }
-        
-        if(x.registerMap === true){
-          echarts.registerMap(x.mapName, x.geoJSON);
+        if (!initialized) {
+          initialized = true;
+          if(x.theme2 === true){
+            var th = JSON.parse(x.customTheme);
+            echarts.registerTheme(x.theme, th);
+          }
+          
+          if(x.registerMap === true){
+            echarts.registerMap(x.mapName, x.geoJSON);
+          }
         }
         
         chart = echarts.init(document.getElementById(el.id), x.theme);
