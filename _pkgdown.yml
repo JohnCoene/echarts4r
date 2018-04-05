@@ -29,8 +29,7 @@ articles:
     - themes
 
 development:
-  destination: dev
-  version_label: danger
+  mode: unreleased
 
 navbar:
   title: "echarts"
