@@ -62,6 +62,10 @@ devtools::install_github("JohnCoene/echarts4r")
 * Built-in brush
 * Animations
 
+#### Options
+
+ECharts version 4 comes with hundreds if not thousands of options, it's neigh impossible to list them all (see this [issue](https://github.com/JohnCoene/echarts4r/issues/1)). All options are actually available though not lsited in the documentation as parameters, you can pass the aforementioned options as additional arguments through the three dot construct (`...`): navigate the website to see some examples.
+
 ## Examples
 
 Some of what you can do with `echarts4r`.
@@ -79,7 +83,8 @@ USArrests %>%
   e_area(Murder) %>%
   e_bar(Rape, name = "Sick basterd", x.index = 1) %>% # second y axis 
   e_mark_line("Sick basterd", data = list(type = "average")) %>% 
-  e_mark_point("Murder", data = list(type = "max"))
+  e_mark_point("Murder", data = list(type = "max")) %>% 
+  e_tooltip(trigger = "axis")
 
 # river
 dates <- seq.Date(Sys.Date() - 30, Sys.Date(), by = "day")
