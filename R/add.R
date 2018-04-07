@@ -6,7 +6,7 @@
 #' @param serie Column name of serie to plot.
 #' @param bind Binding between datasets, namely for use of \code{\link{e_brush}}.
 #' @param name name of the serie.
-#' @param ... Any other option to pass to \code{bar} or \code{line} char types.
+#' @param ... Any other option to pass, check See Also section.
 #' @param x.index,y.index Indexes of x and y axis.
 #' 
 #' @examples 

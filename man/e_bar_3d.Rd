@@ -18,7 +18,7 @@ e_bar_3d(e, y, z, coord.system = "cartesian3D", name = NULL, rm.x = TRUE,
 
 \item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Add 3D bars

@@ -11,7 +11,7 @@ e_angle_axis(e, show = TRUE, ...)
 
 \item{show}{Whether to display the axis.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Customise angle axis.

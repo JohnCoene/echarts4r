@@ -22,7 +22,7 @@ e_line(e, serie, bind, name = NULL, y.index = 0, x.index = 0,
 
 \item{coord.system}{Coordinate system to plot against.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Add line serie.

@@ -20,7 +20,7 @@ e_scatter_3d(e, y, z, color, size, coord.system = "cartesian3D",
 
 \item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Add 3D scatter.

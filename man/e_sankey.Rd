@@ -18,7 +18,7 @@ e_sankey(e, source, target, value, layout = "none", rm.x = TRUE,
 
 \item{rm.x, rm.y}{Whether to remove the x and y axis, defaults to \code{TRUE}.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Draw a sankey diagram.

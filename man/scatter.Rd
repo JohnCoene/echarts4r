@@ -36,7 +36,7 @@ by \code{1} (equivalent to no multiplier).}
 \item{rm.x, rm.y}{Whether to remove x and y axis, only applies if \code{coord.system} is not 
 set to \code{cartesian2d}.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Add scatter serie.

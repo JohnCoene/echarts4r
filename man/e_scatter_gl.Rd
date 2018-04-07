@@ -18,7 +18,7 @@ e_scatter_gl(e, y, z, name = NULL, coord.system = "geo", rm.x = TRUE,
 
 \item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Draw scatter GL.

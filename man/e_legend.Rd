@@ -13,7 +13,7 @@ e_legend(e, show = TRUE, type = c("plain", "scroll"), ...)
 
 \item{type}{Type of legend, \code{plain} or \code{scroll}.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Customise the legend.
@@ -26,4 +26,7 @@ mtcars \%>\%
   e_pie(carb) \%>\% 
   e_legend(FALSE)
 
+}
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#legend}
 }

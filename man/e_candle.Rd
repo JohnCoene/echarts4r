@@ -15,7 +15,7 @@ e_candle(e, opening, closing, low, high, bind, name = NULL, ...)
 
 \item{name}{name of the serie.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Add a candlestick chart.

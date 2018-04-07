@@ -11,7 +11,7 @@ e_calendar(e, range, ...)
 
 \item{range}{Range of calendar format, string or vector.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Calendar

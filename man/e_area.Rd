@@ -19,7 +19,7 @@ e_area(e, serie, bind, name = NULL, y.index = 0, x.index = 0, ...)
 
 \item{x.index}{Indexes of x and y axis.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Add area serie.

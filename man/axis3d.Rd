@@ -22,7 +22,7 @@ e_z_axis_3d(e, index = 0, ...)
 
 \item{index}{Index of axis to customise.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Customise 3D axis.

@@ -13,7 +13,7 @@ e_title(e, text, subtext = NULL, link = NULL, sublink = NULL, ...)
 
 \item{link, sublink}{Title and Subtitle link.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Add title.
@@ -26,4 +26,7 @@ quakes \%>\%
   e_visual_map(min = 3, max = 7) \%>\% 
   e_title("Quakes", "Stations and Magnitude")
 
+}
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#title}
 }

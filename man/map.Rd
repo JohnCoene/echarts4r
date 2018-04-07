@@ -22,7 +22,7 @@ e_map_3d(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE,
 
 \item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Draw maps.
@@ -48,5 +48,7 @@ choropleth \%>\%
 
 }
 \seealso{
-\code{\link{e_country_names}}
+\code{\link{e_country_names}}, 
+\href{Additional map arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-map}, 
+\href{Additional map 3D arguments}{http://echarts.baidu.com/option-gl.html#series-map3D}
 }

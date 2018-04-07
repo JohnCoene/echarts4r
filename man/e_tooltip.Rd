@@ -37,7 +37,7 @@ If you need to interact in the tooltip like with links or buttons, it can be set
 \item{always.show.content}{Whether to show tooltip content all the time. By default, 
 it will be hidden after some time. It can be set to be \code{TRUE} to preserve displaying.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Customise tooltip
@@ -48,4 +48,7 @@ USArrests \%>\%
   e_bar(Murder) \%>\% 
   e_tooltip(trigger = "axis")
 
+}
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip}
 }

@@ -11,7 +11,7 @@ e_geo(e, map = "world", ...)
 
 \item{map}{Map type.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Initialise geo.

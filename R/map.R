@@ -26,7 +26,9 @@
 #'   e_visual_map(min = 10, max = 30)
 #' }
 #' 
-#' @seealso \code{\link{e_country_names}}
+#' @seealso \code{\link{e_country_names}}, 
+#' \href{Additional map arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-map}, 
+#' \href{Additional map 3D arguments}{http://echarts.baidu.com/option-gl.html#series-map3D}
 #' 
 #' @rdname map
 #' @export

@@ -11,7 +11,7 @@ e_polar(e, show = TRUE, ...)
 
 \item{show}{Whether to display the axis.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Customise polar coordinates.
@@ -26,4 +26,7 @@ df \%>\%
   e_radius_axis() \%>\% 
   e_line(y, coord.system = "polar", smooth = TRUE) 
 
+}
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#polar}
 }

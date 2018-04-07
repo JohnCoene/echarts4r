@@ -16,7 +16,7 @@ e_globe(e, environment = NULL, base.texture = NULL, height.texture = NULL,
 
 \item{height.texture}{Texture of height.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Add globe.

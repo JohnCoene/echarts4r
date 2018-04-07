@@ -16,7 +16,7 @@ e_mark_line(e, serie = NULL, data = NULL, ...)
 
 \item{data}{Placement.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Mark points and lines.
@@ -44,4 +44,8 @@ USArrests \%>\%
   e_mark_point(data = min) \%>\% 
   e_mark_line(data = avg)
 
+}
+\seealso{
+\href{Additional point arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.markPoint},
+\href{Additional line arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.markLine}
 }

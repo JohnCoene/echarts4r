@@ -20,7 +20,7 @@ e_heatmap(e, y, z, name = NULL, coord.system = "cartesian2d", rm.x = TRUE,
 \item{rm.x, rm.y}{Whether to remove x and y axis, only applies if \code{coord.system} is not 
 set to \code{cartesian2d}.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Draw heatmap by coordinates.

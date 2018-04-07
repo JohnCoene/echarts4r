@@ -13,7 +13,7 @@ e_datazoom(e, x.index = NULL, y.index = NULL, ...)
 
 \item{y.index}{Indexes of x and y axis.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Add data zoom.
@@ -29,4 +29,7 @@ USArrests \%>\%
   e_grid(height = "35\%", top = "50\%") \%>\% 
   e_datazoom(x.index = c(0, 1))
 
+}
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#dataZoom}
 }

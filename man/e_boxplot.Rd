@@ -15,7 +15,7 @@ e_boxplot(e, serie, name = NULL, outliers = TRUE, ...)
 
 \item{outliers}{Whether to plot outliers.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Draw boxplot.

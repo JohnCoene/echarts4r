@@ -22,3 +22,6 @@ USArrests \%>\%
   e_datazoom(x.index = 0) 
 
 }
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#toolbox}
+}

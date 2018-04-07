@@ -13,7 +13,7 @@ e_brush(e, x.index = NULL, y.index = NULL, ...)
 
 \item{y.index}{Indexes of x and y axis.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Add a brush.
@@ -34,4 +34,7 @@ quakes \%>\%
   e_y_axis(type = "value", name = "depth", min = 3.5) \%>\% 
   e_theme("dark")
 
+}
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#brush}
 }

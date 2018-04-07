@@ -38,3 +38,6 @@ mtcars \%>\%
   e_animation(duration = 10000)
 
 }
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#animation}
+}

@@ -13,7 +13,7 @@ e_visual_map(e, calculable = TRUE, type = c("continuous", "piecewise"), ...)
 
 \item{type}{One of \code{continuous} or \code{piecewise}.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Visual Map
@@ -51,4 +51,7 @@ matrix \%>\%
     bottom = 300 # padding to avoid visual maps overlap
   )
 
+}
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#visualMap}
 }

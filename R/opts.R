@@ -37,6 +37,8 @@
 #'     bottom = 300 # padding to avoid visual maps overlap
 #'   )
 #' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#visualMap}
+#' 
 #' @export
 e_visual_map <- function(e, calculable = TRUE, type = c("continuous", "piecewise"), ...){
   
@@ -79,6 +81,8 @@ e_visual_map <- function(e, calculable = TRUE, type = c("continuous", "piecewise
 #'   e_charts(Assault) %>% 
 #'   e_bar(Murder) %>% 
 #'   e_tooltip(trigger = "axis")
+#' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip}
 #' 
 #' @export
 e_tooltip <- function(e, show = TRUE, trigger = c("item", "axis"), show.content = TRUE,
@@ -124,6 +128,8 @@ e_tooltip <- function(e, show = TRUE, trigger = c("item", "axis"), show.content 
 #'   e_pie(carb) %>% 
 #'   e_legend(FALSE)
 #' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#legend}
+#' 
 #' @export
 e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), ...){
   
@@ -155,6 +161,8 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), ...){
 #'   e_line(Assault) %>% 
 #'   e_area(Murder, y.index = 1, x.index = 1) %>% 
 #'   e_datazoom(x.index = 0) 
+#' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#toolbox}
 #' 
 #' @export
 e_toolbox <- function(e, feature){
@@ -191,6 +199,8 @@ e_toolbox <- function(e, feature){
 #'   e_grid(height = "35%") %>% 
 #'   e_grid(height = "35%", top = "50%") %>% 
 #'   e_datazoom(x.index = c(0, 1))
+#' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#dataZoom}
 #' 
 #' @export
 e_datazoom <- function(e, x.index = NULL, y.index = NULL, ...){
@@ -238,6 +248,8 @@ e_datazoom <- function(e, x.index = NULL, y.index = NULL, ...){
 #'   e_y_axis(type = "value", name = "depth", min = 3.5) %>% 
 #'   e_theme("dark")
 #' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#brush}
+#' 
 #' @export
 e_brush <- function(e, x.index = NULL, y.index = NULL, ...){
   
@@ -281,6 +293,8 @@ e_brush <- function(e, x.index = NULL, y.index = NULL, ...){
 #'   e_visual_map(min = 3, max = 7) %>% 
 #'   e_title("Quakes", "Stations and Magnitude")
 #' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#title}
+#' 
 #' @export
 e_title <- function(e, text, subtext = NULL, link = NULL, sublink = NULL, ...){
   
@@ -316,6 +330,8 @@ e_title <- function(e, text, subtext = NULL, link = NULL, sublink = NULL, ...){
 #'   e_radius_axis() %>% 
 #'   e_line(y, coord.system = "polar", smooth = TRUE) 
 #' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#polar}
+#' 
 #' @export
 e_polar <- function(e, show = TRUE, ...){
   
@@ -336,6 +352,8 @@ e_polar <- function(e, show = TRUE, ...){
 #' 
 #' @inheritParams e_bar
 #' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#radar}
+#' 
 #' @export
 e_radar <- function(e, ...){
   
@@ -352,6 +370,8 @@ e_radar <- function(e, ...){
 #' Customise axis pointer.
 #' 
 #' @inheritParams e_bar
+#' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#axisPointer}
 #' 
 #' @export
 e_axis_pointer <- function(e, ...){
@@ -385,6 +405,8 @@ e_axis_pointer <- function(e, ...){
 #'   e_charts(mpg) %>% 
 #'   e_area(drat) %>% 
 #'   e_animation(duration = 10000)
+#' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#animation}
 #' 
 #' @export
 e_animation <- function(e, show = TRUE, threshold = NULL, duration = NULL, easing = NULL, delay = NULL,

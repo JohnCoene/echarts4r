@@ -11,7 +11,7 @@ e_grid_3d(e, index = NULL, ...)
 
 \item{index}{Index of axis to customise.}
 
-\item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Customise grid.
