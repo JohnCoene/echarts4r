@@ -27,3 +27,6 @@ USArrests \%>\%
   e_grid(height = "40\%", top = "55\%")
 
 }
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#grid}
+}

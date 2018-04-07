@@ -20,7 +20,8 @@
 #'   e_charts(countries) %>% 
 #'   e_geo_3d(height, color)
 #'   
-#' @seealso \code{\link{e_country_names}}
+#' @seealso \code{\link{e_country_names}}, 
+#' \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#geo3D}
 #' 
 #' @export
 e_geo_3d <- function(e, serie, color, type = "world", rm.x = TRUE, rm.y = TRUE, ...){
@@ -69,6 +70,8 @@ e_geo_3d <- function(e, serie, color, type = "world", rm.x = TRUE, rm.y = TRUE, 
 #'     name = "flights",
 #'     lineStyle = list(normal = list(curveness = 0.3))
 #'    )
+#' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#geo}
 #' 
 #' @export
 e_geo <- function(e, map = "world", ...){

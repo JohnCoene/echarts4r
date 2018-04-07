@@ -35,3 +35,6 @@ flights \%>\%
    )
 
 }
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#geo}
+}

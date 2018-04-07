@@ -41,5 +41,9 @@ USArrests \%>\%
   e_charts(State) \%>\% 
   e_area(Murder) \%>\% 
   e_x_axis(axisLabel = list(interval = 0, rotate = 45)) # rotate
-
+  
+}
+\seealso{
+\href{Additional x arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#xAxis}, 
+\href{Additional y arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#yAxis}
 }

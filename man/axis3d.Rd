@@ -27,3 +27,8 @@ e_z_axis_3d(e, index = 0, ...)
 \description{
 Customise 3D axis.
 }
+\seealso{
+\href{Additional x arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#xAxis3D},
+ \href{Additional y arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#yAxis3D},
+ \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#zAxis3D}
+}

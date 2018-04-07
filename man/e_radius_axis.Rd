@@ -27,3 +27,6 @@ df \%>\%
   e_line(y, coord.system = "polar", smooth = TRUE) 
 
 }
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#radiusAxis}
+}

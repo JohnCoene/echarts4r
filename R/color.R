@@ -16,7 +16,9 @@
 #'     "#d3d3d3"
 #'   )
 #'   
-#' @seealso \code{\link{e_theme}}
+#' @seealso \code{\link{e_theme}}, 
+#' \href{Official color documentation}{https://ecomfe.github.io/echarts-doc/public/en/option.html#color}, 
+#' \href{Official background documentation}{https://ecomfe.github.io/echarts-doc/public/en/option.html#backgroundColor}
 #' 
 #' @export
 e_color <- function(e, color = NULL, background = NULL){

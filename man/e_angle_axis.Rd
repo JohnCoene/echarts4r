@@ -28,3 +28,6 @@ df \%>\%
   e_legend(show = FALSE)
 
 }
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#angleAxis}
+}

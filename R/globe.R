@@ -27,7 +27,7 @@
 #'   e_visual_map(show = FALSE)
 #' }
 #' 
-#' @seealso \code{\link{e_country_names}}
+#' @seealso \code{\link{e_country_names}}, \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#globe}
 #' 
 #' @export
 e_globe <- function(e, environment = NULL, base.texture = NULL, height.texture = NULL, ...){

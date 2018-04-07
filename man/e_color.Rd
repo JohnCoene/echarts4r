@@ -28,5 +28,7 @@ mtcars \%>\%
   
 }
 \seealso{
-\code{\link{e_theme}}
+\code{\link{e_theme}}, 
+\href{Official color documentation}{https://ecomfe.github.io/echarts-doc/public/en/option.html#color}, 
+\href{Official background documentation}{https://ecomfe.github.io/echarts-doc/public/en/option.html#backgroundColor}
 }

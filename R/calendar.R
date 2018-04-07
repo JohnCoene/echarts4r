@@ -19,6 +19,8 @@
 #'   e_charts() %>% 
 #'   e_calendar(range = c("2018-01", "2018-07"))
 #' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#calendar}
+#' 
 #' @export
 e_calendar <- function(e, range, ...){
   
