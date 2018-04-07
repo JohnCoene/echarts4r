@@ -75,3 +75,4 @@ http://echarts4r.john-coene.com/articles/map3d.html
 http://echarts4r.john-coene.com/articles/shiny.html
 http://echarts4r.john-coene.com/articles/themes.html
 http://echarts4r.john-coene.com/articles/threeD.html
+http://echarts4r.john-coene.com/articles/toolbox.html

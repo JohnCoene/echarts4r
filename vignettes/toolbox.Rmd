@@ -1,0 +1,37 @@
+---
+title: "Toolbox"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Toolbox}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(echarts4r)
+```
+
+The toolbox allows you to add neat little interactive functions to your plots.
+
+```{r}
+mtcars %>% 
+  e_charts(qsec) %>% 
+  e_line(mpg, smooth = TRUE) -> echsart
+
+echsart %>% e_toolbox(feature = "saveAsImage") # hit the download button!
+```
+
+```{r}
+echsart %>% e_toolbox(feature = "dataZoom")
+```
+
+```{r}
+echsart %>% e_toolbox(feature = "dataView")
+```

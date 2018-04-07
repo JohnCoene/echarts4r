@@ -130,6 +130,9 @@
       <a href="../articles/brush.html">Brush</a>
     </li>
     <li>
+      <a href="../articles/toolbox.html">Toolbox</a>
+    </li>
+    <li>
       <a href="../articles/themes.html">Themes</a>
     </li>
   </ul>
@@ -207,19 +210,72 @@
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This only applies to Shiny.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>drat</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_show_loading</span>()</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'>interactive</span>()){
+
+<span class='co'># no redraw</span>
+<span class='co'># no loading</span>
+<span class='fu'>library</span>(<span class='no'>shiny</span>)
+<span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidPage</a></span>(
+  <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidRow</a></span>(
+    <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/column'>column</a></span>(<span class='fl'>12</span>, <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>"update"</span>, <span class='st'>"Update"</span>))
+  ),
+  <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidRow</a></span>(
+    <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/column'>column</a></span>(<span class='fl'>12</span>, <span class='fu'><a href='echarts4r-shiny.html'>echarts4rOutput</a></span>(<span class='st'>"plot"</span>))
+  )
+)
+
+<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>){
+  <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/observeEvent'>eventReactive</a></span>(<span class='no'>input</span>$<span class='no'>update</span>, {
+    <span class='fu'>data.frame</span>(
+      <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>,
+      <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>)
+    )
+  })
+
+  <span class='no'>output</span>$<span class='no'>plot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span>({
+    <span class='fu'>data</span>() <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='e_bar.html'>e_bar</a></span>(<span class='no'>y</span>)
+  })
+}
+
+<span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+
+<span class='co'># add loading</span>
+<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>){
+  <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/observeEvent'>eventReactive</a></span>(<span class='no'>input</span>$<span class='no'>update</span>, {
+    <span class='fu'>Sys.sleep</span>(<span class='fl'>1</span>) <span class='co'># sleep one second to show loading</span>
+    <span class='fu'>data.frame</span>(
+      <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>,
+      <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>)
+    )
+  })
+
+  <span class='no'>output</span>$<span class='no'>plot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span>({
+    <span class='fu'>data</span>() <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='e_bar.html'>e_bar</a></span>(<span class='no'>y</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'>e_show_loading</span>()
+  })
+}
+
+<span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+}</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#details">Details</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

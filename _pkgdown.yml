@@ -26,6 +26,7 @@ articles:
     - graph
     - brush
     - shiny
+    - toolbox
     - themes
 
 development:
@@ -64,6 +65,8 @@ navbar:
           href: articles/shiny.html
         - text: "Brush"
           href: articles/brush.html
+        - text: "Toolbox"
+          href: articles/toolbox.html
         - text: "Themes"
           href: articles/themes.html
     - text: "Reference"

@@ -16,6 +16,7 @@ articles:
   shiny: shiny.html
   themes: themes.html
   threeD: threeD.html
+  toolbox: toolbox.html
 urls:
   reference: http://echarts4r.john-coene.com/reference
   article: http://echarts4r.john-coene.com/articles
