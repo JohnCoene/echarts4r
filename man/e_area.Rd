@@ -31,3 +31,6 @@ USArrests \%>\%
   e_area(UrbanPop, stack = "grp") # stacking
 
 }
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}
+}

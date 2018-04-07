@@ -243,17 +243,31 @@ globalVariables(c("e", "."))
   data.tree::ToListExplicit(tree, unname = TRUE)
 }
 
+# .build_sun <- function(e, parent, child, value){
+#   e$x$data %>%
+#     dplyr::select_(
+#       parent,
+#       name = child,
+#       value
+#     ) %>% 
+#     dplyr::group_by(parent) %>% 
+#     tidyr::nest() %>% 
+#     purrr::set_names(c("name", "children")) %>% 
+#     jsonlite::toJSON(., auto_unbox = TRUE, pretty = FALSE)
+# }
+
 .build_sun <- function(e, parent, child, value){
   e$x$data %>%
     dplyr::select_(
       parent,
       name = child,
-      value
-    ) %>% 
-    dplyr::group_by(parent) %>% 
-    tidyr::nest() %>% 
-    purrr::set_names(c("name", "children")) %>% 
-    jsonlite::toJSON(., auto_unbox = TRUE, pretty = FALSE)
+      value = value
+    ) -> data
+  
+  d3r::d3_nest(data, value_cols = "value", json = FALSE, root = NULL) -> x
+  x <- x[["children"]][[1]]
+  x$colname <- NULL
+  jsonlite::toJSON(x, auto_unbox = T, pretty = FALSE)
 }
 
 .build_river <- function(e, serie, label){

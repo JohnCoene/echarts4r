@@ -26,5 +26,8 @@ mtcars \%>\%
   dplyr::mutate(model = row.names(.)) \%>\% 
   e_charts(model) \%>\% 
   e_pie(carb)
-
+  
+}
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie}
 }

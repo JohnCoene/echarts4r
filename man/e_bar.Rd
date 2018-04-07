@@ -33,3 +33,6 @@ USArrests \%>\%
   e_bar(Rape, name = "Sick basterd", x.index = 1) # secondary x axis
 
 }
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar}
+}

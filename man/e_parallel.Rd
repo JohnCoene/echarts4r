@@ -28,5 +28,8 @@ df <- data.frame(
 df \%>\% 
   e_charts() \%>\% 
   e_parallel(price, amount, letter) 
-
+  
+}
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-parallel}
 }

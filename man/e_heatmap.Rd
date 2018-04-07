@@ -55,3 +55,6 @@ year \%>\%
   e_visual_map(max = 30)
 
 }
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-heatmap}
+}

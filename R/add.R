@@ -19,6 +19,8 @@
 #'   e_bar(Murder) %>% 
 #'   e_bar(Rape, name = "Sick basterd", x.index = 1) # secondary x axis
 #' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar}
+#' 
 #' @export
 e_bar <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, ...){
   
@@ -74,7 +76,9 @@ e_bar <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, ...){
 #'   e_line(Murder) %>% 
 #'   e_line(UrbanPop, State, y.index = 1) %>%  # second y axis
 #'   e_tooltip(trigger = "axis")
-#'   
+#' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}  
+#' 
 #' @export
 e_line <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, coord.system = "cartesian2d", ...){
   if(missing(e))
@@ -130,6 +134,8 @@ e_line <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, coord.
 #'   e_charts(Assault) %>% 
 #'   e_area(Murder, stack = "grp") %>% # stacking
 #'   e_area(UrbanPop, stack = "grp") # stacking
+#' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}
 #' 
 #' @export
 e_area <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, ...){
@@ -188,6 +194,8 @@ e_area <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, ...){
 #'   e_step(Rape, name = "Middle", step = "middle") %>% 
 #'   e_step(Assault, name = "End", step = "end") %>% 
 #'   e_tooltip(trigger = "axis")
+#' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}
 #' 
 #' @export
 e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FALSE, 
@@ -280,6 +288,8 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #'   e_scatter(values, coord.system = "calendar") %>% 
 #'   e_visual_map(max = 30)
 #'   
+#' @seealso \href{Additional arguments scatter}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter},
+#'  \href{Additional arguments for effect scatter}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-effectScatter}
 #' 
 #' @rdname scatter
 #' @export
@@ -411,6 +421,8 @@ e_effect_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
 #' stock %>% 
 #'   e_charts(date) %>% 
 #'   e_candle(opening, closing, low, high)
+#'   
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-candlestick}
 #' 
 #' @export
 e_candle <- function(e, opening, closing, low, high, bind, name = NULL, ...){
@@ -457,6 +469,8 @@ e_candle <- function(e, opening, closing, low, high, bind, name = NULL, ...){
 #' funnel %>% 
 #'   e_charts() %>% 
 #'   e_funnel(value, stage)
+#' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel}
 #' 
 #' @export
 e_funnel <- function(e, values, labels, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
@@ -513,6 +527,8 @@ e_funnel <- function(e, values, labels, name = NULL, rm.x = TRUE, rm.y = TRUE, .
 #' sankey %>% 
 #'   e_charts() %>% 
 #'   e_sankey(source, target, value) 
+#' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-sankey}
 #' 
 #' @export
 e_sankey <- function(e, source, target, value, layout = "none", rm.x = TRUE, rm.y = TRUE, ...){
@@ -608,6 +624,8 @@ e_sankey <- function(e, source, target, value, layout = "none", rm.x = TRUE, rm.
 #'   e_graph_nodes(nodes, name, value, size, grp) %>% 
 #'   e_graph_edges(edges, source, target)
 #' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-graph}
+#' 
 #' @rdname graph
 #' @export
 e_graph <- function(e, layout = "force", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
@@ -655,6 +673,9 @@ e_graph_nodes <- function(e, nodes, names, value, size, category){
   
   if(missing(nodes) || missing(names))
     stop("must pass nodes and names", call. = FALSE)
+  
+  if(missing(nodes) || missing(names) || missing(value) || missing(size))
+    stop("missing arguments", call. = FALSE)
   
   value <- dplyr::enquo(value)
   symbolSize <- dplyr::enquo(size)
@@ -746,6 +767,8 @@ e_graph_edges <- function(e, edges, source, target){
 #'   e_heatmap(values, coord.system = "calendar") %>% 
 #'   e_visual_map(max = 30)
 #' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-heatmap}
+#' 
 #' @export
 e_heatmap <- function(e, y, z, name = NULL, coord.system = "cartesian2d", rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(y))
@@ -804,6 +827,8 @@ e_heatmap <- function(e, y, z, name = NULL, coord.system = "cartesian2d", rm.x =
 #' df %>% 
 #'   e_charts() %>% 
 #'   e_parallel(price, amount, letter) 
+#'   
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-parallel}
 #' 
 #' @export
 e_parallel <- function(e, ..., name = NULL, rm.x = TRUE, rm.y = TRUE){
@@ -860,6 +885,8 @@ e_parallel <- function(e, ..., name = NULL, rm.x = TRUE, rm.y = TRUE){
 #'   dplyr::mutate(model = row.names(.)) %>% 
 #'   e_charts(model) %>% 
 #'   e_pie(carb)
+#'   
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie}
 #' 
 #' @export
 e_pie <- function(e, serie, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
@@ -914,6 +941,8 @@ e_pie <- function(e, serie, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
 #'   e_sunburst(parent, child, value) %>% 
 #'   e_theme("westeros")
 #' }
+#' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-sunburst}
 #' 
 #' @export
 e_sunburst <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){

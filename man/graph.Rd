@@ -87,3 +87,6 @@ e_charts() \%>\%
   e_graph_edges(edges, source, target)
 
 }
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-graph}
+}

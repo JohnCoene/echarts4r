@@ -73,5 +73,8 @@ year \%>\%
   e_scatter(values, coord.system = "calendar") \%>\% 
   e_visual_map(max = 30)
   
-
+}
+\seealso{
+\href{Additional arguments scatter}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter},
+ \href{Additional arguments for effect scatter}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-effectScatter}
 }

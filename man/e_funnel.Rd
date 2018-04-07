@@ -31,3 +31,6 @@ funnel \%>\%
   e_funnel(value, stage)
 
 }
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel}
+}

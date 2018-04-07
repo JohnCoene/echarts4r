@@ -34,5 +34,8 @@ USArrests \%>\%
   e_line(Murder) \%>\% 
   e_line(UrbanPop, State, y.index = 1) \%>\%  # second y axis
   e_tooltip(trigger = "axis")
-  
+
+}
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}
 }

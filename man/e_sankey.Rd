@@ -36,3 +36,6 @@ sankey \%>\%
   e_sankey(source, target, value) 
 
 }
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-sankey}
+}

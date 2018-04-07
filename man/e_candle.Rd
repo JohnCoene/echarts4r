@@ -35,5 +35,8 @@ stock <- data.frame(
 stock \%>\% 
   e_charts(date) \%>\% 
   e_candle(opening, closing, low, high)
-
+  
+}
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-candlestick}
 }

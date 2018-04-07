@@ -18,7 +18,8 @@ Imports:
   crosstalk,
   htmltools,
   base64enc,
-  countrycode
+  countrycode,
+  d3r
 RoxygenNote: 6.0.1
 Suggests: 
     jsonlite, 
