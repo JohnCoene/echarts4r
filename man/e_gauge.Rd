@@ -25,3 +25,6 @@ e_charts() \%>\%
   e_gauge(57, "PERCENT")
 
 }
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-gauge}
+}

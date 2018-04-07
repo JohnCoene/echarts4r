@@ -72,3 +72,6 @@ matrix \%>\%
 }
 
 }
+\seealso{
+\href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-bar3D}
+}

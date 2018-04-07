@@ -21,7 +21,6 @@ e_sunburst(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...)
 Build a sunburst.
 }
 \examples{
-\dontrun{
 df <- data.frame(
   parent = c("earth", "earth", "earth", "mars", "mars"), 
   child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
@@ -32,7 +31,6 @@ df \%>\%
   e_charts() \%>\% 
   e_sunburst(parent, child, value) \%>\% 
   e_theme("westeros")
-}
 
 }
 \seealso{

@@ -32,3 +32,6 @@ df \%>\%
   e_boxplot(x, outliers = TRUE)
 
 }
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-boxplot}
+}

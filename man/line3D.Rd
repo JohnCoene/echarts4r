@@ -81,3 +81,7 @@ df \%>\%
   e_title("nonsense")
 
 }
+\seealso{
+\href{Additional arguments for lines 3D}{http://echarts.baidu.com/option-gl.html#series-lines3D},
+ \href{Additional arguments for line 3D}{http://echarts.baidu.com/option-gl.html#series-line3D}
+}

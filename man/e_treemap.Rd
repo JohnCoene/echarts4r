@@ -21,7 +21,6 @@ e_treemap(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...)
 Build a treemap.
 }
 \examples{
-\dontrun{
 df <- data.frame(
   parent = c("earth", "earth", "earth", "mars", "mars"), 
   child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
@@ -31,6 +30,8 @@ df <- data.frame(
 df \%>\% 
   e_charts() \%>\% 
   e_treemap(parent, child, value)
+  
 }
-
+\seealso{
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-treemap}
 }

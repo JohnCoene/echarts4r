@@ -929,7 +929,6 @@ e_pie <- function(e, serie, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
 #' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
-#' \dontrun{
 #' df <- data.frame(
 #'   parent = c("earth", "earth", "earth", "mars", "mars"), 
 #'   child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
@@ -940,7 +939,6 @@ e_pie <- function(e, serie, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
 #'   e_charts() %>% 
 #'   e_sunburst(parent, child, value) %>% 
 #'   e_theme("westeros")
-#' }
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-sunburst}
 #' 
@@ -980,7 +978,6 @@ e_sunburst <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
 #' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
-#' \dontrun{
 #' df <- data.frame(
 #'   parent = c("earth", "earth", "earth", "mars", "mars"), 
 #'   child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
@@ -990,7 +987,8 @@ e_sunburst <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
 #' df %>% 
 #'   e_charts() %>% 
 #'   e_treemap(parent, child, value)
-#' }
+#'   
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-treemap}
 #' 
 #' @export
 e_treemap <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
@@ -1044,6 +1042,8 @@ e_treemap <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
 #'   e_river(bananas) %>% 
 #'   e_river(pears) %>% 
 #'   e_tooltip(trigger = "axis")
+#' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-themeRiver}
 #' 
 #' @export
 e_river <- function(e, serie, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
@@ -1101,6 +1101,8 @@ e_river <- function(e, serie, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
 #'   e_charts() %>% 
 #'   e_boxplot(y, outliers = TRUE) %>% 
 #'   e_boxplot(x, outliers = TRUE)
+#' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-boxplot}
 #' 
 #' @export
 e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
@@ -1164,6 +1166,8 @@ e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
 #'   e_charts() %>% 
 #'   e_tree(parent, child)
 #' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-tree}
+#' 
 #' @export
 e_tree <- function(e, parent, child, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
@@ -1205,6 +1209,8 @@ e_tree <- function(e, parent, child, rm.x = TRUE, rm.y = TRUE, ...){
 #' @examples 
 #' e_charts() %>% 
 #'   e_gauge(57, "PERCENT")
+#' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-gauge}
 #' 
 #' @export
 e_gauge <- function(e, value, name, rm.x = TRUE, rm.y = TRUE, ...){
@@ -1288,6 +1294,9 @@ e_gauge <- function(e, value, name, rm.x = TRUE, rm.y = TRUE, ...){
 #'   e_line_3d(y, z) %>% 
 #'   e_visual_map() %>% 
 #'   e_title("nonsense")
+#' 
+#' @seealso \href{Additional arguments for lines 3D}{http://echarts.baidu.com/option-gl.html#series-lines3D},
+#'  \href{Additional arguments for line 3D}{http://echarts.baidu.com/option-gl.html#series-line3D}
 #' 
 #' @rdname line3D
 #' @export
@@ -1432,6 +1441,8 @@ e_line_3d <- function(e, y, z, name = NULL, coord.system = NULL, rm.x = TRUE, rm
 #'   e_legend()
 #' }
 #' 
+#' @seealso \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-bar3D}
+#' 
 #' @export
 e_bar_3d <- function(e, y, z, coord.system = "cartesian3D", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
@@ -1512,6 +1523,8 @@ e_bar_3d <- function(e, y, z, coord.system = "cartesian3D", name = NULL, rm.x = 
 #'     lineStyle = list(normal = list(curveness = 0.3))
 #'    )
 #' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-lines}
+#'    
 #' @export
 e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.system = "geo", name = NULL, 
                     rm.x = TRUE, rm.y = TRUE, ...){
@@ -1604,6 +1617,8 @@ e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.sys
 #'   ) %>% 
 #'   e_scatter_3d(lat, cnt, coord.system = "globe", blendMode = 'lighter') %>% 
 #'   e_visual_map(inRange = list(symbolSize = c(1, 10)))
+#' 
+#' @seealso \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-scatter3D}
 #' 
 #' @export
 e_scatter_3d <- function(e, y, z, color, size, coord.system = "cartesian3D", name = NULL, 
@@ -1733,6 +1748,8 @@ e_scatter_3d <- function(e, y, z, color, size, coord.system = "cartesian3D", nam
 #'     )
 #'   )
 #' 
+#' @seealso \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-flowGL}
+#' 
 #' @export
 e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord.system = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
@@ -1805,6 +1822,8 @@ e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord.system = NULL, rm.
 #'      )
 #'   ) %>% 
 #'   e_scatter_gl(lat, depth)
+#' 
+#' @seealso \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-scatterGL}
 #' 
 #' @export
 e_scatter_gl <- function(e, y, z, name = NULL, coord.system = "geo", rm.x = TRUE, rm.y = TRUE, ...){
