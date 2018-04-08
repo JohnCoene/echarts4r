@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bar and Line chart — e_bar • echarts4r</title>
+<title>Pictorial — e_pictorial • echarts4r</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,9 +25,10 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Bar and Line chart — e_bar" />
+<meta property="og:title" content="Pictorial — e_pictorial" />
 
-<meta property="og:description" content="Add bar serie." />
+<meta property="og:description" content="Pictorial bar chart is a type of bar chart that custimzed glyph 
+(like images, SVG PathData) can be used instead of rectangular bar." />
 
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -170,15 +171,17 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Bar and Line chart</h1>
+    <h1>Pictorial</h1>
     <small>Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add.R'><code>R/add.R</code></a></small>
     </div>
 
     
-    <p>Add bar serie.</p>
+    <p>Pictorial bar chart is a type of bar chart that custimzed glyph 
+(like images, SVG PathData) can be used instead of rectangular bar.</p>
     
 
-    <pre class="usage"><span class='fu'>e_bar</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='no'>bind</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_pictorial</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='no'>symbol</span>, <span class='no'>bind</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -192,6 +195,10 @@
       <td><p>Column name of serie to plot.</p></td>
     </tr>
     <tr>
+      <th>symbol</th>
+      <td><p>Symbol to plot.</p></td>
+    </tr>
+    <tr>
       <th>bind</th>
       <td><p>Binding between datasets, namely for use of <code><a href='e_brush.html'>e_brush</a></code>.</p></td>
     </tr>
@@ -200,7 +207,11 @@
       <td><p>name of the serie.</p></td>
     </tr>
     <tr>
-      <th>x.index, y.index</th>
+      <th>y.index</th>
+      <td><p>Indexes of x and y axis.</p></td>
+    </tr>
+    <tr>
+      <th>x.index</th>
       <td><p>Indexes of x and y axis.</p></td>
     </tr>
     <tr>
@@ -209,20 +220,72 @@
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="symbols"><a class="anchor" href="#symbols"></a>Symbols</h2>
+
+    
+    <ul>
+<li><p>Built-in <code>circle</code>, <code>rect</code>, <code>roundRect</code>, <code>triangle</code>, <code>diamond</code>, 
+  <code>pin</code>, <code>arrow</code>.</p></li>
+<li><p>SVG Path</p></li>
+<li><p>Images Path to image, don't forget to precede it with <code>image://</code>, see examples.</p></li>
+</ul>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='Additional arguments'>https://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar</a></p></div>
+    <div class='dont-index'><p><a href='Additional arguments'>https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pictorialBar</a></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(
-    <span class='kw'>State</span> <span class='kw'>=</span> <span class='fu'>row.names</span>(<span class='no'>.</span>),
-    <span class='kw'>Rape</span> <span class='kw'>=</span> -<span class='no'>Rape</span>
-  ) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>State</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_bar</span>(<span class='no'>Murder</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_bar</span>(<span class='no'>Rape</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Sick basterd"</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='co'># secondary x axis</span></div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># built-in symbols</span>
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>10</span>, <span class='fl'>2</span>)
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>,
+  <span class='kw'>z</span> <span class='kw'>=</span> <span class='no'>y</span> - <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>5</span>, <span class='fl'>1</span>)
+)
+
+<span class='no'>df</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_bar.html'>e_bar</a></span>(<span class='no'>z</span>, <span class='kw'>barWidth</span> <span class='kw'>=</span> <span class='fl'>10</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_pictorial</span>(<span class='no'>y</span>, <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"rect"</span>, <span class='kw'>symbolRepeat</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>z</span> <span class='kw'>=</span> -<span class='fl'>1</span>,
+    <span class='kw'>symbolSize</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>10</span>, <span class='fl'>4</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='theme.html'>e_theme</a></span>(<span class='st'>"westeros"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
+<span class='co'># svg path</span>
+<span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='st'>"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"</span>
+
+<span class='no'>style</span> <span class='kw'>&lt;-</span> <span class='fu'>list</span>(
+  <span class='kw'>normal</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>opacity</span> <span class='kw'>=</span> <span class='fl'>0.5</span>), <span class='co'># normal</span>
+  <span class='kw'>emphasis</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>opacity</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='co'># on hover</span>
+)
+
+<span class='no'>df</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_pictorial</span>(<span class='no'>y</span>, <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='no'>path</span>, <span class='kw'>barCategoryGap</span> <span class='kw'>=</span> <span class='st'>"-130%"</span>,
+    <span class='kw'>itemStyle</span> <span class='kw'>=</span> <span class='no'>style</span>)</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
+<span class='co'># image</span>
+<span class='co'># might not work in RStudio viewer</span>
+<span class='co'># open in browser</span>
+<span class='no'>qomo</span> <span class='kw'>&lt;-</span> <span class='fu'>paste0</span>(
+  <span class='st'>"https://ecomfe.github.io/echarts-examples/public/"</span>,
+  <span class='st'>"data/asset/img/hill-Qomolangma.png"</span>
+)
+
+<span class='no'>kili</span> <span class='kw'>&lt;-</span> <span class='fu'>paste0</span>(
+  <span class='st'>"https://ecomfe.github.io/echarts-examples/public/"</span>,
+  <span class='st'>"data/asset/img/hill-Kilimanjaro.png"</span>
+)
+
+<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Qomolangma"</span>, <span class='st'>"Kilimanjaro"</span>),
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>8844</span>, <span class='fl'>5895</span>),
+  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fu'>paste0</span>(<span class='st'>"image://"</span>, <span class='no'>qomo</span>),
+    <span class='fu'>paste0</span>(<span class='st'>"image://"</span>, <span class='no'>kili</span>))
+)
+
+<span class='no'>data</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_pictorial</span>(<span class='no'>value</span>, <span class='no'>symbol</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_legend.html'>e_legend</a></span>(<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -230,6 +293,8 @@
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#symbols">Symbols</a></li>
+
       <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>

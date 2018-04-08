@@ -31,6 +31,7 @@ http://echarts4r.john-coene.com/reference/e_lines.html
 http://echarts4r.john-coene.com/reference/e_liquid.html
 http://echarts4r.john-coene.com/reference/e_map_register.html
 http://echarts4r.john-coene.com/reference/e_parallel.html
+http://echarts4r.john-coene.com/reference/e_pictorial.html
 http://echarts4r.john-coene.com/reference/e_pie.html
 http://echarts4r.john-coene.com/reference/e_polar.html
 http://echarts4r.john-coene.com/reference/e_radar.html
@@ -72,6 +73,7 @@ http://echarts4r.john-coene.com/articles/globe.html
 http://echarts4r.john-coene.com/articles/graph.html
 http://echarts4r.john-coene.com/articles/map.html
 http://echarts4r.john-coene.com/articles/map3d.html
+http://echarts4r.john-coene.com/articles/pictorial.html
 http://echarts4r.john-coene.com/articles/shiny.html
 http://echarts4r.john-coene.com/articles/themes.html
 http://echarts4r.john-coene.com/articles/threeD.html
