@@ -48,6 +48,7 @@ devtools::install_github("JohnCoene/echarts4r")
 * wordcloud 
 * liquidFill 
 * Map
+* Pictorial
 * Line 3D
 * Bar 3D
 * Scatter 3D

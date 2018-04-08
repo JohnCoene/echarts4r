@@ -1867,3 +1867,122 @@ e_scatter_gl <- function(e, y, z, name = NULL, coord.system = "geo", rm.x = TRUE
   
   e
 }
+
+#' Pictorial
+#' 
+#' Pictorial bar chart is a type of bar chart that custimzed glyph 
+#' (like images, SVG PathData) can be used instead of rectangular bar.
+#' 
+#' @inheritParams e_bar
+#' @param symbol Symbol to plot.
+#' 
+#' @section Symbols:
+#' \itemize{
+#'   \item{Built-in}{ \code{circle}, \code{rect}, \code{roundRect}, \code{triangle}, \code{diamond}, 
+#'   \code{pin}, \code{arrow}.}
+#'   \item{SVG Path}
+#'   \item{Images}{ Path to image, don't forget to precede it with \code{image://}, see examples.}
+#' }
+#' 
+#' @examples 
+#' # built-in symbols
+#' y <- rnorm(10, 10, 2)
+#' df <- data.frame(
+#'   x = 1:10,
+#'   y = y,
+#'   z = y - rnorm(10, 5, 1)
+#' )
+#' 
+#' df %>% 
+#'   e_charts(x) %>% 
+#'   e_bar(z, barWidth = 10) %>% 
+#'   e_pictorial(y, symbol = "rect", symbolRepeat = TRUE, z = -1,
+#'     symbolSize = c(10, 4)) %>% 
+#'   e_theme("westeros")
+#'   
+#' # svg path
+#' path <- "path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"
+#' 
+#' style <- list(
+#'   normal = list(opacity = 0.5), # normal
+#'   emphasis = list(opacity = 1) # on hover
+#' )
+#' 
+#' df %>% 
+#'   e_charts(x) %>% 
+#'   e_pictorial(y, symbol = path, barCategoryGap = "-130%",
+#'     itemStyle = style) 
+#'     
+#' # image
+#' # might not work in RStudio viewer
+#' # open in browser
+#' qomo <- paste0(
+#'   "https://ecomfe.github.io/echarts-examples/public/",
+#'   "data/asset/img/hill-Qomolangma.png"
+#' )
+#' 
+#' kili <- paste0(
+#'   "https://ecomfe.github.io/echarts-examples/public/", 
+#'   "data/asset/img/hill-Kilimanjaro.png"
+#' )
+#' 
+#' data <- data.frame(
+#'   x = c("Qomolangma", "Kilimanjaro"), 
+#'   value = c(8844, 5895),
+#'   symbol = c(paste0("image://", qomo),
+#'     paste0("image://", kili))
+#' )
+#' 
+#' data %>% 
+#'   e_charts(x) %>% 
+#'   e_pictorial(value, symbol) %>% 
+#'   e_legend(FALSE) 
+#' 
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pictorialBar}
+#' 
+#' @export
+e_pictorial <- function(e, serie, symbol, bind, name = NULL, y.index = 0, x.index = 0, ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+   
+  if(missing(serie) || missing(symbol))
+    stop("must pass serie and symbol", call. = FALSE)
+  
+  serie <- deparse(substitute(serie))
+  
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
+  if(y.index != 0)
+    e <- .set_y_axis(e, serie, y.index)
+  
+  if(x.index != 0)
+    e <- .set_x_axis(e, x.index)
+  
+  # build JSON data
+  .build_data(e, e$x$mapping$x, serie) -> vector
+  
+  if(!missing(bind))
+    vector <- .add_bind(e, vector, deparse(substitute(bind)))
+  
+  if(deparse(substitute(symbol)) %in% colnames(e$x$data))
+    vector <- .add_symbol(e, vector, deparse(substitute(symbol)))
+  
+  serie <- list(
+    name = name,
+    type = "pictorialBar",
+    data = vector,
+    yAxisIndex = y.index,
+    xAxisIndex = x.index,
+    ...
+  )
+  
+  if(!deparse(substitute(symbol)) %in% colnames(e$x$data))
+    serie$symbol <- symbol
+  
+  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}

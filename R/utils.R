@@ -38,6 +38,16 @@ globalVariables(c("e", "."))
     
 }
 
+.add_symbol <- function(e, l, bind){
+  e$x$data %>% 
+    dplyr::select_(bind) %>% unname() %>% unlist() -> bind
+  
+  for(i in 1:length(l)){
+    l[[i]]$symbol <- bind[i]
+  }
+  l
+}
+
 .add_bind <- function(e, l, bind){
   e$x$data %>% 
     dplyr::select_(bind) %>% unname() %>% unlist() -> bind
