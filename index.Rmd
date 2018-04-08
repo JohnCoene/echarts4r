@@ -64,7 +64,7 @@ devtools::install_github("JohnCoene/echarts4r")
 
 #### Options
 
-ECharts version 4 comes with hundreds if not thousands of options, it's neigh impossible to list them all (see this [issue](https://github.com/JohnCoene/echarts4r/issues/1)). All options are actually available though not lsited in the documentation as parameters, you can pass the aforementioned options as additional arguments through the three dot construct (`...`): navigate the website to see some examples.
+ECharts version 4 comes with hundreds if not thousands of options, it's neigh impossible to list them all (see this [issue](https://github.com/JohnCoene/echarts4r/issues/1)). Though not listed in the documentation as parameters, all options are available, you can pass the aforementioned options as additional arguments through the three dot construct (`...`): the list of possible options can be found in the See Also section of each function; browse the website to see some examples.
 
 ## Examples
 
