@@ -1353,10 +1353,10 @@ e_line_3d <- function(e, y, z, name = NULL, coord.system = NULL, rm.x = TRUE, rm
     e$x$opts$legend$data <- append(e$x$opts$legend$data, name)
   
   if(!length(e$x$opts$zAxis3D))
-    e$x$opts$zAxis3D <- list()
+    e$x$opts$zAxis3D <- list(list(show = TRUE))
   
   if(!length(e$x$opts$grid3D))
-    e$x$opts$grid3D <- list(show = TRUE)
+    e$x$opts$grid3D <- list(list(show = TRUE))
   
   e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
   e <- .set_axis_3D(e, "y", deparse(substitute(y)), 0)
@@ -1466,10 +1466,10 @@ e_bar_3d <- function(e, y, z, coord.system = "cartesian3D", name = NULL, rm.x = 
   } else { # cartesian
     
     if(!length(e$x$opts$zAxis3D))
-      e$x$opts$zAxis3D <- list(show = TRUE)
+      e$x$opts$zAxis3D <- list(list(show = TRUE))
     
     if(!length(e$x$opts$grid3D))
-      e$x$opts$grid3D <- list(show = TRUE)
+      e$x$opts$grid3D <- list(list(show = TRUE))
     
     e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
     e <- .set_axis_3D(e, "y", deparse(substitute(y)), 0)
@@ -1645,10 +1645,10 @@ e_scatter_3d <- function(e, y, z, color, size, coord.system = "cartesian3D", nam
   } else { # cartesian
     
     if(!length(e$x$opts$zAxis3D))
-      e$x$opts$zAxis3D <- list(show = TRUE)
+      e$x$opts$zAxis3D <- list(list(show = TRUE))
     
     if(!length(e$x$opts$grid3D))
-      e$x$opts$grid3D <- list(show = TRUE)
+      e$x$opts$grid3D <- list(list(show = TRUE))
     
     e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
     e <- .set_axis_3D(e, "y", deparse(substitute(y)), 0)
@@ -1845,10 +1845,10 @@ e_scatter_gl <- function(e, y, z, name = NULL, coord.system = "geo", rm.x = TRUE
   # globe
   if(coord.system == "cartesian3D"){
     if(!length(e$x$opts$zAxis3D))
-      e$x$opts$zAxis3D <- list(show = TRUE)
+      e$x$opts$zAxis3D <- list(list(show = TRUE))
     
     if(!length(e$x$opts$grid3D))
-      e$x$opts$grid3D <- list(show = TRUE)
+      e$x$opts$grid3D <- list(list(show = TRUE))
     
     e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
     e <- .set_axis_3D(e, "y", deparse(substitute(y)), 0)

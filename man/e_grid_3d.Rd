@@ -4,7 +4,7 @@
 \alias{e_grid_3d}
 \title{Grid}
 \usage{
-e_grid_3d(e, index = NULL, ...)
+e_grid_3d(e, index = 0, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

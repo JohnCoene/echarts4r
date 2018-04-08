@@ -65,6 +65,7 @@ http://echarts4r.john-coene.com/reference/tooltip_proxy.html
 http://echarts4r.john-coene.com/articles/advanced.html
 http://echarts4r.john-coene.com/articles/brush.html
 http://echarts4r.john-coene.com/articles/chart_types.html
+http://echarts4r.john-coene.com/articles/gallery.html
 http://echarts4r.john-coene.com/articles/geo.html
 http://echarts4r.john-coene.com/articles/geo3d.html
 http://echarts4r.john-coene.com/articles/get_started.html

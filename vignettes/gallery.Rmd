@@ -1,0 +1,54 @@
+---
+title: "Gallery"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Gallery}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(echarts4r)
+```
+
+# 3D image
+
+Download the image
+
+
+```{r}
+library(png)
+
+download.file("http://www.gradhacker.org/wp-content/uploads/Rlogo.png", destfile = "Rlogo.png")
+
+png <- readPNG("Rlogo.png", native = FALSE)
+```
+
+```{r}
+# extract colors
+colors <- c(png[,,1], png[,,2], png[,,3])
+
+# build as matrix of hex colors
+matrix <- matrix(colors, nrow = dim(png)[1], ncol = dim(png)[2])
+
+# reshape to x, y, color data.frame 
+df <- as.data.frame(as.table(matrix))
+names(df) <- c("x", "y", "z")
+
+df %>% 
+  e_charts(x) %>% 
+  e_bar_3d(y, z) %>% 
+  e_visual_map(
+    min = 0, 
+    max = 1, 
+    show = FALSE,
+    calculable = FALSE
+  ) %>% 
+  e_theme("westeros")
+```

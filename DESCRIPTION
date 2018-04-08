@@ -26,7 +26,8 @@ Suggests:
     shiny,
     knitr,
     rmarkdown,
-    quantmod
+    quantmod,
+    png
 URL: https://github.com/JohnCoene/echarts4r
 BugReports: https://github.com/JohnCoene/echarts4r/issues
 VignetteBuilder: knitr

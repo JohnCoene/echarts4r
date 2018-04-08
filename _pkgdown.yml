@@ -36,7 +36,7 @@ development:
 navbar:
   title: "echarts"
   left:
-    - text: "Home"
+    - icon: fa-home
       href: index.html
     - text: "Usage"
       menu: 
@@ -74,6 +74,8 @@ navbar:
           href: articles/themes.html
     - text: "Reference"
       href: "reference/"
+    - text: "Gallery"
+      href: articles/gallery.html
   right:
     - icon: fa-github fa-lg
       href: https://github.com/JohnCoene/echarts4r

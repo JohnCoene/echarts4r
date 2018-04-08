@@ -85,20 +85,26 @@ e_z_axis_3d <- function(e, index = 0, ...){
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#grid3D}
 #' 
 #' @export
-e_grid_3d <- function(e, index = NULL, ...){
+e_grid_3d <- function(e, index = 0, ...){
   
   if(missing(e))
     stop("missing e", call. = FALSE)
   
-  if(is.null(index))
-    index <- length(e$x$opts[["grid3D"]]) + 1
+  r.index <- index + 1
   
   # initialise of not existing
   if(!length(e$x$opts[["grid3D"]]))
     e$x$opts$grid3D  <- list()
   
   attrs <- list(...)
-  e$x$opts$grid3D <- append(e$x$opts$grid3D, list(attrs))
+  
+  if(!length(attrs))
+    stop("no attribute", call. = FALSE)
+  
+  for(i in 1:length(attrs)){
+    arg <- names(attrs)[i]
+    e$x$opts$grid3D[[r.index]][[arg]] <- attrs[[i]]
+  }
   
   e
 }
