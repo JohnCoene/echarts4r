@@ -9,3 +9,4 @@ _pkgdown.yml
 index.Rmd
 logo.png
 .gitattributes
+^appveyor\.yml$
