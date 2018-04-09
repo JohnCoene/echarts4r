@@ -47,11 +47,6 @@ matrix %>%
 One could also plot the heatmap on different coordinates, such as a calendar by first adding a calendar with `e_calendar` then specifying `coord.system = "calendar"`.
 
 ```{r}
-# blank calendar
-e_charts() %>% e_calendar(range = 2017)
-```
-
-```{r}
 dates <- seq.Date(as.Date("2018-01-01"), as.Date("2018-12-31"), by = "day")
 values <- rnorm(length(dates), 20, 6)
 
