@@ -2,10 +2,14 @@
 % Please edit documentation in R/echarts4r.R
 \name{e_charts}
 \alias{e_charts}
+\alias{e_chart}
 \alias{e_data}
 \title{Initialise}
 \usage{
 e_charts(data, x, width = NULL, height = NULL, elementId = NULL,
+  dispose = TRUE, ...)
+
+e_chart(data, x, width = NULL, height = NULL, elementId = NULL,
   dispose = TRUE, ...)
 
 e_data(e, data, x)

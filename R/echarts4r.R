@@ -88,6 +88,9 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
     )
   )
 }
+#' @rdname init
+#' @export
+e_chart <- e_charts
 
 #' @rdname init
 #' @export
