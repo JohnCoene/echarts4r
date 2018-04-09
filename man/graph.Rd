@@ -37,6 +37,8 @@ e_graph_edges(e, edges, source, target)
 
 \item{category}{Group of nodes (i.e.: group membership).}
 
+\item{legend}{Whether to add serie to legend.}
+
 \item{edges}{Data.frame of edges.}
 
 \item{source, target}{Column names of source and target.}

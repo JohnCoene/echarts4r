@@ -466,6 +466,7 @@ e_candle <- function(e, opening, closing, low, high, bind, name = NULL, legend =
 #' 
 #' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
 #' @param name name of the serie.
+#' @param legend Whether to add serie to legend.
 #' @param ... Any other option to pass to \code{bar} or \code{line} char types.
 #' @param values,labels Values and labels of funnel.
 #' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
@@ -587,6 +588,7 @@ e_sankey <- function(e, source, target, value, layout = "none", rm.x = TRUE, rm.
 #' @param names Names of nodes, unique.
 #' @param value values of nodes.
 #' @param size Size of nodes.
+#' @param legend Whether to add serie to legend.
 #' @param category Group of nodes (i.e.: group membership).
 #' @param edges Data.frame of edges.
 #' @param source,target Column names of source and target.

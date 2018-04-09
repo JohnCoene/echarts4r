@@ -14,6 +14,8 @@ e_funnel(e, values, labels, name = NULL, legend = TRUE, rm.x = TRUE,
 
 \item{name}{name of the serie.}
 
+\item{legend}{Whether to add serie to legend.}
+
 \item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
