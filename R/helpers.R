@@ -127,3 +127,14 @@ e_color_range <- function(data, input, output, colors = c("#bf444c", "#d88273", 
   data[[output]] <- colorRampPalette(colors, ...)(length(serie))
   data
 }
+
+#' Get data
+#' 
+#' Get data passed to \code{\link{e_charts}}.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @export
+e_get_data <- function(e){
+  e$x$data
+}
