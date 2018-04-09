@@ -20,7 +20,7 @@ devtools::install_github("JohnCoene/echarts4r")
 
 See [coding.net project](http://coding.net/u/JohnCoene/p/echarts4r/git/tree/master) if you're in China.
 
-## [website](https://echarts4r.john-coene.com)
+## [website](http://echarts4r.john-coene.com)
 
 ## Features
 
