@@ -197,7 +197,7 @@
     </tr>
     <tr>
       <th>serie</th>
-      <td><p>Serie to mark on, defaults to last added.</p></td>
+      <td><p>Serie to mark on passed to <code>grep</code>, defaults to last added.</p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -234,9 +234,10 @@
 <span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Murder</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Rape</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>UrbanPop</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_mark_point</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>max</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_mark_point</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>min</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_mark_line</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>avg</span>)</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
+  <span class='fu'>e_mark_line</span>(<span class='kw'>serie</span> <span class='kw'>=</span> <span class='st'>"Rape"</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>avg</span>)</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
