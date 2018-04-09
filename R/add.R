@@ -6,6 +6,7 @@
 #' @param serie Column name of serie to plot.
 #' @param bind Binding between datasets, namely for use of \code{\link{e_brush}}.
 #' @param name name of the serie.
+#' @param legend Whether to add serie to legend.
 #' @param ... Any other option to pass, check See Also section.
 #' @param x.index,y.index Indexes of x and y axis.
 #' 
@@ -22,7 +23,7 @@
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar}
 #' 
 #' @export
-e_bar <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, ...){
+e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.index = 0, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -55,6 +56,9 @@ e_bar <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, ...){
     xAxisIndex = x.index,
     ...
   )
+  
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
 
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
@@ -78,7 +82,8 @@ e_bar <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, ...){
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}  
 #' 
 #' @export
-e_line <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, coord.system = "cartesian2d", ...){
+e_line <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.index = 0, 
+                   coord.system = "cartesian2d", ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -115,7 +120,8 @@ e_line <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, coord.
     l$xAxisIndex <- x.index
   }
   
-  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   
   e$x$opts$series <- append(e$x$opts$series, list(l))
   e
@@ -136,7 +142,7 @@ e_line <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, coord.
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}
 #' 
 #' @export
-e_area <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, ...){
+e_area <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.index = 0, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -170,7 +176,8 @@ e_area <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, ...){
     ...
   )
   
-  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
@@ -197,7 +204,7 @@ e_area <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, ...){
 #' 
 #' @export
 e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FALSE, 
-                   name = NULL, y.index = 0, x.index = 0, ...){
+                   name = NULL, legend = TRUE, y.index = 0, x.index = 0, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -236,7 +243,8 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
   
   if(isTRUE(fill)) serie$areaStyle <- list(normal = list())
   
-  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
@@ -292,8 +300,8 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' @rdname scatter
 #' @export
 e_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL, 
-                      coord.system = "cartesian2d", y.index = 0, x.index = 0,
-                      rm.x = TRUE, rm.y = TRUE, ...){
+                      coord.system = "cartesian2d", legend = TRUE, y.index = 0, 
+                      x.index = 0, rm.x = TRUE, rm.y = TRUE, ...){
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
@@ -331,7 +339,8 @@ e_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
   } else {
     serie$yAxisIndex = y.index
     serie$xAxisIndex = x.index
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+    if(isTRUE(legend))
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   }
   
   if(!missing(size))
@@ -346,8 +355,8 @@ e_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
 #' @rdname scatter
 #' @export
 e_effect_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL, 
-                             coord.system = "cartesian2d", y.index = 0, x.index = 0, 
-                             rm.x = TRUE, rm.y = TRUE, ...){
+                             coord.system = "cartesian2d", legend = TRUE, 
+                             y.index = 0, x.index = 0, rm.x = TRUE, rm.y = TRUE, ...){
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
@@ -375,7 +384,8 @@ e_effect_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
     e <- .rm_axis(e, rm.x, "x")
     e <- .rm_axis(e, rm.y, "y")
   } else {
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+    if(isTRUE(legend))
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   }
   
   serie <- list(
@@ -423,7 +433,7 @@ e_effect_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-candlestick}
 #' 
 #' @export
-e_candle <- function(e, opening, closing, low, high, bind, name = NULL, ...){
+e_candle <- function(e, opening, closing, low, high, bind, name = NULL, legend = TRUE, ...){
   
   data <- .build_data(
     e, 
@@ -443,7 +453,8 @@ e_candle <- function(e, opening, closing, low, high, bind, name = NULL, ...){
     ...
   )
   
-  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
@@ -471,7 +482,7 @@ e_candle <- function(e, opening, closing, low, high, bind, name = NULL, ...){
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel}
 #' 
 #' @export
-e_funnel <- function(e, values, labels, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+e_funnel <- function(e, values, labels, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRUE, ...){
   
   if(missing(values) || missing(labels))
     stop("missing values or labels", call. = FALSE)
@@ -496,8 +507,11 @@ e_funnel <- function(e, values, labels, name = NULL, rm.x = TRUE, rm.y = TRUE, .
   )
   
   # addlegend
-  legend <- .get_data(e, deparse(substitute(labels))) %>% as.character()
-  e$x$opts$legend$data <- append(e$x$opts$legend$data, legend)
+  
+  if(isTRUE(legend)){
+    legend <- .get_data(e, deparse(substitute(labels))) %>% as.character()
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, legend)
+  }
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
@@ -667,7 +681,7 @@ e_graph_gl <- function(e, layout = "force", name = NULL, rm.x = TRUE, rm.y = TRU
 
 #' @rdname graph
 #' @export
-e_graph_nodes <- function(e, nodes, names, value, size, category){
+e_graph_nodes <- function(e, nodes, names, value, size, category, legend = TRUE){
   
   if(missing(nodes) || missing(names))
     stop("must pass nodes and names", call. = FALSE)
@@ -682,7 +696,9 @@ e_graph_nodes <- function(e, nodes, names, value, size, category){
   if(!missing(category)){
     
     e$x$opts$series[[length(e$x$opts$series)]]$categories <- .build_graph_category(nodes, dplyr::enquo(category))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, unique(nodes[[deparse(substitute(category))]]))
+    
+    if(isTRUE(legend))
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, unique(nodes[[deparse(substitute(category))]]))
     
     nodes <- .build_graph_nodes(
       nodes, 
@@ -887,7 +903,7 @@ e_parallel <- function(e, ..., name = NULL, rm.x = TRUE, rm.y = TRUE){
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie}
 #' 
 #' @export
-e_pie <- function(e, serie, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+e_pie <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -911,7 +927,8 @@ e_pie <- function(e, serie, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
     ...
   )
   
-  e$x$opts$legend$data <- append(e$x$opts$legend$data, .get_data(e, e$x$mapping$x))
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, e$x$data[[e$x$mapping$x]])
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
@@ -1044,7 +1061,7 @@ e_treemap <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-themeRiver}
 #' 
 #' @export
-e_river <- function(e, serie, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+e_river <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1076,7 +1093,8 @@ e_river <- function(e, serie, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   
   e$x$opts$singleAxis <- list(type = "time")
   
-  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   
   e
 }
@@ -1939,7 +1957,7 @@ e_scatter_gl <- function(e, y, z, name = NULL, coord.system = "geo", rm.x = TRUE
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pictorialBar}
 #' 
 #' @export
-e_pictorial <- function(e, serie, symbol, bind, name = NULL, y.index = 0, x.index = 0, ...){
+e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y.index = 0, x.index = 0, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -1979,7 +1997,8 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, y.index = 0, x.inde
   if(!deparse(substitute(symbol)) %in% colnames(e$x$data))
     serie$symbol <- symbol
   
-  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e

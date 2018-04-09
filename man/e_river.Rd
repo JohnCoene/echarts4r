@@ -4,7 +4,8 @@
 \alias{e_river}
 \title{River}
 \usage{
-e_river(e, serie, name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
+e_river(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRUE,
+  ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -12,6 +13,8 @@ e_river(e, serie, name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
 \item{serie}{Column name of serie to plot.}
 
 \item{name}{name of the serie.}
+
+\item{legend}{Whether to add serie to legend.}
 
 \item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 

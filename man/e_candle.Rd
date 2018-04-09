@@ -4,7 +4,8 @@
 \alias{e_candle}
 \title{Candlestick}
 \usage{
-e_candle(e, opening, closing, low, high, bind, name = NULL, ...)
+e_candle(e, opening, closing, low, high, bind, name = NULL, legend = TRUE,
+  ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -14,6 +15,8 @@ e_candle(e, opening, closing, low, high, bind, name = NULL, ...)
 \item{bind}{Binding between datasets, namely for use of \code{\link{e_brush}}.}
 
 \item{name}{name of the serie.}
+
+\item{legend}{Whether to add serie to legend.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

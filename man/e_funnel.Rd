@@ -4,7 +4,8 @@
 \alias{e_funnel}
 \title{Funnel}
 \usage{
-e_funnel(e, values, labels, name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
+e_funnel(e, values, labels, name = NULL, legend = TRUE, rm.x = TRUE,
+  rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

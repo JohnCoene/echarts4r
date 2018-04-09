@@ -6,12 +6,12 @@
 \title{Scatter}
 \usage{
 e_scatter(e, serie, size, bind, scale = "* 1", name = NULL,
-  coord.system = "cartesian2d", y.index = 0, x.index = 0, rm.x = TRUE,
-  rm.y = TRUE, ...)
+  coord.system = "cartesian2d", legend = TRUE, y.index = 0, x.index = 0,
+  rm.x = TRUE, rm.y = TRUE, ...)
 
 e_effect_scatter(e, serie, size, bind, scale = "* 1", name = NULL,
-  coord.system = "cartesian2d", y.index = 0, x.index = 0, rm.x = TRUE,
-  rm.y = TRUE, ...)
+  coord.system = "cartesian2d", legend = TRUE, y.index = 0, x.index = 0,
+  rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -28,6 +28,8 @@ by \code{1} (equivalent to no multiplier).}
 \item{name}{name of the serie.}
 
 \item{coord.system}{Coordinate system to plot against.}
+
+\item{legend}{Whether to add serie to legend.}
 
 \item{y.index}{Indexes of x and y axis.}
 

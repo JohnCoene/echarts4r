@@ -5,7 +5,7 @@
 \title{Step}
 \usage{
 e_step(e, serie, bind, step = c("start", "middle", "end"), fill = FALSE,
-  name = NULL, y.index = 0, x.index = 0, ...)
+  name = NULL, legend = TRUE, y.index = 0, x.index = 0, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -19,6 +19,8 @@ e_step(e, serie, bind, step = c("start", "middle", "end"), fill = FALSE,
 \item{fill}{Set to fill as area.}
 
 \item{name}{name of the serie.}
+
+\item{legend}{Whether to add serie to legend.}
 
 \item{y.index}{Indexes of x and y axis.}
 

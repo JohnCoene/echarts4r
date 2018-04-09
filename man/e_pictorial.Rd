@@ -4,8 +4,8 @@
 \alias{e_pictorial}
 \title{Pictorial}
 \usage{
-e_pictorial(e, serie, symbol, bind, name = NULL, y.index = 0, x.index = 0,
-  ...)
+e_pictorial(e, serie, symbol, bind, name = NULL, legend = TRUE,
+  y.index = 0, x.index = 0, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -17,6 +17,8 @@ e_pictorial(e, serie, symbol, bind, name = NULL, y.index = 0, x.index = 0,
 \item{bind}{Binding between datasets, namely for use of \code{\link{e_brush}}.}
 
 \item{name}{name of the serie.}
+
+\item{legend}{Whether to add serie to legend.}
 
 \item{y.index}{Indexes of x and y axis.}
 
