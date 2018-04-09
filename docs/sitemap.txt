@@ -21,6 +21,7 @@ http://echarts4r.john-coene.com/reference/e_funnel.html
 http://echarts4r.john-coene.com/reference/e_gauge.html
 http://echarts4r.john-coene.com/reference/e_geo.html
 http://echarts4r.john-coene.com/reference/e_geo_3d.html
+http://echarts4r.john-coene.com/reference/e_get_data.html
 http://echarts4r.john-coene.com/reference/e_globe.html
 http://echarts4r.john-coene.com/reference/e_grid.html
 http://echarts4r.john-coene.com/reference/e_grid_3d.html
