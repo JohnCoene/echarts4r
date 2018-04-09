@@ -12,7 +12,7 @@ e_mark_line(e, serie = NULL, data = NULL, ...)
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{serie}{Serie to mark on, defaults to last added.}
+\item{serie}{Serie to mark on passed to \code{\link{grep}}, defaults to last added.}
 
 \item{data}{Placement.}
 
@@ -40,9 +40,10 @@ avg <- list(
 USArrests \%>\% 
   e_charts(Murder) \%>\% 
   e_line(Rape) \%>\% 
+  e_line(UrbanPop) \%>\% 
   e_mark_point(data = max) \%>\% 
   e_mark_point(data = min) \%>\% 
-  e_mark_line(data = avg)
+  e_mark_line(serie = "Rape", data = avg)
 
 }
 \seealso{

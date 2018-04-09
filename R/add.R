@@ -56,8 +56,6 @@ e_bar <- function(e, serie, bind, name = NULL, y.index = 0, x.index = 0, ...){
     ...
   )
 
-  e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }
@@ -498,7 +496,7 @@ e_funnel <- function(e, values, labels, name = NULL, rm.x = TRUE, rm.y = TRUE, .
   )
   
   # addlegend
-  legend <- e$x$data[[deparse(substitute(labels))]] %>% as.character()
+  legend <- .get_data(e, deparse(substitute(labels))) %>% as.character()
   e$x$opts$legend$data <- append(e$x$opts$legend$data, legend)
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
@@ -913,7 +911,7 @@ e_pie <- function(e, serie, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
     ...
   )
   
-  e$x$opts$legend$data <- append(e$x$opts$legend$data, .graph_cat_legend(e))
+  e$x$opts$legend$data <- append(e$x$opts$legend$data, .get_data(e, e$x$mapping$x))
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
@@ -1967,7 +1965,7 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, y.index = 0, x.inde
     vector <- .add_bind(e, vector, deparse(substitute(bind)))
   
   if(deparse(substitute(symbol)) %in% colnames(e$x$data))
-    vector <- .add_symbol(e, vector, deparse(substitute(symbol)))
+    vector <- .add_bind(e, vector, deparse(substitute(symbol)), "symbol")
   
   serie <- list(
     name = name,

@@ -37,7 +37,7 @@ e_cloud <- function(e, word, freq, color, rm.x = TRUE, rm.y = TRUE, ...){
   data <- .add_bind(e, data, deparse(substitute(word)))
   
   if(!missing(color)){
-    color <- e$x$data[[deparse(substitute(color))]]
+    color <- .get_data(e, deparse(substitute(color)))
     for(i in 1:length(data)){
       col <- list(
         normal = list(
@@ -86,7 +86,7 @@ e_liquid <- function(e, serie, color, rm.x = TRUE, rm.y = TRUE, ...){
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
   
-  data <- e$x$data[[substitute(serie)]] %>% 
+  data <- .get_data(e, deparse(substitute(serie))) %>% 
     unlist() %>% 
     unname()
   

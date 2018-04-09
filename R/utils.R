@@ -38,22 +38,12 @@ globalVariables(c("e", "."))
     
 }
 
-.add_symbol <- function(e, l, bind){
+.add_bind <- function(e, l, bind, col = "name"){
   e$x$data %>% 
     dplyr::select_(bind) %>% unname() %>% unlist() -> bind
   
   for(i in 1:length(l)){
-    l[[i]]$symbol <- bind[i]
-  }
-  l
-}
-
-.add_bind <- function(e, l, bind){
-  e$x$data %>% 
-    dplyr::select_(bind) %>% unname() %>% unlist() -> bind
-  
-  for(i in 1:length(l)){
-    l[[i]]$name <- bind[i]
+    l[[i]][[col]] <- bind[i]
   }
   l
 }
@@ -187,10 +177,6 @@ globalVariables(c("e", "."))
   x
 }
 
-.graph_cat_legend <- function(e){
-  e$x$data[[e$x$mapping$x]]
-}
-
 .build_boxplot <- function(data, serie){
   data %>%
     dplyr::select(
@@ -253,19 +239,6 @@ globalVariables(c("e", "."))
   data.tree::ToListExplicit(tree, unname = TRUE)
 }
 
-# .build_sun <- function(e, parent, child, value){
-#   e$x$data %>%
-#     dplyr::select_(
-#       parent,
-#       name = child,
-#       value
-#     ) %>% 
-#     dplyr::group_by(parent) %>% 
-#     tidyr::nest() %>% 
-#     purrr::set_names(c("name", "children")) %>% 
-#     jsonlite::toJSON(., auto_unbox = TRUE, pretty = FALSE)
-# }
-
 .build_sun <- function(e, parent, child, value){
   e$x$data %>%
     dplyr::select_(
@@ -316,9 +289,11 @@ globalVariables(c("e", "."))
     .[[1]]
 }
 
-.set_y_axis <- function(e, serie, y.index){
+.set_any_axis <- function(e, serie, index, axis = "x"){
   
-  if(length(e$x$opts$yAxis) - 1 < y.index){
+  raxis <- .r2axis(axis)
+  
+  if(length(e$x$opts[[raxis]]) - 1 < index){
     type <- .get_type(e, serie)
     
     axis <- list(type = type)
@@ -327,9 +302,21 @@ globalVariables(c("e", "."))
       axis$data <- .get_data(e, serie)
     }
     
-    e$x$opts$yAxis[[y.index + 1]] <- axis
+    e$x$opts[[raxis]][[index + 1]] <- axis
   }
   e
+}
+
+.set_x_axis <- function(e, x.index){
+  .set_any_axis(e, e$x$mapping$x, x.index, axis = "x")
+}
+
+.set_y_axis <- function(e, serie, y.index){
+  .set_any_axis(e, serie, y.index, axis = "y")
+}
+
+.set_z_axis <- function(e, serie, z.index){
+  .set_any_axis(e, serie, z.index, axis = "z")
 }
 
 .set_axis_3D <- function(e, axis, serie, index){
@@ -345,40 +332,6 @@ globalVariables(c("e", "."))
       axis$data <- unique(.get_data(e, serie))
     
     e$x$opts[[ax]][[index + 1]] <- axis
-  }
-  e
-}
-
-.set_x_axis <- function(e, x.index){
-  
-  serie <- e$x$mapping$x
-  
-  if(length(e$x$opts$xAxis) - 1 < x.index){
-    type <- .get_type(e, serie)
-    
-    axis <- list(type = type, show = TRUE, boundaryGap = FALSE)
-    
-    if(type != "value"){
-      axis$data <- .get_data(e, serie)
-    }
-    
-    e$x$opts$xAxis[[x.index + 1]] <- axis
-  }
-  e
-}
-
-.set_z_axis <- function(e, serie, y.index){
-  
-  if(length(e$x$opts$yAxis) - 1 < y.index){
-    type <- .get_type(e, serie)
-    
-    axis <- list(type = type)
-    
-    if(type != "value"){
-      axis$data <- .get_data(e, serie)
-    }
-    
-    e$x$opts$zAxis[[y.index + 1]] <- axis
   }
   e
 }
@@ -440,7 +393,7 @@ globalVariables(c("e", "."))
   apply(data, 1, as.list) -> l
   
   if(!missing(color)){
-    color <- e$x$data[[color]]
+    color <- .get_data(e, color)
     
     for(i in 1:length(l)){
       is <- list(
@@ -459,4 +412,10 @@ globalVariables(c("e", "."))
   x <- gsub("^Republic of Korea$", "Korea", x)
   x <- gsub("^Russian Federation$", "Russia", x)
   x
+}
+
+.get_index <- function(e, serie){
+  purrr::map(e$x$opts$series, "name") %>% 
+    unlist() %>% 
+    grep(serie, .)
 }

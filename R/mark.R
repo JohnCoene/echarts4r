@@ -3,7 +3,7 @@
 #' Mark points and lines.
 #' 
 #' @inheritParams e_bar
-#' @param serie Serie to mark on, defaults to last added.
+#' @param serie Serie to mark on passed to \code{\link{grep}}, defaults to last added.
 #' @param data Placement.
 #' 
 #' @examples 
@@ -25,9 +25,10 @@
 #' USArrests %>% 
 #'   e_charts(Murder) %>% 
 #'   e_line(Rape) %>% 
+#'   e_line(UrbanPop) %>% 
 #'   e_mark_point(data = max) %>% 
 #'   e_mark_point(data = min) %>% 
-#'   e_mark_line(data = avg)
+#'   e_mark_line(serie = "Rape", data = avg)
 #' 
 #' @seealso \href{Additional point arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.markPoint},
 #' \href{Additional line arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.markLine}
@@ -36,10 +37,13 @@
 #' @export
 e_mark_point <- function(e, serie = NULL, data = NULL, ...){
   
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
   if(is.null(serie))
     index <- length(e$x$opts$series)
   else 
-    index <- grep(serie, e$x$opts$series)
+    index <- .get_index(e, serie)
   
   point <- list(...)
   
@@ -58,10 +62,13 @@ e_mark_point <- function(e, serie = NULL, data = NULL, ...){
 #' @export
 e_mark_line <- function(e, serie = NULL, data = NULL, ...){
   
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
   if(is.null(serie))
     index <- length(e$x$opts$series)
   else 
-    index <- grep(serie, e$x$opts$series)
+    index <- .get_index(e, serie)
   
   point <- list(...)
   
