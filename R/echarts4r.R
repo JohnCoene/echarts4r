@@ -35,8 +35,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
     xmap <- deparse(substitute(x))
   
   if(!missing(data)){
-    if (crosstalk::is.SharedData(data)) {
-      # Using Crosstalk
+    if(crosstalk::is.SharedData(data)) {
       key <- data$key()
       group <- data$groupName()
       data <- data$origData()
@@ -60,6 +59,11 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
   )
   
   if(!missing(data)){
+    
+    # ungroup
+    if(dplyr::is.grouped_df(data))
+      data <- data %>% dplyr::ungroup()
+    
     row.names(data) <- NULL
     x$data <- data
   }
@@ -104,6 +108,9 @@ e_data <- function(e, data, x){
     e$x$mapping$x_class <- class(data[[xmap]])
     e$x <- .assign_axis(e$x)
   }
+  # ungroup
+  if(dplyr::is.grouped_df(data))
+    data <- data %>% dplyr::ungroup()
   
   row.names(data) <- NULL
   e$x$data <- data
