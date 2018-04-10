@@ -30,10 +30,11 @@ globalVariables(c("e", "."))
 
 .build_data <- function(e, ...){
   e$x$data %>% 
-    dplyr::select_(...) -> data
+    dplyr::select_(...) %>% 
+    unname(.) -> data
   
-  apply(unname(data), 1, function(x){
-    list(value = unlist(x))
+  apply(data, 1, function(x){
+    list(value = unlist(x, use.names = FALSE))
   }) 
     
 }
