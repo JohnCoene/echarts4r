@@ -24,8 +24,11 @@ Get data from shiny with the following:
 
 * `elementId` + `_brush`
 * `elementId` + `_legend_change`
+* `elementId` + `_clicked_data`
+* `elementId` + `_clicked_row`
+* `elementId` + `_clicked_serie`
 
-See the example below.
+See the example below and the various proxies documentation.
 
 ```{r, eval=FALSE}
 library(shiny)

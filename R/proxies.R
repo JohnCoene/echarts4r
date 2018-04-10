@@ -120,7 +120,13 @@ e_downplay_p <- function(proxy, series.index = NULL, series.name = NULL){
 #'        actionButton("hide", "Hide tooltip")
 #'      ),
 #'      fluidRow(
-#'        echarts4rOutput("plot")
+#'        echarts4rOutput("plot"),
+#'        h3("clicked Data"),
+#'        verbatimTextOutput("clickedData"),
+#'        h3("clicked Serie"),
+#'        verbatimTextOutput("clickedSerie"),
+#'        h3("clicked Row"),
+#'        verbatimTextOutput("clickedRow")
 #'      )
 #'    )
 #'    
@@ -128,7 +134,8 @@ e_downplay_p <- function(proxy, series.index = NULL, series.name = NULL){
 #'      output$plot <- renderEcharts4r({
 #'        mtcars %>% 
 #'          e_charts(mpg) %>% 
-#'          e_line(disp) %>% 
+#'          e_line(disp, bind = carb, name = "displacement") %>% 
+#'          e_line(hp) %>% 
 #'          e_x_axis(min = 10) %>% 
 #'          e_theme("westeros") 
 #'      })
@@ -142,6 +149,19 @@ e_downplay_p <- function(proxy, series.index = NULL, series.name = NULL){
 #'        echarts4rProxy("plot") %>% 
 #'          e_hidetip_p()
 #'      })
+#'      
+#'      output$clickedData <- renderPrint({
+#'        input$plot_clicked_data
+#'      })
+#'      
+#'      output$clickedSerie <- renderPrint({
+#'        input$plot_clicked_serie
+#'      })
+#'      
+#'      output$clickedRow <- renderPrint({
+#'        input$plot_clicked_row
+#'      })
+#'      
 #'    }
 #'    
 #'    shinyApp(ui, server)
@@ -177,4 +197,3 @@ e_hidetip_p <- function(proxy){
   
   return(proxy)
 }
-
