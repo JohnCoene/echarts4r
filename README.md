@@ -87,8 +87,8 @@ USArrests %>%
   ) %>% 
   e_charts(State) %>% 
   e_area(Murder) %>%
-  e_bar(Rape, name = "Sick basterd", x.index = 1) %>% # second y axis 
-  e_mark_line("Sick basterd", data = list(type = "average")) %>% 
+  e_bar(Rape, name = "Sick bastard", x.index = 1) %>% # second y axis 
+  e_mark_line("Sick bastard", data = list(type = "average")) %>% 
   e_mark_point("Murder", data = list(type = "max"))
 
 # Sankey
