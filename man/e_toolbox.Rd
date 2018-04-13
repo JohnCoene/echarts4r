@@ -4,12 +4,14 @@
 \alias{e_toolbox}
 \title{Toolbox}
 \usage{
-e_toolbox(e, feature)
+e_toolbox(e, feature, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{feature}{Feature to add, defaults to all.}
+
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Add toolbox interface.

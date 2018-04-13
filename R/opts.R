@@ -165,7 +165,7 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), ...){
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#toolbox}
 #' 
 #' @export
-e_toolbox <- function(e, feature){
+e_toolbox <- function(e, feature, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -178,6 +178,13 @@ e_toolbox <- function(e, feature){
   
   for(i in 1:length(feature)){
     e$x$opts$toolbox$feature[[feature[i]]] <- list()
+  }
+  
+  options <- list(...)
+  if(length(options)){
+    for(i in 1:length(options)){
+      e$x$opts$toolbox$feature[[feature]][[names(options)[i]]] <- options[[i]]
+    }
   }
   
   e
@@ -198,6 +205,7 @@ e_toolbox <- function(e, feature){
 #'   e_x_axis(gridIndex = 1) %>% 
 #'   e_grid(height = "35%") %>% 
 #'   e_grid(height = "35%", top = "50%") %>% 
+#'   e_toolbox("dataZoom", title = list(zoom = "zoom", back = "back")) %>% 
 #'   e_datazoom(x.index = c(0, 1))
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#dataZoom}
