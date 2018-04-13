@@ -1,6 +1,7 @@
 #' Visual Map
 #' 
 #' @inheritParams e_bar
+#' @param serie Column name of serie to scale against.
 #' @param calculable Whether show handles, which can be dragged to adjust "selected range".
 #' @param type One of \code{continuous} or \code{piecewise}.
 #' 
@@ -26,12 +27,12 @@
 #'   e_charts(x) %>% 
 #'   e_scatter_3d(y, z, color, size) %>% 
 #'   e_visual_map(
-#'     min = 1, max = 100,
+#'     z, # scale to z
 #'     inRange = list(symbolSize = c(1, 30)), # scale size
 #'     dimension = 3 # third dimension 0 = x, y = 1, z = 2, size = 3
 #'   ) %>% 
 #'   e_visual_map(
-#'     min = 1, max = 100,
+#'     z, # scale to z
 #'     inRange = list(color = c('#bf444c', '#d88273', '#f6efa6')), # scale colors
 #'     dimension = 4, # third dimension 0 = x, y = 1, z = 2, size = 3, color = 4
 #'     bottom = 300 # padding to avoid visual maps overlap
@@ -40,7 +41,7 @@
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#visualMap}
 #' 
 #' @export
-e_visual_map <- function(e, calculable = TRUE, type = c("continuous", "piecewise"), ...){
+e_visual_map <- function(e, serie, calculable = TRUE, type = c("continuous", "piecewise"), ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -51,6 +52,12 @@ e_visual_map <- function(e, calculable = TRUE, type = c("continuous", "piecewise
   vm <- list(...)
   vm$calculable <- calculable
   vm$type <- type[1]
+  
+  if(!missing(serie)){
+    rng <- range(.get_data(e, deparse(substitute(serie))))
+    vm$min <- rng[1]
+    vm$max <- rng[2]
+  }
   
   e$x$opts$visualMap <- append(e$x$opts$visualMap, list(vm))
   e
