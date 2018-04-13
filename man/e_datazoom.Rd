@@ -27,6 +27,7 @@ USArrests \%>\%
   e_x_axis(gridIndex = 1) \%>\% 
   e_grid(height = "35\%") \%>\% 
   e_grid(height = "35\%", top = "50\%") \%>\% 
+  e_toolbox("dataZoom", title = list(zoom = "zoom", back = "back")) \%>\% 
   e_datazoom(x.index = c(0, 1))
 
 }
