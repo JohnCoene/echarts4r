@@ -25,13 +25,13 @@ mtcars %>%
   e_charts(qsec) %>% 
   e_line(mpg, smooth = TRUE) -> echsart
 
-echsart %>% e_toolbox(feature = "saveAsImage") # hit the download button!
+echsart %>% e_toolbox_feature(feature = "saveAsImage") # hit the download button!
 ```
 
 ```{r}
-echsart %>% e_toolbox(feature = "dataZoom")
+echsart %>% e_toolbox_feature(feature = "dataZoom")
 ```
 
 ```{r}
-echsart %>% e_toolbox(feature = "dataView")
+echsart %>% e_toolbox_feature(feature = "dataView")
 ```

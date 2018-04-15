@@ -171,8 +171,9 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), ...){
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#toolbox}
 #' 
+#' @rdname toolbox
 #' @export
-e_toolbox <- function(e, feature, ...){
+e_toolbox_feature <- function(e, feature, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -197,6 +198,17 @@ e_toolbox <- function(e, feature, ...){
   e
 }
 
+#' @rdname toolbox
+#' @export
+e_toolbox <- function(e, ...){
+  
+  e$x$opts$toolbox <- list(
+    ...
+  )
+  
+  e
+}
+
 #' Data zoom
 #' 
 #' Add data zoom.
@@ -212,7 +224,7 @@ e_toolbox <- function(e, feature, ...){
 #'   e_x_axis(gridIndex = 1) %>% 
 #'   e_grid(height = "35%") %>% 
 #'   e_grid(height = "35%", top = "50%") %>% 
-#'   e_toolbox("dataZoom", title = list(zoom = "zoom", back = "back")) %>% 
+#'   e_toolbox_feature("dataZoom", title = list(zoom = "zoom", back = "back")) %>% 
 #'   e_datazoom(x.index = c(0, 1))
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#dataZoom}
@@ -230,7 +242,7 @@ e_datazoom <- function(e, x.index = NULL, y.index = NULL, ...){
     e$x$opts$dataZoom <- list()
   
   if(!length(e$x$opts$toolbox$feature$dataZoom))
-    e <- e_toolbox(e, "dataZoom")
+    e <- e_toolbox_feature(e, "dataZoom")
   
   opts <- list(...)
   if(!is.null(x.index)) opts$xAxisIndex <- x.index
@@ -278,7 +290,7 @@ e_brush <- function(e, x.index = NULL, y.index = NULL, ...){
     e$x$opts$brush <- list()
   
   if(!length(e$x$opts$toolbox$feature$brush))
-    e <- e_toolbox(e, "brush")
+    e <- e_toolbox_feature(e, "brush")
   
   opts <- list(
     brushLink = "all",
