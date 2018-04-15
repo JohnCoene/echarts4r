@@ -273,6 +273,7 @@ e_datazoom <- function(e, x.index = NULL, y.index = NULL, ...){
 #'   e_scatter(mag, mag, stations, scale = "* 3", name = "mag & depth") %>%  
 #'   e_grid(right = 40, top = 100, width = "30%") %>% 
 #'   e_y_axis(type = "value", name = "depth", min = 3.5) %>% 
+#'   e_brush() %>% 
 #'   e_theme("dark")
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#brush}
