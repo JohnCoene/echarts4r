@@ -208,7 +208,13 @@
        actionButton("hide", "Hide tooltip")
      ),
      fluidRow(
-       echarts4rOutput("plot")
+       echarts4rOutput("plot"),
+       h3("clicked Data"),
+       verbatimTextOutput("clickedData"),
+       h3("clicked Serie"),
+       verbatimTextOutput("clickedSerie"),
+       h3("clicked Row"),
+       verbatimTextOutput("clickedRow")
      )
    )
    
@@ -216,7 +222,8 @@
      output$plot &lt;- renderEcharts4r(
        mtcars <!-- %&gt;%  -->
          e_charts(mpg) <!-- %&gt;%  -->
-         e_line(disp) <!-- %&gt;%  -->
+         e_line(disp, bind = carb, name = "displacement") <!-- %&gt;%  -->
+         e_line(hp) <!-- %&gt;%  -->
          e_x_axis(min = 10) <!-- %&gt;%  -->
          e_theme("westeros") 
      )
@@ -230,6 +237,19 @@
        echarts4rProxy("plot") <!-- %&gt;%  -->
          e_hidetip_p()
      )
+     
+     output$clickedData &lt;- renderPrint(
+       input$plot_clicked_data
+     )
+     
+     output$clickedSerie &lt;- renderPrint(
+       input$plot_clicked_serie
+     )
+     
+     output$clickedRow &lt;- renderPrint(
+       input$plot_clicked_row
+     )
+     
    
    
    shinyApp(ui, server)</p></td>

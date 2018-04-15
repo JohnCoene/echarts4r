@@ -54,6 +54,13 @@ HTMLWidgets.widget({
           chart.on("legendselectchanged", function(e){
             Shiny.onInputChange(el.id + '_legend_change' + ":echarts4rParse", e.name);
           });
+          
+          chart.on("click", function(e){
+            console.log(e);
+            Shiny.onInputChange(el.id + '_clicked_data' + ":echarts4rParse", e.data.value);
+            Shiny.onInputChange(el.id + '_clicked_row' + ":echarts4rParse", e.dataIndex + 1);
+            Shiny.onInputChange(el.id + '_clicked_serie' + ":echarts4rParse", e.seriesName);
+          });
         }
 
       },
@@ -140,11 +147,10 @@ if (HTMLWidgets.shinyMode) {
       }
   });
   
-    Shiny.addCustomMessageHandler('e_append_p',
+  Shiny.addCustomMessageHandler('e_append_p',
     function(opts) {
       var chart = get_e_charts(opts.id);
       if (typeof chart != 'undefined') {
-        console.log(opts);
         chart.appendData({
           seriesIndex: opts.seriesIndex,
           data: opts.data

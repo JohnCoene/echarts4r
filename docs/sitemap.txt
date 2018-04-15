@@ -44,7 +44,6 @@ http://echarts4r.john-coene.com/reference/e_scatter_gl.html
 http://echarts4r.john-coene.com/reference/e_step.html
 http://echarts4r.john-coene.com/reference/e_sunburst.html
 http://echarts4r.john-coene.com/reference/e_title.html
-http://echarts4r.john-coene.com/reference/e_toolbox.html
 http://echarts4r.john-coene.com/reference/e_tooltip.html
 http://echarts4r.john-coene.com/reference/e_tree.html
 http://echarts4r.john-coene.com/reference/e_treemap.html
@@ -62,6 +61,7 @@ http://echarts4r.john-coene.com/reference/reexports.html
 http://echarts4r.john-coene.com/reference/scatter.html
 http://echarts4r.john-coene.com/reference/textures.html
 http://echarts4r.john-coene.com/reference/theme.html
+http://echarts4r.john-coene.com/reference/toolbox.html
 http://echarts4r.john-coene.com/reference/tooltip_proxy.html
 http://echarts4r.john-coene.com/articles/advanced.html
 http://echarts4r.john-coene.com/articles/brush.html
