@@ -43,7 +43,7 @@ e_axis_3d <- function(e, axis = c("x", "y", "z"), index = 0, ...){
 e_x_axis_3d <- function(e, index = 0, ...){
   if(missing(e))
     stop("missing e", call. = FALSE)
-  e <- e_axis(e, axis = "x", index = index, ...)
+  e <- e_axis_3d(e, axis = "x", index = index, ...)
   e
 }
 
@@ -52,7 +52,7 @@ e_x_axis_3d <- function(e, index = 0, ...){
 e_y_axis_3d <- function(e, index = 0, ...){
   if(missing(e))
     stop("missing e", call. = FALSE)
-  e <- e_axis(e = e, axis = "y", index = index, ...)
+  e <- e_axis_3d(e = e, axis = "y", index = index, ...)
   e
 }
 
@@ -61,7 +61,7 @@ e_y_axis_3d <- function(e, index = 0, ...){
 e_z_axis_3d <- function(e, index = 0, ...){
   if(missing(e))
     stop("missing e", call. = FALSE)
-  e <- e_axis(e = e, axis = "z", index = index, ...)
+  e <- e_axis_3d(e = e, axis = "z", index = index, ...)
   e
 }
 
