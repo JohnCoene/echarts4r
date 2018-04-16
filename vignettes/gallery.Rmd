@@ -60,6 +60,7 @@ names(df) <- c("x", "y", "z")
 df %>% 
   e_charts(x) %>% 
   e_bar_3d(y, z) %>% 
+  e_grid_3d(show = FALSE) %>% 
   e_visual_map(
     min = 0, 
     max = 1, 
