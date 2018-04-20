@@ -1408,6 +1408,7 @@ e_line_3d <- function(e, y, z, name = NULL, coord.system = NULL, rm.x = TRUE, rm
 #' 
 #' @inheritParams e_bar
 #' @param y,z Coordinates.
+#' @param bind Binding.
 #' @param coord.system Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.
 #' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
@@ -1462,7 +1463,7 @@ e_line_3d <- function(e, y, z, name = NULL, coord.system = NULL, rm.x = TRUE, rm
 #' @seealso \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-bar3D}
 #' 
 #' @export
-e_bar_3d <- function(e, y, z, coord.system = "cartesian3D", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+e_bar_3d <- function(e, y, z, bind, coord.system = "cartesian3D", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1480,6 +1481,9 @@ e_bar_3d <- function(e, y, z, coord.system = "cartesian3D", name = NULL, rm.x = 
   if(coord.system != "cartesian3D"){
   
     data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
+    
+    if(!missing(bind))
+      data <- .add_bind(e, data, deparse(substitute(bind)))
     
   } else { # cartesian
     
@@ -1584,6 +1588,7 @@ e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.sys
 #' 
 #' @inheritParams e_bar
 #' @param y,z Coordinates.
+#' @param bind Binding.
 #' @param color,size Color and Size of bubbles.
 #' @param coord.system Coordinate system to use, one of \code{geo3D}, \code{globe}, or \code{cartesian3D}.
 #' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
@@ -1639,7 +1644,7 @@ e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.sys
 #' @seealso \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-scatter3D}
 #' 
 #' @export
-e_scatter_3d <- function(e, y, z, color, size, coord.system = "cartesian3D", name = NULL, 
+e_scatter_3d <- function(e, y, z, color, size, bind, coord.system = "cartesian3D", name = NULL, 
                          rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -1658,6 +1663,9 @@ e_scatter_3d <- function(e, y, z, color, size, coord.system = "cartesian3D", nam
   if(coord.system != "cartesian3D"){
     
     data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
+    
+    if(!missing(bind))
+      data <- .add_bind(e, data, deparse(substitute(bind)))
   
     
   } else { # cartesian

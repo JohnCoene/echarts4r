@@ -4,13 +4,15 @@
 \alias{e_bar_3d}
 \title{Bar 3D}
 \usage{
-e_bar_3d(e, y, z, coord.system = "cartesian3D", name = NULL, rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_bar_3d(e, y, z, bind, coord.system = "cartesian3D", name = NULL,
+  rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{y, z}{Coordinates.}
+
+\item{bind}{Binding.}
 
 \item{coord.system}{Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.}
 

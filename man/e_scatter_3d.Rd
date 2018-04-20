@@ -4,7 +4,7 @@
 \alias{e_scatter_3d}
 \title{Scatter 3D}
 \usage{
-e_scatter_3d(e, y, z, color, size, coord.system = "cartesian3D",
+e_scatter_3d(e, y, z, color, size, bind, coord.system = "cartesian3D",
   name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
@@ -13,6 +13,8 @@ e_scatter_3d(e, y, z, color, size, coord.system = "cartesian3D",
 \item{y, z}{Coordinates.}
 
 \item{color, size}{Color and Size of bubbles.}
+
+\item{bind}{Binding.}
 
 \item{coord.system}{Coordinate system to use, one of \code{geo3D}, \code{globe}, or \code{cartesian3D}.}
 
