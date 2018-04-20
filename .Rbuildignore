@@ -11,3 +11,4 @@ logo.png
 .gitattributes
 ^appveyor\.yml$
 ^cran-comments\.md$
+./vignettes
