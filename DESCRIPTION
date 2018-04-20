@@ -1,7 +1,7 @@
 Package: echarts4r
 Title: htmlwidget for Echarts Version 4
 Date: 2018-05-04
-Version: 0.0.1.9000
+Version: 0.0.1
 Authors@R: person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre"))
 Description: An htmlwidget for echarts version 4.
 Depends: R (>= 3.4.2)
@@ -28,6 +28,6 @@ Suggests:
     rmarkdown,
     quantmod,
     png
-URL: https://github.com/JohnCoene/echarts4r
+URL: http://echarts4r.john-coene.com/
 BugReports: https://github.com/JohnCoene/echarts4r/issues
 VignetteBuilder: knitr
