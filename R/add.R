@@ -2014,15 +2014,16 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y.in
   e
 }
 
-#' Linear Regression
+#' Smooth
 #' 
-#' Plot fitted.
+#' Aids the eye in seeing patterns in the presence of overplotting.
 #' 
 #' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
 #' @param formula formula to pass to \code{\link{lm}}.
 #' @param name, series name.
 #' @param legend Whether to plot legend.
-#' @param ... Additional arguments to pass to \code{\link{e_line}}.
+#' @param symbol Symbol to use in \code{\link{e_line}}.
+#' @param ... Additional arguments to pass to \code{\link{lm}}.
 #' 
 #' @examples 
 #' mtcars %>% 
@@ -2030,40 +2031,69 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y.in
 #'   e_scatter(qsec) %>% 
 #'   e_lm(qsec ~ mpg, name = "y = ax + b")
 #'   
+#' mtcars %>% 
+#'   e_charts(disp) %>% 
+#'   e_scatter(mpg) %>% 
+#'   e_loess(mpg ~ disp)
+#'   
 #' CO2 %>% 
 #'   e_charts(conc) %>% 
 #'   e_scatter(uptake) %>% 
-#'   e_lm(uptake ~ conc, name = "regression")
+#'   e_glm(uptake ~ conc, name = "GLM")
 #' 
+#' @rdname smooth
 #' @export
-e_lm <- function(e, formula, name = NULL, legend = TRUE, ...){
+e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", ...){
   form <- as.formula(formula)
   model <- eval(
-    lm(form, data = e$x$data)
+    lm(form, data = e$x$data, ...)
   )
-  data <- broom::augment(model)
   
-  data_keep <- e$x$data
-  e <- e %>% e_data(data)
+  e <- .build_model(e, model, name, symbol)
+  
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  e 
+}
+
+#' @rdname smooth
+#' @export
+e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", ...){
+  form <- as.formula(formula)
+  model <- eval(
+    glm(form, data = e$x$data, ...)
+  )
+  
+  e <- .build_model(e, model, name, symbol)
+  
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  e 
+}
+
+#' @rdname smooth
+#' @export
+e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", ...){
+  mod <- eval(
+    loess(as.formula(formula), data = e$x$data, ...)
+  )
+  
+  e$x$data$ECHARTS4RLOESS <- predict(mod)
   
   vector <- .build_data(
     e, 
-    names(data)[[2]],
-    names(data)[[3]]
+    e$x$mapping$x,
+    "ECHARTS4RLOESS"
   )
   
   l <- list(
     name = name,
     type = "line",
     data = vector,
-    ...
+    symbol = symbol
   )
   
-  e <- e %>% e_data(data_keep)
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
   e$x$opts$series <- append(e$x$opts$series, list(l))
+  
   e
 }

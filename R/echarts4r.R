@@ -23,8 +23,7 @@
 #' @import htmlwidgets
 #' @importFrom grDevices boxplot.stats
 #' @importFrom grDevices colorRampPalette
-#' @importFrom stats as.formula lm
-#' @importFrom stats lm
+#' @importFrom stats as.formula lm glm loess predict
 #' 
 #' @rdname init
 #' @export

@@ -420,3 +420,29 @@ globalVariables(c("e", "."))
     unlist() %>% 
     grep(serie, .)
 }
+
+.build_model <- function(e, model, name, symbol){
+  data <- broom::augment(model)
+  
+  data_keep <- e$x$data
+  e <- e %>% e_data(data)
+  
+  vector <- .build_data(
+    e, 
+    names(data)[[2]],
+    names(data)[[3]]
+  )
+  
+  l <- list(
+    name = name,
+    type = "line",
+    data = vector,
+    symbol = symbol
+  )
+  
+  e <- e %>% e_data(data_keep)
+  
+  e$x$opts$series <- append(e$x$opts$series, list(l))
+  
+  e
+}

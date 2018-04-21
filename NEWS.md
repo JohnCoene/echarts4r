@@ -4,7 +4,7 @@ Initial CRAN release
 
 Added:
 
-* `e_lm` to plot linear regressions.
+* `e_lm`, `e_glm` and `e_loess` added.
 
 # echarts4r 0.0.1.9000
 
