@@ -1,5 +1,5 @@
 Package: echarts4r
-Title: htmlwidget for 'Echarts JavaScript' Version 4
+Title: Htmlwidget for 'Echarts JavaScript' Version 4
 Date: 2018-05-04
 Version: 0.0.1
 Authors@R: person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre"))

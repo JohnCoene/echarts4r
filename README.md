@@ -18,7 +18,7 @@ You can install echarts4r from github with:
 devtools::install_github("JohnCoene/echarts4r")
 ```
 
-See [coding.net project](http://coding.net/u/JohnCoene/p/echarts4r/git/tree/master) if you're in China.
+See [coding.net project](http://coding.net/u/JohnCoene/p/echarts4r/git?public=true) if you're in China.
 
 ## [website](http://echarts4r.john-coene.com)
 
