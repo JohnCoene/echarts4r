@@ -2013,3 +2013,57 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y.in
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }
+
+#' Linear Regression
+#' 
+#' Plot fitted.
+#' 
+#' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
+#' @param formula formula to pass to \code{\link{lm}}.
+#' @param name, series name.
+#' @param legend Whether to plot legend.
+#' @param ... Additional arguments to pass to \code{\link{e_line}}.
+#' 
+#' @examples 
+#' mtcars %>% 
+#'   e_charts(mpg) %>% 
+#'   e_scatter(qsec) %>% 
+#'   e_lm(qsec ~ mpg, name = "y = ax + b")
+#'   
+#' CO2 %>% 
+#'   e_charts(conc) %>% 
+#'   e_scatter(uptake) %>% 
+#'   e_lm(uptake ~ conc, name = "regression")
+#' 
+#' @export
+e_lm <- function(e, formula, name = NULL, legend = TRUE, ...){
+  form <- as.formula(formula)
+  model <- eval(
+    lm(form, data = e$x$data)
+  )
+  data <- broom::augment(model)
+  
+  data_keep <- e$x$data
+  e <- e %>% e_data(data)
+  
+  vector <- .build_data(
+    e, 
+    names(data)[[2]],
+    names(data)[[3]]
+  )
+  
+  l <- list(
+    name = name,
+    type = "line",
+    data = vector,
+    ...
+  )
+  
+  e <- e %>% e_data(data_keep)
+  
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(l))
+  e
+}

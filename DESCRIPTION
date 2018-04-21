@@ -1,5 +1,5 @@
 Package: echarts4r
-Title: Htmlwidget for 'Echarts JavaScript' Version 4
+Title: Create Interactive Graphs 'Echarts JavaScript' Version 4
 Date: 2018-05-04
 Version: 0.0.1
 Authors@R: person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre"))
@@ -20,7 +20,8 @@ Imports:
   htmltools,
   base64enc,
   countrycode,
-  d3r
+  d3r,
+  broom
 RoxygenNote: 6.0.1
 Suggests: 
     jsonlite, 

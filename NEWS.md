@@ -1,3 +1,11 @@
+# 0.0.1
+
+Initial CRAN release
+
+Added:
+
+* `e_lm` to plot linear regressions.
+
 # echarts4r 0.0.1.9000
 
 Initial version with chart types:
