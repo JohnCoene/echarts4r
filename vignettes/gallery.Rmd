@@ -41,7 +41,7 @@ Download the image
 ```{r}
 library(png)
 
-download.file("http://www.gradhacker.org/wp-content/uploads/Rlogo.png", destfile = "Rlogo.png")
+download.file("http://www.gradhacker.org/wp-content/uploads/Rlogo.png", destfile = "Rlogo.png", mode = "wb")
 
 png <- readPNG("Rlogo.png", native = FALSE)
 ```

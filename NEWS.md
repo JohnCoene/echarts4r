@@ -26,6 +26,7 @@ Initial version with chart types:
 * wordcloud 
 * liquidFill 
 * Map
+* Pictorial
 * Line 3D
 * Bar 3D
 * Scatter 3D
