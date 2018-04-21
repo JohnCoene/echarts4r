@@ -23,6 +23,8 @@
 #' @import htmlwidgets
 #' @importFrom grDevices boxplot.stats
 #' @importFrom grDevices colorRampPalette
+#' @importFrom stats as.formula lm
+#' @importFrom stats lm
 #' 
 #' @rdname init
 #' @export
@@ -103,7 +105,7 @@ e_data <- function(e, data, x){
   if(!missing(x))
     xmap <- deparse(substitute(x))
   
-  if(!is.null(xmap)){
+  if(!missing(x)){
     e$x$mapping$x <- xmap
     e$x$mapping$x_class <- class(data[[xmap]])
     e$x <- .assign_axis(e$x)
