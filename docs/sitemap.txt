@@ -59,6 +59,7 @@ http://echarts4r.john-coene.com/reference/map.html
 http://echarts4r.john-coene.com/reference/mark.html
 http://echarts4r.john-coene.com/reference/reexports.html
 http://echarts4r.john-coene.com/reference/scatter.html
+http://echarts4r.john-coene.com/reference/smooth.html
 http://echarts4r.john-coene.com/reference/textures.html
 http://echarts4r.john-coene.com/reference/theme.html
 http://echarts4r.john-coene.com/reference/toolbox.html
@@ -80,3 +81,4 @@ http://echarts4r.john-coene.com/articles/shiny.html
 http://echarts4r.john-coene.com/articles/themes.html
 http://echarts4r.john-coene.com/articles/threeD.html
 http://echarts4r.john-coene.com/articles/toolbox.html
+http://echarts4r.john-coene.com/articles/tooltip.html
