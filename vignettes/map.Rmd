@@ -34,7 +34,7 @@ sessions %>%
   e_country_names(Country, Country, type = "country.name") %>% # helper
   e_charts(Country) %>% 
   e_map(Sessions) %>% 
-  e_visual_map(min = 1, max = 870)
+  e_visual_map(Sessions)
 ```
 
 ### Lines
@@ -72,5 +72,5 @@ USArrests %>%
   e_charts(states) %>%
   e_map_register("USA", json) %>%
   e_map(Murder, map = "USA") %>% 
-  e_visual_map(min = 0, max = 18)
+  e_visual_map(Murder)
 ```

@@ -27,6 +27,7 @@ articles:
     - pictorial
     - brush
     - toolbox
+    - tooltip
     - shiny
     - themes
 
@@ -70,6 +71,8 @@ navbar:
           href: articles/brush.html
         - text: "Toolbox"
           href: articles/toolbox.html
+        - text: "Tooltip"
+          href: articles/tooltip.html
         - text: "Themes"
           href: articles/themes.html
     - text: "Reference"

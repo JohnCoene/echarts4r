@@ -32,5 +32,5 @@ choropleth <- data.frame(
 choropleth %>% 
   e_charts(countries) %>% 
   e_map_3d(values, shading = "lambert") %>% 
-  e_visual_map(min = 10, max = 30)
+  e_visual_map(values) # scale to values
 ```

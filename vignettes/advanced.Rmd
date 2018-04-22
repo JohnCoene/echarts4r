@@ -41,7 +41,7 @@ matrix <- data.frame(
 matrix %>% 
   e_charts(x) %>% 
   e_heatmap(y, z) %>% 
-  e_visual_map(min = 1, max = max(matrix$z))
+  e_visual_map(z)
 ```
 
 One could also plot the heatmap on different coordinates, such as a calendar by first adding a calendar with `e_calendar` then specifying `coord.system = "calendar"`.
@@ -59,7 +59,7 @@ year %>%
   e_visual_map(max = 30)
 ```
 
-Another example, using polar coordinates.
+Another example, using polar coordinates, plot a line on 2D cartesian coordinates, then change to polar.
 
 ```{r}
 df <- data.frame(x = 1:10, y = seq(1, 20, by = 2))
@@ -78,7 +78,7 @@ df %>%
   e_line(y, coord.system = "polar", smooth = TRUE) 
 ```
 
-There are numerous coordinate system available in `echarts4r`; `globe`, `cartesian3d` and `polar` to name a few.
+There are numerous coordinate system available in `echarts4r`; `globe`, `cartesian3d` and `polar` **to name a few.**
 
 ### Customise the Axis
 
@@ -88,8 +88,7 @@ Use multiple axis.
 USArrests %>% 
   e_charts(Assault) %>% 
   e_line(Murder, smooth = TRUE) %>% 
-  e_line(Rape, y.index = 1) %>% # add secondary axis
-  e_y_axis(index = 1, show = FALSE) # hide secondary axis
+  e_line(Rape, y.index = 1) # add secondary axis
 ```
 
 ### Mark Points and Lines

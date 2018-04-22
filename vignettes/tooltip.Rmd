@@ -1,0 +1,77 @@
+---
+title: "Tooltip"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tooltip}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(echarts4r)
+```
+
+*Thanks to [Sharon Machlis](https://github.com/smach) for helping put this document together.*
+
+You can display a default tooltip by adding `e_tooltip()` to the code that creates your visualization, such as
+
+```{r}
+mtcars %>%
+  e_charts(wt) %>%
+  e_scatter(mpg) %>%
+  e_tooltip()
+```
+
+In order to *customize* the tooltip, though, you'll need to be comfortable adding a little JavaScript to your R code. Tooltip customization uses the format
+
+```{r, eval=FALSE}
+e_tooltip(formatter = htmlwidgets::JS("
+    function(params){
+	    return( )
+	  }
+	")
+)
+```
+
+Where the specific information you'd like to appear goes within return().
+
+Here's what you need to know about adding variables into that return() code:
+
+The x-axis variable is params.value[0]. The y-axis variable is params.value[1]. If you added another, size variable to the scatter plot, that would be params.value[2]. (Note that because this is JavaScript, indexing starts with 0 as in most computer languages, and not 1 as in R.)
+
+Here's how you might customize a tooltip for a scatter plot of mtcars wt and mpg, in order to show both wt and mpg in the tooltip:
+
+```{r}
+mtcars %>%
+  e_charts(wt) %>%
+  e_scatter(mpg) %>%
+  e_tooltip(formatter = htmlwidgets::JS("
+      function(params){
+        return('wt: ' + params.value[0] + '<br />mpg: ' + params.value[1])
+      }
+      ")
+  )
+```
+
+If you'd like to add information about a data frame column that's not included in the chart, you can pass in that data using the bind argument. As an example, you might want to include the name of the car model in the tooltip. With this particular data set, you'd first need to create that column, which you can do with code such as `mtcars <- tibble::rownames_to_column(mtcars, "model")`. Then, you can pass that column into your scatter plot visualization with `e_scatter(mpg, bind = model)`.
+
+```{r}
+mtcars %>%  
+  tibble::rownames_to_column("model") %>% 
+  e_charts(wt) %>% 
+  e_scatter(mpg, bind = model) %>%
+  e_tooltip(formatter = htmlwidgets::JS("
+              function(params){
+                return('<strong>' + params.name + 
+                       '</strong><br />wt: ' + params.value[0] + 
+                       '<br />mpg: ' + params.value[1]) 
+                        }
+                  "))
+```

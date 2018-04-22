@@ -69,7 +69,6 @@ wind = expand.grid(lng = latlong, lat = latlong)
 wind$slng <- rnorm(nrow(wind), 0, 200)
 wind$slat <- rnorm(nrow(wind), 0, 200)
 wind$color <- abs(wind$slat) - abs(wind$slng)
-rng <- range(wind$color)
 
 trans <- list(opacity = 0.5) # transparency
 
@@ -89,7 +88,7 @@ wind %>%
     particleSize = 2
   ) %>% 
   e_visual_map(
-    min = rng[1], max = rng[2], # range
+    color, # range
     dimension = 4, # lng = 0, lat = 1, slng = 2, slat = 3, color = 4
     show = FALSE, # hide
     inRange = list(

@@ -60,7 +60,7 @@ df %>%
 df %>% 
   e_charts(x) %>% 
   e_scatter(y, z) %>% 
-  e_visual_map(min = 4, max = 17) %>% # scale color
+  e_visual_map(z) %>% # scale color
   e_legend(FALSE) # hide legend
 ```
 
@@ -126,7 +126,7 @@ matrix <- data.frame(
 matrix %>% 
   e_charts(x) %>% 
   e_heatmap(y, z) %>% 
-  e_visual_map(min = 1, max = max(matrix$z)) %>% 
+  e_visual_map(z) %>% 
   e_title("Heatmap")
 ```
 
