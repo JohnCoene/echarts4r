@@ -102,17 +102,12 @@ globalVariables(c("e", "."))
   
   names(data) <- c("name", "value", "symbolSize", "category")[1:ncol(data)]
   
-  data$id <- as.numeric(as.factor(data$name)) - 1
-  
-  data %>% 
-    dplyr::arrange_("id") -> data
-  
   x <- apply(data, 1, as.list)
   
   for(i in 1:length(x)){
     x[[i]]$symbolSize <- as.numeric(paste(x[[i]]$symbolSize))
     x[[i]]$value <- as.numeric(paste(x[[i]]$value))
-    x[[i]]$id <- as.numeric(x[[i]]$id)
+    x[[i]]$name <- trimws(as.character(x[[i]]$name))
   }
   x
 }
@@ -127,16 +122,11 @@ globalVariables(c("e", "."))
   
   names(data) <- c("name", "value")[1:ncol(data)]
   
-  data$id <- as.numeric(as.factor(data$name)) - 1
-  
-  data %>% 
-    dplyr::arrange_("id") -> data
-  
   x <- apply(data, 1, as.list)
   
   for(i in 1:length(x)){
     x[[i]]$value <- as.numeric(paste(x[[i]]$value))
-    x[[i]]$id <- as.numeric(x[[i]]$id)
+    x[[i]]$name <- trimws(as.character(x[[i]]$name))
   }
   x
 }
@@ -162,7 +152,7 @@ globalVariables(c("e", "."))
   for(i in 1:length(x)){
     x[[i]]$symbolSize <- as.numeric(paste(x[[i]]$symbolSize))
     x[[i]]$value <- as.numeric(paste(x[[i]]$value))
-    x[[i]]$id <- as.numeric(x[[i]]$id)
+    x[[i]]$name <- trimws(as.character(x[[i]]$name))
   }
   x
 }
@@ -177,15 +167,10 @@ globalVariables(c("e", "."))
   
   names(data) <- c("source", "target")
   
-  data$id <- as.character(1:nrow(data) - 1)
-  data$source <- as.numeric(as.factor(data$source)) - 1
-  data$target <- as.numeric(as.factor(data$target)) - 1
-  
   apply(data, 1, as.list) -> x
   for(i in 1:length(x)){
-    x[[i]]$source <- as.numeric(paste(x[[i]]$source))
-    x[[i]]$target <- as.numeric(paste(x[[i]]$target))
-    x[[i]]$id <- as.numeric(x[[i]]$id)
+    x[[i]]$source <- trimws(as.character(x[[i]]$source))
+    x[[i]]$target <- trimws(as.character(x[[i]]$target))
   }
   x
 }
