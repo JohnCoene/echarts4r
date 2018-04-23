@@ -26,6 +26,7 @@ articles:
     - graph
     - pictorial
     - brush
+    - stats
     - toolbox
     - tooltip
     - shiny
@@ -57,12 +58,16 @@ navbar:
           href: articles/geo3d.html
         - text: "Globe"
           href: articles/globe.html
+        - text: "Leaflet"
+          href: articles/leaflet.html
         - text: "3D"
           href: articles/threeD.html
         - text: "webGL"
           href: articles/gl.html
         - text: "Graph"
           href: articles/graph.html
+        - text: "Statistical"
+          href: articles/stats.html
         - text: "Pictorial"
           href: articles/pictorial.html
         - text: "Shiny"

@@ -23,7 +23,8 @@ e_loess(e, formula, name = NULL, legend = TRUE, symbol = "none", ...)
 
 \item{symbol}{Symbol to use in \code{\link{e_line}}.}
 
-\item{...}{Additional arguments to pass to \code{\link{lm}}.}
+\item{...}{Additional arguments to pass to \code{\link{lm}}, \code{\link{glm}}, 
+and \code{\link{loess}}.}
 }
 \description{
 Aids the eye in seeing patterns in the presence of overplotting.

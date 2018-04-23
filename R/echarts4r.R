@@ -24,6 +24,7 @@
 #' @importFrom grDevices boxplot.stats
 #' @importFrom grDevices colorRampPalette
 #' @importFrom stats as.formula lm glm loess predict
+#' @importFrom graphics hist
 #' 
 #' @rdname init
 #' @export

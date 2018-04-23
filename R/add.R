@@ -638,7 +638,8 @@ e_sankey <- function(e, source, target, value, layout = "none", rm.x = TRUE, rm.
 #'   e_graph_nodes(nodes, name, value, size, grp) %>% 
 #'   e_graph_edges(edges, source, target)
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-graph}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-graph}{Additional arguments},
+#'  \code{\link{e_modularity}}
 #' 
 #' @rdname graph
 #' @export
@@ -2026,7 +2027,8 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y.in
 #' @param name, series name.
 #' @param legend Whether to plot legend.
 #' @param symbol Symbol to use in \code{\link{e_line}}.
-#' @param ... Additional arguments to pass to \code{\link{lm}}.
+#' @param ... Additional arguments to pass to \code{\link{lm}}, \code{\link{glm}}, 
+#' and \code{\link{loess}}.
 #' 
 #' @examples 
 #' mtcars %>% 
@@ -2098,5 +2100,68 @@ e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", ...
   
   e$x$opts$series <- append(e$x$opts$series, list(l))
   
+  e
+}
+
+#' Histogram
+#' 
+#' Add a histogram.
+#' 
+#' @inheritParams e_bar
+#' @param bar.width Width of bars.
+#' @param breaks Passed to \code{\link{hist}}.
+#' 
+#' @examples 
+#' mtcars %>% 
+#'   e_charts() %>% 
+#'   e_histogram(mpg) %>% 
+#'   e_tooltip()
+#' 
+#' @export
+e_histogram <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE, bar.width = "80%",
+                        y.index = 0, x.index = 0, ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  serie <- deparse(substitute(serie))
+  
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
+  data <- .get_data(e, serie)
+  histogram <- hist(data, plot = FALSE)
+  counts <- histogram$counts
+  
+  if(y.index != 0)
+    e <- .set_y_axis(e, serie, y.index)
+  
+  if(x.index != 0)
+    e <- .set_x_axis(e, x.index)
+  
+  if(!length(e$x$opts$xAxis))
+    e$x$opts$xAxis <- list(
+      list(
+        type = "value"
+      )
+    )
+  
+  serie <- list(
+    name = name,
+    type = "bar",
+    data = counts,
+    barWidth = bar.width,
+    yAxisIndex = y.index,
+    xAxisIndex = x.index,
+    ...
+  )
+  
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }
