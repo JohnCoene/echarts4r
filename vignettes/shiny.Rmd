@@ -109,7 +109,7 @@ shinyApp(ui, server)
 
 With loading.
 
-```{r}
+```{r, eval=FALSE}
 # keep UI
 # add loading
 server <- function(input, output){
