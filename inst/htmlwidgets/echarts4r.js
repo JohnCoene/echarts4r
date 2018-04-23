@@ -56,8 +56,9 @@ HTMLWidgets.widget({
           });
           
           chart.on("click", function(e){
-            console.log(e);
-            Shiny.onInputChange(el.id + '_clicked_data' + ":echarts4rParse", e.data.value);
+            console.log(e.data);
+            Shiny.onInputChange(el.id + '_clicked_data' + ":echarts4rParse", e.data);
+            Shiny.onInputChange(el.id + '_clicked_data_value' + ":echarts4rParse", e.data.value);
             Shiny.onInputChange(el.id + '_clicked_row' + ":echarts4rParse", e.dataIndex + 1);
             Shiny.onInputChange(el.id + '_clicked_serie' + ":echarts4rParse", e.seriesName);
           });

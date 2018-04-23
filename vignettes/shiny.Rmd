@@ -25,6 +25,7 @@ Get data from shiny with the following:
 * `elementId` + `_brush`
 * `elementId` + `_legend_change`
 * `elementId` + `_clicked_data`
+* `elementId` + `_clicked_data_value`
 * `elementId` + `_clicked_row`
 * `elementId` + `_clicked_serie`
 
@@ -73,6 +74,8 @@ shinyApp(ui, server)
 
 You can also show a spinner while shiny recalculates.
 
+Without loading, chart redraws with neat animation.
+
 ```{r, eval=FALSE}
 # no redraw
 # no loading
@@ -102,7 +105,12 @@ server <- function(input, output){
 }
 
 shinyApp(ui, server)
+```
 
+With loading.
+
+```{r}
+# keep UI
 # add loading
 server <- function(input, output){
   data <- eventReactive(input$update, {
