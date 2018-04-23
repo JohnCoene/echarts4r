@@ -92,6 +92,8 @@ globalVariables(c("e", "."))
 
 .build_graph_nodes <- function(nodes, names, value, symbolSize, category){
   
+  row.names(nodes) <- NULL
+  
   nodes %>%
     dplyr::select(
       !!names,
@@ -114,6 +116,8 @@ globalVariables(c("e", "."))
 
 .build_graph_nodes_no_size <- function(nodes, names, value){
   
+  row.names(nodes) <- NULL
+  
   nodes %>%
     dplyr::select(
       !!names,
@@ -133,6 +137,8 @@ globalVariables(c("e", "."))
 
 .build_graph_nodes_no_cat <- function(nodes, names, value, symbolSize){
   
+  row.names(nodes) <- NULL
+  
   nodes %>%
     dplyr::select(
       !!names,
@@ -141,11 +147,6 @@ globalVariables(c("e", "."))
     ) -> data
   
   names(data) <- c("name", "value", "symbolSize")[1:ncol(data)]
-  
-  data$id <- as.numeric(as.factor(data$name)) - 1
-  
-  data %>% 
-    dplyr::arrange_("id") -> data
   
   x <- apply(data, 1, as.list)
   
@@ -158,6 +159,8 @@ globalVariables(c("e", "."))
 }
 
 .build_graph_edges <- function(edges, source, target){
+  
+  row.names(edges) <- NULL
   
   edges %>%
     dplyr::select(
