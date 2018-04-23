@@ -1,0 +1,71 @@
+---
+title: "Statistical plots"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{John Coene}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(echarts4r)
+```
+
+```{r}
+# data.frame
+df <- data.frame(
+  x = 1:100,
+  y = rnorm(100, 20, 12)
+)
+```
+
+## Histogram
+
+```{r}
+df %>% 
+  e_charts() %>% 
+  e_histogram(y) %>% 
+  e_tooltip()
+```
+
+## Fit
+
+Functions leverage R buil-in:
+
+* `lm`
+* `glm`
+* `loess`
+
+#### Linear
+
+```{r}
+df %>% 
+  e_charts(x) %>% 
+  e_scatter(y) %>% 
+  e_lm(y ~ x)
+```
+
+#### Generalised Linear
+
+```{r}
+CO2 %>% 
+  e_charts(conc) %>% 
+  e_scatter(uptake) %>% 
+  e_glm(uptake ~ conc, name = "GLM")
+```
+
+#### Polynomial
+
+```{r}
+mtcars %>% 
+  e_charts(disp) %>% 
+  e_scatter(mpg) %>% 
+  e_loess(mpg ~ disp)
+```
