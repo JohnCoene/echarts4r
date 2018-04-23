@@ -685,17 +685,14 @@ e_graph_gl <- function(e, layout = "force", name = NULL, rm.x = TRUE, rm.y = TRU
 #' @export
 e_graph_nodes <- function(e, nodes, names, value, size, category, legend = TRUE){
   
-  if(missing(nodes) || missing(names))
-    stop("must pass nodes and names", call. = FALSE)
-  
-  if(missing(nodes) || missing(names) || missing(value) || missing(size))
+  if(missing(nodes) || missing(names) || missing(value))
     stop("missing arguments", call. = FALSE)
   
   value <- dplyr::enquo(value)
   symbolSize <- dplyr::enquo(size)
   names <- dplyr::enquo(names)
   
-  if(!missing(category)){
+  if(!missing(category) && !missing(size)){
     
     e$x$opts$series[[length(e$x$opts$series)]]$categories <- .build_graph_category(nodes, dplyr::enquo(category))
     
@@ -709,12 +706,18 @@ e_graph_nodes <- function(e, nodes, names, value, size, category, legend = TRUE)
       symbolSize,
       dplyr::enquo(category)
     )
-  } else {
+  } else if(missing(category) && !missing(size)) {
     nodes <- .build_graph_nodes_no_cat(
       nodes, 
       names, 
       value,
       symbolSize
+    )
+  } else if (missing(category) && missing(size)){
+    nodes <- .build_graph_nodes_no_size(
+      nodes, 
+      names, 
+      value
     )
   }
   

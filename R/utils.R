@@ -117,6 +117,30 @@ globalVariables(c("e", "."))
   x
 }
 
+.build_graph_nodes_no_size <- function(nodes, names, value){
+  
+  nodes %>%
+    dplyr::select(
+      !!names,
+      !!value
+    ) -> data
+  
+  names(data) <- c("name", "value")[1:ncol(data)]
+  
+  data$id <- as.numeric(as.factor(data$name)) - 1
+  
+  data %>% 
+    dplyr::arrange_("id") -> data
+  
+  x <- apply(data, 1, as.list)
+  
+  for(i in 1:length(x)){
+    x[[i]]$value <- as.numeric(paste(x[[i]]$value))
+    x[[i]]$id <- as.numeric(x[[i]]$id)
+  }
+  x
+}
+
 .build_graph_nodes_no_cat <- function(nodes, names, value, symbolSize){
   
   nodes %>%
