@@ -33,6 +33,30 @@ HTMLWidgets.widget({
         
         chart = echarts.init(document.getElementById(el.id), x.theme);
         chart.setOption(x.opts);
+        
+        if (HTMLWidgets.shinyMode) {
+          chart.on("brushselected", function(e){
+            Shiny.onInputChange(el.id + '_brush' + ":echarts4rParse", e.batch[0].selected);
+          });
+          
+          chart.on("legendselectchanged", function(e){
+            Shiny.onInputChange(el.id + '_legend_change' + ":echarts4rParse", e.name);
+          });
+          
+          chart.on("click", function(e){
+            Shiny.onInputChange(el.id + '_clicked_data' + ":echarts4rParse", e.data);
+            Shiny.onInputChange(el.id + '_clicked_data_value' + ":echarts4rParse", e.data.value);
+            Shiny.onInputChange(el.id + '_clicked_row' + ":echarts4rParse", e.dataIndex + 1);
+            Shiny.onInputChange(el.id + '_clicked_serie' + ":echarts4rParse", e.seriesName);
+          });
+          
+          chart.on("mouseover", function(e){
+            Shiny.onInputChange(el.id + '_mouseover_data' + ":echarts4rParse", e.data);
+            Shiny.onInputChange(el.id + '_mouseover_data_value' + ":echarts4rParse", e.data.value);
+            Shiny.onInputChange(el.id + '_mouseover_row' + ":echarts4rParse", e.dataIndex + 1);
+            Shiny.onInputChange(el.id + '_mouseover_serie' + ":echarts4rParse", e.seriesName);
+          });
+        }
 
         $(document).on('shiny:recalculating', function() {
           if(x.loading === true){
@@ -45,24 +69,6 @@ HTMLWidgets.widget({
         $(document).on('shiny:value', function() {
           chart.hideLoading();
         });
-        
-        if (HTMLWidgets.shinyMode) {
-          chart.on("brushselected", function(e){
-            Shiny.onInputChange(el.id + '_brush' + ":echarts4rParse", e.batch[0].selected);
-          });
-          
-          chart.on("legendselectchanged", function(e){
-            Shiny.onInputChange(el.id + '_legend_change' + ":echarts4rParse", e.name);
-          });
-          
-          chart.on("click", function(e){
-            console.log(e.data);
-            Shiny.onInputChange(el.id + '_clicked_data' + ":echarts4rParse", e.data);
-            Shiny.onInputChange(el.id + '_clicked_data_value' + ":echarts4rParse", e.data.value);
-            Shiny.onInputChange(el.id + '_clicked_row' + ":echarts4rParse", e.dataIndex + 1);
-            Shiny.onInputChange(el.id + '_clicked_serie' + ":echarts4rParse", e.seriesName);
-          });
-        }
 
       },
       
