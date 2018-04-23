@@ -83,6 +83,9 @@
       <a href="../articles/globe.html">Globe</a>
     </li>
     <li>
+      <a href="../articles/leaflet.html">Leaflet</a>
+    </li>
+    <li>
       <a href="../articles/threeD.html">3D</a>
     </li>
     <li>
@@ -90,6 +93,9 @@
     </li>
     <li>
       <a href="../articles/graph.html">Graph</a>
+    </li>
+    <li>
+      <a href="../articles/stats.html">Statistical</a>
     </li>
     <li>
       <a href="../articles/pictorial.html">Pictorial</a>
@@ -146,7 +152,7 @@
       <h1>Shiny</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2018-04-22</h4>
+            <h4 class="date">2018-04-24</h4>
       
       
 
@@ -167,10 +173,25 @@
 <code>elementId</code> + <code>_clicked_data</code>
 </li>
 <li>
+<code>elementId</code> + <code>_clicked_data_value</code>
+</li>
+<li>
 <code>elementId</code> + <code>_clicked_row</code>
 </li>
 <li>
 <code>elementId</code> + <code>_clicked_serie</code>
+</li>
+<li>
+<code>elementId</code> + <code>_mouseover_data</code>
+</li>
+<li>
+<code>elementId</code> + <code>_mouseover_data_value</code>
+</li>
+<li>
+<code>elementId</code> + <code>_mouseover_row</code>
+</li>
+<li>
+<code>elementId</code> + <code>_mouseover_serie</code>
 </li>
 </ul>
 <p>See the example below and the various proxies documentation.</p>
@@ -213,6 +234,7 @@
 <a class="sourceLine" id="cb1-37" data-line-number="37"></a>
 <a class="sourceLine" id="cb1-38" data-line-number="38"><span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</a></code></pre></div>
 <p>You can also show a spinner while shiny recalculates.</p>
+<p>Without loading, chart redraws with neat animation.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># no redraw</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co"># no loading</span></a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">library</span>(shiny)</a>
@@ -240,27 +262,28 @@
 <a class="sourceLine" id="cb2-25" data-line-number="25">  })</a>
 <a class="sourceLine" id="cb2-26" data-line-number="26">}</a>
 <a class="sourceLine" id="cb2-27" data-line-number="27"></a>
-<a class="sourceLine" id="cb2-28" data-line-number="28"><span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</a>
-<a class="sourceLine" id="cb2-29" data-line-number="29"></a>
-<a class="sourceLine" id="cb2-30" data-line-number="30"><span class="co"># add loading</span></a>
-<a class="sourceLine" id="cb2-31" data-line-number="31">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output){</a>
-<a class="sourceLine" id="cb2-32" data-line-number="32">  data &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/observeEvent">eventReactive</a></span>(input<span class="op">$</span>update, {</a>
-<a class="sourceLine" id="cb2-33" data-line-number="33">    <span class="kw">Sys.sleep</span>(<span class="dv">1</span>) <span class="co"># sleep one second to show loading</span></a>
-<a class="sourceLine" id="cb2-34" data-line-number="34">    <span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb2-35" data-line-number="35">      <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb2-36" data-line-number="36">      <span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb2-37" data-line-number="37">    )</a>
-<a class="sourceLine" id="cb2-38" data-line-number="38">  })</a>
-<a class="sourceLine" id="cb2-39" data-line-number="39">  </a>
-<a class="sourceLine" id="cb2-40" data-line-number="40">  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw"><a href="../reference/echarts4r-shiny.html">renderEcharts4r</a></span>({</a>
-<a class="sourceLine" id="cb2-41" data-line-number="41">    <span class="kw">data</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-42" data-line-number="42"><span class="st">      </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-43" data-line-number="43"><span class="st">      </span><span class="kw"><a href="../reference/e_bar.html">e_bar</a></span>(y) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-44" data-line-number="44"><span class="st">      </span><span class="kw"><a href="../reference/loading.html">e_show_loading</a></span>()</a>
-<a class="sourceLine" id="cb2-45" data-line-number="45">  })</a>
-<a class="sourceLine" id="cb2-46" data-line-number="46">}</a>
-<a class="sourceLine" id="cb2-47" data-line-number="47"></a>
-<a class="sourceLine" id="cb2-48" data-line-number="48"><span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</a></code></pre></div>
+<a class="sourceLine" id="cb2-28" data-line-number="28"><span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</a></code></pre></div>
+<p>With loading.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># keep UI</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co"># add loading</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output){</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  data &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/observeEvent">eventReactive</a></span>(input<span class="op">$</span>update, {</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="kw">Sys.sleep</span>(<span class="dv">1</span>) <span class="co"># sleep one second to show loading</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">      <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">      <span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">    )</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">  })</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">  </a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw"><a href="../reference/echarts4r-shiny.html">renderEcharts4r</a></span>({</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">    <span class="kw">data</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="st">      </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="st">      </span><span class="kw"><a href="../reference/e_bar.html">e_bar</a></span>(y) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="st">      </span><span class="kw"><a href="../reference/loading.html">e_show_loading</a></span>()</a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">  })</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">}</a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</a></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

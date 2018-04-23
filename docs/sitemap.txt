@@ -26,11 +26,13 @@ http://echarts4r.john-coene.com/reference/e_globe.html
 http://echarts4r.john-coene.com/reference/e_grid.html
 http://echarts4r.john-coene.com/reference/e_grid_3d.html
 http://echarts4r.john-coene.com/reference/e_heatmap.html
+http://echarts4r.john-coene.com/reference/e_histogram.html
 http://echarts4r.john-coene.com/reference/e_legend.html
 http://echarts4r.john-coene.com/reference/e_line.html
 http://echarts4r.john-coene.com/reference/e_lines.html
 http://echarts4r.john-coene.com/reference/e_liquid.html
 http://echarts4r.john-coene.com/reference/e_map_register.html
+http://echarts4r.john-coene.com/reference/e_modularity.html
 http://echarts4r.john-coene.com/reference/e_parallel.html
 http://echarts4r.john-coene.com/reference/e_pictorial.html
 http://echarts4r.john-coene.com/reference/e_pie.html
@@ -53,6 +55,7 @@ http://echarts4r.john-coene.com/reference/echarts4r-shiny.html
 http://echarts4r.john-coene.com/reference/graph.html
 http://echarts4r.john-coene.com/reference/highlight_proxy.html
 http://echarts4r.john-coene.com/reference/init.html
+http://echarts4r.john-coene.com/reference/leaflet.html
 http://echarts4r.john-coene.com/reference/line3D.html
 http://echarts4r.john-coene.com/reference/loading.html
 http://echarts4r.john-coene.com/reference/map.html
@@ -74,10 +77,12 @@ http://echarts4r.john-coene.com/articles/get_started.html
 http://echarts4r.john-coene.com/articles/gl.html
 http://echarts4r.john-coene.com/articles/globe.html
 http://echarts4r.john-coene.com/articles/graph.html
+http://echarts4r.john-coene.com/articles/leaflet.html
 http://echarts4r.john-coene.com/articles/map.html
 http://echarts4r.john-coene.com/articles/map3d.html
 http://echarts4r.john-coene.com/articles/pictorial.html
 http://echarts4r.john-coene.com/articles/shiny.html
+http://echarts4r.john-coene.com/articles/stats.html
 http://echarts4r.john-coene.com/articles/themes.html
 http://echarts4r.john-coene.com/articles/threeD.html
 http://echarts4r.john-coene.com/articles/toolbox.html

@@ -12,10 +12,12 @@ articles:
   gl: gl.html
   globe: globe.html
   graph: graph.html
+  leaflet: leaflet.html
   map: map.html
   map3d: map3d.html
   pictorial: pictorial.html
   shiny: shiny.html
+  stats: stats.html
   themes: themes.html
   threeD: threeD.html
   toolbox: toolbox.html
