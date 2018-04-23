@@ -28,6 +28,10 @@ Get data from shiny with the following:
 * `elementId` + `_clicked_data_value`
 * `elementId` + `_clicked_row`
 * `elementId` + `_clicked_serie`
+* `elementId` + `_mouseover_data`
+* `elementId` + `_mouseover_data_value`
+* `elementId` + `_mouseover_row`
+* `elementId` + `_mouseover_serie`
 
 See the example below and the various proxies documentation.
 
