@@ -103,3 +103,56 @@ e_liquid <- function(e, serie, color, rm.x = TRUE, rm.y = TRUE, ...){
   
   e
 }
+
+#' Modularity
+#' 
+#' Graph modularity extension will do community detection and partian a graph's vertices in several subsets. 
+#' Each subset will be assigned a different color.
+#' 
+#' @inheritParams e_bar
+#' @param modularity Either set to \code{TRUE}, or a \code{list}.
+#' 
+#' @section Modularity:
+#' \itemize{
+#'   \item{\code{resolution} Resolution}
+#'   \item{\code{sort} Whether to sort to comunities}
+#' }
+#' 
+#' @examples 
+#' nodes <- data.frame(
+#'   name = paste0(LETTERS, 1:100),
+#'   value = rnorm(100, 10, 2),
+#'   stringsAsFactors = FALSE
+#' )
+#' 
+#' edges <- data.frame(
+#'   source = sample(nodes$name, 200, replace = TRUE),
+#'   target = sample(nodes$name, 200, replace = TRUE),
+#'   stringsAsFactors = FALSE
+#' )
+#' 
+#' e_charts() %>% 
+#'   e_graph() %>% 
+#'   e_graph_nodes(nodes, name, value) %>% 
+#'   e_graph_edges(edges, source, target) %>% 
+#'   e_modularity(
+#'     list(
+#'       resolution = 5,
+#'       sort = TRUE
+#'     )
+#'   )
+#'   
+#' @note Does not work in RStudio viewer, open in browser.
+#' 
+#' @seealso \href{https://github.com/ecomfe/echarts-graph-modularity}{Official documentation}
+#' 
+#' @export
+e_modularity <- function(e, modularity = TRUE){
+  
+  clu <- list(
+    modularity = modularity
+  )
+  
+  e$x$opts$series[[length(e$x$opts$series)]]$modularity <- clu
+  e
+}
