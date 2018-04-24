@@ -36,20 +36,3 @@ data %>%
   e_leaflet_tile() %>%  
   e_scatter(lat, size = value, coord.system = "leaflet")
 ```
-
-### Effect Scatter
-
-```{r}
-url <- paste0("https://ecomfe.github.io/echarts-examples/",
-              "public/data-gl/asset/data/population.json")
-data <- jsonlite::fromJSON(url)
-data <- as.data.frame(data)
-names(data) <- c("lon", "lat", "value")
-data$value <- log(data$value)
-
-data %>% 
-  e_charts(lon) %>% 
-  e_leaflet() %>%
-  e_leaflet_tile() %>%  
-  e_effect_scatter(lat, size = value, coord.system = "leaflet")
-```
