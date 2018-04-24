@@ -2095,6 +2095,7 @@ e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", ...
     name = name,
     type = "line",
     data = vector,
+    smooth = TRUE,
     symbol = symbol
   )
   

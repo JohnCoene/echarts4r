@@ -449,7 +449,8 @@ globalVariables(c("e", "."))
     name = name,
     type = "line",
     data = vector,
-    symbol = symbol
+    symbol = symbol,
+    smooth = TRUE
   )
   
   e <- e %>% e_data(data_keep)
