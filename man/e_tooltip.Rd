@@ -4,38 +4,10 @@
 \alias{e_tooltip}
 \title{Tooltip}
 \usage{
-e_tooltip(e, show = TRUE, trigger = c("item", "axis"),
-  show.content = TRUE, trigger.on = c("mousemove|click", "mousemove",
-  "click"), show.delay = 0, hide.delay = 100, enterable = TRUE,
-  confine = FALSE, transition.duration = 0.4, always.show.content = FALSE,
-  ...)
+e_tooltip(e, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
-
-\item{show}{Set to \code{FALSE} to hide the tooltip.}
-
-\item{trigger}{Type of triggering, \code{item} or \code{axis}.}
-
-\item{show.content}{Whether to show the tooltip floating layer.}
-
-\item{trigger.on}{Conditions to trigger tooltip; \code{mousemove|click}, \code{mousemove}, 
-or \code{click}.}
-
-\item{show.delay}{Delay time for showing tooltip, in millisecond.}
-
-\item{hide.delay}{Delay time for hiding tooltip, in ms. It will be invalid when 
-\code{always.show.content} is true.}
-
-\item{enterable}{Whether mouse is allowed to enter the floating layer of tooltip. 
-If you need to interact in the tooltip like with links or buttons, it can be set as \code{TRUE}.}
-
-\item{confine}{Whether tooltip content in the view rect of chart instance.}
-
-\item{transition.duration}{The transition duration of tooltip's animation, in seconds.}
-
-\item{always.show.content}{Whether to show tooltip content all the time. By default, 
-it will be hidden after some time. It can be set to be \code{TRUE} to preserve displaying.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }
