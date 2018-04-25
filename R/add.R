@@ -2104,9 +2104,9 @@ e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", ...
   e
 }
 
-#' Histogram
+#' Histogram & Density
 #' 
-#' Add a histogram.
+#' Add a histogram or density plots.
 #' 
 #' @inheritParams e_bar
 #' @param bar.width Width of bars.
@@ -2115,12 +2115,14 @@ e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", ...
 #' @examples 
 #' mtcars %>% 
 #'   e_charts() %>% 
-#'   e_histogram(mpg) %>% 
-#'   e_tooltip()
+#'   e_histogram(mpg, name = "histogram") %>% 
+#'   e_density(mpg, fill = TRUE, smooth = TRUE, name = "density", y.index = 1) %>% 
+#'   e_tooltip(trigger = "axis")
 #' 
+#' @rdname histogram
 #' @export
-e_histogram <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE, bar.width = "80%",
-                        y.index = 0, x.index = 0, ...){
+e_histogram <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
+                        bar.width = "99%", y.index = 0, x.index = 0, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -2134,8 +2136,14 @@ e_histogram <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE
     name <- serie
   
   data <- .get_data(e, serie)
-  histogram <- hist(data, plot = FALSE)
-  counts <- histogram$counts
+  histogram <- hist(data, plot = FALSE, breaks)
+  
+  hist <- data.frame(
+    histogram$mids,
+    histogram$counts
+  )
+  
+  hist <- apply(unname(hist), 1, as.list)
   
   if(y.index != 0)
     e <- .set_y_axis(e, serie, y.index)
@@ -2146,15 +2154,69 @@ e_histogram <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE
   if(!length(e$x$opts$xAxis))
     e$x$opts$xAxis <- list(
       list(
-        type = "value"
+        type = "value", scale = TRUE
       )
     )
   
   serie <- list(
     name = name,
     type = "bar",
-    data = counts,
+    data = hist,
     barWidth = bar.width,
+    yAxisIndex = y.index,
+    xAxisIndex = x.index,
+    ...
+  )
+  
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' @rdname histogram
+#' @export
+e_density <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE, 
+                      x.index = 0, y.index = 0, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  serie <- deparse(substitute(serie))
+  
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
+  data <- .get_data(e, serie)
+  histogram <- hist(data, plot = FALSE, breaks)
+  
+  hist <- data.frame(
+    histogram$mids,
+    histogram$density
+  )
+  
+  hist <- apply(unname(hist), 1, as.list)
+  
+  if(y.index != 0)
+    e <- .set_y_axis(e, serie, y.index)
+  
+  if(x.index != 0)
+    e <- .set_x_axis(e, x.index)
+  
+  if(!length(e$x$opts$xAxis))
+    e$x$opts$xAxis <- list(
+      list(
+        type = "value", scale = TRUE
+      )
+    )
+  
+  serie <- list(
+    name = name,
+    type = "line",
+    data = hist,
     yAxisIndex = y.index,
     xAxisIndex = x.index,
     ...

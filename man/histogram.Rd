@@ -2,10 +2,14 @@
 % Please edit documentation in R/add.R
 \name{e_histogram}
 \alias{e_histogram}
-\title{Histogram}
+\alias{e_density}
+\title{Histogram & Density}
 \usage{
 e_histogram(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
-  bar.width = "80\%", y.index = 0, x.index = 0, ...)
+  bar.width = "99\%", y.index = 0, x.index = 0, ...)
+
+e_density(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
+  x.index = 0, y.index = 0, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -27,12 +31,13 @@ e_histogram(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{
-Add a histogram.
+Add a histogram or density plots.
 }
 \examples{
 mtcars \%>\% 
   e_charts() \%>\% 
-  e_histogram(mpg) \%>\% 
-  e_tooltip()
+  e_histogram(mpg, name = "histogram") \%>\% 
+  e_density(mpg, fill = TRUE, smooth = TRUE, name = "density", y.index = 1) \%>\% 
+  e_tooltip(trigger = "axis")
 
 }
