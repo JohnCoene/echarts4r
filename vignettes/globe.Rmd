@@ -56,7 +56,7 @@ data %>%
     height.texture = e_globe_texture(),
     displacementScale = 0.04
   ) %>% 
-  e_bar_3d(lat, value, "globe") %>% 
+  e_bar_3d(lat, value, coord.system = "globe") %>% 
   e_visual_map(show = FALSE)
 ```
 

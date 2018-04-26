@@ -25,6 +25,14 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+<!-- docsearch -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+
+
 <meta property="og:title" content="Function reference" />
 
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
@@ -40,22 +48,15 @@
 <![endif]-->
 
 
-<!-- Google analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74544116-1"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  ga('create', 'UA-74544116-1', 'auto');
-  ga('send', 'pageview');
-
+  gtag('config', 'UA-74544116-1');
 </script>
-
-
-
-<!-- docsearch -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 
   </head>
 
@@ -169,7 +170,7 @@
       
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
-          <input type="search" class="form-control" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
       </form>
       
@@ -218,6 +219,12 @@
           <p><code><a href="axis3d.html">e_axis_3d()</a></code> <code><a href="axis3d.html">e_x_axis_3d()</a></code> <code><a href="axis3d.html">e_y_axis_3d()</a></code> <code><a href="axis3d.html">e_z_axis_3d()</a></code> </p>
         </td>
         <td><p>Axis 3D</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="echarts4r-shiny.html">echarts4rOutput()</a></code> <code><a href="echarts4r-shiny.html">renderEcharts4r()</a></code> <code><a href="echarts4r-shiny.html">echarts4rProxy()</a></code> </p>
+        </td>
+        <td><p>Shiny bindings for echarts4r</p></td>
       </tr><tr>
         <!--  -->
         <td>
@@ -371,12 +378,6 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="e_histogram.html">e_histogram()</a></code> </p>
-        </td>
-        <td><p>Histogram</p></td>
-      </tr><tr>
-        <!--  -->
-        <td>
           <p><code><a href="e_legend.html">e_legend()</a></code> </p>
         </td>
         <td><p>Legend</p></td>
@@ -521,12 +522,6 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="echarts4r-shiny.html">echarts4rOutput()</a></code> <code><a href="echarts4r-shiny.html">renderEcharts4r()</a></code> <code><a href="echarts4r-shiny.html">echarts4rProxy()</a></code> </p>
-        </td>
-        <td><p>Shiny bindings for echarts4r</p></td>
-      </tr><tr>
-        <!--  -->
-        <td>
           <p><code><a href="graph.html">e_graph()</a></code> <code><a href="graph.html">e_graph_gl()</a></code> <code><a href="graph.html">e_graph_nodes()</a></code> <code><a href="graph.html">e_graph_edges()</a></code> </p>
         </td>
         <td><p>Graph</p></td>
@@ -536,6 +531,12 @@
           <p><code><a href="highlight_proxy.html">e_highlight_p()</a></code> <code><a href="highlight_proxy.html">e_downplay_p()</a></code> </p>
         </td>
         <td><p>Highlight Proxy</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="histogram.html">e_histogram()</a></code> <code><a href="histogram.html">e_density()</a></code> </p>
+        </td>
+        <td><p>Histogram &amp; Density</p></td>
       </tr><tr>
         <!--  -->
         <td>
@@ -638,10 +639,16 @@
 <script>
   docsearch({
     
+    
     apiKey: 'f67fcda57c44388a248e49a457aa4fe7',
     indexName: 'echarts4r',
     inputSelector: 'input#search-input.form-control',
-    debug: false // Set debug to true if you want to inspect the dropdown
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
   });
 </script>
 
