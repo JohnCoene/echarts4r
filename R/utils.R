@@ -106,11 +106,11 @@ globalVariables(c("e", "."))
   
   x <- apply(data, 1, as.list)
   
-  for(i in 1:length(x)){
-    x[[i]]$symbolSize <- as.numeric(paste(x[[i]]$symbolSize))
-    x[[i]]$value <- as.numeric(paste(x[[i]]$value))
-    x[[i]]$name <- trimws(as.character(x[[i]]$name))
-  }
+  # for(i in 1:length(x)){
+  #   x[[i]]$symbolSize <- as.numeric(paste(x[[i]]$symbolSize))
+  #   x[[i]]$value <- as.numeric(paste(x[[i]]$value))
+  #   x[[i]]$name <- trimws(as.character(x[[i]]$name))
+  # }
   x
 }
 
@@ -128,10 +128,10 @@ globalVariables(c("e", "."))
   
   x <- apply(data, 1, as.list)
   
-  for(i in 1:length(x)){
-    x[[i]]$value <- as.numeric(paste(x[[i]]$value))
-    x[[i]]$name <- trimws(as.character(x[[i]]$name))
-  }
+  # for(i in 1:length(x)){
+  #   x[[i]]$value <- as.numeric(paste(x[[i]]$value))
+  #   x[[i]]$name <- trimws(as.character(x[[i]]$name))
+  # }
   x
 }
 
@@ -150,11 +150,11 @@ globalVariables(c("e", "."))
   
   x <- apply(data, 1, as.list)
   
-  for(i in 1:length(x)){
-    x[[i]]$symbolSize <- as.numeric(paste(x[[i]]$symbolSize))
-    x[[i]]$value <- as.numeric(paste(x[[i]]$value))
-    x[[i]]$name <- trimws(as.character(x[[i]]$name))
-  }
+  # for(i in 1:length(x)){
+  #   x[[i]]$symbolSize <- as.numeric(paste(x[[i]]$symbolSize))
+  #   x[[i]]$value <- as.numeric(paste(x[[i]]$value))
+  #   x[[i]]$name <- trimws(as.character(x[[i]]$name))
+  # }
   x
 }
 
@@ -171,10 +171,10 @@ globalVariables(c("e", "."))
   names(data) <- c("source", "target")
   
   apply(data, 1, as.list) -> x
-  for(i in 1:length(x)){
-    x[[i]]$source <- trimws(as.character(x[[i]]$source))
-    x[[i]]$target <- trimws(as.character(x[[i]]$target))
-  }
+  # for(i in 1:length(x)){
+  #   x[[i]]$source <- trimws(as.character(x[[i]]$source))
+  #   x[[i]]$target <- trimws(as.character(x[[i]]$target))
+  # }
   x
 }
 
