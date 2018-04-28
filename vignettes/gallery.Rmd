@@ -118,7 +118,7 @@ for(i in 1:length(spl)){
     e_lines_3d(
       longitude.start, latitude.start, longitude.end, latitude.end, 
       coord.system = "globe", 
-      name = unique(spl[[i]]$airline)[1],
+      name = as.character(spl[[i]]$airline[1]),
       effect = list(
         show = TRUE,
         trailWidth = 2,

@@ -51,6 +51,7 @@ See [coding.net project](http://coding.net/u/JohnCoene/p/echarts4r/git?public=tr
 * liquidFill 
 * Map
 * Pictorial
+* Statistical
 * Line 3D
 * Bar 3D
 * Scatter 3D
