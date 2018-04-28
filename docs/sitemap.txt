@@ -26,7 +26,6 @@ http://echarts4r.john-coene.com/reference/e_globe.html
 http://echarts4r.john-coene.com/reference/e_grid.html
 http://echarts4r.john-coene.com/reference/e_grid_3d.html
 http://echarts4r.john-coene.com/reference/e_heatmap.html
-http://echarts4r.john-coene.com/reference/e_histogram.html
 http://echarts4r.john-coene.com/reference/e_legend.html
 http://echarts4r.john-coene.com/reference/e_line.html
 http://echarts4r.john-coene.com/reference/e_lines.html
@@ -54,6 +53,7 @@ http://echarts4r.john-coene.com/reference/e_visual_map.html
 http://echarts4r.john-coene.com/reference/echarts4r-shiny.html
 http://echarts4r.john-coene.com/reference/graph.html
 http://echarts4r.john-coene.com/reference/highlight_proxy.html
+http://echarts4r.john-coene.com/reference/histogram.html
 http://echarts4r.john-coene.com/reference/init.html
 http://echarts4r.john-coene.com/reference/leaflet.html
 http://echarts4r.john-coene.com/reference/line3D.html

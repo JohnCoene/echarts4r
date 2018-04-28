@@ -80,23 +80,26 @@ e_charts() %>%
 Simply use `e_graph_gl` instead of `e_graph`.
 
 ```{r}
-nodes <- data.frame(
-  name = paste0(LETTERS, 1:1000),
-  value = rnorm(1000, 10, 2),
-  size = rnorm(1000, 10, 2),
-  grp = rep(c("grp1", "grp2"), 500),
-  stringsAsFactors = FALSE
-)
+flights <- read.csv(
+  paste0("https://raw.githubusercontent.com/plotly/datasets/",
+         "master/2011_february_aa_flight_paths.csv")
+) %>% 
+  dplyr::select(airport1, airport2)
 
-edges <- data.frame(
-  source = sample(nodes$name, 2000, replace = TRUE),
-  target = sample(nodes$name, 2000, replace = TRUE),
-  stringsAsFactors = FALSE
-)
+airports <- read.csv(
+  paste0("https://raw.githubusercontent.com/plotly/datasets/",
+         "master/2011_february_us_airport_traffic.csv")
+) %>% 
+  dplyr::select(iata, cnt)
+
+# remove airports with no flights
+airp <- unique(c(as.character(flights$airport1), as.character(flights$airport2)))
+airports <- airports %>% 
+  dplyr::filter(iata %in% airp)
 
 e_charts() %>% 
-  e_graph_gl() %>% 
-  e_graph_nodes(nodes, name, value, size, grp) %>% 
-  e_graph_edges(edges, source, target) %>% 
-  e_tooltip()
+    e_graph_gl() %>% 
+    e_graph_nodes(airports, iata, cnt) %>% 
+    e_graph_edges(flights, airport1, airport2) %>% 
+    e_tooltip()
 ```
