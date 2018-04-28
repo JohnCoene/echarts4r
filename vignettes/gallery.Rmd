@@ -34,6 +34,101 @@ df %>%
   e_theme("shine")
 ```
 
+### Lines
+
+```{r}
+# download
+flights <- jsonlite::fromJSON("https://ecomfe.github.io/echarts-examples/public/data-gl/asset/data/flights.json")
+
+# airports
+airports <- as.data.frame(flights$airports)
+names(airports) <- flights$airportsFields
+
+airports <- airports %>% 
+  select(name, longitude, latitude) %>% 
+  tibble::rownames_to_column("ID") %>% 
+  mutate(ID = as.integer(paste0(ID)))
+
+# routes
+routes <- as.data.frame(flights$routes)
+names(routes) <- c("ID", "from", "to")
+
+# airlines
+airlines <- as.data.frame(flights$airlines) %>% 
+  tibble::rownames_to_column("ID") %>% 
+  mutate(ID = as.integer(paste(ID))) %>% 
+  select(ID, airline = V1, country = V2)
+
+# bind
+data <- routes %>% 
+  inner_join(airports, by = c("from" = "ID")) %>% 
+  inner_join(airports, by = c("to" = "ID"), suffix = c(".start", ".end")) %>%
+  inner_join(airlines, by = "ID") %>% 
+  select(airline, longitude.start, latitude.start, longitude.end, latitude.end) 
+
+# split
+spl <- split(data, data$airline)
+
+# initialise plot  
+plot <- e_charts() %>% 
+  e_globe(
+    base.texture = e_globe_dark_texture(),
+    environment = e_stars_texture(),
+    displacementScale = 0.1,
+    displacementQuality = "high",
+    shading = "realistic",
+    realisticMaterial = list(
+      roughness = .2,
+      metalness = 0
+    ),
+    postEffect = list(
+      enable = TRUE,
+      depthOfField = list(
+        enable = FALSE
+      )
+    ),
+    temporalSuperSampling = list(
+      enable = TRUE
+    ),
+    light = list(
+      ambient = list(
+        intensity = 1
+      ),
+      main = list(
+        intensity = .1,
+        shadow = FALSE
+      )
+    ),
+    viewControl = list(autoRotate = FALSE)
+  ) %>% 
+  e_legend(
+    selectedMode = "single", 
+    left = "left",
+    textStyle = list(color = "#fff"),
+    orient = "vertical"
+  )
+
+# loop over groups
+for(i in 1:length(spl)){
+ plot <-plot %>%
+    e_data(spl[[i]]) %>% 
+    e_lines_3d(
+      longitude.start, latitude.start, longitude.end, latitude.end, 
+      coord.system = "globe", 
+      name = unique(spl[[i]]$airline)[1],
+      effect = list(
+        show = TRUE,
+        trailWidth = 2,
+        trailLength = 0.15,
+        trailOpacity = 1,
+        trailColor = 'rgb(30, 30, 60)'
+      ),
+      lineStyle = list(opacity = 0.1, widh = 0.5, color = 'rgb(50, 50, 150)'))
+}
+
+plot # plot
+```
+
 ### 3D image
 
 Download the image
