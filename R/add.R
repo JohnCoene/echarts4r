@@ -1334,9 +1334,6 @@ e_lines_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name =
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
   
-  if(!is.null(name))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, name)
-  
   # build JSON data
   data <- .map_lines(
     e, 
@@ -1352,6 +1349,11 @@ e_lines_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name =
     data = data,
     ...
   )
+  
+  if(!is.null(name)){
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+    serie$name <- name
+  }
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   
