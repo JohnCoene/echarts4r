@@ -4,6 +4,7 @@
 \alias{e_map_texture}
 \alias{e_globe_texture}
 \alias{e_composite_texture}
+\alias{e_globe_dark_texture}
 \alias{e_stars_texture}
 \alias{e_convert_texture}
 \title{Textures}
@@ -13,6 +14,8 @@ e_map_texture(convert = TRUE)
 e_globe_texture(convert = TRUE)
 
 e_composite_texture(convert = TRUE)
+
+e_globe_dark_texture(convert = TRUE)
 
 e_stars_texture(convert = TRUE)
 

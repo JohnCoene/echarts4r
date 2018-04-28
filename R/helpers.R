@@ -46,6 +46,12 @@ e_composite_texture <- function(convert = TRUE){
 
 #' @rdname textures 
 #' @export
+e_globe_dark_texture <- function(convert = TRUE){
+  .get_file("assets/world_dark.jpg", convert)
+}
+
+#' @rdname textures 
+#' @export
 e_stars_texture <- function(convert = TRUE){
   .get_file("assets/starfield.jpg", convert)
 }
