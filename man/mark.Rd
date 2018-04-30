@@ -3,11 +3,14 @@
 \name{e_mark_point}
 \alias{e_mark_point}
 \alias{e_mark_line}
+\alias{e_mark_area}
 \title{Mark point}
 \usage{
 e_mark_point(e, serie = NULL, data = NULL, ...)
 
 e_mark_line(e, serie = NULL, data = NULL, ...)
+
+e_mark_area(e, serie = NULL, data = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
