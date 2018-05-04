@@ -46,6 +46,7 @@ See [coding.net project](http://coding.net/u/JohnCoene/p/echarts4r/git?public=tr
 * Boxplot
 * Calendar
 * Gauge
+* Radar
 * Polar 
 * wordcloud 
 * liquidFill 

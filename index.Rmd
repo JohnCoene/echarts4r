@@ -37,11 +37,12 @@ devtools::install_github("JohnCoene/echarts4r")
 * Pie
 * Tree
 * Treemap
-* River (streamgraph)
+* River
 * Sunburst
 * Boxplot
 * Calendar
 * Gauge
+* Radar
 * Polar 
 * wordcloud 
 * liquidFill 
