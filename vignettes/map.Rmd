@@ -27,7 +27,7 @@ Pass countries as `x` argument.
 ```{r}
 sessions <- read.csv(
   paste0("https://raw.githubusercontent.com/JohnCoene/projects/",
-         "gh-pages/htmlwidgets/echarts/data/sessions.csv")
+         "master/htmlwidgets/echarts/data/sessions.csv")
 )
 
 sessions %>% 

@@ -345,25 +345,6 @@ e_polar <- function(e, show = TRUE, ...){
   e
 }
 
-#' Radar
-#' 
-#' Customise radar.
-#' 
-#' @inheritParams e_bar
-#' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#radar}
-#' 
-#' @export
-e_radar <- function(e, ...){
-  
-  if(missing(e))
-    stop("missing e", call. = FALSE)
-  
-  e$x$opts$radar <- list(...)
-  
-  e
-}
-
 #' Axis pointer
 #' 
 #' Customise axis pointer.

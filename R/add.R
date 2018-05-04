@@ -460,6 +460,79 @@ e_candle <- function(e, opening, closing, low, high, bind, name = NULL, legend =
   e
 }
 
+#' Radar
+#' 
+#' Add a radar chart
+#' 
+#' @inheritParams e_bar
+#' @param max Maximum value.
+#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
+#' 
+#' @examples
+#' df <- data.frame(
+#'   x = LETTERS[1:5],
+#'   y = runif(5, 1, 5),
+#'   z = runif(5, 3, 7)
+#' )
+#' 
+#' df %>% 
+#'   e_charts(x) %>%  
+#'   e_radar(y, max = 7) %>% 
+#'   e_radar(z) %>% 
+#'   e_tooltip(trigger = "item")
+#' 
+#' @export
+e_radar <- function(e, serie, max = 100, name = NULL, legend = TRUE, 
+                    rm.x = TRUE, rm.y = TRUE, ...){
+  
+  r.index = 0
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
+  
+  if(is.null(name)) # defaults to column name
+    name <- deparse(substitute(serie))
+  
+  # build JSON data
+  .get_data(e, deparse(substitute(serie))) -> vector
+  
+  series <- purrr::map(e$x$opts$series, "type") %>% 
+    unlist()
+  
+  if(!"radar" %in% series){
+    serie <- list(
+      name = name,
+      type = "radar",
+      data = list(list(value = vector, name = name)),
+      radarIndex = r.index,
+      ...
+    )
+    
+    # add indicators
+    e <- .add_indicators(e, r.index, max) 
+    
+     # add serie
+    e$x$opts$series <- append(e$x$opts$series, list(serie))
+  } else { # append to radar
+    e$x$opts$series[[grep("radar", series)]]$data <- append(
+      e$x$opts$series[[grep("radar", series)]]$data,
+      list(list(value = vector, name = name))
+    )
+  }
+  
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e
+}
+
 #' Funnel
 #' 
 #' Add a funnel.

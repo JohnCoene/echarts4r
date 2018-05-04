@@ -180,3 +180,39 @@ e_angle_axis <- function(e, show = TRUE, ...){
   
   e
 }
+
+#' Radar axis
+#' 
+#' Radar axis setup and options.
+#' 
+#' @inheritParams e_bar
+#' @param index Index of axis to customise.
+#' 
+#' @export
+e_radar_opts <- function(e, index = 0, ...){
+  
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  r.index <- index + 1
+  max <- length(e$x$opts$radar)
+  
+  attrs <- list(...)
+  
+  if(!length(attrs))
+    stop("no attribute", call. = FALSE)
+  
+  # initiatlise if wrong index
+  if(r.index > max){
+    r.index <- 1
+    e$x$opts$radar <- list(list())
+  }
+  
+  for(i in 1:length(attrs)){
+    arg <- names(attrs)[i]
+    e$x$opts$radar[[r.index]][[arg]] <- attrs[[i]]
+  }
+  
+  e
+  
+}

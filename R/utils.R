@@ -459,3 +459,21 @@ globalVariables(c("e", "."))
   
   e
 }
+
+.add_indicators <- function(e, r.index, max){
+  
+  if(!length(e$x$opts$radar))
+    e$x$opts$radar <- list(list())
+  
+  x <- .get_data(e, e$x$mapping$x)
+  
+  indicators <- data.frame(
+    name = x,
+    max = rep(max, length(x))
+  )
+  
+  indicators <- apply(indicators, 1, as.list)
+  
+  e$x$opts$radar[[r.index + 1]]$indicator <- indicators
+  e
+}

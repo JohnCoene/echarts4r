@@ -260,6 +260,22 @@ e_charts() %>%
   e_title("Gauge")
 ```
 
+### Radar
+
+```{r}
+df <- data.frame(
+  x = LETTERS[1:5],
+  y = runif(5, 1, 5),
+  z = runif(5, 3, 7)
+)
+
+df %>% 
+  e_charts(x) %>% 
+  e_radar(y, max = 7, name = "radar") %>%
+  e_radar(z, max = 7, name = "chart") %>%
+  e_tooltip(trigger = "item")
+```
+
 ### Wordcloud
 
 ```{r}

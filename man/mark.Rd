@@ -46,7 +46,11 @@ USArrests \%>\%
   e_line(UrbanPop) \%>\% 
   e_mark_point(data = max) \%>\% 
   e_mark_point(data = min) \%>\% 
-  e_mark_line(serie = "Rape", data = avg)
+  e_mark_line(serie = "Rape", data = avg) \%>\% 
+  e_mark_area(serie = "Rape", data = list(
+    list(xAxis = "min", yAxis = "min"), 
+    list(xAxis = "max", yAxis = "max"))
+ )
 
 }
 \seealso{
