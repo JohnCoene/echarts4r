@@ -22,46 +22,24 @@
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar}
 #' 
+#' @rdname e_bar
 #' @export
 e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.index = 0, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
-
+  
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  serie <- deparse(substitute(serie))
+  if(missing(bind))
+    bd <- NULL
+  else
+    bd <- deparse(substitute(bind))
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
+  sr <- deparse(substitute(serie))
   
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
-  # build JSON data
-  .build_data(e, e$x$mapping$x, serie) -> vector
-  
-  if(!missing(bind))
-    vector <- .add_bind(e, vector, deparse(substitute(bind)))
-
-  serie <- list(
-    name = name,
-    type = "bar",
-    data = vector,
-    yAxisIndex = y.index,
-    xAxisIndex = x.index,
-    ...
-  )
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  e_bar_(e, sr, bd, name, legend, y.index, x.index, ...)
 }
 
 #' Line 
@@ -81,6 +59,7 @@ e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.ind
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}  
 #' 
+#' @rdname e_line
 #' @export
 e_line <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.index = 0, 
                    coord.system = "cartesian2d", ...){
@@ -92,39 +71,12 @@ e_line <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.in
   
   serie <- deparse(substitute(serie))
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
-
-  # build JSON data
-  .build_data(e, e$x$mapping$x, serie) -> vector
+  if(missing(bind))
+    bd <- NULL
+  else
+    bd <- deparse(substitute(bind))
   
-  if(!missing(bind))
-    vector <- .add_bind(e, vector, deparse(substitute(bind)))
-  
-  l <- list(
-    name = name,
-    type = "line",
-    data = vector,
-    coordinateSystem = coord.system,
-    ...
-  )
-  
-  if(coord.system == "cartesian2d"){
-    if(y.index != 0)
-      e <- .set_y_axis(e, serie, y.index)
-    
-    if(x.index != 0)
-      e <- .set_x_axis(e, x.index)
-    
-    l$yAxisIndex <- y.index
-    l$xAxisIndex <- x.index
-  }
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(l))
-  e
+  e_line_(e, serie, bd, name, legend, y.index, x.index, coord.system, ...)
 }
 
 #' Area 
@@ -141,8 +93,10 @@ e_line <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.in
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}
 #' 
+#' @rdname e_area
 #' @export
 e_area <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.index = 0, ...){
+  
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -151,36 +105,12 @@ e_area <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.in
   
   serie <- deparse(substitute(serie))
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
+  if(missing(bind))
+    bd <- NULL
+  else
+    bd <- deparse(substitute(bind))
   
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
-  # build JSON data
-  .build_data(e, e$x$mapping$x, serie) -> vector
-  
-  if(!missing(bind))
-    vector <- .add_bind(e, vector, deparse(substitute(bind)))
-  
-  serie <- list(
-    name = name,
-    type = "line",
-    data = vector,
-    yAxisIndex = y.index,
-    xAxisIndex = x.index,
-    areaStyle = list(normal = list()),
-    ...
-  )
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  e_area_(e, serie, bd, name, legend, y.index, x.index, ...)
 }
 
 #' Step 
@@ -200,8 +130,9 @@ e_area <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.in
 #'   e_step(Assault, name = "End", step = "end") %>% 
 #'   e_tooltip(trigger = "axis")
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}{Additional arguments}
 #' 
+#' @rdname e_step
 #' @export
 e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FALSE, 
                    name = NULL, legend = TRUE, y.index = 0, x.index = 0, ...){
@@ -211,43 +142,14 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  if(!step[1] %in% c("start", "middle", "end"))
-    stop("wrong step", call. = FALSE)
-  
   serie <- deparse(substitute(serie))
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
+  if(missing(bind))
+    bd <- NULL
+  else
+    bd <- deparse(substitute(bind))
   
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
-  # build JSON data
-  .build_data(e, e$x$mapping$x, serie) -> vector
-  
-  if(!missing(bind))
-    vector <- .add_bind(e, vector, deparse(substitute(bind)))
-  
-  serie <- list(
-    name = name,
-    type = "line",
-    data = vector,
-    yAxisIndex = y.index,
-    xAxisIndex = x.index,
-    step = step[1],
-    ...
-  )
-  
-  if(isTRUE(fill)) serie$areaStyle <- list(normal = list())
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  e_step_(e, serie, bd, step, fill, name, legend, y.index, x.index, ...)
 }
 
 #' Scatter
@@ -308,48 +210,21 @@ e_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
   
   serie <- deparse(substitute(serie))
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
   
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
-  if(!missing(size))
-    xy <- .build_data(e, e$x$mapping$x, serie, deparse(substitute(size)))
+  if(missing(size))
+    size <- NULL
   else
-    xy <- .build_data(e, e$x$mapping$x, serie)
+    size <- deparse(substitute(size))
   
-  if(!missing(bind))
-    xy <- .add_bind(e, xy, deparse(substitute(bind)))
+  if(missing(bind))
+    bd <- NULL
+  else
+    bd <- deparse(substitute(bind))
   
-  serie <- list(
-    name = name,
-    type = "scatter",
-    data = xy,
-    coordinateSystem = coord.system,
-    ...
-  )
-  
-  if(coord.system != "cartesian2d"){
-    e <- .rm_axis(e, rm.x, "x")
-    e <- .rm_axis(e, rm.y, "y")
-  } else {
-    serie$yAxisIndex = y.index
-    serie$xAxisIndex = x.index
-    if(isTRUE(legend))
-      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  }
-  
-  if(!missing(size))
-    serie$symbolSize <- htmlwidgets::JS(
-      paste("function(data){ return data[2]", scale, ";}")
-    )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  e_scatter(e, serie, size, bd, scale = "* 1", name = NULL, 
+            coord.system = "cartesian2d", legend = TRUE, y.index = 0, 
+            x.index = 0, rm.x = TRUE, rm.y = TRUE, ...)
+ 
 }
 
 #' @rdname scatter
