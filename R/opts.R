@@ -416,3 +416,43 @@ e_utc <- function(e){
   e$useUTC <- TRUE
   e
 }
+
+#' Flip coordinates
+#' 
+#' Flip cartesian 2D coordinates.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @examples 
+#' df <- data.frame(
+#'   x = LETTERS[1:5],
+#'   y = runif(5, 1, 5),
+#'   z = runif(5, 3, 10)
+#' )
+#' 
+#' df %>%
+#'  e_charts(x) %>%
+#'  e_bar(y) %>% 
+#'  e_line(z) -> plot
+#'  
+#' plot # normal
+#' e_flip_coords(plot) # flip
+#' 
+#' @export
+e_flip_coords <- function(e){
+  n <- names(e$x$opts)
+  n <- gsub("xAxis", "RENAME", n)
+  n <- gsub("yAxis", "xAxis", n)
+  n <- gsub("RENAME", "yAxis", n)
+  
+  names(e$x$opts) <- n
+  
+  for(i in 1:length(e$x$opts$series)){
+    for(j in 1:length(e$x$opts$series[[i]]$data)){
+      vals <- e$x$opts$series[[i]]$data[[j]]$value
+      e$x$opts$series[[i]]$data[[j]]$value <- rev(vals)
+    }
+  }
+  
+  e
+}
