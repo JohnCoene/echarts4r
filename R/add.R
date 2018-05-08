@@ -210,6 +210,34 @@ e_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
   
   serie <- deparse(substitute(serie))
   
+  if(missing(size))
+    size <- NULL
+  else
+    size <- deparse(substitute(size))
+  
+  if(missing(bind))
+    bd <- NULL
+  else
+    bd <- deparse(substitute(bind))
+  
+  e_scatter_(e, serie, size, bd, scale, name, 
+             coord.system, legend, y.index, 
+             x.index, rm.x, rm.y, ...)
+ 
+}
+
+#' @rdname scatter
+#' @export
+e_effect_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL, 
+                             coord.system = "cartesian2d", legend = TRUE, 
+                             y.index = 0, x.index = 0, rm.x = TRUE, rm.y = TRUE, ...){
+  
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  serie <- deparse(substitute(serie))
+  
   
   if(missing(size))
     size <- NULL
@@ -221,65 +249,10 @@ e_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
   else
     bd <- deparse(substitute(bind))
   
-  e_scatter(e, serie, size, bd, scale = "* 1", name = NULL, 
-            coord.system = "cartesian2d", legend = TRUE, y.index = 0, 
-            x.index = 0, rm.x = TRUE, rm.y = TRUE, ...)
- 
-}
-
-#' @rdname scatter
-#' @export
-e_effect_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL, 
-                             coord.system = "cartesian2d", legend = TRUE, 
-                             y.index = 0, x.index = 0, rm.x = TRUE, rm.y = TRUE, ...){
-  
-  if(missing(serie))
-    stop("must pass serie", call. = FALSE)
-  
-  serie <- deparse(substitute(serie))
-  
-  if(is.null(name)) # defaults to column name
-    name <- serie
-  
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
-  if(!missing(size))
-    xy <- .build_data(e, e$x$mapping$x, serie, deparse(substitute(size)))
-  else
-    xy <- .build_data(e, e$x$mapping$x, serie)
-  
-  if(!missing(bind))
-    xy <- .add_bind(e, xy, deparse(substitute(bind)))
-  
-  if(coord.system != "cartesian2d"){
-    e <- .rm_axis(e, rm.x, "x")
-    e <- .rm_axis(e, rm.y, "y")
-  } else {
-    if(isTRUE(legend))
-      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  }
-  
-  serie <- list(
-    name = name,
-    type = "effectScatter",
-    data = xy,
-    coordinateSystem = coord.system,
-    yAxisIndex = y.index,
-    xAxisIndex = x.index,
-    ...
-  )
-  
-  if(!missing(size))
-    serie$symbolSize <- htmlwidgets::JS(
-      paste("function(data){ return data[2]", scale, ";}")
-    )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  e_effect_scatter_(e, serie, size, bd, 
+                    scale, name, 
+                    coord.system, legend, 
+                    y.index, x.index, rm.x, rm.y, ...)
 }
 
 #' Candlestick
@@ -303,36 +276,28 @@ e_effect_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
 #' 
 #' stock %>% 
 #'   e_charts(date) %>% 
-#'   e_candle(opening, closing, low, high)
+#'   e_candle(opening, closing, low, high) %>% 
+#'   e_y_axis(min = 190, max = 220)
 #'   
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-candlestick}
 #' 
+#' @rdname e_candle
 #' @export
 e_candle <- function(e, opening, closing, low, high, bind, name = NULL, legend = TRUE, ...){
   
-  data <- .build_data(
-    e, 
-    deparse(substitute(opening)), 
-    deparse(substitute(closing)), 
-    deparse(substitute(low)), 
-    deparse(substitute(high))
-  )
+  if(missing(opening) || missing(closing) || missing(low) || missing(high))
+    stop("missing inputs", call. = FALSE)
   
   if(!missing(bind))
-    data <- .add_bind(e, data, deparse(substitute(bind)))
+    bind <- deparse(substitute(bind))
+  else 
+    bind <- NULL
   
-  serie <- list(
-    name = name,
-    type = "candlestick",
-    data = data,
-    ...
-  )
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  e_candle_(e, deparse(substitute(opening)), 
+            deparse(substitute(closing)), 
+            deparse(substitute(low)), 
+            deparse(substitute(high)), 
+            bind, name, legend, ...)
 }
 
 #' Radar
@@ -356,6 +321,7 @@ e_candle <- function(e, opening, closing, low, high, bind, name = NULL, legend =
 #'   e_radar(z) %>% 
 #'   e_tooltip(trigger = "item")
 #' 
+#' @rdname e_radar
 #' @export
 e_radar <- function(e, serie, max = 100, name = NULL, legend = TRUE, 
                     rm.x = TRUE, rm.y = TRUE, ...){
@@ -368,44 +334,9 @@ e_radar <- function(e, serie, max = 100, name = NULL, legend = TRUE,
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  # remove axis
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
+  serie <- deparse(substitute(serie))
   
-  if(is.null(name)) # defaults to column name
-    name <- deparse(substitute(serie))
-  
-  # build JSON data
-  .get_data(e, deparse(substitute(serie))) -> vector
-  
-  series <- purrr::map(e$x$opts$series, "type") %>% 
-    unlist()
-  
-  if(!"radar" %in% series){
-    serie <- list(
-      name = name,
-      type = "radar",
-      data = list(list(value = vector, name = name)),
-      radarIndex = r.index,
-      ...
-    )
-    
-    # add indicators
-    e <- .add_indicators(e, r.index, max) 
-    
-     # add serie
-    e$x$opts$series <- append(e$x$opts$series, list(serie))
-  } else { # append to radar
-    e$x$opts$series[[grep("radar", series)]]$data <- append(
-      e$x$opts$series[[grep("radar", series)]]$data,
-      list(list(value = vector, name = name))
-    )
-  }
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e
+  e_radar_(e, serie, max, name, legend, rm.x, rm.y, ...)
 }
 
 #' Funnel
@@ -430,40 +361,14 @@ e_radar <- function(e, serie, max = 100, name = NULL, legend = TRUE,
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel}
 #' 
+#' @rdname e_funnel
 #' @export
 e_funnel <- function(e, values, labels, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRUE, ...){
   
   if(missing(values) || missing(labels))
     stop("missing values or labels", call. = FALSE)
   
-  # remove axis
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
-  
-  # build JSON data
-  funnel <- .build_data(
-    e, 
-    deparse(substitute(values))
-  )
-  
-  funnel <- .add_bind(e, funnel, deparse(substitute(labels)))
-  
-  serie <- list(
-    name = name,
-    type = "funnel",
-    data = funnel,
-    ...
-  )
-  
-  # addlegend
-  
-  if(isTRUE(legend)){
-    legend <- .get_data(e, deparse(substitute(labels))) %>% as.character()
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, legend)
-  }
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  e_funnel_(e, deparse(substitute(values)), deparse(substitute(labels)), name, legend, rm.x, rm.y, ...)
   
 }
 
@@ -491,6 +396,7 @@ e_funnel <- function(e, values, labels, name = NULL, legend = TRUE, rm.x = TRUE,
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-sankey}
 #' 
+#' @rdname e_sankey
 #' @export
 e_sankey <- function(e, source, target, value, layout = "none", rm.x = TRUE, rm.y = TRUE, ...){
   
@@ -500,32 +406,10 @@ e_sankey <- function(e, source, target, value, layout = "none", rm.x = TRUE, rm.
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
   
-  # build JSON data
-  nodes <- .build_sankey_nodes(
-    e$x$data, 
-    deparse(substitute(source)), 
-    deparse(substitute(target))
-  )
-  
-  # build JSON data
-  edges <- .build_sankey_edges(
-    e$x$data, 
-    dplyr::enquo(source), 
-    dplyr::enquo(target),
-    dplyr::enquo(value)
-  )
-  
-  serie <- list(
-    type = "sankey",
-    layout = layout,
-    nodes = nodes,
-    links = edges,
-    ...
-  )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  e_sankey_(e, deparse(substitute(source)), deparse(substitute(target)), 
+            deparse(substitute(value)), layout, rm.x, rm.y, ...)
 }
+
 #' Graph
 #' 
 #' Create a graph.
@@ -721,7 +605,7 @@ e_graph_edges <- function(e, edges, source, target){
 #' matrix %>% 
 #'   e_charts(x) %>% 
 #'   e_heatmap(y, z) %>% 
-#'   e_visual_map(min = 1, max = max(matrix$z))
+#'   e_visual_map(z)
 #'
 #' # calendar   
 #' dates <- seq.Date(as.Date("2018-01-01"), as.Date("2018-12-31"), by = "day")
@@ -737,45 +621,18 @@ e_graph_edges <- function(e, edges, source, target){
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-heatmap}
 #' 
+#' @rdname e_heatmap
 #' @export
 e_heatmap <- function(e, y, z, name = NULL, coord.system = "cartesian2d", rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(y))
     stop("must pass y", call. = FALSE)
   
-  # build JSON data
   if(!missing(z))
-    xyz <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
-  else 
-    xyz <- .build_data(e, e$x$mapping$x, deparse(substitute(y)))
+    z <- deparse(substitute(z))
+  else
+    z <- NULL
   
-  serie <- list(
-    name = name,
-    type = "heatmap",
-    data = xyz,
-    coordinateSystem = coord.system,
-    ...
-  )
-  
-  if(coord.system != "cartesian2d"){
-    e <- .rm_axis(e, rm.x, "x")
-    e <- .rm_axis(e, rm.y, "y")
-  } else {
-    e$x$opts$xAxis <- list(
-      data = unique(
-        .get_data(e, e$x$mapping$x)
-      )
-    )
-    
-    e$x$opts$yAxis <- list(
-      data = unique(
-        .get_data(e, deparse(substitute(y))
-        )
-      )
-    )
-  }
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  e_heatmap_(e, deparse(substitute(y)), z, name, coord.system, rm.x, rm.y, ...)
 }
 
 #' Parallel
@@ -798,6 +655,7 @@ e_heatmap <- function(e, y, z, name = NULL, coord.system = "cartesian2d", rm.x =
 #'   
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-parallel}
 #' 
+#' @rdname e_parallel
 #' @export
 e_parallel <- function(e, ..., name = NULL, rm.x = TRUE, rm.y = TRUE){
   if(missing(e))
@@ -856,6 +714,7 @@ e_parallel <- function(e, ..., name = NULL, rm.x = TRUE, rm.y = TRUE){
 #'   
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie}
 #' 
+#' @rdname e_pie
 #' @export
 e_pie <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
@@ -864,28 +723,7 @@ e_pie <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRUE
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
-  
-  if(is.null(name)) # defaults to column name
-    name <- deparse(substitute(serie))
-  
-  # build JSON data
-  data <- .build_data(e, deparse(substitute(serie)))
-  data <- .add_bind(e, data, e$x$mapping$x)
-  
-  serie <- list(
-    name = name,
-    type = "pie",
-    data = data,
-    ...
-  )
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, e$x$data[[e$x$mapping$x]])
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  e_pie_(e, deparse(substitute(serie)), name, legend, rm.x, rm.y, ...)
 }
 
 #' Sunburst
