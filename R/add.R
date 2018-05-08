@@ -33,6 +33,10 @@ e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.ind
   
   serie <- deparse(substitute(serie))
   
+  # add data to y axis if categorical
+  if(.get_type(e, serie) == "category")
+    e$x$opts$yAxis[[length(e$x$opts$yAxis)]]$data <- unique(.get_data(e, serie))
+  
   if(is.null(name)) # defaults to column name
     name <- serie
   
@@ -92,6 +96,10 @@ e_line <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.in
   
   serie <- deparse(substitute(serie))
   
+  # add data to y axis if categorical
+  if(.get_type(e, serie) == "category")
+    e$x$opts$yAxis[[length(e$x$opts$yAxis)]]$data <- unique(.get_data(e, serie))
+  
   if(is.null(name)) # defaults to column name
     name <- serie
 
@@ -150,6 +158,10 @@ e_area <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.in
     stop("must pass serie", call. = FALSE)
   
   serie <- deparse(substitute(serie))
+  
+  # add data to y axis if categorical
+  if(.get_type(e, serie) == "category")
+    e$x$opts$yAxis[[length(e$x$opts$yAxis)]]$data <- unique(.get_data(e, serie))
   
   if(is.null(name)) # defaults to column name
     name <- serie
@@ -215,6 +227,10 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
     stop("wrong step", call. = FALSE)
   
   serie <- deparse(substitute(serie))
+  
+  # add data to y axis if categorical
+  if(.get_type(e, serie) == "category")
+    e$x$opts$yAxis[[length(e$x$opts$yAxis)]]$data <- unique(.get_data(e, serie))
   
   if(is.null(name)) # defaults to column name
     name <- serie
@@ -308,6 +324,10 @@ e_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
   
   serie <- deparse(substitute(serie))
   
+  # add data to y axis if categorical
+  if(.get_type(e, serie) == "category")
+    e$x$opts$yAxis[[length(e$x$opts$yAxis)]]$data <- unique(.get_data(e, serie))
+  
   if(is.null(name)) # defaults to column name
     name <- serie
   
@@ -362,6 +382,10 @@ e_effect_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
     stop("must pass serie", call. = FALSE)
   
   serie <- deparse(substitute(serie))
+  
+  # add data to y axis if categorical
+  if(.get_type(e, serie) == "category")
+    e$x$opts$yAxis[[length(e$x$opts$yAxis)]]$data <- unique(.get_data(e, serie))
   
   if(is.null(name)) # defaults to column name
     name <- serie
