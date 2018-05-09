@@ -17,7 +17,7 @@
 #'   dplyr::mutate(
 #'     state = row.names(.)
 #'   ) %>% 
-#'   e_charts(state) %>%
+#'   e_charts_("state") %>%
 #'   e_line(Rape)
 #'
 #' @import htmlwidgets
@@ -94,6 +94,60 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
     )
   )
 }
+
+#' @rdname init
+#' @export
+e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = NULL, dispose = TRUE, ...) {
+  
+  xmap <- x
+  
+  # forward options using x
+  x = list(
+    theme = "",
+    mapping = list(),
+    opts = list(
+      ...,
+      yAxis = list(
+        list(show = TRUE)
+      )
+    )
+  )
+  
+  if(!missing(data)){
+    
+    # ungroup
+    if(dplyr::is.grouped_df(data))
+      data <- data %>% dplyr::ungroup()
+    
+    row.names(data) <- NULL
+    x$data <- data
+  }
+  
+  if(!is.null(xmap)){
+    x$mapping$x <- xmap
+    x$mapping$x_class <- class(data[[xmap]])
+    x <- .assign_axis(x)
+  }
+  
+  x$dispose <- dispose
+  
+  # create widget
+  htmlwidgets::createWidget(
+    name = 'echarts4r',
+    x,
+    width = width,
+    height = height,
+    dependencies = crosstalk::crosstalkLibs(),
+    package = 'echarts4r',
+    elementId = elementId,
+    sizingPolicy = htmlwidgets::sizingPolicy(
+      defaultWidth = "100%",
+      knitr.figure = FALSE,
+      browser.fill = TRUE
+    )
+  )
+}
+
 #' @rdname init
 #' @export
 e_chart <- e_charts

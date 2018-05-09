@@ -2,11 +2,15 @@
 % Please edit documentation in R/echarts4r.R
 \name{e_charts}
 \alias{e_charts}
+\alias{e_charts_}
 \alias{e_chart}
 \alias{e_data}
 \title{Initialise}
 \usage{
 e_charts(data, x, width = NULL, height = NULL, elementId = NULL,
+  dispose = TRUE, ...)
+
+e_charts_(data, x = NULL, width = NULL, height = NULL, elementId = NULL,
   dispose = TRUE, ...)
 
 e_chart(data, x, width = NULL, height = NULL, elementId = NULL,
@@ -39,7 +43,7 @@ USArrests \%>\%
   dplyr::mutate(
     state = row.names(.)
   ) \%>\% 
-  e_charts(state) \%>\%
+  e_charts_("state") \%>\%
   e_line(Rape)
 
 }
