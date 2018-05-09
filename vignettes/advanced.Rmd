@@ -88,7 +88,20 @@ Use multiple axis.
 USArrests %>% 
   e_charts(Assault) %>% 
   e_line(Murder, smooth = TRUE) %>% 
-  e_line(Rape, y.index = 1) # add secondary axis
+  e_line(Rape, y.index = 1) %>%  # add secondary axis
+  e_y_axis(spliLine = list(show = FALSE)) # hide split lines on first Y axis
+```
+
+### Flip coordinates
+
+```{r}
+data.frame(
+  x = LETTERS[1:5],
+  y = runif(5, 1, 15)
+) %>% 
+  e_charts(x) %>% 
+  e_bar(y, name = "flipped") %>% 
+  e_flip_coords() # flip axis
 ```
 
 ### Mark Points and Lines

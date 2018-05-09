@@ -12,7 +12,7 @@
 #' \code{\link{e_scatter_3d}}, and \code{\link{e_line_3d}} of echarts-gl.
 #' 
 #' @examples 
-#' if(interactive()){
+#' \dontrun{
 #'   library(shiny)
 #'   
 #'   ui <- fluidPage(

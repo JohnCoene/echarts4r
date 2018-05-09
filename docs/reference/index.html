@@ -25,6 +25,14 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+<!-- docsearch -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+
+
 <meta property="og:title" content="Function reference" />
 
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
@@ -40,22 +48,15 @@
 <![endif]-->
 
 
-<!-- Google analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74544116-1"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  ga('create', 'UA-74544116-1', 'auto');
-  ga('send', 'pageview');
-
+  gtag('config', 'UA-74544116-1');
 </script>
-
-
-
-<!-- docsearch -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 
   </head>
 
@@ -72,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.2</span>
       </span>
     </div>
 
@@ -169,7 +170,7 @@
       
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
-          <input type="search" class="form-control" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
       </form>
       
@@ -221,6 +222,12 @@
       </tr><tr>
         <!--  -->
         <td>
+          <p><code><a href="echarts4r-shiny.html">echarts4rOutput()</a></code> <code><a href="echarts4r-shiny.html">renderEcharts4r()</a></code> <code><a href="echarts4r-shiny.html">echarts4rProxy()</a></code> </p>
+        </td>
+        <td><p>Shiny bindings for echarts4r</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
           <p><code><a href="e_angle_axis.html">e_angle_axis()</a></code> </p>
         </td>
         <td><p>Angle axis</p></td>
@@ -233,7 +240,7 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="e_area.html">e_area()</a></code> </p>
+          <p><code><a href="e_area.html">e_area()</a></code> <code><a href="e_area.html">e_area_()</a></code> </p>
         </td>
         <td><p>Area</p></td>
       </tr><tr>
@@ -245,7 +252,7 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="e_bar.html">e_bar()</a></code> </p>
+          <p><code><a href="e_bar.html">e_bar()</a></code> <code><a href="e_bar.html">e_bar_()</a></code> </p>
         </td>
         <td><p>Bar and Line chart</p></td>
       </tr><tr>
@@ -275,7 +282,7 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="e_candle.html">e_candle()</a></code> </p>
+          <p><code><a href="e_candle.html">e_candle()</a></code> <code><a href="e_candle.html">e_candle_()</a></code> </p>
         </td>
         <td><p>Candlestick</p></td>
       </tr><tr>
@@ -311,13 +318,19 @@
       </tr><tr>
         <!--  -->
         <td>
+          <p><code><a href="e_flip_coords.html">e_flip_coords()</a></code> </p>
+        </td>
+        <td><p>Flip coordinates</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
           <p><code><a href="e_flow_gl.html">e_flow_gl()</a></code> </p>
         </td>
         <td><p>Flow GL</p></td>
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="e_funnel.html">e_funnel()</a></code> </p>
+          <p><code><a href="e_funnel.html">e_funnel()</a></code> <code><a href="e_funnel.html">e_funnel_()</a></code> </p>
         </td>
         <td><p>Funnel</p></td>
       </tr><tr>
@@ -365,7 +378,7 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="e_heatmap.html">e_heatmap()</a></code> </p>
+          <p><code><a href="e_heatmap.html">e_heatmap()</a></code> <code><a href="e_heatmap.html">e_heatmap_()</a></code> </p>
         </td>
         <td><p>Heatmap</p></td>
       </tr><tr>
@@ -377,7 +390,7 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="e_line.html">e_line()</a></code> </p>
+          <p><code><a href="e_line.html">e_line()</a></code> <code><a href="e_line.html">e_line_()</a></code> </p>
         </td>
         <td><p>Line</p></td>
       </tr><tr>
@@ -407,7 +420,7 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="e_parallel.html">e_parallel()</a></code> </p>
+          <p><code><a href="e_parallel.html">e_parallel()</a></code> <code><a href="e_parallel.html">e_parallel_()</a></code> </p>
         </td>
         <td><p>Parallel</p></td>
       </tr><tr>
@@ -419,7 +432,7 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="e_pie.html">e_pie()</a></code> </p>
+          <p><code><a href="e_pie.html">e_pie()</a></code> <code><a href="e_pie.html">e_pie_()</a></code> </p>
         </td>
         <td><p>Pie</p></td>
       </tr><tr>
@@ -431,9 +444,15 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="e_radar.html">e_radar()</a></code> </p>
+          <p><code><a href="e_radar.html">e_radar()</a></code> <code><a href="e_radar.html">e_radar_()</a></code> </p>
         </td>
         <td><p>Radar</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="e_radar_opts.html">e_radar_opts()</a></code> </p>
+        </td>
+        <td><p>Radar axis</p></td>
       </tr><tr>
         <!--  -->
         <td>
@@ -449,7 +468,7 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="e_sankey.html">e_sankey()</a></code> </p>
+          <p><code><a href="e_sankey.html">e_sankey()</a></code> <code><a href="e_sankey.html">e_sankey_()</a></code> </p>
         </td>
         <td><p>Sankey</p></td>
       </tr><tr>
@@ -467,7 +486,7 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="e_step.html">e_step()</a></code> </p>
+          <p><code><a href="e_step.html">e_step()</a></code> <code><a href="e_step.html">e_step_()</a></code> </p>
         </td>
         <td><p>Step</p></td>
       </tr><tr>
@@ -515,12 +534,6 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="echarts4r-shiny.html">echarts4rOutput()</a></code> <code><a href="echarts4r-shiny.html">renderEcharts4r()</a></code> <code><a href="echarts4r-shiny.html">echarts4rProxy()</a></code> </p>
-        </td>
-        <td><p>Shiny bindings for echarts4r</p></td>
-      </tr><tr>
-        <!--  -->
-        <td>
           <p><code><a href="graph.html">e_graph()</a></code> <code><a href="graph.html">e_graph_gl()</a></code> <code><a href="graph.html">e_graph_nodes()</a></code> <code><a href="graph.html">e_graph_edges()</a></code> </p>
         </td>
         <td><p>Graph</p></td>
@@ -539,7 +552,7 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="init.html">e_charts()</a></code> <code><a href="init.html">e_chart()</a></code> <code><a href="init.html">e_data()</a></code> </p>
+          <p><code><a href="init.html">e_charts()</a></code> <code><a href="init.html">e_charts_()</a></code> <code><a href="init.html">e_chart()</a></code> <code><a href="init.html">e_data()</a></code> </p>
         </td>
         <td><p>Initialise</p></td>
       </tr><tr>
@@ -569,13 +582,13 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="mark.html">e_mark_point()</a></code> <code><a href="mark.html">e_mark_line()</a></code> </p>
+          <p><code><a href="mark.html">e_mark_point()</a></code> <code><a href="mark.html">e_mark_line()</a></code> <code><a href="mark.html">e_mark_area()</a></code> </p>
         </td>
         <td><p>Mark point</p></td>
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="scatter.html">e_scatter()</a></code> <code><a href="scatter.html">e_effect_scatter()</a></code> </p>
+          <p><code><a href="scatter.html">e_scatter()</a></code> <code><a href="scatter.html">e_effect_scatter()</a></code> <code><a href="scatter.html">e_scatter_()</a></code> <code><a href="scatter.html">e_effect_scatter_()</a></code> </p>
         </td>
         <td><p>Scatter</p></td>
       </tr><tr>
@@ -587,7 +600,7 @@
       </tr><tr>
         <!--  -->
         <td>
-          <p><code><a href="textures.html">e_map_texture()</a></code> <code><a href="textures.html">e_globe_texture()</a></code> <code><a href="textures.html">e_composite_texture()</a></code> <code><a href="textures.html">e_stars_texture()</a></code> <code><a href="textures.html">e_convert_texture()</a></code> </p>
+          <p><code><a href="textures.html">e_map_texture()</a></code> <code><a href="textures.html">e_globe_texture()</a></code> <code><a href="textures.html">e_composite_texture()</a></code> <code><a href="textures.html">e_globe_dark_texture()</a></code> <code><a href="textures.html">e_stars_texture()</a></code> <code><a href="textures.html">e_convert_texture()</a></code> </p>
         </td>
         <td><p>Textures</p></td>
       </tr><tr>
@@ -638,10 +651,16 @@
 <script>
   docsearch({
     
+    
     apiKey: 'f67fcda57c44388a248e49a457aa4fe7',
     indexName: 'echarts4r',
     inputSelector: 'input#search-input.form-control',
-    debug: false // Set debug to true if you want to inspect the dropdown
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
   });
 </script>
 

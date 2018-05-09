@@ -83,7 +83,7 @@ globalVariables(c("e", "."))
 
 .build_sankey_edges <- function(data, source, target, values){
   data %>%
-    dplyr::select(!!source, !!target, !!values) -> edges
+    dplyr::select_(source, target, values) -> edges
   
   names(edges) <- c("source", "target", "value")
   

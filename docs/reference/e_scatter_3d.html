@@ -25,6 +25,14 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+<!-- docsearch -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+
+
 <meta property="og:title" content="Scatter 3D — e_scatter_3d" />
 
 <meta property="og:description" content="Add 3D scatter." />
@@ -42,22 +50,15 @@
 <![endif]-->
 
 
-<!-- Google analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74544116-1"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  ga('create', 'UA-74544116-1', 'auto');
-  ga('send', 'pageview');
-
+  gtag('config', 'UA-74544116-1');
 </script>
-
-
-
-<!-- docsearch -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 
   </head>
 
@@ -74,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.2</span>
       </span>
     </div>
 
@@ -171,7 +172,7 @@
       
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
-          <input type="search" class="form-control" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
       </form>
       
@@ -187,11 +188,14 @@
     <div class="page-header">
     <h1>Scatter 3D</h1>
     
+    <div class="hidden name"><code>e_scatter_3d.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Add 3D scatter.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>e_scatter_3d</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='no'>color</span>, <span class='no'>size</span>, <span class='no'>bind</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian3D"</span>,
   <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
@@ -269,7 +273,8 @@
     <span class='kw'>inRange</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'#bf444c'</span>, <span class='st'>'#d88273'</span>, <span class='st'>'#f6efa6'</span>)), <span class='co'># scale colors</span>
     <span class='kw'>dimension</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='co'># third dimension 0 = x, y = 1, z = 2, size = 3, color = 4</span>
     <span class='kw'>bottom</span> <span class='kw'>=</span> <span class='fl'>300</span> <span class='co'># padding to avoid visual maps overlap</span>
-  )</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
+  )
+
 <span class='no'>airports</span> <span class='kw'>&lt;-</span> <span class='fu'>read.csv</span>(
   <span class='fu'>paste0</span>(<span class='st'>"https://raw.githubusercontent.com/plotly/datasets/"</span>,
          <span class='st'>"master/2011_february_us_airport_traffic.csv"</span>)
@@ -283,8 +288,7 @@
     <span class='kw'>globeOuterRadius</span> <span class='kw'>=</span> <span class='fl'>100</span>
   ) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_scatter_3d</span>(<span class='no'>lat</span>, <span class='no'>cnt</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"globe"</span>, <span class='kw'>blendMode</span> <span class='kw'>=</span> <span class='st'>'lighter'</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>inRange</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>symbolSize</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>10</span>)))</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
-</div></pre>
+  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>inRange</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>symbolSize</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>10</span>)))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -316,10 +320,16 @@
 <script>
   docsearch({
     
+    
     apiKey: 'f67fcda57c44388a248e49a457aa4fe7',
     indexName: 'echarts4r',
     inputSelector: 'input#search-input.form-control',
-    debug: false // Set debug to true if you want to inspect the dropdown
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
   });
 </script>
 

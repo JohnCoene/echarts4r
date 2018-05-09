@@ -4,6 +4,7 @@
 \alias{e_scatter}
 \alias{e_effect_scatter}
 \alias{e_scatter_}
+\alias{e_effect_scatter_}
 \title{Scatter}
 \usage{
 e_scatter(e, serie, size, bind, scale = "* 1", name = NULL,
@@ -15,6 +16,10 @@ e_effect_scatter(e, serie, size, bind, scale = "* 1", name = NULL,
   rm.x = TRUE, rm.y = TRUE, ...)
 
 e_scatter_(e, serie, size = NULL, bind = NULL, scale = "* 1",
+  name = NULL, coord.system = "cartesian2d", legend = TRUE, y.index = 0,
+  x.index = 0, rm.x = TRUE, rm.y = TRUE, ...)
+
+e_effect_scatter_(e, serie, size = NULL, bind = NULL, scale = "* 1",
   name = NULL, coord.system = "cartesian2d", legend = TRUE, y.index = 0,
   x.index = 0, rm.x = TRUE, rm.y = TRUE, ...)
 }

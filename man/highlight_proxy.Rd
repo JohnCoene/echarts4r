@@ -20,7 +20,7 @@ e_downplay_p(proxy, series.index = NULL, series.name = NULL)
 Proxies to highlight and downplay series.
 }
 \examples{
-if(interactive()){
+\dontrun{
 
  ui <- fluidPage(
    fluidRow(

@@ -25,8 +25,18 @@ You can display a default tooltip by adding `e_tooltip()` to the code that creat
 ```{r}
 mtcars %>%
   e_charts(wt) %>%
-  e_scatter(mpg) %>%
-  e_tooltip()
+  e_scatter(mpg, qsec) %>%
+  e_tooltip(trigger = "item")
+```
+
+Note that you can change the trigger to `axis`.
+
+```{r}
+mtcars %>%
+  e_charts(wt) %>%
+  e_line(mpg) %>%
+  e_line(qsec) %>% 
+  e_tooltip(trigger = "axis")
 ```
 
 In order to *customize* the tooltip, though, you'll need to be comfortable adding a little JavaScript to your R code. Tooltip customization uses the format
@@ -51,7 +61,7 @@ Here's how you might customize a tooltip for a scatter plot of mtcars wt and mpg
 ```{r}
 mtcars %>%
   e_charts(wt) %>%
-  e_scatter(mpg) %>%
+  e_scatter(mpg, qsec) %>%
   e_tooltip(formatter = htmlwidgets::JS("
       function(params){
         return('wt: ' + params.value[0] + '<br />mpg: ' + params.value[1])
@@ -66,7 +76,7 @@ If you'd like to add information about a data frame column that's not included i
 mtcars %>%  
   tibble::rownames_to_column("model") %>% 
   e_charts(wt) %>% 
-  e_scatter(mpg, bind = model) %>%
+  e_scatter(mpg, qsec, bind = model) %>%
   e_tooltip(formatter = htmlwidgets::JS("
               function(params){
                 return('<strong>' + params.name + 

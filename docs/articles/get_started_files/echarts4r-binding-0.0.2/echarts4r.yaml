@@ -1,0 +1,30 @@
+dependencies:
+ - name: echarts4r
+   version: 4.0.4
+   src: htmlwidgets/lib/echarts-4.0.4
+   script: 
+      - echarts.min.js
+      - echarts-gl.min.js
+      - ecStat.min.js
+      - dataTool.min.js
+      - world.js
+      - /plugins/echarts-wordcloud.min.js
+      - /plugins/echarts-liquidfill.min.js
+      - /plugins/echarts-graph-modularity.min.js
+      - /plugins/leaflet/leaflet.js
+      - /plugins/leaflet/echarts-leaflet.js
+      - /themes/dark.js
+      - /themes/vintage.js
+      - /themes/westeros.js
+      - /themes/essos.js
+      - /themes/wonderland.js
+      - /themes/walden.js
+      - /themes/chalk.js
+      - /themes/infographic.js
+      - /themes/macarons.js
+      - /themes/roma.js
+      - /themes/shine.js
+      - /themes/purple-passion.js
+      - /themes/halloween.js
+   stylesheet: 
+      - /plugins/leaflet/leaflet.css

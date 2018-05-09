@@ -12,10 +12,17 @@ e_hidetip_p(proxy)
 \arguments{
 \item{proxy}{An echarts4r proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{position}{Tooltip position.
+\item{position}{Tooltip position.}
 
- @examples 
- if(interactive()){
+\item{series.index}{Index of serie.}
+
+\item{name}{Name of serie.}
+}
+\description{
+Proxies to show or hide tooltip.
+}
+\examples{
+\dontrun{
    library(shiny)
  
    ui <- fluidPage(
@@ -36,21 +43,21 @@ e_hidetip_p(proxy)
    
    server <- function(input, output, session){
      output$plot <- renderEcharts4r({
-       mtcars %>% 
-         e_charts(mpg) %>% 
-         e_line(disp, bind = carb, name = "displacement") %>% 
-         e_line(hp) %>% 
-         e_x_axis(min = 10) %>% 
+       mtcars \%>\% 
+         e_charts(mpg) \%>\% 
+         e_line(disp, bind = carb, name = "displacement") \%>\% 
+         e_line(hp) \%>\% 
+         e_x_axis(min = 10) \%>\% 
          e_theme("westeros") 
      })
      
      observeEvent(input$show, {
-       echarts4rProxy("plot") %>% 
+       echarts4rProxy("plot") \%>\% 
          e_showtip_p(0)
      })
      
      observeEvent(input$hide, {
-       echarts4rProxy("plot") %>% 
+       echarts4rProxy("plot") \%>\% 
          e_hidetip_p()
      })
      
@@ -69,12 +76,6 @@ e_hidetip_p(proxy)
    }
    
    shinyApp(ui, server)
- }}
+} 
 
-\item{series.index}{Index of serie.}
-
-\item{name}{Name of serie.}
-}
-\description{
-Proxies to show or hide tooltip.
 }

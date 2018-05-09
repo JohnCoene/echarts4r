@@ -8,7 +8,7 @@
 #' @param series.name Series Name, can be vector.
 #' 
 #' @examples 
-#' if(interactive()){
+#' \dontrun{
 #' 
 #'  ui <- fluidPage(
 #'    fluidRow(
@@ -110,8 +110,8 @@ e_downplay_p <- function(proxy, series.index = NULL, series.name = NULL){
 #' @param name Name of serie.
 #' @param position Tooltip position.
 #' 
-#'  @examples 
-#'  if(interactive()){
+#' @examples 
+#' \dontrun{
 #'    library(shiny)
 #'  
 #'    ui <- fluidPage(
@@ -165,7 +165,7 @@ e_downplay_p <- function(proxy, series.index = NULL, series.name = NULL){
 #'    }
 #'    
 #'    shinyApp(ui, server)
-#'  } 
+#' } 
 #' 
 #' @rdname tooltip_proxy
 #' @export

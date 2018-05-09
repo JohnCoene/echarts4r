@@ -61,6 +61,9 @@
     <loc>http://echarts4r.john-coene.com/reference/e_datazoom.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_flip_coords.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_flow_gl.html</loc>
   </url>
   <url>
@@ -122,6 +125,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_radar.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_radar_opts.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_radius_axis.html</loc>

@@ -35,6 +35,19 @@ df %>%
   e_tooltip()
 ```
 
+### Density
+
+Plot the density on a different Y axis as its range differs much from the that of the histogram.
+
+```{r}
+df %>%
+  e_charts() %>% 
+  e_histogram(y) %>% 
+  e_density(y, name = "density", areaStyle = list(opacity = .4), 
+            smooth = TRUE, y.index = 1) %>% 
+  e_tooltip()
+```
+
 ## Fit
 
 Functions leverage R buil-in:

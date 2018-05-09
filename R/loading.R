@@ -12,7 +12,7 @@
 #' @details This only applies to Shiny.
 #' 
 #' @examples 
-#' if(interactive()){
+#' \dontrun{
 #' 
 #' # no redraw
 #' # no loading

@@ -37,7 +37,7 @@ Add a histogram or density plots.
 mtcars \%>\% 
   e_charts() \%>\% 
   e_histogram(mpg, name = "histogram") \%>\% 
-  e_density(mpg, fill = TRUE, smooth = TRUE, name = "density", y.index = 1) \%>\% 
+  e_density(mpg, areaStyle = list(opacity = .4), smooth = TRUE, name = "density", y.index = 1) \%>\% 
   e_tooltip(trigger = "axis")
 
 }

@@ -25,6 +25,14 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+<!-- docsearch -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+
+
 <meta property="og:title" content="Pictorial — e_pictorial" />
 
 <meta property="og:description" content="Pictorial bar chart is a type of bar chart that custimzed glyph 
@@ -43,22 +51,15 @@
 <![endif]-->
 
 
-<!-- Google analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-74544116-1"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  ga('create', 'UA-74544116-1', 'auto');
-  ga('send', 'pageview');
-
+  gtag('config', 'UA-74544116-1');
 </script>
-
-
-
-<!-- docsearch -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 
   </head>
 
@@ -75,7 +76,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.1</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.2</span>
       </span>
     </div>
 
@@ -172,7 +173,7 @@
       
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
-          <input type="search" class="form-control" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
       </form>
       
@@ -188,12 +189,15 @@
     <div class="page-header">
     <h1>Pictorial</h1>
     
+    <div class="hidden name"><code>e_pictorial.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Pictorial bar chart is a type of bar chart that custimzed glyph 
 (like images, SVG PathData) can be used instead of rectangular bar.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>e_pictorial</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='no'>symbol</span>, <span class='no'>bind</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)</pre>
@@ -268,7 +272,8 @@
   <span class='fu'><a href='e_bar.html'>e_bar</a></span>(<span class='no'>z</span>, <span class='kw'>barWidth</span> <span class='kw'>=</span> <span class='fl'>10</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_pictorial</span>(<span class='no'>y</span>, <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"rect"</span>, <span class='kw'>symbolRepeat</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>z</span> <span class='kw'>=</span> -<span class='fl'>1</span>,
     <span class='kw'>symbolSize</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>10</span>, <span class='fl'>4</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='theme.html'>e_theme</a></span>(<span class='st'>"westeros"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
+  <span class='fu'><a href='theme.html'>e_theme</a></span>(<span class='st'>"westeros"</span>)
+
 <span class='co'># svg path</span>
 <span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='st'>"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"</span>
 
@@ -280,7 +285,8 @@
 <span class='no'>df</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_pictorial</span>(<span class='no'>y</span>, <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='no'>path</span>, <span class='kw'>barCategoryGap</span> <span class='kw'>=</span> <span class='st'>"-130%"</span>,
-    <span class='kw'>itemStyle</span> <span class='kw'>=</span> <span class='no'>style</span>)</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
+    <span class='kw'>itemStyle</span> <span class='kw'>=</span> <span class='no'>style</span>)
+
 <span class='co'># image</span>
 <span class='co'># might not work in RStudio viewer</span>
 <span class='co'># open in browser</span>
@@ -304,8 +310,7 @@
 <span class='no'>data</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_pictorial</span>(<span class='no'>value</span>, <span class='no'>symbol</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_legend.html'>e_legend</a></span>(<span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in yaml.load(readLines(con), error.label = error.label, ...): argument "error.label" is missing, with no default</span></div><div class='input'>
-</div></pre>
+  <span class='fu'><a href='e_legend.html'>e_legend</a></span>(<span class='fl'>FALSE</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -339,10 +344,16 @@
 <script>
   docsearch({
     
+    
     apiKey: 'f67fcda57c44388a248e49a457aa4fe7',
     indexName: 'echarts4r',
     inputSelector: 'input#search-input.form-control',
-    debug: false // Set debug to true if you want to inspect the dropdown
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
   });
 </script>
 
