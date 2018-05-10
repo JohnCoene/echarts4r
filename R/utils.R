@@ -190,24 +190,14 @@ globalVariables(c("e", "."))
   x
 }
 
-.build_boxplot <- function(data, serie){
-  data %>%
-    dplyr::select(
-      !!serie
-    ) %>%  
-    unname() %>% 
-    unlist() -> x
+.build_boxplot <- function(e, serie){
+  x <- .get_data(e, serie)
   
   boxplot.stats(x)$stats
 }
 
-.get_outliers <- function(data, serie){
-  data %>%
-    dplyr::select(
-      !!serie
-    ) %>%  
-    unname() %>% 
-    unlist() -> x
+.get_outliers <- function(e, serie){
+  x <- .get_data(e, serie)
   
   boxplot.stats(x)$out
 }
@@ -221,7 +211,7 @@ globalVariables(c("e", "."))
 
 .add_outliers <- function(e, serie){
   
-  outliers <- .get_outliers(e$x$data, serie)
+  outliers <- .get_outliers(e, serie)
   outliers <- .build_outliers(e, outliers)
   
   scatter <- list(

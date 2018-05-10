@@ -232,12 +232,10 @@ e_effect_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
                              coord.system = "cartesian2d", legend = TRUE, 
                              y.index = 0, x.index = 0, rm.x = TRUE, rm.y = TRUE, ...){
   
-  
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
   serie <- deparse(substitute(serie))
-  
   
   if(missing(size))
     size <- NULL
@@ -749,30 +747,15 @@ e_pie <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRUE
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-sunburst}
 #' 
+#' @rdname e_sunburst
 #' @export
 e_sunburst <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
-  
-  # build JSON data
-  data <- .build_sun(
-    e, 
-    deparse(substitute(parent)), 
-    deparse(substitute(child)),
-    deparse(substitute(value))
-  )
-  
-  serie <- list(
-    type = "sunburst",
-    data = data,
-    ...
-  )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  e_sunburst_(e, deparse(substitute(parent)), 
+              deparse(substitute(child)), deparse(substitute(value)), 
+              rm.x, rm.y, ...)
 }
 
 #' Treemap
@@ -797,6 +780,7 @@ e_sunburst <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
 #'   
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-treemap}
 #' 
+#' @rdname e_treemap
 #' @export
 e_treemap <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
@@ -805,25 +789,9 @@ e_treemap <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(parent) || missing(child) || missing(value))
     stop("must pass parent, child and value", call. = FALSE)
   
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
-  
-  # build JSON data
-  data <- .build_sun(
-    e, 
-    deparse(substitute(parent)), 
-    deparse(substitute(child)),
-    deparse(substitute(value))
-  )
-  
-  serie <- list(
-    type = "treemap",
-    data = data,
-    ...
-  )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  e_treemap_(e, deparse(substitute(parent)), 
+              deparse(substitute(child)), deparse(substitute(value)), 
+              rm.x, rm.y, ...)
 }
 
 #' River
@@ -852,6 +820,7 @@ e_treemap <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-themeRiver}
 #' 
+#' @rdname e_river
 #' @export
 e_river <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
@@ -860,35 +829,7 @@ e_river <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TR
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  if(is.null(name)) # defaults to column name
-    name <- deparse(substitute(serie))
-  
-  if(length(e$x$opts$xAxis$data))
-    e$X <- e$x$opts$xAxis$data
-  
-  # build JSON data
-  data <- .build_river(e, deparse(substitute(serie)), name)
-  
-  if(!length(e$x$opts$series)){
-    serie <- list(
-      type = "themeRiver",
-      data = data,
-      ...
-    )
-    e$x$opts$series <- append(e$x$opts$series, list(serie))
-  } else {
-    e$x$opts$series[[1]]$data <- append(e$x$opts$series[[1]]$data, data)
-  }
-  
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
-  
-  e$x$opts$singleAxis <- list(type = "time")
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e
+  e_river_(e, deparse(substitute(serie)), name, legend, rm.x, rm.y, ...)
 }
 
 #' Boxplot
@@ -912,6 +853,7 @@ e_river <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TR
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-boxplot}
 #' 
+#' @rdname e_boxplot
 #' @export
 e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
   
@@ -921,39 +863,7 @@ e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
   if(is.null(name)) # defaults to column name
     name <- deparse(substitute(serie))
   
-  # build JSON data
-  serie <- dplyr::enquo(serie)
-  vector <- .build_boxplot(e$x$data, serie)
-  
-  if(length(e$x$opts$series) >= 1){
-    e$x$opts$series[[1]]$data <- append(
-      e$x$opts$series[[1]]$data, 
-      list(vector)
-    )
-  } else {
-    # boxplot + opts
-    box <- list(
-      name = name,
-      type = "boxplot",
-      data = list(vector),
-      ...
-    )
-    e$x$opts$series <- append(e$x$opts$series, list(box))
-  }
-  
-  # data/outliers
-  if(isTRUE(outliers)){
-    e <- .add_outliers(e, serie)
-  }
-  
-  # xaxis
-  e$x$opts$xAxis$data <- append(e$x$opts$xAxis$data, list(name))
-  e$x$opts$xAxis$type <- "category"
-  
-  # legend
-  # e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e
+  e_boxplot_(e, deparse(substitute(serie)), name, outliers, ...)
 }
 
 #' Tree
@@ -976,6 +886,7 @@ e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-tree}
 #' 
+#' @rdname e_tree
 #' @export
 e_tree <- function(e, parent, child, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
@@ -984,25 +895,7 @@ e_tree <- function(e, parent, child, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(parent) || missing(child))
     stop("must pass parent and child", call. = FALSE)
   
-  # remove axis
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
-  
-  # build JSON data
-  data <- .build_tree(
-    e, 
-    deparse(substitute(parent)), 
-    deparse(substitute(child))
-  )
-  
-  serie <- list(
-    type = "tree",
-    data = list(data),
-    ...
-  )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  e_tree_(e, deparse(substitute(parent)), deparse(substitute(child)), rm.x, rm.y, ...)
 }
 
 #' Gauge
@@ -1020,6 +913,7 @@ e_tree <- function(e, parent, child, rm.x = TRUE, rm.y = TRUE, ...){
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-gauge}
 #' 
+#' @rdname e_gauge
 #' @export
 e_gauge <- function(e, value, name, rm.x = TRUE, rm.y = TRUE, ...){
   
@@ -1041,6 +935,10 @@ e_gauge <- function(e, value, name, rm.x = TRUE, rm.y = TRUE, ...){
   )
   e
 }
+
+#' @rdname e_gauge
+#' @export
+e_gauge_ <- e_gauge
 
 #' Lines 3D
 #' 
@@ -1076,7 +974,8 @@ e_gauge <- function(e, value, name, rm.x = TRUE, rm.y = TRUE, ...){
 #'     end_lat,
 #'     name = "flights",
 #'     effect = list(show = TRUE)
-#'   )
+#'   ) %>% 
+#'   e_legend(FALSE)
 #' 
 #' # Geo 3D
 #' flights %>% 
@@ -1108,42 +1007,17 @@ e_gauge <- function(e, value, name, rm.x = TRUE, rm.y = TRUE, ...){
 #' 
 #' @rdname line3D
 #' @export
-e_lines_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = NULL, coord.system = "globe",
-                       rm.x = TRUE, rm.y = TRUE, ...){
+e_lines_3d <- function(e, source.lon, source.lat, target.lon, target.lat, name = NULL, 
+                       coord.system = "globe", rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(source.lat) || missing(source.lon) || missing(target.lat) || missing(target.lon))
     stop("missing coordinates", call. = FALSE)
   
-  # remove axis
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
-  
-  # build JSON data
-  data <- .map_lines(
-    e, 
-    deparse(substitute(source.lon)), 
-    deparse(substitute(source.lat)), 
-    deparse(substitute(target.lon)), 
-    deparse(substitute(target.lat))
-  )
-  
-  serie <- list(
-    type = "lines3D",
-    coordinateSystem = coord.system,
-    data = data,
-    ...
-  )
-  
-  if(!is.null(name)){
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-    serie$name <- name
-  }
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  
-  e
+  e_lines_3d_(e, deparse(substitute(source.lon)), deparse(substitute(source.lat)), 
+              deparse(substitute(target.lon)), deparse(substitute(target.lat)), 
+              name, coord.system, rm.x, rm.y, ...)
 }
 
 #' @rdname line3D
@@ -1155,43 +1029,8 @@ e_line_3d <- function(e, y, z, name = NULL, coord.system = NULL, rm.x = TRUE, rm
   if(missing(y) || missing(z))
     stop("missing coordinates", call. = FALSE)
   
-  # remove axis
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
-  
-  if(!is.null(name))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, name)
-  
-  if(!length(e$x$opts$zAxis3D))
-    e$x$opts$zAxis3D <- list(list(show = TRUE))
-  
-  if(!length(e$x$opts$grid3D))
-    e$x$opts$grid3D <- list(list(show = TRUE))
-  
-  e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
-  e <- .set_axis_3D(e, "y", deparse(substitute(y)), 0)
-  e <- .set_axis_3D(e, "z", deparse(substitute(z)), 0)
-  
-  # build JSON data
-  data <- .build_data(
-    e, 
-    e$x$mapping$x, 
-    deparse(substitute(y)), 
-    deparse(substitute(z))
-  )
-  
-  serie <- list(
-    type = "line3D",
-    data = data,
-    ...
-  )
-  
-  if(!is.null(coord.system))
-    serie$coordinateSystem <- coord.system
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  
-  e
+  e_line_3d_(e, deparse(substitute(y)), deparse(substitute(z)), 
+             name, coord.system, rm.x, rm.y, ...)
 }
 
 #' Bar 3D
@@ -1254,8 +1093,10 @@ e_line_3d <- function(e, y, z, name = NULL, coord.system = NULL, rm.x = TRUE, rm
 #' 
 #' @seealso \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-bar3D}
 #' 
+#' @rdname e_bar_3d
 #' @export
-e_bar_3d <- function(e, y, z, bind, coord.system = "cartesian3D", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+e_bar_3d <- function(e, y, z, bind, coord.system = "cartesian3D", name = NULL, 
+                     rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1265,49 +1106,13 @@ e_bar_3d <- function(e, y, z, bind, coord.system = "cartesian3D", name = NULL, r
   if(is.null(name)) # defaults to column name
     name <- deparse(substitute(z))
   
-  # remove axis
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
+  if(missing(bind))
+    bd <- NULL
+  else
+    bd <- deparse(substitute(bd))
   
-  # globe
-  if(coord.system != "cartesian3D"){
-  
-    data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
-    
-    if(!missing(bind))
-      data <- .add_bind(e, data, deparse(substitute(bind)))
-    
-  } else { # cartesian
-    
-    if(!length(e$x$opts$zAxis3D))
-      e$x$opts$zAxis3D <- list(list(show = TRUE))
-    
-    if(!length(e$x$opts$grid3D))
-      e$x$opts$grid3D <- list(list(show = TRUE))
-    
-    e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
-    e <- .set_axis_3D(e, "y", deparse(substitute(y)), 0)
-    e <- .set_axis_3D(e, "z", deparse(substitute(z)), 0)
-    
-    data <- .build_cartesian3D(
-      e, 
-      e$x$mapping$x, 
-      deparse(substitute(y)), 
-      deparse(substitute(z))
-    )
-  }
-  
-  serie <- list(
-    name = name,
-    type = "bar3D",
-    coordinateSystem = coord.system,
-    data = data,
-    ...
-  )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  
-  e
+  e_bar_3d_(e, deparse(substitute(y)), deparse(substitute(z)), bd, 
+            coord.system, name, rm.x, rm.y, ...)
 }
 
 #' Lines
@@ -1338,7 +1143,8 @@ e_bar_3d <- function(e, y, z, bind, coord.system = "cartesian3D", name = NULL, r
 #'    )
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-lines}
-#'    
+#' 
+#' @rdname e_lines
 #' @export
 e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.system = "geo", name = NULL, 
                     rm.x = TRUE, rm.y = TRUE, ...){
@@ -1348,30 +1154,9 @@ e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.sys
   if(missing(source.lat) || missing(source.lon) || missing(target.lat) || missing(target.lon))
     stop("missing coordinates", call. = FALSE)
   
-  # remove axis
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
-  
-  # build JSON data
-  data <- .map_lines(
-    e, 
-    deparse(substitute(source.lon)), 
-    deparse(substitute(source.lat)), 
-    deparse(substitute(target.lon)), 
-    deparse(substitute(target.lat))
-  )
-  
-  serie <- list(
-    name = name,
-    type = "lines",
-    coordinateSystem = coord.system,
-    data = data,
-    ...
-  )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  
-  e
+  e_lines_(e, deparse(substitute(source.lon)), deparse(substitute(source.lat)), 
+           deparse(substitute(target.lon)), deparse(substitute(target.lat)), 
+           coord.system, name, rm.x, rm.y, ...)
 }
 
 #' Scatter 3D

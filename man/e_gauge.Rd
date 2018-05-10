@@ -2,9 +2,12 @@
 % Please edit documentation in R/add.R
 \name{e_gauge}
 \alias{e_gauge}
+\alias{e_gauge_}
 \title{Gauge}
 \usage{
 e_gauge(e, value, name, rm.x = TRUE, rm.y = TRUE, ...)
+
+e_gauge_(e, value, name, rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

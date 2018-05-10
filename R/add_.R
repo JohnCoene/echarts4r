@@ -461,6 +461,7 @@ e_heatmap_ <- function(e, y, z = NULL, name = NULL, coord.system = "cartesian2d"
 #' @rdname e_parallel
 #' @export
 e_parallel_ <- function(e, ..., name = NULL, rm.x = TRUE, rm.y = TRUE){
+  
   if(missing(e))
     stop("must pass e", call. = FALSE) 
   
@@ -531,5 +532,321 @@ e_pie_ <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRU
     e$x$opts$legend$data <- append(e$x$opts$legend$data, e$x$data[[e$x$mapping$x]])
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' @rdname e_sunburst
+#' @export
+e_sunburst_ <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
+  
+  # build JSON data
+  data <- .build_sun(e, parent, child, value)
+  
+  serie <- list(
+    type = "sunburst",
+    data = data,
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' @rdname e_treemap
+#' @export
+e_treemap_ <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(parent) || missing(child) || missing(value))
+    stop("must pass parent, child and value", call. = FALSE)
+  
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
+  
+  # build JSON data
+  data <- .build_sun(e, parent, child, value)
+  
+  serie <- list(
+    type = "treemap",
+    data = data,
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' @rdname e_river
+#' @export
+e_river_ <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRUE, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
+  if(length(e$x$opts$xAxis$data))
+    e$X <- e$x$opts$xAxis$data
+  
+  # build JSON data
+  data <- .build_river(e, serie, name)
+  
+  if(!length(e$x$opts$series)){
+    serie <- list(
+      type = "themeRiver",
+      data = data,
+      ...
+    )
+    e$x$opts$series <- append(e$x$opts$series, list(serie))
+  } else {
+    e$x$opts$series[[1]]$data <- append(e$x$opts$series[[1]]$data, data)
+  }
+  
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
+  
+  e$x$opts$singleAxis <- list(type = "time")
+  
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e
+}
+
+#' @rdname e_boxplot
+#' @export
+e_boxplot_ <- function(e, serie, name = NULL, outliers = TRUE, ...){
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
+  # build JSON data
+  vector <- .build_boxplot(e, serie)
+  
+  if(length(e$x$opts$series) >= 1){
+    e$x$opts$series[[1]]$data <- append(
+      e$x$opts$series[[1]]$data, 
+      list(vector)
+    )
+  } else {
+    # boxplot + opts
+    box <- list(
+      name = name,
+      type = "boxplot",
+      data = list(vector),
+      ...
+    )
+    e$x$opts$series <- append(e$x$opts$series, list(box))
+  }
+  
+  # data/outliers
+  if(isTRUE(outliers)){
+    e <- .add_outliers(e, serie)
+  }
+  
+  # xaxis
+  e$x$opts$xAxis$data <- append(e$x$opts$xAxis$data, list(name))
+  e$x$opts$xAxis$type <- "category"
+  
+  # legend
+  # e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e
+}
+
+#' @rdname e_tree
+#' @export
+e_tree_ <- function(e, parent, child, rm.x = TRUE, rm.y = TRUE, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(parent) || missing(child))
+    stop("must pass parent and child", call. = FALSE)
+  
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
+  
+  # build JSON data
+  data <- .build_tree(e, parent, child)
+  
+  serie <- list(
+    type = "tree",
+    data = list(data),
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' @rdname line3D
+#' @export
+e_lines_3d_ <- function(e, source.lon, source.lat, target.lon, target.lat, name = NULL, coord.system = "globe",
+                        rm.x = TRUE, rm.y = TRUE, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(source.lat) || missing(source.lon) || missing(target.lat) || missing(target.lon))
+    stop("missing coordinates", call. = FALSE)
+  
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
+  
+  # build JSON data
+  data <- .map_lines(e, source.lon, source.lat, target.lon, target.lat)
+  
+  serie <- list(
+    type = "lines3D",
+    coordinateSystem = coord.system,
+    data = data,
+    ...
+  )
+  
+  if(!is.null(name)){
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+    serie$name <- name
+  }
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
+  e
+}
+
+#' @rdname line3D
+#' @export
+e_line_3d_ <- function(e, y, z, name = NULL, coord.system = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(y) || missing(z))
+    stop("missing coordinates", call. = FALSE)
+  
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
+  
+  if(!is.null(name))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, name)
+  
+  if(!length(e$x$opts$zAxis3D))
+    e$x$opts$zAxis3D <- list(list(show = TRUE))
+  
+  if(!length(e$x$opts$grid3D))
+    e$x$opts$grid3D <- list(list(show = TRUE))
+  
+  e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
+  e <- .set_axis_3D(e, "y", y, 0)
+  e <- .set_axis_3D(e, "z", z, 0)
+  
+  # build JSON data
+  data <- .build_data(e, e$x$mapping$x, y, z)
+  
+  serie <- list(
+    type = "line3D",
+    data = data,
+    ...
+  )
+  
+  if(!is.null(coord.system))
+    serie$coordinateSystem <- coord.system
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
+  e
+}
+
+#' @rdname e_bar_3d
+#' @export
+e_bar_3d_ <- function(e, y, z, bind = NULL, coord.system = "cartesian3D", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(y) || missing(z))
+    stop("must pass y and z", call. = FALSE)
+  
+  if(is.null(name)) # defaults to column name
+    name <- z
+  
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
+  
+  # globe
+  if(coord.system != "cartesian3D"){
+    
+    data <- .build_data(e, e$x$mapping$x, y, z)
+    
+    if(!is.null(bind))
+      data <- .add_bind(e, data, bind)
+    
+  } else { # cartesian
+    
+    if(!length(e$x$opts$zAxis3D))
+      e$x$opts$zAxis3D <- list(list(show = TRUE))
+    
+    if(!length(e$x$opts$grid3D))
+      e$x$opts$grid3D <- list(list(show = TRUE))
+    
+    e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
+    e <- .set_axis_3D(e, "y", y, 0)
+    e <- .set_axis_3D(e, "z", z, 0)
+    
+    data <- .build_cartesian3D(e, e$x$mapping$x, y, z)
+  }
+  
+  serie <- list(
+    name = name,
+    type = "bar3D",
+    coordinateSystem = coord.system,
+    data = data,
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
+  e
+}
+
+#' @rdname e_lines
+#' @export
+e_lines_ <- function(e, source.lon, source.lat, target.lon, target.lat, coord.system = "geo", name = NULL, 
+                    rm.x = TRUE, rm.y = TRUE, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(source.lat) || missing(source.lon) || missing(target.lat) || missing(target.lon))
+    stop("missing coordinates", call. = FALSE)
+  
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
+  
+  # build JSON data
+  data <- .map_lines(e, source.lon, source.lat, target.lon, target.lat)
+  
+  serie <- list(
+    name = name,
+    type = "lines",
+    coordinateSystem = coord.system,
+    data = data,
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
   e
 }
