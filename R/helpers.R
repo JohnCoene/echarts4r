@@ -79,26 +79,39 @@ e_convert_texture <- function(file){
 #' cns <- data.frame(country = c("US", "BE"))
 #' 
 #' # replace
-#' cns %>% 
-#'   e_country_names(country)
+#' e_country_names(cns, country)
 #'   
 #' # specify output
-#' cns %>% 
-#'   e_country_names(country, country.name)
+#' e_country_names(cns, country, country.name)
+#'   
 #' 
+#' @rdname e_country_names
 #' @export
 e_country_names <- function(data, input, output, type = "iso2c", ...){
   
   if(missing(data) || missing(input))
     stop("must pass data and input", call. = FALSE)
   
-  src <- deparse(substitute(input))
-  cn <- countrycode::countrycode(data[[src]], origin = type, destination = "country.name", ...)
-  
   if(missing(output))
-    output <- src
+    output <- NULL
   else
     output <- deparse(substitute(output))
+  
+  e_country_names_(data, deparse(substitute(input)), output, type, ...)
+}
+
+#' @rdname e_country_names
+#' @export
+e_country_names_ <- function(data, input, output = NULL, type = "iso2c", ...){
+  
+  if(missing(data) || missing(input))
+    stop("must pass data and input", call. = FALSE)
+  
+  src <- input
+  cn <- countrycode::countrycode(data[[src]], origin = type, destination = "country.name", ...)
+  
+  if(is.null(output))
+    output <- src
   
   data[[output]] <- .correct_countries(cn)
   data
@@ -116,17 +129,24 @@ e_country_names <- function(data, input, output, type = "iso2c", ...){
 #' @examples 
 #' df <- data.frame(val = 1:10)
 #' 
-#' df %>% 
-#'   e_color_range(val, colors)
-#' 
+#' e_color_range(df, val, colors)
+#'   
+#' @rdname e_color_range
 #' @export
 e_color_range <- function(data, input, output, colors = c("#bf444c", "#d88273", "#f6efa6"), ...){
   
   if(missing(data) || missing(input) || missing(output))
     stop("must pass data, input and output", call. = FALSE)
   
-  input <- deparse(substitute(input))
-  output <- deparse(substitute(output))
+  e_color_range_(data, deparse(substitute(input)), deparse(substitute(output)), colors, ...)
+}
+
+#' @rdname e_color_range
+#' @export
+e_color_range_ <- function(data, input, output, colors = c("#bf444c", "#d88273", "#f6efa6"), ...){
+  
+  if(missing(data) || missing(input) || missing(output))
+    stop("must pass data, input and output", call. = FALSE)
   
   serie <- data[[input]]
   

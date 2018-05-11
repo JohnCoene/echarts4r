@@ -2,12 +2,18 @@
 % Please edit documentation in R/append.R
 \name{e_append1_p}
 \alias{e_append1_p}
+\alias{e_append1_p_}
 \alias{e_append2_p}
+\alias{e_append2_p_}
 \title{Append data}
 \usage{
 e_append1_p(proxy, series.index = NULL, data, x, y)
 
+e_append1_p_(proxy, series.index = NULL, data, x, y)
+
 e_append2_p(proxy, series.index = NULL, data, x, y, z)
+
+e_append2_p_(proxy, series.index = NULL, data, x, y, z)
 }
 \arguments{
 \item{proxy}{An echarts4r proxy as returned by \code{\link{echarts4rProxy}}.}
@@ -45,7 +51,7 @@ Only these types of series support it: \code{\link{e_scatter}} and \code{\link{e
     
     react <- eventReactive(input$add, {
       set.seed(sample(1:1000, 1))
-      data.frame(x = rnorm(10, 5, 2), y = rnorm(10, 50, 10))
+      data.frame(x = rnorm(10, 5, 2), y = rnorm(10, 50, 10), z = rnorm(10, 1, 5))
     })
     
     output$plot <- renderEcharts4r({
@@ -58,7 +64,7 @@ Only these types of series support it: \code{\link{e_scatter}} and \code{\link{e
     
     observeEvent(input$add, {
       echarts4rProxy("plot") \%>\% 
-        e_append1_p(0, react(), x, y)
+        e_append2_p(0, react(), x, y, z)
     })
     
     output$selected <- renderPrint({

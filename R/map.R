@@ -40,8 +40,21 @@ e_map <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
+  e_map_(e, deparse(substitute(serie)), map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
+}
+
+#' @rdname map
+#' @export
+e_map_ <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
   if(is.null(name)) # defaults to column name
-    name <- deparse(substitute(serie))
+    name <- serie
   
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
@@ -54,7 +67,7 @@ e_map <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE
   )
   
   if(!missing(serie)){
-    data <- .build_data(e, deparse(substitute(serie)))
+    data <- .build_data(e, serie)
     data <- .add_bind(e, data, e$x$mapping$x)
     app$data <- data
   }
@@ -73,14 +86,26 @@ e_map_3d <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = T
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
+  e_map_3d_(e, deparse(substitute(serie)), map, name, rm.x, rm.y, ...)
+}
+
+#' @rdname map
+#' @export
+e_map_3d_ <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
   if(is.null(name)) # defaults to column name
-    name <- deparse(substitute(serie))
+    name <- serie
   
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
   
   # build JSON data
-  data <- .build_data(e, deparse(substitute(serie)))
+  data <- .build_data(e, serie)
   data <- .add_bind(e, data, e$x$mapping$x)
   
   app <- list(
@@ -91,7 +116,7 @@ e_map_3d <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = T
   )
   
   if(!missing(serie)){
-    data <- .build_data(e, deparse(substitute(serie)))
+    data <- .build_data(e, serie)
     data <- .add_bind(e, data, e$x$mapping$x)
     app$data <- data
   }

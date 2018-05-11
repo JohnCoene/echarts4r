@@ -30,7 +30,7 @@
 #'     
 #'     react <- eventReactive(input$add, {
 #'       set.seed(sample(1:1000, 1))
-#'       data.frame(x = rnorm(10, 5, 2), y = rnorm(10, 50, 10))
+#'       data.frame(x = rnorm(10, 5, 2), y = rnorm(10, 50, 10), z = rnorm(10, 1, 5))
 #'     })
 #'     
 #'     output$plot <- renderEcharts4r({
@@ -43,7 +43,7 @@
 #'     
 #'     observeEvent(input$add, {
 #'       echarts4rProxy("plot") %>% 
-#'         e_append1_p(0, react(), x, y)
+#'         e_append2_p(0, react(), x, y, z)
 #'     })
 #'     
 #'     output$selected <- renderPrint({
@@ -67,7 +67,17 @@ e_append1_p <- function(proxy, series.index = NULL, data, x, y){
   if (!"echarts4rProxy" %in% class(proxy)) 
     stop("must pass echarts4rProxy object", call. = FALSE)
   
-  data <- .build_data_p(data, deparse(substitute(x)), deparse(substitute(y)))
+  e_append1_p_(proxy, series.index, data, deparse(substitute(x)), deparse(substitute(y)))
+}
+
+#' @rdname append
+#' @export
+e_append1_p_ <- function(proxy, series.index = NULL, data, x, y){
+  
+  if (!"echarts4rProxy" %in% class(proxy)) 
+    stop("must pass echarts4rProxy object", call. = FALSE)
+  
+  data <- .build_data_p(data, x, y)
   
   opts <- list(id = proxy$id, seriesIndex = series.index, data = data)
   
@@ -83,7 +93,17 @@ e_append2_p <- function(proxy, series.index = NULL, data, x, y, z){
   if (!"echarts4rProxy" %in% class(proxy)) 
     stop("must pass echarts4rProxy object", call. = FALSE)
   
-  data <- .build_data_p(data, deparse(substitute(x)), deparse(substitute(y)), deparse(substitute(z)))
+  e_append2_p_(proxy, series.index = NULL, data, deparse(substitute(x)), deparse(substitute(y)), deparse(substitute(z)))
+}
+
+#' @rdname append
+#' @export
+e_append2_p_ <- function(proxy, series.index = NULL, data, x, y, z){
+  
+  if (!"echarts4rProxy" %in% class(proxy)) 
+    stop("must pass echarts4rProxy object", call. = FALSE)
+  
+  data <- .build_data_p(data, x, y, z)
   
   opts <- list(id = proxy$id, seriesIndex = series.index, data = data)
   

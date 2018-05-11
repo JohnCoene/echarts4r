@@ -2,9 +2,13 @@
 % Please edit documentation in R/helpers.R
 \name{e_color_range}
 \alias{e_color_range}
+\alias{e_color_range_}
 \title{Color range}
 \usage{
 e_color_range(data, input, output, colors = c("#bf444c", "#d88273",
+  "#f6efa6"), ...)
+
+e_color_range_(data, input, output, colors = c("#bf444c", "#d88273",
   "#f6efa6"), ...)
 }
 \arguments{
@@ -22,7 +26,6 @@ Build manual color range
 \examples{
 df <- data.frame(val = 1:10)
 
-df \%>\% 
-  e_color_range(val, colors)
-
+e_color_range(df, val, colors)
+  
 }

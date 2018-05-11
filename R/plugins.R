@@ -24,8 +24,25 @@
 #' 
 #' @seealso \href{official documentation}{https://github.com/ecomfe/echarts-wordcloud}
 #' 
+#' @rdname e_cloud
 #' @export
 e_cloud <- function(e, word, freq, color, rm.x = TRUE, rm.y = TRUE, ...){
+  
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  if(!missing(color))
+    cl <- deparse(substitute(color))
+  else 
+    cl <- NULL
+  
+  e_cloud_(e, deparse(substitute(word)), deparse(substitute(freq)), cl, rm.x, rm.y, ...)
+  
+}
+
+#' @rdname e_cloud
+#' @export
+e_cloud_ <- function(e, word, freq, color = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   
   if(missing(e))
     stop("missing e", call. = FALSE)
@@ -33,11 +50,11 @@ e_cloud <- function(e, word, freq, color, rm.x = TRUE, rm.y = TRUE, ...){
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
   
-  data <- .build_data(e, deparse(substitute(freq)))
-  data <- .add_bind(e, data, deparse(substitute(word)))
+  data <- .build_data(e, freq)
+  data <- .add_bind(e, data, word)
   
-  if(!missing(color)){
-    color <- .get_data(e, deparse(substitute(color)))
+  if(!is.null(color)){
+    color <- .get_data(e, color)
     for(i in 1:length(data)){
       col <- list(
         normal = list(
@@ -78,15 +95,30 @@ e_cloud <- function(e, word, freq, color, rm.x = TRUE, rm.y = TRUE, ...){
 #' 
 #' @seealso \href{official documentation}{https://github.com/ecomfe/echarts-liquidfill}
 #' 
+#' @rdname e_liquid
 #' @export
 e_liquid <- function(e, serie, color, rm.x = TRUE, rm.y = TRUE, ...){
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  if(!missing(color))
+    cl <- deparse(substitute(color))
+  else
+    cl <- NULL
+  
+  e_liquid_(e, deparse(substitute(serie)), cl, rm.x, rm.y, ...)
+}
+
+#' @rdname e_liquid
+#' @export
+e_liquid_ <- function(e, serie, color = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("missing e", call. = FALSE)
   
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
   
-  data <- .get_data(e, deparse(substitute(serie))) %>% 
+  data <- .get_data(e, serie) %>% 
     unlist() %>% 
     unname()
   
@@ -96,8 +128,8 @@ e_liquid <- function(e, serie, color, rm.x = TRUE, rm.y = TRUE, ...){
     ...
   )
   
-  if(!missing(color))
-    serie$color <- .build_data(e, deparse(substitute(color)))
+  if(!is.null(color))
+    serie$color <- .build_data(e, color)
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   

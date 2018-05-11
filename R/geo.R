@@ -23,8 +23,28 @@
 #' @seealso \code{\link{e_country_names}}, 
 #' \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#geo3D}
 #' 
+#' @rdname e_geo_3d
 #' @export
 e_geo_3d <- function(e, serie, color, type = "world", rm.x = TRUE, rm.y = TRUE, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(!missing(serie))
+    sr <- deparse(substitute(serie))
+  else
+    sr <- NULL
+  
+  if(!missing(color))
+    cl <- deparse(substitute(color))
+  else
+    cl <- NULL
+  
+  e_geo_3d_(e, sr, cl, type, rm.x, rm.y, ...)
+}
+
+#' @rdname e_geo_3d
+#' @export
+e_geo_3d_ <- function(e, serie = NULL, color = NULL, type = "world", rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -36,10 +56,10 @@ e_geo_3d <- function(e, serie, color, type = "world", rm.x = TRUE, rm.y = TRUE, 
     ...
   )
   
-  if(!missing(color) && !missing(serie))
-    series$regions <- .build_height(e, deparse(substitute(serie)), deparse(substitute(color)))
-  else if(missing(color) && !missing(serie))
-    series$regions <- .build_height(e, deparse(substitute(serie)))
+  if(!is.null(color) && !is.null(serie))
+    series$regions <- .build_height(e, serie, color)
+  else if(is.null(color) && !is.null(serie))
+    series$regions <- .build_height(e, serie)
   
   e$x$opts$geo3D <- series
   

@@ -40,8 +40,24 @@
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#visualMap}
 #' 
+#' @rdname e_visual_map
 #' @export
 e_visual_map <- function(e, serie, calculable = TRUE, type = c("continuous", "piecewise"), ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(!missing(serie))
+    serie <- deparse(substitute(serie))
+  else
+    serie <- NULL
+  
+  e_visual_map_(e, serie, calculable, type, ...)
+}
+
+#' @rdname e_visual_map
+#' @export
+e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuous", "piecewise"), ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -53,8 +69,8 @@ e_visual_map <- function(e, serie, calculable = TRUE, type = c("continuous", "pi
   vm$calculable <- calculable
   vm$type <- type[1]
   
-  if(!missing(serie)){
-    rng <- range(.get_data(e, deparse(substitute(serie))))
+  if(!is.null(serie)){
+    rng <- range(.get_data(e, serie))
     vm$min <- rng[1]
     vm$max <- rng[2]
   }

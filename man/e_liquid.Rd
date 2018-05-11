@@ -2,9 +2,12 @@
 % Please edit documentation in R/plugins.R
 \name{e_liquid}
 \alias{e_liquid}
+\alias{e_liquid_}
 \title{Liquid fill}
 \usage{
 e_liquid(e, serie, color, rm.x = TRUE, rm.y = TRUE, ...)
+
+e_liquid_(e, serie, color = NULL, rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

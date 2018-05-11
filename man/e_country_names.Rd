@@ -2,9 +2,12 @@
 % Please edit documentation in R/helpers.R
 \name{e_country_names}
 \alias{e_country_names}
+\alias{e_country_names_}
 \title{Country names}
 \usage{
 e_country_names(data, input, output, type = "iso2c", ...)
+
+e_country_names_(data, input, output = NULL, type = "iso2c", ...)
 }
 \arguments{
 \item{data}{Data.frame in which to find column names.}
@@ -25,11 +28,10 @@ Taiwan and Hong Kong cannot be plotted.
 cns <- data.frame(country = c("US", "BE"))
 
 # replace
-cns \%>\% 
-  e_country_names(country)
+e_country_names(cns, country)
   
 # specify output
-cns \%>\% 
-  e_country_names(country, country.name)
+e_country_names(cns, country, country.name)
+  
 
 }

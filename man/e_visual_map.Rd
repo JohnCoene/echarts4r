@@ -2,9 +2,13 @@
 % Please edit documentation in R/opts.R
 \name{e_visual_map}
 \alias{e_visual_map}
+\alias{e_visual_map_}
 \title{Visual Map}
 \usage{
 e_visual_map(e, serie, calculable = TRUE, type = c("continuous",
+  "piecewise"), ...)
+
+e_visual_map_(e, serie = NULL, calculable = TRUE, type = c("continuous",
   "piecewise"), ...)
 }
 \arguments{
