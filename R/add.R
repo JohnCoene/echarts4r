@@ -1220,6 +1220,7 @@ e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.sys
 #' 
 #' @seealso \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-scatter3D}
 #' 
+#' @rdname e_scatter_3d
 #' @export
 e_scatter_3d <- function(e, y, z, color, size, bind, coord.system = "cartesian3D", name = NULL, 
                          rm.x = TRUE, rm.y = TRUE, legend = FALSE, ...){
@@ -1229,58 +1230,23 @@ e_scatter_3d <- function(e, y, z, color, size, bind, coord.system = "cartesian3D
   if(missing(y) || missing(z))
     stop("must pass y and z", call. = FALSE)
   
-  if(is.null(name)) # defaults to column name
-    name <- deparse(substitute(z))
+  if(!missing(color))
+    colour <- deparse(substitute(color))
+  else
+    colour <- NULL
   
-  # remove axis
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
+  if(!missing(size))
+    sz <- deparse(substitute(size))
+  else
+    sz <- NULL
   
-  # globe
-  if(coord.system != "cartesian3D"){
-    
-    data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
-    
-    if(!missing(bind))
-      data <- .add_bind(e, data, deparse(substitute(bind)))
+  if(!missing(bind))
+    bd <- deparse(substitute(bind))
+  else
+    bd <- NULL
   
-    
-  } else { # cartesian
-    
-    if(!length(e$x$opts$zAxis3D))
-      e$x$opts$zAxis3D <- list(list(show = TRUE))
-    
-    if(!length(e$x$opts$grid3D))
-      e$x$opts$grid3D <- list(list(show = TRUE))
-    
-    e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
-    e <- .set_axis_3D(e, "y", deparse(substitute(y)), 0)
-    e <- .set_axis_3D(e, "z", deparse(substitute(z)), 0)
-    
-    if(missing(color))
-      data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
-    else if(!missing(color) && missing(size))
-      data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)), deparse(substitute(color)))
-    else if(!missing(color) && !missing(size))
-      data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)), deparse(substitute(color)),
-                          deparse(substitute(size)))
-
-  }
-  
-  serie <- list(
-    name = name,
-    type = "scatter3D",
-    coordinateSystem = coord.system,
-    data = data,
-    ...
-  )
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  
-  e
+  e_scatter_3d_(e, deparse(substitute(y)), deparse(substitute(z)), colour, sz, bd, coord.system, name, 
+                rm.x, rm.y, legend, ...)
 }
 
 #' Flow GL
@@ -1356,6 +1322,7 @@ e_scatter_3d <- function(e, y, z, color, size, bind, coord.system = "cartesian3D
 #' 
 #' @seealso \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-flowGL}
 #' 
+#' @rdname e_flow_gl
 #' @export
 e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord.system = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
@@ -1364,48 +1331,13 @@ e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord.system = NULL, rm.
   if(missing(y) || missing(sx) || missing(sy))
     stop("must pass y and z", call. = FALSE)
   
-  if(is.null(coord.system)){
-    e <- .set_x_axis(e, 0)
-    e <- .set_y_axis(e, deparse(substitute(y)), 0)
-  } else {
-    # remove axis
-    e <- .rm_axis(e, rm.x, "x")
-    e <- .rm_axis(e, rm.y, "y")
-  }
+  if(!missing(color))
+    colour <- deparse(substitute(color))
+  else
+    colour <- NULL
   
-  if(missing(color))
-    data <- .build_data(
-      e, 
-      e$x$mapping$x, 
-      deparse(substitute(y)), 
-      deparse(substitute(sx)), 
-      deparse(substitute(sy))
-    )
-  else 
-    data <- .build_data(
-      e, 
-      e$x$mapping$x, 
-      deparse(substitute(y)), 
-      deparse(substitute(sx)), 
-      deparse(substitute(sy)),
-      deparse(substitute(color))
-    )
-  
-  serie <- list(
-    type = "flowGL",
-    data = data,
-    ...
-  )
-  
-  if(!is.null(name))
-    serie$name <- name
-  
-  if(!is.null(coord.system))
-    serie$coordinateSystem <- coord.system
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  
-  e
+  e_flow_gl_(e, deparse(substitute(y)), deparse(substitute(sx)), deparse(substitute(sy)), colour, 
+             name, coord.system, rm.x, rm.y, ...)
 }
 
 #' Scatter GL
@@ -1431,6 +1363,7 @@ e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord.system = NULL, rm.
 #' 
 #' @seealso \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-scatterGL}
 #' 
+#' @rdname e_scatter_gl
 #' @export
 e_scatter_gl <- function(e, y, z, name = NULL, coord.system = "geo", rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
@@ -1439,39 +1372,7 @@ e_scatter_gl <- function(e, y, z, name = NULL, coord.system = "geo", rm.x = TRUE
   if(missing(y) || missing(z))
     stop("must pass y and z", call. = FALSE)
   
-  if(is.null(name)) # defaults to column name
-    name <- deparse(substitute(z))
-  
-  # remove axis
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
-  
-  data <- .build_data(e, e$x$mapping$x, deparse(substitute(y)), deparse(substitute(z)))
-  
-  # globe
-  if(coord.system == "cartesian3D"){
-    if(!length(e$x$opts$zAxis3D))
-      e$x$opts$zAxis3D <- list(list(show = TRUE))
-    
-    if(!length(e$x$opts$grid3D))
-      e$x$opts$grid3D <- list(list(show = TRUE))
-    
-    e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
-    e <- .set_axis_3D(e, "y", deparse(substitute(y)), 0)
-    e <- .set_axis_3D(e, "z", deparse(substitute(z)), 0)
-  } 
-  
-  serie <- list(
-    name = name,
-    type = "scatterGL",
-    coordinateSystem = coord.system,
-    data = data,
-    ...
-  )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  
-  e
+  e_scatter_gl_(e, deparse(substitute(y)), deparse(substitute(z)), name, coord.system, rm.x, rm.y, ...)
 }
 
 #' Pictorial
@@ -1546,6 +1447,7 @@ e_scatter_gl <- function(e, y, z, name = NULL, coord.system = "geo", rm.x = TRUE
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pictorialBar}
 #' 
+#' @rdname e_pictorial
 #' @export
 e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y.index = 0, x.index = 0, ...){
   
@@ -1555,43 +1457,16 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y.in
   if(missing(serie) || missing(symbol))
     stop("must pass serie and symbol", call. = FALSE)
   
-  serie <- deparse(substitute(serie))
-  
-  if(is.null(name)) # defaults to column name
-    name <- serie
-  
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
-  # build JSON data
-  .build_data(e, e$x$mapping$x, serie) -> vector
-  
   if(!missing(bind))
-    vector <- .add_bind(e, vector, deparse(substitute(bind)))
+    bd <- deparse(substitute(bind))
+  else
+    bd <- NULL
   
+  # only deparse if it is a column name
   if(deparse(substitute(symbol)) %in% colnames(e$x$data))
-    vector <- .add_bind(e, vector, deparse(substitute(symbol)), "symbol")
+    symbol <- deparse(substitute(symbol))
   
-  serie <- list(
-    name = name,
-    type = "pictorialBar",
-    data = vector,
-    yAxisIndex = y.index,
-    xAxisIndex = x.index,
-    ...
-  )
-  
-  if(!deparse(substitute(symbol)) %in% colnames(e$x$data))
-    serie$symbol <- symbol
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  e_pictorial_(e, deparse(substitute(serie)), symbol, bd, name, legend, y.index, x.index, ...)
 }
 
 #' Smooth
@@ -1698,7 +1573,7 @@ e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", ...
 #' @rdname histogram
 #' @export
 e_histogram <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
-                        bar.width = "99%", y.index = 0, x.index = 0, ...){
+                        bar.width = "99%", x.index = 0, y.index = 0, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -1706,49 +1581,7 @@ e_histogram <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  serie <- deparse(substitute(serie))
-  
-  if(is.null(name)) # defaults to column name
-    name <- serie
-  
-  data <- .get_data(e, serie)
-  histogram <- hist(data, plot = FALSE, breaks)
-  
-  hist <- data.frame(
-    histogram$mids,
-    histogram$counts
-  )
-  
-  hist <- apply(unname(hist), 1, as.list)
-  
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
-  if(!length(e$x$opts$xAxis))
-    e$x$opts$xAxis <- list(
-      list(
-        type = "value", scale = TRUE
-      )
-    )
-  
-  serie <- list(
-    name = name,
-    type = "bar",
-    data = hist,
-    barWidth = bar.width,
-    yAxisIndex = y.index,
-    xAxisIndex = x.index,
-    ...
-  )
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  e_histogram_(e, deparse(substitute(serie)), breaks, name, legend, bar.width, x.index, y.index, ...)
 }
 
 #' @rdname histogram
@@ -1761,46 +1594,5 @@ e_density <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  serie <- deparse(substitute(serie))
-  
-  if(is.null(name)) # defaults to column name
-    name <- serie
-  
-  data <- .get_data(e, serie)
-  histogram <- hist(data, plot = FALSE, breaks)
-  
-  hist <- data.frame(
-    histogram$mids,
-    histogram$density
-  )
-  
-  hist <- apply(unname(hist), 1, as.list)
-  
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
-  if(!length(e$x$opts$xAxis))
-    e$x$opts$xAxis <- list(
-      list(
-        type = "value", scale = TRUE
-      )
-    )
-  
-  serie <- list(
-    name = name,
-    type = "line",
-    data = hist,
-    yAxisIndex = y.index,
-    xAxisIndex = x.index,
-    ...
-  )
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  e_density_(e, deparse(substitute(serie)), breaks, name, legend, x.index, y.index, ...)
 }

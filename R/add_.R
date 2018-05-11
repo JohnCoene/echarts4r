@@ -850,3 +850,303 @@ e_lines_ <- function(e, source.lon, source.lat, target.lon, target.lat, coord.sy
   
   e
 }
+
+#' @rdname e_scatter_3d
+#' @export
+e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord.system = "cartesian3D", name = NULL, 
+                         rm.x = TRUE, rm.y = TRUE, legend = FALSE, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(y) || missing(z))
+    stop("must pass y and z", call. = FALSE)
+  
+  if(is.null(name)) # defaults to column name
+    name <- z
+  
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
+  
+  # globe
+  if(coord.system != "cartesian3D"){
+    
+    data <- .build_data(e, e$x$mapping$x, y, z)
+    
+    if(!is.null(bind))
+      data <- .add_bind(e, data, bind)
+    
+    
+  } else { # cartesian
+    
+    if(!length(e$x$opts$zAxis3D))
+      e$x$opts$zAxis3D <- list(list(show = TRUE))
+    
+    if(!length(e$x$opts$grid3D))
+      e$x$opts$grid3D <- list(list(show = TRUE))
+    
+    e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
+    e <- .set_axis_3D(e, "y", y, 0)
+    e <- .set_axis_3D(e, "z", z, 0)
+    
+    if(is.null(color))
+      data <- .build_data(e, e$x$mapping$x, y, z)
+    else if(!is.null(color) && is.null(size))
+      data <- .build_data(e, e$x$mapping$x, y, z, color)
+    else if(!is.null(color) && !is.null(size))
+      data <- .build_data(e, e$x$mapping$x, y, z, color, size)
+    
+  }
+  
+  serie <- list(
+    name = name,
+    type = "scatter3D",
+    coordinateSystem = coord.system,
+    data = data,
+    ...
+  )
+  
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
+  e
+}
+
+#' @rdname e_flow_gl
+#' @export
+e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord.system = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(y) || missing(sx) || missing(sy))
+    stop("must pass y and z", call. = FALSE)
+  
+  if(is.null(coord.system)){
+    e <- .set_x_axis(e, 0)
+    e <- .set_y_axis(e, deparse(substitute(y)), 0)
+  } else {
+    # remove axis
+    e <- .rm_axis(e, rm.x, "x")
+    e <- .rm_axis(e, rm.y, "y")
+  }
+  
+  if(is.null(color))
+    data <- .build_data(e, e$x$mapping$x, y, sx,sy)
+  else 
+    data <- .build_data(e, e$x$mapping$x, y, sx, sy, color)
+  
+  serie <- list(
+    type = "flowGL",
+    data = data,
+    ...
+  )
+  
+  if(!is.null(name))
+    serie$name <- name
+  
+  if(!is.null(coord.system))
+    serie$coordinateSystem <- coord.system
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
+  e
+}
+
+#' @rdname e_scatter_gl
+#' @export
+e_scatter_gl_ <- function(e, y, z, name = NULL, coord.system = "geo", rm.x = TRUE, rm.y = TRUE, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(y) || missing(z))
+    stop("must pass y and z", call. = FALSE)
+  
+  if(is.null(name)) # defaults to column name
+    name <- z
+  
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
+  
+  data <- .build_data(e, e$x$mapping$x, y, z)
+  
+  # globe
+  if(coord.system == "cartesian3D"){
+    if(!length(e$x$opts$zAxis3D))
+      e$x$opts$zAxis3D <- list(list(show = TRUE))
+    
+    if(!length(e$x$opts$grid3D))
+      e$x$opts$grid3D <- list(list(show = TRUE))
+    
+    e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
+    e <- .set_axis_3D(e, "y", y, 0)
+    e <- .set_axis_3D(e, "z", z, 0)
+  } 
+  
+  serie <- list(
+    name = name,
+    type = "scatterGL",
+    coordinateSystem = coord.system,
+    data = data,
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
+  e
+}
+
+#' @rdname e_pictorial
+#' @export
+e_pictorial_ <- function(e, serie, symbol, bind = NULL, name = NULL, legend = TRUE, y.index = 0, x.index = 0, ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie) || missing(symbol))
+    stop("must pass serie and symbol", call. = FALSE)
+  
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
+  if(y.index != 0)
+    e <- .set_y_axis(e, serie, y.index)
+  
+  if(x.index != 0)
+    e <- .set_x_axis(e, x.index)
+  
+  # build JSON data
+  .build_data(e, e$x$mapping$x, serie) -> vector
+  
+  if(!is.null(bind))
+    vector <- .add_bind(e, vector, bind)
+  
+  if(symbol %in% colnames(e$x$data))
+    vector <- .add_bind(e, vector, symbol, "symbol")
+  
+  serie <- list(
+    name = name,
+    type = "pictorialBar",
+    data = vector,
+    yAxisIndex = y.index,
+    xAxisIndex = x.index,
+    ...
+  )
+  
+  if(!symbol %in% colnames(e$x$data))
+    serie$symbol <- symbol
+  
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' @rdname histogram
+#' @export
+e_histogram_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
+                        bar.width = "99%", x.index = 0, y.index = 0, ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
+  data <- .get_data(e, serie)
+  histogram <- hist(data, plot = FALSE, breaks)
+  
+  hist <- data.frame(
+    histogram$mids,
+    histogram$counts
+  )
+  
+  hist <- apply(unname(hist), 1, as.list)
+  
+  if(y.index != 0)
+    e <- .set_y_axis(e, serie, y.index)
+  
+  if(x.index != 0)
+    e <- .set_x_axis(e, x.index)
+  
+  if(!length(e$x$opts$xAxis))
+    e$x$opts$xAxis <- list(
+      list(
+        type = "value", scale = TRUE
+      )
+    )
+  
+  serie <- list(
+    name = name,
+    type = "bar",
+    data = hist,
+    barWidth = bar.width,
+    yAxisIndex = y.index,
+    xAxisIndex = x.index,
+    ...
+  )
+  
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
+
+#' @rdname histogram
+#' @export
+e_density_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE, 
+                      x.index = 0, y.index = 0, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie))
+    stop("must pass serie", call. = FALSE)
+  
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
+  data <- .get_data(e, serie)
+  histogram <- hist(data, plot = FALSE, breaks)
+  
+  hist <- data.frame(
+    histogram$mids,
+    histogram$density
+  )
+  
+  hist <- apply(unname(hist), 1, as.list)
+  
+  if(y.index != 0)
+    e <- .set_y_axis(e, serie, y.index)
+  
+  if(x.index != 0)
+    e <- .set_x_axis(e, x.index)
+  
+  if(!length(e$x$opts$xAxis))
+    e$x$opts$xAxis <- list(
+      list(
+        type = "value", scale = TRUE
+      )
+    )
+  
+  serie <- list(
+    name = name,
+    type = "line",
+    data = hist,
+    yAxisIndex = y.index,
+    xAxisIndex = x.index,
+    ...
+  )
+  
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}
