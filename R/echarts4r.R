@@ -156,6 +156,9 @@ e_chart <- e_charts
 #' @export
 e_data <- function(e, data, x){
   
+  if(missing(data))
+    stop("must pass data")
+  
   if(!missing(x))
     xmap <- deparse(substitute(x))
   
