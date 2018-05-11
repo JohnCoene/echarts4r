@@ -5,7 +5,7 @@
 \title{Scatter 3D}
 \usage{
 e_scatter_3d(e, y, z, color, size, bind, coord.system = "cartesian3D",
-  name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
+  name = NULL, rm.x = TRUE, rm.y = TRUE, legend = FALSE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -21,6 +21,8 @@ e_scatter_3d(e, y, z, color, size, bind, coord.system = "cartesian3D",
 \item{name}{name of the serie.}
 
 \item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
+
+\item{legend}{Whether to add serie to legend.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

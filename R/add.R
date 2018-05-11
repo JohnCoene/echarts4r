@@ -1222,7 +1222,7 @@ e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.sys
 #' 
 #' @export
 e_scatter_3d <- function(e, y, z, color, size, bind, coord.system = "cartesian3D", name = NULL, 
-                         rm.x = TRUE, rm.y = TRUE, ...){
+                         rm.x = TRUE, rm.y = TRUE, legend = FALSE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1274,6 +1274,9 @@ e_scatter_3d <- function(e, y, z, color, size, bind, coord.system = "cartesian3D
     data = data,
     ...
   )
+  
+  if(isTRUE(legend))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   
