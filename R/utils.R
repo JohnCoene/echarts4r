@@ -57,7 +57,7 @@ globalVariables(c("e", "."))
   if(isTRUE(vector))
     unlist(data)
   else
-    apply(data, 1, as.list)
+      apply(data, 1, function(x){list(value = unlist(x, use.names = FALSE))}) 
 }
 
 .build_sankey_nodes <- function(data, source, target){
