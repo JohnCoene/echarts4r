@@ -20,7 +20,8 @@ devtools::install_github("JohnCoene/echarts4r")
 
 See [coding.net project](http://coding.net/u/JohnCoene/p/echarts4r/git?public=true) if you're in China.
 
-## [website](http://echarts4r.john-coene.com)
+## [Website](http://echarts4r.john-coene.com)
+### [Shiny demo](http://shiny.john-coene.com/echarts4rShiny/)
 
 ## Features
 
