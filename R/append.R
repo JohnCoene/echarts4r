@@ -36,9 +36,9 @@
 #'     output$plot <- renderEcharts4r({
 #'       data %>% 
 #'        e_charts(x) %>% 
-#'        e_scatter(y) %>%
+#'        e_scatter(y, z) %>%
 #'        e_scatter(z) %>% 
-#'        e_brush(throttleType = "debounce")
+#'        e_brush()
 #'     })
 #'     
 #'     observeEvent(input$add, {

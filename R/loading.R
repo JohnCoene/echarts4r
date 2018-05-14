@@ -3,6 +3,7 @@
 #' Show or hide loading.
 #' 
 #' @inheritParams e_bar
+#' @param hide.overlay Hides the white overaly that appears in shiny when a plot is recalculating.
 #' @param text Text to display.
 #' @param color Color of spinner.
 #' @param text.color Color of text.
@@ -66,9 +67,10 @@
 #' 
 #' @rdname loading
 #' @export
-e_show_loading <- function(e, text = "loading", color = "#c23531", text.color = "#000", 
+e_show_loading <- function(e, hide.overlay = TRUE, text = "loading", color = "#c23531", text.color = "#000", 
                            mask.color = "rgba(255, 255, 255, 0.8)", zlevel = 0){
   e$x$loading <- TRUE
+  e$x$hideWhite <- hide.overlay
   opts <- list(
     text = text,
     color = color,

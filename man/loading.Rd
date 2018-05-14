@@ -5,14 +5,16 @@
 \alias{e_hide_loading}
 \title{Loading}
 \usage{
-e_show_loading(e, text = "loading", color = "#c23531",
-  text.color = "#000", mask.color = "rgba(255, 255, 255, 0.8)",
-  zlevel = 0)
+e_show_loading(e, hide.overlay = TRUE, text = "loading",
+  color = "#c23531", text.color = "#000",
+  mask.color = "rgba(255, 255, 255, 0.8)", zlevel = 0)
 
 e_hide_loading(e)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+
+\item{hide.overlay}{Hides the white overaly that appears in shiny when a plot is recalculating.}
 
 \item{text}{Text to display.}
 
