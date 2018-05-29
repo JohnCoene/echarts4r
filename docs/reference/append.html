@@ -199,7 +199,11 @@
 
     <pre class="usage"><span class='fu'>e_append1_p</span>(<span class='no'>proxy</span>, <span class='kw'>series.index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>)
 
-<span class='fu'>e_append2_p</span>(<span class='no'>proxy</span>, <span class='kw'>series.index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>)</pre>
+<span class='fu'>e_append1_p_</span>(<span class='no'>proxy</span>, <span class='kw'>series.index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>)
+
+<span class='fu'>e_append2_p</span>(<span class='no'>proxy</span>, <span class='kw'>series.index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>)
+
+<span class='fu'>e_append2_p_</span>(<span class='no'>proxy</span>, <span class='kw'>series.index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -248,20 +252,20 @@ Only these types of series support it: <code><a href='scatter.html'>e_scatter</a
 
     <span class='no'>react</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/observeEvent'>eventReactive</a></span>(<span class='no'>input</span>$<span class='no'>add</span>, {
       <span class='fu'>set.seed</span>(<span class='fu'>sample</span>(<span class='fl'>1</span>:<span class='fl'>1000</span>, <span class='fl'>1</span>))
-      <span class='fu'>data.frame</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>5</span>, <span class='fl'>2</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>10</span>))
+      <span class='fu'>data.frame</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>5</span>, <span class='fl'>2</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>10</span>), <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>1</span>, <span class='fl'>5</span>))
     })
 
     <span class='no'>output</span>$<span class='no'>plot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span>({
       <span class='no'>data</span> <span class='kw'>%&gt;%</span>
        <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
-       <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>y</span>) <span class='kw'>%&gt;%</span>
+       <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>y</span>, <span class='no'>z</span>) <span class='kw'>%&gt;%</span>
        <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>z</span>) <span class='kw'>%&gt;%</span>
-       <span class='fu'><a href='e_brush.html'>e_brush</a></span>(<span class='kw'>throttleType</span> <span class='kw'>=</span> <span class='st'>"debounce"</span>)
+       <span class='fu'><a href='e_brush.html'>e_brush</a></span>()
     })
 
     <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>add</span>, {
       <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"plot"</span>) <span class='kw'>%&gt;%</span>
-        <span class='fu'>e_append1_p</span>(<span class='fl'>0</span>, <span class='fu'>react</span>(), <span class='no'>x</span>, <span class='no'>y</span>)
+        <span class='fu'>e_append2_p</span>(<span class='fl'>0</span>, <span class='fu'>react</span>(), <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>)
     })
 
     <span class='no'>output</span>$<span class='no'>selected</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>({

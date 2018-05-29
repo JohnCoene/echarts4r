@@ -198,6 +198,9 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_color_range</span>(<span class='no'>data</span>, <span class='no'>input</span>, <span class='no'>output</span>, <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"#bf444c"</span>, <span class='st'>"#d88273"</span>,
+  <span class='st'>"#f6efa6"</span>), <span class='no'>...</span>)
+
+<span class='fu'>e_color_range_</span>(<span class='no'>data</span>, <span class='no'>input</span>, <span class='no'>output</span>, <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"#bf444c"</span>, <span class='st'>"#d88273"</span>,
   <span class='st'>"#f6efa6"</span>), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -225,8 +228,7 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='kw'>val</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>)
 
-<span class='no'>df</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_color_range</span>(<span class='no'>val</span>, <span class='no'>colors</span>)</div><div class='output co'>#&gt;    val  colors
+<span class='fu'>e_color_range</span>(<span class='no'>df</span>, <span class='no'>val</span>, <span class='no'>colors</span>)</div><div class='output co'>#&gt;    val  colors
 #&gt; 1    1 #BF444C
 #&gt; 2    2 #C45154
 #&gt; 3    3 #CA5F5D
@@ -236,7 +238,7 @@
 #&gt; 7    7 #E2A683
 #&gt; 8    8 #E8BE8F
 #&gt; 9    9 #EFD69A
-#&gt; 10  10 #F6EFA6</div><div class='input'>
+#&gt; 10  10 #F6EFA6</div><div class='input'>  
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

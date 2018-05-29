@@ -198,9 +198,15 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_histogram</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='st'>"Sturges"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>bar.width</span> <span class='kw'>=</span> <span class='st'>"99%"</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
+  <span class='kw'>bar.width</span> <span class='kw'>=</span> <span class='st'>"99%"</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_density</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='st'>"Sturges"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
+
+<span class='fu'>e_histogram_</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='st'>"Sturges"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>bar.width</span> <span class='kw'>=</span> <span class='st'>"99%"</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
+
+<span class='fu'>e_density_</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='st'>"Sturges"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -231,11 +237,11 @@
       <td><p>Width of bars.</p></td>
     </tr>
     <tr>
-      <th>y.index</th>
+      <th>x.index</th>
       <td><p>Indexes of x and y axis.</p></td>
     </tr>
     <tr>
-      <th>x.index</th>
+      <th>y.index</th>
       <td><p>Indexes of x and y axis.</p></td>
     </tr>
     <tr>

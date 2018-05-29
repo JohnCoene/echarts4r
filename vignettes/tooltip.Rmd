@@ -1,6 +1,6 @@
 ---
 title: "Tooltip"
-author: "John Coene"
+author: "Sharon Machlis"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >

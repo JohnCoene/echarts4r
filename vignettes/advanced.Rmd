@@ -150,3 +150,16 @@ df %>%
     layout = "radial" # radial
   )
 ```
+
+### Show labels
+
+```{r}
+# with negative
+USArrests %>% 
+    dplyr::mutate(
+        State = row.names(.)
+    ) %>% 
+    dplyr::slice(1:10) %>% 
+    e_charts(State) %>% 
+    e_area(Murder, label = list(normal = list(show = TRUE))) 
+```

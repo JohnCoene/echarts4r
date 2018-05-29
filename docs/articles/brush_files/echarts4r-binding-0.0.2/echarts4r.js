@@ -59,11 +59,27 @@ HTMLWidgets.widget({
         }
 
         $(document).on('shiny:recalculating', function() {
+          
+          if(x.hideWhite === true){
+            var css = '.recalculating {opacity: 1.0 !important; }',
+                head = document.head || document.getElementsByTagName('head')[0],
+                style = document.createElement('style');
+            
+            style.type = 'text/css';
+            if (style.styleSheet){
+              style.styleSheet.cssText = css;
+            } else {
+              style.appendChild(document.createTextNode(css));
+            }
+            head.appendChild(style);
+          }
+          
           if(x.loading === true){
             chart.showLoading('default', x.loadingOpts);
           } else if(x.loading === false) {
             chart.hideLoading();
           }
+          
         });
         
         $(document).on('shiny:value', function() {

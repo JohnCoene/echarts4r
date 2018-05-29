@@ -101,5 +101,6 @@ e_charts() %>%
     e_graph_gl() %>% 
     e_graph_nodes(airports, iata, cnt) %>% 
     e_graph_edges(flights, airport1, airport2) %>% 
+    e_modularity() %>% 
     e_tooltip()
 ```
