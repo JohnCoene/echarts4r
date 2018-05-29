@@ -1109,7 +1109,7 @@ e_bar_3d <- function(e, y, z, bind, coord.system = "cartesian3D", name = NULL,
   if(missing(bind))
     bd <- NULL
   else
-    bd <- deparse(substitute(bd))
+    bd <- deparse(substitute(bind))
   
   e_bar_3d_(e, deparse(substitute(y)), deparse(substitute(z)), bd, 
             coord.system, name, rm.x, rm.y, ...)
