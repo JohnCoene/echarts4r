@@ -83,7 +83,7 @@ mtcars %>%
   e_loess(mpg ~ disp)
 ```
 
-#### Keras
+### Keras
 
 Plot keras history.
 
