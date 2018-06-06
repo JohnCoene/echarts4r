@@ -1473,13 +1473,10 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y.in
 #' 
 #' Aids the eye in seeing patterns in the presence of overplotting.
 #' 
-#' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
+#' @inheritParams e_bar
 #' @param formula formula to pass to \code{\link{lm}}.
-#' @param name, series name.
-#' @param legend Whether to plot legend.
 #' @param symbol Symbol to use in \code{\link{e_line}}.
-#' @param ... Additional arguments to pass to \code{\link{lm}}, \code{\link{glm}}, 
-#' and \code{\link{loess}}.
+#' @param ... Additional arguments to pass to \code{\link{e_line}}.
 #' 
 #' @examples 
 #' mtcars %>% 
@@ -1499,13 +1496,13 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y.in
 #' 
 #' @rdname smooth
 #' @export
-e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", ...){
+e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, ...){
   form <- as.formula(formula)
   model <- eval(
-    lm(form, data = e$x$data, ...)
+    lm(form, data = e$x$data)
   )
   
-  e <- .build_model(e, model, name, symbol)
+  e <- .build_model(e, model, name, symbol, smooth, ...)
   
   if(isTRUE(legend))
     e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
@@ -1514,13 +1511,13 @@ e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", ...){
 
 #' @rdname smooth
 #' @export
-e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", ...){
+e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, ...){
   form <- as.formula(formula)
   model <- eval(
-    glm(form, data = e$x$data, ...)
+    glm(form, data = e$x$data)
   )
   
-  e <- .build_model(e, model, name, symbol)
+  e <- .build_model(e, model, name, symbol, smooth, ...)
   
   if(isTRUE(legend))
     e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
@@ -1529,28 +1526,44 @@ e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", ...){
 
 #' @rdname smooth
 #' @export
-e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", ...){
+e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, 
+                    x.index = 0, y.index = 0, ...){
   mod <- eval(
-    loess(as.formula(formula), data = e$x$data, ...)
+    loess(as.formula(formula), data = e$x$data)
   )
   
-  e$x$data$ECHARTS4RLOESS <- predict(mod)
+  if(is.null(name))
+    name <- "ECHARTS4RLOESS"
+  
+  e$x$data[,name] <- predict(mod)
   
   vector <- .build_data(
     e, 
     e$x$mapping$x,
-    "ECHARTS4RLOESS"
+    name
   )
-  
+
   l <- list(
     name = name,
     type = "line",
     data = vector,
-    smooth = TRUE,
-    symbol = symbol
+    ...
   )
   
+  if(y.index != 0)
+    e <- .set_y_axis(e, name, y.index)
+  
+  if(x.index != 0)
+    e <- .set_x_axis(e, x.index)
+  
+  l$yAxisIndex <- y.index
+  l$xAxisIndex <- x.index
+  
+  if(isTRUE(legend) && !is.null(name))
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  
   e$x$opts$series <- append(e$x$opts$series, list(l))
+  e
   
   e
 }
@@ -1595,4 +1608,56 @@ e_density <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
     stop("must pass serie", call. = FALSE)
   
   e_density_(e, deparse(substitute(serie)), breaks, name, legend, x.index, y.index, ...)
+}
+
+#' History
+#'
+#' Plot \link[keras] history in R.
+#'
+#' @inheritParams e_bar
+#'
+#' @examples
+#' \dontrun{
+#' history <- model %>% 
+#'  fit(...)
+#' 
+#' history %>%
+#'  e_charts() %>%
+#'  e_keras_history()
+#' }
+#' 
+#' @export
+e_keras_history <- function(e){
+
+  e <- .keras_history(e)
+  
+  axis_opts <- list(
+    padding = 25
+  )
+
+  e %>%
+    e_data(e$x$data, epoch) %>% 
+    e_scatter(acc, size, name = "Accuracy", scale = "* 5") %>%
+    e_scatter(val_acc, size, name = "Validation Accuracy", scale = "* 5") %>%
+    e_loess(acc ~ epoch, name = "Accloess", showSymbol = FALSE) %>%
+    e_loess(val_acc ~ epoch, name = "AccValidationloess", showSymbol = FALSE) %>%  # loss
+    e_scatter(loss, size, name = "Loss", scale = "* 5", y.index = 1, x.index = 1) %>%
+    e_scatter(val_loss, size, name = "Validation Accuracy", scale = "* 5", y.index = 1, x.index = 1) %>%
+    e_loess(loss ~ epoch, y.index = 1, x.index = 1, name = "Lossloess", showSymbol = FALSE) %>%
+    e_loess(val_loss ~ epoch, y.index = 1, x.index = 1, name = "LossValidationloess", showSymbol = FALSE) %>% 
+    e_y_axis(gridIndex = 1, name = "Accuracy", nameRotate = 90, nameTextStyle = axis_opts, nameLocation = "center") %>%
+    e_y_axis(index = 1, name = "Loss", nameRotate = 90, nameTextStyle = axis_opts, nameLocation = "center") %>%
+    e_x_axis(gridIndex = 1, name = "Epoch") %>% 
+    e_x_axis(index = 1, show = FALSE) %>% 
+    e_grid(height = "35%") %>% 
+    e_grid(height = "35%", top = "50%") %>% 
+    e_datazoom(x.index = c(0, 1)) %>% 
+    e_tooltip(trigger = "axis") %>% 
+    e_color(color = c(
+      "#aa4225", "#006887","#aa4225", "#006887",
+      "#aa4225","#aa4225", "#006887", "#006887"
+      )
+    ) %>% 
+    e_legend(FALSE) %>% 
+    e_title("Model History", "Accuracy & loss")
 }

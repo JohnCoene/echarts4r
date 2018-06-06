@@ -339,6 +339,23 @@ globalVariables(c("e", "."))
   e
 }
 
+.keras_history <- function(e){
+
+  e$x$mapping <- list(
+    x = "epoch",
+    x_class = "numeric",
+    include_x = TRUE
+  )
+
+  data <- e$x$data$metrics
+  data <- as.data.frame(data)
+  data$epoch <- seq(0, nrow(data) - 1)
+  data$size <- 1
+
+  e$x$data <- data
+  return(e)
+}
+
 .r2axis <- function(axis){
   paste0(axis, "Axis")
 }
@@ -423,7 +440,7 @@ globalVariables(c("e", "."))
     grep(serie, .)
 }
 
-.build_model <- function(e, model, name, symbol){
+.build_model <- function(e, model, name, symbol, smooth, ...){
   data <- broom::augment(model)
   
   data_keep <- e$x$data
@@ -440,7 +457,8 @@ globalVariables(c("e", "."))
     type = "line",
     data = vector,
     symbol = symbol,
-    smooth = TRUE
+    smooth = smooth,
+    ...
   )
   
   e <- e %>% e_data(data_keep)

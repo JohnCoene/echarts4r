@@ -1,3 +1,7 @@
+# 0.0.2.9000
+
+* `e_keras_history` added
+
 # 0.0.1
 
 Initial CRAN release

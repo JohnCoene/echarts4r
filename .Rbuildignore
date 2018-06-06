@@ -1,13 +1,2 @@
-^.*\.Rproj$
-^\.Rproj\.user$
-^README\.Rmd$
-^README-.*\.png$
-^\.travis\.yml$
-^usa\.json$
-docs
-_pkgdown.yml
-index.Rmd
-logo.png
-.gitattributes
-^appveyor\.yml$
-^cran-comments\.md$
+^_pkgdown\.yml$
+^docs$

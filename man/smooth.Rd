@@ -6,25 +6,31 @@
 \alias{e_loess}
 \title{Smooth}
 \usage{
-e_lm(e, formula, name = NULL, legend = TRUE, symbol = "none", ...)
+e_lm(e, formula, name = NULL, legend = TRUE, symbol = "none",
+  smooth = TRUE, ...)
 
-e_glm(e, formula, name = NULL, legend = TRUE, symbol = "none", ...)
+e_glm(e, formula, name = NULL, legend = TRUE, symbol = "none",
+  smooth = TRUE, ...)
 
-e_loess(e, formula, name = NULL, legend = TRUE, symbol = "none", ...)
+e_loess(e, formula, name = NULL, legend = TRUE, symbol = "none",
+  smooth = TRUE, x.index = 0, y.index = 0, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{formula}{formula to pass to \code{\link{lm}}.}
 
-\item{name, }{series name.}
+\item{name}{name of the serie.}
 
-\item{legend}{Whether to plot legend.}
+\item{legend}{Whether to add serie to legend.}
 
 \item{symbol}{Symbol to use in \code{\link{e_line}}.}
 
-\item{...}{Additional arguments to pass to \code{\link{lm}}, \code{\link{glm}}, 
-and \code{\link{loess}}.}
+\item{...}{Additional arguments to pass to \code{\link{e_line}}.}
+
+\item{x.index}{Indexes of x and y axis.}
+
+\item{y.index}{Indexes of x and y axis.}
 }
 \description{
 Aids the eye in seeing patterns in the presence of overplotting.
