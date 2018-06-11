@@ -4,10 +4,12 @@
 \alias{e_tooltip}
 \title{Tooltip}
 \usage{
-e_tooltip(e, ...)
+e_tooltip(e, trigger = c("item", "axis"), ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+
+\item{trigger}{What triggers the tooltip, one of \code{item} or \code{item}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }
@@ -18,7 +20,7 @@ Customise tooltip
 USArrests \%>\% 
   e_charts(Assault) \%>\% 
   e_bar(Murder) \%>\% 
-  e_tooltip(trigger = "axis")
+  e_tooltip()
 
 }
 \seealso{

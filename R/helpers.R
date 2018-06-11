@@ -164,3 +164,47 @@ e_color_range_ <- function(data, input, output, colors = c("#bf444c", "#d88273",
 e_get_data <- function(e){
   e$x$data
 }
+
+#' Formatters
+#' 
+#' Simple formatters as helpers.
+#' 
+#' @inheritParams e_bar
+#' @param axis Axis to apply formatter to.
+#' @param suffix,prefix Suffix and prefix of label.
+#' @param pointer Whether to apply formatting to \code{axisPointer}.
+#' @param ... Any other arguments to pass to \code{\link{e_axis}}.
+#' 
+#' @examples 
+#' # Y = %
+#' df <- data.frame(
+#'   x = 1:10,
+#'   y = round(
+#'     runif(10, 1, 100), 2
+#'   ) 
+#' )
+#' 
+#' df %>% 
+#'   e_charts(x) %>% 
+#'   e_line(y) %>% 
+#'   e_format_axis(suffix = "%", axis = "y") %>%
+#'   e_format_axis(prefix = "A", axis = "x") 
+#' 
+#' @rdname formatters
+#' @export
+e_format_axis <- function(e, axis = "y", suffix = NULL, prefix = NULL, ...){
+  
+  if(is.null(suffix) && is.null(prefix))
+    stop("missing formatting")
+  
+  label <- paste(prefix, "{value}", suffix)
+  
+  e <- e %>% 
+    e_axis(
+      axis = axis, 
+      axisLabel = list(formatter = label),
+      ...
+    )
+  
+  e
+}

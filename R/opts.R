@@ -84,22 +84,23 @@ e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuo
 #' Customise tooltip
 #' 
 #' @inheritParams e_bar
+#' @param trigger What triggers the tooltip, one of \code{item} or \code{item}.
 #' 
 #' @examples 
 #' USArrests %>% 
 #'   e_charts(Assault) %>% 
 #'   e_bar(Murder) %>% 
-#'   e_tooltip(trigger = "axis")
+#'   e_tooltip()
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip}
 #' 
 #' @export
-e_tooltip <- function(e, ...){
+e_tooltip <- function(e, trigger = c("item", "axis"), ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  tooltip <- list(...)
+  tooltip <- list(trigger = trigger[1], ...)
   
   e$x$opts$tooltip <- tooltip
   

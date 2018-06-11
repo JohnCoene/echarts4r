@@ -1,6 +1,9 @@
 # 0.0.2.9000
 
-* `e_keras_history` added
+* `e_keras_history` added - plot `keras` history (loss & acc).
+* `e_format_axis` added - format axis labels & pointers.
+* `e_tooltip` now takes a default `trigger = "item"`.
+* `e_flip_coords` added - to flip x/y corrdinates.
 
 # 0.0.1
 
