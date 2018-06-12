@@ -141,6 +141,9 @@
       <a href="../articles/pictorial.html">Pictorial</a>
     </li>
     <li>
+      <a href="../articles/grid.html">Grid &amp; Axis</a>
+    </li>
+    <li>
       <a href="../articles/shiny.html">Shiny</a>
     </li>
     <li>
@@ -201,7 +204,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_tooltip</span>(<span class='no'>e</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_tooltip</span>(<span class='no'>e</span>, <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"item"</span>, <span class='st'>"axis"</span>), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -209,6 +212,10 @@
     <tr>
       <th>e</th>
       <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>trigger</th>
+      <td><p>What triggers the tooltip, one of <code>item</code> or <code>item</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -225,7 +232,7 @@
     <pre class="examples"><div class='input'><span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Assault</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_bar.html'>e_bar</a></span>(<span class='no'>Murder</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_tooltip</span>(<span class='kw'>trigger</span> <span class='kw'>=</span> <span class='st'>"axis"</span>)</div></pre>
+  <span class='fu'>e_tooltip</span>()</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

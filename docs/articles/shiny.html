@@ -100,6 +100,9 @@
       <a href="../articles/pictorial.html">Pictorial</a>
     </li>
     <li>
+      <a href="../articles/grid.html">Grid &amp; Axis</a>
+    </li>
+    <li>
       <a href="../articles/shiny.html">Shiny</a>
     </li>
     <li>
@@ -151,7 +154,7 @@
       <h1>Shiny</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2018-06-07</h4>
+            <h4 class="date">2018-06-12</h4>
       
       
       <div class="hidden name"><code>shiny.Rmd</code></div>
@@ -198,17 +201,17 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(shiny)
 <span class="kw">library</span>(echarts4r)
 
-ui &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/fluidPage">fluidPage</a></span>(
-  <span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/actionButton">actionButton</a></span>(<span class="st">"add"</span>, <span class="st">"Add Data to y"</span>),
+ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
+  <span class="kw">actionButton</span>(<span class="st">"add"</span>, <span class="st">"Add Data to y"</span>),
   <span class="kw"><a href="../reference/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"plot"</span>),
-  <span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput">verbatimTextOutput</a></span>(<span class="st">"selected"</span>)
+  <span class="kw">verbatimTextOutput</span>(<span class="st">"selected"</span>)
 )
 
 server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session){
 
   data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">3</span>), <span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">12</span>), <span class="dt">z =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">5</span>))
   
-  react &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/observeEvent">eventReactive</a></span>(input<span class="op">$</span>add, {
+  react &lt;-<span class="st"> </span><span class="kw">eventReactive</span>(input<span class="op">$</span>add, {
     <span class="kw">set.seed</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>, <span class="dv">1</span>))
     <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">2</span>), <span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">10</span>))
   })
@@ -221,34 +224,34 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
 <span class="st">     </span><span class="kw"><a href="../reference/e_brush.html">e_brush</a></span>(<span class="dt">throttleDelay =</span> <span class="dv">1000</span>)
   })
   
-  <span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/observeEvent">observeEvent</a></span>(input<span class="op">$</span>add, {
+  <span class="kw">observeEvent</span>(input<span class="op">$</span>add, {
     <span class="kw"><a href="../reference/echarts4r-shiny.html">echarts4rProxy</a></span>(<span class="st">"plot"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">      </span><span class="kw"><a href="../reference/append.html">e_append1_p</a></span>(<span class="dv">0</span>, <span class="kw">react</span>(), x, y)
   })
   
-  output<span class="op">$</span>selected &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/renderPrint">renderPrint</a></span>({
+  output<span class="op">$</span>selected &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({
     input<span class="op">$</span>plot_brush
   })
   
 }
 
-<span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</code></pre></div>
+<span class="kw">shinyApp</span>(ui, server)</code></pre></div>
 <p>You can also show a spinner while shiny recalculates.</p>
 <p>Without loading, chart redraws with neat animation.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># no redraw</span>
 <span class="co"># no loading</span>
 <span class="kw">library</span>(shiny)
-ui &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/fluidPage">fluidPage</a></span>(
-  <span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/fluidPage">fluidRow</a></span>(
-    <span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/column">column</a></span>(<span class="dv">12</span>, <span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/actionButton">actionButton</a></span>(<span class="st">"update"</span>, <span class="st">"Update"</span>))
+ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
+  <span class="kw">fluidRow</span>(
+    <span class="kw">column</span>(<span class="dv">12</span>, <span class="kw">actionButton</span>(<span class="st">"update"</span>, <span class="st">"Update"</span>))
   ),
-  <span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/fluidPage">fluidRow</a></span>(
-    <span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/column">column</a></span>(<span class="dv">12</span>, <span class="kw"><a href="../reference/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"plot"</span>))
+  <span class="kw">fluidRow</span>(
+    <span class="kw">column</span>(<span class="dv">12</span>, <span class="kw"><a href="../reference/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"plot"</span>))
   )
 )
 
 server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output){
-  data &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/observeEvent">eventReactive</a></span>(input<span class="op">$</span>update, {
+  data &lt;-<span class="st"> </span><span class="kw">eventReactive</span>(input<span class="op">$</span>update, {
     <span class="kw">data.frame</span>(
       <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
       <span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>)
@@ -262,12 +265,12 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
   })
 }
 
-<span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</code></pre></div>
+<span class="kw">shinyApp</span>(ui, server)</code></pre></div>
 <p>With loading.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># keep UI</span>
 <span class="co"># add loading</span>
 server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output){
-  data &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/observeEvent">eventReactive</a></span>(input<span class="op">$</span>update, {
+  data &lt;-<span class="st"> </span><span class="kw">eventReactive</span>(input<span class="op">$</span>update, {
     <span class="kw">Sys.sleep</span>(<span class="dv">1</span>) <span class="co"># sleep one second to show loading</span>
     <span class="kw">data.frame</span>(
       <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
@@ -283,7 +286,7 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
   })
 }
 
-<span class="kw"><a href="http://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</code></pre></div>
+<span class="kw">shinyApp</span>(ui, server)</code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
