@@ -26,6 +26,8 @@ e_loess(e, formula, name = NULL, legend = TRUE, symbol = "none",
 
 \item{symbol}{Symbol to use in \code{\link{e_line}}.}
 
+\item{smooth}{Whether to smooth the line.}
+
 \item{...}{Additional arguments to pass to \code{\link{e_line}}.}
 
 \item{x.index}{Indexes of x and y axis.}
