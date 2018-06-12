@@ -1476,6 +1476,7 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y.in
 #' @inheritParams e_bar
 #' @param formula formula to pass to \code{\link{lm}}.
 #' @param symbol Symbol to use in \code{\link{e_line}}.
+#' @param smooth Whether to smooth the line.
 #' @param ... Additional arguments to pass to \code{\link{e_line}}.
 #' 
 #' @examples 
@@ -1612,7 +1613,7 @@ e_density <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
 
 #' History
 #'
-#' Plot \link[keras] history in R.
+#' Plot \pkg{keras} history in R.
 #'
 #' @inheritParams e_bar
 #'
@@ -1637,27 +1638,29 @@ e_keras_history <- function(e){
 
   e %>%
     e_data(e$x$data, epoch) %>% 
-    e_scatter(acc, size, name = "Accuracy", scale = "* 5") %>%
-    e_scatter(val_acc, size, name = "Validation Accuracy", scale = "* 5") %>%
-    e_loess(acc ~ epoch, name = "Accloess", showSymbol = FALSE) %>%
-    e_loess(val_acc ~ epoch, name = "AccValidationloess", showSymbol = FALSE) %>%  # loss
-    e_scatter(loss, size, name = "Loss", scale = "* 5", y.index = 1, x.index = 1) %>%
-    e_scatter(val_loss, size, name = "Validation Accuracy", scale = "* 5", y.index = 1, x.index = 1) %>%
-    e_loess(loss ~ epoch, y.index = 1, x.index = 1, name = "Lossloess", showSymbol = FALSE) %>%
-    e_loess(val_loss ~ epoch, y.index = 1, x.index = 1, name = "LossValidationloess", showSymbol = FALSE) %>% 
+    e_scatter(acc, size, name = "Training", scale = "* 5") %>%
+    e_scatter(val_acc, size, name = "Validation", scale = "* 5", 
+              symbol = "triangle") %>%
+    e_loess(acc ~ epoch, name = "Training", showSymbol = FALSE) %>%
+    e_loess(val_acc ~ epoch, name = "Validation", showSymbol = FALSE) %>%  # loss
+    e_scatter(loss, size, name = "Training", scale = "* 5", y.index = 1, x.index = 1) %>%
+    e_scatter(val_loss, size, name = "Validation", scale = "* 5", 
+              y.index = 1, x.index = 1, symbol = "triangle") %>%
+    e_loess(loss ~ epoch, y.index = 1, x.index = 1, name = "Training", showSymbol = FALSE) %>%
+    e_loess(val_loss ~ epoch, y.index = 1, x.index = 1, name = "Validation", showSymbol = FALSE) %>% 
     e_y_axis(gridIndex = 1, name = "Accuracy", nameRotate = 90, nameTextStyle = axis_opts, nameLocation = "center") %>%
     e_y_axis(index = 1, name = "Loss", nameRotate = 90, nameTextStyle = axis_opts, nameLocation = "center") %>%
     e_x_axis(gridIndex = 1, name = "Epoch") %>% 
-    e_x_axis(index = 1, show = FALSE) %>% 
+    e_x_axis(index = 1, name = "Epoch") %>% 
     e_grid(height = "35%") %>% 
     e_grid(height = "35%", top = "50%") %>% 
     e_datazoom(x.index = c(0, 1)) %>% 
-    e_tooltip(trigger = "axis") %>% 
+    e_axis_pointer(show = TRUE, link = list(xAxisIndex = "all")) %>% 
     e_color(color = c(
-      "#aa4225", "#006887","#aa4225", "#006887",
-      "#aa4225","#aa4225", "#006887", "#006887"
+      "#c23531", "#2f4554","#c23531", "#2f4554",
+      "#c23531","#c23531", "#2f4554", "#2f4554"
       )
     ) %>% 
-    e_legend(FALSE) %>% 
+    e_legend(TRUE) %>% 
     e_title("Model History", "Accuracy & loss")
 }

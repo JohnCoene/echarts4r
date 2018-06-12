@@ -10,7 +10,7 @@ e_keras_history(e)
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 }
 \description{
-Plot \link[keras] history in R.
+Plot \pkg{keras} history in R.
 }
 \examples{
 \dontrun{
