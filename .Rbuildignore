@@ -7,3 +7,4 @@ cran-comments.md
 index.Rmd
 bitbucket-pipelines.yml
 ^LICENSE\.md$
+^data-raw$
