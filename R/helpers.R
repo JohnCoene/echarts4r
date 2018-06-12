@@ -172,7 +172,6 @@ e_get_data <- function(e){
 #' @inheritParams e_bar
 #' @param axis Axis to apply formatter to.
 #' @param suffix,prefix Suffix and prefix of label.
-#' @param pointer Whether to apply formatting to \code{axisPointer}.
 #' @param ... Any other arguments to pass to \code{\link{e_axis}}.
 #' 
 #' @examples 
@@ -187,8 +186,8 @@ e_get_data <- function(e){
 #' df %>% 
 #'   e_charts(x) %>% 
 #'   e_line(y) %>% 
-#'   e_format_axis(suffix = "%", axis = "y") %>%
-#'   e_format_axis(prefix = "A", axis = "x") 
+#'   e_format_y_axis(suffix = "%") %>%
+#'   e_format_x_axis(prefix = "A") 
 #' 
 #' @rdname formatters
 #' @export
@@ -207,4 +206,18 @@ e_format_axis <- function(e, axis = "y", suffix = NULL, prefix = NULL, ...){
     )
   
   e
+}
+
+#' @rdname formatters
+#' @export
+e_format_x_axis <- function(e, suffix = NULL, prefix = NULL, ...){
+  
+  e_format_axis(e, "x", suffix, prefix, ...)
+}
+
+#' @rdname formatters
+#' @export
+e_format_y_axis <- function(e, suffix = NULL, prefix = NULL, ...){
+  
+  e_format_axis(e, "y", suffix, prefix, ...)
 }
