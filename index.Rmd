@@ -1,10 +1,37 @@
 # echarts4r
 
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(echarts4r)
+```
+
 [![Travis-CI Build Status](https://travis-ci.org/JohnCoene/echarts4r.svg?branch=master)](https://travis-ci.org/JohnCoene/echarts4r) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/JohnCoene/echarts4r?branch=master&svg=true)](https://ci.appveyor.com/project/JohnCoene/echarts4r) [![Bitbucket Build Status](https://img.shields.io/bitbucket/pipelines/JohnCoene/echarts4r.svg)](https://bitbucket.org/JohnCoene/echarts4r) [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing) [![Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/JohnCoene/echarts4r/master)
 
-<img src="man/figures/logo.png" align="left" style="max-height:220px;margin-right:5%;"/>
+<img src="man/figures/logo.png" align="left" style="max-height:3000px;margin-right:5%;"/>
 
-[ECharts](http://echarts.baidu.com/) 4 for R. 
+[ECharts](http://echarts.baidu.com/) 4: powerful interactive visualisations in R.
+
+<a class="btn btn-success" href="articles/get_started.html">
+  <i class="fa fa-rocket" aria-hidden="true"></i>
+  Get Started
+</a>
+<a class="btn btn-primary" href="articles/gallery.html">
+  <i class="fa fa-paint-brush" aria-hidden="true"></i>
+  Gallery
+</button>
+<a class="btn btn-info" href="news/index.html">
+  <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+  Changelog
+</button>
+<a class="btn btn-default" href="http://shiny.john-coene.com/echarts4rShiny" target="_blank">
+  <i class="fa fa-desktop" aria-hidden="true"></i>
+  Shiny demo
+</a>
 
 ## Installation
 
@@ -23,17 +50,14 @@ devtools::install_git("https://git.coding.net/JohnCoene/echarts4r.git") # coding
 * Animations
 * Brush & sliders
 * WebGL support
+* Plugins included
 * Shiny proxies
 * themes
 * and more...
 
-#### Options
-
-ECharts version 4 comes with hundreds if not thousands of options, it's neigh impossible to list them all (see this [issue](https://github.com/JohnCoene/echarts4r/issues/1)). Though not listed in the documentation as parameters, all options are available, you can pass the aforementioned options as additional arguments through the three dot construct (`...`): the list of possible options can be found in the See Also section of each function; browse the website to see some examples.
-
 ## Examples
 
-Some of what you can do with `echarts4r`.
+Some of what you can do with `echarts4r`, see the guide for more.
 
 ```{r, echo = FALSE}
 structure(list(params = structure(list(metrics = c("loss", "acc",
@@ -110,23 +134,6 @@ USArrests %>%
   e_bar(Rape, name = "Sick basterd", x.index = 1) %>% # second y axis 
   e_mark_line("Sick basterd", data = list(type = "average")) %>% 
   e_mark_point("Murder", data = list(type = "max")) %>% 
-  e_tooltip(trigger = "axis")
-
-# river
-dates <- seq.Date(Sys.Date() - 30, Sys.Date(), by = "day")
-
-df <- data.frame(
-  dates = dates,
-  apples = runif(length(dates)),
-  bananas = runif(length(dates)),
-  pears = runif(length(dates))
-)
-
-df %>% 
-  e_charts(dates) %>% 
-  e_river(apples) %>% 
-  e_river(bananas) %>% 
-  e_river(pears) %>% 
   e_tooltip(trigger = "axis")
 
 # keras hsitory

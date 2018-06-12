@@ -1,4 +1,4 @@
-# 0.0.2.9000
+# echarts4r 0.0.2.9000
 
 * `e_keras_history` added - plot `keras` history (loss & acc).
 * `e_format_axis`, `e_format_x_axis`, `e_format_y_axis` added - format axis labels & pointers.
@@ -7,11 +7,11 @@
 * Grid & Axis vignettes.
 * `e_register_map` fixed.
 
-# 0.0.1
+# echarts4r 0.0.1
 
 Added:
 
-* `e_lm`, `e_glm` and `e_loess` added.
+* `e_lm`, `e_glm` and `e_loess`.
 
 # echarts4r 0.0.1.9000
 

@@ -38,11 +38,14 @@ development:
 
 navbar:
   title: "echarts"
-  type: inverse
   left:
     - icon: fa-home
       href: index.html
-    - text: "Usage"
+    - icon: fa-newspaper-o
+      href: news/index.html
+    - icon: fa-paint-brush
+      href: articles/gallery.html
+    - text: "Guide"
       menu: 
         - text: "Get Started"
           href: articles/get_started.html
@@ -88,10 +91,6 @@ navbar:
           href: articles/themes.html
     - text: "Reference"
       href: "reference/"
-    - text: "Gallery"
-      href: articles/gallery.html
-    - text: "Changelog"
-      href: news/index.html
   right:
     - icon: fa-github fa-lg
       href: https://github.com/JohnCoene/echarts4r

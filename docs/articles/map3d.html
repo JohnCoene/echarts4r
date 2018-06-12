@@ -28,7 +28,7 @@
 </head>
 <body>
     <div class="container template-article">
-      <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -50,9 +50,21 @@
      
   </a>
 </li>
+<li>
+  <a href="../news/index.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="../articles/gallery.html">
+    <span class="fa fa-paint-brush"></span>
+     
+  </a>
+</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Usage
+    Guide
      
     <span class="caret"></span>
   </a>
@@ -124,12 +136,6 @@
 <li>
   <a href="../reference/">Reference</a>
 </li>
-<li>
-  <a href="../articles/gallery.html">Gallery</a>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -186,18 +192,18 @@
 <div id="choropleth" class="section level3">
 <h3 class="hasAnchor">
 <a href="#choropleth" class="anchor"></a>Choropleth</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">choropleth &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">countries =</span> <span class="kw">c</span>(<span class="st">"France"</span>, <span class="st">"Brazil"</span>, <span class="st">"China"</span>, <span class="st">"Russia"</span>, <span class="st">"Canada"</span>, <span class="st">"India"</span>, <span class="st">"United States"</span>,
-                <span class="st">"Argentina"</span>, <span class="st">"Australia"</span>),
-  <span class="dt">values =</span> <span class="kw">round</span>(<span class="kw">runif</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">25</span>))
-)
-
-choropleth <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(countries) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/map.html">e_map_3d</a></span>(values, <span class="dt">shading =</span> <span class="st">"lambert"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_visual_map.html">e_visual_map</a></span>(values) <span class="co"># scale to values</span></code></pre></div>
-<div id="htmlwidget-9d81552e0e14ae4571d6" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9d81552e0e14ae4571d6">{"x":{"theme":"","mapping":{"x":"countries","x_class":"factor","include_x":false},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"series":[{"name":"values","type":"map3D","map":"world","shading":"lambert","data":[{"value":16,"name":"France"},{"value":21,"name":"Brazil"},{"value":22,"name":"China"},{"value":10,"name":"Russia"},{"value":11,"name":"Canada"},{"value":12,"name":"India"},{"value":22,"name":"United States"},{"value":24,"name":"Argentina"},{"value":10,"name":"Australia"}]}],"visualMap":[{"calculable":true,"type":"continuous","min":10,"max":24}]},"data":{"countries":["France","Brazil","China","Russia","Canada","India","United States","Argentina","Australia"],"values":[16,21,22,10,11,12,22,24,10]},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">choropleth &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="dt">countries =</span> <span class="kw">c</span>(<span class="st">"France"</span>, <span class="st">"Brazil"</span>, <span class="st">"China"</span>, <span class="st">"Russia"</span>, <span class="st">"Canada"</span>, <span class="st">"India"</span>, <span class="st">"United States"</span>,</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">                <span class="st">"Argentina"</span>, <span class="st">"Australia"</span>),</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">values =</span> <span class="kw">round</span>(<span class="kw">runif</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">25</span>))</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">choropleth <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(countries) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="../reference/map.html">e_map_3d</a></span>(values, <span class="dt">shading =</span> <span class="st">"lambert"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="../reference/e_visual_map.html">e_visual_map</a></span>(values) <span class="co"># scale to values</span></a></code></pre></div>
+<div id="htmlwidget-098a5464a6b0b0e10c10" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-098a5464a6b0b0e10c10">{"x":{"theme":"","mapping":{"x":"countries","x_class":"factor","include_x":false},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"series":[{"name":"values","type":"map3D","map":"world","shading":"lambert","data":[{"value":17,"name":"France"},{"value":17,"name":"Brazil"},{"value":20,"name":"China"},{"value":13,"name":"Russia"},{"value":23,"name":"Canada"},{"value":11,"name":"India"},{"value":12,"name":"United States"},{"value":20,"name":"Argentina"},{"value":17,"name":"Australia"}]}],"visualMap":[{"calculable":true,"type":"continuous","min":11,"max":23}]},"data":{"countries":["France","Brazil","China","Russia","Canada","India","United States","Argentina","Australia"],"values":[17,17,20,13,23,11,12,20,17]},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
   </div>
 

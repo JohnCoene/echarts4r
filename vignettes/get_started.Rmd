@@ -33,19 +33,83 @@ Use the `%>%` operator to add plots and options.
 ```{r}
 mtcars %>% 
   e_charts(wt) %>% # initialise
-  e_line(mpg) %>% # add line
-  e_area(qsec) %>% # add area
+  e_line(qsec) %>% # add line
+  e_area(mpg) %>% # add area
   e_x_axis(min = 1) # change x axis minimum
 ```
 
-Use one of the 13 built-in themes.
+Customise the lines to make them `smooth`.
 
 ```{r}
 mtcars %>% 
   e_charts(wt) %>% # initialise
-  e_line(mpg, smooth = TRUE) %>% # add smooth line
-  e_area(qsec, smooth = TRUE) %>% # add area
-  e_x_axis(min = 1) %>%  # change x axis minimum
-  e_title("Ol' mtcars example") %>%  # Add title
-  e_theme("westeros")
+  e_line(qsec, smooth = TRUE) %>% # add smooth line
+  e_area(mpg, smooth = TRUE) %>% # add area
+  e_x_axis(min = 1) # change x axis minimum
 ```
+
+`qsec` and `mpg` isn't clear to reader, rename them, also rename the x axis while you're at it.
+
+```{r}
+mtcars %>% 
+  e_charts(wt) %>% # initialise
+  e_line(qsec, smooth = TRUE, name = "1/4 mile time") %>% # add smooth line
+  e_area(mpg, smooth = TRUE, name = "Miles/gallon") %>% # add area
+  e_x_axis(min = 1, name = "weight") # change x axis minimum
+```
+
+Use one of the 13 built-in themes, see `?e_theme` for a complete list, also add a title with `e_title`.
+
+```{r}
+mtcars %>% 
+  e_charts(wt) %>% # initialise
+  e_line(qsec, smooth = TRUE, name = "1/4 mile time") %>% # add smooth line
+  e_area(mpg, smooth = TRUE, name = "Miles/gallon") %>% # add area
+  e_x_axis(min = 1, name = "weight") %>%  # change x axis minimum
+  e_title("Ol' mtcars example") %>%  # Add title
+  e_theme("infographic") # theme
+```
+
+The legend and title are a bit close, let's move one of the legend to another part the canvas.
+
+```{r}
+mtcars %>% 
+  e_charts(wt) %>% # initialise
+  e_line(qsec, smooth = TRUE, name = "1/4 mile time") %>% # add smooth line
+  e_area(mpg, smooth = TRUE, name = "Miles/gallon") %>% # add area
+  e_x_axis(min = 1, name = "weight") %>%  # change x axis minimum
+  e_title("Ol' mtcars example") %>%  # Add title
+  e_theme("infographic") %>%  # theme
+  e_legend(bottom = 0) # move legend to the bottom
+```
+
+Add a tooltip, for which there are numerous [options](https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip), here we use `trigger = "axis"` triggered by the axis rather than a single data point.
+
+```{r}
+mtcars %>% 
+  e_charts(wt) %>% # initialise
+  e_line(qsec, smooth = TRUE, name = "1/4 mile time") %>% # add smooth line
+  e_area(mpg, smooth = TRUE, name = "Miles/gallon") %>% # add area
+  e_x_axis(min = 1, name = "weight") %>%  # change x axis minimum
+  e_title("Ol' mtcars example") %>%  # Add title
+  e_theme("infographic") %>% # theme
+  e_legend(bottom = 0) %>% # move legend to the bottom
+  e_tooltip(trigger = "axis") # tooltip
+```
+
+You can also customise the axis with `e_axis` or its sister functions, `e_x_axis` and `e_y_axis`. There are also helper functions like `e_format_axis` to easily add suffixes or prefixes to your axis labels.
+
+```{r}
+mtcars %>% 
+  e_charts(wt) %>% # initialise
+  e_line(qsec, smooth = TRUE, name = "1/4 mile time") %>% # add smooth line
+  e_area(mpg, smooth = TRUE, name = "Miles/gallon") %>% # add area
+  e_x_axis(min = 1, name = "weight") %>%  # change x axis minimum
+  e_title("Ol' mtcars example") %>%  # Add title
+  e_theme("infographic") %>% # theme
+  e_legend(bottom = 0) %>%  # move legend to the bottom
+  e_tooltip(trigger = "axis") %>%  # tooltip
+  e_format_y_axis(suffix = "mpg")
+```
+
+You're in on the basics, go to the [advanced](docs/articles/advanced.html) section or navigate the site to discover how add multiple linked graphs, draw on globes, use the package in shiny, and more.
