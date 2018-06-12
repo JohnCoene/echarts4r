@@ -2,9 +2,15 @@
 % Please edit documentation in R/helpers.R
 \name{e_format_axis}
 \alias{e_format_axis}
+\alias{e_format_x_axis}
+\alias{e_format_y_axis}
 \title{Formatters}
 \usage{
 e_format_axis(e, axis = "y", suffix = NULL, prefix = NULL, ...)
+
+e_format_x_axis(e, suffix = NULL, prefix = NULL, ...)
+
+e_format_y_axis(e, suffix = NULL, prefix = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -14,8 +20,6 @@ e_format_axis(e, axis = "y", suffix = NULL, prefix = NULL, ...)
 \item{suffix, prefix}{Suffix and prefix of label.}
 
 \item{...}{Any other arguments to pass to \code{\link{e_axis}}.}
-
-\item{pointer}{Whether to apply formatting to \code{axisPointer}.}
 }
 \description{
 Simple formatters as helpers.
@@ -32,7 +36,7 @@ df <- data.frame(
 df \%>\% 
   e_charts(x) \%>\% 
   e_line(y) \%>\% 
-  e_format_axis(suffix = "\%", axis = "y") \%>\%
-  e_format_axis(prefix = "A", axis = "x") 
+  e_format_y_axis(suffix = "\%") \%>\%
+  e_format_x_axis(prefix = "A") 
 
 }
