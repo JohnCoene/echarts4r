@@ -2,7 +2,7 @@ url: http://echarts4r.john-coene.com
 
 template:
   params:
-    bootswatch: journal
+    bootswatch: lumen
     ganalytics: UA-74544116-1
     docsearch:
       api_key: f67fcda57c44388a248e49a457aa4fe7
@@ -38,6 +38,7 @@ development:
 
 navbar:
   title: "echarts"
+  type: inverse
   left:
     - icon: fa-home
       href: index.html
@@ -47,6 +48,7 @@ navbar:
           href: articles/get_started.html
         - text: "Advanced"
           href: articles/advanced.html
+        - text: "------------------"
         - text: "Chart types"
           href: articles/chart_types.html
         - text: "Map"
@@ -71,6 +73,7 @@ navbar:
           href: articles/stats.html
         - text: "Pictorial"
           href: articles/pictorial.html
+        - text: "------------------"
         - text: "Grid & Axis"
           href: articles/grid.html
         - text: "Shiny"
@@ -87,9 +90,15 @@ navbar:
       href: "reference/"
     - text: "Gallery"
       href: articles/gallery.html
+    - text: "Changelog"
+      href: news/index.html
   right:
     - icon: fa-github fa-lg
       href: https://github.com/JohnCoene/echarts4r
+    - icon: fa-bitbucket fa-lg
+      href: https://bitbucket.org/JohnCoene/echarts4r
+    - icon: fa-qq fa-lg
+      href: https://coding.net/u/JohnCoene/p/echarts4r
 
 authors:
   John Coene:

@@ -6,7 +6,7 @@ Authors@R: person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", 
 Description: Easily create interactive charts by leveraging the 'Echarts Javascript' library which includes
     33 chart types, themes, 'Shiny' proxies and animations.
 Depends: R (>= 3.4.2)
-License: Apache-2.0 | file LICENSE
+License: Apache License (>= 2.0)
 Encoding: UTF-8
 LazyData: true
 Imports:

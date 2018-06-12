@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pictorial • echarts4r</title>
-<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
@@ -28,7 +28,7 @@
 </head>
 <body>
     <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -63,6 +63,7 @@
     <li>
       <a href="../articles/advanced.html">Advanced</a>
     </li>
+    <li class="divider">
     <li>
       <a href="../articles/chart_types.html">Chart types</a>
     </li>
@@ -99,6 +100,7 @@
     <li>
       <a href="../articles/pictorial.html">Pictorial</a>
     </li>
+    <li class="divider">
     <li>
       <a href="../articles/grid.html">Grid &amp; Axis</a>
     </li>
@@ -125,11 +127,26 @@
 <li>
   <a href="../articles/gallery.html">Gallery</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/JohnCoene/echarts4r">
     <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://bitbucket.org/JohnCoene/echarts4r">
+    <span class="fa fa-bitbucket fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://coding.net/u/JohnCoene/p/echarts4r">
+    <span class="fa fa-qq fa-lg"></span>
      
   </a>
 </li>
@@ -184,8 +201,8 @@ df <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/theme.html">e_theme</a></span>(<span class="st">"westeros"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"Built-in symbols"</span>)
 <span class="co">#&gt; Warning: package 'bindrcpp' was built under R version 3.4.4</span></code></pre></div>
-<div id="htmlwidget-3a8b005d238d858df32f" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3a8b005d238d858df32f">{"x":{"theme":"westeros","mapping":{"x":"x","x_class":"integer","include_x":true},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["z","y"]},"series":[{"name":"z","type":"bar","data":[{"value":[1,4.4871813933248]},{"value":[2,3.03718264898385]},{"value":[3,7.97045146757371]},{"value":[4,3.83671070556438]},{"value":[5,8.64287149536455]},{"value":[6,4.04481749189377]},{"value":[7,6.51291613763885]},{"value":[8,2.53765292956396]},{"value":[9,7.41702485175533]},{"value":[10,6.53967871085508]}],"yAxisIndex":0,"xAxisIndex":0,"barWidth":10},{"name":"y","type":"pictorialBar","data":[{"value":[1,9.24115131134398]},{"value":[2,8.56615014545431]},{"value":[3,14.7380509642724]},{"value":[4,8.2274616808882]},{"value":[5,12.1545559663217]},{"value":[6,8.17031303124462]},{"value":[7,10.7699496532237]},{"value":[8,7.87844325999865]},{"value":[9,11.9957660192991]},{"value":[10,11.9307581798097]}],"yAxisIndex":0,"xAxisIndex":0,"symbolRepeat":true,"z":-1,"symbolSize":[10,4],"symbol":"rect"}],"title":{"text":"Built-in symbols"}},"data":{"x":[1,2,3,4,5,6,7,8,9,10],"y":[9.24115131134398,8.56615014545431,14.7380509642724,8.2274616808882,12.1545559663217,8.17031303124462,10.7699496532237,7.87844325999865,11.9957660192991,11.9307581798097],"z":[4.4871813933248,3.03718264898385,7.97045146757371,3.83671070556438,8.64287149536455,4.04481749189377,6.51291613763885,2.53765292956396,7.41702485175533,6.53967871085508]},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-93155106e10d9c5e81a1" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-93155106e10d9c5e81a1">{"x":{"theme":"westeros","mapping":{"x":"x","x_class":"integer","include_x":true},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["z","y"]},"series":[{"name":"z","type":"bar","data":[{"value":[1,1.22643249118987]},{"value":[2,6.07008499894576]},{"value":[3,5.14585738434341]},{"value":[4,2.72228813559621]},{"value":[5,4.24788511430747]},{"value":[6,9.43446545288421]},{"value":[7,3.17001318465288]},{"value":[8,5.47240130553755]},{"value":[9,5.74469415867591]},{"value":[10,1.1315333451596]}],"yAxisIndex":0,"xAxisIndex":0,"barWidth":10},{"name":"y","type":"pictorialBar","data":[{"value":[1,7.58683309644408]},{"value":[2,12.8582855521272]},{"value":[3,10.2034867837816]},{"value":[4,8.72675325959834]},{"value":[5,7.87739237657904]},{"value":[6,14.0124108554364]},{"value":[7,8.82588276058843]},{"value":[8,10.2123499389442]},{"value":[9,9.54744016647504]},{"value":[10,6.86439168863736]}],"yAxisIndex":0,"xAxisIndex":0,"symbolRepeat":true,"z":-1,"symbolSize":[10,4],"symbol":"rect"}],"title":{"text":"Built-in symbols"}},"data":{"x":[1,2,3,4,5,6,7,8,9,10],"y":[7.58683309644408,12.8582855521272,10.2034867837816,8.72675325959834,7.87739237657904,14.0124108554364,8.82588276058843,10.2123499389442,9.54744016647504,6.86439168863736],"z":[1.22643249118987,6.07008499894576,5.14585738434341,2.72228813559621,4.24788511430747,9.43446545288421,3.17001318465288,5.47240130553755,5.74469415867591,1.1315333451596]},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="svg-path" class="section level3">
 <h3 class="hasAnchor">
@@ -203,8 +220,8 @@ df <span class="op">%&gt;%</span><span class="st"> </span>
               <span class="dt">barCategoryGap =</span> <span class="st">"-130%"</span>, 
               <span class="dt">itemStyle =</span> style) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"SVG path"</span>)</code></pre></div>
-<div id="htmlwidget-d9a0f3b4a6659638368d" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d9a0f3b4a6659638368d">{"x":{"theme":"","mapping":{"x":"x","x_class":"integer","include_x":true},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["y"]},"series":[{"name":"y","type":"pictorialBar","data":[{"value":[1,9.24115131134398]},{"value":[2,8.56615014545431]},{"value":[3,14.7380509642724]},{"value":[4,8.2274616808882]},{"value":[5,12.1545559663217]},{"value":[6,8.17031303124462]},{"value":[7,10.7699496532237]},{"value":[8,7.87844325999865]},{"value":[9,11.9957660192991]},{"value":[10,11.9307581798097]}],"yAxisIndex":0,"xAxisIndex":0,"barCategoryGap":"-130%","itemStyle":{"normal":{"opacity":0.5},"emphasis":{"opacity":1}},"symbol":"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"}],"title":{"text":"SVG path"}},"data":{"x":[1,2,3,4,5,6,7,8,9,10],"y":[9.24115131134398,8.56615014545431,14.7380509642724,8.2274616808882,12.1545559663217,8.17031303124462,10.7699496532237,7.87844325999865,11.9957660192991,11.9307581798097],"z":[4.4871813933248,3.03718264898385,7.97045146757371,3.83671070556438,8.64287149536455,4.04481749189377,6.51291613763885,2.53765292956396,7.41702485175533,6.53967871085508]},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5a323c1900b67b734c6f" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5a323c1900b67b734c6f">{"x":{"theme":"","mapping":{"x":"x","x_class":"integer","include_x":true},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["y"]},"series":[{"name":"y","type":"pictorialBar","data":[{"value":[1,7.58683309644408]},{"value":[2,12.8582855521272]},{"value":[3,10.2034867837816]},{"value":[4,8.72675325959834]},{"value":[5,7.87739237657904]},{"value":[6,14.0124108554364]},{"value":[7,8.82588276058843]},{"value":[8,10.2123499389442]},{"value":[9,9.54744016647504]},{"value":[10,6.86439168863736]}],"yAxisIndex":0,"xAxisIndex":0,"barCategoryGap":"-130%","itemStyle":{"normal":{"opacity":0.5},"emphasis":{"opacity":1}},"symbol":"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"}],"title":{"text":"SVG path"}},"data":{"x":[1,2,3,4,5,6,7,8,9,10],"y":[7.58683309644408,12.8582855521272,10.2034867837816,8.72675325959834,7.87739237657904,14.0124108554364,8.82588276058843,10.2123499389442,9.54744016647504,6.86439168863736],"z":[1.22643249118987,6.07008499894576,5.14585738434341,2.72228813559621,4.24788511430747,9.43446545288421,3.17001318465288,5.47240130553755,5.74469415867591,1.1315333451596]},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="images" class="section level3">
 <h3 class="hasAnchor">
@@ -231,8 +248,8 @@ data <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/e_pictorial.html">e_pictorial</a></span>(value, symbol) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/e_legend.html">e_legend</a></span>(<span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"Images"</span>, <span class="st">"Mountains height"</span>)</code></pre></div>
-<div id="htmlwidget-cfd978dffd1e02e2526a" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cfd978dffd1e02e2526a">{"x":{"theme":"","mapping":{"x":"x","x_class":"factor","include_x":false},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["Qomolangma","Kilimanjaro"],"type":"category","boundaryGap":true}],"legend":{"data":["value"],"show":false,"type":"plain"},"series":[{"name":"value","type":"pictorialBar","data":[{"value":["Qomolangma","8844"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Qomolangma.png"},{"value":["Kilimanjaro","5895"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Kilimanjaro.png"}],"yAxisIndex":0,"xAxisIndex":0}],"title":{"text":"Images","subtext":"Mountains height"}},"data":{"x":["Qomolangma","Kilimanjaro"],"value":[8844,5895],"symbol":["image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Qomolangma.png","image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Kilimanjaro.png"]},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-0b499c7428265db54c3f" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0b499c7428265db54c3f">{"x":{"theme":"","mapping":{"x":"x","x_class":"factor","include_x":false},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["Qomolangma","Kilimanjaro"],"type":"category","boundaryGap":true}],"legend":{"data":["value"],"show":false,"type":"plain"},"series":[{"name":"value","type":"pictorialBar","data":[{"value":["Qomolangma","8844"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Qomolangma.png"},{"value":["Kilimanjaro","5895"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Kilimanjaro.png"}],"yAxisIndex":0,"xAxisIndex":0}],"title":{"text":"Images","subtext":"Mountains height"}},"data":{"x":["Qomolangma","Kilimanjaro"],"value":[8844,5895],"symbol":["image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Qomolangma.png","image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Kilimanjaro.png"]},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
   </div>
 

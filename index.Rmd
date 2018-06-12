@@ -1,66 +1,31 @@
 # echarts4r
 
-[![Travis-CI Build Status](https://travis-ci.org/JohnCoene/echarts4r.svg?branch=master)](https://travis-ci.org/JohnCoene/echarts4r) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/JohnCoene/echarts4r?branch=master&svg=true)](https://ci.appveyor.com/project/JohnCoene/echarts4r)
+[![Travis-CI Build Status](https://travis-ci.org/JohnCoene/echarts4r.svg?branch=master)](https://travis-ci.org/JohnCoene/echarts4r) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/JohnCoene/echarts4r?branch=master&svg=true)](https://ci.appveyor.com/project/JohnCoene/echarts4r) [![Bitbucket Build Status](https://img.shields.io/bitbucket/pipelines/JohnCoene/echarts4r.svg)](https://bitbucket.org/JohnCoene/echarts4r) [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing) [![Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/JohnCoene/echarts4r/master)
 
 <img src="man/figures/logo.png" align="left" style="max-height:220px;margin-right:5%;"/>
 
-ECharts 4 for R. 
+[ECharts](http://echarts.baidu.com/) 4 for R. 
 
 ## Installation
 
-You can install echarts4r from github with:
+You can install echarts4r from any of the repositories below.
 
 ```{r, eval=FALSE}
 # install.packages("devtools")
-devtools::install_github("JohnCoene/echarts4r")
+devtools::install_github("JohnCoene/echarts4r") # github
+devtools::install_bitbucket("echarts4r", "JohnCoene") # bitbucket
+devtools::install_git("https://git.coding.net/JohnCoene/echarts4r.git") # coding.net
 ```
 
 ## Features
 
-#### Chart types
-
-* Bar
-* Line
-* Area
-* Step
-* Scatter
-* Effect Scatter
-* Candlestick
-* Funnel
-* Sankey
-* Graph
-* Heatmap
-* Parallel
-* Pie
-* Tree
-* Treemap
-* River
-* Sunburst
-* Boxplot
-* Calendar
-* Gauge
-* Radar
-* Polar 
-* wordcloud 
-* liquidFill 
-* Map
-* Statistical
-* Pictoral
-* Line 3D
-* Bar 3D
-* Scatter 3D
-* Flow GL
-* Graph GL
-* Map 3D
-* Geo 3D
-* Globe 3D
-
-#### Other
-
-* Proxies (`*_p`)
-* Themes
-* Built-in brush
+* 33 chart types
 * Animations
+* Brush & sliders
+* WebGL support
+* Shiny proxies
+* themes
+* and more...
 
 #### Options
 
