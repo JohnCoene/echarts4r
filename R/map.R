@@ -40,7 +40,7 @@ e_map <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  e_map_(e, deparse(substitute(serie)), map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
+  e_map_(e, deparse(substitute(serie)), map, name, rm.x, rm.y, ...)
 }
 
 #' @rdname map
