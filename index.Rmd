@@ -2,12 +2,9 @@
 
 [![Travis-CI Build Status](https://travis-ci.org/JohnCoene/echarts4r.svg?branch=master)](https://travis-ci.org/JohnCoene/echarts4r) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/JohnCoene/echarts4r?branch=master&svg=true)](https://ci.appveyor.com/project/JohnCoene/echarts4r)
 
-![sticker](https://raw.githubusercontent.com/JohnCoene/echarts4r/master/man/figures/logo.png)
+<img src="man/figures/logo.png" align="left" style="max-height:220px;margin-right:5%;"/>
 
-ECharts 4 for R. Official documentation:
-
-* [EN](https://ecomfe.github.io/echarts-doc/public/en/index.html)
-* [ZH](http://echarts.baidu.com/index.html)
+ECharts 4 for R. 
 
 ## Installation
 

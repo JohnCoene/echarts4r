@@ -25,6 +25,7 @@ articles:
     - gl
     - graph
     - pictorial
+    - grid
     - brush
     - stats
     - toolbox
@@ -70,6 +71,8 @@ navbar:
           href: articles/stats.html
         - text: "Pictorial"
           href: articles/pictorial.html
+        - text: "Grid & Axis"
+          href: articles/grid.html
         - text: "Shiny"
           href: articles/shiny.html
         - text: "Brush"

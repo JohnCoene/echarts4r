@@ -1,13 +1,13 @@
 # 0.0.2.9000
 
 * `e_keras_history` added - plot `keras` history (loss & acc).
-* `e_format_axis` added - format axis labels & pointers.
+* `e_format_axis`, `e_format_x_axis`, `e_format_y_axis` added - format axis labels & pointers.
 * `e_tooltip` now takes a default `trigger = "item"`.
 * `e_flip_coords` added - to flip x/y corrdinates.
+* Grid & Axis vignettes.
+* `e_register_map` fixed.
 
 # 0.0.1
-
-Initial CRAN release
 
 Added:
 
