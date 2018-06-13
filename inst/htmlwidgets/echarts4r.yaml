@@ -26,5 +26,7 @@ dependencies:
       - /themes/shine.js
       - /themes/purple-passion.js
       - /themes/halloween.js
+      - /themes/wef.js
+      - /themes/weforum.js
    stylesheet: 
       - /plugins/leaflet/leaflet.css

@@ -1,6 +1,6 @@
 #' Themes
 #' 
-#' Add theme.
+#' Add a theme.
 #' 
 #' @inheritParams e_bar
 #' @param theme Theme, see below.
@@ -32,6 +32,8 @@
 #' p %>% e_theme("chalk")
 #' p %>% e_theme_custom('{"color":["#ff715e","#ffaf51"]}')
 #' 
+#' @seealso \href{http://echarts.baidu.com/theme-builder/}{create your own theme}.
+#' 
 #' @rdname theme
 #' @export
 e_theme <- function(e, theme){
@@ -41,7 +43,7 @@ e_theme <- function(e, theme){
   
   themes <- c("dark", "vintage", "westeros", "essos", "wonderland", 
               "walden", "chalk", "infographic", "macarons", "roma",
-              "shine", "purple-passion", "halloween")
+              "shine", "purple-passion", "halloween", "wef", "weforum")
   
   if(!tolower(theme) %in% themes)
     stop("Incorrect theme", call. = FALSE)

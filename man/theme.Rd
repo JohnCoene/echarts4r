@@ -15,7 +15,7 @@ e_theme_custom(e, theme)
 \item{theme}{Theme, see below.}
 }
 \description{
-Add theme.
+Add a theme.
 }
 \section{Themes}{
  
@@ -46,4 +46,7 @@ mtcars \%>\%
 p \%>\% e_theme("chalk")
 p \%>\% e_theme_custom('{"color":["#ff715e","#ffaf51"]}')
 
+}
+\seealso{
+\href{http://echarts.baidu.com/theme-builder/}{create your own theme}.
 }
