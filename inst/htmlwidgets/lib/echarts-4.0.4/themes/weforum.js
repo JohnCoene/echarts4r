@@ -32,10 +32,10 @@
     "textStyle": {},
     "title": {
       "textStyle": {
-        "color": "#1c62b7"
+        "color": "#4e4c4d"
       },
       "subtextStyle": {
-        "color": "#9c9a9b"
+        "color": "#7b797a"
       }
     },
     "line": {
