@@ -8,13 +8,13 @@
 \title{Initialise}
 \usage{
 e_charts(data, x, width = NULL, height = NULL, elementId = NULL,
-  dispose = TRUE, ...)
+  dispose = TRUE, renderer = "canvas", ...)
 
 e_charts_(data, x = NULL, width = NULL, height = NULL, elementId = NULL,
-  dispose = TRUE, ...)
+  dispose = TRUE, renderer = "canvas", ...)
 
 e_chart(data, x, width = NULL, height = NULL, elementId = NULL,
-  dispose = TRUE, ...)
+  dispose = TRUE, renderer = "canvas", ...)
 
 e_data(e, data, x)
 }
@@ -31,6 +31,8 @@ string and have \code{'px'} appended.}
 
 \item{dispose}{Set to \code{TRUE} to force redraw of chart, set to \code{FALSE} to update.}
 
+\item{renderer}{Renderer, takes \code{canvas} (default) or \code{svg}.}
+
 \item{...}{Any other argument.}
 
 \item{e}{An object of class \code{echarts4r} as returned by \code{e_charts}.}
@@ -39,11 +41,8 @@ string and have \code{'px'} appended.}
 Initialise a chart.
 }
 \examples{
-USArrests \%>\% 
-  dplyr::mutate(
-    state = row.names(.)
-  ) \%>\% 
-  e_charts_("state") \%>\%
-  e_line(Rape)
+mtcars \%>\% 
+  e_charts_("qsec") \%>\%
+  e_line(mpg)
 
 }

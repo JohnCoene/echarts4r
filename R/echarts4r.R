@@ -10,15 +10,13 @@
 #'   string and have \code{'px'} appended.
 #' @param elementId Id of element.
 #' @param dispose Set to \code{TRUE} to force redraw of chart, set to \code{FALSE} to update.
+#' @param renderer Renderer, takes \code{canvas} (default) or \code{svg}.
 #' @param ... Any other argument.
 #' 
 #' @examples 
-#' USArrests %>% 
-#'   dplyr::mutate(
-#'     state = row.names(.)
-#'   ) %>% 
-#'   e_charts_("state") %>%
-#'   e_line(Rape)
+#' mtcars %>% 
+#'   e_charts_("qsec") %>%
+#'   e_line(mpg)
 #'
 #' @import htmlwidgets
 #' @importFrom grDevices boxplot.stats
@@ -28,7 +26,7 @@
 #' 
 #' @rdname init
 #' @export
-e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dispose = TRUE, ...) {
+e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dispose = TRUE, renderer = "canvas", ...) {
 
   key <- NULL
   group <- NULL
@@ -47,6 +45,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
   # forward options using x
   x = list(
     theme = "",
+    renderer = tolower(renderer),
     mapping = list(),
     settings = list(
       crosstalk_key = key,
@@ -97,13 +96,14 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
 
 #' @rdname init
 #' @export
-e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = NULL, dispose = TRUE, ...) {
+e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = NULL, dispose = TRUE, renderer = "canvas", ...) {
   
   xmap <- x
   
   # forward options using x
   x = list(
     theme = "",
+    renderer = tolower(renderer),
     mapping = list(),
     opts = list(
       ...,

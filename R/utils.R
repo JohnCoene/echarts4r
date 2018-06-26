@@ -1,4 +1,4 @@
-globalVariables(c("e", "."))
+globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss"))
 
 `%||%` <- function(x, y) {
   if (!is.null(x)) x else y

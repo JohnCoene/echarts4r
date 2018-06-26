@@ -6,6 +6,7 @@
 * `e_flip_coords` added - to flip x/y corrdinates.
 * Grid & Axis vignettes.
 * `e_register_map` fixed.
+* `renderer` argument added to `e_charts` to enable SVG renderer.
 
 # echarts4r 0.0.1
 
