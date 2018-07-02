@@ -9,3 +9,6 @@ bitbucket-pipelines.yml
 ^LICENSE\.md$
 ^data-raw$
 logo\.png
+.travis.yml
+.vs/echarts4r/v15/.suo
+.vs
