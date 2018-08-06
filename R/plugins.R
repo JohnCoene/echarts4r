@@ -118,9 +118,7 @@ e_liquid_ <- function(e, serie, color = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
   
-  data <- .get_data(e, serie) %>% 
-    unlist() %>% 
-    unname()
+  data <- .get_data(e, serie) %>% unlist() %>% unname()
   
   serie <- list(
     type = "liquidFill",
@@ -129,7 +127,9 @@ e_liquid_ <- function(e, serie, color = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   )
   
   if(!is.null(color))
-    serie$color <- .build_data(e, color)
+    serie$color <- .get_data(e, color) %>% 
+    unlist() %>% 
+    unname()
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   
