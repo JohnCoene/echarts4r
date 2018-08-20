@@ -4,8 +4,8 @@
 \alias{e_globe}
 \title{Globe}
 \usage{
-e_globe(e, environment = NULL, base.texture = NULL, height.texture = NULL,
-  ...)
+e_globe(e, environment = NULL, base.texture = NULL,
+  height.texture = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

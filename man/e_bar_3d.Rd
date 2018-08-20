@@ -8,8 +8,8 @@
 e_bar_3d(e, y, z, bind, coord.system = "cartesian3D", name = NULL,
   rm.x = TRUE, rm.y = TRUE, ...)
 
-e_bar_3d_(e, y, z, bind = NULL, coord.system = "cartesian3D", name = NULL,
-  rm.x = TRUE, rm.y = TRUE, ...)
+e_bar_3d_(e, y, z, bind = NULL, coord.system = "cartesian3D",
+  name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

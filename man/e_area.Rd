@@ -8,8 +8,8 @@
 e_area(e, serie, bind, name = NULL, legend = TRUE, y.index = 0,
   x.index = 0, ...)
 
-e_area_(e, serie, bind = NULL, name = NULL, legend = TRUE, y.index = 0,
-  x.index = 0, ...)
+e_area_(e, serie, bind = NULL, name = NULL, legend = TRUE,
+  y.index = 0, x.index = 0, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

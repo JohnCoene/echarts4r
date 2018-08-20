@@ -5,8 +5,8 @@
 \alias{e_candle_}
 \title{Candlestick}
 \usage{
-e_candle(e, opening, closing, low, high, bind, name = NULL, legend = TRUE,
-  ...)
+e_candle(e, opening, closing, low, high, bind, name = NULL,
+  legend = TRUE, ...)
 
 e_candle_(e, opening, closing, low, high, bind = NULL, name = NULL,
   legend = TRUE, ...)

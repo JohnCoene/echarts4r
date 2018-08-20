@@ -7,14 +7,14 @@
 \alias{e_map_3d_}
 \title{Choropleth}
 \usage{
-e_map(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE,
-  ...)
+e_map(e, serie, map = "world", name = NULL, rm.x = TRUE,
+  rm.y = TRUE, ...)
 
-e_map_(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE,
-  ...)
+e_map_(e, serie, map = "world", name = NULL, rm.x = TRUE,
+  rm.y = TRUE, ...)
 
-e_map_3d(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE,
-  ...)
+e_map_3d(e, serie, map = "world", name = NULL, rm.x = TRUE,
+  rm.y = TRUE, ...)
 
 e_map_3d_(e, serie, map = "world", name = NULL, rm.x = TRUE,
   rm.y = TRUE, ...)

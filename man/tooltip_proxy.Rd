@@ -5,7 +5,8 @@
 \alias{e_hidetip_p}
 \title{Tooltip Proxy}
 \usage{
-e_showtip_p(proxy, position = c(10, 10), series.index = NULL, name = NULL)
+e_showtip_p(proxy, position = c(10, 10), series.index = NULL,
+  name = NULL)
 
 e_hidetip_p(proxy)
 }

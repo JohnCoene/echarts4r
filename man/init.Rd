@@ -10,8 +10,8 @@
 e_charts(data, x, width = NULL, height = NULL, elementId = NULL,
   dispose = TRUE, renderer = "canvas", ...)
 
-e_charts_(data, x = NULL, width = NULL, height = NULL, elementId = NULL,
-  dispose = TRUE, renderer = "canvas", ...)
+e_charts_(data, x = NULL, width = NULL, height = NULL,
+  elementId = NULL, dispose = TRUE, renderer = "canvas", ...)
 
 e_chart(data, x, width = NULL, height = NULL, elementId = NULL,
   dispose = TRUE, renderer = "canvas", ...)

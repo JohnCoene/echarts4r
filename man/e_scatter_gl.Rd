@@ -8,8 +8,8 @@
 e_scatter_gl(e, y, z, name = NULL, coord.system = "geo", rm.x = TRUE,
   rm.y = TRUE, ...)
 
-e_scatter_gl_(e, y, z, name = NULL, coord.system = "geo", rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_scatter_gl_(e, y, z, name = NULL, coord.system = "geo",
+  rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

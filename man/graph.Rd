@@ -7,10 +7,11 @@
 \alias{e_graph_edges}
 \title{Graph}
 \usage{
-e_graph(e, layout = "force", name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
-
-e_graph_gl(e, layout = "force", name = NULL, rm.x = TRUE, rm.y = TRUE,
+e_graph(e, layout = "force", name = NULL, rm.x = TRUE, rm.y = TRUE,
   ...)
+
+e_graph_gl(e, layout = "force", name = NULL, rm.x = TRUE,
+  rm.y = TRUE, ...)
 
 e_graph_nodes(e, nodes, names, value, size, category, legend = TRUE)
 

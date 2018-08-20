@@ -9,8 +9,8 @@ e_scatter_3d(e, y, z, color, size, bind, coord.system = "cartesian3D",
   name = NULL, rm.x = TRUE, rm.y = TRUE, legend = FALSE, ...)
 
 e_scatter_3d_(e, y, z, color = NULL, size = NULL, bind = NULL,
-  coord.system = "cartesian3D", name = NULL, rm.x = TRUE, rm.y = TRUE,
-  legend = FALSE, ...)
+  coord.system = "cartesian3D", name = NULL, rm.x = TRUE,
+  rm.y = TRUE, legend = FALSE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

@@ -8,8 +8,8 @@
 e_flow_gl(e, y, sx, sy, color, name = NULL, coord.system = NULL,
   rm.x = TRUE, rm.y = TRUE, ...)
 
-e_flow_gl_(e, y, sx, sy, color = NULL, name = NULL, coord.system = NULL,
-  rm.x = TRUE, rm.y = TRUE, ...)
+e_flow_gl_(e, y, sx, sy, color = NULL, name = NULL,
+  coord.system = NULL, rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

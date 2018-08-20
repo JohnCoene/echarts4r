@@ -5,12 +5,13 @@
 \alias{e_step_}
 \title{Step}
 \usage{
-e_step(e, serie, bind, step = c("start", "middle", "end"), fill = FALSE,
-  name = NULL, legend = TRUE, y.index = 0, x.index = 0, ...)
+e_step(e, serie, bind, step = c("start", "middle", "end"),
+  fill = FALSE, name = NULL, legend = TRUE, y.index = 0,
+  x.index = 0, ...)
 
 e_step_(e, serie, bind = NULL, step = c("start", "middle", "end"),
-  fill = FALSE, name = NULL, legend = TRUE, y.index = 0, x.index = 0,
-  ...)
+  fill = FALSE, name = NULL, legend = TRUE, y.index = 0,
+  x.index = 0, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

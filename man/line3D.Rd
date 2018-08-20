@@ -7,14 +7,16 @@
 \alias{e_line_3d_}
 \title{Lines 3D}
 \usage{
-e_lines_3d(e, source.lon, source.lat, target.lon, target.lat, name = NULL,
-  coord.system = "globe", rm.x = TRUE, rm.y = TRUE, ...)
+e_lines_3d(e, source.lon, source.lat, target.lon, target.lat,
+  name = NULL, coord.system = "globe", rm.x = TRUE, rm.y = TRUE,
+  ...)
 
 e_line_3d(e, y, z, name = NULL, coord.system = NULL, rm.x = TRUE,
   rm.y = TRUE, ...)
 
-e_lines_3d_(e, source.lon, source.lat, target.lon, target.lat, name = NULL,
-  coord.system = "globe", rm.x = TRUE, rm.y = TRUE, ...)
+e_lines_3d_(e, source.lon, source.lat, target.lon, target.lat,
+  name = NULL, coord.system = "globe", rm.x = TRUE, rm.y = TRUE,
+  ...)
 
 e_line_3d_(e, y, z, name = NULL, coord.system = NULL, rm.x = TRUE,
   rm.y = TRUE, ...)

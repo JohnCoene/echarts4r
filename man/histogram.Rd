@@ -13,8 +13,8 @@ e_histogram(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
 e_density(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
   x.index = 0, y.index = 0, ...)
 
-e_histogram_(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
-  bar.width = "99\%", x.index = 0, y.index = 0, ...)
+e_histogram_(e, serie, breaks = "Sturges", name = NULL,
+  legend = TRUE, bar.width = "99\%", x.index = 0, y.index = 0, ...)
 
 e_density_(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
   x.index = 0, y.index = 0, ...)

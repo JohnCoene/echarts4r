@@ -5,8 +5,8 @@
 \alias{e_heatmap_}
 \title{Heatmap}
 \usage{
-e_heatmap(e, y, z, name = NULL, coord.system = "cartesian2d", rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_heatmap(e, y, z, name = NULL, coord.system = "cartesian2d",
+  rm.x = TRUE, rm.y = TRUE, ...)
 
 e_heatmap_(e, y, z = NULL, name = NULL, coord.system = "cartesian2d",
   rm.x = TRUE, rm.y = TRUE, ...)

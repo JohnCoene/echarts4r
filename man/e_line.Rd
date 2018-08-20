@@ -8,8 +8,8 @@
 e_line(e, serie, bind, name = NULL, legend = TRUE, y.index = 0,
   x.index = 0, coord.system = "cartesian2d", ...)
 
-e_line_(e, serie, bind = NULL, name = NULL, legend = TRUE, y.index = 0,
-  x.index = 0, coord.system = "cartesian2d", ...)
+e_line_(e, serie, bind = NULL, name = NULL, legend = TRUE,
+  y.index = 0, x.index = 0, coord.system = "cartesian2d", ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

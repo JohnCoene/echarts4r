@@ -5,11 +5,11 @@
 \alias{e_radar_}
 \title{Radar}
 \usage{
-e_radar(e, serie, max = 100, name = NULL, legend = TRUE, rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_radar(e, serie, max = 100, name = NULL, legend = TRUE,
+  rm.x = TRUE, rm.y = TRUE, ...)
 
-e_radar_(e, serie, max = 100, name = NULL, legend = TRUE, rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_radar_(e, serie, max = 100, name = NULL, legend = TRUE,
+  rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
