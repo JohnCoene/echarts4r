@@ -367,7 +367,7 @@ e_funnel <- function(e, values, labels, name = NULL, legend = TRUE, rm.x = TRUE,
     stop("missing values or labels", call. = FALSE)
   
   e_funnel_(e, 
-            value = deparse(substitute(values)), 
+            values = deparse(substitute(values)), 
             labels = deparse(substitute(labels)), 
             name = name, 
             legend = legend, 
