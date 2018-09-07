@@ -738,7 +738,8 @@ e_pie <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRUE
 #' @inheritParams e_bar
 #' @param parent,child Edges.
 #' @param value Name of column containing values.
-#' @param itemStyle Name of column containing styles to pass to \code{child}, expects a \code{data.frame} or a \code{list}.
+#' @param itemStyle Name of column containing styles to pass to \code{child}, 
+#' expects a \code{data.frame} or a \code{list}.
 #' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 

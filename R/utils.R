@@ -244,7 +244,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
 
 .build_sun <- function(e, parent, child, value, itemStyle = NULL){
   
-  cols <- "value"
+  cols <- c("value")
   
   e$x$data %>%
     dplyr::select_(
