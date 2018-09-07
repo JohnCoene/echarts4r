@@ -242,7 +242,10 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   data.tree::ToListExplicit(tree, unname = TRUE)
 }
 
-.build_sun <- function(e, parent, child, value){
+.build_sun <- function(e, parent, child, value, itemStyle = NULL){
+  
+  cols <- "value"
+  
   e$x$data %>%
     dplyr::select_(
       parent,
@@ -250,9 +253,27 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
       value = value
     ) -> data
   
-  d3r::d3_nest(data, value_cols = "value", json = FALSE, root = NULL) -> x
+  if(!is.null(itemStyle)){
+    e$x$data %>%
+      dplyr::select_(
+        itemStyle = itemStyle
+      ) -> is
+    
+    data <- cbind.data.frame(data, is)
+    cols <- append(cols, "itemStyle")
+  }
+  
+  d3r::d3_nest(data, value_cols = cols, json = FALSE, root = NULL) -> x
   x <- x[["children"]][[1]]
   x$colname <- NULL
+  
+  if(!is.null(itemStyle)){
+    x$children <- lapply(x$children, function(y){
+      y$itemStyle <- lapply(y$itemStyle, as.list)
+      return(y)
+    })
+  }
+  
   jsonlite::toJSON(x, auto_unbox = T, pretty = FALSE)
 }
 

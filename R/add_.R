@@ -537,7 +537,7 @@ e_pie_ <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRU
 
 #' @rdname e_sunburst
 #' @export
-e_sunburst_ <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
+e_sunburst_ <- function(e, parent, child, value, itemStyle = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -545,7 +545,7 @@ e_sunburst_ <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
   e <- .rm_axis(e, rm.y, "y")
   
   # build JSON data
-  data <- .build_sun(e, parent, child, value)
+  data <- .build_sun(e, parent, child, value, itemStyle)
   
   serie <- list(
     type = "sunburst",

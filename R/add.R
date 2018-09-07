@@ -738,6 +738,7 @@ e_pie <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRUE
 #' @inheritParams e_bar
 #' @param parent,child Edges.
 #' @param value Name of column containing values.
+#' @param itemStyle Name of column containing styles to pass to \code{child}, expects a \code{data.frame} or a \code{list}.
 #' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
@@ -756,13 +757,18 @@ e_pie <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRUE
 #' 
 #' @rdname e_sunburst
 #' @export
-e_sunburst <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
+e_sunburst <- function(e, parent, child, value, itemStyle, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
+  if(!missing(itemStyle))
+    style <- deparse(substitute(itemStyle))
+  else
+    style <- NULL
+  
   e_sunburst_(e, deparse(substitute(parent)), 
               deparse(substitute(child)), deparse(substitute(value)), 
-              rm.x, rm.y, ...)
+              style, rm.x, rm.y, ...)
 }
 
 #' Treemap

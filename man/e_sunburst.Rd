@@ -5,9 +5,11 @@
 \alias{e_sunburst_}
 \title{Sunburst}
 \usage{
-e_sunburst(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...)
+e_sunburst(e, parent, child, value, itemStyle, rm.x = TRUE,
+  rm.y = TRUE, ...)
 
-e_sunburst_(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...)
+e_sunburst_(e, parent, child, value, itemStyle = NULL, rm.x = TRUE,
+  rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
