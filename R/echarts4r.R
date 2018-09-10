@@ -115,12 +115,12 @@ e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = N
   
   if(!missing(data)){
     
-    # ungroup
-    if(dplyr::is.grouped_df(data))
-      data <- data %>% dplyr::ungroup()
-    
     row.names(data) <- NULL
-    x$data <- data
+    
+    if(!is.null(xmap))
+      data <- .arrange_data_x(data, xmap)
+    
+    x$data <- map_grps_(data)
   }
   
   if(!is.null(xmap)){
@@ -165,13 +165,15 @@ e_data <- function(e, data, x){
   if(!missing(x)){
     e$x$mapping$x <- xmap
     e$x$mapping$x_class <- class(data[[xmap]])
-    e$x <- .assign_axis(e$x)
+    e$x <- .assign_axis(e$x, data)
   }
-  # ungroup
-  if(dplyr::is.grouped_df(data))
-    data <- data %>% dplyr::ungroup()
   
   row.names(data) <- NULL
+  
+  if(!missing(x))
+    data <- .arrange_data_x(data, xmap)
+  
+  data <- map_grps_(data)
   e$x$data <- data
   
   e

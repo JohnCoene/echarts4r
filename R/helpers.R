@@ -221,3 +221,32 @@ e_format_y_axis <- function(e, suffix = NULL, prefix = NULL, ...){
   
   e_format_axis(e, "y", suffix, prefix, ...)
 }
+
+#' Clean
+#' 
+#' Removes base \code{data.frame}.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @details Removes the core database after all operations are exectuted, lightens up the load on final visualisation.
+#' 
+#' @examples 
+#' df <- data.frame(
+#'   x = 1:10,
+#'   y = round(
+#'     runif(10, 1, 100), 2
+#'   ) 
+#' )
+#' 
+#' df %>% 
+#'   e_charts(x) %>% 
+#'   e_line(y) %>% 
+#'   e_format_y_axis(suffix = "%") %>%
+#'   e_format_x_axis(prefix = "A") %>% 
+#'   e_clean()
+#' 
+#' @export
+e_clean <- function(e){
+  e$x$data <- NULL
+  e
+}

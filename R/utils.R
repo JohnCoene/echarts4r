@@ -398,7 +398,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     include_x = TRUE
   )
 
-  data <- e$x$data$metrics
+  data <- e$x$data[[1]]$metrics
   data <- as.data.frame(data)
   data$epoch <- seq(0, nrow(data) - 1)
   data$size <- 1

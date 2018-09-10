@@ -25,7 +25,7 @@ map_grps_ <- function(data){
     
   } else {
     row.names(data) <- NULL
-    data <- list(as.data.frame(data))
+    data <- list(data)
   }
   
   .no_nm <- function(x) {
