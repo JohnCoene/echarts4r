@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.3.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.1.0.9000</span>
       </span>
     </div>
 
@@ -228,13 +228,13 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_charts</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dispose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+  <span class='kw'>dispose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>renderer</span> <span class='kw'>=</span> <span class='st'>"canvas"</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_charts_</span>(<span class='no'>data</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dispose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'>e_charts_</span>(<span class='no'>data</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dispose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>renderer</span> <span class='kw'>=</span> <span class='st'>"canvas"</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_chart</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dispose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+  <span class='kw'>dispose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>renderer</span> <span class='kw'>=</span> <span class='st'>"canvas"</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_data</span>(<span class='no'>e</span>, <span class='no'>data</span>, <span class='no'>x</span>)</pre>
     
@@ -264,6 +264,10 @@ string and have <code>'px'</code> appended.</p></td>
       <td><p>Set to <code>TRUE</code> to force redraw of chart, set to <code>FALSE</code> to update.</p></td>
     </tr>
     <tr>
+      <th>renderer</th>
+      <td><p>Renderer, takes <code>canvas</code> (default) or <code>svg</code>.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Any other argument.</p></td>
     </tr>
@@ -275,12 +279,9 @@ string and have <code>'px'</code> appended.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(
-    <span class='kw'>state</span> <span class='kw'>=</span> <span class='fu'>row.names</span>(<span class='no'>.</span>)
-  ) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_charts_</span>(<span class='st'>"state"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Rape</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_charts_</span>(<span class='st'>"qsec"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>mpg</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

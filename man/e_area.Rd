@@ -32,10 +32,10 @@ e_area_(e, serie, bind = NULL, name = NULL, legend = TRUE,
 Add area serie.
 }
 \examples{
-USArrests \%>\% 
-  e_charts(Assault) \%>\% 
-  e_area(Murder, stack = "grp") \%>\% # stacking
-  e_area(UrbanPop, stack = "grp") # stacking
+CO2 \%>\% 
+  group_by(Plant) \%>\% 
+  e_charts(conc) \%>\% 
+  e_area(uptake)
 
 }
 \seealso{

@@ -31,7 +31,7 @@ HTMLWidgets.widget({
           }
         }
         
-        chart = echarts.init(document.getElementById(el.id), x.theme);
+        chart = echarts.init(document.getElementById(el.id), x.theme, {renderer: x.renderer});
         chart.setOption(x.opts);
         
         if (HTMLWidgets.shinyMode) {

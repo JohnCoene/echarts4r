@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.0.3.9000</span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.1.0.9000</span>
       </span>
     </div>
 
@@ -227,9 +227,11 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_sunburst</span>(<span class='no'>e</span>, <span class='no'>parent</span>, <span class='no'>child</span>, <span class='no'>value</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>e_sunburst</span>(<span class='no'>e</span>, <span class='no'>parent</span>, <span class='no'>child</span>, <span class='no'>value</span>, <span class='no'>itemStyle</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_sunburst_</span>(<span class='no'>e</span>, <span class='no'>parent</span>, <span class='no'>child</span>, <span class='no'>value</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>e_sunburst_</span>(<span class='no'>e</span>, <span class='no'>parent</span>, <span class='no'>child</span>, <span class='no'>value</span>, <span class='kw'>itemStyle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -245,6 +247,11 @@
     <tr>
       <th>value</th>
       <td><p>Name of column containing values.</p></td>
+    </tr>
+    <tr>
+      <th>itemStyle</th>
+      <td><p>Name of column containing styles to pass to <code>child</code>, 
+expects a <code>data.frame</code> or a <code>list</code>.</p></td>
     </tr>
     <tr>
       <th>rm.x, rm.y</th>

@@ -56,6 +56,8 @@ devtools::install_git("https://git.coding.net/JohnCoene/echarts4r.git") # coding
 * themes
 * and more...
 
+`group_by` <span class="label label-success">new</span>, `echarts4r` now understands `dplyr::group_by` in order to comply with the [tidy data](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) concept. See [get started guide](articles/get_started) or the various examples in the functions' documentation.
+
 ## Examples
 
 Some of what you can do with `echarts4r`, see the guide for more.

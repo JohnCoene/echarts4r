@@ -1,3 +1,9 @@
+# echarts4r 0.1.0.9000
+
+`echarts4r` now understands `dplyr::group_by`
+
+* `e_clean` to remove original data from visualisation and lighten up end product.
+
 # echarts4r 0.0.2.9000
 
 * `e_keras_history` added - plot `keras` history (loss & acc).

@@ -11,14 +11,10 @@
 #' @param x.index,y.index Indexes of x and y axis.
 #' 
 #' @examples 
-#' USArrests %>% 
-#'   dplyr::mutate(
-#'     State = row.names(.),
-#'     Rape = -Rape
-#'   ) %>% 
-#'   e_charts(State) %>% 
-#'   e_bar(Murder) %>% 
-#'   e_bar(Rape, name = "Sick basterd", x.index = 1) # secondary x axis
+#' iris %>% 
+#'   group_by(Species) %>% 
+#'   e_charts(Sepal.Length) %>% 
+#'   e_line(Sepal.Width)
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar}
 #' 
@@ -50,11 +46,10 @@ e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.ind
 #' @param coord.system Coordinate system to plot against.
 #' 
 #' @examples 
-#' USArrests %>% 
-#'   dplyr::mutate(State = row.names(.)) %>% 
-#'   e_charts(Assault) %>% 
-#'   e_line(Murder) %>% 
-#'   e_line(UrbanPop, State, y.index = 1) %>%  # second y axis
+#' iris %>% 
+#'   group_by(Species) %>% 
+#'   e_charts(Sepal.Length) %>% 
+#'   e_line(Sepal.Width) %>% 
 #'   e_tooltip(trigger = "axis")
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}  
@@ -86,10 +81,10 @@ e_line <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.in
 #' @inheritParams e_bar
 #' 
 #' @examples 
-#' USArrests %>% 
-#'   e_charts(Assault) %>% 
-#'   e_area(Murder, stack = "grp") %>% # stacking
-#'   e_area(UrbanPop, stack = "grp") # stacking
+#' CO2 %>% 
+#'   group_by(Plant) %>% 
+#'   e_charts(conc) %>% 
+#'   e_area(uptake)
 #' 
 #' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}
 #' 
@@ -1474,7 +1469,7 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y.in
     bd <- NULL
   
   # only deparse if it is a column name
-  if(deparse(substitute(symbol)) %in% colnames(e$x$data))
+  if(deparse(substitute(symbol)) %in% colnames(e$x$data[[1]]))
     symbol <- deparse(substitute(symbol))
   
   e_pictorial_(e, deparse(substitute(serie)), symbol, bd, name, legend, y.index, x.index, ...)
@@ -1511,7 +1506,7 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y.in
 e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, ...){
   form <- as.formula(formula)
   model <- eval(
-    lm(form, data = e$x$data)
+    lm(form, data = e$x$data[[1]])
   )
   
   e <- .build_model(e, model, name, symbol, smooth, ...)
@@ -1526,7 +1521,7 @@ e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth
 e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, ...){
   form <- as.formula(formula)
   model <- eval(
-    glm(form, data = e$x$data)
+    glm(form, data = e$x$data[[1]])
   )
   
   e <- .build_model(e, model, name, symbol, smooth, ...)
@@ -1541,13 +1536,13 @@ e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smoot
 e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, 
                     x.index = 0, y.index = 0, ...){
   mod <- eval(
-    loess(as.formula(formula), data = e$x$data)
+    loess(as.formula(formula), data = e$x$data[[1]])
   )
   
   if(is.null(name))
     name <- "ECHARTS4RLOESS"
   
-  e$x$data[,name] <- predict(mod)
+  e$x$data[[1]][,name] <- predict(mod)
   
   vector <- .build_data(
     e, 

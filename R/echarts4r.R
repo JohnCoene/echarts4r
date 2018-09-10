@@ -126,7 +126,7 @@ e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = N
   if(!is.null(xmap)){
     x$mapping$x <- xmap
     x$mapping$x_class <- class(data[[xmap]])
-    x <- .assign_axis(x)
+    x <- .assign_axis(x, data)
   }
   
   x$dispose <- dispose

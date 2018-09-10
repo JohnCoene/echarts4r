@@ -30,14 +30,10 @@ e_bar_(e, serie, bind = NULL, name = NULL, legend = TRUE,
 Add bar serie.
 }
 \examples{
-USArrests \%>\% 
-  dplyr::mutate(
-    State = row.names(.),
-    Rape = -Rape
-  ) \%>\% 
-  e_charts(State) \%>\% 
-  e_bar(Murder) \%>\% 
-  e_bar(Rape, name = "Sick basterd", x.index = 1) # secondary x axis
+iris \%>\% 
+  group_by(Species) \%>\% 
+  e_charts(Sepal.Length) \%>\% 
+  e_line(Sepal.Width)
 
 }
 \seealso{

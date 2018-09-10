@@ -112,4 +112,20 @@ mtcars %>%
   e_format_y_axis(suffix = "mpg")
 ```
 
+The package now understands `dplyr::group_by` in order to avoid having to add many layers manually. Let's say we have a `data.frame` containing data for 10 groups, we can just `dplyr::group_by` instead of adding, say, 20 `e_line`.
+
+```{r}
+df <- data.frame(
+  grp = rep(LETTERS[1:10], 20),
+  x = runif(200),
+  y = runif(200)
+)
+
+df %>% 
+  group_by(grp) %>% 
+  e_charts(x) %>% 
+  e_line(y) %>% 
+  e_title("Grouped data")
+```
+
 You're in on the basics, go to the [advanced](docs/articles/advanced.html) section or navigate the site to discover how add multiple linked graphs, draw on globes, use the package in shiny, and more.

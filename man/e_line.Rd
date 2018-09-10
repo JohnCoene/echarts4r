@@ -34,11 +34,10 @@ e_line_(e, serie, bind = NULL, name = NULL, legend = TRUE,
 Add line serie.
 }
 \examples{
-USArrests \%>\% 
-  dplyr::mutate(State = row.names(.)) \%>\% 
-  e_charts(Assault) \%>\% 
-  e_line(Murder) \%>\% 
-  e_line(UrbanPop, State, y.index = 1) \%>\%  # second y axis
+iris \%>\% 
+  group_by(Species) \%>\% 
+  e_charts(Sepal.Length) \%>\% 
+  e_line(Sepal.Width) \%>\% 
   e_tooltip(trigger = "axis")
 
 }

@@ -73,7 +73,9 @@ data <- routes %>%
 spl <- split(data, data$airline)
 
 # initialise plot  
-plot <- e_charts() %>% 
+data %>%
+  group_by(airline) %>% 
+  e_charts() %>% 
   e_globe(
     base.texture = e_globe_dark_texture(),
     environment = e_stars_texture(),
@@ -109,27 +111,19 @@ plot <- e_charts() %>%
     left = "left",
     textStyle = list(color = "#fff"),
     orient = "vertical"
+  ) %>% 
+  e_lines_3d(
+    longitude.start, latitude.start, longitude.end, latitude.end, 
+    coord.system = "globe", 
+    effect = list(
+      show = TRUE,
+      trailWidth = 2,
+      trailLength = 0.15,
+      trailOpacity = 1,
+      trailColor = 'rgb(30, 30, 60)'
+    ),
+    lineStyle = list(opacity = 0.1, widh = 0.5, color = 'rgb(50, 50, 150)')
   )
-
-# loop over groups
-for(i in 1:length(spl)){
- plot <-plot %>%
-    e_data(spl[[i]]) %>% 
-    e_lines_3d(
-      longitude.start, latitude.start, longitude.end, latitude.end, 
-      coord.system = "globe", 
-      name = as.character(spl[[i]]$airline[1]),
-      effect = list(
-        show = TRUE,
-        trailWidth = 2,
-        trailLength = 0.15,
-        trailOpacity = 1,
-        trailColor = 'rgb(30, 30, 60)'
-      ),
-      lineStyle = list(opacity = 0.1, widh = 0.5, color = 'rgb(50, 50, 150)'))
-}
-
-plot # plot
 ```
 
 ### 3D image

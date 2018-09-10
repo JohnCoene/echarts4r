@@ -1019,7 +1019,7 @@ e_scatter_gl_ <- function(e, y, z, name = NULL, coord.system = "geo", rm.x = TRU
     e <- .rm_axis(e, rm.x, "x")
     e <- .rm_axis(e, rm.y, "y")
     
-    data <- .build_data(e$x$data[[i]], e$x$mapping$x, y, z)
+    data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
     
     # globe
     if(coord.system == "cartesian3D"){
@@ -1073,7 +1073,7 @@ e_pictorial_ <- function(e, serie, symbol, bind = NULL, name = NULL, legend = TR
   if(!is.null(bind))
     vector <- .add_bind(e, vector, bind)
   
-  if(symbol %in% colnames(e$x$data))
+  if(symbol %in% colnames(e$x$data[[1]]))
     vector <- .add_bind(e, vector, symbol, "symbol")
   
   serie <- list(
@@ -1085,7 +1085,7 @@ e_pictorial_ <- function(e, serie, symbol, bind = NULL, name = NULL, legend = TR
     ...
   )
   
-  if(!symbol %in% colnames(e$x$data))
+  if(!symbol %in% colnames(e$x$data[[1]]))
     serie$symbol <- symbol
   
   if(isTRUE(legend))

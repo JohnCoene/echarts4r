@@ -453,7 +453,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
 .build_height <- function(e, serie, color){
   
   #data <- .build_data(e, e$x$mapping$x, serie, names = c("name", "height"))
-  e$x$data %>%
+  e$x$data[[1]] %>%
     dplyr::select_(
       name = e$x$mapping$x,
       height = serie

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Axis 3D — e_axis_3d • echarts4r</title>
+<title>Clean — e_clean • echarts4r</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -36,9 +36,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Axis 3D — e_axis_3d" />
+<meta property="og:title" content="Clean — e_clean" />
 
-<meta property="og:description" content="Customise 3D axis." />
+<meta property="og:description" content="Removes base data.frame." />
 
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -216,24 +216,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Axis 3D</h1>
+    <h1>Clean</h1>
     
-    <div class="hidden name"><code>axis3d.Rd</code></div>
+    <div class="hidden name"><code>e_clean.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Customise 3D axis.</p>
+    <p>Removes base <code>data.frame</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_axis_3d</span>(<span class='no'>e</span>, <span class='kw'>axis</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>, <span class='st'>"z"</span>), <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
-
-<span class='fu'>e_x_axis_3d</span>(<span class='no'>e</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
-
-<span class='fu'>e_y_axis_3d</span>(<span class='no'>e</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
-
-<span class='fu'>e_z_axis_3d</span>(<span class='no'>e</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_clean</span>(<span class='no'>e</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -242,35 +236,37 @@
       <th>e</th>
       <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code>.</p></td>
     </tr>
-    <tr>
-      <th>axis</th>
-      <td><p>Axis to customise.</p></td>
-    </tr>
-    <tr>
-      <th>index</th>
-      <td><p>Index of axis to customise.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Any other option to pass, check See Also section.</p></td>
-    </tr>
     </table>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <div class='dont-index'><p><a href='Additional x arguments'>https://ecomfe.github.io/echarts-doc/public/en/option.html#xAxis3D</a>,
- <a href='Additional y arguments'>https://ecomfe.github.io/echarts-doc/public/en/option.html#yAxis3D</a>,
- <a href='Additional arguments'>https://ecomfe.github.io/echarts-doc/public/en/option.html#zAxis3D</a></p></div>
+    <p>Removes the core database after all operations are exectuted, lightens up the load on final visualisation.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>round</span>(
+    <span class='fu'>runif</span>(<span class='fl'>10</span>, <span class='fl'>1</span>, <span class='fl'>100</span>), <span class='fl'>2</span>
+  )
+)
+
+<span class='no'>df</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>y</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='formatters.html'>e_format_y_axis</a></span>(<span class='kw'>suffix</span> <span class='kw'>=</span> <span class='st'>"%"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='formatters.html'>e_format_x_axis</a></span>(<span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"A"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_clean</span>()</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#see-also">See also</a></li>
-          </ul>
+      <li><a href="#details">Details</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
