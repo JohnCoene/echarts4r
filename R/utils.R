@@ -22,7 +22,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     x$opts$xAxis <- list(list(data = unique(data[[x$mapping$x]]), type = "time", boundaryGap = TRUE))
   } else {
     x$mapping$include_x <- TRUE
-    x$opts$xAxis <- list(list(type = "value", min = min(data[[x$mapping$x]]), max = max(data[[x$mapping$x]])))
+    x$opts$xAxis <- list(list(type = "value"))
   }
   x
 }

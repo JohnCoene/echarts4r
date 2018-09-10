@@ -18,23 +18,6 @@ library(dplyr)
 library(echarts4r)
 ```
 
-### Pie & Line
-
-```{r}
-df <- data.frame(x = 1:10, grp1 = rnorm(10, 5, 1), grp2 = rnorm(10, 10, 3))
-pie <- data.frame(grp = c("grp1", "grp2"), value = c(6, 4), stringsAsFactors = FALSE)
-
-df %>% 
-  e_charts(x) %>%
-  e_line(grp1) %>% 
-  e_line(grp2) %>% 
-  e_data(pie, grp) %>% 
-  e_pie(value, rm.x = FALSE, rm.y = FALSE, center = c("80%", "20%"), radius = c(0, 70)) %>% 
-  e_title("Pie and Lines", "Linked legend") %>% 
-  e_tooltip(trigger = "item") %>% 
-  e_theme("shine")
-```
-
 ### Lines
 
 ```{r}
@@ -68,9 +51,6 @@ data <- routes %>%
   inner_join(airports, by = c("to" = "ID"), suffix = c(".start", ".end")) %>%
   inner_join(airlines, by = "ID") %>% 
   select(airline, longitude.start, latitude.start, longitude.end, latitude.end) 
-
-# split
-spl <- split(data, data$airline)
 
 # initialise plot  
 data %>%
