@@ -61,18 +61,18 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
   
   if(!missing(data)){
     
-    # ungroup
-    if(dplyr::is.grouped_df(data))
-      data <- data %>% dplyr::ungroup()
-    
     row.names(data) <- NULL
-    x$data <- data
+    
+    if(!is.null(xmap))
+      data <- .arrange_data_x(data, xmap)
+    
+    x$data <- map_grps_(data)
   }
   
   if(!is.null(xmap)){
-    x$mapping$x <- xmap
+    x$mapping$x <- xmap[1]
     x$mapping$x_class <- class(data[[xmap]])
-    x <- .assign_axis(x)
+    x <- .assign_axis(x, data)
   }
   
   x$dispose <- dispose

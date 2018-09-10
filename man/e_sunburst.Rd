@@ -18,6 +18,9 @@ e_sunburst_(e, parent, child, value, itemStyle = NULL, rm.x = TRUE,
 
 \item{value}{Name of column containing values.}
 
+\item{itemStyle}{Name of column containing styles to pass to \code{child}, 
+expects a \code{data.frame} or a \code{list}.}
+
 \item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}

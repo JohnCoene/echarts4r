@@ -7,34 +7,35 @@ e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y.index = 
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
-  
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
-  # build JSON data
-  .build_data(e, e$x$mapping$x, serie) -> vector
-  
-  if(!is.null(bind))
-    vector <- .add_bind(e, vector, bind)
-  
-  serie <- list(
-    name = name,
-    type = "bar",
-    data = vector,
-    yAxisIndex = y.index,
-    xAxisIndex = x.index,
-    ...
-  )
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  for(i in 1:length(e$x$data)){
+    
+    nm <- .name_it(e, serie, name, i)
+    
+    .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
+    
+    if(!is.null(bind))
+      vector <- .add_bind2(e$x$data[[i]], vector, bind, i = i)
+    
+    if(y.index != 0)
+      e <- .set_y_axis(e, serie, y.index, i)
+    
+    if(x.index != 0)
+      e <- .set_x_axis(e, x.index, i)
+    
+    e.serie <- list(
+      name = nm,
+      type = "bar",
+      data = vector,
+      yAxisIndex = y.index,
+      xAxisIndex = x.index,
+      ...
+    )
+    
+    if(isTRUE(legend))
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+    
+    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+  }
   e
 }
 
@@ -48,38 +49,40 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y.index =
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
-  
-  # build JSON data
-  .build_data(e, e$x$mapping$x, serie) -> vector
-  
-  if(!is.null(bind))
-    vector <- .add_bind(e, vector, bind)
-  
-  l <- list(
-    name = name,
-    type = "line",
-    data = vector,
-    coordinateSystem = coord.system,
-    ...
-  )
-  
-  if(coord.system == "cartesian2d"){
-    if(y.index != 0)
-      e <- .set_y_axis(e, serie, y.index)
+
+  for(i in 1:length(e$x$data)){
+    nm <- .name_it(e, serie, name, i)
     
-    if(x.index != 0)
-      e <- .set_x_axis(e, x.index)
+    # build JSON data
+    .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
     
-    l$yAxisIndex <- y.index
-    l$xAxisIndex <- x.index
+    if(!is.null(bind))
+      vector <- .add_bind2(e, vector, bind, i = i)
+    
+    l <- list(
+      name = nm,
+      type = "line",
+      data = vector,
+      coordinateSystem = coord.system,
+      ...
+    )
+    
+    if(coord.system == "cartesian2d"){
+      if(y.index != 0)
+        e <- .set_y_axis(e, serie, y.index, i)
+      
+      if(x.index != 0)
+        e <- .set_x_axis(e, x.index, i)
+      
+      l$yAxisIndex <- y.index
+      l$xAxisIndex <- x.index
+    }
+    
+    if(isTRUE(legend))
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+    
+    e$x$opts$series <- append(e$x$opts$series, list(l))
   }
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(l))
   e
 }
 
@@ -92,35 +95,37 @@ e_area_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y.index =
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
+  for(i in 1:length(e$x$data)){
+    nm <- .name_it(e, serie, name, i)
+    
+    if(y.index != 0)
+      e <- .set_y_axis(e, serie, y.index, i)
+    
+    if(x.index != 0)
+      e <- .set_x_axis(e, x.index, i)
+    
+    # build JSON data
+    .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
+    
+    if(!is.null(bind))
+      vector <- .add_bind2(e, vector, bind, i = i)
+    
+    e.serie <- list(
+      name = nm,
+      type = "line",
+      data = vector,
+      yAxisIndex = y.index,
+      xAxisIndex = x.index,
+      areaStyle = list(normal = list()),
+      ...
+    )
+    
+    if(isTRUE(legend))
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+    
+    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+  }
   
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
-  # build JSON data
-  .build_data(e, e$x$mapping$x, serie) -> vector
-  
-  if(!is.null(bind))
-    vector <- .add_bind(e, vector, bind)
-  
-  serie <- list(
-    name = name,
-    type = "line",
-    data = vector,
-    yAxisIndex = y.index,
-    xAxisIndex = x.index,
-    areaStyle = list(normal = list()),
-    ...
-  )
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }
 
@@ -137,37 +142,40 @@ e_step_ <- function(e, serie, bind = NULL, step = c("start", "middle", "end"), f
   if(!step[1] %in% c("start", "middle", "end"))
     stop("wrong step", call. = FALSE)
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
+  for(i in 1:length(e$x$data)){
+    
+    nm <- .name_it(e, serie, name, i)
+    
+    if(y.index != 0)
+      e <- .set_y_axis(e, serie, y.index, i)
+    
+    if(x.index != 0)
+      e <- .set_x_axis(e, x.index, i)
+    
+    # build JSON data
+    .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
+    
+    if(!is.null(bind))
+      vector <- .add_bind2(e, vector, bind, i = i)
+    
+    e.serie <- list(
+      name = nm,
+      type = "line",
+      data = vector,
+      yAxisIndex = y.index,
+      xAxisIndex = x.index,
+      step = step[1],
+      ...
+    )
+    
+    if(isTRUE(fill)) e.serie$areaStyle <- list(normal = list())
+    
+    if(isTRUE(legend))
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+    
+    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+  }
   
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
-  # build JSON data
-  .build_data(e, e$x$mapping$x, serie) -> vector
-  
-  if(!is.null(bind))
-    vector <- .add_bind(e, vector, bind)
-  
-  serie <- list(
-    name = name,
-    type = "line",
-    data = vector,
-    yAxisIndex = y.index,
-    xAxisIndex = x.index,
-    step = step[1],
-    ...
-  )
-  
-  if(isTRUE(fill)) serie$areaStyle <- list(normal = list())
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }
 
@@ -180,47 +188,50 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, scale = "* 1", name =
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
-  
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
-  if(!is.null(size))
-    xy <- .build_data(e, e$x$mapping$x, serie, size)
-  else
-    xy <- .build_data(e, e$x$mapping$x, serie)
-  
-  if(!is.null(bind))
-    xy <- .add_bind(e, xy, bind)
-  
-  serie <- list(
-    name = name,
-    type = "scatter",
-    data = xy,
-    coordinateSystem = coord.system,
-    ...
-  )
-  
-  if(coord.system != "cartesian2d"){
-    e <- .rm_axis(e, rm.x, "x")
-    e <- .rm_axis(e, rm.y, "y")
-  } else {
-    serie$yAxisIndex = y.index
-    serie$xAxisIndex = x.index
-    if(isTRUE(legend))
-      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  for(i in 1:length(e$x$data)){
+    
+    nm <- .name_it(e, serie, name, i)
+    
+    if(y.index != 0)
+      e <- .set_y_axis(e, serie, y.index, i)
+    
+    if(x.index != 0)
+      e <- .set_x_axis(e, x.index, i)
+    
+    if(!is.null(size))
+      xy <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie, size)
+    else
+      xy <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie)
+    
+    if(!is.null(bind))
+      xy <- .add_bind2(e, xy, bind, i = i)
+    
+    e.serie <- list(
+      name = nm,
+      type = "scatter",
+      data = xy,
+      coordinateSystem = coord.system,
+      ...
+    )
+    
+    if(coord.system != "cartesian2d"){
+      e <- .rm_axis(e, rm.x, "x")
+      e <- .rm_axis(e, rm.y, "y")
+    } else {
+      e.serie$yAxisIndex = y.index
+      e.serie$xAxisIndex = x.index
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+    }
+    
+    if(!missing(size))
+      e.serie$symbolSize <- htmlwidgets::JS(
+        paste("function(data){ return data[2]", scale, ";}")
+      )
+    
+    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
   }
   
-  if(!missing(size))
-    serie$symbolSize <- htmlwidgets::JS(
-      paste("function(data){ return data[2]", scale, ";}")
-    )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }
 
@@ -233,47 +244,50 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, scale = "* 1",
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
-  
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
-  if(!is.null(size))
-    xy <- .build_data(e, e$x$mapping$x, serie, size)
-  else
-    xy <- .build_data(e, e$x$mapping$x, serie)
-  
-  if(!is.null(bind))
-    xy <- .add_bind(e, xy, bind)
-  
-  if(coord.system != "cartesian2d"){
-    e <- .rm_axis(e, rm.x, "x")
-    e <- .rm_axis(e, rm.y, "y")
-  } else {
-    if(isTRUE(legend))
-      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  for(i in 1:length(e$x$data)){
+    
+    nm <- .name_it(e, serie, name, i)
+    
+    if(y.index != 0)
+      e <- .set_y_axis(e, serie, y.index, i)
+    
+    if(x.index != 0)
+      e <- .set_x_axis(e, x.index, i)
+    
+    if(!is.null(size))
+      xy <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie, size)
+    else
+      xy <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie)
+    
+    if(!is.null(bind))
+      xy <- .add_bind2(e, xy, bind, i= i)
+    
+    if(coord.system != "cartesian2d"){
+      e <- .rm_axis(e, rm.x, "x")
+      e <- .rm_axis(e, rm.y, "y")
+    } else {
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+    }
+    
+    e.serie <- list(
+      name = nm,
+      type = "effectScatter",
+      data = xy,
+      coordinateSystem = coord.system,
+      yAxisIndex = y.index,
+      xAxisIndex = x.index,
+      ...
+    )
+    
+    if(!missing(size))
+      e.serie$symbolSize <- htmlwidgets::JS(
+        paste("function(data){ return data[2]", scale, ";}")
+      )
+    
+    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
   }
   
-  serie <- list(
-    name = name,
-    type = "effectScatter",
-    data = xy,
-    coordinateSystem = coord.system,
-    yAxisIndex = y.index,
-    xAxisIndex = x.index,
-    ...
-  )
-  
-  if(!missing(size))
-    serie$symbolSize <- htmlwidgets::JS(
-      paste("function(data){ return data[2]", scale, ";}")
-    )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }
 
@@ -284,22 +298,27 @@ e_candle_ <- function(e, opening, closing, low, high, bind = NULL, name = NULL, 
   if(missing(opening) || missing(closing) || missing(low) || missing(high))
     stop("missing inputs", call. = FALSE)
   
-  data <- .build_data(e, opening, closing, low, high)
-  
-  if(!is.null(bind))
-    data <- .add_bind(e, data, bind)
-  
-  serie <- list(
-    name = name,
-    type = "candlestick",
-    data = data,
-    ...
-  )
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  for(i in 1:length(e$x$data)){
+    
+    data <- .build_data2(e$x$data[[i]], opening, closing, low, high)
+    
+    if(!is.null(bind))
+      data <- .add_bind2(e, data, bind, i = i)
+    
+    nm <- .name_it(e, NULL, name, i)
+    
+    e.serie <- list(
+      name = nm,
+      type = "candlestick",
+      data = data,
+      ...
+    )
+    
+    if(isTRUE(legend))
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+    
+    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+  }
   e
 }
 
@@ -402,10 +421,10 @@ e_sankey_ <- function(e, source, target, value, layout = "none", rm.x = TRUE, rm
   e <- .rm_axis(e, rm.y, "y")
   
   # build JSON data
-  nodes <- .build_sankey_nodes(e$x$data, source, target)
+  nodes <- .build_sankey_nodes(e$x$data[[1]], source, target)
   
   # build JSON data
-  edges <- .build_sankey_edges(e$x$data, source, target, value)
+  edges <- .build_sankey_edges(e$x$data[[1]], source, target, value)
   
   serie <- list(
     type = "sankey",
@@ -468,11 +487,12 @@ e_parallel_ <- function(e, ..., name = NULL, rm.x = TRUE, rm.y = TRUE){
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
   
-  e$x$data %>% 
+  e$x$data[[1]] %>% 
     dplyr::select_(...) -> df
   
   # remove names
   data <- df
+  
   row.names(data) <- NULL
   data <- unname(data)
   
@@ -591,33 +611,35 @@ e_river_ <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = T
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
-  
-  if(length(e$x$opts$xAxis$data))
-    e$X <- e$x$opts$xAxis$data
-  
-  # build JSON data
-  data <- .build_river(e, serie, name)
-  
-  if(!length(e$x$opts$series)){
-    serie <- list(
-      type = "themeRiver",
-      data = data,
-      ...
-    )
-    e$x$opts$series <- append(e$x$opts$series, list(serie))
-  } else {
-    e$x$opts$series[[1]]$data <- append(e$x$opts$series[[1]]$data, data)
+  for(i in 1:length(e$x$data)){
+    
+    nm <- .name_it(e, serie, name, i)
+    
+    if(length(e$x$opts$xAxis$data))
+      e$X <- e$x$opts$xAxis$data
+    
+    # build JSON data
+    data <- .build_river(e, serie, nm, i)
+    
+    if(!length(e$x$opts$series)){
+      e.serie <- list(
+        type = "themeRiver",
+        data = data,
+        ...
+      )
+      e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+    } else {
+      e$x$opts$series[[1]]$data <- append(e$x$opts$series[[1]]$data, data)
+    }
+    
+    e <- .rm_axis(e, rm.x, "x")
+    e <- .rm_axis(e, rm.y, "y")
+    
+    e$x$opts$singleAxis <- list(type = "time")
+    
+    if(isTRUE(legend))
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
   }
-  
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
-  
-  e$x$opts$singleAxis <- list(type = "time")
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   
   e
 }
@@ -706,22 +728,26 @@ e_lines_3d_ <- function(e, source.lon, source.lat, target.lon, target.lat, name 
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
   
-  # build JSON data
-  data <- .map_lines(e, source.lon, source.lat, target.lon, target.lat)
-  
-  serie <- list(
-    type = "lines3D",
-    coordinateSystem = coord.system,
-    data = data,
-    ...
-  )
-  
-  if(!is.null(name)){
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-    serie$name <- name
+  for(i in 1:length(e$x$data)){
+    
+    data <- .map_lines(e, source.lon, source.lat, target.lon, target.lat, i)
+    
+    serie <- list(
+      type = "lines3D",
+      coordinateSystem = coord.system,
+      data = data,
+      ...
+    )
+    
+    nm <- .name_it(e, NULL, name, i)
+    
+    if(!is.null(nm)){
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+      serie$name <- nm
+    }
+    
+    e$x$opts$series <- append(e$x$opts$series, list(serie))
   }
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
   
   e
 }
@@ -738,62 +764,13 @@ e_line_3d_ <- function(e, y, z, name = NULL, coord.system = NULL, rm.x = TRUE, r
   # remove axis
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
-  
-  if(!is.null(name))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, name)
-  
-  if(!length(e$x$opts$zAxis3D))
-    e$x$opts$zAxis3D <- list(list(show = TRUE))
-  
-  if(!length(e$x$opts$grid3D))
-    e$x$opts$grid3D <- list(list(show = TRUE))
-  
-  e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
-  e <- .set_axis_3D(e, "y", y, 0)
-  e <- .set_axis_3D(e, "z", z, 0)
-  
-  # build JSON data
-  data <- .build_data(e, e$x$mapping$x, y, z)
-  
-  serie <- list(
-    type = "line3D",
-    data = data,
-    ...
-  )
-  
-  if(!is.null(coord.system))
-    serie$coordinateSystem <- coord.system
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  
-  e
-}
 
-#' @rdname e_bar_3d
-#' @export
-e_bar_3d_ <- function(e, y, z, bind = NULL, coord.system = "cartesian3D", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
-  if(missing(e))
-    stop("must pass e", call. = FALSE)
-  
-  if(missing(y) || missing(z))
-    stop("must pass y and z", call. = FALSE)
-  
-  if(is.null(name)) # defaults to column name
-    name <- z
-  
-  # remove axis
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
-  
-  # globe
-  if(coord.system != "cartesian3D"){
+  for(i in 1:length(e$x$data)){
     
-    data <- .build_data(e, e$x$mapping$x, y, z)
+    nm <- .name_it(e, NULL, name, i)
     
-    if(!is.null(bind))
-      data <- .add_bind(e, data, bind)
-    
-  } else { # cartesian
+    if(!is.null(nm))
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, nm)
     
     if(!length(e$x$opts$zAxis3D))
       e$x$opts$zAxis3D <- list(list(show = TRUE))
@@ -805,18 +782,80 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord.system = "cartesian3D", name =
     e <- .set_axis_3D(e, "y", y, 0)
     e <- .set_axis_3D(e, "z", z, 0)
     
-    data <- .build_cartesian3D(e, e$x$mapping$x, y, z)
+    # build JSON data
+    data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
+    
+    e.serie <- list(
+      type = "line3D",
+      data = data,
+      name = nm,
+      ...
+    )
+    
+    if(!is.null(coord.system))
+      e.serie$coordinateSystem <- coord.system
+    
+    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
   }
   
-  serie <- list(
-    name = name,
-    type = "bar3D",
-    coordinateSystem = coord.system,
-    data = data,
-    ...
-  )
+  e
+}
+
+#' @rdname e_bar_3d
+#' @export
+e_bar_3d_ <- function(e, y, z, bind = NULL, coord.system = "cartesian3D", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(y) || missing(z))
+    stop("must pass y and z", call. = FALSE)
+  
+  # remove axis
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
+  
+  for(i in 1:length(e$x$data)){
+    
+    # globe
+    if(coord.system != "cartesian3D"){
+      
+      data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
+      
+      if(!is.null(bind))
+        data <- .add_bind2(e, data, bind, i = i)
+      
+    } else { # cartesian
+      
+      if(!length(e$x$opts$zAxis3D))
+        e$x$opts$zAxis3D <- list(list(show = TRUE))
+      
+      if(!length(e$x$opts$grid3D))
+        e$x$opts$grid3D <- list(list(show = TRUE))
+      
+      e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
+      e <- .set_axis_3D(e, "y", y, 0)
+      e <- .set_axis_3D(e, "z", z, 0)
+      
+      data <- .build_cartesian3D(e, e$x$mapping$x, y, z, i = i)
+    }
+    
+    nm <- .name_it(e, NULL, name, i)
+    
+    if(!is.null(nm))
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, nm)
+    
+    e.serie <- list(
+      name = nm,
+      type = "bar3D",
+      coordinateSystem = coord.system,
+      data = data,
+      ...
+    )
+    
+    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+    
+  }
   
   e
 }
@@ -835,18 +874,23 @@ e_lines_ <- function(e, source.lon, source.lat, target.lon, target.lat, coord.sy
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
   
-  # build JSON data
-  data <- .map_lines(e, source.lon, source.lat, target.lon, target.lat)
   
-  serie <- list(
-    name = name,
-    type = "lines",
-    coordinateSystem = coord.system,
-    data = data,
-    ...
-  )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  for(i in 1:length(e$x$data)){
+    
+    nm <- .name_it(e, NULL, name, i)
+    
+    data <- .map_lines(e, source.lon, source.lat, target.lon, target.lat, i)
+    
+    e.serie <- list(
+      name = nm,
+      type = "lines",
+      coordinateSystem = coord.system,
+      data = data,
+      ...
+    )
+    
+    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+  }
   
   e
 }
@@ -868,48 +912,52 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
   
-  # globe
-  if(coord.system != "cartesian3D"){
+  for(i in 1:length(e$x$data)){
+    # globe
+    if(coord.system != "cartesian3D"){
+      
+      data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
+      
+      if(!is.null(bind))
+        data <- .add_bind2(e, data, bind, i = i)
+      
+      
+    } else { # cartesian
+      
+      if(!length(e$x$opts$zAxis3D))
+        e$x$opts$zAxis3D <- list(list(show = TRUE))
+      
+      if(!length(e$x$opts$grid3D))
+        e$x$opts$grid3D <- list(list(show = TRUE))
+      
+      e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
+      e <- .set_axis_3D(e, "y", y, 0)
+      e <- .set_axis_3D(e, "z", z, 0)
+      
+      if(is.null(color))
+        data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
+      else if(!is.null(color) && is.null(size))
+        data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z, color)
+      else if(!is.null(color) && !is.null(size))
+        data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z, color, size)
+      
+    }
     
-    data <- .build_data(e, e$x$mapping$x, y, z)
+    nm <- .name_it(e, NULL, name, i)
     
-    if(!is.null(bind))
-      data <- .add_bind(e, data, bind)
+    e.serie <- list(
+      name = nm,
+      type = "scatter3D",
+      coordinateSystem = coord.system,
+      data = data,
+      ...
+    )
     
+    if(isTRUE(legend))
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
     
-  } else { # cartesian
-    
-    if(!length(e$x$opts$zAxis3D))
-      e$x$opts$zAxis3D <- list(list(show = TRUE))
-    
-    if(!length(e$x$opts$grid3D))
-      e$x$opts$grid3D <- list(list(show = TRUE))
-    
-    e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
-    e <- .set_axis_3D(e, "y", y, 0)
-    e <- .set_axis_3D(e, "z", z, 0)
-    
-    if(is.null(color))
-      data <- .build_data(e, e$x$mapping$x, y, z)
-    else if(!is.null(color) && is.null(size))
-      data <- .build_data(e, e$x$mapping$x, y, z, color)
-    else if(!is.null(color) && !is.null(size))
-      data <- .build_data(e, e$x$mapping$x, y, z, color, size)
-    
+    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
   }
-  
-  serie <- list(
-    name = name,
-    type = "scatter3D",
-    coordinateSystem = coord.system,
-    data = data,
-    ...
-  )
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
   
   e
 }
@@ -963,37 +1011,39 @@ e_scatter_gl_ <- function(e, y, z, name = NULL, coord.system = "geo", rm.x = TRU
   if(missing(y) || missing(z))
     stop("must pass y and z", call. = FALSE)
   
-  if(is.null(name)) # defaults to column name
-    name <- z
-  
-  # remove axis
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
-  
-  data <- .build_data(e, e$x$mapping$x, y, z)
-  
-  # globe
-  if(coord.system == "cartesian3D"){
-    if(!length(e$x$opts$zAxis3D))
-      e$x$opts$zAxis3D <- list(list(show = TRUE))
+  for(i in 1:length(e$x$data)){
     
-    if(!length(e$x$opts$grid3D))
-      e$x$opts$grid3D <- list(list(show = TRUE))
+    nm <- .name_it(e, z, name, i)
     
-    e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
-    e <- .set_axis_3D(e, "y", y, 0)
-    e <- .set_axis_3D(e, "z", z, 0)
-  } 
-  
-  serie <- list(
-    name = name,
-    type = "scatterGL",
-    coordinateSystem = coord.system,
-    data = data,
-    ...
-  )
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
+    # remove axis
+    e <- .rm_axis(e, rm.x, "x")
+    e <- .rm_axis(e, rm.y, "y")
+    
+    data <- .build_data(e$x$data[[i]], e$x$mapping$x, y, z)
+    
+    # globe
+    if(coord.system == "cartesian3D"){
+      if(!length(e$x$opts$zAxis3D))
+        e$x$opts$zAxis3D <- list(list(show = TRUE))
+      
+      if(!length(e$x$opts$grid3D))
+        e$x$opts$grid3D <- list(list(show = TRUE))
+      
+      e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
+      e <- .set_axis_3D(e, "y", y, 0)
+      e <- .set_axis_3D(e, "z", z, 0)
+    } 
+    
+    serie <- list(
+      name = nm,
+      type = "scatterGL",
+      coordinateSystem = coord.system,
+      data = data,
+      ...
+    )
+    
+    e$x$opts$series <- append(e$x$opts$series, list(serie))
+  }
   
   e
 }

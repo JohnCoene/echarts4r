@@ -181,7 +181,7 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #'       c(165, -40)
 #'     )
 #'   ) %>% 
-#'   e_effect_scatter(lat, mag, coord.system = "geo") %>% 
+#'   e_scatter(lat, mag, coord.system = "geo") %>% 
 #'   e_visual_map(min = 4, max = 6.5)
 #'   
 #' # Calendar
@@ -669,7 +669,7 @@ e_parallel <- function(e, ..., name = NULL, rm.x = TRUE, rm.y = TRUE){
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
   
-  e$x$data %>% 
+  e$x$data[[1]] %>% 
     dplyr::select(...) -> df
   
   # remove names
@@ -1116,9 +1116,6 @@ e_bar_3d <- function(e, y, z, bind, coord.system = "cartesian3D", name = NULL,
   
   if(missing(y) || missing(z))
     stop("must pass y and z", call. = FALSE)
-  
-  if(is.null(name)) # defaults to column name
-    name <- deparse(substitute(z))
   
   if(missing(bind))
     bd <- NULL

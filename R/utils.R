@@ -4,18 +4,25 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   if (!is.null(x)) x else y
 }
 
-.assign_axis <- function(x){
+.arrange_data_x <- function(data, x){
+  vect <- data[[x]]
+  
+  if(inherits(vect, "numeric") || inherits(vect, "integer"))
+    data <- data %>% dplyr::arrange_(x)
+  
+  return(data)
+}
+
+.assign_axis <- function(x, data){
   x$mapping$include_x <- FALSE
   cl <- x$mapping$x_class
   if(cl == "character" || cl == "factor"){
-    x$opts$xAxis <- list(list(data = unique(x$data[[x$mapping$x]]), type = "category", boundaryGap = TRUE))
+    x$opts$xAxis <- list(list(data = unique(data[[x$mapping$x]]), type = "category", boundaryGap = TRUE))
   } else if(cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
-    x$opts$xAxis <- list(list(data = unique(x$data[[x$mapping$x]]), type = "time", boundaryGap = TRUE))
+    x$opts$xAxis <- list(list(data = unique(data[[x$mapping$x]]), type = "time", boundaryGap = TRUE))
   } else {
-    x$data <- x$data %>% 
-      dplyr::arrange_(x$mapping$x)
     x$mapping$include_x <- TRUE
-    x$opts$xAxis <- list(list(type = "value"))
+    x$opts$xAxis <- list(list(type = "value", min = min(data[[x$mapping$x]]), max = max(data[[x$mapping$x]])))
   }
   x
 }
@@ -29,7 +36,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
 }
 
 .build_data <- function(e, ...){
-  e$x$data %>% 
+  e$x$data[[1]] %>% 
     dplyr::select_(...) %>% 
     unname(.) -> data
   
@@ -39,8 +46,30 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     
 }
 
+.build_data2 <- function(data, ...){
+  row.names(data) <- NULL
+  data %>% 
+    dplyr::select_(...) %>% 
+    unname(.) -> data
+  
+  apply(data, 1, function(x){
+    list(value = unlist(x, use.names = FALSE))
+  }) 
+  
+}
+
+.add_bind2 <- function(e, l, bind, col = "name", i){
+  e$x$data[[i]] %>% 
+    dplyr::select_(bind) %>% unname() %>% unlist() -> bind
+  
+  for(i in 1:length(l)){
+    l[[i]][[col]] <- bind[i]
+  }
+  l
+}
+
 .add_bind <- function(e, l, bind, col = "name"){
-  e$x$data %>% 
+  e$x$data[[1]] %>% 
     dplyr::select_(bind) %>% unname() %>% unlist() -> bind
   
   for(i in 1:length(l)){
@@ -228,7 +257,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
 }
 
 .build_tree <- function(e, parent, child){
-  e$x$data %>%
+  e$x$data[[1]] %>%
     dplyr::select(
       !!parent,
       !!child
@@ -246,7 +275,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   
   cols <- c("value")
   
-  e$x$data %>%
+  e$x$data[[1]] %>%
     dplyr::select_(
       parent,
       name = child,
@@ -277,15 +306,16 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   jsonlite::toJSON(x, auto_unbox = T, pretty = FALSE)
 }
 
-.build_river <- function(e, serie, label){
+.build_river <- function(e, serie, label, i){
   
-  x <- .get_data(e, e$x$mapping$x)
+  x <- .get_data(e, e$x$mapping$x, i)
   label <- rep(label, length(x))
   
-  e$x$data %>%
+  e$x$data[[i]] %>%
     dplyr::select_(serie) -> data
   
   data <- cbind(x, data, label)
+  row.names(data) <- NULL
   
   apply(unname(data), 1, as.list)
 }
@@ -306,14 +336,14 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   }
 }
 
-.get_data <- function(e, serie){
-  e$x$data %>% 
+.get_data <- function(e, serie, i = 1){
+  e$x$data[[i]] %>% 
     dplyr::select_(serie) %>% 
     unname() %>% 
     .[[1]]
 }
 
-.set_any_axis <- function(e, serie, index, axis = "x"){
+.set_any_axis <- function(e, serie, index, axis = "x", i = 1){
   
   raxis <- .r2axis(axis)
   
@@ -323,7 +353,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     axis <- list(type = type)
     
     if(type != "value"){
-      axis$data <- .get_data(e, serie)
+      axis$data <- .get_data(e, serie, i)
     }
     
     e$x$opts[[raxis]][[index + 1]] <- axis
@@ -331,16 +361,16 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   e
 }
 
-.set_x_axis <- function(e, x.index){
-  .set_any_axis(e, e$x$mapping$x, x.index, axis = "x")
+.set_x_axis <- function(e, x.index, i){
+  .set_any_axis(e, e$x$mapping$x, x.index, axis = "x", i)
 }
 
-.set_y_axis <- function(e, serie, y.index){
-  .set_any_axis(e, serie, y.index, axis = "y")
+.set_y_axis <- function(e, serie, y.index, i){
+  .set_any_axis(e, serie, y.index, axis = "y", i)
 }
 
-.set_z_axis <- function(e, serie, z.index){
-  .set_any_axis(e, serie, z.index, axis = "z")
+.set_z_axis <- function(e, serie, z.index, i){
+  .set_any_axis(e, serie, z.index, axis = "z", i)
 }
 
 .set_axis_3D <- function(e, axis, serie, index){
@@ -385,9 +415,9 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   paste0(axis, "Axis3D")
 }
 
-.map_lines <- function(e, source.lon, source.lat, target.lon, target.lat){
+.map_lines <- function(e, source.lon, source.lat, target.lon, target.lat, i){
   
-  e$x$data %>% 
+  e$x$data[[i]] %>% 
     dplyr::select_(
       source.lon, source.lat, target.lon, target.lat
     ) %>% 
@@ -407,8 +437,8 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   file
 }
 
-.build_cartesian3D <- function(e, ...){
-  e$x$data %>%
+.build_cartesian3D <- function(e, ..., i = 1){
+  e$x$data[[i]] %>%
     dplyr::select_(
       ...
     ) %>%
@@ -505,4 +535,25 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   
   e$x$opts$radar[[r.index + 1]]$indicator <- indicators
   e
+}
+
+.name_it <- function(e, serie, name, i){
+  if(is.null(name)) # defaults to column name
+    if(!is.null(names(e$x$data)[i])){
+      nm <- names(e$x$data)[i]
+    } else {
+      nm <- serie
+    }
+  else 
+    nm <- name
+  
+  return(nm)
+}
+
+"%||%" <- function(x, y) {
+  if (is.null(x)) 
+    x 
+  else if(is.na(y))
+    x
+  else y
 }

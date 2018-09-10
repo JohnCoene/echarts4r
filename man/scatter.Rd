@@ -70,7 +70,7 @@ quakes \%>\%
       c(165, -40)
     )
   ) \%>\% 
-  e_effect_scatter(lat, mag, coord.system = "geo") \%>\% 
+  e_scatter(lat, mag, coord.system = "geo") \%>\% 
   e_visual_map(min = 4, max = 6.5)
   
 # Calendar
