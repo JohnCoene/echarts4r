@@ -18,7 +18,11 @@ knitr::opts_chunk$set(
 library(echarts4r)
 ```
 
-`echarts4r` comes with proxies (functions ending on `_p`) as well as the ability access selected data. You will find a demo of shiny working with `echarts4r` [here](http://shiny.john-coene.com/echarts4rShiny/)
+`echarts4r` comes with proxies (functions ending on `_p`) as well as the ability access selected data. You will find a demo of shiny working with `echarts4r` [here](http://shiny.john-coene.com/echarts4rShiny/).
+
+<a href = "http://shiny.john-coene.com/echarts4rShiny/" target ="_blank" class = "btn btn-default">
+  Shiny Demo
+</a>
 
 Get data from shiny with the following:
 
