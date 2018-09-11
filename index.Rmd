@@ -6,7 +6,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-
+library(htmltools)
 library(echarts4r)
 ```
 
@@ -56,14 +56,55 @@ devtools::install_git("https://git.coding.net/JohnCoene/echarts4r.git") # coding
 * themes
 * and more...
 
-<div class="panel panel-success">
-<div class="panel-heading">
-Group <span class="label label-default">new</span>
-</div>
-<div class="panel-body">
-`echarts4r` now understands `dplyr::group_by` in order to comply with the [tidy data](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) concept; the package now works much better with *long* datasets. See [get started guide](articles/get_started) or the various examples in the functions' documentation or the [gallery](article/gallery).
-</div>
-</div>
+```{r, echo=FALSE}
+div(
+  class = "row",
+  div(
+    class = "col-md-8",
+    div(
+      class = "panel panel-default",
+      div(
+        class = "panel-heading",
+        "Group",
+        tags$span(class = "label label-success", "new")
+      ),
+      div(
+        class = "panel-body",
+        code("echarts4r"), "now understands", code("dplyr::group_by"), "in order to better work with",
+        tags$a(
+          href = "https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html",
+          target = "_blank",
+          "tidy data"
+        ),
+        "concept; the package now works much better with *long* datasets. See",
+        tags$a(
+          href = "articles/get_started",
+          "get started guide"
+        ),
+        "or the various examples in the functions' documentation or the",
+        tags$a(
+          href = "article/gallery",
+          "gallery"
+        )
+      )
+    )
+  ),
+  div(
+    class = "col-md-4",
+    pre(
+      code(
+        class = "r",
+"
+# one serie per group
+iris %>% 
+  group_by(Species) %>% 
+  e_charts(Sepal.Length) %>% 
+  e_line(Sepal.Width)"
+      )
+    )
+  )
+)
+```
 
 ## Examples
 
