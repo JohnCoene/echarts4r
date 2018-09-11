@@ -47,6 +47,8 @@ devtools::install_git("https://git.coding.net/JohnCoene/echarts4r.git") # coding
 
 ## Features
 
+Some of the features:
+
 * 33 chart types
 * Animations
 * Brush & sliders
@@ -54,7 +56,6 @@ devtools::install_git("https://git.coding.net/JohnCoene/echarts4r.git") # coding
 * Plugins included
 * Shiny proxies
 * themes
-* and more...
 
 ```{r, echo=FALSE}
 div(
@@ -70,7 +71,8 @@ div(
       ),
       div(
         class = "panel-body",
-        code("echarts4r"), "now understands", code("dplyr::group_by"), "in order to better work with",
+        code("echarts4r"), "now understands", code("dplyr::group_by"), 
+        "in order to better work with",
         tags$a(
           href = "https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html",
           target = "_blank",
@@ -94,12 +96,45 @@ div(
     pre(
       code(
         class = "r",
-"
-# one serie per group
+"# one serie per group
 iris %>% 
   group_by(Species) %>% 
   e_charts(Sepal.Length) %>% 
   e_line(Sepal.Width)"
+      )
+    )
+  )
+)
+
+div(
+  class = "row",
+  div(
+    class = "col-md-8",
+    div(
+      class = "well",
+      div(
+        class = "row",
+        div(
+          class = "col-md-2",
+          tags$i(class = "fa fa-warning fa-4x", style = "color:#ff4136;")
+        ),
+        div(
+          class = "col-md-10",
+          code("echarts4r"), ", by default, passes the entirety of your data to the visualisation, which may lead to large files.",
+          "Use", code("e_clean"), "at the end of your", code("%>%"), "to remove it all."
+        )
+      )
+    )
+  ),
+  div(
+    class = "col-md-4",
+    pre(
+      code(
+        class = "r",
+"iris %>% 
+  e_charts(Sepal.Length) %>% 
+  e_line(Sepal.Width) %>%
+  e_clean() # remove data"
       )
     )
   )
