@@ -97,10 +97,10 @@ div(
       code(
         class = "r",
 "# one serie per group
-iris %>% 
-  group_by(Species) %>% 
-  e_charts(Sepal.Length) %>% 
-  e_line(Sepal.Width)"
+ iris %>% 
+   group_by(Species) %>% 
+   e_charts(Sepal.Length) %>% 
+   e_line(Sepal.Width)"
       )
     )
   )
@@ -132,9 +132,9 @@ div(
       code(
         class = "r",
 "iris %>% 
-  e_charts(Sepal.Length) %>% 
-  e_line(Sepal.Width) %>%
-  e_clean() # remove data"
+   e_charts(Sepal.Length) %>% 
+   e_line(Sepal.Width) %>%
+   e_clean() # remove data"
       )
     )
   )
