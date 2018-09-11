@@ -1,3 +1,4 @@
+^cran-comments\.md$
 ^_pkgdown\.yml$
 ^docs$
 ^.*\.Rproj$

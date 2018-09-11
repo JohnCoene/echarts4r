@@ -1,18 +1,19 @@
 ## Test environments
 * local OS X install, R 3.4.4
-* ubuntu 12.04 (on travis-ci), R 3.4.4
+* ubuntu 14.04 (on travis-ci), R 3.4.4
 * win-builder (devel and release)
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 2 notes
 
-* This is a new release.
+1. This is a new release.
+2. Large `inst` folder due to JavaScript dependencies.
 
-## Reverse dependencies
-
-This is a new release, so there are no reverse dependencies.
-
----
-
-* Package includes many JavaScript files as well as a few images for globe layers, hence the large `/inst` folder. It also includes many vignettes (`./docs`) for pkgdown.
+```
+  installed size is 111.5Mb
+  sub-directories of 1Mb or more:
+    assets         3.4Mb
+    doc          104.6Mb
+    htmlwidgets    3.0Mb
+```
