@@ -283,7 +283,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     ) -> data
   
   if(!is.null(itemStyle)){
-    e$x$data %>%
+    e$x$data[[1]] %>%
       dplyr::select_(
         itemStyle = itemStyle
       ) -> is
