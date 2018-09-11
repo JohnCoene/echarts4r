@@ -1,4 +1,8 @@
-# echarts4r 0.1.0.9000
+# echarts4r 0.1.1.9000
+
+* No longer passes entirety of data.frame to the fron-end.
+
+# echarts4r 0.1.0
 
 `echarts4r` now understands `dplyr::group_by`
 

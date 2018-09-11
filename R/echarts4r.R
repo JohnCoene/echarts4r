@@ -1,3 +1,8 @@
+echarts_build <- function(e) {
+  e$x$data <- NULL
+  e
+} 
+
 #' Initialise
 #'
 #' Initialise a chart.
@@ -86,6 +91,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
     dependencies = crosstalk::crosstalkLibs(),
     package = 'echarts4r',
     elementId = elementId,
+    preRenderHook = echarts_build,
     sizingPolicy = htmlwidgets::sizingPolicy(
       defaultWidth = "100%",
       knitr.figure = FALSE,

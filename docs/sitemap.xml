@@ -13,9 +13,6 @@
     <loc>http://echarts4r.john-coene.com/reference/axis3d.html</loc>
   </url>
   <url>
-    <loc>http://echarts4r.john-coene.com/reference/echarts4r-shiny.html</loc>
-  </url>
-  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_angle_axis.html</loc>
   </url>
   <url>
@@ -173,6 +170,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_visual_map.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/echarts4r-shiny.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/formatters.html</loc>

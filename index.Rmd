@@ -17,6 +17,7 @@ library(echarts4r)
 
 [ECharts](http://echarts.baidu.com/) 4: powerful interactive visualisations in R.
 
+<div class = "row">
 <a class="btn btn-success" href="articles/get_started.html">
   <i class="fa fa-rocket" aria-hidden="true"></i>
   Get Started
@@ -33,16 +34,27 @@ library(echarts4r)
   <i class="fa fa-desktop" aria-hidden="true"></i>
   Shiny demo
 </a>
+</div>
 
 ## Installation
 
-You can install echarts4r from any of the repositories below.
+<span class = "label label-success"><i class = "fa fa-warning"></i></span> Version `0.1.1` sees great performance and security improvements, *upgrading is highly recommended.*
+
+You can install echarts4r with `devtools` or `remotes` from Github, Bitbucket or Coding. The latter is specifically for China, as the package is large download from Mainland can be long from outside the firewall.
 
 ```{r, eval=FALSE}
 # install.packages("devtools")
 devtools::install_github("JohnCoene/echarts4r") # github
-devtools::install_bitbucket("JohnCoene/echarts4r") # bitbucket
-devtools::install_git("https://git.coding.net/JohnCoene/echarts4r.git") # coding.net
+```
+
+```{r, eval=FALSE}
+# install.packages("remotes")
+remotes::install_bitbucket("JohnCoene/echarts4r") # bitbucket
+```
+
+```{r, eval=FALSE}
+# install.packages("remotes")
+remotes::install_git("https://git.coding.net/JohnCoene/echarts4r.git") # coding.net
 ```
 
 ## Features
@@ -101,40 +113,6 @@ div(
    group_by(Species) %>% 
    e_charts(Sepal.Length) %>% 
    e_line(Sepal.Width)"
-      )
-    )
-  )
-)
-
-div(
-  class = "row",
-  div(
-    class = "col-md-8",
-    div(
-      class = "well",
-      div(
-        class = "row",
-        div(
-          class = "col-md-2",
-          tags$i(class = "fa fa-warning fa-4x", style = "color:#ff4136;")
-        ),
-        div(
-          class = "col-md-10",
-          code("echarts4r"), ", by default, passes the entirety of your data to the visualisation, which may lead to large files.",
-          "Use", code("e_clean"), "at the end of your", code("%>%"), "to remove it all."
-        )
-      )
-    )
-  ),
-  div(
-    class = "col-md-4",
-    pre(
-      code(
-        class = "r",
-"iris %>% 
-   e_charts(Sepal.Length) %>% 
-   e_line(Sepal.Width) %>%
-   e_clean() # remove data"
       )
     )
   )
