@@ -163,14 +163,3 @@ USArrests %>%
     e_charts(State) %>% 
     e_area(Murder, label = list(normal = list(show = TRUE))) 
 ```
-
-### Clean
-
-By default `echarts4r` passes the entirety of your `data.frame` to the visualisation and, the document or app in which it is, which may be too heavy. Use `e_clean` at the end of your `%>%` to remove it.
-
-```{r, eval = FALSE}
-massive_data_frame %>% 
-  e_charts(x) %>% 
-  e_line(y) %>% 
-  e_clean()
-```

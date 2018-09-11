@@ -51,6 +51,12 @@
   </a>
 </li>
 <li>
+  <a href="../LICENSE.html">
+    <span class="fa fa-balance-scale"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../news/index.html">
     <span class="fa fa-newspaper-o"></span>
      
@@ -69,16 +75,32 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-<li>
+<li class="dropdown-header">Guide</li>
+    <li>
       <a href="../articles/get_started.html">Get Started</a>
     </li>
     <li>
       <a href="../articles/advanced.html">Advanced</a>
     </li>
     <li class="divider">
+    <li class="dropdown-header">Charts &amp; graphs</li>
     <li>
       <a href="../articles/chart_types.html">Chart types</a>
     </li>
+    <li>
+      <a href="../articles/gl.html">webGL</a>
+    </li>
+    <li>
+      <a href="../articles/graph.html">Graph</a>
+    </li>
+    <li>
+      <a href="../articles/stats.html">Statistical</a>
+    </li>
+    <li>
+      <a href="../articles/pictorial.html">Pictorial</a>
+    </li>
+    <li class="divider">
+    <li class="dropdown-header">Geospatial</li>
     <li>
       <a href="../articles/map.html">Map</a>
     </li>
@@ -100,19 +122,8 @@
     <li>
       <a href="../articles/threeD.html">3D</a>
     </li>
-    <li>
-      <a href="../articles/gl.html">webGL</a>
-    </li>
-    <li>
-      <a href="../articles/graph.html">Graph</a>
-    </li>
-    <li>
-      <a href="../articles/stats.html">Statistical</a>
-    </li>
-    <li>
-      <a href="../articles/pictorial.html">Pictorial</a>
-    </li>
     <li class="divider">
+    <li class="dropdown-header">Customisation</li>
     <li>
       <a href="../articles/grid.html">Grid &amp; Axis</a>
     </li>
@@ -194,12 +205,12 @@
 <span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(mpg, <span class="dt">smooth =</span> <span class="ot">TRUE</span>) -&gt;<span class="st"> </span>echsart
 
 echsart <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/toolbox.html">e_toolbox_feature</a></span>(<span class="dt">feature =</span> <span class="st">"saveAsImage"</span>) <span class="co"># hit the download button!</span></code></pre></div>
-<div id="htmlwidget-effd7855e7b65807251d" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-effd7855e7b65807251d">{"x":{"theme":"","renderer":"canvas","mapping":{"x":"qsec","x_class":"numeric","include_x":true},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["mpg"]},"series":[{"name":"mpg","type":"line","data":[{"value":[14.5,15.8]},{"value":[14.6,15]},{"value":[15.41,13.3]},{"value":[15.5,19.7]},{"value":[15.84,14.3]},{"value":[16.46,21]},{"value":[16.7,26]},{"value":[16.87,15.5]},{"value":[16.9,30.4]},{"value":[17.02,21]},{"value":[17.02,18.7]},{"value":[17.05,19.2]},{"value":[17.3,15.2]},{"value":[17.4,16.4]},{"value":[17.42,14.7]},{"value":[17.6,17.3]},{"value":[17.82,10.4]},{"value":[17.98,10.4]},{"value":[18,15.2]},{"value":[18.3,19.2]},{"value":[18.52,30.4]},{"value":[18.6,21.4]},{"value":[18.61,22.8]},{"value":[18.9,17.8]},{"value":[18.9,27.3]},{"value":[19.44,21.4]},{"value":[19.47,32.4]},{"value":[19.9,33.9]},{"value":[20,24.4]},{"value":[20.01,21.5]},{"value":[20.22,18.1]},{"value":[22.9,22.8]}],"coordinateSystem":"cartesian2d","smooth":true,"yAxisIndex":0,"xAxisIndex":0}],"toolbox":{"feature":{"saveAsImage":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script><div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">echsart <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/toolbox.html">e_toolbox_feature</a></span>(<span class="dt">feature =</span> <span class="st">"dataZoom"</span>)</code></pre></div>
-<div id="htmlwidget-219d28a0081c7ff2590d" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-219d28a0081c7ff2590d">{"x":{"theme":"","renderer":"canvas","mapping":{"x":"qsec","x_class":"numeric","include_x":true},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["mpg"]},"series":[{"name":"mpg","type":"line","data":[{"value":[14.5,15.8]},{"value":[14.6,15]},{"value":[15.41,13.3]},{"value":[15.5,19.7]},{"value":[15.84,14.3]},{"value":[16.46,21]},{"value":[16.7,26]},{"value":[16.87,15.5]},{"value":[16.9,30.4]},{"value":[17.02,21]},{"value":[17.02,18.7]},{"value":[17.05,19.2]},{"value":[17.3,15.2]},{"value":[17.4,16.4]},{"value":[17.42,14.7]},{"value":[17.6,17.3]},{"value":[17.82,10.4]},{"value":[17.98,10.4]},{"value":[18,15.2]},{"value":[18.3,19.2]},{"value":[18.52,30.4]},{"value":[18.6,21.4]},{"value":[18.61,22.8]},{"value":[18.9,17.8]},{"value":[18.9,27.3]},{"value":[19.44,21.4]},{"value":[19.47,32.4]},{"value":[19.9,33.9]},{"value":[20,24.4]},{"value":[20.01,21.5]},{"value":[20.22,18.1]},{"value":[22.9,22.8]}],"coordinateSystem":"cartesian2d","smooth":true,"yAxisIndex":0,"xAxisIndex":0}],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script><div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">echsart <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/toolbox.html">e_toolbox_feature</a></span>(<span class="dt">feature =</span> <span class="st">"dataView"</span>)</code></pre></div>
-<div id="htmlwidget-90a8ee28bbdbee737a45" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-90a8ee28bbdbee737a45">{"x":{"theme":"","renderer":"canvas","mapping":{"x":"qsec","x_class":"numeric","include_x":true},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["mpg"]},"series":[{"name":"mpg","type":"line","data":[{"value":[14.5,15.8]},{"value":[14.6,15]},{"value":[15.41,13.3]},{"value":[15.5,19.7]},{"value":[15.84,14.3]},{"value":[16.46,21]},{"value":[16.7,26]},{"value":[16.87,15.5]},{"value":[16.9,30.4]},{"value":[17.02,21]},{"value":[17.02,18.7]},{"value":[17.05,19.2]},{"value":[17.3,15.2]},{"value":[17.4,16.4]},{"value":[17.42,14.7]},{"value":[17.6,17.3]},{"value":[17.82,10.4]},{"value":[17.98,10.4]},{"value":[18,15.2]},{"value":[18.3,19.2]},{"value":[18.52,30.4]},{"value":[18.6,21.4]},{"value":[18.61,22.8]},{"value":[18.9,17.8]},{"value":[18.9,27.3]},{"value":[19.44,21.4]},{"value":[19.47,32.4]},{"value":[19.9,33.9]},{"value":[20,24.4]},{"value":[20.01,21.5]},{"value":[20.22,18.1]},{"value":[22.9,22.8]}],"coordinateSystem":"cartesian2d","smooth":true,"yAxisIndex":0,"xAxisIndex":0}],"toolbox":{"feature":{"dataView":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-516bc6b4db760415e7b8" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-516bc6b4db760415e7b8">{"x":{"theme":"","renderer":"canvas","mapping":{"x":"qsec","x_class":"numeric","include_x":true},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["mpg"]},"series":[{"name":"mpg","type":"line","data":[{"value":[14.5,15.8]},{"value":[14.6,15]},{"value":[15.41,13.3]},{"value":[15.5,19.7]},{"value":[15.84,14.3]},{"value":[16.46,21]},{"value":[16.7,26]},{"value":[16.87,15.5]},{"value":[16.9,30.4]},{"value":[17.02,21]},{"value":[17.02,18.7]},{"value":[17.05,19.2]},{"value":[17.3,15.2]},{"value":[17.4,16.4]},{"value":[17.42,14.7]},{"value":[17.6,17.3]},{"value":[17.82,10.4]},{"value":[17.98,10.4]},{"value":[18,15.2]},{"value":[18.3,19.2]},{"value":[18.52,30.4]},{"value":[18.6,21.4]},{"value":[18.61,22.8]},{"value":[18.9,17.8]},{"value":[18.9,27.3]},{"value":[19.44,21.4]},{"value":[19.47,32.4]},{"value":[19.9,33.9]},{"value":[20,24.4]},{"value":[20.01,21.5]},{"value":[20.22,18.1]},{"value":[22.9,22.8]}],"coordinateSystem":"cartesian2d","smooth":true,"yAxisIndex":0,"xAxisIndex":0}],"toolbox":{"feature":{"saveAsImage":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script><div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">echsart <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/toolbox.html">e_toolbox_feature</a></span>(<span class="dt">feature =</span> <span class="st">"dataZoom"</span>)</code></pre></div>
+<div id="htmlwidget-8eb0f2a6e161b6ced650" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8eb0f2a6e161b6ced650">{"x":{"theme":"","renderer":"canvas","mapping":{"x":"qsec","x_class":"numeric","include_x":true},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["mpg"]},"series":[{"name":"mpg","type":"line","data":[{"value":[14.5,15.8]},{"value":[14.6,15]},{"value":[15.41,13.3]},{"value":[15.5,19.7]},{"value":[15.84,14.3]},{"value":[16.46,21]},{"value":[16.7,26]},{"value":[16.87,15.5]},{"value":[16.9,30.4]},{"value":[17.02,21]},{"value":[17.02,18.7]},{"value":[17.05,19.2]},{"value":[17.3,15.2]},{"value":[17.4,16.4]},{"value":[17.42,14.7]},{"value":[17.6,17.3]},{"value":[17.82,10.4]},{"value":[17.98,10.4]},{"value":[18,15.2]},{"value":[18.3,19.2]},{"value":[18.52,30.4]},{"value":[18.6,21.4]},{"value":[18.61,22.8]},{"value":[18.9,17.8]},{"value":[18.9,27.3]},{"value":[19.44,21.4]},{"value":[19.47,32.4]},{"value":[19.9,33.9]},{"value":[20,24.4]},{"value":[20.01,21.5]},{"value":[20.22,18.1]},{"value":[22.9,22.8]}],"coordinateSystem":"cartesian2d","smooth":true,"yAxisIndex":0,"xAxisIndex":0}],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script><div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">echsart <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/toolbox.html">e_toolbox_feature</a></span>(<span class="dt">feature =</span> <span class="st">"dataView"</span>)</code></pre></div>
+<div id="htmlwidget-5ac2b59270f5025217aa" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5ac2b59270f5025217aa">{"x":{"theme":"","renderer":"canvas","mapping":{"x":"qsec","x_class":"numeric","include_x":true},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["mpg"]},"series":[{"name":"mpg","type":"line","data":[{"value":[14.5,15.8]},{"value":[14.6,15]},{"value":[15.41,13.3]},{"value":[15.5,19.7]},{"value":[15.84,14.3]},{"value":[16.46,21]},{"value":[16.7,26]},{"value":[16.87,15.5]},{"value":[16.9,30.4]},{"value":[17.02,21]},{"value":[17.02,18.7]},{"value":[17.05,19.2]},{"value":[17.3,15.2]},{"value":[17.4,16.4]},{"value":[17.42,14.7]},{"value":[17.6,17.3]},{"value":[17.82,10.4]},{"value":[17.98,10.4]},{"value":[18,15.2]},{"value":[18.3,19.2]},{"value":[18.52,30.4]},{"value":[18.6,21.4]},{"value":[18.61,22.8]},{"value":[18.9,17.8]},{"value":[18.9,27.3]},{"value":[19.44,21.4]},{"value":[19.47,32.4]},{"value":[19.9,33.9]},{"value":[20,24.4]},{"value":[20.01,21.5]},{"value":[20.22,18.1]},{"value":[22.9,22.8]}],"coordinateSystem":"cartesian2d","smooth":true,"yAxisIndex":0,"xAxisIndex":0}],"toolbox":{"feature":{"dataView":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

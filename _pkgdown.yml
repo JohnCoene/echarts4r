@@ -41,19 +41,33 @@ navbar:
   left:
     - icon: fa-home
       href: index.html
+    - icon: fa-balance-scale
+      href: LICENSE.html
     - icon: fa-newspaper-o
       href: news/index.html
     - icon: fa-paint-brush
       href: articles/gallery.html
     - text: "Guide"
       menu: 
+        - text: "Guide"
         - text: "Get Started"
           href: articles/get_started.html
         - text: "Advanced"
           href: articles/advanced.html
         - text: "------------------"
+        - text: "Charts & graphs"
         - text: "Chart types"
           href: articles/chart_types.html
+        - text: "webGL"
+          href: articles/gl.html
+        - text: "Graph"
+          href: articles/graph.html
+        - text: "Statistical"
+          href: articles/stats.html
+        - text: "Pictorial"
+          href: articles/pictorial.html
+        - text: "------------------"
+        - text: "Geospatial"
         - text: "Map"
           href: articles/map.html
         - text: "Geo"
@@ -68,15 +82,8 @@ navbar:
           href: articles/leaflet.html
         - text: "3D"
           href: articles/threeD.html
-        - text: "webGL"
-          href: articles/gl.html
-        - text: "Graph"
-          href: articles/graph.html
-        - text: "Statistical"
-          href: articles/stats.html
-        - text: "Pictorial"
-          href: articles/pictorial.html
         - text: "------------------"
+        - text: "Customisation"
         - text: "Grid & Axis"
           href: articles/grid.html
         - text: "Shiny"

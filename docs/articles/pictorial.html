@@ -51,6 +51,12 @@
   </a>
 </li>
 <li>
+  <a href="../LICENSE.html">
+    <span class="fa fa-balance-scale"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../news/index.html">
     <span class="fa fa-newspaper-o"></span>
      
@@ -69,16 +75,32 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-<li>
+<li class="dropdown-header">Guide</li>
+    <li>
       <a href="../articles/get_started.html">Get Started</a>
     </li>
     <li>
       <a href="../articles/advanced.html">Advanced</a>
     </li>
     <li class="divider">
+    <li class="dropdown-header">Charts &amp; graphs</li>
     <li>
       <a href="../articles/chart_types.html">Chart types</a>
     </li>
+    <li>
+      <a href="../articles/gl.html">webGL</a>
+    </li>
+    <li>
+      <a href="../articles/graph.html">Graph</a>
+    </li>
+    <li>
+      <a href="../articles/stats.html">Statistical</a>
+    </li>
+    <li>
+      <a href="../articles/pictorial.html">Pictorial</a>
+    </li>
+    <li class="divider">
+    <li class="dropdown-header">Geospatial</li>
     <li>
       <a href="../articles/map.html">Map</a>
     </li>
@@ -100,19 +122,8 @@
     <li>
       <a href="../articles/threeD.html">3D</a>
     </li>
-    <li>
-      <a href="../articles/gl.html">webGL</a>
-    </li>
-    <li>
-      <a href="../articles/graph.html">Graph</a>
-    </li>
-    <li>
-      <a href="../articles/stats.html">Statistical</a>
-    </li>
-    <li>
-      <a href="../articles/pictorial.html">Pictorial</a>
-    </li>
     <li class="divider">
+    <li class="dropdown-header">Customisation</li>
     <li>
       <a href="../articles/grid.html">Grid &amp; Axis</a>
     </li>
@@ -206,8 +217,8 @@ df <span class="op">%&gt;%</span><span class="st"> </span>
     <span class="dt">symbolSize =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">4</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/theme.html">e_theme</a></span>(<span class="st">"westeros"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"Built-in symbols"</span>)</code></pre></div>
-<div id="htmlwidget-4b354c57f1995391d39f" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4b354c57f1995391d39f">{"x":{"theme":"westeros","renderer":"canvas","mapping":{"x":"x","x_class":"integer","include_x":true},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["z","y"]},"series":[{"name":"z","type":"bar","data":[{"value":[1,5.05061335883889]},{"value":[2,7.27641060841708]},{"value":[3,5.25075548285892]},{"value":[4,4.38828962487272]},{"value":[5,1.24535262429802]},{"value":[6,6.88737964607089]},{"value":[7,5.51472422921736]},{"value":[8,1.05609900017165]},{"value":[9,3.70364132848517]},{"value":[10,5.97127846535877]}],"yAxisIndex":0,"xAxisIndex":0,"barWidth":10},{"name":"y","type":"pictorialBar","data":[{"value":[1,9.45764480065525]},{"value":[2,12.015961763807]},{"value":[3,10.2337155378511]},{"value":[4,8.34939926956043]},{"value":[5,6.58206190795078]},{"value":[6,12.1293734915145]},{"value":[7,10.1753521756675]},{"value":[8,8.07076770900006]},{"value":[9,10.8519012641416]},{"value":[10,11.2416735601828]}],"yAxisIndex":0,"xAxisIndex":0,"symbolRepeat":true,"z":-1,"symbolSize":[10,4],"symbol":"rect"}],"title":{"text":"Built-in symbols"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e43fb0ac816ff46acc7e" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e43fb0ac816ff46acc7e">{"x":{"theme":"westeros","renderer":"canvas","mapping":{"x":"x","x_class":"integer","include_x":true},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["z","y"]},"series":[{"name":"z","type":"bar","data":[{"value":[1,4.4157482435574]},{"value":[2,4.39411600675133]},{"value":[3,4.53167403922261]},{"value":[4,2.49181106003493]},{"value":[5,6.19637346472745]},{"value":[6,4.09790047114381]},{"value":[7,2.46482288067546]},{"value":[8,3.67510283198864]},{"value":[9,3.61539089435905]},{"value":[10,5.72560064002731]}],"yAxisIndex":0,"xAxisIndex":0,"barWidth":10},{"name":"y","type":"pictorialBar","data":[{"value":[1,11.3874898560181]},{"value":[2,11.0071329915095]},{"value":[3,8.63448583716858]},{"value":[4,7.42263465976699]},{"value":[5,11.6052726661036]},{"value":[6,9.22797572443339]},{"value":[7,8.25757618037831]},{"value":[8,6.08498354703659]},{"value":[9,9.68736257862657]},{"value":[10,10.245566503246]}],"yAxisIndex":0,"xAxisIndex":0,"symbolRepeat":true,"z":-1,"symbolSize":[10,4],"symbol":"rect"}],"title":{"text":"Built-in symbols"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="svg-path" class="section level3">
 <h3 class="hasAnchor">
@@ -225,8 +236,8 @@ df <span class="op">%&gt;%</span><span class="st"> </span>
               <span class="dt">barCategoryGap =</span> <span class="st">"-130%"</span>, 
               <span class="dt">itemStyle =</span> style) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"SVG path"</span>)</code></pre></div>
-<div id="htmlwidget-620198b6464a1b9b9d24" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-620198b6464a1b9b9d24">{"x":{"theme":"","renderer":"canvas","mapping":{"x":"x","x_class":"integer","include_x":true},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["y"]},"series":[{"name":"y","type":"pictorialBar","data":[{"value":[1,9.45764480065525]},{"value":[2,12.015961763807]},{"value":[3,10.2337155378511]},{"value":[4,8.34939926956043]},{"value":[5,6.58206190795078]},{"value":[6,12.1293734915145]},{"value":[7,10.1753521756675]},{"value":[8,8.07076770900006]},{"value":[9,10.8519012641416]},{"value":[10,11.2416735601828]}],"yAxisIndex":0,"xAxisIndex":0,"barCategoryGap":"-130%","itemStyle":{"normal":{"opacity":0.5},"emphasis":{"opacity":1}},"symbol":"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"}],"title":{"text":"SVG path"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a439e88bb373acd387f3" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a439e88bb373acd387f3">{"x":{"theme":"","renderer":"canvas","mapping":{"x":"x","x_class":"integer","include_x":true},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["y"]},"series":[{"name":"y","type":"pictorialBar","data":[{"value":[1,11.3874898560181]},{"value":[2,11.0071329915095]},{"value":[3,8.63448583716858]},{"value":[4,7.42263465976699]},{"value":[5,11.6052726661036]},{"value":[6,9.22797572443339]},{"value":[7,8.25757618037831]},{"value":[8,6.08498354703659]},{"value":[9,9.68736257862657]},{"value":[10,10.245566503246]}],"yAxisIndex":0,"xAxisIndex":0,"barCategoryGap":"-130%","itemStyle":{"normal":{"opacity":0.5},"emphasis":{"opacity":1}},"symbol":"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"}],"title":{"text":"SVG path"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="images" class="section level3">
 <h3 class="hasAnchor">
@@ -253,8 +264,8 @@ data <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/e_pictorial.html">e_pictorial</a></span>(value, symbol) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/e_legend.html">e_legend</a></span>(<span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"Images"</span>, <span class="st">"Mountains height"</span>)</code></pre></div>
-<div id="htmlwidget-5e7f4f9b4ee85555ab0d" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5e7f4f9b4ee85555ab0d">{"x":{"theme":"","renderer":"canvas","mapping":{"x":"x","x_class":"factor","include_x":false},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["Qomolangma","Kilimanjaro"],"type":"category","boundaryGap":true}],"legend":{"data":["value"],"show":false,"type":"plain"},"series":[{"name":"value","type":"pictorialBar","data":[{"value":["Qomolangma","8844"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Qomolangma.png"},{"value":["Kilimanjaro","5895"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Kilimanjaro.png"}],"yAxisIndex":0,"xAxisIndex":0}],"title":{"text":"Images","subtext":"Mountains height"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d2f6ca6e0c691686b228" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d2f6ca6e0c691686b228">{"x":{"theme":"","renderer":"canvas","mapping":{"x":"x","x_class":"factor","include_x":false},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["Qomolangma","Kilimanjaro"],"type":"category","boundaryGap":true}],"legend":{"data":["value"],"show":false,"type":"plain"},"series":[{"name":"value","type":"pictorialBar","data":[{"value":["Qomolangma","8844"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Qomolangma.png"},{"value":["Kilimanjaro","5895"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Kilimanjaro.png"}],"yAxisIndex":0,"xAxisIndex":0}],"title":{"text":"Images","subtext":"Mountains height"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
   </div>
 
