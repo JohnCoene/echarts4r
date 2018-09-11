@@ -1,6 +1,6 @@
 Package: echarts4r
 Title: Create Interactive Graphs with 'Echarts JavaScript' Version 4
-Date: 2018-08-12
+Date: 2018-09-12
 Version: 0.1.1
 Authors@R: person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre"))
 Description: Easily create interactive charts by leveraging the 'Echarts Javascript' library which includes
