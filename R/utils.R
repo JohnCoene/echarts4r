@@ -256,21 +256,6 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   e
 }
 
-.build_tree <- function(e, parent, child){
-  e$x$data[[1]] %>%
-    dplyr::select(
-      !!parent,
-      !!child
-    ) -> df
-  
-  .tree_that(df)
-}
-
-.tree_that <- function(df){
-  tree <- data.tree::FromDataFrameNetwork(df)
-  data.tree::ToListExplicit(tree, unname = TRUE)
-}
-
 .build_sun <- function(e, parent, child, value, itemStyle = NULL){
   
   cols <- c("value")

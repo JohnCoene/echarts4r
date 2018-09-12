@@ -1106,46 +1106,49 @@ e_histogram_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRU
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
-  
-  data <- .get_data(e, serie)
-  histogram <- hist(data, plot = FALSE, breaks)
-  
-  hist <- data.frame(
-    histogram$mids,
-    histogram$counts
-  )
-  
-  hist <- apply(unname(hist), 1, as.list)
-  
-  if(y.index != 0)
-    e <- .set_y_axis(e, serie, y.index)
-  
-  if(x.index != 0)
-    e <- .set_x_axis(e, x.index)
-  
-  if(!length(e$x$opts$xAxis))
-    e$x$opts$xAxis <- list(
-      list(
-        type = "value", scale = TRUE
-      )
+  for(i in 1:length(e$x$data)){
+    
+    nm <- .name_it(e, NULL, name, i)
+    
+    data <- .get_data(e, serie, i)
+    histogram <- hist(data, plot = FALSE, breaks)
+    
+    hist <- data.frame(
+      histogram$mids,
+      histogram$counts
     )
+    
+    hist <- apply(unname(hist), 1, as.list)
+    
+    if(y.index != 0)
+      e <- .set_y_axis(e, serie, y.index)
+    
+    if(x.index != 0)
+      e <- .set_x_axis(e, x.index)
+    
+    if(!length(e$x$opts$xAxis))
+      e$x$opts$xAxis <- list(
+        list(
+          type = "value", scale = TRUE
+        )
+      )
+    
+    e.serie <- list(
+      name = name,
+      type = "bar",
+      data = hist,
+      barWidth = bar.width,
+      yAxisIndex = y.index,
+      xAxisIndex = x.index,
+      ...
+    )
+    
+    if(isTRUE(legend))
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+    
+    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+  }
   
-  serie <- list(
-    name = name,
-    type = "bar",
-    data = hist,
-    barWidth = bar.width,
-    yAxisIndex = y.index,
-    xAxisIndex = x.index,
-    ...
-  )
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }
 
