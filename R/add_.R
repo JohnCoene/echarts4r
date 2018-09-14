@@ -651,39 +651,37 @@ e_boxplot_ <- function(e, serie, name = NULL, outliers = TRUE, ...){
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
-  
-  # build JSON data
-  vector <- .build_boxplot(e, serie)
-  
-  if(length(e$x$opts$series) >= 1){
-    e$x$opts$series[[1]]$data <- append(
-      e$x$opts$series[[1]]$data, 
-      list(vector)
-    )
-  } else {
-    # boxplot + opts
-    box <- list(
-      name = name,
-      type = "boxplot",
-      data = list(vector),
-      ...
-    )
-    e$x$opts$series <- append(e$x$opts$series, list(box))
+  for(i in 1:length(e$x$data)){
+    nm <- .name_it(e, serie, NULL, i)
+    
+    # build JSON data
+    vector <- .build_boxplot(e, serie, i)
+    
+    if(length(e$x$opts$series) >= 1){
+      e$x$opts$series[[1]]$data <- append(
+        e$x$opts$series[[1]]$data, 
+        list(vector)
+      )
+    } else {
+      # boxplot + opts
+      box <- list(
+        name = nm,
+        type = "boxplot",
+        data = list(vector),
+        ...
+      )
+      e$x$opts$series <- append(e$x$opts$series, list(box))
+    }
+    
+    # data/outliers
+    if(isTRUE(outliers)){
+      e <- .add_outliers(e, serie, i)
+    }
+    
+    # xaxis
+    e$x$opts$xAxis$data <- append(e$x$opts$xAxis$data, list(nm))
+    e$x$opts$xAxis$type <- "category"
   }
-  
-  # data/outliers
-  if(isTRUE(outliers)){
-    e <- .add_outliers(e, serie)
-  }
-  
-  # xaxis
-  e$x$opts$xAxis$data <- append(e$x$opts$xAxis$data, list(name))
-  e$x$opts$xAxis$type <- "category"
-  
-  # legend
-  # e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   
   e
 }

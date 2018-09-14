@@ -219,14 +219,14 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   x
 }
 
-.build_boxplot <- function(e, serie){
-  x <- .get_data(e, serie)
+.build_boxplot <- function(e, serie, i){
+  x <- .get_data(e, serie, i)
   
   boxplot.stats(x)$stats
 }
 
-.get_outliers <- function(e, serie){
-  x <- .get_data(e, serie)
+.get_outliers <- function(e, serie, i){
+  x <- .get_data(e, serie, i)
   
   boxplot.stats(x)$out
 }
@@ -238,9 +238,9 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   apply(unname(matrix), 1, as.list)
 }
 
-.add_outliers <- function(e, serie){
+.add_outliers <- function(e, serie, i){
   
-  outliers <- .get_outliers(e, serie)
+  outliers <- .get_outliers(e, serie, i)
   outliers <- .build_outliers(e, outliers)
   
   scatter <- list(
