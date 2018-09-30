@@ -13,3 +13,4 @@ logo\.png
 .travis.yml
 .vs/echarts4r/v15/.suo
 .vs
+pkgdown

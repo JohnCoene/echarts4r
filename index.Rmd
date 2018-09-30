@@ -40,7 +40,13 @@ library(echarts4r)
 
 <span class = "label label-success"><i class = "fa fa-warning"></i></span> Version `0.1.1` sees great performance and security improvements, *upgrading is highly recommended.*
 
-You can install echarts4r with `devtools` or `remotes` from Github, Bitbucket or Coding. The latter is specifically for China, as the package is large download from Mainland can be long from outside the firewall.
+The package is available on [CRAN](https://CRAN.R-project.org/package=echarts4r):
+
+```{r, eval=FALSE}
+install.packages("echarts4r")
+```
+
+You can also install the development version of echarts4r with `devtools` or `remotes` from Github, Bitbucket or Coding. The latter is specifically for China, as the package is large download from Mainland can be long from outside the firewall.
 
 ```{r, eval=FALSE}
 # install.packages("devtools")

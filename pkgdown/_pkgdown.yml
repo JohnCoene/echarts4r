@@ -34,7 +34,7 @@ articles:
     - themes
 
 development:
-  mode: unreleased
+  mode: release
 
 navbar:
   title: "echarts"

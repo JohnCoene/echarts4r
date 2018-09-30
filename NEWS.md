@@ -1,4 +1,6 @@
-# echarts4r 0.1.1.9000
+# echarts4r 0.1.1
+
+*Now available on CRAN*
 
 * No longer passes entirety of data.frame to the fron-end.
 

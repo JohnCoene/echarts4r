@@ -13,7 +13,6 @@ Imports:
   magrittr,
   dplyr,
   purrr,
-  data.tree,
   crosstalk,
   base64enc,
   countrycode,
@@ -21,6 +20,7 @@ Imports:
   broom
 RoxygenNote: 6.1.0
 Suggests: 
+    data.tree,
     jsonlite, 
     shiny,
     knitr,
