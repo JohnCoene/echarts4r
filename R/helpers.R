@@ -193,6 +193,9 @@ e_get_data <- function(e){
 #' @export
 e_format_axis <- function(e, axis = "y", suffix = NULL, prefix = NULL, ...){
   
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
   if(is.null(suffix) && is.null(prefix))
     stop("missing formatting")
   
@@ -249,4 +252,38 @@ e_format_y_axis <- function(e, suffix = NULL, prefix = NULL, ...){
 e_clean <- function(e){
   e$x$data <- NULL
   e
+}
+
+#' Format labels
+#' 
+#' @inheritParams e_bar
+#' @param show Set to \code{TRUE to show the labels}
+#' @param position position of labels, see \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label.position}{official documentation}
+#'  for the full list of options.
+#'  @param ... Any other options see \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label}{documentation} for other options.
+#' 
+#' @examples 
+#' mtcars %>% 
+#'   e_chart(wt) %>% 
+#'   e_scatter(qsec, cyl) %>% 
+#'   e_labels(fontSize = 9)
+#' 
+#' @export
+e_labels <- function(e, show = TRUE, position = "top", ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  opts <- list(
+    show = show,
+    position = position,
+    ...
+  )
+  
+  for(i in 1:length(e$x$opts$series)){
+    e$x$opts$series[[i]]$label <- opts
+  }
+  
+  return(e)
+  
 }

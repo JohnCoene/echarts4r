@@ -1132,12 +1132,13 @@ e_histogram_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRU
       )
     
     e.serie <- list(
-      name = name,
+      name = nm,
       type = "bar",
       data = hist,
       barWidth = bar.width,
       yAxisIndex = y.index,
       xAxisIndex = x.index,
+      stack = "stackedHistogram",
       ...
     )
     
