@@ -11,15 +11,12 @@
 #' 
 #' @noRd
 #' @keywords internal
-e_timeline <- function(e, timeline, ...){
+e_timeline <- function(e){
   
-  if(missing(e) || missing(timeline))
-    stop("missing e or timeline", call. = FALSE)
+  if(missing(e))
+    stop("missing e", call. = FALSE)
   
-  tl <- list(...)
-  tl$data <- timeline
-  
-  e$x$opts$timeline <- tl
-  
-  e
+  e$x$timeline <- list(
+    
+  )
 }

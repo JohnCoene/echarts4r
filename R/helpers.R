@@ -247,6 +247,7 @@ e_format_y_axis <- function(e, suffix = NULL, prefix = NULL, ...){
 #' 
 #' @export
 e_clean <- function(e){
+  warning("There is no need for this function any longer.")
   e$x$data <- NULL
   e
 }
