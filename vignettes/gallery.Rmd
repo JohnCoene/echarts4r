@@ -113,7 +113,7 @@ Download the image
 ```{r}
 library(png)
 
-download.file("http://www.gradhacker.org/wp-content/uploads/Rlogo.png", destfile = "Rlogo.png", mode = "wb")
+download.file("https://developer.r-project.org/Logo/Rlogo-4.png", destfile = "Rlogo.png", mode = "wb")
 
 png <- readPNG("Rlogo.png", native = FALSE)
 ```

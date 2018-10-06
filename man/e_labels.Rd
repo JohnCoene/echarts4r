@@ -9,13 +9,12 @@ e_labels(e, show = TRUE, position = "top", ...)
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{show}{Set to \code{TRUE to show the labels}}
+\item{show}{Set to \code{TRUE} to show the labels.}
 
-\item{position}{position of labels, see \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label.position}{official documentation}
-for the full list of options.
-@param ... Any other options see \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label}{documentation} for other options.}
+\item{position}{Position of labels, see \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label.position}{official documentation}
+for the full list of options.}
 
-\item{...}{Any other option to pass, check See Also section.}
+\item{...}{Any other options see \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label}{documentation} for other options.}
 }
 \description{
 Format labels

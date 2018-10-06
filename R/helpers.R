@@ -258,10 +258,10 @@ e_clean <- function(e){
 #' Format labels
 #' 
 #' @inheritParams e_bar
-#' @param show Set to \code{TRUE to show the labels}
-#' @param position position of labels, see \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label.position}{official documentation}
+#' @param show Set to \code{TRUE} to show the labels.
+#' @param position Position of labels, see \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label.position}{official documentation}
 #'  for the full list of options.
-#'  @param ... Any other options see \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label}{documentation} for other options.
+#' @param ... Any other options see \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label}{documentation} for other options.
 #' 
 #' @examples 
 #' mtcars %>% 

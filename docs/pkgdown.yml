@@ -1,6 +1,6 @@
-pandoc: 2.2.1
-pkgdown: 1.1.0
-pkgdown_sha: ~
+pandoc: 1.19.2.4
+pkgdown: 1.1.0.9000
+pkgdown_sha: 6feddc6202be27878016b507f3f69e892ba8e1e1
 articles:
   advanced: advanced.html
   brush: brush.html

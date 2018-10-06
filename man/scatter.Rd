@@ -7,21 +7,23 @@
 \alias{e_effect_scatter_}
 \title{Scatter}
 \usage{
-e_scatter(e, serie, size, bind, scale = "* 1", name = NULL,
-  coord.system = "cartesian2d", legend = TRUE, y.index = 0,
-  x.index = 0, rm.x = TRUE, rm.y = TRUE, ...)
-
-e_effect_scatter(e, serie, size, bind, scale = "* 1", name = NULL,
-  coord.system = "cartesian2d", legend = TRUE, y.index = 0,
-  x.index = 0, rm.x = TRUE, rm.y = TRUE, ...)
-
-e_scatter_(e, serie, size = NULL, bind = NULL, scale = "* 1",
+e_scatter(e, serie, size, bind, symbol.size = 10, scale = "* 1",
   name = NULL, coord.system = "cartesian2d", legend = TRUE,
   y.index = 0, x.index = 0, rm.x = TRUE, rm.y = TRUE, ...)
 
-e_effect_scatter_(e, serie, size = NULL, bind = NULL, scale = "* 1",
+e_effect_scatter(e, serie, size, bind, symbol.size = 10, scale = "* 1",
   name = NULL, coord.system = "cartesian2d", legend = TRUE,
   y.index = 0, x.index = 0, rm.x = TRUE, rm.y = TRUE, ...)
+
+e_scatter_(e, serie, size = NULL, bind = NULL, symbol.size = 10,
+  scale = "* 1", name = NULL, coord.system = "cartesian2d",
+  legend = TRUE, y.index = 0, x.index = 0, rm.x = TRUE,
+  rm.y = TRUE, ...)
+
+e_effect_scatter_(e, serie, size = NULL, bind = NULL,
+  symbol.size = 10, scale = "* 1", name = NULL,
+  coord.system = "cartesian2d", legend = TRUE, y.index = 0,
+  x.index = 0, rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -31,6 +33,9 @@ e_effect_scatter_(e, serie, size = NULL, bind = NULL, scale = "* 1",
 \item{size}{Column name containing size of points.}
 
 \item{bind}{Binding between datasets, namely for use of \code{\link{e_brush}}.}
+
+\item{symbol.size}{Size of points, either an integer or a vector of length 2, 
+only used if \code{size} is \code{NULL} or missing.}
 
 \item{scale}{Scale for \code{size}, defaults to \code{* 1} which multiplies the size
 by \code{1} (equivalent to no multiplier).}
@@ -60,6 +65,14 @@ USArrests \%>\%
   e_effect_scatter(Rape, Murder, y.index = 1) \%>\% 
   e_grid(index = c(0, 1)) \%>\% 
   e_tooltip()
+
+iris \%>\% 
+  e_charts_("Sepal.Length") \%>\% 
+  e_scatter_(
+    "Sepal.Width", 
+    symbol.size = c(8, 2), 
+    symbol = "rect"
+  ) 
 
 quakes \%>\% 
   e_charts(long) \%>\% 

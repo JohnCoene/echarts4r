@@ -1,3 +1,9 @@
+# echarts4r 0.1.2.9000
+
+* `e_labels` to easily add labels.
+* Improved `e_scatter`
+* Improved `e_toolbox`
+
 # echarts4r 0.1.1
 
 *Now available on CRAN*

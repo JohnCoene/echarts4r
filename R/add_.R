@@ -181,9 +181,10 @@ e_step_ <- function(e, serie, bind = NULL, step = c("start", "middle", "end"), f
 
 #' @rdname scatter
 #' @export
-e_scatter_ <- function(e, serie, size = NULL, bind = NULL, scale = "* 1", name = NULL, 
-                      coord.system = "cartesian2d", legend = TRUE, y.index = 0, 
-                      x.index = 0, rm.x = TRUE, rm.y = TRUE, ...){
+e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol.size = 10, 
+                       scale = "* 1", name = NULL, coord.system = "cartesian2d", 
+                       legend = TRUE, y.index = 0, x.index = 0, rm.x = TRUE, 
+                       rm.y = TRUE, ...){
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
@@ -224,10 +225,13 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, scale = "* 1", name =
         e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
     }
     
-    if(!missing(size))
+    if(!is.null(size)){
       e.serie$symbolSize <- htmlwidgets::JS(
         paste("function(data){ return data[2]", scale, ";}")
       )
+    } else {
+      e.serie$symbolSize <- symbol.size
+    }
     
     e$x$opts$series <- append(e$x$opts$series, list(e.serie))
   }
@@ -237,9 +241,10 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, scale = "* 1", name =
 
 #' @rdname scatter
 #' @export
-e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, scale = "* 1", name = NULL, 
-                             coord.system = "cartesian2d", legend = TRUE, 
-                             y.index = 0, x.index = 0, rm.x = TRUE, rm.y = TRUE, ...){
+e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol.size = 10, 
+                              scale = "* 1", name = NULL, coord.system = "cartesian2d", 
+                              legend = TRUE, y.index = 0, x.index = 0, rm.x = TRUE, 
+                              rm.y = TRUE, ...){
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
@@ -280,10 +285,13 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, scale = "* 1",
       ...
     )
     
-    if(!missing(size))
+    if(!is.null(size)){
       e.serie$symbolSize <- htmlwidgets::JS(
         paste("function(data){ return data[2]", scale, ";}")
       )
+    } else {
+      e.serie$symbolSize <- symbol.size
+    }
     
     e$x$opts$series <- append(e$x$opts$series, list(e.serie))
   }

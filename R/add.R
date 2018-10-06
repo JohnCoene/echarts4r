@@ -153,6 +153,8 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' 
 #' @inheritParams e_bar
 #' @param size Column name containing size of points.
+#' @param symbol.size Size of points, either an integer or a vector of length 2, 
+#' only used if \code{size} is \code{NULL} or missing. 
 #' @param scale Scale for \code{size}, defaults to \code{* 1} which multiplies the size
 #'  by \code{1} (equivalent to no multiplier).
 #' @param coord.system Coordinate system to plot against.
@@ -166,6 +168,14 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #'   e_effect_scatter(Rape, Murder, y.index = 1) %>% 
 #'   e_grid(index = c(0, 1)) %>% 
 #'   e_tooltip()
+#'
+#' iris %>% 
+#'   e_charts_("Sepal.Length") %>% 
+#'   e_scatter_(
+#'     "Sepal.Width", 
+#'     symbol.size = c(8, 2), 
+#'     symbol = "rect"
+#'   ) 
 #' 
 #' quakes %>% 
 #'   e_charts(long) %>% 
@@ -196,7 +206,7 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' 
 #' @rdname scatter
 #' @export
-e_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL, 
+e_scatter <- function(e, serie, size, bind, symbol.size = 10, scale = "* 1", name = NULL, 
                       coord.system = "cartesian2d", legend = TRUE, y.index = 0, 
                       x.index = 0, rm.x = TRUE, rm.y = TRUE, ...){
   
@@ -215,7 +225,8 @@ e_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
   else
     bd <- deparse(substitute(bind))
   
-  e_scatter_(e, serie, size, bd, scale, name, 
+  e_scatter_(e, serie, size, bd, symbol.size, 
+             scale, name, 
              coord.system, legend, y.index, 
              x.index, rm.x, rm.y, ...)
  
@@ -223,7 +234,7 @@ e_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
 
 #' @rdname scatter
 #' @export
-e_effect_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL, 
+e_effect_scatter <- function(e, serie, size, bind, symbol.size = 10, scale = "* 1", name = NULL, 
                              coord.system = "cartesian2d", legend = TRUE, 
                              y.index = 0, x.index = 0, rm.x = TRUE, rm.y = TRUE, ...){
   
@@ -243,7 +254,7 @@ e_effect_scatter <- function(e, serie, size, bind, scale = "* 1", name = NULL,
     bd <- deparse(substitute(bind))
   
   e_effect_scatter_(e, serie, size, bd, 
-                    scale, name, 
+                    symbol.size, scale, name, 
                     coord.system, legend, 
                     y.index, x.index, rm.x, rm.y, ...)
 }
@@ -1644,13 +1655,13 @@ e_keras_history <- function(e){
 
   e %>%
     e_data(e$x$data, epoch) %>% 
-    e_scatter(acc, size, name = "Training", scale = "* 5") %>%
-    e_scatter(val_acc, size, name = "Validation", scale = "* 5", 
+    e_scatter_("acc", "size", name = "Training", scale = "* 5") %>%
+    e_scatter_("val_acc", "size", name = "Validation", scale = "* 5", 
               symbol = "triangle") %>%
     e_loess(acc ~ epoch, name = "Training", showSymbol = FALSE) %>%
     e_loess(val_acc ~ epoch, name = "Validation", showSymbol = FALSE) %>%  # loss
-    e_scatter(loss, size, name = "Training", scale = "* 5", y.index = 1, x.index = 1) %>%
-    e_scatter(val_loss, size, name = "Validation", scale = "* 5", 
+    e_scatter_("loss", "size", name = "Training", scale = "* 5", y.index = 1, x.index = 1) %>%
+    e_scatter_("val_loss", "size", name = "Validation", scale = "* 5", 
               y.index = 1, x.index = 1, symbol = "triangle") %>%
     e_loess(loss ~ epoch, y.index = 1, x.index = 1, name = "Training", showSymbol = FALSE) %>%
     e_loess(val_loss ~ epoch, y.index = 1, x.index = 1, name = "Validation", showSymbol = FALSE) %>% 
