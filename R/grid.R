@@ -46,9 +46,9 @@ e_axis <- function(e, axis = c("x", "y", "z"), index = 0, ...){
     r.index <- 1
   }
   
-  depth <- .list_depth(e$x$opts[[axis]])
+  dp <- .list_depth(e$x$opts[[axis]])
   
-  if(depth >= 2){
+  if(dp >= 2){
     for(i in 1:length(attrs)){
       arg <- names(attrs)[i]
       e$x$opts[[axis]][[r.index]][[arg]] <- attrs[[i]]

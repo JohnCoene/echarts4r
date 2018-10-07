@@ -558,10 +558,10 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   else y
 }
 
-.list_depth <- function(this, thisdepth=0){
+.list_depth <- function(this,thisdepth=0){
   if(!is.list(this)){
     return(thisdepth)
   }else{
-    return(max(unlist(lapply(this,depth,thisdepth=thisdepth+1))))    
+    return(max(unlist(lapply(this,.list_depth,thisdepth=thisdepth+1))))    
   }
 }
