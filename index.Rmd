@@ -46,7 +46,7 @@ The package is available on [CRAN](https://CRAN.R-project.org/package=echarts4r)
 install.packages("echarts4r")
 ```
 
-You can also install the development version of echarts4r with `devtools` or `remotes` from Github, Bitbucket or Coding. The latter is specifically for China, as the package is large download from Mainland can be long from outside the firewall.
+You can also install the development version of echarts4r with `devtools` or `remotes` from Github or Bitbucket.
 
 ```{r, eval=FALSE}
 # install.packages("devtools")
@@ -56,11 +56,6 @@ devtools::install_github("JohnCoene/echarts4r") # github
 ```{r, eval=FALSE}
 # install.packages("remotes")
 remotes::install_bitbucket("JohnCoene/echarts4r") # bitbucket
-```
-
-```{r, eval=FALSE}
-# install.packages("remotes")
-remotes::install_git("https://git.coding.net/JohnCoene/echarts4r.git") # coding.net
 ```
 
 ## Features

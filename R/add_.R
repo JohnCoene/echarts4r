@@ -476,8 +476,13 @@ e_heatmap_ <- function(e, y, z = NULL, name = NULL, coord.system = "cartesian2d"
       )
     )
     
+    ydata <- unique(.get_data(e, y))
+    
+    if(length(ydata) == 1)
+      ydata <- list(ydata)
+    
     e$x$opts$yAxis <- list(
-      data = unique(.get_data(e, y))
+      data = ydata
     )
   }
   

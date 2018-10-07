@@ -44,12 +44,20 @@ e_axis <- function(e, axis = c("x", "y", "z"), index = 0, ...){
   # initiatlise if wrong index
   if(r.index > max){
     r.index <- 1
-    e$x$opts[[axis]] <- list(list())
   }
   
-  for(i in 1:length(attrs)){
-    arg <- names(attrs)[i]
-    e$x$opts[[axis]][[r.index]][[arg]] <- attrs[[i]]
+  depth <- .list_depth(e$x$opts[[axis]])
+  
+  if(depth >= 2){
+    for(i in 1:length(attrs)){
+      arg <- names(attrs)[i]
+      e$x$opts[[axis]][[r.index]][[arg]] <- attrs[[i]]
+    }
+  } else {
+    for(i in 1:length(attrs)){
+      arg <- names(attrs)[i]
+      e$x$opts[[axis]][[arg]] <- attrs[[i]]
+    }
   }
   
   e

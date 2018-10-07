@@ -103,8 +103,6 @@ navbar:
       href: https://github.com/JohnCoene/echarts4r
     - icon: fa-bitbucket fa-lg
       href: https://bitbucket.org/JohnCoene/echarts4r
-    - icon: fa-qq fa-lg
-      href: https://coding.net/u/JohnCoene/p/echarts4r
 
 authors:
   John Coene:

@@ -1,8 +1,9 @@
 # echarts4r 0.1.2.9000
 
 * `e_labels` to easily add labels.
-* Improved `e_scatter`
-* Improved `e_toolbox`
+* Improved `e_scatter`.
+* Improved `e_toolbox`.
+* Fixed `e_axis` (and corresponding `e_x_axis` and `e_y_axis`) bugs.
 
 # echarts4r 0.1.1
 
