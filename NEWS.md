@@ -4,6 +4,7 @@
 * Improved `e_scatter`.
 * Improved `e_toolbox`.
 * Fixed `e_axis` (and corresponding `e_x_axis` and `e_y_axis`) bugs.
+* `e_add` added for nested data.
 
 # echarts4r 0.1.1
 

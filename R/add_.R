@@ -449,6 +449,7 @@ e_sankey_ <- function(e, source, target, value, layout = "none", rm.x = TRUE, rm
 #' @rdname e_heatmap
 #' @export
 e_heatmap_ <- function(e, y, z = NULL, name = NULL, coord.system = "cartesian2d", rm.x = TRUE, rm.y = TRUE, ...){
+  
   if(missing(y))
     stop("must pass y", call. = FALSE)
   
@@ -470,9 +471,16 @@ e_heatmap_ <- function(e, y, z = NULL, name = NULL, coord.system = "cartesian2d"
     e <- .rm_axis(e, rm.x, "x")
     e <- .rm_axis(e, rm.y, "y")
   } else {
+    
+    
+    xdata <- unique(.get_data(e, e$x$mapping$x))
+    
+    if(length(xdata) == 1)
+      xdata <- list(xdata)
+    
     e$x$opts$xAxis <- list(
-      data = unique(
-        .get_data(e, e$x$mapping$x)
+      list(
+        data = xdata
       )
     )
     
@@ -482,7 +490,9 @@ e_heatmap_ <- function(e, y, z = NULL, name = NULL, coord.system = "cartesian2d"
       ydata <- list(ydata)
     
     e$x$opts$yAxis <- list(
-      data = ydata
+      list(
+        data = ydata
+      )
     )
   }
   
