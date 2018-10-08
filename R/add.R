@@ -615,7 +615,7 @@ e_graph_edges <- function(e, edges, source, target){
 #' 
 #' matrix %>% 
 #'   e_charts(x) %>% 
-#'   e_heatmap(y, z) %>% 
+#'   e_heatmap(y, z, itemStyle = list(emphasis = list(shadowBlur = 10))) %>% 
 #'   e_visual_map(z)
 #'
 #' # calendar   
@@ -630,7 +630,7 @@ e_graph_edges <- function(e, edges, source, target){
 #'   e_heatmap(values, coord.system = "calendar") %>% 
 #'   e_visual_map(max = 30)
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-heatmap}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-heatmap}{Additional arguments}
 #' 
 #' @rdname e_heatmap
 #' @export

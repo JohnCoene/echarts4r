@@ -43,7 +43,7 @@ matrix <- data.frame(
 
 matrix \%>\% 
   e_charts(x) \%>\% 
-  e_heatmap(y, z) \%>\% 
+  e_heatmap(y, z, itemStyle = list(emphasis = list(shadowBlur = 10))) \%>\% 
   e_visual_map(z)
 
 # calendar   
@@ -60,5 +60,5 @@ year \%>\%
 
 }
 \seealso{
-\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-heatmap}
+\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-heatmap}{Additional arguments}
 }
