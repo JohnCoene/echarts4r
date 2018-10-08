@@ -17,9 +17,20 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   x$mapping$include_x <- FALSE
   cl <- x$mapping$x_class
   if(cl == "character" || cl == "factor"){
-    x$opts$xAxis <- list(list(data = unique(data[[x$mapping$x]]), type = "category", boundaryGap = TRUE))
+    labs <- unique(data[[x$mapping$x]])
+    
+    if(length(labs) == 1)
+      labs <- list(labs)
+    
+    x$opts$xAxis <- list(list(data = labs, type = "category", boundaryGap = TRUE))
   } else if(cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
-    x$opts$xAxis <- list(list(data = unique(data[[x$mapping$x]]), type = "time", boundaryGap = TRUE))
+    
+    labs <- unique(data[[x$mapping$x]])
+    
+    if(length(labs) == 1)
+      labs <- list(labs)
+    
+    x$opts$xAxis <- list(list(data = labs, type = "time", boundaryGap = TRUE))
   } else {
     x$mapping$include_x <- TRUE
     x$opts$xAxis <- list(list(type = "value"))
