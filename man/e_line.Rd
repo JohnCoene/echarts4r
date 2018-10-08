@@ -42,5 +42,5 @@ iris \%>\%
 
 }
 \seealso{
-\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}
+\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}{Additional arguments}
 }

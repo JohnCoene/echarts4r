@@ -93,6 +93,6 @@ df \%>\%
 
 }
 \seealso{
-\href{Additional arguments for lines 3D}{http://echarts.baidu.com/option-gl.html#series-lines3D},
- \href{Additional arguments for line 3D}{http://echarts.baidu.com/option-gl.html#series-line3D}
+\href{http://echarts.baidu.com/option-gl.html#series-lines3D}{Additional arguments for lines 3D},
+ \href{http://echarts.baidu.com/option-gl.html#series-line3D}{Additional arguments for line 3D}
 }

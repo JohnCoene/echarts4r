@@ -43,5 +43,5 @@ choropleth \%>\%
 }
 \seealso{
 \code{\link{e_country_names}}, 
-\href{Additional arguments}{http://echarts.baidu.com/option-gl.html#geo3D}
+\href{http://echarts.baidu.com/option-gl.html#geo3D}{Additional arguments}
 }

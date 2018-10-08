@@ -47,5 +47,5 @@ flights \%>\%
 
 }
 \seealso{
-\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-lines}
+\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-lines}{Additional arguments}
 }

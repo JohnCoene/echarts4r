@@ -36,5 +36,5 @@ df \%>\%
   
 }
 \seealso{
-\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-treemap}
+\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-treemap}{Additional arguments}
 }

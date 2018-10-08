@@ -39,5 +39,5 @@ funnel \%>\%
 
 }
 \seealso{
-\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel}
+\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel}{Additional arguments}
 }

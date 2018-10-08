@@ -11,10 +11,12 @@ e_labels(e, show = TRUE, position = "top", ...)
 
 \item{show}{Set to \code{TRUE} to show the labels.}
 
-\item{position}{Position of labels, see \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label.position}{official documentation}
-for the full list of options.}
+\item{position}{Position of labels, see 
+\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label.position}{official documentation}
+ for the full list of options.}
 
-\item{...}{Any other options see \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label}{documentation} for other options.}
+\item{...}{Any other options see 
+\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label}{documentation} for other options.}
 }
 \description{
 Format labels

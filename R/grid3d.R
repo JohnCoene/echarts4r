@@ -6,9 +6,9 @@
 #' @param axis Axis to customise.
 #' @param index Index of axis to customise.
 #' 
-#' @seealso \href{Additional x arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#xAxis3D},
-#'  \href{Additional y arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#yAxis3D},
-#'  \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#zAxis3D}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#xAxis3D}{Additional x arguments},
+#'  \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#yAxis3D}{Additional y arguments},
+#'  \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#zAxis3D}{Additional arguments}
 #' 
 #' @rdname axis3d
 #' @export
@@ -82,7 +82,7 @@ e_z_axis_3d <- function(e, index = 0, ...){
 #'   e_grid(height = "40%") %>% 
 #'   e_grid(height = "40%", top = "55%")
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#grid3D}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#grid3D}{Additional arguments}
 #' 
 #' @export
 e_grid_3d <- function(e, index = 0, ...){

@@ -100,5 +100,5 @@ data \%>\%
 
 }
 \seealso{
-\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pictorialBar}
+\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pictorialBar}{Additional arguments}
 }

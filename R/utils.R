@@ -364,7 +364,12 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     axis <- list(type = type)
     
     if(type != "value"){
-      axis$data <- .get_data(e, serie, i)
+      axis_data <- .get_data(e, serie, i)
+      
+      if(length(axis_data) == 1)
+        axis_data <- list(axis_data)
+      
+      axis$data <- axis_data
     }
     
     e$x$opts[[raxis]][[index + 1]] <- axis

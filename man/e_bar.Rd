@@ -37,5 +37,5 @@ iris \%>\%
 
 }
 \seealso{
-\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar}
+\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar}{Additional arguments}
 }

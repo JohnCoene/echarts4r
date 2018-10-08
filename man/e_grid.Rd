@@ -28,5 +28,5 @@ USArrests \%>\%
 
 }
 \seealso{
-\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#grid}
+\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#grid}{Additional arguments}
 }

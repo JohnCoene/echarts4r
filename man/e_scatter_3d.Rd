@@ -84,5 +84,5 @@ airports \%>\%
 
 }
 \seealso{
-\href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-scatter3D}
+\href{http://echarts.baidu.com/option-gl.html#series-scatter3D}{Additional arguments}
 }

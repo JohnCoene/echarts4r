@@ -21,8 +21,8 @@
 #'   e_area(Murder) %>% 
 #'   e_x_axis(axisLabel = list(interval = 0, rotate = 45)) # rotate
 #'   
-#' @seealso \href{Additional x arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#xAxis}, 
-#' \href{Additional y arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#yAxis}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#xAxis}{Additional x arguments}, 
+#' \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#yAxis}{Additional y arguments}
 #' 
 #' @rdname axis
 #' @export
@@ -107,7 +107,7 @@ e_z_axis <- function(e, index = 0, ...){
 #'   e_grid(height = "40%") %>% 
 #'   e_grid(height = "40%", top = "55%")
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#grid}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#grid}{Additional arguments}
 #' 
 #' @export
 e_grid <- function(e, index = NULL, ...){
@@ -145,7 +145,7 @@ e_grid <- function(e, index = NULL, ...){
 #'   e_radius_axis(FALSE) %>% 
 #'   e_line(y, coord.system = "polar", smooth = TRUE) 
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#radiusAxis}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#radiusAxis}{Additional arguments}
 #' 
 #' @export
 e_radius_axis <- function(e, show = TRUE, ...){
@@ -176,7 +176,7 @@ e_radius_axis <- function(e, show = TRUE, ...){
 #'   e_line(y, coord.system = "polar", smooth = TRUE) %>% 
 #'   e_legend(show = FALSE)
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#angleAxis}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#angleAxis}{Additional arguments}
 #' 
 #' @export
 e_angle_axis <- function(e, show = TRUE, ...){

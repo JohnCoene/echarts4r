@@ -35,9 +35,10 @@ Add area serie.
 CO2 \%>\% 
   group_by(Plant) \%>\% 
   e_charts(conc) \%>\% 
-  e_area(uptake)
+  e_area(uptake) \%>\% 
+  e_tooltip(trigger = "axis")
 
 }
 \seealso{
-\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}
+\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}{Additional arguments}
 }

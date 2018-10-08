@@ -91,6 +91,6 @@ e_charts() \%>\%
 
 }
 \seealso{
-\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-graph}{Additional arguments},
+\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-graph},
  \code{\link{e_modularity}}
 }

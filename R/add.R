@@ -16,7 +16,7 @@
 #'   e_charts(Sepal.Length) %>% 
 #'   e_line(Sepal.Width)
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar}{Additional arguments}
 #' 
 #' @rdname e_bar
 #' @export
@@ -52,7 +52,7 @@ e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.ind
 #'   e_line(Sepal.Width) %>% 
 #'   e_tooltip(trigger = "axis")
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}  
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}{Additional arguments}  
 #' 
 #' @rdname e_line
 #' @export
@@ -84,9 +84,10 @@ e_line <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.in
 #' CO2 %>% 
 #'   group_by(Plant) %>% 
 #'   e_charts(conc) %>% 
-#'   e_area(uptake)
+#'   e_area(uptake) %>% 
+#'   e_tooltip(trigger = "axis")
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}{Additional arguments}
 #' 
 #' @rdname e_area
 #' @export
@@ -175,7 +176,8 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #'     "Sepal.Width", 
 #'     symbol.size = c(8, 2), 
 #'     symbol = "rect"
-#'   ) 
+#'   ) %>% 
+#'   e_x_axis(min = 4)
 #' 
 #' quakes %>% 
 #'   e_charts(long) %>% 
@@ -189,20 +191,8 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #'   e_scatter(lat, mag, coord.system = "geo") %>% 
 #'   e_visual_map(min = 4, max = 6.5)
 #'   
-#' # Calendar
-#' year <- seq.Date(as.Date("2017-01-01"), as.Date("2017-12-31"), by = "day")
-#' values <- rnorm(length(year), 20, 6)
-#' 
-#' year <- data.frame(year = year, values = values)
-#' 
-#' year %>% 
-#'   e_charts(year) %>% 
-#'   e_calendar(range = "2018") %>% 
-#'   e_scatter(values, coord.system = "calendar") %>% 
-#'   e_visual_map(max = 30)
-#'   
-#' @seealso \href{Additional arguments scatter}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter},
-#'  \href{Additional arguments for effect scatter}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-effectScatter}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter}{Additional arguments scatter},
+#'  \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-effectScatter}{Additional arguments for effect scatter}
 #' 
 #' @rdname scatter
 #' @export
@@ -283,7 +273,7 @@ e_effect_scatter <- function(e, serie, size, bind, symbol.size = 10, scale = "* 
 #'   e_candle(opening, closing, low, high) %>% 
 #'   e_y_axis(min = 190, max = 220)
 #'   
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-candlestick}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-candlestick}{Additional arguments}
 #' 
 #' @rdname e_candle
 #' @export
@@ -363,7 +353,7 @@ e_radar <- function(e, serie, max = 100, name = NULL, legend = TRUE,
 #'   e_charts() %>% 
 #'   e_funnel(value, stage)
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel}{Additional arguments}
 #' 
 #' @rdname e_funnel
 #' @export
@@ -405,7 +395,7 @@ e_funnel <- function(e, values, labels, name = NULL, legend = TRUE, rm.x = TRUE,
 #'   e_charts() %>% 
 #'   e_sankey(source, target, value) 
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-sankey}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-sankey}{Additional arguments}
 #' 
 #' @rdname e_sankey
 #' @export
@@ -481,7 +471,7 @@ e_sankey <- function(e, source, target, value, layout = "none", rm.x = TRUE, rm.
 #'   e_graph_nodes(nodes, name, value, size, grp) %>% 
 #'   e_graph_edges(edges, source, target)
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-graph}{Additional arguments},
+#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-graph},
 #'  \code{\link{e_modularity}}
 #' 
 #' @rdname graph
@@ -664,7 +654,7 @@ e_heatmap <- function(e, y, z, name = NULL, coord.system = "cartesian2d", rm.x =
 #'   e_charts() %>% 
 #'   e_parallel(price, amount, letter) 
 #'   
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-parallel}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-parallel}{Additional arguments}
 #' 
 #' @rdname e_parallel
 #' @export
@@ -723,7 +713,7 @@ e_parallel <- function(e, ..., name = NULL, rm.x = TRUE, rm.y = TRUE){
 #'   e_charts(model) %>% 
 #'   e_pie(carb)
 #'   
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie}{Additional arguments}
 #' 
 #' @rdname e_pie
 #' @export
@@ -760,7 +750,7 @@ e_pie <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRUE
 #'   e_sunburst(parent, child, value) %>% 
 #'   e_theme("westeros")
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-sunburst}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-sunburst}{Additional arguments}
 #' 
 #' @rdname e_sunburst
 #' @export
@@ -798,7 +788,7 @@ e_sunburst <- function(e, parent, child, value, itemStyle, rm.x = TRUE, rm.y = T
 #'   e_charts() %>% 
 #'   e_treemap(parent, child, value)
 #'   
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-treemap}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-treemap}{Additional arguments}
 #' 
 #' @rdname e_treemap
 #' @export
@@ -838,7 +828,7 @@ e_treemap <- function(e, parent, child, value, rm.x = TRUE, rm.y = TRUE, ...){
 #'   e_river(pears) %>% 
 #'   e_tooltip(trigger = "axis")
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-themeRiver}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-themeRiver}{Additional arguments}
 #' 
 #' @rdname e_river
 #' @export
@@ -871,7 +861,7 @@ e_river <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TR
 #'   e_boxplot(y, outliers = TRUE) %>% 
 #'   e_boxplot(x, outliers = TRUE)
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-boxplot}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-boxplot}{Additional arguments}
 #' 
 #' @rdname e_boxplot
 #' @export
@@ -904,7 +894,7 @@ e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
 #'   e_charts() %>% 
 #'   e_tree(parent, child)
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-tree}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-tree}{Additional arguments}
 #' 
 #' @rdname e_tree
 #' @export
@@ -931,7 +921,7 @@ e_tree <- function(e, parent, child, rm.x = TRUE, rm.y = TRUE, ...){
 #' e_charts() %>% 
 #'   e_gauge(57, "PERCENT")
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-gauge}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-gauge}{Additional arguments}
 #' 
 #' @rdname e_gauge
 #' @export
@@ -1022,8 +1012,8 @@ e_gauge_ <- e_gauge
 #'   e_visual_map() %>% 
 #'   e_title("nonsense")
 #' 
-#' @seealso \href{Additional arguments for lines 3D}{http://echarts.baidu.com/option-gl.html#series-lines3D},
-#'  \href{Additional arguments for line 3D}{http://echarts.baidu.com/option-gl.html#series-line3D}
+#' @seealso \href{http://echarts.baidu.com/option-gl.html#series-lines3D}{Additional arguments for lines 3D},
+#'  \href{http://echarts.baidu.com/option-gl.html#series-line3D}{Additional arguments for line 3D}
 #' 
 #' @rdname line3D
 #' @export
@@ -1111,7 +1101,7 @@ e_line_3d <- function(e, y, z, name = NULL, coord.system = NULL, rm.x = TRUE, rm
 #'   e_legend()
 #' }
 #' 
-#' @seealso \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-bar3D}
+#' @seealso \href{http://echarts.baidu.com/option-gl.html#series-bar3D}{Additional arguments}
 #' 
 #' @rdname e_bar_3d
 #' @export
@@ -1159,7 +1149,7 @@ e_bar_3d <- function(e, y, z, bind, coord.system = "cartesian3D", name = NULL,
 #'     lineStyle = list(normal = list(curveness = 0.3))
 #'    )
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-lines}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-lines}{Additional arguments}
 #' 
 #' @rdname e_lines
 #' @export
@@ -1235,7 +1225,7 @@ e_lines <- function(e, source.lon, source.lat, target.lon, target.lat, coord.sys
 #'   e_scatter_3d(lat, cnt, coord.system = "globe", blendMode = 'lighter') %>% 
 #'   e_visual_map(inRange = list(symbolSize = c(1, 10)))
 #' 
-#' @seealso \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-scatter3D}
+#' @seealso \href{http://echarts.baidu.com/option-gl.html#series-scatter3D}{Additional arguments}
 #' 
 #' @rdname e_scatter_3d
 #' @export
@@ -1337,7 +1327,7 @@ e_scatter_3d <- function(e, y, z, color, size, bind, coord.system = "cartesian3D
 #'     )
 #'   )
 #' 
-#' @seealso \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-flowGL}
+#' @seealso \href{http://echarts.baidu.com/option-gl.html#series-flowGL}{Additional arguments}
 #' 
 #' @rdname e_flow_gl
 #' @export
@@ -1378,7 +1368,7 @@ e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord.system = NULL, rm.
 #'   ) %>% 
 #'   e_scatter_gl(lat, depth)
 #' 
-#' @seealso \href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-scatterGL}
+#' @seealso \href{http://echarts.baidu.com/option-gl.html#series-scatterGL}{Additional arguments}
 #' 
 #' @rdname e_scatter_gl
 #' @export
@@ -1462,7 +1452,7 @@ e_scatter_gl <- function(e, y, z, name = NULL, coord.system = "geo", rm.x = TRUE
 #'   e_pictorial(value, symbol) %>% 
 #'   e_legend(FALSE) 
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pictorialBar}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pictorialBar}{Additional arguments}
 #' 
 #' @rdname e_pictorial
 #' @export

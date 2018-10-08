@@ -41,5 +41,5 @@ quakes \%>\%
 
 }
 \seealso{
-\href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-scatterGL}
+\href{http://echarts.baidu.com/option-gl.html#series-scatterGL}{Additional arguments}
 }

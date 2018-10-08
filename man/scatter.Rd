@@ -72,7 +72,8 @@ iris \%>\%
     "Sepal.Width", 
     symbol.size = c(8, 2), 
     symbol = "rect"
-  ) 
+  ) \%>\% 
+  e_x_axis(min = 4)
 
 quakes \%>\% 
   e_charts(long) \%>\% 
@@ -86,20 +87,8 @@ quakes \%>\%
   e_scatter(lat, mag, coord.system = "geo") \%>\% 
   e_visual_map(min = 4, max = 6.5)
   
-# Calendar
-year <- seq.Date(as.Date("2017-01-01"), as.Date("2017-12-31"), by = "day")
-values <- rnorm(length(year), 20, 6)
-
-year <- data.frame(year = year, values = values)
-
-year \%>\% 
-  e_charts(year) \%>\% 
-  e_calendar(range = "2018") \%>\% 
-  e_scatter(values, coord.system = "calendar") \%>\% 
-  e_visual_map(max = 30)
-  
 }
 \seealso{
-\href{Additional arguments scatter}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter},
- \href{Additional arguments for effect scatter}{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-effectScatter}
+\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter}{Additional arguments scatter},
+ \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-effectScatter}{Additional arguments for effect scatter}
 }

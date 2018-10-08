@@ -79,5 +79,5 @@ matrix \%>\%
 
 }
 \seealso{
-\href{Additional arguments}{http://echarts.baidu.com/option-gl.html#series-bar3D}
+\href{http://echarts.baidu.com/option-gl.html#series-bar3D}{Additional arguments}
 }
