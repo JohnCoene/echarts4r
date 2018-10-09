@@ -117,6 +117,12 @@ div(
 )
 ```
 
+## Changes
+
+Assets for Web GL globes make the package very large, therefore they will be moved to another companion package, [echarts4r.assets](https://echarts4r-assets.john-coene.com). This also allows making more textures available.
+
+[Full changelog](https://echarts4r.john-coene.com/news/index.html)
+
 ## Example
 
 ```{r}

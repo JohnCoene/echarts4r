@@ -7,6 +7,7 @@
 * `e_add` added for nested data.
 * `e_showtip_p` and `e_hidetip_p` fixed.
 * `e_focus_adjacency_p` and `e_unfocus_adjacency_p` proxies to highlight adjacent nodes (on graph/network) added.
+* Deprecation of texture related functions.
 
 # echarts4r 0.1.1
 
