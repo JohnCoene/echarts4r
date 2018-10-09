@@ -32,7 +32,7 @@ Path to textures.
 \details{
 Due to browser
 "same origin policy" security restrictions, loading textures
-from a file system in three.js may lead to a security exception,
+from a file system may lead to a security exception,
 see
 \url{https://github.com/mrdoob/three.js/wiki/How-to-run-things-locally}.
 References to file locations work in Shiny apps, but not in stand-alone
@@ -43,8 +43,8 @@ texture data from R into textures when \code{convert} is set to \code{TRUE}.
 
 \itemize{
   \item{\code{e_map_texture} globe texture}
-  \item{\code{e_stars_texture} starts texture}
-  \item{\code{e_mconvert_texture} convert file to JSON formatted array}
+  \item{\code{e_stars_texture} stars texture}
+  \item{\code{e_convert_texture} convert file to JSON formatted array}
 }
 }
 

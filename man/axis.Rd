@@ -5,6 +5,7 @@
 \alias{e_x_axis}
 \alias{e_y_axis}
 \alias{e_z_axis}
+\alias{e_rm_axis}
 \title{Axis}
 \usage{
 e_axis(e, axis = c("x", "y", "z"), index = 0, ...)
@@ -14,6 +15,8 @@ e_x_axis(e, index = 0, ...)
 e_y_axis(e, index = 0, ...)
 
 e_z_axis(e, index = 0, ...)
+
+e_rm_axis(e, axis = c("x", "y", "z"))
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -27,6 +30,14 @@ e_z_axis(e, index = 0, ...)
 \description{
 Customise axis.
 }
+\section{Functions}{
+
+\itemize{
+  \item{\code{e_axis} to customise axis}
+  \item{\code{e_rm_axis} to remove axis}
+}
+}
+
 \examples{
 USArrests \%>\% 
   e_charts(Assault) \%>\% 

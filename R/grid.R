@@ -6,6 +6,12 @@
 #' @param axis Axis to customise.
 #' @param index Index of axis to customise.
 #' 
+#' @section Functions:
+#' \itemize{
+#'   \item{\code{e_axis} to customise axis}
+#'   \item{\code{e_rm_axis} to remove axis}
+#' }
+#' 
 #' @examples 
 #' USArrests %>% 
 #'   e_charts(Assault) %>% 
@@ -88,6 +94,16 @@ e_z_axis <- function(e, index = 0, ...){
     stop("missing e", call. = FALSE)
   e <- e_axis(e = e, axis = "z",index =  index, ...)
   e
+}
+
+#' @rdname axis
+#' @export
+e_rm_axis <- function(e, axis = c("x", "y", "z")){
+  axis <- .r2axis(axis[1])
+  
+  e$x$opts[[axis]] <- NULL
+  
+  return(e)
 }
 
 #' Grid
