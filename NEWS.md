@@ -5,6 +5,8 @@
 * Improved `e_toolbox`.
 * Fixed `e_axis` (and corresponding `e_x_axis` and `e_y_axis`) bugs.
 * `e_add` added for nested data.
+* `e_showtip_p` and `e_hidetip_p` fixed.
+* `e_focus_adjacency_p` and `e_unfocus_adjacency_p` proxies to highlight adjacent nodes (on graph/network) added.
 
 # echarts4r 0.1.1
 
