@@ -26,16 +26,23 @@ library(echarts4r)
 
 Get data from shiny with the following:
 
-* `elementId` + `_brush`
-* `elementId` + `_legend_change`
-* `elementId` + `_clicked_data`
-* `elementId` + `_clicked_data_value`
-* `elementId` + `_clicked_row`
-* `elementId` + `_clicked_serie`
-* `elementId` + `_mouseover_data`
-* `elementId` + `_mouseover_data_value`
-* `elementId` + `_mouseover_row`
-* `elementId` + `_mouseover_serie`
+* `elementId` + `_brush` - returns data on brushed data points.
+* `elementId` + `_legend_change` - returns series name of legend selected/unselected.
+* `elementId` + `_clicked_data` - returns data of clicked data point.
+* `elementId` + `_clicked_data_value` - returns value of clicked data point.
+* `elementId` + `_clicked_row` - returns row number of clicked data point.
+* `elementId` + `_clicked_serie` - returns name of serie of clicked data point.
+* `elementId` + `_mouseover_data` - returns data on hovered data point.
+* `elementId` + `_mouseover_data_value` - returns value of hovered data point.
+* `elementId` + `_mouseover_row` - returns row o hovered data point.
+* `elementId` + `_mouseover_serie`  - returns name of serie of hovered data point.
+
+Interact with the charts without redrawing (proxies):
+
+* `e_append1_p` and `e_append2_p` - to add data to your chart.
+* `e_highlight_p` and `e_downplay_p` - to highlight or downplay a serie.
+* `e_showtip_p` and `e_hidetip_p` - to Show or hide the tooltip.
+* `e_focus_adjacency` and `e_unfocus_adjacency` - to focus or unfocus on adjacent nodes (networks).
 
 See the example below and the various proxies documentation.
 

@@ -181,4 +181,20 @@ if (HTMLWidgets.shinyMode) {
       }
   });
   
+  Shiny.addCustomMessageHandler('e_focus_node_adjacency_p',
+    function(data) {
+      var chart = get_e_charts(data.id);
+      if (typeof chart != 'undefined') {
+        chart.dispatchAction(data.opts);
+      }
+  });
+  
+  Shiny.addCustomMessageHandler('e_unfocus_node_adjacency_p',
+    function(data) {
+      var chart = get_e_charts(data.id);
+      if (typeof chart != 'undefined') {
+        chart.dispatchAction(data.opts);
+      }
+  });
+  
 }

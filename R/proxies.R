@@ -197,3 +197,130 @@ e_hidetip_p <- function(proxy){
   
   return(proxy)
 }
+
+#' Node Adjacency
+#' 
+#' Focus or unfocus on node adjacency.
+#' 
+#' @examples 
+#' value <- rnorm(10, 10, 2)
+#' 
+#' nodes <- data.frame(
+#'   name = sample(LETTERS, 10),
+#'   value = value,
+#'   size = value,
+#'   grp = rep(c("grp1", "grp2"), 5),
+#'   stringsAsFactors = FALSE
+#' )
+#' 
+#' edges <- data.frame(
+#'   source = sample(nodes$name, 20, replace = TRUE),
+#'   target = sample(nodes$name, 20, replace = TRUE),
+#'   stringsAsFactors = FALSE
+#' )
+#' 
+#' if(interactive()){
+#' 
+#'   ui <- fluidPage(
+#'     fluidRow(
+#'       column(
+#'         2, numericInput("index", "Node", value = 3, min = 1, max = 9)
+#'       ),
+#'       column(
+#'         2, br(), actionButton("focus", "Focus")
+#'       ),
+#'       column(
+#'         2, br(), actionButton("unfocus", "Unfocus")
+#'       )
+#'     ),
+#'     fluidRow(
+#'       column(12, echarts4rOutput("graph"))
+#'     )
+#'   )
+#'   
+#'   server <- function(input, output, session){
+#'   
+#'     output$graph <- renderEcharts4r({
+#'       e_charts() %>% 
+#'         e_graph() %>% 
+#'         e_graph_nodes(nodes, name, value, size, grp) %>% 
+#'         e_graph_edges(edges, source, target)
+#'     })
+#'     
+#'     observeEvent(input$focus, {
+#'     
+#'       echarts4rProxy("graph") %>% 
+#'         e_focus_adjacency(
+#'           seriesIndex = 0,
+#'           index = input$index
+#'         )
+#'     
+#'     })
+#'     
+#'     observeEvent(input$unfocus, {
+#'       
+#'       echarts4rProxy("graph") %>% 
+#'         e_unfocus_adjacency(seriesIndex = 0)
+#'       
+#'     })
+#'   
+#'   }
+#'   
+#'   shinyApp(ui, server)
+#' 
+#' }
+#' 
+#' @rdname node_adjacency
+#' @export
+e_focus_adjacency <- function(proxy, index, ...){
+  
+  if (!"echarts4rProxy" %in% class(proxy)) 
+    stop("must pass echarts4rProxy object", call. = FALSE)
+  
+  args <- list(...)
+  
+  hasArgs <- c("seriesId", "seriesIndex", "seriesName") %in% names(args)
+  
+  if(sum(hasArgs) != 1)
+    stop("Must pass one of seriesId, seriesIndex, or seriesName", call. = FALSE)
+  
+  data <- list(
+    id = proxy$id,
+    opts = list(
+      type = "focusNodeAdjacency",
+      dataIndex = index,
+      ...
+    )
+  )
+  
+  proxy$session$sendCustomMessage("e_focus_node_adjacency_p", data)
+  
+  return(proxy)
+}
+
+#' @rdname node_adjacency
+#' @export
+e_unfocus_adjacency <- function(proxy, ...){
+  
+  if (!"echarts4rProxy" %in% class(proxy)) 
+    stop("must pass echarts4rProxy object", call. = FALSE)
+  
+  args <- list(...)
+  
+  hasArgs <- c("seriesId", "seriesIndex", "seriesName") %in% names(args)
+  
+  if(sum(hasArgs) != 1)
+    stop("Must pass one of seriesId, seriesIndex, or seriesName", call. = FALSE)
+  
+  data <- list(
+    id = proxy$id,
+    opts = list(
+      type = "unfocusNodeAdjacency",
+      ...
+    )
+  )
+  
+  proxy$session$sendCustomMessage("e_unfocus_node_adjacency_p", data)
+  
+  return(proxy)
+}

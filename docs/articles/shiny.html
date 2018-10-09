@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.1.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2.9000</span>
       </span>
     </div>
 
@@ -63,6 +63,12 @@
   </a>
 </li>
 <li>
+  <a href="../reference/">
+    <span class="fa fa-code"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../articles/gallery.html">
     <span class="fa fa-paint-brush"></span>
      
@@ -75,20 +81,26 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-<li class="dropdown-header">Guide</li>
-    <li>
+<li>
       <a href="../articles/get_started.html">Get Started</a>
     </li>
     <li>
       <a href="../articles/advanced.html">Advanced</a>
     </li>
-    <li class="divider">
-    <li class="dropdown-header">Charts &amp; graphs</li>
-    <li>
-      <a href="../articles/chart_types.html">Chart types</a>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Charts
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/chart_types.html">Chart Types</a>
     </li>
     <li>
-      <a href="../articles/gl.html">webGL</a>
+      <a href="../articles/gl.html">Web GL</a>
     </li>
     <li>
       <a href="../articles/graph.html">Graph</a>
@@ -99,9 +111,19 @@
     <li>
       <a href="../articles/pictorial.html">Pictorial</a>
     </li>
-    <li class="divider">
-    <li class="dropdown-header">Geospatial</li>
     <li>
+      <a href="../articles/threeD.html">3D</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Geospatial
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
       <a href="../articles/map.html">Map</a>
     </li>
     <li>
@@ -119,16 +141,17 @@
     <li>
       <a href="../articles/leaflet.html">Leaflet</a>
     </li>
-    <li>
-      <a href="../articles/threeD.html">3D</a>
-    </li>
-    <li class="divider">
-    <li class="dropdown-header">Customisation</li>
-    <li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Style
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
       <a href="../articles/grid.html">Grid &amp; Axis</a>
-    </li>
-    <li>
-      <a href="../articles/shiny.html">Shiny</a>
     </li>
     <li>
       <a href="../articles/brush.html">Brush</a>
@@ -145,7 +168,7 @@
   </ul>
 </li>
 <li>
-  <a href="../reference/">Reference</a>
+  <a href="../articles/shiny.html">Shiny</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -158,12 +181,6 @@
 <li>
   <a href="https://bitbucket.org/JohnCoene/echarts4r">
     <span class="fa fa-bitbucket fa-lg"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="https://coding.net/u/JohnCoene/p/echarts4r">
-    <span class="fa fa-qq fa-lg"></span>
      
   </a>
 </li>
@@ -188,7 +205,7 @@
       <h1>Shiny</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2018-09-16</h4>
+            <h4 class="date">2018-10-09</h4>
       
       
       <div class="hidden name"><code>shiny.Rmd</code></div>
@@ -202,35 +219,36 @@
 <p>Get data from shiny with the following:</p>
 <ul>
 <li>
-<code>elementId</code> + <code>_brush</code>
-</li>
+<code>elementId</code> + <code>_brush</code> - returns data on brushed data points.</li>
 <li>
-<code>elementId</code> + <code>_legend_change</code>
-</li>
+<code>elementId</code> + <code>_legend_change</code> - returns series name of legend selected/unselected.</li>
 <li>
-<code>elementId</code> + <code>_clicked_data</code>
-</li>
+<code>elementId</code> + <code>_clicked_data</code> - returns data of clicked data point.</li>
 <li>
-<code>elementId</code> + <code>_clicked_data_value</code>
-</li>
+<code>elementId</code> + <code>_clicked_data_value</code> - returns value of clicked data point.</li>
 <li>
-<code>elementId</code> + <code>_clicked_row</code>
-</li>
+<code>elementId</code> + <code>_clicked_row</code> - returns row number of clicked data point.</li>
 <li>
-<code>elementId</code> + <code>_clicked_serie</code>
-</li>
+<code>elementId</code> + <code>_clicked_serie</code> - returns name of serie of clicked data point.</li>
 <li>
-<code>elementId</code> + <code>_mouseover_data</code>
-</li>
+<code>elementId</code> + <code>_mouseover_data</code> - returns data on hovered data point.</li>
 <li>
-<code>elementId</code> + <code>_mouseover_data_value</code>
-</li>
+<code>elementId</code> + <code>_mouseover_data_value</code> - returns value of hovered data point.</li>
 <li>
-<code>elementId</code> + <code>_mouseover_row</code>
-</li>
+<code>elementId</code> + <code>_mouseover_row</code> - returns row o hovered data point.</li>
 <li>
-<code>elementId</code> + <code>_mouseover_serie</code>
-</li>
+<code>elementId</code> + <code>_mouseover_serie</code> - returns name of serie of hovered data point.</li>
+</ul>
+<p>Interact with the charts without redrawing (proxies):</p>
+<ul>
+<li>
+<code>e_append1_p</code> and <code>e_append2_p</code> - to add data to your chart.</li>
+<li>
+<code>e_highlight_p</code> and <code>e_downplay_p</code> - to highlight or downplay a serie.</li>
+<li>
+<code>e_showtip_p</code> and <code>e_hidetip_p</code> - to Show or hide the tooltip.</li>
+<li>
+<code>e_focus_adjacency</code> and <code>e_unfocus_adjacency</code> - to focus or unfocus on adjacent nodes (networks).</li>
 </ul>
 <p>See the example below and the various proxies documentation.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>

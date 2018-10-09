@@ -45,20 +45,21 @@ navbar:
       href: LICENSE.html
     - icon: fa-newspaper-o
       href: news/index.html
+    - icon: fa-code
+      href: "reference/"
     - icon: fa-paint-brush
       href: articles/gallery.html
     - text: "Guide"
       menu: 
-        - text: "Guide"
         - text: "Get Started"
           href: articles/get_started.html
         - text: "Advanced"
           href: articles/advanced.html
-        - text: "------------------"
-        - text: "Charts & graphs"
-        - text: "Chart types"
+    - text: "Charts"
+      menu:
+        - text: "Chart Types"
           href: articles/chart_types.html
-        - text: "webGL"
+        - text: "Web GL"
           href: articles/gl.html
         - text: "Graph"
           href: articles/graph.html
@@ -66,8 +67,10 @@ navbar:
           href: articles/stats.html
         - text: "Pictorial"
           href: articles/pictorial.html
-        - text: "------------------"
-        - text: "Geospatial"
+        - text: "3D"
+          href: articles/threeD.html
+    - text: "Geospatial"
+      menu:
         - text: "Map"
           href: articles/map.html
         - text: "Geo"
@@ -80,14 +83,10 @@ navbar:
           href: articles/globe.html
         - text: "Leaflet"
           href: articles/leaflet.html
-        - text: "3D"
-          href: articles/threeD.html
-        - text: "------------------"
-        - text: "Customisation"
+    - text: "Style"
+      menu:
         - text: "Grid & Axis"
           href: articles/grid.html
-        - text: "Shiny"
-          href: articles/shiny.html
         - text: "Brush"
           href: articles/brush.html
         - text: "Toolbox"
@@ -96,8 +95,8 @@ navbar:
           href: articles/tooltip.html
         - text: "Themes"
           href: articles/themes.html
-    - text: "Reference"
-      href: "reference/"
+    - text: "Shiny" 
+      href: articles/shiny.html
   right:
     - icon: fa-github fa-lg
       href: https://github.com/JohnCoene/echarts4r

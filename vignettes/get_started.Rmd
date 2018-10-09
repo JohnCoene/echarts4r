@@ -16,19 +16,35 @@ knitr::opts_chunk$set(
 )
 ```
 
-All functions of the `echarts4r` package start with `e_`, and all its [Shiny](https://shiny.rstudio.com/) proxies end with `_p`. All `echarts4r` plots are initialised with `e_charts`.
+Welcome to `echarts4r`, let's explore the package together.
+
+1. All functions of the `echarts4r` package start with `e_`.
+2. All its [Shiny](https://shiny.rstudio.com/) proxies end with `_p`. 
+3. All `echarts4r` plots are initialised with `e_charts`.
+4. All functions are `%>%` friendly.
+5. Most functions have escape hatches ending in `_`.
 
 ### Your first plots
+
+Let's build a line chart, load the library and pipe your data to `e_charts`. If you are not at ease with the `%>%` you can use `e_charts(mtcars, wt)`.
 
 ```{r}
 library(echarts4r) # load echarts4r
 
 mtcars %>% 
-  e_charts(wt) %>% # initialise and set x
-  e_line(mpg) # add a line
+  e_charts(x = wt) %>% # initialise and set x
+  e_line(serie = mpg) # add a line
 ```
 
-Use the `%>%` operator to add plots and options.
+If you are not at ease with bare column names you can use the escape hatches ending in `_`.
+
+```{r, eval = FALSE}
+mtcars %>% 
+  e_charts_("wt") %>% 
+  e_line_("mpg")
+```
+
+The easiest way is to use the `%>%` operator to add plots and options, we'll change the minimum of our x axis.
 
 ```{r}
 mtcars %>% 
@@ -38,7 +54,7 @@ mtcars %>%
   e_x_axis(min = 1) # change x axis minimum
 ```
 
-Customise the lines to make them `smooth`.
+We could also change the lines to make them `smooth`.
 
 ```{r}
 mtcars %>% 
@@ -48,7 +64,7 @@ mtcars %>%
   e_x_axis(min = 1) # change x axis minimum
 ```
 
-`qsec` and `mpg` isn't clear to reader, rename them, also rename the x axis while you're at it.
+`qsec` and `mpg` isn't clear to reader, rename them, lets also label the x axis while we're at it.
 
 ```{r}
 mtcars %>% 
@@ -58,7 +74,7 @@ mtcars %>%
   e_x_axis(min = 1, name = "weight") # change x axis minimum
 ```
 
-Use one of the 13 built-in themes, see `?e_theme` for a complete list, also add a title with `e_title`.
+We can use one of the 13 built-in themes, see `?e_theme` for a complete list, we'll also add a title with `e_title`.
 
 ```{r}
 mtcars %>% 
@@ -70,7 +86,7 @@ mtcars %>%
   e_theme("infographic") # theme
 ```
 
-The legend and title are a bit close, let's move one of the legend to another part the canvas.
+The legend and title are a bit close, let's move the legend to another part the canvas.
 
 ```{r}
 mtcars %>% 
@@ -83,7 +99,7 @@ mtcars %>%
   e_legend(bottom = 0) # move legend to the bottom
 ```
 
-Add a tooltip, for which there are numerous [options](https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip), here we use `trigger = "axis"` triggered by the axis rather than a single data point.
+Add a tooltip, of which there are numerous [options](https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip), here we use `trigger = "axis"` to trigger the tooltip by the axis rather than a single data point.
 
 ```{r}
 mtcars %>% 
@@ -112,19 +128,13 @@ mtcars %>%
   e_format_y_axis(suffix = "mpg")
 ```
 
-The package now understands `dplyr::group_by` in order to avoid having to add many layers manually. Let's say we have a `data.frame` containing data for 10 groups, we can just `dplyr::group_by` instead of adding, say, 20 `e_line`.
+The package also understands `dplyr::group_by` in order to avoid having to add many layers manually one by one. `echarts4r` essentially will plot one serie for each group.
 
 ```{r}
-df <- data.frame(
-  grp = rep(LETTERS[1:10], 20),
-  x = runif(200),
-  y = runif(200)
-)
-
-df %>% 
-  group_by(grp) %>% 
-  e_charts(x) %>% 
-  e_line(y) %>% 
+iris %>% 
+  group_by(Species) %>% 
+  e_charts(Sepal.Length) %>% 
+  e_line(Sepal.Width) %>% 
   e_title("Grouped data")
 ```
 

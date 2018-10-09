@@ -38,8 +38,6 @@ library(echarts4r)
 
 ## Installation
 
-<span class = "label label-success"><i class = "fa fa-warning"></i></span> Version `0.1.1` sees great performance and security improvements, *upgrading is highly recommended.*
-
 The package is available on [CRAN](https://CRAN.R-project.org/package=echarts4r):
 
 ```{r, eval=FALSE}
@@ -68,7 +66,7 @@ Some of the features:
 * WebGL support
 * Plugins included
 * Shiny proxies
-* themes
+* Themes
 
 ```{r, echo=FALSE}
 div(
@@ -79,8 +77,7 @@ div(
       class = "panel panel-default",
       div(
         class = "panel-heading",
-        "Group",
-        tags$span(class = "label label-success", "new")
+        "Group"
       ),
       div(
         class = "panel-body",
@@ -120,27 +117,11 @@ div(
 )
 ```
 
-## Examples
-
-Some of what you can do with `echarts4r`, see the guide for more.
+## Example
 
 ```{r}
 library(echarts4r)
 
-# with negative
-USArrests %>% 
-  dplyr::mutate(
-    State = row.names(.),
-    Rape = -Rape
-  ) %>% 
-  e_charts(State) %>% 
-  e_area(Murder) %>%
-  e_bar(Rape, name = "Sick basterd", x.index = 1) %>% # second y axis 
-  e_mark_line("Sick basterd", data = list(type = "average")) %>% 
-  e_mark_point("Murder", data = list(type = "max")) %>% 
-  e_tooltip(trigger = "axis")
-
-# 3D bars
 url <- paste0("https://ecomfe.github.io/echarts-examples/",
               "public/data-gl/asset/data/population.json")
 data <- jsonlite::fromJSON(url)

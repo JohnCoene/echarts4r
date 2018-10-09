@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased package">0.1.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2.9000</span>
       </span>
     </div>
 
@@ -104,6 +104,12 @@
   </a>
 </li>
 <li>
+  <a href="../reference/">
+    <span class="fa fa-code"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../articles/gallery.html">
     <span class="fa fa-paint-brush"></span>
      
@@ -116,20 +122,26 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Guide</li>
     <li>
       <a href="../articles/get_started.html">Get Started</a>
     </li>
     <li>
       <a href="../articles/advanced.html">Advanced</a>
     </li>
-    <li class="divider"></li>
-    <li class="dropdown-header">Charts &amp; graphs</li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Charts
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/chart_types.html">Chart types</a>
+      <a href="../articles/chart_types.html">Chart Types</a>
     </li>
     <li>
-      <a href="../articles/gl.html">webGL</a>
+      <a href="../articles/gl.html">Web GL</a>
     </li>
     <li>
       <a href="../articles/graph.html">Graph</a>
@@ -140,8 +152,18 @@
     <li>
       <a href="../articles/pictorial.html">Pictorial</a>
     </li>
-    <li class="divider"></li>
-    <li class="dropdown-header">Geospatial</li>
+    <li>
+      <a href="../articles/threeD.html">3D</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Geospatial
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/map.html">Map</a>
     </li>
@@ -160,16 +182,17 @@
     <li>
       <a href="../articles/leaflet.html">Leaflet</a>
     </li>
-    <li>
-      <a href="../articles/threeD.html">3D</a>
-    </li>
-    <li class="divider"></li>
-    <li class="dropdown-header">Customisation</li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Style
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/grid.html">Grid &amp; Axis</a>
-    </li>
-    <li>
-      <a href="../articles/shiny.html">Shiny</a>
     </li>
     <li>
       <a href="../articles/brush.html">Brush</a>
@@ -186,7 +209,7 @@
   </ul>
 </li>
 <li>
-  <a href="../reference/">Reference</a>
+  <a href="../articles/shiny.html">Shiny</a>
 </li>
       </ul>
       
@@ -200,12 +223,6 @@
 <li>
   <a href="https://bitbucket.org/JohnCoene/echarts4r">
     <span class="fa fa-bitbucket fa-lg"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="https://coding.net/u/JohnCoene/p/echarts4r">
-    <span class="fa fa-qq fa-lg"></span>
      
   </a>
 </li>
@@ -238,8 +255,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_showtip_p</span>(<span class='no'>proxy</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>10</span>, <span class='fl'>10</span>), <span class='kw'>series.index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>e_showtip_p</span>(<span class='no'>proxy</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_hidetip_p</span>(<span class='no'>proxy</span>)</pre>
     
@@ -251,16 +267,8 @@
       <td><p>An echarts4r proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
-      <th>position</th>
-      <td><p>Tooltip position.</p></td>
-    </tr>
-    <tr>
-      <th>series.index</th>
-      <td><p>Index of serie.</p></td>
-    </tr>
-    <tr>
-      <th>name</th>
-      <td><p>Name of serie.</p></td>
+      <th>...</th>
+      <td><p>Any other option, see <a href='https://ecomfe.github.io/echarts-doc/public/en/api.html#action.tooltip'>showTip</a>.</p></td>
     </tr>
     </table>
     
@@ -292,12 +300,16 @@
          <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>disp</span>, <span class='kw'>bind</span> <span class='kw'>=</span> <span class='no'>carb</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"displacement"</span>) <span class='kw'>%&gt;%</span>
          <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>hp</span>) <span class='kw'>%&gt;%</span>
          <span class='fu'><a href='axis.html'>e_x_axis</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>10</span>) <span class='kw'>%&gt;%</span>
+         <span class='fu'><a href='e_tooltip.html'>e_tooltip</a></span>(<span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
          <span class='fu'><a href='theme.html'>e_theme</a></span>(<span class='st'>"westeros"</span>)
      })
 
      <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>show</span>, {
        <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"plot"</span>) <span class='kw'>%&gt;%</span>
-         <span class='fu'>e_showtip_p</span>(<span class='fl'>0</span>)
+         <span class='fu'>e_showtip_p</span>(
+           <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"displacement"</span>,
+           <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='fl'>5</span>, <span class='fl'>5</span>)
+         )
      })
 
      <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>hide</span>, {

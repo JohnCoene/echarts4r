@@ -105,38 +105,3 @@ data %>%
     lineStyle = list(opacity = 0.1, widh = 0.5, color = 'rgb(50, 50, 150)')
   )
 ```
-
-### 3D image
-
-Download the image
-
-```{r}
-library(png)
-
-download.file("https://developer.r-project.org/Logo/Rlogo-4.png", destfile = "Rlogo.png", mode = "wb")
-
-png <- readPNG("Rlogo.png", native = FALSE)
-```
-
-```{r}
-# extract colors
-colors <- c(png[,,1], png[,,2], png[,,3])
-
-# build as matrix of hex colors
-matrix <- matrix(colors, nrow = dim(png)[1], ncol = dim(png)[2])
-
-# reshape to x, y, color data.frame 
-df <- as.data.frame(as.table(matrix))
-names(df) <- c("x", "y", "z")
-
-df %>% 
-  e_charts(x) %>% 
-  e_bar_3d(y, z) %>% 
-  e_grid_3d(show = FALSE) %>% 
-  e_visual_map(
-    z,
-    show = FALSE,
-    calculable = FALSE
-  ) %>% 
-  e_theme("westeros")
-```
