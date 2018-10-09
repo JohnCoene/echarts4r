@@ -5,19 +5,14 @@
 \alias{e_hidetip_p}
 \title{Tooltip Proxy}
 \usage{
-e_showtip_p(proxy, position = c(10, 10), series.index = NULL,
-  name = NULL)
+e_showtip_p(proxy, ...)
 
 e_hidetip_p(proxy)
 }
 \arguments{
 \item{proxy}{An echarts4r proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{position}{Tooltip position.}
-
-\item{series.index}{Index of serie.}
-
-\item{name}{Name of serie.}
+\item{...}{Any other option, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.tooltip}{showTip}.}
 }
 \description{
 Proxies to show or hide tooltip.
@@ -48,13 +43,17 @@ Proxies to show or hide tooltip.
          e_charts(mpg) \%>\% 
          e_line(disp, bind = carb, name = "displacement") \%>\% 
          e_line(hp) \%>\% 
-         e_x_axis(min = 10) \%>\% 
+         e_x_axis(min = 10) \%>\%
+         e_tooltip(show = FALSE) \%>\%  
          e_theme("westeros") 
      })
      
      observeEvent(input$show, {
        echarts4rProxy("plot") \%>\% 
-         e_showtip_p(0)
+         e_showtip_p(
+           name = "displacement",
+           position = list(5, 5)
+         )
      })
      
      observeEvent(input$hide, {

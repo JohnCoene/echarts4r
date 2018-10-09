@@ -106,9 +106,7 @@ e_downplay_p <- function(proxy, series.index = NULL, series.name = NULL){
 #' Proxies to show or hide tooltip.
 #' 
 #' @inheritParams e_highlight_p
-#' @param series.index Index of serie.
-#' @param name Name of serie.
-#' @param position Tooltip position.
+#' @param ... Any other option, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.tooltip}{showTip}.
 #' 
 #' @examples 
 #' \dontrun{
@@ -136,13 +134,17 @@ e_downplay_p <- function(proxy, series.index = NULL, series.name = NULL){
 #'          e_charts(mpg) %>% 
 #'          e_line(disp, bind = carb, name = "displacement") %>% 
 #'          e_line(hp) %>% 
-#'          e_x_axis(min = 10) %>% 
+#'          e_x_axis(min = 10) %>%
+#'          e_tooltip(show = FALSE) %>%  
 #'          e_theme("westeros") 
 #'      })
 #'      
 #'      observeEvent(input$show, {
 #'        echarts4rProxy("plot") %>% 
-#'          e_showtip_p(0)
+#'          e_showtip_p(
+#'            name = "displacement",
+#'            position = list(5, 5)
+#'          )
 #'      })
 #'      
 #'      observeEvent(input$hide, {
@@ -169,15 +171,18 @@ e_downplay_p <- function(proxy, series.index = NULL, series.name = NULL){
 #' 
 #' @rdname tooltip_proxy
 #' @export
-e_showtip_p <- function(proxy, position = c(10, 10), series.index = NULL, name = NULL){
+e_showtip_p <- function(proxy, ...){
   
   if (!"echarts4rProxy" %in% class(proxy)) 
     stop("must pass echarts4rProxy object", call. = FALSE)
   
-  data <- list(id = proxy$id)
-  data$seriesIndex <- series.index
-  data$name <- name
-  data$position <- position
+  data <- list(
+    id = proxy$id,
+    opts = list(
+      type = "showTip",
+      ...
+    )
+  )
   
   proxy$session$sendCustomMessage("e_showtip_p", data)
   
@@ -201,6 +206,13 @@ e_hidetip_p <- function(proxy){
 #' Node Adjacency
 #' 
 #' Focus or unfocus on node adjacency.
+#' 
+#' @inheritParams e_highlight_p
+#' @param index Index of node to focus on.
+#' @param ... Any other options, see 
+#' \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.graph}{official documentation} and details.
+#' 
+#' @details Must pass \code{seriesId}, \code{seriesIndex}, or \code{seriesName}, generally \code{seriesIndex = 0} will work.
 #' 
 #' @examples 
 #' value <- rnorm(10, 10, 2)
@@ -323,4 +335,27 @@ e_unfocus_adjacency <- function(proxy, ...){
   proxy$session$sendCustomMessage("e_unfocus_node_adjacency_p", data)
   
   return(proxy)
+}
+
+#' Dispatch Action
+#' 
+#' Create your own proxies, essentially a wrapper around the 
+#' \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action}{action API}.
+#' 
+#' @inheritParams e_highlight_p
+#' @param type Type of action to dispatch, i.e.: \code{highlight}.
+#' @param ... Named options.
+#' 
+#' @export
+e_dispatch_action_p <- function(proxy, type, ...){
+  
+  if(missing(proxy) || missing(type))
+    stop("must pass proxy and type", call. = FALSE)
+  
+  if (!"echarts4rProxy" %in% class(proxy)) 
+    stop("must pass echarts4rProxy object", call. = FALSE)
+  
+  data <- list(id = proxy$id, opts = list(type = type, ...))
+  
+  proxy$session$sendCustomMessage("e_dispatch_action_p", data)
 }
