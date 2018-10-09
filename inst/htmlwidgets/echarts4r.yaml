@@ -5,6 +5,8 @@ dependencies:
    script: 
       - echarts.min.js
       - echarts-gl.min.js
+      - ecStat.min.js
+      - dataTool.min.js
       - world.js
       - plugins/echarts-wordcloud.min.js
       - plugins/echarts-liquidfill.min.js

@@ -149,14 +149,10 @@ if (HTMLWidgets.shinyMode) {
   
   Shiny.addCustomMessageHandler('e_showtip_p',
     function(data) {
+      console.log(data);
       var chart = get_e_charts(data.id);
       if (typeof chart != 'undefined') {
-        chart.dispatchAction({
-          type: 'showTip',
-          seriesIndex: data.seriesIndex,
-          name: data.name,
-          position: data.position
-        });
+        chart.dispatchAction(data.opts);
       }
   });
   
@@ -190,6 +186,14 @@ if (HTMLWidgets.shinyMode) {
   });
   
   Shiny.addCustomMessageHandler('e_unfocus_node_adjacency_p',
+    function(data) {
+      var chart = get_e_charts(data.id);
+      if (typeof chart != 'undefined') {
+        chart.dispatchAction(data.opts);
+      }
+  });
+  
+  Shiny.addCustomMessageHandler('e_dispatch_action_p',
     function(data) {
       var chart = get_e_charts(data.id);
       if (typeof chart != 'undefined') {
