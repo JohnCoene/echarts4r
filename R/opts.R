@@ -473,3 +473,27 @@ e_flip_coords <- function(e){
   
   e
 }
+
+#' Text style
+#' 
+#' Define global font style.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#textStyle}{official documentation}
+#' 
+#' @examples 
+#' cars %>% 
+#'   e_charts(dist) %>% 
+#'   e_scatter(speed) %>% 
+#'   e_labels() %>% 
+#'   e_text_style(
+#'     color = "blue",
+#'     fontStyle = "italic"
+#'   )
+#' 
+#' @export
+e_text_style <- function(e, ...){
+  e$x$opts$textStyle <- list(...)
+  e
+}

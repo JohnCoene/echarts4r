@@ -9,6 +9,7 @@
 * `e_focus_adjacency_p` and `e_unfocus_adjacency_p` proxies to highlight adjacent nodes (on graph/network) added.
 * Deprecation of texture related functions in favour of [echarts4r.assets](http://echarts4r-assets.john-coene.com/).
 * `e_single_axis` added, works with `e_scatter`.
+* `e_text_style` added, to customise global fonts.
 
 # echarts4r 0.1.1
 
