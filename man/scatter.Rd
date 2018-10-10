@@ -42,7 +42,7 @@ by \code{1} (equivalent to no multiplier).}
 
 \item{name}{name of the serie.}
 
-\item{coord.system}{Coordinate system to plot against.}
+\item{coord.system}{Coordinate system to plot against, see examples.}
 
 \item{legend}{Whether to add serie to legend.}
 

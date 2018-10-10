@@ -22,6 +22,8 @@ Proxies to highlight and downplay series.
 \examples{
 \dontrun{
 
+  library(shiny)
+
  ui <- fluidPage(
    fluidRow(
      column(

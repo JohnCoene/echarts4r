@@ -240,3 +240,69 @@ e_radar_opts <- function(e, index = 0, ...){
   e
   
 }
+
+#' Single Axis
+#' 
+#' Setup single axis.
+#' 
+#' @inheritParams e_bar
+#' @param index Index of axis to customise.
+#' 
+#' @examples 
+#' df <- data.frame(
+#'   axis = LETTERS[1:10],
+#'   value = runif(10, 3, 20),
+#'   size = runif(10, 3, 20)
+#' )
+#' 
+#' df %>% 
+#'   e_charts(axis) %>% 
+#'   e_single_axis() %>% # add the single axis
+#'   e_scatter(
+#'     value,
+#'     size, 
+#'     coord.system = "singleAxis"
+#'   ) 
+#' 
+#' @export
+e_single_axis <- function(e, index = 0, ...){
+  
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  r.index <- index + 1
+  
+  e$x$opts$xAxis <- NULL
+  e$x$opts$yAxis <- NULL
+  
+  if(!length(e$x$opts$singleAxis))
+    e$x$opts$singleAxis <- list(...)
+  else
+    e$x$opts$singleAxis <- append(e$x$opts$singleAxis, list(...))
+  
+  if(!is.null(e$x$mapping$x)){
+    
+    type <- .get_type(e, e$x$mapping$x)
+    
+    e$x$opts$singleAxis$type <- type
+    
+    if(type == "category" || type == "time"){
+      
+      vect <- c()
+      for(i in 1:length(e$x$data)){
+        dat <- e$x$data[[i]] %>% dplyr::select_(e$x$mapping$x) %>% unlist()
+        dat <- unname(dat)
+        dat <- as.character(dat)
+        
+        vect <- append(vect, dat)
+      }
+      
+      vect <- unique(vect)
+      e$x$opts$singleAxis$data <- vect
+    }
+  } else {
+    warning("x not pass to e_charts", call. = FALSE)
+  }
+  
+  e
+}

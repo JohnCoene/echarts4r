@@ -158,7 +158,7 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' only used if \code{size} is \code{NULL} or missing. 
 #' @param scale Scale for \code{size}, defaults to \code{* 1} which multiplies the size
 #'  by \code{1} (equivalent to no multiplier).
-#' @param coord.system Coordinate system to plot against.
+#' @param coord.system Coordinate system to plot against, see examples.
 #' @param rm.x,rm.y Whether to remove x and y axis, only applies if \code{coord.system} is not 
 #' set to \code{cartesian2d}.
 #' 

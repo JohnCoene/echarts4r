@@ -42,6 +42,8 @@ edges <- data.frame(
 
 if(interactive()){
 
+  library(shiny)
+
   ui <- fluidPage(
     fluidRow(
       column(

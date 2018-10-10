@@ -215,12 +215,18 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol.size = 10,
       ...
     )
     
-    if(coord.system != "cartesian2d"){
+    if(!coord.system %in% c("cartesian2d", "singleAxis")){
       e <- .rm_axis(e, rm.x, "x")
       e <- .rm_axis(e, rm.y, "y")
     } else {
-      e.serie$yAxisIndex = y.index
-      e.serie$xAxisIndex = x.index
+      
+      if(coord.system == "cartesian2d"){
+        e.serie$yAxisIndex = y.index
+        e.serie$xAxisIndex = x.index
+      } else {
+        e.serie$singleAxisIndex = x.index
+      }
+      
       if(isTRUE(legend))
         e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
     }

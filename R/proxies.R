@@ -10,6 +10,8 @@
 #' @examples 
 #' \dontrun{
 #' 
+#'   library(shiny)
+#' 
 #'  ui <- fluidPage(
 #'    fluidRow(
 #'      column(
@@ -232,6 +234,8 @@ e_hidetip_p <- function(proxy){
 #' )
 #' 
 #' if(interactive()){
+#' 
+#'   library(shiny)
 #' 
 #'   ui <- fluidPage(
 #'     fluidRow(
