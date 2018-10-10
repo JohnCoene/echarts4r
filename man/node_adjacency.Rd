@@ -40,7 +40,7 @@ edges <- data.frame(
   stringsAsFactors = FALSE
 )
 
-if(interactive()){
+\dontrun{
 
   library(shiny)
 

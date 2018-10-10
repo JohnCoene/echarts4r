@@ -581,3 +581,12 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     return(max(unlist(lapply(this,.list_depth,thisdepth=thisdepth+1))))    
   }
 }
+
+.e_graphic_elem <- function(e, elem, ...){
+  if(length(e$x$opts$graphic) == 0)
+    e$x$opts$graphic <- list(...)
+  
+  opts <- list(type = elem, ...)
+  e$x$opts$graphic <- append(e$x$opts$graphic, opts)
+  e
+}

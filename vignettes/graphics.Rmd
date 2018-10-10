@@ -1,0 +1,70 @@
+---
+title: "Graphics"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Graphics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(echarts4r)
+```
+
+With `echarts4r` comes a small but powerful low level API to graphic elements.
+
+## Functions
+
+Graphic functions end in `_g`
+
+- `g_graphic_g` (initialisation)
+- `g_group_g`
+- `g_image_g`
+- `g_text_g`
+- `g_rect_g`
+- `g_circle_g`
+- `g_ring_g`
+- `g_sector_g`
+- `g_arc_g`
+- `g_polygon_g`
+- `g_polyline_g`
+- `g_line_g`
+- `g_bezier_curve_g`
+
+## Draft
+
+The `e_draft` helper function is a very simple wrapper aroudn the graphics API and thus a good example of what can be achieved.
+
+```{r}
+cars %>% 
+  e_charts(speed) %>% 
+  e_scatter(dist) %>%
+  e_draft()
+```
+
+## Image
+
+You can add an image for instance.
+
+```{r}
+cars %>% 
+  e_charts(speed) %>% 
+  e_scatter(dist) %>%
+  e_image_g(
+    right = 20,
+    top = 20,
+    z = -999,
+    style = list(
+      image = "https://www.r-project.org/logo/Rlogo.png",
+      width = 150,
+      height = 150,
+      opacity = .6
+    )
+  )
+```

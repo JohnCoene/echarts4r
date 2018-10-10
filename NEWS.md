@@ -11,6 +11,22 @@
 * `e_single_axis` added, works with `e_scatter`.
 * `e_text_style` added, to customise global fonts.
 
+First iteration of the graphic low-level API:
+
+- `g_graphic_g`
+- `g_group_g`
+- `g_image_g`
+- `g_text_g`
+- `g_rect_g`
+- `g_circle_g`
+- `g_ring_g`
+- `g_sector_g`
+- `g_arc_g`
+- `g_polygon_g`
+- `g_polyline_g`
+- `g_line_g`
+- `g_bezier_curve_g`
+
 # echarts4r 0.1.1
 
 *Now available on CRAN*

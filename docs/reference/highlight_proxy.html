@@ -204,6 +204,9 @@
       <a href="../articles/tooltip.html">Tooltip</a>
     </li>
     <li>
+      <a href="../articles/graphics.html">Graphics</a>
+    </li>
+    <li>
       <a href="../articles/themes.html">Themes</a>
     </li>
   </ul>
@@ -279,23 +282,25 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
- <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'>fluidPage</span>(
-   <span class='fu'>fluidRow</span>(
-     <span class='fu'>column</span>(
+  <span class='fu'>library</span>(<span class='no'>shiny</span>)
+
+ <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidPage</a></span>(
+   <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidRow</a></span>(
+     <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/column'>column</a></span>(
        <span class='fl'>3</span>,
-       <span class='fu'>actionButton</span>(<span class='st'>"highlightmpg"</span>, <span class='st'>"Highlight MPG"</span>)
+       <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>"highlightmpg"</span>, <span class='st'>"Highlight MPG"</span>)
      ),
-     <span class='fu'>column</span>(
+     <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/column'>column</a></span>(
        <span class='fl'>3</span>,
-       <span class='fu'>actionButton</span>(<span class='st'>"highlighthp"</span>, <span class='st'>"Highlight HP"</span>)
+       <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>"highlighthp"</span>, <span class='st'>"Highlight HP"</span>)
      ),
-     <span class='fu'>column</span>(
+     <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/column'>column</a></span>(
        <span class='fl'>3</span>,
-       <span class='fu'>actionButton</span>(<span class='st'>"downplaympg"</span>, <span class='st'>"Downplay MPG"</span>)
+       <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>"downplaympg"</span>, <span class='st'>"Downplay MPG"</span>)
      ),
-     <span class='fu'>column</span>(
+     <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/column'>column</a></span>(
        <span class='fl'>3</span>,
-       <span class='fu'>actionButton</span>(<span class='st'>"downplayhp"</span>, <span class='st'>"Downplay HP"</span>)
+       <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>"downplayhp"</span>, <span class='st'>"Downplay HP"</span>)
      )
    ),
    <span class='fu'><a href='echarts4r-shiny.html'>echarts4rOutput</a></span>(<span class='st'>"plot"</span>)
@@ -311,30 +316,30 @@
 
    <span class='co'># highlight</span>
 
-   <span class='fu'>observeEvent</span>(<span class='no'>input</span>$<span class='no'>highlightmpg</span>, {
+   <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>highlightmpg</span>, {
      <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"plot"</span>) <span class='kw'>%&gt;%</span>
        <span class='fu'>e_highlight_p</span>(<span class='kw'>series.index</span> <span class='kw'>=</span> <span class='fl'>0</span>) <span class='co'># using index</span>
    })
 
-   <span class='fu'>observeEvent</span>(<span class='no'>input</span>$<span class='no'>highlighthp</span>, {
+   <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>highlighthp</span>, {
      <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"plot"</span>) <span class='kw'>%&gt;%</span>
        <span class='fu'>e_highlight_p</span>(<span class='kw'>series.name</span> <span class='kw'>=</span> <span class='st'>"HP"</span>) <span class='co'># using name</span>
    })
 
    <span class='co'># downplay</span>
 
-   <span class='fu'>observeEvent</span>(<span class='no'>input</span>$<span class='no'>downplaympg</span>, {
+   <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>downplaympg</span>, {
      <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"plot"</span>) <span class='kw'>%&gt;%</span>
        <span class='fu'>e_downplay_p</span>(<span class='kw'>series.name</span> <span class='kw'>=</span> <span class='st'>"disp"</span>)
    })
 
-   <span class='fu'>observeEvent</span>(<span class='no'>input</span>$<span class='no'>downplayhp</span>, {
+   <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>downplayhp</span>, {
      <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"plot"</span>) <span class='kw'>%&gt;%</span>
        <span class='fu'>e_downplay_p</span>(<span class='kw'>series.index</span> <span class='kw'>=</span> <span class='fl'>1</span>)
    })
  }
 
- <span class='fu'>shinyApp</span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+ <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 
 <span class='co'># }</span><div class='input'>
 </div></pre>

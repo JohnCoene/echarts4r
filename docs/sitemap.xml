@@ -70,6 +70,9 @@
     <loc>http://echarts4r.john-coene.com/reference/e_dispatch_action_p.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_draft.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_flip_coords.html</loc>
   </url>
   <url>
@@ -160,10 +163,16 @@
     <loc>http://echarts4r.john-coene.com/reference/e_scatter_gl.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_single_axis.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_step.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_sunburst.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_text_style.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_title.html</loc>
@@ -188,6 +197,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/graph.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/graphic.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/highlight_proxy.html</loc>
@@ -266,6 +278,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/articles/graph.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/graphics.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/articles/grid.html</loc>

@@ -233,7 +233,7 @@ e_hidetip_p <- function(proxy){
 #'   stringsAsFactors = FALSE
 #' )
 #' 
-#' if(interactive()){
+#' \dontrun{
 #' 
 #'   library(shiny)
 #' 

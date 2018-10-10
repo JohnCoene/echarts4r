@@ -18,6 +18,7 @@ Define global font style.
 cars \%>\% 
   e_charts(dist) \%>\% 
   e_scatter(speed) \%>\% 
+  e_labels() \%>\% 
   e_text_style(
     color = "blue",
     fontStyle = "italic"
