@@ -9,9 +9,11 @@ e_map_register(e, name, json)
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{name}{Name of map, to use in \code{\link{e_map}}}
+\item{name}{Name of map, to use in \code{\link{e_map}}.}
 
 \item{json}{\href{Geojson}{http://geojson.org/}.}
+
+\item{coord.system}{Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.}
 }
 \description{
 Register a \href{geojson}{http://geojson.org/} map.

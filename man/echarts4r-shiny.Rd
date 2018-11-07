@@ -35,3 +35,30 @@ is useful if you want to save an expression in a variable.}
 Output and render functions for using echarts4r within Shiny
 applications and interactive Rmd documents.
 }
+\section{Callbacks}{
+
+\itemize{
+  \item{\code{id_brush}: returns data on brushed data points.}
+  \item{\code{id_legend_change}: returns series name of legend selected/unselected.}
+  \item{\code{id_clicked_data}: returns data of clicked data point.}
+  \item{\code{id_clicked_data_value}: returns value of clicked data point.}
+  \item{\code{id_clicked_row}: returns row number of clicked data point.}
+  \item{\code{id_clicked_serie}: returns name of serie of clicked data point.}
+  \item{\code{id_mouseover_data}: returns data on hovered data point.}
+  \item{\code{id_mouseover_data_value}: returns value of hovered data point.}
+  \item{\code{id_mouseover_row}: returns row o hovered data point.}
+  \item{\code{id_mouseover_serie}: returns name of serie of hovered data point.}
+}
+}
+
+\section{Proxies}{
+
+\itemize{
+  \item{\code{\link{e_append1_p}} & \code{\link{e_append2_p}}}
+  \item{\code{\link{e_showtip_p}} & \code{\link{e_hidetip_p}}}
+  \item{\code{\link{e_highlight_p}} & \code{\link{e_downplay_p}}}
+  \item{\code{\link{e_focus_adjacency}} & \code{\link{e_unfocus_adjacency}}}
+  \item{\code{\link{e_dispatch_action_p}}}
+}
+}
+

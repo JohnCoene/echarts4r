@@ -1,6 +1,7 @@
 # echarts4r 0.1.2.9000
 
 * `e_labels` to easily add labels.
+* Mapbox support see `e_mapbox`.
 * Improved `e_scatter`.
 * Improved `e_toolbox`.
 * Fixed `e_axis` (and corresponding `e_x_axis` and `e_y_axis`) bugs.
@@ -10,6 +11,8 @@
 * Deprecation of texture related functions in favour of [echarts4r.assets](http://echarts4r-assets.john-coene.com/).
 * `e_single_axis` added, works with `e_scatter`.
 * `e_text_style` added, to customise global fonts.
+* `e_angle_axis` now takes `serie` argument, see example.
+* Improved documentation of many functions.
 
 First iteration of the graphic low-level API:
 

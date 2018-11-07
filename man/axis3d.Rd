@@ -27,8 +27,35 @@ e_z_axis_3d(e, index = 0, ...)
 \description{
 Customise 3D axis.
 }
+\examples{
+# phony data
+v <- LETTERS[1:10]
+matrix <- data.frame(
+  x = sample(v, 300, replace = TRUE), 
+  y = sample(v, 300, replace = TRUE), 
+  z1 = rnorm(300, 10, 1),
+  z2 = rnorm(300, 10, 1),
+  stringsAsFactors = FALSE
+) \%>\% 
+  dplyr::group_by(x, y) \%>\% 
+  dplyr::summarise(
+    z1 = sum(z1),
+    z2 = sum(z2)
+  ) \%>\% 
+  dplyr::ungroup() 
+  
+trans <- list(opacity = 0.4) # transparency
+emphasis <- list(itemStyle = list(color = "#313695"))
+  
+matrix \%>\% 
+  e_charts(x) \%>\% 
+  e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) \%>\%
+  e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) \%>\% 
+  e_x_axis_3d(axisLine = list(lineStyle = list(color = "blue")))
+
+}
 \seealso{
-\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#xAxis3D}{Additional x arguments},
- \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#yAxis3D}{Additional y arguments},
- \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#zAxis3D}{Additional arguments}
+\href{http://www.echartsjs.com/option-gl.html#xAxis3D}{Additional x arguments},
+ \href{http://www.echartsjs.com/option-gl.html#yAxis3D}{Additional y arguments},
+ \href{http://www.echartsjs.com/option-gl.html#zAxis3D}{Additional z arguments}
 }

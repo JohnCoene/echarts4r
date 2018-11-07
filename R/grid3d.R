@@ -6,9 +6,35 @@
 #' @param axis Axis to customise.
 #' @param index Index of axis to customise.
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#xAxis3D}{Additional x arguments},
-#'  \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#yAxis3D}{Additional y arguments},
-#'  \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#zAxis3D}{Additional arguments}
+#' @examples 
+#' # phony data
+#' v <- LETTERS[1:10]
+#' matrix <- data.frame(
+#'   x = sample(v, 300, replace = TRUE), 
+#'   y = sample(v, 300, replace = TRUE), 
+#'   z1 = rnorm(300, 10, 1),
+#'   z2 = rnorm(300, 10, 1),
+#'   stringsAsFactors = FALSE
+#' ) %>% 
+#'   dplyr::group_by(x, y) %>% 
+#'   dplyr::summarise(
+#'     z1 = sum(z1),
+#'     z2 = sum(z2)
+#'   ) %>% 
+#'   dplyr::ungroup() 
+#'   
+#' trans <- list(opacity = 0.4) # transparency
+#' emphasis <- list(itemStyle = list(color = "#313695"))
+#'   
+#' matrix %>% 
+#'   e_charts(x) %>% 
+#'   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) %>%
+#'   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) %>% 
+#'   e_x_axis_3d(axisLine = list(lineStyle = list(color = "blue")))
+#' 
+#' @seealso \href{http://www.echartsjs.com/option-gl.html#xAxis3D}{Additional x arguments},
+#'  \href{http://www.echartsjs.com/option-gl.html#yAxis3D}{Additional y arguments},
+#'  \href{http://www.echartsjs.com/option-gl.html#zAxis3D}{Additional z arguments}
 #' 
 #' @rdname axis3d
 #' @export
@@ -73,16 +99,32 @@ e_z_axis_3d <- function(e, index = 0, ...){
 #' @inheritParams e_axis
 #' 
 #' @examples 
-#' USArrests %>% 
-#'   e_charts(UrbanPop) %>% 
-#'   e_line(Assault, smooth = TRUE) %>% 
-#'   e_area(Murder, y.index = 1, x.index = 1) %>% 
-#'   e_y_axis(gridIndex = 1) %>%
-#'   e_x_axis(gridIndex = 1) %>% 
-#'   e_grid(height = "40%") %>% 
-#'   e_grid(height = "40%", top = "55%")
+#' # phony data
+#' v <- LETTERS[1:10]
+#' matrix <- data.frame(
+#'   x = sample(v, 300, replace = TRUE), 
+#'   y = sample(v, 300, replace = TRUE), 
+#'   z1 = rnorm(300, 10, 1),
+#'   z2 = rnorm(300, 10, 1),
+#'   stringsAsFactors = FALSE
+#' ) %>% 
+#'   dplyr::group_by(x, y) %>% 
+#'   dplyr::summarise(
+#'     z1 = sum(z1),
+#'     z2 = sum(z2)
+#'   ) %>% 
+#'   dplyr::ungroup() 
+#'   
+#' trans <- list(opacity = 0.4) # transparency
+#' emphasis <- list(itemStyle = list(color = "#313695"))
+#'   
+#' matrix %>% 
+#'   e_charts(x) %>% 
+#'   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) %>%
+#'   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) %>% 
+#'   e_grid_3d(splitLine = list(lineStyle = list(color = "blue")))
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#grid3D}{Additional arguments}
+#' @seealso \href{http://www.echartsjs.com/option-gl.html#grid3D}{Additional arguments}
 #' 
 #' @export
 e_grid_3d <- function(e, index = 0, ...){

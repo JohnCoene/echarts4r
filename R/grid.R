@@ -179,6 +179,7 @@ e_radius_axis <- function(e, show = TRUE, ...){
 #' Customise angle axis.
 #' 
 #' @inheritParams e_bar
+#' @param serie Serie to use as axis labels.
 #' @param show Whether to display the axis.
 #' 
 #' @examples 
@@ -191,16 +192,48 @@ e_radius_axis <- function(e, show = TRUE, ...){
 #'   e_radius_axis(FALSE) %>% 
 #'   e_line(y, coord.system = "polar", smooth = TRUE) %>% 
 #'   e_legend(show = FALSE)
+#'   
+#' df <- data.frame(x = LETTERS[1:5], y = runif(5))
+#' 
+#' df %>% 
+#'   e_charts(x) %>% 
+#'   e_polar() %>% 
+#'   e_angle_axis(x) %>% 
+#'   e_radius_axis() %>% 
+#'   e_line(y, coord.system = "polar", smooth = TRUE)
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#angleAxis}{Additional arguments}
 #' 
+#' @name angle_axis
 #' @export
-e_angle_axis <- function(e, show = TRUE, ...){
+e_angle_axis <- function(e, serie, show = TRUE, ...){
   
   if(missing(e))
     stop("missing e", call. = FALSE)
   
-  e$x$opts$angleAxis <- list(show = show, ...)
+  opts <- list(show = show, ...)
+  
+  if(!missing(serie))
+    opts$data <- e$x$data %>% purrr::map(deparse(substitute(serie))) %>% unlist %>% unname %>% unique
+  
+  e$x$opts$angleAxis <- opts
+  
+  e
+}
+
+#' @rdname angle_axis
+#' @export
+e_angle_axis_ <- function(e, serie = NULL, show = TRUE, ...){
+  
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  opts <- list(show = show, ...)
+  
+  if(!is.null(serie))
+    opts$data <- e$x$data %>% purrr::map(serie) %>% unlist %>% unname %>% unique
+  
+  e$x$opts$angleAxis <- opts
   
   e
 }

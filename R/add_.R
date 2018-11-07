@@ -76,6 +76,8 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y.index =
       
       l$yAxisIndex <- y.index
       l$xAxisIndex <- x.index
+    } else if(coord.system == "polar") {
+      l$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname
     }
     
     if(isTRUE(legend))
@@ -83,6 +85,7 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y.index =
     
     e$x$opts$series <- append(e$x$opts$series, list(l))
   }
+  
   e
 }
 

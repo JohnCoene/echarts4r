@@ -35,7 +35,7 @@ Get data from shiny with the following:
 * `elementId` + `_mouseover_data` - returns data on hovered data point.
 * `elementId` + `_mouseover_data_value` - returns value of hovered data point.
 * `elementId` + `_mouseover_row` - returns row o hovered data point.
-* `elementId` + `_mouseover_serie`  - returns name of serie of hovered data point.
+* `elementId` + `_mouseover_serie` - returns name of serie of hovered data point.
 
 Interact with the charts without redrawing (proxies):
 

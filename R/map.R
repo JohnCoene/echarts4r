@@ -79,19 +79,19 @@ e_map_ <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRU
 
 #' @rdname map
 #' @export
-e_map_3d <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+e_map_3d <- function(e, serie, map = "world", name = NULL, coord.system = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  e_map_3d_(e, deparse(substitute(serie)), map, name, rm.x, rm.y, ...)
+  e_map_3d_(e, deparse(substitute(serie)), map, name, coord.system, rm.x, rm.y, ...)
 }
 
 #' @rdname map
 #' @export
-e_map_3d_ <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+e_map_3d_ <- function(e, serie, map = "world", name = NULL, coord.system = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -115,6 +115,9 @@ e_map_3d_ <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = 
     ...
   )
   
+  if(!is.null(coord.system))
+    app$coordinateSystem <- coord.system
+  
   if(!missing(serie)){
     data <- .build_data(e, serie)
     data <- .add_bind(e, data, e$x$mapping$x)
@@ -131,7 +134,8 @@ e_map_3d_ <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = 
 #' Register a \href{geojson}{http://geojson.org/} map.
 #' 
 #' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
-#' @param name Name of map, to use in \code{\link{e_map}}
+#' @param name Name of map, to use in \code{\link{e_map}}.
+#' @param coord.system Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.
 #' @param json \href{Geojson}{http://geojson.org/}.
 #' 
 #' @examples 
@@ -148,9 +152,51 @@ e_map_3d_ <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = 
 #' 
 #' @export
 e_map_register <- function(e, name, json){
-  
   e$x$registerMap <- TRUE
   e$x$mapName <- name
   e$x$geoJSON <- json
+  e
+}
+
+#' Mapbox
+#' 
+#' Use mapbox.
+#' 
+#' @inheritParams e_bar
+#' @param token Your mapbox token from \href{https://www.mapbox.com/}{mapbox}.
+#' @param ... Any option.
+#' 
+#' @examples 
+#' \dontrun{
+#' url <- paste0("https://ecomfe.github.io/echarts-examples/",
+#'               "public/data-gl/asset/data/population.json")
+#' data <- jsonlite::fromJSON(url)
+#' data <- as.data.frame(data)
+#' names(data) <- c("lon", "lat", "value")
+#' 
+#' data %>% 
+#'   e_charts(lon) %>% 
+#'   e_mapbox(
+#'     token = "YOUR_MAPBOX_TOKEN",
+#'     style = "mapbox://styles/mapbox/dark-v9"
+#'   ) %>% 
+#'   e_bar_3d(lat, value, coord.system = "mapbox") %>% 
+#'   e_visual_map()
+#' }
+#' 
+#' @note Mapbox may not work properly in the RSudio console.
+#' 
+#' @seealso \href{http://www.echartsjs.com/option-gl.html#mapbox3D.style}{Official documentation},
+#' \href{https://www.mapbox.com/mapbox-gl-js/api/}{mapbox documentation}
+#' 
+#' @name mapbox
+#' @export
+e_mapbox <- function(e, token, ...){
+  
+  if(missing(token))
+    stop("missing token", call. = FALSE)
+  
+  e$x$opts$mapbox <- list(...)
+  e$x$mapboxToken <- token
   e
 }
