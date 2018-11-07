@@ -20,9 +20,26 @@ library(echarts4r)
 
 `e_globe` family is similar to `e_geo_3d` `e_map`, or `e_map_3d`.
 
+**Note**: As the package became too large (borderline for CRAN), assets have been moved to another package: `echarts4r.assets`. This also allows the introduction of more assets.
+
+Deprecated:
+
+- `e_stars_texture`
+- `e_globe_texture`
+- `e_map_texture`
+
+Visit the [website](https://echarts4r-assets.john-coene.com) for more examples.
+
+```r
+#install.packages("remotes")
+remotes::install_github("JohnCoene/echarts4r.assets")
+```
+
 ### Scatter 3D
 
 ```{r}
+library(echarts4r.assets)
+
 airports <- read.csv(
   paste0("https://raw.githubusercontent.com/plotly/datasets/",
          "master/2011_february_us_airport_traffic.csv")
@@ -31,8 +48,8 @@ airports <- read.csv(
 airports %>% 
   e_charts(long) %>% 
   e_globe(
-    environment = e_stars_texture(),
-    base.texture = e_globe_texture(), 
+    environment = ea_asset("starfield"),
+    base.texture = ea_asset("world"), 
     globeOuterRadius = 100
   ) %>% 
   e_scatter_3d(lat, cnt, coord.system = "globe", blendMode = 'lighter') %>% 
@@ -51,9 +68,9 @@ names(data) <- c("lon", "lat", "value")
 data %>% 
   e_charts(lon) %>% 
   e_globe(
-    environment = e_stars_texture(),
-    base.texture = e_globe_texture(),
-    height.texture = e_globe_texture(),
+    environment = ea_asset("starfield"),
+    base.texture = ea_asset("world topo"), 
+    height.texture = ea_asset("world topo"),
     displacementScale = 0.04
   ) %>% 
   e_bar_3d(lat, value, coord.system = "globe") %>% 
@@ -71,9 +88,9 @@ flights <- read.csv(
 flights %>% 
   e_charts() %>% 
   e_globe(
-    base.texture = e_map_texture(),
-    height.texture = e_map_texture(),
-    environment = e_stars_texture(),
+    environment = ea_asset("starfield"),
+    base.texture = ea_asset("world topo"), 
+    height.texture = ea_asset("world topo"),
     displacementScale = 0.05
   ) %>% 
   e_lines_3d(
@@ -83,5 +100,6 @@ flights %>%
     end_lat,
     name = "flights",
     effect = list(show = TRUE)
-  )
+  ) %>% 
+  e_legend(FALSE)
 ```

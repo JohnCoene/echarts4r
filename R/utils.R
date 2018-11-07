@@ -267,11 +267,9 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   e
 }
 
-.build_tree <- function(e, parent, child){
+.build_tree <- function(e, ...){
   e$x$data[[1]] %>%
-    dplyr::select(
-      !!parent,
-      !!child
+    dplyr::select(...
     ) -> df
   
   .tree_that(df)
@@ -314,7 +312,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     })
   }
   
-  jsonlite::toJSON(x, auto_unbox = T, pretty = FALSE)
+  jsonlite::toJSON(x, auto_unbox = TRUE, pretty = FALSE)
 }
 
 .build_river <- function(e, serie, label, i){

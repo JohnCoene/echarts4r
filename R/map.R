@@ -5,6 +5,7 @@
 #' @inheritParams e_bar
 #' @param serie Values to plot.
 #' @param map Map type.
+#' @param coord.system Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.
 #' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
@@ -135,7 +136,6 @@ e_map_3d_ <- function(e, serie, map = "world", name = NULL, coord.system = NULL,
 #' 
 #' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
 #' @param name Name of map, to use in \code{\link{e_map}}.
-#' @param coord.system Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.
 #' @param json \href{Geojson}{http://geojson.org/}.
 #' 
 #' @examples 

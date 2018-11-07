@@ -181,7 +181,7 @@ applications and interactive Rmd documents." />
       <a href="../articles/globe.html">Globe</a>
     </li>
     <li>
-      <a href="../articles/leaflet.html">Leaflet</a>
+      <a href="../articles/leaflet-mapbox.html">Leaflet &amp; Mapbox</a>
     </li>
   </ul>
 </li>
@@ -302,13 +302,44 @@ is useful if you want to save an expression in a variable.</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="callbacks"><a class="anchor" href="#callbacks"></a>Callbacks</h2>
+
+    
+    <ul>
+<li><p><code>id_brush</code>: returns data on brushed data points.</p></li>
+<li><p><code>id_legend_change</code>: returns series name of legend selected/unselected.</p></li>
+<li><p><code>id_clicked_data</code>: returns data of clicked data point.</p></li>
+<li><p><code>id_clicked_data_value</code>: returns value of clicked data point.</p></li>
+<li><p><code>id_clicked_row</code>: returns row number of clicked data point.</p></li>
+<li><p><code>id_clicked_serie</code>: returns name of serie of clicked data point.</p></li>
+<li><p><code>id_mouseover_data</code>: returns data on hovered data point.</p></li>
+<li><p><code>id_mouseover_data_value</code>: returns value of hovered data point.</p></li>
+<li><p><code>id_mouseover_row</code>: returns row o hovered data point.</p></li>
+<li><p><code>id_mouseover_serie</code>: returns name of serie of hovered data point.</p></li>
+</ul>
+    
+    <h2 class="hasAnchor" id="proxies"><a class="anchor" href="#proxies"></a>Proxies</h2>
+
+    
+    <ul>
+<li><p><code><a href='append.html'>e_append1_p</a></code> &amp; <code><a href='append.html'>e_append2_p</a></code></p></li>
+<li><p><code><a href='tooltip_proxy.html'>e_showtip_p</a></code> &amp; <code><a href='tooltip_proxy.html'>e_hidetip_p</a></code></p></li>
+<li><p><code><a href='highlight_proxy.html'>e_highlight_p</a></code> &amp; <code><a href='highlight_proxy.html'>e_downplay_p</a></code></p></li>
+<li><p><code><a href='node_adjacency.html'>e_focus_adjacency</a></code> &amp; <code><a href='node_adjacency.html'>e_unfocus_adjacency</a></code></p></li>
+<li><p><code><a href='e_dispatch_action_p.html'>e_dispatch_action_p</a></code></p></li>
+</ul>
+    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#callbacks">Callbacks</a></li>
+
+      <li><a href="#proxies">Proxies</a></li>
+          </ul>
 
   </div>
 </div>

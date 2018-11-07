@@ -31,6 +31,8 @@ e_map_3d_(e, serie, map = "world", name = NULL, coord.system = NULL,
 \item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
+
+\item{coord.system}{Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.}
 }
 \description{
 Draw maps.

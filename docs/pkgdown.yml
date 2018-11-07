@@ -1,4 +1,4 @@
-pandoc: 2.2.1
+pandoc: 1.19.2.4
 pkgdown: 1.1.0
 pkgdown_sha: ~
 articles:
@@ -14,7 +14,7 @@ articles:
   graph: graph.html
   graphics: graphics.html
   grid: grid.html
-  leaflet: leaflet.html
+  leaflet-mapbox: leaflet-mapbox.html
   map: map.html
   map3d: map3d.html
   pictorial: pictorial.html

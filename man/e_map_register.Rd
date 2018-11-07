@@ -12,8 +12,6 @@ e_map_register(e, name, json)
 \item{name}{Name of map, to use in \code{\link{e_map}}.}
 
 \item{json}{\href{Geojson}{http://geojson.org/}.}
-
-\item{coord.system}{Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.}
 }
 \description{
 Register a \href{geojson}{http://geojson.org/} map.

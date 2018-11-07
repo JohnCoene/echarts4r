@@ -4,7 +4,7 @@ Date: 2018-09-12
 Version: 0.1.2.9000
 Authors@R: person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre"))
 Description: Easily create interactive charts by leveraging the 'Echarts Javascript' library which includes
-    33 chart types, themes, 'Shiny' proxies and animations.
+    34 chart types, themes, 'Shiny' proxies and animations.
 License: Apache License (>= 2.0)
 Encoding: UTF-8
 LazyData: true
@@ -20,6 +20,7 @@ Imports:
   broom
 RoxygenNote: 6.1.0
 Suggests: 
+    echarts4r.assets,
     data.tree,
     jsonlite, 
     shiny,
@@ -32,3 +33,4 @@ Suggests:
 URL: http://echarts4r.john-coene.com/
 BugReports: https://github.com/JohnCoene/echarts4r/issues
 VignetteBuilder: knitr
+Remotes: JohnCoene/echarts4r.assets

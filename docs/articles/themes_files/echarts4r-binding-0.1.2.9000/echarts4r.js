@@ -31,6 +31,10 @@ HTMLWidgets.widget({
           }
         }
         
+        if(x.hasOwnProperty('mapboxToken')){
+          mapboxgl.accessToken = x.mapboxToken;
+        }
+        
         chart = echarts.init(document.getElementById(el.id), x.theme, {renderer: x.renderer});
         chart.setOption(x.opts);
         

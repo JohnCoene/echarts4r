@@ -123,6 +123,11 @@ div(
 
 Assets for Web GL globes make the package very large, therefore they will be moved to a companion package, [echarts4r.assets](https://echarts4r-assets.john-coene.com). This only concerns a handful of functions (like `e_stars_texture`) and allows making more textures available the [package](https://echarts4r-assets.john-coene.com) is already available and contains numerous textures.
 
+```r
+#install.packages("remotes")
+remotes::install_github("JohnCoene/echarts4r.assets")
+```
+
 </div>
 
 ## Example

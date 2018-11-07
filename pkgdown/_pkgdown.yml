@@ -82,7 +82,7 @@ navbar:
         - text: "Globe"
           href: articles/globe.html
         - text: "Leaflet & Mapbox"
-          href: articles/leaflet.html
+          href: articles/leaflet-mapbox.html
     - text: "Style"
       menu:
         - text: "Grid & Axis"
