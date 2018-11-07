@@ -81,7 +81,7 @@ navbar:
           href: articles/geo3d.html
         - text: "Globe"
           href: articles/globe.html
-        - text: "Leaflet"
+        - text: "Leaflet & Mapbox"
           href: articles/leaflet.html
     - text: "Style"
       menu:
