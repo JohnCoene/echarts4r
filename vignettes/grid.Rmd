@@ -139,7 +139,11 @@ df %>%
 You can also mess with the axis to completely change your chart. For instance, from a regular bar chart:
 
 ```{r}
-df <- data.frame(x = LETTERS[1:10], y = seq(1, 20, by = 2))
+df <- data.frame(
+  x = LETTERS[1:10], 
+  y = seq(1, 20, by = 2),
+  z = runif(10, 5, 20)
+)
 
 df %>% 
   e_charts(x) %>% 
@@ -149,8 +153,6 @@ df %>%
 to a polar chart.
 
 ```{r}
-df <- data.frame(x = LETTERS[1:10], y = seq(1, 20, by = 2))
-
 df %>% 
   e_charts(x) %>% 
   e_polar() %>% 
@@ -162,14 +164,13 @@ df %>%
 or a radial chart one.
 
 ```{r}
-df <- data.frame(x = LETTERS[1:10], y = seq(1, 20, by = 2))
-
 df %>% 
   e_charts(x) %>% 
   e_polar() %>% 
   e_angle_axis() %>% 
   e_radius_axis(x) %>% 
-  e_bar(y, coord.system = "polar")
+  e_line(y, coord.system = "polar") %>% 
+  e_scatter(z, coord.system = "polar")
 ```
 
-
+This will also work with different chart types.
