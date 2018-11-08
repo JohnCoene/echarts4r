@@ -1,4 +1,4 @@
-#' Highlight Proxy
+#' Highlight & Downplay Proxy
 #' 
 #' Proxies to highlight and downplay series.
 #' 
@@ -288,7 +288,7 @@ e_hidetip_p <- function(proxy){
 #' 
 #' @rdname node_adjacency
 #' @export
-e_focus_adjacency <- function(proxy, index, ...){
+e_focus_adjacency_p <- function(proxy, index, ...){
   
   if (!"echarts4rProxy" %in% class(proxy)) 
     stop("must pass echarts4rProxy object", call. = FALSE)
@@ -316,7 +316,7 @@ e_focus_adjacency <- function(proxy, index, ...){
 
 #' @rdname node_adjacency
 #' @export
-e_unfocus_adjacency <- function(proxy, ...){
+e_unfocus_adjacency_p <- function(proxy, ...){
   
   if (!"echarts4rProxy" %in% class(proxy)) 
     stop("must pass echarts4rProxy object", call. = FALSE)

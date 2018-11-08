@@ -588,3 +588,14 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   e$x$opts$graphic <- append(e$x$opts$graphic, opts)
   e
 }
+
+.valid_events <- function(){
+  c(
+    "highlight",
+    "downplay"
+  )
+}
+
+.make_id <- function(){
+  paste0(LETTERS, 1:9, collapse = "")
+}

@@ -1,5 +1,6 @@
 echarts_build <- function(e) {
   e$x$data <- NULL
+  e$x$mapping <- NULL
   e
 } 
 
@@ -52,6 +53,8 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
     theme = "",
     renderer = tolower(renderer),
     mapping = list(),
+    events = list(),
+    buttons = list(),
     settings = list(
       crosstalk_key = key,
       crosstalk_group = group
@@ -111,6 +114,8 @@ e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = N
     theme = "",
     renderer = tolower(renderer),
     mapping = list(),
+    events = list(),
+    buttons = list(),
     opts = list(
       ...,
       yAxis = list(
