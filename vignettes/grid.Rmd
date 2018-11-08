@@ -156,7 +156,7 @@ to a polar chart.
 df %>% 
   e_charts(x) %>% 
   e_polar() %>% 
-  e_angle_axis(x) %>% 
+  e_angle_axis(x) %>% # angle = x
   e_radius_axis() %>% 
   e_bar(y, coord.system = "polar")
 ```
@@ -168,9 +168,18 @@ df %>%
   e_charts(x) %>% 
   e_polar() %>% 
   e_angle_axis() %>% 
+  e_radius_axis(x) %>% # radius = x 
+  e_bar(y, coord.system = "polar")
+```
+
+This will also work with other chart types.
+
+```{r}
+df %>% 
+  e_charts(x) %>% 
+  e_polar() %>% 
+  e_angle_axis() %>% 
   e_radius_axis(x) %>% 
   e_line(y, coord.system = "polar") %>% 
   e_scatter(z, coord.system = "polar")
 ```
-
-This will also work with different chart types.
