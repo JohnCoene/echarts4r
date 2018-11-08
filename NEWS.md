@@ -30,6 +30,9 @@ First iteration of the graphic low-level API:
 - `g_line_g`
 - `g_bezier_curve_g`
 
+* Added actions that can be tied to buttons.
+* Added the ability to add buttons.
+
 # echarts4r 0.1.1
 
 *Now available on CRAN*

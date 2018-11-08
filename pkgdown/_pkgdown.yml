@@ -93,6 +93,8 @@ navbar:
           href: articles/toolbox.html
         - text: "Tooltip"
           href: articles/tooltip.html
+        - text: "Actions & Buttons"
+          href: articles/actions-buttons.html
         - text: "Graphics"
           href: articles/graphics.html
         - text: "Themes"

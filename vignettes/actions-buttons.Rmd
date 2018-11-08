@@ -1,0 +1,66 @@
+---
+title: "Actions & Buttons"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Actions & Buttons}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(echarts4r)
+```
+
+Since version `1.2.0` one can add actions and otpionally tie them to buttons.
+
+For instance once can use the `e_zoom` action to zoom on the graph (requires `e_datazoom` initialised).
+
+```{r}
+cars %>% 
+  e_charts(dist) %>% 
+  e_scatter(speed) %>% 
+  e_datazoom() %>% 
+  e_zoom(
+    dataZoomIndex = 0,
+    start = 20,
+    end = 40
+  ) 
+```
+
+Add a button to let the user trigger that action. We add a button with `e_button` and specify the id of our button in the action (`e_zoom`) so that the button knows which action to trigger.
+
+```{r}
+cars %>% 
+  e_charts(dist) %>% 
+  e_scatter(speed) %>% 
+  e_datazoom() %>% 
+  e_zoom(
+    dataZoomIndex = 0,
+    start = 20,
+    end = 40,
+    btn = "BUTTON"
+  ) %>% 
+  e_button(
+    event = "zoom", 
+    id = "BUTTON", 
+    htmltools::tags$i(class = "fa fa-search"), # passed to the button
+    class = "btn btn-default",
+    "Zoom in"
+  )
+```
+
+You can pass multiple buttons and tie a single button to multiple actions.
+
+Actions (all can be tied to buttons):
+
+- `e_highlight` & `e_downplay` to highlight or downplay a serie.
+- `e_showtip` & `e_hidetip` to show or hide the tooltip.
+- `e_zoom` to zoom on a part of the graph.
+- `e_visual_map_range` to select part of `e_visual_map`.
+- `e_pie_select` & `e_pie_unselect` to select or unselect pie slices.

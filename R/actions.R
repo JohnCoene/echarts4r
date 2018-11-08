@@ -53,3 +53,144 @@ e_downplay <- function(e, series.index = NULL, series.name = NULL, btn = NULL){
   
   return(e)
 }
+
+#' Show & Hide Tooltip
+#' 
+#' Show or hide tooltip.
+#' 
+#' @inheritParams e_bar
+#' @param btn A \code{\link{e_button}} id.
+#' @param ... Any options, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.tooltip}{official documentation}
+#' 
+#' @note The tooltip must be initialised with \code{\link{e_tooltip}} for this to work.
+#' 
+#' @examples 
+#' cars %>% 
+#'   e_charts(dist) %>% 
+#'   e_scatter(speed) %>% 
+#'   e_tooltip() %>% 
+#'   e_hidetip(btn = "btn") %>% 
+#'   e_button("hidetip", "btn", "Hide tooltip")
+#' 
+#' @name tooltip_action
+#' @export
+e_showtip <- function(e, ..., btn = NULL){
+  
+  opts <- list()
+  if(!is.null(btn)) opts$id <- btn
+  opts$data <- list(type = "showTip", ...)
+  
+  e$x$events <- append(e$x$events, list(opts))
+  return(e)
+}
+
+#' @name tooltip_action
+#' @export
+e_hidetip <- function(e, ..., btn = NULL){
+  
+  opts <- list()
+  if(!is.null(btn)) opts$id <- btn
+  opts$data <- list(type = "hideTip", ...)
+  
+  e$x$events <- append(e$x$events, list(opts))
+  return(e)
+}
+
+#' Zoom
+#' 
+#' Zoom on a region.
+#' 
+#' @inheritParams e_bar
+#' @param btn A \code{\link{e_button}} id.
+#' @param ... Any options, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.dataZoom.dataZoom}{official documentation}
+#' 
+#' @examples 
+#' cars %>% 
+#'   e_charts(dist) %>% 
+#'   e_scatter(speed) %>% 
+#'   e_datazoom() %>% 
+#'   e_zoom(
+#'     dataZoomIndex = 0,
+#'     start = 20,
+#'     end = 40,
+#'     btn = "BUTTON"
+#'   ) %>% 
+#'   e_button("zoom", "BUTTON", "Zoom in")
+#' 
+#' @export
+e_zoom <- function(e, ..., btn = NULL){
+  opts <- list()
+  if(!is.null(btn)) opts$id <- btn
+  opts$data <- list(type = "dataZoom", ...)
+  
+  e$x$events <- append(e$x$events, list(opts))
+  return(e)
+}
+
+#' Select Visual Map
+#' 
+#' Selects data range of visual mapping.
+#' 
+#' @inheritParams e_bar
+#' @param btn A \code{\link{e_button}} id.
+#' @param ... Any options, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.visualMap}{official documentation}
+#' 
+#' @examples 
+#' data("state")
+#' 
+#' as.data.frame(state.x77) %>% 
+#'   e_charts(Population) %>% 
+#'   e_scatter(Income, Frost, scale = "/5") %>% 
+#'   e_visual_map(Frost) %>% 
+#'   e_legend(FALSE) %>% 
+#'   e_visual_map_range(
+#'     selected = list(60, 120)
+#'   )
+#' 
+#' @export
+e_visual_map_range <- function(e, ..., btn = NULL){
+  opts <- list()
+  if(!is.null(btn)) opts$id <- btn
+  opts$data <- list(type = "selectDataRange", ...)
+  
+  e$x$events <- append(e$x$events, list(opts))
+  return(e)
+}
+
+#' Select & Unselect Pie
+#' 
+#' Actions related to \code{\link{e_pie}}.
+#' 
+#' @inheritParams e_bar
+#' @param btn A \code{\link{e_button}} id.
+#' @param ... Any options, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.pie}{official documentation}
+#' 
+#' @examples 
+#' mtcars %>% 
+#'   head() %>% 
+#'   dplyr::mutate(model = row.names(.)) %>% 
+#'   e_charts(model) %>% 
+#'   e_pie(carb) %>% 
+#'   e_pie_select(dataIndex = 0)
+#' 
+#' @name pie_action
+#' @export
+e_pie_select <- function(e, ..., btn = NULL){
+  opts <- list()
+  if(!is.null(btn)) opts$id <- btn
+  opts$data <- list(type = "pieSelect", ...)
+  
+  e$x$events <- append(e$x$events, list(opts))
+  return(e)
+}
+
+#' @rdname pie_action
+#' @export
+e_pie_unselect <- function(e, ..., btn = NULL){
+  opts <- list()
+  if(!is.null(btn)) opts$id <- btn
+  opts$data <- list(type = "pieUnSelect", ...)
+  
+  e$x$events <- append(e$x$events, list(opts))
+  return(e)
+}

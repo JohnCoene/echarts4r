@@ -28,6 +28,12 @@ Add a button to your visualisation.
 \itemize{
   \item{\code{highlight}}
   \item{\code{downplay}}
+  \item{\code{showtip}}
+  \item{\code{hidetip}}
+  \item{\code{zoom}}
+  \item{\code{visual_map_range}}
+  \item{\code{pie_select}}
+  \item{\code{pie_unselect}}
 }
 }
 

@@ -163,6 +163,9 @@
       <a href="../articles/tooltip.html">Tooltip</a>
     </li>
     <li>
+      <a href="../articles/actions-buttons.html">Actions &amp; Buttons</a>
+    </li>
+    <li>
       <a href="../articles/graphics.html">Graphics</a>
     </li>
     <li>
@@ -211,7 +214,7 @@
       <h1>Pictorial</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2018-11-07</h4>
+            <h4 class="date">2018-11-08</h4>
       
       
       <div class="hidden name"><code>pictorial.Rmd</code></div>
@@ -224,69 +227,70 @@
 <div id="built-in-symbols" class="section level3">
 <h3 class="hasAnchor">
 <a href="#built-in-symbols" class="anchor"></a>Built-in symbols</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">2</span>)
-df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
-  <span class="dt">y =</span> y,
-  <span class="dt">z =</span> y <span class="op">-</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">1</span>)
-)
-
-df <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_bar.html">e_bar</a></span>(z, <span class="dt">barWidth =</span> <span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_pictorial.html">e_pictorial</a></span>(y, <span class="dt">symbol =</span> <span class="st">"rect"</span>, <span class="dt">symbolRepeat =</span> <span class="ot">TRUE</span>, <span class="dt">z =</span> <span class="dv">-1</span>,
-    <span class="dt">symbolSize =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">4</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/theme.html">e_theme</a></span>(<span class="st">"westeros"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"Built-in symbols"</span>)</code></pre></div>
-<div id="htmlwidget-3e8735d7e880aae75853" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3e8735d7e880aae75853">{"x":{"theme":"westeros","renderer":"canvas","mapping":{"x":"x","x_class":"integer","include_x":true},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["z","y"]},"series":[{"name":"z","type":"bar","data":[{"value":[1,5.08962298155783]},{"value":[2,5.90484271351797]},{"value":[3,8.03544315312784]},{"value":[4,4.7077181737524]},{"value":[5,6.31804036222869]},{"value":[6,7.71770601595092]},{"value":[7,7.71633581862534]},{"value":[8,6.70723318906427]},{"value":[9,5.16452162948778]},{"value":[10,5.09951640672355]}],"yAxisIndex":0,"xAxisIndex":0,"barWidth":10},{"name":"y","type":"pictorialBar","data":[{"value":[1,9.70194522995512]},{"value":[2,9.67643725638256]},{"value":[3,14.3959151018671]},{"value":[4,10.8305664120833]},{"value":[5,12.2470347120248]},{"value":[6,13.1203560179952]},{"value":[7,13.5506289753114]},{"value":[8,10.3821306346793]},{"value":[9,11.0024753169509]},{"value":[10,10.0567368359338]}],"yAxisIndex":0,"xAxisIndex":0,"symbolRepeat":true,"z":-1,"symbolSize":[10,4],"symbol":"rect"}],"title":{"text":"Built-in symbols"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">y =</span> y,</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">z =</span> y <span class="op">-</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">df <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="../reference/e_bar.html">e_bar</a></span>(z, <span class="dt">barWidth =</span> <span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="../reference/e_pictorial.html">e_pictorial</a></span>(y, <span class="dt">symbol =</span> <span class="st">"rect"</span>, <span class="dt">symbolRepeat =</span> <span class="ot">TRUE</span>, <span class="dt">z =</span> <span class="dv">-1</span>,</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">    <span class="dt">symbolSize =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">4</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="../reference/theme.html">e_theme</a></span>(<span class="st">"westeros"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="st">  </span><span class="kw"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"Built-in symbols"</span>)</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt; Warning: package 'bindrcpp' was built under R version 3.4.4</span></a></code></pre></div>
+<div id="htmlwidget-55682a33c8443aa66936" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-55682a33c8443aa66936">{"x":{"theme":"westeros","renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["z","y"]},"series":[{"name":"z","type":"bar","data":[{"value":[1,6.77356952231922]},{"value":[2,1.54183572343372]},{"value":[3,3.177092977044]},{"value":[4,4.94602184368155]},{"value":[5,2.07168394351368]},{"value":[6,4.71326384077489]},{"value":[7,7.54621327228425]},{"value":[8,5.64153546474936]},{"value":[9,8.758812503377]},{"value":[10,2.17127757493784]}],"yAxisIndex":0,"xAxisIndex":0,"barWidth":10},{"name":"y","type":"pictorialBar","data":[{"value":[1,11.5637806858289]},{"value":[2,7.44352237991255]},{"value":[3,8.16792411377006]},{"value":[4,9.03797807270708]},{"value":[5,6.84762986480587]},{"value":[6,9.03365325772529]},{"value":[7,12.8324620702891]},{"value":[8,10.947348828902]},{"value":[9,13.1337723228683]},{"value":[10,7.67634218685385]}],"yAxisIndex":0,"xAxisIndex":0,"symbolRepeat":true,"z":-1,"symbolSize":[10,4],"symbol":"rect"}],"title":{"text":"Built-in symbols"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="svg-path" class="section level3">
 <h3 class="hasAnchor">
 <a href="#svg-path" class="anchor"></a>SVG path</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">path &lt;-<span class="st"> "path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"</span>
-
-style &lt;-<span class="st"> </span><span class="kw">list</span>(
-  <span class="dt">normal =</span> <span class="kw">list</span>(<span class="dt">opacity =</span> <span class="fl">0.5</span>), <span class="co"># normal</span>
-  <span class="dt">emphasis =</span> <span class="kw">list</span>(<span class="dt">opacity =</span> <span class="dv">1</span>) <span class="co"># on hover</span>
-)
-
-df <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_pictorial.html">e_pictorial</a></span>(y, <span class="dt">symbol =</span> path, 
-              <span class="dt">barCategoryGap =</span> <span class="st">"-130%"</span>, 
-              <span class="dt">itemStyle =</span> style) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"SVG path"</span>)</code></pre></div>
-<div id="htmlwidget-a54bbffdb3a8ddeb4a96" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a54bbffdb3a8ddeb4a96">{"x":{"theme":"","renderer":"canvas","mapping":{"x":"x","x_class":"integer","include_x":true},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["y"]},"series":[{"name":"y","type":"pictorialBar","data":[{"value":[1,9.70194522995512]},{"value":[2,9.67643725638256]},{"value":[3,14.3959151018671]},{"value":[4,10.8305664120833]},{"value":[5,12.2470347120248]},{"value":[6,13.1203560179952]},{"value":[7,13.5506289753114]},{"value":[8,10.3821306346793]},{"value":[9,11.0024753169509]},{"value":[10,10.0567368359338]}],"yAxisIndex":0,"xAxisIndex":0,"barCategoryGap":"-130%","itemStyle":{"normal":{"opacity":0.5},"emphasis":{"opacity":1}},"symbol":"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"}],"title":{"text":"SVG path"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">path &lt;-<span class="st"> "path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">style &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">  <span class="dt">normal =</span> <span class="kw">list</span>(<span class="dt">opacity =</span> <span class="fl">0.5</span>), <span class="co"># normal</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">  <span class="dt">emphasis =</span> <span class="kw">list</span>(<span class="dt">opacity =</span> <span class="dv">1</span>) <span class="co"># on hover</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">df <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="../reference/e_pictorial.html">e_pictorial</a></span>(y, <span class="dt">symbol =</span> path, </a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">              <span class="dt">barCategoryGap =</span> <span class="st">"-130%"</span>, </a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">              <span class="dt">itemStyle =</span> style) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"SVG path"</span>)</a></code></pre></div>
+<div id="htmlwidget-0ece1cda66a092a0faa8" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0ece1cda66a092a0faa8">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["y"]},"series":[{"name":"y","type":"pictorialBar","data":[{"value":[1,11.5637806858289]},{"value":[2,7.44352237991255]},{"value":[3,8.16792411377006]},{"value":[4,9.03797807270708]},{"value":[5,6.84762986480587]},{"value":[6,9.03365325772529]},{"value":[7,12.8324620702891]},{"value":[8,10.947348828902]},{"value":[9,13.1337723228683]},{"value":[10,7.67634218685385]}],"yAxisIndex":0,"xAxisIndex":0,"barCategoryGap":"-130%","itemStyle":{"normal":{"opacity":0.5},"emphasis":{"opacity":1}},"symbol":"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"}],"title":{"text":"SVG path"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="images" class="section level3">
 <h3 class="hasAnchor">
 <a href="#images" class="anchor"></a>Images</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qomo &lt;-<span class="st"> </span><span class="kw">paste0</span>(
-  <span class="st">"https://ecomfe.github.io/echarts-examples/public/"</span>,
-  <span class="st">"data/asset/img/hill-Qomolangma.png"</span>
-)
-
-kili &lt;-<span class="st"> </span><span class="kw">paste0</span>(
-  <span class="st">"https://ecomfe.github.io/echarts-examples/public/"</span>, 
-  <span class="st">"data/asset/img/hill-Kilimanjaro.png"</span>
-)
-
-data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">x =</span> <span class="kw">c</span>(<span class="st">"Qomolangma"</span>, <span class="st">"Kilimanjaro"</span>), 
-  <span class="dt">value =</span> <span class="kw">c</span>(<span class="dv">8844</span>, <span class="dv">5895</span>),
-  <span class="dt">symbol =</span> <span class="kw">c</span>(<span class="kw">paste0</span>(<span class="st">"image://"</span>, qomo),
-    <span class="kw">paste0</span>(<span class="st">"image://"</span>, kili))
-)
-
-data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_pictorial.html">e_pictorial</a></span>(value, symbol) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_legend.html">e_legend</a></span>(<span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"Images"</span>, <span class="st">"Mountains height"</span>)</code></pre></div>
-<div id="htmlwidget-d0d8f3d225ae0450d68a" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d0d8f3d225ae0450d68a">{"x":{"theme":"","renderer":"canvas","mapping":{"x":"x","x_class":"factor","include_x":false},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["Qomolangma","Kilimanjaro"],"type":"category","boundaryGap":true}],"legend":{"data":["value"],"show":false,"type":"plain"},"series":[{"name":"value","type":"pictorialBar","data":[{"value":["Qomolangma","8844"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Qomolangma.png"},{"value":["Kilimanjaro","5895"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Kilimanjaro.png"}],"yAxisIndex":0,"xAxisIndex":0}],"title":{"text":"Images","subtext":"Mountains height"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">qomo &lt;-<span class="st"> </span><span class="kw">paste0</span>(</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="st">"https://ecomfe.github.io/echarts-examples/public/"</span>,</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="st">"data/asset/img/hill-Qomolangma.png"</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">)</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">kili &lt;-<span class="st"> </span><span class="kw">paste0</span>(</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">  <span class="st">"https://ecomfe.github.io/echarts-examples/public/"</span>, </a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">  <span class="st">"data/asset/img/hill-Kilimanjaro.png"</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">)</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">  <span class="dt">x =</span> <span class="kw">c</span>(<span class="st">"Qomolangma"</span>, <span class="st">"Kilimanjaro"</span>), </a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">  <span class="dt">value =</span> <span class="kw">c</span>(<span class="dv">8844</span>, <span class="dv">5895</span>),</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">  <span class="dt">symbol =</span> <span class="kw">c</span>(<span class="kw">paste0</span>(<span class="st">"image://"</span>, qomo),</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">    <span class="kw">paste0</span>(<span class="st">"image://"</span>, kili))</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">)</a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="st">  </span><span class="kw"><a href="../reference/e_pictorial.html">e_pictorial</a></span>(value, symbol) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="st">  </span><span class="kw"><a href="../reference/e_legend.html">e_legend</a></span>(<span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="st">  </span><span class="kw"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"Images"</span>, <span class="st">"Mountains height"</span>)</a></code></pre></div>
+<div id="htmlwidget-8d6ec39486f22b40b251" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8d6ec39486f22b40b251">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["Qomolangma","Kilimanjaro"],"type":"category","boundaryGap":true}],"legend":{"data":["value"],"show":false,"type":"plain"},"series":[{"name":"value","type":"pictorialBar","data":[{"value":["Qomolangma","8844"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Qomolangma.png"},{"value":["Kilimanjaro","5895"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Kilimanjaro.png"}],"yAxisIndex":0,"xAxisIndex":0}],"title":{"text":"Images","subtext":"Mountains height"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
   </div>
 

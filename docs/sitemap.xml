@@ -16,6 +16,9 @@
     <loc>http://echarts4r.john-coene.com/reference/axis3d.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/echarts4r-shiny.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_add.html</loc>
   </url>
   <url>
@@ -38,6 +41,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_brush.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_button.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_calendar.html</loc>
@@ -190,7 +196,10 @@
     <loc>http://echarts4r.john-coene.com/reference/e_visual_map.html</loc>
   </url>
   <url>
-    <loc>http://echarts4r.john-coene.com/reference/echarts4r-shiny.html</loc>
+    <loc>http://echarts4r.john-coene.com/reference/e_visual_map_range.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_zoom.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/formatters.html</loc>
@@ -200,6 +209,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/graphic.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/highlight_action.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/highlight_proxy.html</loc>
@@ -232,6 +244,9 @@
     <loc>http://echarts4r.john-coene.com/reference/node_adjacency.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/pie_action.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/reexports.html</loc>
   </url>
   <url>
@@ -250,7 +265,13 @@
     <loc>http://echarts4r.john-coene.com/reference/toolbox.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/tooltip_action.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/tooltip_proxy.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/actions-buttons.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/articles/advanced.html</loc>

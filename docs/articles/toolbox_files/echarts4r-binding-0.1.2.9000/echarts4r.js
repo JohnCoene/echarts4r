@@ -38,6 +38,24 @@ HTMLWidgets.widget({
         chart = echarts.init(document.getElementById(el.id), x.theme, {renderer: x.renderer});
         chart.setOption(x.opts);
         
+        // actions
+        for(var i = 0; i < x.events.length; i++){
+          
+          var eventdat = x.events[i].data;
+          
+          if(x.events[i].hasOwnProperty('id')){
+            var btn = document.getElementById(x.events[i].id);
+            
+            btn.addEventListener('click', function(){
+              chart.dispatchAction(eventdat);
+            });
+          } else {
+            chart.dispatchAction(eventdat);
+          }
+          
+        }
+        
+        // shiny callbacks
         if (HTMLWidgets.shinyMode) {
           chart.on("brushselected", function(e){
             Shiny.onInputChange(el.id + '_brush' + ":echarts4rParse", e.batch[0].selected);
@@ -89,6 +107,8 @@ HTMLWidgets.widget({
         $(document).on('shiny:value', function() {
           chart.hideLoading();
         });
+        
+        
 
       },
       
