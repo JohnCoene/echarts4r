@@ -17,7 +17,9 @@ knitr::opts_chunk$set(
 library(echarts4r)
 ```
 
-Since version `1.2.0` one can add actions and otpionally tie them to buttons.
+<span class="label label-warning"><i class="fa fa-warning"></i></span> Still under development, please report issues.
+
+Since version `1.2.0` one can add actions and optionally tie them to buttons.
 
 For instance once can use the `e_zoom` action to zoom on the graph (requires `e_datazoom` initialised).
 
@@ -47,7 +49,6 @@ cars %>%
     btn = "BUTTON"
   ) %>% 
   e_button(
-    event = "zoom", 
     id = "BUTTON", 
     htmltools::tags$i(class = "fa fa-search"), # passed to the button
     class = "btn btn-default",
@@ -55,7 +56,77 @@ cars %>%
   )
 ```
 
-You can pass multiple buttons and tie a single button to multiple actions.
+You can also create the button elsewhere on the document, as long as the `id` matches the `btn`.
+
+```{r}
+value <- rnorm(10, 10, 2)
+
+nodes <- data.frame(
+  name = sample(LETTERS, 10),
+  value = value,
+  size = value,
+  grp = rep(c("grp1", "grp2"), 5),
+  stringsAsFactors = FALSE
+)
+
+edges <- data.frame(
+  source = sample(nodes$name, 20, replace = TRUE),
+  target = sample(nodes$name, 20, replace = TRUE),
+  stringsAsFactors = FALSE
+)
+
+e_charts() %>% 
+  e_graph() %>% 
+  e_graph_nodes(nodes, name, value, size, grp) %>% 
+  e_graph_edges(edges, source, target) %>% 
+  e_focus_adjacency(
+    seriesIndex = 0,
+    dataIndex = 4,
+    btn = "graphButton"
+  ) 
+```
+
+Then create the button with id matching our event (`graphButton`).
+
+```{r}
+# create the button
+htmltools::tags$a(
+  id = "graphButton",
+  class = "btn btn-primary",
+  "Highlight node #4"
+)
+```
+
+<span class="label label-warning"><i class="fa fa-warning"></i></span> Note that this means that each button in the document must bear a *unique* id.
+
+You can also pass multiple buttons and change their positions.
+
+```{r}
+iris %>% 
+  group_by(Species) %>% 
+  e_charts(Sepal.Length) %>% 
+  e_line(Petal.Length) %>% 
+  e_datazoom() %>% 
+  e_highlight(series.name = "setosa", btn = "highlightButton") %>% # highlight action
+  e_zoom( # zoom action
+    dataZoomIndex = 0,
+    startValue = 4,
+    endValue = 6,
+    btn = "zoomBtn"
+  ) %>% 
+  e_button(
+    id = "zoomBtn",
+    position = "bottom",
+    class = "btn btn-primary",
+    "Zoom"
+  ) %>% 
+  e_button(
+    "highlightButton",
+    position = "bottom",
+    class = "btn btn-default",
+    "highlight"
+  )
+```
 
 Actions (all can be tied to buttons):
 
@@ -64,3 +135,4 @@ Actions (all can be tied to buttons):
 - `e_zoom` to zoom on a part of the graph.
 - `e_visual_map_range` to select part of `e_visual_map`.
 - `e_pie_select` & `e_pie_unselect` to select or unselect pie slices.
+- `e_focus_adjacency` & `e_unfocus_adjacency` to focus or unfocus nodes on a graph.

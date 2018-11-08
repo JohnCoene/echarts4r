@@ -19,7 +19,7 @@ e_sunburst_(e, parent, child, value, itemStyle = NULL, rm.x = TRUE,
 \item{value}{Name of column containing values.}
 
 \item{itemStyle}{Name of column containing styles to pass to \code{child}, 
-expects a \code{data.frame} or a \code{list}.}
+expects a \code{data.frame} or a \code{list}, see details.}
 
 \item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
@@ -27,6 +27,11 @@ expects a \code{data.frame} or a \code{list}.}
 }
 \description{
 Build a sunburst.
+}
+\details{
+The \code{itemStyle} argument essentially is a nested data.frame with column names such as
+\code{color}, or \code{borderColor} as specified in the 
+\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-sunburst.data.itemStyle}{official documentation}.
 }
 \examples{
 df <- data.frame(
@@ -39,6 +44,17 @@ df \%>\%
   e_charts() \%>\% 
   e_sunburst(parent, child, value) \%>\% 
   e_theme("westeros")
+  
+# with itemStyle
+colors <- c("red", "black", "blue")
+
+df$color <- sample(colors, 5, replace = TRUE)
+df$borderColor <- sample(colors, 5, replace = TRUE)
+
+df \%>\% 
+  tidyr::nest(color, borderColor, .key = "style") \%>\% # nest
+  e_charts() \%>\% 
+  e_sunburst(parent, child, value, style) 
 
 }
 \seealso{

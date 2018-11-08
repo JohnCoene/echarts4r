@@ -1,6 +1,6 @@
 #' @rdname e_bar
 #' @export
-e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y.index = 0, x.index = 0, ...){
+e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y.index = 0, x.index = 0, coord.system = "cartesian2d", ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -28,8 +28,13 @@ e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y.index = 
       data = vector,
       yAxisIndex = y.index,
       xAxisIndex = x.index,
+      coordinateSystem = coord.system,
       ...
     )
+    
+    if(coord.system == "polar"){
+      e.serie$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
+    }
     
     if(isTRUE(legend))
       e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
@@ -77,7 +82,7 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y.index =
       l$yAxisIndex <- y.index
       l$xAxisIndex <- x.index
     } else if(coord.system == "polar") {
-      l$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname
+      l$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
     }
     
     if(isTRUE(legend))
@@ -218,7 +223,7 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol.size = 10,
       ...
     )
     
-    if(!coord.system %in% c("cartesian2d", "singleAxis")){
+    if(!coord.system %in% c("cartesian2d", "singleAxis", "polar")){
       e <- .rm_axis(e, rm.x, "x")
       e <- .rm_axis(e, rm.y, "y")
     } else {
@@ -226,8 +231,10 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol.size = 10,
       if(coord.system == "cartesian2d"){
         e.serie$yAxisIndex = y.index
         e.serie$xAxisIndex = x.index
-      } else {
+      } else if(coord.system == "singleAxis") {
         e.serie$singleAxisIndex = x.index
+      } else if(coord.system == "polar"){
+        e.serie$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
       }
       
       if(isTRUE(legend))

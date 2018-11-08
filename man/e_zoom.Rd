@@ -27,6 +27,6 @@ cars \%>\%
     end = 40,
     btn = "BUTTON"
   ) \%>\% 
-  e_button("zoom", "BUTTON", "Zoom in")
+  e_button("BUTTON", "Zoom in")
 
 }

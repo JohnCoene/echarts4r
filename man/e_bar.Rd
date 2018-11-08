@@ -6,10 +6,10 @@
 \title{Bar and Line chart}
 \usage{
 e_bar(e, serie, bind, name = NULL, legend = TRUE, y.index = 0,
-  x.index = 0, ...)
+  x.index = 0, coord.system = "cartesian2d", ...)
 
 e_bar_(e, serie, bind = NULL, name = NULL, legend = TRUE,
-  y.index = 0, x.index = 0, ...)
+  y.index = 0, x.index = 0, coord.system = "cartesian2d", ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -23,6 +23,8 @@ e_bar_(e, serie, bind = NULL, name = NULL, legend = TRUE,
 \item{legend}{Whether to add serie to legend.}
 
 \item{x.index, y.index}{Indexes of x and y axis.}
+
+\item{coord.system}{Coordinate system to plot against.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

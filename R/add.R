@@ -9,6 +9,7 @@
 #' @param legend Whether to add serie to legend.
 #' @param ... Any other option to pass, check See Also section.
 #' @param x.index,y.index Indexes of x and y axis.
+#' @param coord.system Coordinate system to plot against.
 #' 
 #' @examples 
 #' iris %>% 
@@ -20,7 +21,7 @@
 #' 
 #' @rdname e_bar
 #' @export
-e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.index = 0, ...){
+e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.index = 0, coord.system = "cartesian2d", ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -35,7 +36,7 @@ e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y.index = 0, x.ind
   
   sr <- deparse(substitute(serie))
   
-  e_bar_(e, sr, bd, name, legend, y.index, x.index, ...)
+  e_bar_(e, sr, bd, name, legend, y.index, x.index, coord.system, ...)
 }
 
 #' Line 
@@ -735,8 +736,12 @@ e_pie <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRUE
 #' @param parent,child Edges.
 #' @param value Name of column containing values.
 #' @param itemStyle Name of column containing styles to pass to \code{child}, 
-#' expects a \code{data.frame} or a \code{list}.
+#' expects a \code{data.frame} or a \code{list}, see details.
 #' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
+#' 
+#' @details The \code{itemStyle} argument essentially is a nested data.frame with column names such as
+#' \code{color}, or \code{borderColor} as specified in the 
+#' \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-sunburst.data.itemStyle}{official documentation}.
 #' 
 #' @examples 
 #' df <- data.frame(
@@ -749,6 +754,17 @@ e_pie <- function(e, serie, name = NULL, legend = TRUE, rm.x = TRUE, rm.y = TRUE
 #'   e_charts() %>% 
 #'   e_sunburst(parent, child, value) %>% 
 #'   e_theme("westeros")
+#'   
+#' # with itemStyle
+#' colors <- c("red", "black", "blue")
+#' 
+#' df$color <- sample(colors, 5, replace = TRUE)
+#' df$borderColor <- sample(colors, 5, replace = TRUE)
+#' 
+#' df %>% 
+#'   tidyr::nest(color, borderColor, .key = "style") %>% # nest
+#'   e_charts() %>% 
+#'   e_sunburst(parent, child, value, style) 
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-sunburst}{Additional arguments}
 #' 

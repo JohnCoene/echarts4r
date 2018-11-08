@@ -38,7 +38,7 @@
 #'     bottom = 300 # padding to avoid visual maps overlap
 #'   )
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#visualMap}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#visualMap}{Additional arguments}
 #' 
 #' @rdname e_visual_map
 #' @export
@@ -92,7 +92,7 @@ e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuo
 #'   e_bar(Murder) %>% 
 #'   e_tooltip()
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip}{Additional arguments}
 #' 
 #' @export
 e_tooltip <- function(e, trigger = c("item", "axis"), ...){
@@ -123,7 +123,7 @@ e_tooltip <- function(e, trigger = c("item", "axis"), ...){
 #'   e_pie(carb) %>% 
 #'   e_legend(FALSE)
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#legend}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#legend}{Additional arguments}
 #' 
 #' @export
 e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), ...){
@@ -157,7 +157,7 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), ...){
 #'   e_area(Murder, y.index = 1, x.index = 1) %>% 
 #'   e_datazoom(x.index = 0) 
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#toolbox}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#toolbox}{Additional arguments}
 #' 
 #' @rdname toolbox
 #' @export
@@ -215,7 +215,7 @@ e_toolbox <- function(e, ...){
 #'   e_toolbox_feature("dataZoom", title = list(zoom = "zoom", back = "back")) %>% 
 #'   e_datazoom(x.index = c(0, 1))
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#dataZoom}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#dataZoom}{Additional arguments}
 #' 
 #' @export
 e_datazoom <- function(e, x.index = NULL, y.index = NULL, ...){
@@ -264,7 +264,7 @@ e_datazoom <- function(e, x.index = NULL, y.index = NULL, ...){
 #'   e_brush() %>% 
 #'   e_theme("dark")
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#brush}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#brush}{Additional arguments}
 #' 
 #' @export
 e_brush <- function(e, x.index = NULL, y.index = NULL, ...){
@@ -309,7 +309,7 @@ e_brush <- function(e, x.index = NULL, y.index = NULL, ...){
 #'   e_visual_map(min = 3, max = 7) %>% 
 #'   e_title("Quakes", "Stations and Magnitude")
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#title}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#title}{Additional arguments}
 #' 
 #' @export
 e_title <- function(e, text, subtext = NULL, link = NULL, sublink = NULL, ...){
@@ -346,7 +346,7 @@ e_title <- function(e, text, subtext = NULL, link = NULL, sublink = NULL, ...){
 #'   e_radius_axis() %>% 
 #'   e_line(y, coord.system = "polar", smooth = TRUE) 
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#polar}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#polar}{Additional arguments}
 #' 
 #' @export
 e_polar <- function(e, show = TRUE, ...){
@@ -368,7 +368,7 @@ e_polar <- function(e, show = TRUE, ...){
 #' 
 #' @inheritParams e_bar
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#axisPointer}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#axisPointer}{Additional arguments}
 #' 
 #' @export
 e_axis_pointer <- function(e, ...){
@@ -403,7 +403,7 @@ e_axis_pointer <- function(e, ...){
 #'   e_area(drat) %>% 
 #'   e_animation(duration = 10000)
 #' 
-#' @seealso \href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#animation}
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#animation}{Additional arguments}
 #' 
 #' @export
 e_animation <- function(e, show = TRUE, threshold = NULL, duration = NULL, easing = NULL, delay = NULL,

@@ -13,7 +13,7 @@ e_downplay(e, series.index = NULL, series.name = NULL, btn = NULL)
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{series.index}{Index of serie to highlight or \code{list}/\code{vector} of series.}
+\item{series.index, series.name}{Index or name of serie to highlight or \code{list} or \code{vector} of series.}
 
 \item{btn}{A \code{\link{e_button}} id.}
 }

@@ -3,7 +3,7 @@
 #' Highlight series
 #' 
 #' @inheritParams e_bar
-#' @param series.index Index of serie to highlight or \code{list}/\code{vector} of series.
+#' @param series.index,series.name Index or name of serie to highlight or \code{list} or \code{vector} of series.
 #' @param btn A \code{\link{e_button}} id.
 #' 
 #' @examples 
@@ -70,7 +70,7 @@ e_downplay <- function(e, series.index = NULL, series.name = NULL, btn = NULL){
 #'   e_scatter(speed) %>% 
 #'   e_tooltip() %>% 
 #'   e_hidetip(btn = "btn") %>% 
-#'   e_button("hidetip", "btn", "Hide tooltip")
+#'   e_button("btn", "Hide tooltip")
 #' 
 #' @name tooltip_action
 #' @export
@@ -115,7 +115,7 @@ e_hidetip <- function(e, ..., btn = NULL){
 #'     end = 40,
 #'     btn = "BUTTON"
 #'   ) %>% 
-#'   e_button("zoom", "BUTTON", "Zoom in")
+#'   e_button("BUTTON", "Zoom in")
 #' 
 #' @export
 e_zoom <- function(e, ..., btn = NULL){
@@ -190,6 +190,62 @@ e_pie_unselect <- function(e, ..., btn = NULL){
   opts <- list()
   if(!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "pieUnSelect", ...)
+  
+  e$x$events <- append(e$x$events, list(opts))
+  return(e)
+}
+
+#' Nodes Adjacency
+#' 
+#' Actions related to \code{\link{e_graph}}.
+#' 
+#' @inheritParams e_bar
+#' @param btn A \code{\link{e_button}} id.
+#' @param ... Any options, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.graph}{official documentation}
+#' 
+#' @examples 
+#' value <- rnorm(10, 10, 2)
+#' 
+#' nodes <- data.frame(
+#'   name = sample(LETTERS, 10),
+#'   value = value,
+#'   size = value,
+#'   grp = rep(c("grp1", "grp2"), 5),
+#'   stringsAsFactors = FALSE
+#' )
+#' 
+#' edges <- data.frame(
+#'   source = sample(nodes$name, 20, replace = TRUE),
+#'   target = sample(nodes$name, 20, replace = TRUE),
+#'   stringsAsFactors = FALSE
+#' )
+#' 
+#' e_charts() %>% 
+#'   e_graph() %>% 
+#'   e_graph_nodes(nodes, name, value, size, grp) %>% 
+#'   e_graph_edges(edges, source, target) %>% 
+#'   e_focus_adjacency(
+#'     seriesIndex = 0,
+#'     dataIndex = 4
+#'   )
+#' 
+#' @name graph_action
+#' @export
+e_focus_adjacency <- function(e, ..., btn = NULL){
+  opts <- list()
+  if(!is.null(btn)) opts$id <- btn
+  opts$data <- list(type = "focusNodeAdjacency", ...)
+  
+  e$x$events <- append(e$x$events, list(opts))
+  return(e)
+}
+
+#' @rdname graph_action
+#' @export
+e_unfocus_adjacency <- function(e, ..., btn = NULL){
+  opts <- list()
+  if(!is.null(btn)) opts$id <- btn
+  opts$data <- list(type = "unfocusNodeAdjacency", ...)
   
   e$x$events <- append(e$x$events, list(opts))
   return(e)

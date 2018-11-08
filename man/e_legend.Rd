@@ -28,5 +28,5 @@ mtcars \%>\%
 
 }
 \seealso{
-\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#legend}
+\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#legend}{Additional arguments}
 }

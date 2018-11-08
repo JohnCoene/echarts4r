@@ -4,13 +4,10 @@
 \alias{e_button}
 \title{Button}
 \usage{
-e_button(e, event, id, ..., position = "top",
-  tag = htmltools::tags$button)
+e_button(e, id, ..., position = "top", tag = htmltools::tags$button)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
-
-\item{event}{Name of event to trigger.}
 
 \item{id}{A valid CSS id.}
 
@@ -23,20 +20,6 @@ e_button(e, event, id, ..., position = "top",
 \description{
 Add a button to your visualisation.
 }
-\section{Events}{
-
-\itemize{
-  \item{\code{highlight}}
-  \item{\code{downplay}}
-  \item{\code{showtip}}
-  \item{\code{hidetip}}
-  \item{\code{zoom}}
-  \item{\code{visual_map_range}}
-  \item{\code{pie_select}}
-  \item{\code{pie_unselect}}
-}
-}
-
 \examples{
 iris \%>\% 
   group_by(Species) \%>\% 
@@ -44,6 +27,6 @@ iris \%>\%
   e_line(Sepal.Width) \%>\% 
   e_line(Petal.Length) \%>\% 
   e_highlight(series.name = "setosa", btn = "myBtn") \%>\% 
-  e_button("highlight", "myBtn", "highlight stuff")
+  e_button("myBtn", "highlight stuff")
 
 }

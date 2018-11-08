@@ -32,5 +32,5 @@ USArrests \%>\%
 
 }
 \seealso{
-\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#dataZoom}
+\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#dataZoom}{Additional arguments}
 }

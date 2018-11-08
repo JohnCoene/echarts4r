@@ -29,6 +29,6 @@ cars \%>\%
   e_scatter(speed) \%>\% 
   e_tooltip() \%>\% 
   e_hidetip(btn = "btn") \%>\% 
-  e_button("hidetip", "btn", "Hide tooltip")
+  e_button("btn", "Hide tooltip")
 
 }

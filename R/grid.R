@@ -149,27 +149,54 @@ e_grid <- function(e, index = NULL, ...){
 #' Customise radius axis.
 #' 
 #' @inheritParams e_bar
+#' @param serie Serie to use as axis labels.
 #' @param show Whether to display the axis.
 #' 
 #' @examples 
-#' df <- data.frame(x = 1:10, y = seq(1, 20, by = 2))
+#' df <- data.frame(x = LETTERS[1:10], y = seq(1, 20, by = 2))
 #' 
 #' df %>% 
 #'   e_charts(x) %>% 
 #'   e_polar() %>% 
 #'   e_angle_axis() %>% 
-#'   e_radius_axis(FALSE) %>% 
-#'   e_line(y, coord.system = "polar", smooth = TRUE) 
+#'   e_radius_axis(x) %>% 
+#'   e_bar(y, coord.system = "polar") 
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#radiusAxis}{Additional arguments}
 #' 
 #' @export
-e_radius_axis <- function(e, show = TRUE, ...){
+#' @name radius_axis
+e_radius_axis <- function(e, serie, show = TRUE, ...){
   
   if(missing(e))
     stop("missing e", call. = FALSE)
   
-  e$x$opts$radiusAxis <- list(show = show, ...)
+  opts <- list(show = show, ...)
+  
+  if(!missing(serie))
+    sr <- deparse(substitute(serie))
+  
+  if(!missing(serie))
+    opts$data <- e$x$data %>% purrr::map(sr) %>% unlist %>% unname %>% unique %>% as.list
+  
+  e$x$opts$radiusAxis <- opts
+  
+  e
+}
+
+#' @rdname radius_axis
+#' @export
+e_radius_axis_ <- function(e, serie = NULL, show = TRUE, ...){
+  
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  opts <- list(show = show, ...)
+  
+  if(!is.null(serie))
+    opts$data <- e$x$data %>% purrr::map(serie) %>% unlist %>% unname %>% unique %>%  as.list
+  
+  e$x$opts$radiusAxis <- opts
   
   e
 }
@@ -214,7 +241,10 @@ e_angle_axis <- function(e, serie, show = TRUE, ...){
   opts <- list(show = show, ...)
   
   if(!missing(serie))
-    opts$data <- e$x$data %>% purrr::map(deparse(substitute(serie))) %>% unlist %>% unname %>% unique
+    sr <- deparse(substitute(serie))
+  
+  if(!missing(serie))
+    opts$data <- e$x$data %>% purrr::map(sr) %>% unlist %>% unname %>% unique %>% as.list
   
   e$x$opts$angleAxis <- opts
   
@@ -231,7 +261,7 @@ e_angle_axis_ <- function(e, serie = NULL, show = TRUE, ...){
   opts <- list(show = show, ...)
   
   if(!is.null(serie))
-    opts$data <- e$x$data %>% purrr::map(serie) %>% unlist %>% unname %>% unique
+    opts$data <- e$x$data %>% purrr::map(serie) %>% unlist %>% unname %>% unique %>%  as.list
   
   e$x$opts$angleAxis <- opts
   
