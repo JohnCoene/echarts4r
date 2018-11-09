@@ -108,24 +108,35 @@ quakes %>%
 
 Since version `0.1.2` you can connect multiple two charts together which might make it even easier. Below we create two charts, with `e_datazoom`, hiding one of the latter. On the second chart we run `e_connect` to connect it with the other; sliders are now linked.
 
+You are not limited to a single chart
+
 ```{r}
-e1 <- cars %>% 
+e1 <- mtcars %>% 
   e_charts(
-    speed,
-    height = 250,
+    mpg,
+    height = 200,
     elementId = "chart1" # specify id
   ) %>% 
-  e_scatter(dist) %>% 
+  e_scatter(wt) %>% 
+  e_datazoom(show = FALSE) # hide
+
+e2 <- mtcars %>% 
+  e_charts(
+    wt,
+    height = 200,
+    elementId = "chart2" # specify id
+  ) %>% 
+  e_scatter(qsec) %>% 
   e_datazoom(show = FALSE) # hide
   
-e2 <- cars %>% 
+e3 <- mtcars %>% 
   e_charts(
-    dist,
-    height = 250
+    qsec,
+    height = 200
   ) %>% 
-  e_scatter(speed) %>% 
+  e_scatter(hp) %>% 
   e_datazoom() %>% 
-  e_connect("chart1") # connect
+  e_connect(c("chart1", "chart2")) # connect
 ```
 
 You can browse the above from your console like so.
@@ -141,6 +152,10 @@ htmltools::browsable(
       htmltools::div(
         class = "col-md-6",
         e2
+      ),
+      htmltools::div(
+        class = "col-md-6",
+        e3
       )
    )
 )

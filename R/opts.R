@@ -503,7 +503,7 @@ e_text_style <- function(e, ...){
 #' Set group to connect two charts together.
 #' 
 #' @inheritParams e_bar
-#' @param id Id of chart to connect with.
+#' @param ids Scalar, vector or list of ids of chart to connect with.
 #' 
 #' @examples 
 #' # linkedin datazoom
@@ -536,8 +536,8 @@ e_text_style <- function(e, ...){
 #' )
 #' 
 #' @export
-e_connect <- function(e, id){
-  if(missing(id)) stop("missing id", call. = FALSE)
-  e$x$connect <- id
+e_connect <- function(e, ids){
+  if(missing(ids)) stop("missing ids", call. = FALSE)
+  e$x$connect <- as.list(ids)
   return(e)
 }

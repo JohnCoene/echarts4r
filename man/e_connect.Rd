@@ -4,41 +4,41 @@
 \alias{e_connect}
 \title{Set Group}
 \usage{
-e_connect(e, id)
+e_connect(e, ids)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{id}{Id of chart to connect with.}
+\item{ids}{Scalar, vector or list of ids of chart to connect with.}
 }
 \description{
-Set group to connect charts together.
+Set group to connect two charts together.
 }
 \examples{
+# linkedin datazoom
 e1 <- cars \%>\% 
   e_charts(
     speed,
     elementId = "chart1"
   ) \%>\% 
-  e_scatter(dist)
+  e_scatter(dist) \%>\% 
+  e_datazoom(show = FALSE)
   
 e2 <- cars \%>\% 
   e_charts(
-    dist,
-    elementId = "chart2"
+    dist
   ) \%>\% 
   e_scatter(speed) \%>\% 
+  e_datazoom() \%>\% 
   e_connect("chart1") # connect
 
 htmltools::browsable(
   htmltools::div(
     class = "container",
       htmltools::div(
-        class = "col-md-6",
         e1
       ),
       htmltools::div(
-        class = "col-md-6",
         e2
       )
    )
