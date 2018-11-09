@@ -505,8 +505,10 @@ e_text_style <- function(e, ...){
 #' @inheritParams e_bar
 #' @param ids Scalar, vector or list of ids of chart to connect with.
 #' 
-#' @examples 
-#' # linkedin datazoom
+#' @examples
+#' library(htmltools)
+#'   
+#' # linked datazoom
 #' e1 <- cars %>% 
 #'   e_charts(
 #'     speed,
@@ -523,16 +525,11 @@ e_text_style <- function(e, ...){
 #'   e_datazoom() %>% 
 #'   e_connect("chart1") # connect
 #' 
-#' htmltools::browsable(
-#'   htmltools::div(
-#'     class = "container",
-#'       htmltools::div(
-#'         e1
-#'       ),
-#'       htmltools::div(
-#'         e2
-#'       )
-#'    )
+#' browsable(
+#'   div(
+#'     div(e1),
+#'     div(e2)
+#'   )
 #' )
 #' 
 #' @export

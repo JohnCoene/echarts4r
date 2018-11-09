@@ -15,7 +15,9 @@ e_connect(e, ids)
 Set group to connect two charts together.
 }
 \examples{
-# linkedin datazoom
+library(htmltools)
+  
+# linked datazoom
 e1 <- cars \%>\% 
   e_charts(
     speed,
@@ -32,16 +34,11 @@ e2 <- cars \%>\%
   e_datazoom() \%>\% 
   e_connect("chart1") # connect
 
-htmltools::browsable(
-  htmltools::div(
-    class = "container",
-      htmltools::div(
-        e1
-      ),
-      htmltools::div(
-        e2
-      )
-   )
+browsable(
+  div(
+    div(e1),
+    div(e2)
+  )
 )
 
 }
