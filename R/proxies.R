@@ -9,7 +9,6 @@
 #' 
 #' @examples 
 #' \dontrun{
-#' 
 #'   library(shiny)
 #' 
 #'  ui <- fluidPage(
