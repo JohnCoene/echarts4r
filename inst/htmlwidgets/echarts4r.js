@@ -92,25 +92,26 @@ HTMLWidgets.widget({
           chart.hideLoading();
         });
         
-        function dispatch(eventdat){
-          chart.dispatchAction(eventdat);
+        if(x.hasOwnProperty('connect')){
+          var chart2 = get_e_charts(x.connect);
+          echarts.connect([chart, chart2]);
         }
+        
         // actions
-        for(var i = 0; i < x.events.length; i++){
-          
-          var eventdat = x.events[i].data;
-          
-          if(x.events[i].hasOwnProperty('id')){
-            var btn = document.getElementById(x.events[i].id);
-            
-            btn.addEventListener('click', function(e){
-              dispatch(eventdat);
-            });
-          } else {
-            dispatch(eventdat);
-          }
-          
-        }        
+        if(x.events.length >= 1){
+          for(var i = 0; i < x.events.length; i++){
+            chart.dispatchAction(x.events[i].data);
+          }  
+        }
+        
+        // buttons
+        for(var key in x.buttons){
+           document.getElementById(key).addEventListener('click', function(){
+            for(var e = 0; e < x.buttons[key].length; e++){
+              chart.dispatchAction(x.buttons[key][e].data);
+            }
+          });
+        }  
 
       },
       

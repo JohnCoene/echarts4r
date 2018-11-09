@@ -23,6 +23,10 @@ e_button <- function(e, id, ..., position = "top", tag = htmltools::tags$button)
   if(missing(id))
     stop("missing id", call. = FALSE)
   
+  if(!id %in% names(e$x$buttons)){
+    e$x$buttons[[id]] <- list()
+  }
+  
   if(position == "top")
     htmlwidgets::prependContent(e, tag(id = id, ...))
   else

@@ -497,3 +497,47 @@ e_text_style <- function(e, ...){
   e$x$opts$textStyle <- list(...)
   e
 }
+
+#' Set Group
+#' 
+#' Set group to connect two charts together.
+#' 
+#' @inheritParams e_bar
+#' @param id Id of chart to connect with.
+#' 
+#' @examples 
+#' # linkedin datazoom
+#' e1 <- cars %>% 
+#'   e_charts(
+#'     speed,
+#'     elementId = "chart1"
+#'   ) %>% 
+#'   e_scatter(dist) %>% 
+#'   e_datazoom(show = FALSE)
+#'   
+#' e2 <- cars %>% 
+#'   e_charts(
+#'     dist
+#'   ) %>% 
+#'   e_scatter(speed) %>% 
+#'   e_datazoom() %>% 
+#'   e_connect("chart1") # connect
+#' 
+#' htmltools::browsable(
+#'   htmltools::div(
+#'     class = "container",
+#'       htmltools::div(
+#'         e1
+#'       ),
+#'       htmltools::div(
+#'         e2
+#'       )
+#'    )
+#' )
+#' 
+#' @export
+e_connect <- function(e, id){
+  if(missing(id)) stop("missing id", call. = FALSE)
+  e$x$connect <- id
+  return(e)
+}

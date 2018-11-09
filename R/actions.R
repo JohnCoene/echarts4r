@@ -22,14 +22,21 @@ e_highlight <- function(e, series.index = NULL, series.name = NULL, btn = NULL){
     stop("must set index or name", call. = FALSE)
   
   opts <- list()
-  if(!is.null(btn)) opts$id <- btn
   
   data <- list(type = "highlight")
   if(!is.null(series.index)) data$seriesIndex <- as.list(series.index)
   if(!is.null(series.name)) data$seriesName <- as.list(series.name)
   opts$data <- data
   
-  e$x$events <- append(e$x$events, list(opts))
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
   
   return(e)
 }
@@ -119,11 +126,21 @@ e_hidetip <- function(e, ..., btn = NULL){
 #' 
 #' @export
 e_zoom <- function(e, ..., btn = NULL){
+  
   opts <- list()
-  if(!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "dataZoom", ...)
   
-  e$x$events <- append(e$x$events, list(opts))
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  
+  
   return(e)
 }
 
