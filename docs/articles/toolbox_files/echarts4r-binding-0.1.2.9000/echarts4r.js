@@ -38,22 +38,6 @@ HTMLWidgets.widget({
         chart = echarts.init(document.getElementById(el.id), x.theme, {renderer: x.renderer});
         chart.setOption(x.opts);
         
-        // actions
-        for(var i = 0; i < x.events.length; i++){
-          
-          var eventdat = x.events[i].data;
-          
-          if(x.events[i].hasOwnProperty('id')){
-            var btn = document.getElementById(x.events[i].id);
-            
-            btn.addEventListener('click', function(){
-              chart.dispatchAction(eventdat);
-            });
-          } else {
-            chart.dispatchAction(eventdat);
-          }
-          
-        }
         
         // shiny callbacks
         if (HTMLWidgets.shinyMode) {
@@ -108,7 +92,25 @@ HTMLWidgets.widget({
           chart.hideLoading();
         });
         
-        
+        function dispatch(eventdat){
+          chart.dispatchAction(eventdat);
+        }
+        // actions
+        for(var i = 0; i < x.events.length; i++){
+          
+          var eventdat = x.events[i].data;
+          
+          if(x.events[i].hasOwnProperty('id')){
+            var btn = document.getElementById(x.events[i].id);
+            
+            btn.addEventListener('click', function(e){
+              dispatch(eventdat);
+            });
+          } else {
+            dispatch(eventdat);
+          }
+          
+        }        
 
       },
       
