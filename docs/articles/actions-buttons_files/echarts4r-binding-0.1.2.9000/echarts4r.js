@@ -116,7 +116,19 @@ HTMLWidgets.widget({
               chart.dispatchAction(x.buttons[key][e].data);
             }
           });
-        }  
+        }
+        
+        if(x.hasOwnProperty('on')){
+          for(var e = 0; e < x.on.length; e++){
+            chart.on(x.on[e].event, x.on[e].query, x.on[e].handler);
+          }
+        }
+        
+        if(x.hasOwnProperty('off')){
+          for(var e = 0; e < x.off.length; e++){
+            chart.off(x.off[e].event, x.off[e].query, x.off[e].handler);
+          }
+        }
 
       },
       

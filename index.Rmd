@@ -47,8 +47,8 @@ install.packages("echarts4r")
 You can also install the development version of echarts4r with `devtools` or `remotes` from Github or Bitbucket.
 
 ```{r, eval=FALSE}
-# install.packages("devtools")
-devtools::install_github("JohnCoene/echarts4r") # github
+# install.packages("remotes")
+remotes::install_github("JohnCoene/echarts4r") # github
 ```
 
 ```{r, eval=FALSE}
@@ -132,18 +132,31 @@ remotes::install_github("JohnCoene/echarts4r.assets")
 
 ## Example
 
+Create multiple charts, arrange them in a grid and connect their interactions.
+
 ```{r}
 library(echarts4r)
 
-url <- paste0("https://ecomfe.github.io/echarts-examples/",
-              "public/data-gl/asset/data/population.json")
-data <- jsonlite::fromJSON(url)
-data <- as.data.frame(data)
-names(data) <- c("lon", "lat", "value")
+e1 <- iris %>% 
+  group_by(Species) %>% 
+  e_charts(
+    Sepal.Length,
+    elementId = "chart"
+  ) %>% 
+  e_scatter_("Petal.Length", "Sepal.Width", scale = "* 3") %>% 
+  e_datazoom(show = FALSE, y.index = 0) %>% 
+  e_x_axis(min = 4) %>% 
+  e_highlight(series.name = list("setosa", "versicolor", "virginica"), btn = "btn") %>% 
+  e_button("btn", "Highlight", class = "btn btn-primary", position = "bottom")
 
-data %>% 
-    e_charts(lon) %>% 
-    e_geo_3d() %>% 
-    e_bar_3d(lat, value, coord.system = "geo3D") %>% 
-    e_visual_map()
+e2 <- iris %>% 
+  group_by(Species) %>% 
+  e_charts(Sepal.Length) %>% 
+  e_line(Petal.Length) %>% 
+  e_connect("chart") %>% 
+  e_datazoom(y.index = 0) %>% 
+  e_x_axis(min = 4) %>% 
+  e_legend(FALSE) 
+
+e_arrange(e1, e2, rows = 1, cols = 2)
 ```
