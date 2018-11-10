@@ -9,10 +9,15 @@ e_text_style(e, ...)
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{...}{Any other option to pass, check See Also section.}
+\item{...}{Any \code{echarts} objects.}
+
+\item{rows, cols}{Number of rows and columns.}
 }
 \description{
 Define global font style.
+}
+\note{
+Do not use \code{e_arrange} in R markdown or Shiny.
 }
 \examples{
 cars \%>\% 

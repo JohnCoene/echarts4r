@@ -479,6 +479,10 @@ e_flip_coords <- function(e){
 #' Define global font style.
 #' 
 #' @inheritParams e_bar
+#' @param rows,cols Number of rows and columns.
+#' @param ... Any \code{echarts} objects.
+#' 
+#' @note Do not use \code{e_arrange} in R markdown or Shiny.
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#textStyle}{official documentation}
 #' 
