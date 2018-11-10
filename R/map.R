@@ -7,6 +7,7 @@
 #' @param map Map type.
 #' @param coord.system Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.
 #' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
+#' @param value,height,name Columns corresponding to registered map.
 #' 
 #' @examples 
 #' \dontrun{
@@ -25,6 +26,41 @@
 #'   e_charts(countries) %>% 
 #'   e_map_3d(values, shading = "lambert") %>% 
 #'   e_visual_map(min = 10, max = 30)
+#'   
+#' buildings <- jsonlite::read_json(
+#'   paste0(
+#'     "https://ecomfe.github.io/echarts-examples/",
+#'     "public/data-gl/asset/data/buildings.json"
+#'   )
+#' )
+#' 
+#' heights <- purrr::map(buildings$features, "properties") %>% 
+#'   purrr::map("height") %>% 
+#'   unlist()
+#'   
+#' names <- purrr::map(buildings$features, "properties") %>% 
+#'   purrr::map("name") %>% 
+#'   unlist()
+#'   
+#' data <- dplyr::tibble(
+#'   name = names,
+#'   value = runif(1, 0, 1),
+#'   height = heights / 10
+#' )
+#' 
+#' data %>% 
+#'   e_charts() %>% 
+#'   e_map_register("buildings", buildings) %>%
+#'   e_map_3d_custom(name, value, height, map = "buildings") %>% 
+#'   e_visual_map(
+#'     show = FALSE,
+#'     min = 0.4,
+#'     max = 1,
+#'     inRange = list(
+#'       '#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', 
+#'       '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026'
+#'     )
+#'   )
 #' }
 #' 
 #' @seealso \code{\link{e_country_names}}, 
@@ -124,6 +160,47 @@ e_map_3d_ <- function(e, serie, map = "world", name = NULL, coord.system = NULL,
     data <- .add_bind(e, data, e$x$mapping$x)
     app$data <- data
   }
+  
+  e$x$opts$series <- append(e$x$opts$series, list(app))
+  
+  e
+}
+
+#' @rdname map
+#' @export
+e_map_3d_custom <- function(e, id, value, height, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(id) || missing(value) || missing(height))
+    stop("must pass id, value, and height", call. = FALSE)
+  
+  e <- .rm_axis(e, rm.x, "x")
+  e <- .rm_axis(e, rm.y, "y")
+  
+  app <- list(
+    type = "map3D",
+    map = map,
+    ...
+  )
+  
+  if(!is.null(name))
+    app$name <- name
+  
+  name_quo <- dplyr::enquo(id)
+  value_quo <- dplyr::enquo(value)
+  height_quo <- dplyr::enquo(height)
+  
+  data <- e$x$data[[1]] %>% 
+    dplyr::select(
+      name = !!name_quo,
+      value = !!value_quo,
+      height = !!height_quo
+    ) %>% 
+    apply(1, as.list)
+  
+  app$data <- data
   
   e$x$opts$series <- append(e$x$opts$series, list(app))
   

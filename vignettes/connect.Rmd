@@ -20,7 +20,7 @@ library(echarts4r)
 
 Since version `0.1.2` you can connect multiple two charts together which might make it even easier. Below we create two charts, with `e_datazoom`, hiding one of the latter. On the second chart we run `e_connect` to connect it with the other; sliders are now linked.
 
-You are not limited to a single chart
+You can link charts together in two different ways, one with `e_connect` by refering other charts's id (`elementId`)
 
 ```{r}
 e1 <- mtcars %>% 

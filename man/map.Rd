@@ -5,6 +5,7 @@
 \alias{e_map_}
 \alias{e_map_3d}
 \alias{e_map_3d_}
+\alias{e_map_3d_custom}
 \title{Choropleth}
 \usage{
 e_map(e, serie, map = "world", name = NULL, rm.x = TRUE,
@@ -18,6 +19,9 @@ e_map_3d(e, serie, map = "world", name = NULL, coord.system = NULL,
 
 e_map_3d_(e, serie, map = "world", name = NULL, coord.system = NULL,
   rm.x = TRUE, rm.y = TRUE, ...)
+
+e_map_3d_custom(e, id, value, height, map = "world", name = NULL,
+  rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -26,13 +30,13 @@ e_map_3d_(e, serie, map = "world", name = NULL, coord.system = NULL,
 
 \item{map}{Map type.}
 
-\item{name}{name of the serie.}
-
 \item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 
 \item{coord.system}{Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.}
+
+\item{value, height, name}{Columns corresponding to registered map.}
 }
 \description{
 Draw maps.
@@ -54,6 +58,41 @@ choropleth \%>\%
   e_charts(countries) \%>\% 
   e_map_3d(values, shading = "lambert") \%>\% 
   e_visual_map(min = 10, max = 30)
+  
+buildings <- jsonlite::read_json(
+  paste0(
+    "https://ecomfe.github.io/echarts-examples/",
+    "public/data-gl/asset/data/buildings.json"
+  )
+)
+
+heights <- purrr::map(buildings$features, "properties") \%>\% 
+  purrr::map("height") \%>\% 
+  unlist()
+  
+names <- purrr::map(buildings$features, "properties") \%>\% 
+  purrr::map("name") \%>\% 
+  unlist()
+  
+data <- dplyr::tibble(
+  name = names,
+  value = runif(1, 0, 1),
+  height = heights / 10
+)
+
+data \%>\% 
+  e_charts() \%>\% 
+  e_map_register("buildings", buildings) \%>\%
+  e_map_3d_custom(name, value, height, map = "buildings") \%>\% 
+  e_visual_map(
+    show = FALSE,
+    min = 0.4,
+    max = 1,
+    inRange = list(
+      '#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', 
+      '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026'
+    )
+  )
 }
 
 }

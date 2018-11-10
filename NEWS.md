@@ -33,7 +33,9 @@ First iteration of the graphic low-level API:
 * Added actions that can be tied to buttons.
 * Added the ability to add buttons.
 * Added `e_arrange` & `e_connect` to connect charts interactions and visualise them together.
-* Better supprot for radial, angle, and polar charts
+* Better supprot for radial, angle, and polar charts.
+* Callbacks added `e_on` and `e_off`.
+* `e_map_custom` added to work with custom registered maps.
 
 # echarts4r 0.1.1
 

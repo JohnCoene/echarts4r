@@ -98,7 +98,6 @@ HTMLWidgets.widget({
             connections.push(get_e_charts(x.connect[c]));
           }
           connections.push(chart);
-          console.log(connections);
           echarts.connect(connections);
         }
         
