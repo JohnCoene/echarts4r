@@ -1,0 +1,90 @@
+---
+title: "Connect"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Connect}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(htmltools)
+library(echarts4r)
+```
+
+Since version `0.1.2` you can connect multiple two charts together which might make it even easier. Below we create two charts, with `e_datazoom`, hiding one of the latter. On the second chart we run `e_connect` to connect it with the other; sliders are now linked.
+
+You are not limited to a single chart
+
+```{r}
+e1 <- mtcars %>% 
+  e_charts(
+    mpg,
+    height = 200,
+    elementId = "chart1" # specify id
+  ) %>% 
+  e_scatter(wt) %>% 
+  e_datazoom(show = FALSE) # hide
+
+e2 <- mtcars %>% 
+  e_charts(
+    wt,
+    height = 200,
+    elementId = "chart2" # specify id
+  ) %>% 
+  e_scatter(qsec) %>% 
+  e_datazoom(show = FALSE) # hide
+  
+e3 <- mtcars %>% 
+  e_charts(
+    qsec,
+    height = 200
+  ) %>% 
+  e_scatter(hp) %>% 
+  e_datazoom() %>% 
+  e_connect(c("chart1", "chart2")) # connect
+```
+
+You can browse the above from your console like so.
+
+```{r, eval = FALSE}
+e_arrange(e1, e2, e3)
+```
+
+```{r, echo = FALSE}
+div(e1, e2, e3)
+```
+
+The package natively links interactions, therefore, in the following the legend is acutally unique, one legend will trigger on both charts because they bear the same name.
+
+```{r}
+e4 <- mtcars %>% 
+    e_charts(
+        mpg,
+        height = 200,
+        elementId = "chart" # specify id
+    ) %>% 
+    e_scatter(wt, name = "Click me!")
+
+e5 <- mtcars %>% 
+    e_charts(
+        wt,
+        height = 200
+    ) %>% 
+    e_scatter(qsec, name = "Click me!") %>% 
+    e_connect("chart") # connect
+```
+
+```{r, eval = FALSE}
+e_arrange(e4, e5)
+```
+
+```{r, echo = FALSE}
+div(e4, e5)
+```

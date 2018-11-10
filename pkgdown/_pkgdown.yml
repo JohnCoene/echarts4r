@@ -87,8 +87,10 @@ navbar:
       menu:
         - text: "Grid & Axis"
           href: articles/grid.html
-        - text: "Brush, Slide & Connect"
+        - text: "Brush & Slide"
           href: articles/brush.html
+        - text: "Arrange"
+          href: articles/connect.html
         - text: "Toolbox"
           href: articles/toolbox.html
         - text: "Tooltip"

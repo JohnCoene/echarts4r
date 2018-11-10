@@ -1,10 +1,10 @@
 ---
-title: "Brush, Slide & Connect"
+title: "Brush & Slide"
 author: "John Coene"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Brush, Slide & Connect}
+  %\VignetteIndexEntry{Brush & Slide}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -103,64 +103,3 @@ quakes %>%
 ```
 
 `e_brush` actually filters while `e_datazoom` only zooms on the data.
-
-### Connect
-
-Since version `0.1.2` you can connect multiple two charts together which might make it even easier. Below we create two charts, with `e_datazoom`, hiding one of the latter. On the second chart we run `e_connect` to connect it with the other; sliders are now linked.
-
-You are not limited to a single chart
-
-```{r}
-e1 <- mtcars %>% 
-  e_charts(
-    mpg,
-    height = 200,
-    elementId = "chart1" # specify id
-  ) %>% 
-  e_scatter(wt) %>% 
-  e_datazoom(show = FALSE) # hide
-
-e2 <- mtcars %>% 
-  e_charts(
-    wt,
-    height = 200,
-    elementId = "chart2" # specify id
-  ) %>% 
-  e_scatter(qsec) %>% 
-  e_datazoom(show = FALSE) # hide
-  
-e3 <- mtcars %>% 
-  e_charts(
-    qsec,
-    height = 200
-  ) %>% 
-  e_scatter(hp) %>% 
-  e_datazoom() %>% 
-  e_connect(c("chart1", "chart2")) # connect
-```
-
-You can browse the above from your console like so.
-
-```{r, eval = FALSE}
-htmltools::browsable(
-  htmltools::div(
-    class = "container",
-      htmltools::div(
-        class = "col-md-6",
-        e1
-      ),
-      htmltools::div(
-        class = "col-md-6",
-        e2
-      ),
-      htmltools::div(
-        class = "col-md-6",
-        e3
-      )
-   )
-)
-```
-
-```{r, echo = FALSE}
-div(e1, e2)
-```

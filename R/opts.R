@@ -506,12 +506,11 @@ e_text_style <- function(e, ...){
 #' @param ids Scalar, vector or list of ids of chart to connect with.
 #' 
 #' @examples
-#' library(htmltools)
-#'   
 #' # linked datazoom
 #' e1 <- cars %>% 
 #'   e_charts(
 #'     speed,
+#'     height = 200,
 #'     elementId = "chart1"
 #'   ) %>% 
 #'   e_scatter(dist) %>% 
@@ -519,22 +518,61 @@ e_text_style <- function(e, ...){
 #'   
 #' e2 <- cars %>% 
 #'   e_charts(
-#'     dist
+#'     dist,
+#'     height = 200
 #'   ) %>% 
 #'   e_scatter(speed) %>% 
 #'   e_datazoom() %>% 
 #'   e_connect("chart1") # connect
 #' 
-#' browsable(
-#'   div(
-#'     div(e1),
-#'     div(e2)
-#'   )
-#' )
+#' e_arrange(e1, e2)
 #' 
+#' @name connections
 #' @export
 e_connect <- function(e, ids){
   if(missing(ids)) stop("missing ids", call. = FALSE)
   e$x$connect <- as.list(ids)
   return(e)
+}
+
+#' @rdname connections
+#' @export
+e_arrange <- function(..., rows = NULL, cols = NULL){
+  
+  plots <- list(...)
+  
+  warning("do not use in Rmarkdown or Shiny", call. = FALSE)
+  
+  if(is.null(rows))
+    rows <- length(plots)
+  
+  if(is.null(cols))
+    cols <- 1
+  
+  x <- 0
+  tg <- htmltools::tagList()
+  for(i in 1:rows){
+    r <- htmltools::div(class = "row")
+    
+    for(j in 1:cols){
+      x <- x + 1
+      c <- htmltools::div(class = paste0("col-", 12 / rows), plots[[x]])
+      r <- htmltools::tagAppendChild(r, c)
+    }
+    tg <- htmltools::tagAppendChild(tg, r)
+  }
+  
+  htmltools::browsable(
+    htmltools::span(
+      htmltools::tags$head(
+        htmltools::tags$link(
+          rel="stylesheet",
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css",
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO",
+          crossorigin="anonymous"
+        )
+      ),
+      tg
+    )
+  ) 
 }
