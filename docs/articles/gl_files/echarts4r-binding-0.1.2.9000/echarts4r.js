@@ -38,22 +38,6 @@ HTMLWidgets.widget({
         chart = echarts.init(document.getElementById(el.id), x.theme, {renderer: x.renderer});
         chart.setOption(x.opts);
         
-        // actions
-        for(var i = 0; i < x.events.length; i++){
-          
-          var eventdat = x.events[i].data;
-          
-          if(x.events[i].hasOwnProperty('id')){
-            var btn = document.getElementById(x.events[i].id);
-            
-            btn.addEventListener('click', function(){
-              chart.dispatchAction(eventdat);
-            });
-          } else {
-            chart.dispatchAction(eventdat);
-          }
-          
-        }
         
         // shiny callbacks
         if (HTMLWidgets.shinyMode) {
@@ -108,7 +92,31 @@ HTMLWidgets.widget({
           chart.hideLoading();
         });
         
+        if(x.hasOwnProperty('connect')){
+          var connections = [];
+          for(var c = 0; c < x.connect.length; c++){
+            connections.push(get_e_charts(x.connect[c]));
+          }
+          connections.push(chart);
+          console.log(connections);
+          echarts.connect(connections);
+        }
         
+        // actions
+        if(x.events.length >= 1){
+          for(var i = 0; i < x.events.length; i++){
+            chart.dispatchAction(x.events[i].data);
+          }  
+        }
+        
+        // buttons
+        for(var key in x.buttons){
+           document.getElementById(key).addEventListener('click', function(){
+            for(var e = 0; e < x.buttons[key].length; e++){
+              chart.dispatchAction(x.buttons[key][e].data);
+            }
+          });
+        }  
 
       },
       

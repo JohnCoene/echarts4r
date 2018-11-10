@@ -16,7 +16,7 @@
     <loc>http://echarts4r.john-coene.com/reference/axis3d.html</loc>
   </url>
   <url>
-    <loc>http://echarts4r.john-coene.com/reference/echarts4r-shiny.html</loc>
+    <loc>http://echarts4r.john-coene.com/reference/connections.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_add.html</loc>
@@ -151,9 +151,6 @@
     <loc>http://echarts4r.john-coene.com/reference/e_radar_opts.html</loc>
   </url>
   <url>
-    <loc>http://echarts4r.john-coene.com/reference/e_radius_axis.html</loc>
-  </url>
-  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_river.html</loc>
   </url>
   <url>
@@ -202,10 +199,16 @@
     <loc>http://echarts4r.john-coene.com/reference/e_zoom.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/echarts4r-shiny.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/formatters.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/graph.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/graph_action.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/graphic.html</loc>
@@ -247,6 +250,9 @@
     <loc>http://echarts4r.john-coene.com/reference/pie_action.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/radius_axis.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/reexports.html</loc>
   </url>
   <url>
@@ -281,6 +287,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/articles/chart_types.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/connect.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/articles/gallery.html</loc>

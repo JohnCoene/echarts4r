@@ -195,7 +195,10 @@
       <a href="../articles/grid.html">Grid &amp; Axis</a>
     </li>
     <li>
-      <a href="../articles/brush.html">Brush</a>
+      <a href="../articles/brush.html">Brush &amp; Slide</a>
+    </li>
+    <li>
+      <a href="../articles/connect.html">Arrange</a>
     </li>
     <li>
       <a href="../articles/toolbox.html">Toolbox</a>
@@ -262,10 +265,10 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_bar</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='no'>bind</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
+  <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_bar_</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>bind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -293,6 +296,10 @@
     <tr>
       <th>x.index, y.index</th>
       <td><p>Indexes of x and y axis.</p></td>
+    </tr>
+    <tr>
+      <th>coord.system</th>
+      <td><p>Coordinate system to plot against.</p></td>
     </tr>
     <tr>
       <th>...</th>

@@ -93,8 +93,13 @@ HTMLWidgets.widget({
         });
         
         if(x.hasOwnProperty('connect')){
-          var chart2 = get_e_charts(x.connect);
-          echarts.connect([chart, chart2]);
+          var connections = [];
+          for(var c = 0; c < x.connect.length; c++){
+            connections.push(get_e_charts(x.connect[c]));
+          }
+          connections.push(chart);
+          console.log(connections);
+          echarts.connect(connections);
         }
         
         // actions
