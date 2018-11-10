@@ -32,6 +32,7 @@ First iteration of the graphic low-level API:
 
 * Added actions that can be tied to buttons.
 * Added the ability to add buttons.
+* Added `e_arrange` & `e_connect` to connect charts interactions and visualise them together.
 
 # echarts4r 0.1.1
 
