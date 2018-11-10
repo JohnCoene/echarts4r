@@ -13,7 +13,6 @@ Imports:
   magrittr,
   dplyr,
   purrr,
-  crosstalk,
   base64enc,
   countrycode,
   d3r,

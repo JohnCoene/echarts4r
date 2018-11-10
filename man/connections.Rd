@@ -3,10 +3,19 @@
 \name{connections}
 \alias{connections}
 \alias{e_connect}
+\alias{e_group}
+\alias{e_connect_group}
+\alias{e_disconnect_group}
 \alias{e_arrange}
 \title{Connect charts}
 \usage{
 e_connect(e, ids)
+
+e_group(e, group)
+
+e_connect_group(e, group)
+
+e_disconnect_group(e, group = NULL)
 
 e_arrange(..., rows = NULL, cols = NULL, title = NULL)
 }
@@ -15,6 +24,8 @@ e_arrange(..., rows = NULL, cols = NULL, title = NULL)
 
 \item{ids}{Scalar, vector or list of ids of chart to connect with.}
 
+\item{group}{Group name.}
+
 \item{...}{Any \code{echarts} objects.}
 
 \item{rows, cols}{Number of rows and columns.}
@@ -22,22 +33,36 @@ e_arrange(..., rows = NULL, cols = NULL, title = NULL)
 \item{title}{Title of charts.}
 }
 \value{
-In an interactive session returns a \link[htmltools]{browsable}, in \code{rmarkdown} returns a 
+\code{e_arrange}: in an interactive session, returns a \link[htmltools]{browsable}, in \code{rmarkdown} returns a 
 container (\link[htmltools]{div}).
 }
 \description{
 Connect charts together.
 }
+\note{
+\code{e_arrange} may not work properly in the RStudio viewer.
+}
+\section{Functions}{
+
+\itemize{
+  \item{\code{e_connect}: connects charts by \code{ids}, \emph{cannot} be disconnected.}
+  \item{\code{e_group}: assigns a group to chart.}
+  \item{\code{e_connect_group}: connects chart with another group.}
+  \item{\code{e_disconnect_group}: diconnects chart from group.}
+  \item{\code{e_arrange}: arrange charts.}
+}
+}
+
 \examples{
 # linked datazoom
 e1 <- cars \%>\% 
   e_charts(
     speed,
-    height = 200,
-    elementId = "chart1"
+    height = 200
   ) \%>\% 
   e_scatter(dist) \%>\% 
-  e_datazoom(show = FALSE)
+  e_datazoom(show = FALSE) \%>\% 
+  e_group("grp") # assign group
   
 e2 <- cars \%>\% 
   e_charts(
@@ -46,7 +71,8 @@ e2 <- cars \%>\%
   ) \%>\% 
   e_scatter(speed) \%>\% 
   e_datazoom() \%>\% 
-  e_connect("chart1") # connect
+  e_group("grp") \%>\%  # assign group
+  e_connect_group("grp") # connect
 
 e_arrange(e1, e2, title = "Linked datazoom")
 

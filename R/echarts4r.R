@@ -34,19 +34,9 @@ echarts_build <- function(e) {
 #' @export
 e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dispose = TRUE, renderer = "canvas", ...) {
 
-  key <- NULL
-  group <- NULL
   xmap <- NULL
   if(!missing(x))
     xmap <- deparse(substitute(x))
-  
-  if(!missing(data)){
-    if(crosstalk::is.SharedData(data)) {
-      key <- data$key()
-      group <- data$groupName()
-      data <- data$origData()
-    } 
-  }
 
   # forward options using x
   x = list(
@@ -55,10 +45,6 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
     mapping = list(),
     events = list(),
     buttons = list(),
-    settings = list(
-      crosstalk_key = key,
-      crosstalk_group = group
-    ),
     opts = list(
       ...,
       yAxis = list(
@@ -91,7 +77,6 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
     x,
     width = width,
     height = height,
-    dependencies = crosstalk::crosstalkLibs(),
     package = 'echarts4r',
     elementId = elementId,
     preRenderHook = echarts_build,
@@ -148,7 +133,6 @@ e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = N
     x,
     width = width,
     height = height,
-    dependencies = crosstalk::crosstalkLibs(),
     package = 'echarts4r',
     elementId = elementId,
     sizingPolicy = htmlwidgets::sizingPolicy(

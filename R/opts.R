@@ -508,9 +508,19 @@ e_text_style <- function(e, ...){
 #' @param ids Scalar, vector or list of ids of chart to connect with.
 #' @param rows,cols Number of rows and columns.
 #' @param ... Any \code{echarts} objects.
+#' @param group Group name.
 #' @param title Title of charts.
 #' 
-#' @return In an interactive session returns a \link[htmltools]{browsable}, in \code{rmarkdown} returns a 
+#' @section Functions:
+#' \itemize{
+#'   \item{\code{e_connect}: connects charts by \code{ids}, \emph{cannot} be disconnected.}
+#'   \item{\code{e_group}: assigns a group to chart.}
+#'   \item{\code{e_connect_group}: connects chart with another group.}
+#'   \item{\code{e_disconnect_group}: diconnects chart from group.}
+#'   \item{\code{e_arrange}: arrange charts.}
+#' }
+#' 
+#' @return \code{e_arrange}: in an interactive session, returns a \link[htmltools]{browsable}, in \code{rmarkdown} returns a 
 #' container (\link[htmltools]{div}).
 #' 
 #' @examples
@@ -518,11 +528,11 @@ e_text_style <- function(e, ...){
 #' e1 <- cars %>% 
 #'   e_charts(
 #'     speed,
-#'     height = 200,
-#'     elementId = "chart1"
+#'     height = 200
 #'   ) %>% 
 #'   e_scatter(dist) %>% 
-#'   e_datazoom(show = FALSE)
+#'   e_datazoom(show = FALSE) %>% 
+#'   e_group("grp") # assign group
 #'   
 #' e2 <- cars %>% 
 #'   e_charts(
@@ -531,9 +541,12 @@ e_text_style <- function(e, ...){
 #'   ) %>% 
 #'   e_scatter(speed) %>% 
 #'   e_datazoom() %>% 
-#'   e_connect("chart1") # connect
+#'   e_group("grp") %>%  # assign group
+#'   e_connect_group("grp") # connect
 #' 
 #' e_arrange(e1, e2, title = "Linked datazoom")
+#' 
+#' @note \code{e_arrange} may not work properly in the RStudio viewer.
 #' 
 #' @name connections
 #' @export
@@ -541,6 +554,43 @@ e_connect <- function(e, ids){
   if(missing(ids)) stop("missing ids", call. = FALSE)
   e$x$connect <- as.list(ids)
   return(e)
+}
+
+#' @rdname connections
+#' @export
+e_group <- function(e, group){
+  
+  if(missing(group))
+    stop("missing group", call. = FALSE)
+  
+  e$x$chartGroup <- group
+  
+  e
+  
+}
+
+#' @rdname connections
+#' @export
+e_connect_group <- function(e, group){
+  if(missing(group))
+    stop("missing group", call. = FALSE)
+  
+  e$x$groupConnect <- group
+  
+  e
+}
+
+#' @rdname connections
+#' @export
+e_disconnect_group <- function(e, group = NULL){
+  
+  if(missing(group))
+    stop("missing group", call. = FALSE)
+  
+  e$x$groupDisconnect <- group
+  
+  e
+  
 }
 
 #' @rdname connections

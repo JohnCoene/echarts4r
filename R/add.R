@@ -1494,7 +1494,7 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y.in
 
 #' Smooth
 #' 
-#' Aids the eye in seeing patterns in the presence of overplotting.
+#' Plot formulas.
 #' 
 #' @inheritParams e_bar
 #' @param formula formula to pass to \code{\link{lm}}.

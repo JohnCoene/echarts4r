@@ -35,7 +35,7 @@ e_loess(e, formula, name = NULL, legend = TRUE, symbol = "none",
 \item{y.index}{Indexes of x and y axis.}
 }
 \description{
-Aids the eye in seeing patterns in the presence of overplotting.
+Plot formulas.
 }
 \examples{
 mtcars \%>\% 
