@@ -479,8 +479,6 @@ e_flip_coords <- function(e){
 #' Define global font style.
 #' 
 #' @inheritParams e_bar
-#' @param rows,cols Number of rows and columns.
-#' @param ... Any \code{echarts} objects.
 #' 
 #' @note Do not use \code{e_arrange} in R markdown or Shiny.
 #' 
@@ -502,12 +500,18 @@ e_text_style <- function(e, ...){
   e
 }
 
-#' Set Group
+#' Connect charts
 #' 
-#' Set group to connect two charts together.
+#' Connect charts together.
 #' 
 #' @inheritParams e_bar
 #' @param ids Scalar, vector or list of ids of chart to connect with.
+#' @param rows,cols Number of rows and columns.
+#' @param ... Any \code{echarts} objects.
+#' @param title Title of charts.
+#' 
+#' @return In an interactive session returns a \link[htmltools]{browsable}, in \code{rmarkdown} returns a 
+#' container (\link[htmltools]{div}).
 #' 
 #' @examples
 #' # linked datazoom
@@ -529,7 +533,7 @@ e_text_style <- function(e, ...){
 #'   e_datazoom() %>% 
 #'   e_connect("chart1") # connect
 #' 
-#' e_arrange(e1, e2)
+#' e_arrange(e1, e2, title = "Linked datazoom")
 #' 
 #' @name connections
 #' @export
@@ -541,11 +545,9 @@ e_connect <- function(e, ids){
 
 #' @rdname connections
 #' @export
-e_arrange <- function(..., rows = NULL, cols = NULL){
+e_arrange <- function(..., rows = NULL, cols = NULL, title = NULL){
   
   plots <- list(...)
-  
-  warning("do not use in Rmarkdown or Shiny", call. = FALSE)
   
   if(is.null(rows))
     rows <- length(plots)
@@ -560,23 +562,36 @@ e_arrange <- function(..., rows = NULL, cols = NULL){
     
     for(j in 1:cols){
       x <- x + 1
-      c <- htmltools::div(class = paste0("col-", 12 / rows), plots[[x]])
+      cl <- paste0("col-sm-", 12 / cols)
+      if(x <= length(plots))
+        c <- htmltools::div(class = cl, plots[[x]])
+      else 
+        c <- htmltools::div(class = cl)
       r <- htmltools::tagAppendChild(r, c)
     }
     tg <- htmltools::tagAppendChild(tg, r)
   }
   
-  htmltools::browsable(
-    htmltools::span(
-      htmltools::tags$head(
-        htmltools::tags$link(
-          rel="stylesheet",
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css",
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO",
-          crossorigin="anonymous"
-        )
-      ),
+  if(!isTRUE(getOption('knitr.in.progress'))){
+    htmltools::browsable(
+      htmltools::div(
+        class = "container-fluid",
+        htmltools::tags$head(
+          htmltools::tags$link(
+            rel="stylesheet",
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css",
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO",
+            crossorigin="anonymous"
+          )
+        ),
+        htmltools::h3(title),
+        tg
+      )
+    ) 
+  } else {
+    if(!is.null(title))
+      htmltools::div(title, tg)
+    else
       tg
-    )
-  ) 
+  }
 }

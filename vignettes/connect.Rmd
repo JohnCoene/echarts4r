@@ -53,12 +53,8 @@ e3 <- mtcars %>%
 
 You can browse the above from your console like so.
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 e_arrange(e1, e2, e3)
-```
-
-```{r, echo = FALSE}
-div(e1, e2, e3)
 ```
 
 The package natively links interactions, therefore, in the following the legend is acutally unique, one legend will trigger on both charts because they bear the same name.
@@ -81,10 +77,6 @@ e5 <- mtcars %>%
     e_connect("chart") # connect
 ```
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 e_arrange(e4, e5)
-```
-
-```{r, echo = FALSE}
-div(e4, e5)
 ```

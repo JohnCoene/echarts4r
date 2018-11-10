@@ -9,9 +9,7 @@ e_text_style(e, ...)
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{...}{Any \code{echarts} objects.}
-
-\item{rows, cols}{Number of rows and columns.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Define global font style.

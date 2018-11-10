@@ -49,14 +49,21 @@ e_downplay <- function(e, series.index = NULL, series.name = NULL, btn = NULL){
     stop("must set index or name", call. = FALSE)
   
   opts <- list()
-  if(!is.null(btn)) opts$id <- btn
   
   data <- list(type = "downplay")
   if(!is.null(series.index)) data$seriesIndex <- as.list(series.index)
   if(!is.null(series.name)) data$seriesName <- as.list(series.name)
   opts$data <- data
   
-  e$x$events <- append(e$x$events, list(opts))
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
   
   return(e)
 }
@@ -84,10 +91,19 @@ e_downplay <- function(e, series.index = NULL, series.name = NULL, btn = NULL){
 e_showtip <- function(e, ..., btn = NULL){
   
   opts <- list()
-  if(!is.null(btn)) opts$id <- btn
-  opts$data <- list(type = "showTip", ...)
+  data <- list(type = "showTip", ...)
+  opts$data <- data
   
-  e$x$events <- append(e$x$events, list(opts))
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  
   return(e)
 }
 
@@ -96,10 +112,19 @@ e_showtip <- function(e, ..., btn = NULL){
 e_hidetip <- function(e, ..., btn = NULL){
   
   opts <- list()
-  if(!is.null(btn)) opts$id <- btn
-  opts$data <- list(type = "hideTip", ...)
+  data <- list(type = "hideTip", ...)
+  opts$data <- data
   
-  e$x$events <- append(e$x$events, list(opts))
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  
   return(e)
 }
 
@@ -140,7 +165,6 @@ e_zoom <- function(e, ..., btn = NULL){
     e$x$events <- append(e$x$events, list(opts))
   }
   
-  
   return(e)
 }
 
@@ -170,7 +194,16 @@ e_visual_map_range <- function(e, ..., btn = NULL){
   if(!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "selectDataRange", ...)
   
-  e$x$events <- append(e$x$events, list(opts))
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  
   return(e)
 }
 
@@ -197,7 +230,16 @@ e_pie_select <- function(e, ..., btn = NULL){
   if(!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "pieSelect", ...)
   
-  e$x$events <- append(e$x$events, list(opts))
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  
   return(e)
 }
 
@@ -208,7 +250,16 @@ e_pie_unselect <- function(e, ..., btn = NULL){
   if(!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "pieUnSelect", ...)
   
-  e$x$events <- append(e$x$events, list(opts))
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  
   return(e)
 }
 
@@ -253,7 +304,16 @@ e_focus_adjacency <- function(e, ..., btn = NULL){
   if(!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "focusNodeAdjacency", ...)
   
-  e$x$events <- append(e$x$events, list(opts))
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  
   return(e)
 }
 
@@ -264,6 +324,15 @@ e_unfocus_adjacency <- function(e, ..., btn = NULL){
   if(!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "unfocusNodeAdjacency", ...)
   
-  e$x$events <- append(e$x$events, list(opts))
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  
   return(e)
 }

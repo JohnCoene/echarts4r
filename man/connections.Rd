@@ -4,21 +4,29 @@
 \alias{connections}
 \alias{e_connect}
 \alias{e_arrange}
-\title{Set Group}
+\title{Connect charts}
 \usage{
 e_connect(e, ids)
 
-e_arrange(..., rows = NULL, cols = NULL)
+e_arrange(..., rows = NULL, cols = NULL, title = NULL)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{ids}{Scalar, vector or list of ids of chart to connect with.}
 
-\item{...}{Any other option to pass, check See Also section.}
+\item{...}{Any \code{echarts} objects.}
+
+\item{rows, cols}{Number of rows and columns.}
+
+\item{title}{Title of charts.}
+}
+\value{
+In an interactive session returns a \link[htmltools]{browsable}, in \code{rmarkdown} returns a 
+container (\link[htmltools]{div}).
 }
 \description{
-Set group to connect two charts together.
+Connect charts together.
 }
 \examples{
 # linked datazoom
@@ -40,6 +48,6 @@ e2 <- cars \%>\%
   e_datazoom() \%>\% 
   e_connect("chart1") # connect
 
-e_arrange(e1, e2)
+e_arrange(e1, e2, title = "Linked datazoom")
 
 }

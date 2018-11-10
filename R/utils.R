@@ -97,7 +97,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   if(isTRUE(vector))
     unlist(data)
   else
-      apply(data, 1, function(x){list(value = unlist(x, use.names = FALSE))}) 
+    apply(data, 1, function(x){list(value = unlist(x, use.names = FALSE))}) 
 }
 
 .build_sankey_nodes <- function(data, source, target){
