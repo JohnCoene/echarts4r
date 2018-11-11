@@ -20,7 +20,7 @@ e_map_3d(e, serie, map = "world", name = NULL, coord.system = NULL,
 e_map_3d_(e, serie, map = "world", name = NULL, coord.system = NULL,
   rm.x = TRUE, rm.y = TRUE, ...)
 
-e_map_3d_custom(e, id, value, height, map = "world", name = NULL,
+e_map_3d_custom(e, id, value, height, map = NULL, name = NULL,
   rm.x = TRUE, rm.y = TRUE, ...)
 }
 \arguments{
@@ -76,23 +76,19 @@ names <- purrr::map(buildings$features, "properties") \%>\%
   
 data <- dplyr::tibble(
   name = names,
-  value = runif(1, 0, 1),
+  value = round(runif(length(names), 0, 1), 6),
   height = heights / 10
 )
 
 data \%>\% 
   e_charts() \%>\% 
   e_map_register("buildings", buildings) \%>\%
-  e_map_3d_custom(name, value, height, map = "buildings") \%>\% 
+  e_map_3d_custom(name, value, height) \%>\% 
   e_visual_map(
     show = FALSE,
     min = 0.4,
-    max = 1,
-    inRange = list(
-      '#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', 
-      '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026'
-    )
-  )
+    max = 1
+  ) 
 }
 
 }

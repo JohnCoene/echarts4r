@@ -34,3 +34,38 @@ choropleth %>%
   e_map_3d(values, shading = "lambert") %>% 
   e_visual_map(values) # scale to values
 ```
+
+### Buildings
+
+```{r}
+buildings <- jsonlite::read_json(
+  paste0(
+    "https://ecomfe.github.io/echarts-examples/",
+    "public/data-gl/asset/data/buildings.json"
+  )
+)
+
+heights <- purrr::map(buildings$features, "properties") %>% 
+  purrr::map("height") %>% 
+  unlist()
+  
+names <- purrr::map(buildings$features, "properties") %>% 
+  purrr::map("name") %>% 
+  unlist()
+  
+data <- dplyr::tibble(
+  name = names,
+  value = round(runif(length(names), 0, 1), 6),
+  height = heights / 10
+)
+
+data %>% 
+  e_charts() %>% 
+  e_map_register("buildings", buildings) %>%
+  e_map_3d_custom(name, value, height) %>% 
+  e_visual_map(
+    show = FALSE,
+    min = 0.4,
+    max = 1
+  )
+```

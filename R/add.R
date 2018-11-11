@@ -216,10 +216,10 @@ e_scatter <- function(e, serie, size, bind, symbol.size = 10, scale = "* 1", nam
   else
     bd <- deparse(substitute(bind))
   
-  e_scatter_(e, serie, size, bd, symbol.size, 
-             scale, name, 
-             coord.system, legend, y.index, 
-             x.index, rm.x, rm.y, ...)
+  e_scatter_(e = e, serie = serie, size = size, bind = bd, symbol.size = symbol.size, 
+             scale = scale, name = name, coord.system = coord.system, 
+             legend = legend, y.index = y.index, x.index = x.index, rm.x = rm.x, 
+             rm.y = rm.y, ...)
  
 }
 
@@ -363,7 +363,7 @@ e_funnel <- function(e, values, labels, name = NULL, legend = TRUE, rm.x = TRUE,
   if(missing(values) || missing(labels))
     stop("missing values or labels", call. = FALSE)
   
-  e_funnel_(e, 
+  e_funnel_(e = e, 
             values = deparse(substitute(values)), 
             labels = deparse(substitute(labels)), 
             name = name, 
