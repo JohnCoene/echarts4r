@@ -20,7 +20,7 @@ library(echarts4r)
 
 This document describes the maps.
 
-### Choropleth
+## Choropleth
 
 Pass countries as `x` argument.
 
@@ -37,7 +37,7 @@ sessions %>%
   e_visual_map(Sessions)
 ```
 
-### Lines
+## Lines
 
 Use `e_lines` (not ~~`e_line`~~)
 
@@ -60,7 +60,32 @@ flights %>%
    )
 ```
 
-### GeoJSON support
+## Countries
+
+The companion package [echarts4r.maps](https://github.com/JohnCoene/echarts4r.maps) comes with 223 maps.
+
+You can install the package with:
+
+```r
+install.packages("remotes")
+remotes::install_github('JohnCoene/echarts4r.maps')
+```
+
+View the full list of maps with `echarts4r.maps::em_bank()`.
+
+```{r}
+library(echarts4r.maps)
+
+df <- data.frame(x = "Rajasthan", y = 2)
+
+df %>% 
+  e_charts(x) %>%
+  em_map("India") %>% 
+  e_map(y, map = "India") %>% 
+  e_visual_map(y)
+```
+
+## GeoJSON support
 
 Use a custom [geojson](http://geojson.org/) map; 1) read the json and register it with `e_register_map`.
 

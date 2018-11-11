@@ -20,6 +20,7 @@ Imports:
 RoxygenNote: 6.1.0
 Suggests: 
     echarts4r.assets,
+    echarts4r.maps,
     data.tree,
     jsonlite, 
     shiny,
@@ -33,4 +34,6 @@ Suggests:
 URL: http://echarts4r.john-coene.com/
 BugReports: https://github.com/JohnCoene/echarts4r/issues
 VignetteBuilder: knitr
-Remotes: JohnCoene/echarts4r.assets
+Remotes:
+  JohnCoene/echarts4r.assets
+  JohnCoene/echarts4r.maps

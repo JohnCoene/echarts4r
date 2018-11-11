@@ -117,18 +117,55 @@ div(
 )
 ```
 
-<div class = "well">
+## Companions
 
-<span class="label label-warning"><i class="fa fa-warning"></i></span> **Assets**
-
-Assets for Web GL globes make the package very large, therefore they will be moved to a companion package, [echarts4r.assets](https://echarts4r-assets.john-coene.com). This only concerns a handful of functions (like `e_stars_texture`) and allows making more textures available the [package](https://echarts4r-assets.john-coene.com) is already available and contains numerous textures.
-
-```r
-#install.packages("remotes")
-remotes::install_github("JohnCoene/echarts4r.assets")
+```{r, echo=FALSE}
+div(
+  class = "row",
+  div(
+    class = "col-md-6",
+    div(
+      class = "thumbnail",
+      style = "text-align:center;",
+      div(
+        tags$i(class = "fa fa-globe fa-5x"),
+        class = "caption",
+        h4("echarts4r.assets"),
+        p("Assets for globes, add visually interesting globe overlays and background."),
+        p(
+          htmltools::tags$a(
+            href = "https://echarts4r-assets.john-coene.com/",
+            target = "_blank",
+            class = "btn btn-default",
+            "Website"
+          )
+        )
+      )
+    )
+  ),
+  div(
+    class = "col-md-6",
+    div(
+      class = "thumbnail",
+      style = "text-align:center;",
+      div(
+        tags$i(class = "fa fa-map-o fa-5x"),
+        class = "caption",
+        h4("echarts4r.maps"),
+        p("A collection of 223 country maps to use with geo-spatial visualisations."),
+        p(
+          htmltools::tags$a(
+            href = "https://github.com/JohnCoene/echarts4r.maps",
+            target = "_blank",
+            class = "btn btn-default",
+            "Github"
+          )
+        )
+      )
+    )
+  )
+)
 ```
-
-</div>
 
 ## Example
 
