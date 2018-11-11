@@ -612,7 +612,7 @@ e_arrange <- function(..., rows = NULL, cols = NULL, title = NULL){
     
     for(j in 1:cols){
       x <- x + 1
-      cl <- paste0("col-sm-", 12 / cols)
+      cl <- paste0("col-xs-", 12 / cols)
       if(x <= length(plots))
         c <- htmltools::div(class = cl, plots[[x]])
       else 
