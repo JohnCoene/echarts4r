@@ -64,6 +64,17 @@ df %>%
   e_legend(FALSE) # hide legend
 ```
 
+## Effect Scatter
+
+```{r}
+df %>% 
+  head(10) %>% 
+  e_charts(x) %>% 
+  e_effect_scatter(y, z) %>% 
+  e_visual_map(z) %>% # scale color
+  e_legend(FALSE) # hide legend
+```
+
 ## Polar
 
 ```{r}
@@ -244,21 +255,6 @@ river %>%
   e_river(pears) %>% 
   e_tooltip(trigger = "axis") %>% 
   e_title("River charts", "(Streamgraphs)")
-```
-
-### Boxplot
-
-```{r}
-df <- data.frame(
-  x = c(1:10, 25, 30),
-  y = c(1:10, -6, 15)
-)
-
-df %>% 
-  e_charts() %>% 
-  e_boxplot(y, outliers = TRUE) %>% 
-  e_boxplot(x, outliers = TRUE) %>% 
-  e_title("Boxplot")
 ```
 
 ## Calendar

@@ -22,6 +22,7 @@ library(echarts4r)
 
 ```{r}
 library(dplyr)
+library(echarts4r.assets)
 
 # download
 flights <- jsonlite::fromJSON("https://ecomfe.github.io/echarts-examples/public/data-gl/asset/data/flights.json")
@@ -57,8 +58,8 @@ data %>%
   group_by(airline) %>% 
   e_charts() %>% 
   e_globe(
-    base.texture = e_globe_dark_texture(),
-    environment = e_stars_texture(),
+    height.texture = ea_asset("world dark"),
+    environment = ea_asset("starfield"),
     displacementScale = 0.1,
     displacementQuality = "high",
     shading = "realistic",
@@ -103,5 +104,41 @@ data %>%
       trailColor = 'rgb(30, 30, 60)'
     ),
     lineStyle = list(opacity = 0.1, widh = 0.5, color = 'rgb(50, 50, 150)')
+  )
+```
+
+### Scatter 3D
+
+```{r}
+data <- jsonlite::fromJSON("http://gallery.echartsjs.com/asset/get/s/data-1491887968120-rJODPy9ae.json")
+
+data <- as.data.frame(data) %>%
+  magrittr::set_names(c("x", "y", "z")) %>% 
+  filter(z > 0) %>% 
+  mutate(z = sqrt(z))
+
+data %>%
+  e_charts(x) %>% 
+  e_globe(
+    base.texture = ea_asset("world bump"),
+    environment = ea_asset("starfield"),
+    displacementScale = 0.04,
+    shading = "realistic",
+    realisticMaterial = list(
+      roughness = .9
+    ),
+    postEffect = list(
+      enable = TRUE
+    ),
+    viewControl = list(autoRotate = FALSE)
+  ) %>% 
+  e_legend(
+    show = FALSE
+  ) %>% 
+  e_scatter_3d(
+    y, z,
+    coord.system = "globe",
+    blendMode = "lighter",
+    symbolSize = 2
   )
 ```

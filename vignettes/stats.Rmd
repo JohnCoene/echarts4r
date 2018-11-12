@@ -18,17 +18,30 @@ knitr::opts_chunk$set(
 library(echarts4r)
 ```
 
+### Boxplot
+
+```{r}
+df <- data.frame(
+  x = c(1:10, 25, 30),
+  y = c(1:10, -6, 15)
+)
+
+df %>% 
+  e_charts() %>% 
+  e_boxplot(y, outliers = TRUE) %>% 
+  e_boxplot(x, outliers = TRUE) %>% 
+  e_title("Boxplot")
+```
+
+## Histogram
+
 ```{r}
 # data.frame
 df <- data.frame(
   x = 1:100,
   y = rnorm(100, 20, 12)
 )
-```
 
-## Histogram
-
-```{r}
 df %>% 
   e_charts() %>% 
   e_histogram(y) %>% 
@@ -55,15 +68,6 @@ df %>%
   e_charts(x) %>% 
   e_scatter(y) %>% 
   e_lm(y ~ x)
-```
-
-## Generalised Linear
-
-```{r}
-CO2 %>% 
-  e_charts(conc) %>% 
-  e_scatter(uptake) %>% 
-  e_glm(uptake ~ conc, name = "GLM")
 ```
 
 ## Polynomial
