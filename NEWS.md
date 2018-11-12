@@ -36,6 +36,7 @@ First iteration of the graphic low-level API:
 * Better supprot for radial, angle, and polar charts.
 * Callbacks added `e_on` and `e_off`.
 * `e_map_custom` added to work with custom registered maps.
+* `e_datazoom` takes a `toolbox` argument to optionally not the `dataZoom` toolbox element.
 
 # echarts4r 0.1.1
 
