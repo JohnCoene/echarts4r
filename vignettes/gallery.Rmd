@@ -140,5 +140,10 @@ data %>%
     coord.system = "globe",
     blendMode = "lighter",
     symbolSize = 2
+  ) %>% 
+  e_visual_map(
+    show = FALSE,
+    min = 0, max = 60,
+    inRange = list(1, 10)
   )
 ```
