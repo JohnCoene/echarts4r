@@ -129,8 +129,7 @@ data %>%
     ),
     postEffect = list(
       enable = TRUE
-    ),
-    viewControl = list(autoRotate = FALSE)
+    )
   ) %>% 
   e_legend(
     show = FALSE
