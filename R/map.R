@@ -70,36 +70,34 @@ e_map <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  if(missing(serie))
-    stop("must pass serie", call. = FALSE)
+  if(!missing(serie))
+    sr <- deparse(substitute(serie))
+  else
+    sr <- NULL
   
-  e_map_(e, deparse(substitute(serie)), map, name, rm.x, rm.y, ...)
+  e_map_(e, sr, map, name, rm.x, rm.y, ...)
 }
 
 #' @rdname map
 #' @export
-e_map_ <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+e_map_ <- function(e, serie = NULL, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
-  
-  if(missing(serie))
-    stop("must pass serie", call. = FALSE)
-  
-  if(is.null(name)) # defaults to column name
-    name <- serie
   
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
   
   app <- list(
-    name = name,
     type = "map",
     map = map,
     ...
   )
   
-  if(!missing(serie)){
+  if(is.null(name) && !is.null(serie))
+    app$name <- serie
+  
+  if(!is.null(serie)){
     data <- .build_data(e, serie)
     data <- .add_bind(e, data, e$x$mapping$x)
     app$data <- data
@@ -116,42 +114,37 @@ e_map_3d <- function(e, serie, map = "world", name = NULL, coord.system = NULL, 
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  if(missing(serie))
-    stop("must pass serie", call. = FALSE)
+  if(!missing(serie))
+    sr <- deparse(substitute(serie))
+  else
+    sr <- NULL
   
-  e_map_3d_(e, deparse(substitute(serie)), map, name, coord.system, rm.x, rm.y, ...)
+  e_map_3d_(e = e, serie = sr, map, name, coord.system, rm.x, rm.y, ...)
 }
 
 #' @rdname map
 #' @export
-e_map_3d_ <- function(e, serie, map = "world", name = NULL, coord.system = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+e_map_3d_ <- function(e, serie = NULL, map = "world", name = NULL, coord.system = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+  
   if(missing(e))
     stop("must pass e", call. = FALSE)
-  
-  if(missing(serie))
-    stop("must pass serie", call. = FALSE)
-  
-  if(is.null(name)) # defaults to column name
-    name <- serie
   
   e <- .rm_axis(e, rm.x, "x")
   e <- .rm_axis(e, rm.y, "y")
   
-  # build JSON data
-  data <- .build_data(e, serie)
-  data <- .add_bind(e, data, e$x$mapping$x)
-  
   app <- list(
-    name = name,
     type = "map3D",
     map = map,
     ...
   )
   
+  if(is.null(name) && !is.null(serie))
+    app$name <- serie
+  
   if(!is.null(coord.system))
     app$coordinateSystem <- coord.system
   
-  if(!missing(serie)){
+  if(!is.null(serie)){
     data <- .build_data(e, serie)
     data <- .add_bind(e, data, e$x$mapping$x)
     app$data <- data

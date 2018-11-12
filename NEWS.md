@@ -38,6 +38,7 @@ First iteration of the graphic low-level API:
 * `e_map_custom` added to work with custom registered maps.
 * `e_datazoom` takes a `toolbox` argument to optionally not the `dataZoom` toolbox element.
 * Much improved documentation
+* `e_map` and `e_map_3d` no longer require the `serie` argument.
 
 # echarts4r 0.1.1
 

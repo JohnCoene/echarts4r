@@ -464,55 +464,66 @@ e_sankey_ <- function(e, source, target, value, layout = "none", rm.x = TRUE, rm
 
 #' @rdname e_heatmap
 #' @export
-e_heatmap_ <- function(e, y, z = NULL, name = NULL, coord.system = "cartesian2d", rm.x = TRUE, rm.y = TRUE, ...){
+e_heatmap_ <- function(e, y, z = NULL, name = NULL, coord.system = "cartesian2d", 
+                       rm.x = TRUE, rm.y = TRUE, calendar = NULL, ...){
   
   if(missing(y))
     stop("must pass y", call. = FALSE)
   
-  # build JSON data
-  if(!is.null(z))
-    xyz <- .build_data(e, e$x$mapping$x, y, z)
-  else 
-    xyz <- .build_data(e, e$x$mapping$x, y)
-  
-  serie <- list(
-    name = name,
-    type = "heatmap",
-    data = xyz,
-    coordinateSystem = coord.system,
-    ...
-  )
-  
-  if(coord.system != "cartesian2d"){
-    e <- .rm_axis(e, rm.x, "x")
-    e <- .rm_axis(e, rm.y, "y")
-  } else {
+  for(i in 1:length(e$x$data)){
     
+    if(!is.null(z))
+      xyz <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
+    else 
+      xyz <- .build_data2(e$x$data[[i]], e$x$mapping$x, y)
     
-    xdata <- unique(.get_data(e, e$x$mapping$x))
-    
-    if(length(xdata) == 1)
-      xdata <- list(xdata)
-    
-    e$x$opts$xAxis <- list(
-      list(
-        data = xdata
-      )
+    serie <- list(
+      name = name,
+      type = "heatmap",
+      data = xyz,
+      coordinateSystem = coord.system,
+      ...
     )
     
-    ydata <- unique(.get_data(e, y))
+    if(coord.system == "calendar"){
+      if(!is.null(calendar)){
+        serie$calendarIndex <- calendar[i]
+      } else if(length(e$x$opts$calendar) == length(e$x$data)) {
+        serie$calendarIndex <- i - 1
+      } 
+    }
     
-    if(length(ydata) == 1)
-      ydata <- list(ydata)
-    
-    e$x$opts$yAxis <- list(
-      list(
-        data = ydata
+    if(coord.system != "cartesian2d"){
+      e <- .rm_axis(e, rm.x, "x")
+      e <- .rm_axis(e, rm.y, "y")
+    } else {
+      
+      xdata <- unique(.get_data(e, e$x$mapping$x, i))
+      
+      if(length(xdata) == 1)
+        xdata <- list(xdata)
+      
+      e$x$opts$xAxis <- list(
+        list(
+          data = xdata
+        )
       )
-    )
+      
+      ydata <- unique(.get_data(e, y, i))
+      
+      if(length(ydata) == 1)
+        ydata <- list(ydata)
+      
+      e$x$opts$yAxis <- list(
+        list(
+          data = ydata
+        )
+      )
+    }
+    
+    e$x$opts$series <- append(e$x$opts$series, list(serie))
   }
   
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }
 

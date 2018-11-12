@@ -6,10 +6,10 @@
 \title{Heatmap}
 \usage{
 e_heatmap(e, y, z, name = NULL, coord.system = "cartesian2d",
-  rm.x = TRUE, rm.y = TRUE, ...)
+  rm.x = TRUE, rm.y = TRUE, calendar = NULL, ...)
 
 e_heatmap_(e, y, z = NULL, name = NULL, coord.system = "cartesian2d",
-  rm.x = TRUE, rm.y = TRUE, ...)
+  rm.x = TRUE, rm.y = TRUE, calendar = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -23,6 +23,8 @@ e_heatmap_(e, y, z = NULL, name = NULL, coord.system = "cartesian2d",
 
 \item{rm.x, rm.y}{Whether to remove x and y axis, only applies if \code{coord.system} is not 
 set to \code{cartesian2d}.}
+
+\item{calendar}{The index of the calendar to plot against.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }
@@ -47,7 +49,7 @@ matrix \%>\%
   e_visual_map(z)
 
 # calendar   
-dates <- seq.Date(as.Date("2018-01-01"), as.Date("2018-12-31"), by = "day")
+dates <- seq.Date(as.Date("2017-01-01"), as.Date("2018-12-31"), by = "day")
 values <- rnorm(length(dates), 20, 6)
 
 year <- data.frame(date = dates, values = values)
@@ -55,6 +57,16 @@ year <- data.frame(date = dates, values = values)
 year \%>\% 
   e_charts(date) \%>\% 
   e_calendar(range = "2018") \%>\% 
+  e_heatmap(values, coord.system = "calendar") \%>\% 
+  e_visual_map(max = 30)
+  
+# multiple years
+year \%>\% 
+  dplyr::mutate(year = format(date, "\%Y")) \%>\% 
+  group_by(year) \%>\% 
+  e_charts(date) \%>\% 
+  e_calendar(range = "2017", top = 40) \%>\% 
+  e_calendar(range = "2018", top = 260) \%>\% 
   e_heatmap(values, coord.system = "calendar") \%>\% 
   e_visual_map(max = 30)
 

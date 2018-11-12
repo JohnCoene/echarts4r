@@ -11,14 +11,14 @@
 e_map(e, serie, map = "world", name = NULL, rm.x = TRUE,
   rm.y = TRUE, ...)
 
-e_map_(e, serie, map = "world", name = NULL, rm.x = TRUE,
+e_map_(e, serie = NULL, map = "world", name = NULL, rm.x = TRUE,
   rm.y = TRUE, ...)
 
 e_map_3d(e, serie, map = "world", name = NULL, coord.system = NULL,
   rm.x = TRUE, rm.y = TRUE, ...)
 
-e_map_3d_(e, serie, map = "world", name = NULL, coord.system = NULL,
-  rm.x = TRUE, rm.y = TRUE, ...)
+e_map_3d_(e, serie = NULL, map = "world", name = NULL,
+  coord.system = NULL, rm.x = TRUE, rm.y = TRUE, ...)
 
 e_map_3d_custom(e, id, value, height, map = NULL, name = NULL,
   rm.x = TRUE, rm.y = TRUE, ...)
