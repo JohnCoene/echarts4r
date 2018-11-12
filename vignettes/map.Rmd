@@ -76,13 +76,17 @@ View the full list of maps with `echarts4r.maps::em_bank()`.
 ```{r}
 library(echarts4r.maps)
 
-df <- data.frame(x = "Rajasthan", y = 2)
+df <- data.frame(
+    region = c("Rajasthan", "Odisha", "Gujarat"), 
+    value = c(1,2, 3)
+)
 
 df %>% 
-  e_charts(x) %>%
-  em_map("India") %>% 
-  e_map(y, map = "India") %>% 
-  e_visual_map(y)
+    e_charts(region) %>%
+    em_map("India") %>% 
+    e_map(value, map = "India") %>% 
+    e_visual_map(value) %>% 
+    e_theme("infographic")
 ```
 
 ## GeoJSON support

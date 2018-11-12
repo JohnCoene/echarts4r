@@ -22,9 +22,9 @@ library(echarts4r)
   <i class="fa fa-rocket" aria-hidden="true"></i>
   Get Started
 </a>
-<a class="btn btn-primary" href="articles/gallery.html">
+<a class="btn btn-primary" href="articles/themes.html">
   <i class="fa fa-paint-brush" aria-hidden="true"></i>
-  Gallery
+  Themes
 </a>
 <a class="btn btn-info" href="news/index.html">
   <i class="fa fa-newspaper-o" aria-hidden="true"></i>
@@ -56,67 +56,6 @@ remotes::install_github("JohnCoene/echarts4r") # github
 remotes::install_bitbucket("JohnCoene/echarts4r") # bitbucket
 ```
 
-## Features
-
-Some of the features:
-
-* 33 chart types
-* Animations
-* Brush & sliders
-* WebGL support
-* Plugins included
-* Shiny proxies
-* Themes
-
-```{r, echo=FALSE}
-div(
-  class = "row",
-  div(
-    class = "col-md-8",
-    div(
-      class = "panel panel-default",
-      div(
-        class = "panel-heading",
-        "Group"
-      ),
-      div(
-        class = "panel-body",
-        code("echarts4r"), "now understands", code("dplyr::group_by"), 
-        "in order to better work with",
-        tags$a(
-          href = "https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html",
-          target = "_blank",
-          "tidy data"
-        ),
-        "concept; the package now works much better with *long* datasets. See",
-        tags$a(
-          href = "articles/get_started",
-          "get started guide"
-        ),
-        "or the various examples in the functions' documentation or the",
-        tags$a(
-          href = "article/gallery",
-          "gallery"
-        )
-      )
-    )
-  ),
-  div(
-    class = "col-md-4",
-    pre(
-      code(
-        class = "r",
-"# one serie per group
- iris %>% 
-   group_by(Species) %>% 
-   e_charts(Sepal.Length) %>% 
-   e_line(Sepal.Width)"
-      )
-    )
-  )
-)
-```
-
 ## Companions
 
 ```{r, echo=FALSE}
@@ -132,12 +71,19 @@ div(
         class = "caption",
         h4("echarts4r.assets"),
         p("Assets for globes, add visually interesting globe overlays and background."),
+        code("remotes::install_github('JohnCoene/echarts4r.assets')"),
         p(
           htmltools::tags$a(
             href = "https://echarts4r-assets.john-coene.com/",
             target = "_blank",
             class = "btn btn-default",
             "Website"
+          ),
+          htmltools::tags$a(
+            href = "https://github.com/JohnCoene/echarts4r.assets",
+            target = "_blank",
+            class = "btn btn-default",
+            "Github"
           )
         )
       )
@@ -152,7 +98,8 @@ div(
         tags$i(class = "fa fa-map-o fa-5x"),
         class = "caption",
         h4("echarts4r.maps"),
-        p("A collection of 223 country maps to use with geo-spatial visualisations."),
+        p("A collection of 215 country maps to use with geo-spatial visualisations."),
+        code("remotes::install_github('JohnCoene/echarts4r.maps')"),
         p(
           htmltools::tags$a(
             href = "https://github.com/JohnCoene/echarts4r.maps",

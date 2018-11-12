@@ -224,59 +224,18 @@
 <p><img src="reference/figures/logo.png" align="left" style="max-height:300px;margin-right:5%;"></p>
 <p><a href="http://echarts.baidu.com/">ECharts</a> 4: powerful interactive visualisations in R.</p>
 <div class="row">
-<p><a class="btn btn-success" href="articles/get_started.html"> <i class="fa fa-rocket" aria-hidden="true"></i> Get Started </a> <a class="btn btn-primary" href="articles/gallery.html"> <i class="fa fa-paint-brush" aria-hidden="true"></i> Gallery </a> <a class="btn btn-info" href="news/index.html"> <i class="fa fa-newspaper-o" aria-hidden="true"></i> Changelog </a> <a class="btn btn-default" href="http://shiny.john-coene.com/echarts4rShiny" target="_blank"> <i class="fa fa-desktop" aria-hidden="true"></i> Shiny demo </a></p>
+<p><a class="btn btn-success" href="articles/get_started.html"> <i class="fa fa-rocket" aria-hidden="true"></i> Get Started </a> <a class="btn btn-primary" href="articles/themes.html"> <i class="fa fa-paint-brush" aria-hidden="true"></i> Themes </a> <a class="btn btn-info" href="news/index.html"> <i class="fa fa-newspaper-o" aria-hidden="true"></i> Changelog </a> <a class="btn btn-default" href="http://shiny.john-coene.com/echarts4rShiny" target="_blank"> <i class="fa fa-desktop" aria-hidden="true"></i> Shiny demo </a></p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>The package is available on <a href="https://CRAN.R-project.org/package=echarts4r">CRAN</a>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"echarts4r"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"echarts4r"</span>)</a></code></pre></div>
 <p>You can also install the development version of echarts4r with <code>devtools</code> or <code>remotes</code> from Github or Bitbucket.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("remotes")</span>
-remotes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"JohnCoene/echarts4r"</span>) <span class="co"># github</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("remotes")</span>
-remotes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_bitbucket">install_bitbucket</a></span>(<span class="st">"JohnCoene/echarts4r"</span>) <span class="co"># bitbucket</span></code></pre></div>
-</div>
-<div id="features" class="section level2">
-<h2 class="hasAnchor">
-<a href="#features" class="anchor"></a>Features</h2>
-<p>Some of the features:</p>
-<ul>
-<li>33 chart types</li>
-<li>Animations</li>
-<li>Brush &amp; sliders</li>
-<li>WebGL support</li>
-<li>Plugins included</li>
-<li>Shiny proxies</li>
-<li>Themes</li>
-</ul>
-<div class="row">
-<div class="col-md-8">
-<div class="panel panel-default">
-<div class="panel-heading">Group</div>
-<div class="panel-body">
-<code>echarts4r</code>
-now understands
-<code><a href="http://dplyr.tidyverse.org/reference/group_by.html">dplyr::group_by</a></code>
-in order to better work with
-<a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html" target="_blank">tidy data</a>
-concept; the package now works much better with *long* datasets. See
-<a href="articles/get_started">get started guide</a>
-or the various examples in the functions' documentation or the
-<a href="article/gallery">gallery</a>
-</div>
-</div>
-</div>
-<div class="col-md-4">
-<pre>
-<code class="r"># one serie per group
- iris %&gt;% 
-   group_by(Species) %&gt;% 
-   e_charts(Sepal.Length) %&gt;% 
-   e_line(Sepal.Width)</code>
-</pre>
-</div>
-</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("remotes")</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"JohnCoene/echarts4r"</span>) <span class="co"># github</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># install.packages("remotes")</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_bitbucket">install_bitbucket</a></span>(<span class="st">"JohnCoene/echarts4r"</span>) <span class="co"># bitbucket</span></a></code></pre></div>
 </div>
 <div id="companions" class="section level2">
 <h2 class="hasAnchor">
@@ -288,8 +247,10 @@ or the various examples in the functions' documentation or the
 <i class="fa fa-globe fa-5x"></i>
 <h4>echarts4r.assets</h4>
 <p>Assets for globes, add visually interesting globe overlays and background.</p>
+<code><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">remotes::install_github('JohnCoene/echarts4r.assets')</a></code>
 <p>
 <a href="https://echarts4r-assets.john-coene.com/" target="_blank" class="btn btn-default">Website</a>
+<a href="https://github.com/JohnCoene/echarts4r.assets" target="_blank" class="btn btn-default">Github</a>
 </p>
 </div>
 </div>
@@ -299,7 +260,8 @@ or the various examples in the functions' documentation or the
 <div class="caption">
 <i class="fa fa-map-o fa-5x"></i>
 <h4>echarts4r.maps</h4>
-<p>A collection of 223 country maps to use with geo-spatial visualisations.</p>
+<p>A collection of 215 country maps to use with geo-spatial visualisations.</p>
+<code><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">remotes::install_github('JohnCoene/echarts4r.maps')</a></code>
 <p>
 <a href="https://github.com/JohnCoene/echarts4r.maps" target="_blank" class="btn btn-default">Github</a>
 </p>
@@ -312,30 +274,30 @@ or the various examples in the functions' documentation or the
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>Create multiple charts, arrange them in a grid and connect their interactions.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(echarts4r)
-
-e1 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(Species) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="reference/init.html">e_charts</a></span>(
-    Sepal.Length,
-    <span class="dt">elementId =</span> <span class="st">"chart"</span>
-  ) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="reference/scatter.html">e_scatter</a></span>(Petal.Length, Sepal.Width, <span class="dt">scale =</span> <span class="st">"* 3"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="reference/e_datazoom.html">e_datazoom</a></span>(<span class="dt">show =</span> <span class="ot">FALSE</span>, <span class="dt">y.index =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="reference/axis.html">e_x_axis</a></span>(<span class="dt">min =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="reference/highlight_action.html">e_highlight</a></span>(<span class="dt">series.name =</span> <span class="kw">list</span>(<span class="st">"setosa"</span>, <span class="st">"versicolor"</span>, <span class="st">"virginica"</span>), <span class="dt">btn =</span> <span class="st">"btn"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="reference/e_button.html">e_button</a></span>(<span class="st">"btn"</span>, <span class="st">"Highlight"</span>, <span class="dt">class =</span> <span class="st">"btn btn-primary"</span>, <span class="dt">position =</span> <span class="st">"bottom"</span>)
-
-e2 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(Species) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="reference/init.html">e_charts</a></span>(Sepal.Length) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="reference/e_line.html">e_line</a></span>(Petal.Length) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="reference/connections.html">e_connect</a></span>(<span class="st">"chart"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="reference/e_datazoom.html">e_datazoom</a></span>(<span class="dt">y.index =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="reference/axis.html">e_x_axis</a></span>(<span class="dt">min =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="reference/e_legend.html">e_legend</a></span>(<span class="ot">FALSE</span>) 
-
-<span class="kw"><a href="reference/connections.html">e_arrange</a></span>(e1, e2, <span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">cols =</span> <span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(echarts4r)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">e1 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="reference/init.html">e_charts</a></span>(</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">    Sepal.Length,</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">    <span class="dt">elementId =</span> <span class="st">"chart"</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="reference/scatter.html">e_scatter</a></span>(Petal.Length, Sepal.Width, <span class="dt">scale =</span> <span class="st">"* 3"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="reference/e_datazoom.html">e_datazoom</a></span>(<span class="dt">show =</span> <span class="ot">FALSE</span>, <span class="dt">y.index =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="reference/axis.html">e_x_axis</a></span>(<span class="dt">min =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="reference/highlight_action.html">e_highlight</a></span>(<span class="dt">series.name =</span> <span class="kw">list</span>(<span class="st">"setosa"</span>, <span class="st">"versicolor"</span>, <span class="st">"virginica"</span>), <span class="dt">btn =</span> <span class="st">"btn"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="reference/e_button.html">e_button</a></span>(<span class="st">"btn"</span>, <span class="st">"Highlight"</span>, <span class="dt">class =</span> <span class="st">"btn btn-primary"</span>, <span class="dt">position =</span> <span class="st">"bottom"</span>)</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">e2 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="st">  </span><span class="kw"><a href="reference/init.html">e_charts</a></span>(Sepal.Length) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="st">  </span><span class="kw"><a href="reference/e_line.html">e_line</a></span>(Petal.Length) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="st">  </span><span class="kw"><a href="reference/connections.html">e_connect</a></span>(<span class="st">"chart"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="st">  </span><span class="kw"><a href="reference/e_datazoom.html">e_datazoom</a></span>(<span class="dt">y.index =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="st">  </span><span class="kw"><a href="reference/axis.html">e_x_axis</a></span>(<span class="dt">min =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="st">  </span><span class="kw"><a href="reference/e_legend.html">e_legend</a></span>(<span class="ot">FALSE</span>) </a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="kw"><a href="reference/connections.html">e_arrange</a></span>(e1, e2, <span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">cols =</span> <span class="dv">2</span>)</a></code></pre></div>
 <div class="row">
 <div class="col-xs-6">
 <div id="chart" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
@@ -343,8 +305,8 @@ e2 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class=
 <script type="application/json" data-for="chart">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":{"btn":[{"data":{"type":"highlight","seriesName":["setosa","versicolor","virginica"]}}]},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value","min":4}],"legend":{"data":["setosa","versicolor","virginica"]},"series":[{"name":"setosa","type":"scatter","data":[{"value":[4.3,1.1,3]},{"value":[4.4,1.4,2.9]},{"value":[4.4,1.3,3]},{"value":[4.4,1.3,3.2]},{"value":[4.5,1.3,2.3]},{"value":[4.6,1.5,3.1]},{"value":[4.6,1.4,3.4]},{"value":[4.6,1,3.6]},{"value":[4.6,1.4,3.2]},{"value":[4.7,1.3,3.2]},{"value":[4.7,1.6,3.2]},{"value":[4.8,1.6,3.4]},{"value":[4.8,1.4,3]},{"value":[4.8,1.9,3.4]},{"value":[4.8,1.6,3.1]},{"value":[4.8,1.4,3]},{"value":[4.9,1.4,3]},{"value":[4.9,1.5,3.1]},{"value":[4.9,1.5,3.1]},{"value":[4.9,1.4,3.6]},{"value":[5,1.4,3.6]},{"value":[5,1.5,3.4]},{"value":[5,1.6,3]},{"value":[5,1.6,3.4]},{"value":[5,1.2,3.2]},{"value":[5,1.3,3.5]},{"value":[5,1.6,3.5]},{"value":[5,1.4,3.3]},{"value":[5.1,1.4,3.5]},{"value":[5.1,1.4,3.5]},{"value":[5.1,1.5,3.8]},{"value":[5.1,1.5,3.7]},{"value":[5.1,1.7,3.3]},{"value":[5.1,1.5,3.4]},{"value":[5.1,1.9,3.8]},{"value":[5.1,1.6,3.8]},{"value":[5.2,1.5,3.5]},{"value":[5.2,1.4,3.4]},{"value":[5.2,1.5,4.1]},{"value":[5.3,1.5,3.7]},{"value":[5.4,1.7,3.9]},{"value":[5.4,1.5,3.7]},{"value":[5.4,1.3,3.9]},{"value":[5.4,1.7,3.4]},{"value":[5.4,1.5,3.4]},{"value":[5.5,1.4,4.2]},{"value":[5.5,1.3,3.5]},{"value":[5.7,1.5,4.4]},{"value":[5.7,1.7,3.8]},{"value":[5.8,1.2,4]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":"function(data){ return data[2] * 3 ;}"},{"name":"versicolor","type":"scatter","data":[{"value":[4.9,3.3,2.4]},{"value":[5,3.5,2]},{"value":[5,3.3,2.3]},{"value":[5.1,3,2.5]},{"value":[5.2,3.9,2.7]},{"value":[5.4,4.5,3]},{"value":[5.5,4,2.3]},{"value":[5.5,3.8,2.4]},{"value":[5.5,3.7,2.4]},{"value":[5.5,4,2.5]},{"value":[5.5,4.4,2.6]},{"value":[5.6,3.6,2.9]},{"value":[5.6,4.5,3]},{"value":[5.6,3.9,2.5]},{"value":[5.6,4.1,3]},{"value":[5.6,4.2,2.7]},{"value":[5.7,4.5,2.8]},{"value":[5.7,3.5,2.6]},{"value":[5.7,4.2,3]},{"value":[5.7,4.2,2.9]},{"value":[5.7,4.1,2.8]},{"value":[5.8,4.1,2.7]},{"value":[5.8,3.9,2.7]},{"value":[5.8,4,2.6]},{"value":[5.9,4.2,3]},{"value":[5.9,4.8,3.2]},{"value":[6,4,2.2]},{"value":[6,4.5,2.9]},{"value":[6,5.1,2.7]},{"value":[6,4.5,3.4]},{"value":[6.1,4.7,2.9]},{"value":[6.1,4,2.8]},{"value":[6.1,4.7,2.8]},{"value":[6.1,4.6,3]},{"value":[6.2,4.5,2.2]},{"value":[6.2,4.3,2.9]},{"value":[6.3,4.7,3.3]},{"value":[6.3,4.9,2.5]},{"value":[6.3,4.4,2.3]},{"value":[6.4,4.5,3.2]},{"value":[6.4,4.3,2.9]},{"value":[6.5,4.6,2.8]},{"value":[6.6,4.6,2.9]},{"value":[6.6,4.4,3]},{"value":[6.7,4.4,3.1]},{"value":[6.7,5,3]},{"value":[6.7,4.7,3.1]},{"value":[6.8,4.8,2.8]},{"value":[6.9,4.9,3.1]},{"value":[7,4.7,3.2]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":"function(data){ return data[2] * 3 ;}"},{"name":"virginica","type":"scatter","data":[{"value":[4.9,4.5,2.5]},{"value":[5.6,4.9,2.8]},{"value":[5.7,5,2.5]},{"value":[5.8,5.1,2.7]},{"value":[5.8,5.1,2.8]},{"value":[5.8,5.1,2.7]},{"value":[5.9,5.1,3]},{"value":[6,5,2.2]},{"value":[6,4.8,3]},{"value":[6.1,4.9,3]},{"value":[6.1,5.6,2.6]},{"value":[6.2,4.8,2.8]},{"value":[6.2,5.4,3.4]},{"value":[6.3,6,3.3]},{"value":[6.3,5.6,2.9]},{"value":[6.3,4.9,2.7]},{"value":[6.3,5.1,2.8]},{"value":[6.3,5.6,3.4]},{"value":[6.3,5,2.5]},{"value":[6.4,5.3,2.7]},{"value":[6.4,5.3,3.2]},{"value":[6.4,5.6,2.8]},{"value":[6.4,5.6,2.8]},{"value":[6.4,5.5,3.1]},{"value":[6.5,5.8,3]},{"value":[6.5,5.1,3.2]},{"value":[6.5,5.5,3]},{"value":[6.5,5.2,3]},{"value":[6.7,5.8,2.5]},{"value":[6.7,5.7,3.3]},{"value":[6.7,5.6,3.1]},{"value":[6.7,5.7,3.3]},{"value":[6.7,5.2,3]},{"value":[6.8,5.5,3]},{"value":[6.8,5.9,3.2]},{"value":[6.9,5.7,3.2]},{"value":[6.9,5.4,3.1]},{"value":[6.9,5.1,3.1]},{"value":[7.1,5.9,3]},{"value":[7.2,6.1,3.6]},{"value":[7.2,6,3.2]},{"value":[7.2,5.8,3]},{"value":[7.3,6.3,2.9]},{"value":[7.4,6.1,2.8]},{"value":[7.6,6.6,3]},{"value":[7.7,6.7,3.8]},{"value":[7.7,6.9,2.6]},{"value":[7.7,6.7,2.8]},{"value":[7.7,6.1,3]},{"value":[7.9,6.4,3.8]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":"function(data){ return data[2] * 3 ;}"}],"dataZoom":[{"show":false,"yAxisIndex":0}],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true},"evals":["opts.series.0.symbolSize","opts.series.1.symbolSize","opts.series.2.symbolSize"],"jsHooks":[]}</script>
 </div>
 <div class="col-xs-6">
-<div id="htmlwidget-88d0973a151cd8c18910" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-88d0973a151cd8c18910">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value","min":4}],"legend":{"data":["setosa","versicolor","virginica"],"show":false,"type":"plain"},"series":[{"name":"setosa","type":"line","data":[{"value":[4.3,1.1]},{"value":[4.4,1.4]},{"value":[4.4,1.3]},{"value":[4.4,1.3]},{"value":[4.5,1.3]},{"value":[4.6,1.5]},{"value":[4.6,1.4]},{"value":[4.6,1]},{"value":[4.6,1.4]},{"value":[4.7,1.3]},{"value":[4.7,1.6]},{"value":[4.8,1.6]},{"value":[4.8,1.4]},{"value":[4.8,1.9]},{"value":[4.8,1.6]},{"value":[4.8,1.4]},{"value":[4.9,1.4]},{"value":[4.9,1.5]},{"value":[4.9,1.5]},{"value":[4.9,1.4]},{"value":[5,1.4]},{"value":[5,1.5]},{"value":[5,1.6]},{"value":[5,1.6]},{"value":[5,1.2]},{"value":[5,1.3]},{"value":[5,1.6]},{"value":[5,1.4]},{"value":[5.1,1.4]},{"value":[5.1,1.4]},{"value":[5.1,1.5]},{"value":[5.1,1.5]},{"value":[5.1,1.7]},{"value":[5.1,1.5]},{"value":[5.1,1.9]},{"value":[5.1,1.6]},{"value":[5.2,1.5]},{"value":[5.2,1.4]},{"value":[5.2,1.5]},{"value":[5.3,1.5]},{"value":[5.4,1.7]},{"value":[5.4,1.5]},{"value":[5.4,1.3]},{"value":[5.4,1.7]},{"value":[5.4,1.5]},{"value":[5.5,1.4]},{"value":[5.5,1.3]},{"value":[5.7,1.5]},{"value":[5.7,1.7]},{"value":[5.8,1.2]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0},{"name":"versicolor","type":"line","data":[{"value":[4.9,3.3]},{"value":[5,3.5]},{"value":[5,3.3]},{"value":[5.1,3]},{"value":[5.2,3.9]},{"value":[5.4,4.5]},{"value":[5.5,4]},{"value":[5.5,3.8]},{"value":[5.5,3.7]},{"value":[5.5,4]},{"value":[5.5,4.4]},{"value":[5.6,3.6]},{"value":[5.6,4.5]},{"value":[5.6,3.9]},{"value":[5.6,4.1]},{"value":[5.6,4.2]},{"value":[5.7,4.5]},{"value":[5.7,3.5]},{"value":[5.7,4.2]},{"value":[5.7,4.2]},{"value":[5.7,4.1]},{"value":[5.8,4.1]},{"value":[5.8,3.9]},{"value":[5.8,4]},{"value":[5.9,4.2]},{"value":[5.9,4.8]},{"value":[6,4]},{"value":[6,4.5]},{"value":[6,5.1]},{"value":[6,4.5]},{"value":[6.1,4.7]},{"value":[6.1,4]},{"value":[6.1,4.7]},{"value":[6.1,4.6]},{"value":[6.2,4.5]},{"value":[6.2,4.3]},{"value":[6.3,4.7]},{"value":[6.3,4.9]},{"value":[6.3,4.4]},{"value":[6.4,4.5]},{"value":[6.4,4.3]},{"value":[6.5,4.6]},{"value":[6.6,4.6]},{"value":[6.6,4.4]},{"value":[6.7,4.4]},{"value":[6.7,5]},{"value":[6.7,4.7]},{"value":[6.8,4.8]},{"value":[6.9,4.9]},{"value":[7,4.7]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0},{"name":"virginica","type":"line","data":[{"value":[4.9,4.5]},{"value":[5.6,4.9]},{"value":[5.7,5]},{"value":[5.8,5.1]},{"value":[5.8,5.1]},{"value":[5.8,5.1]},{"value":[5.9,5.1]},{"value":[6,5]},{"value":[6,4.8]},{"value":[6.1,4.9]},{"value":[6.1,5.6]},{"value":[6.2,4.8]},{"value":[6.2,5.4]},{"value":[6.3,6]},{"value":[6.3,5.6]},{"value":[6.3,4.9]},{"value":[6.3,5.1]},{"value":[6.3,5.6]},{"value":[6.3,5]},{"value":[6.4,5.3]},{"value":[6.4,5.3]},{"value":[6.4,5.6]},{"value":[6.4,5.6]},{"value":[6.4,5.5]},{"value":[6.5,5.8]},{"value":[6.5,5.1]},{"value":[6.5,5.5]},{"value":[6.5,5.2]},{"value":[6.7,5.8]},{"value":[6.7,5.7]},{"value":[6.7,5.6]},{"value":[6.7,5.7]},{"value":[6.7,5.2]},{"value":[6.8,5.5]},{"value":[6.8,5.9]},{"value":[6.9,5.7]},{"value":[6.9,5.4]},{"value":[6.9,5.1]},{"value":[7.1,5.9]},{"value":[7.2,6.1]},{"value":[7.2,6]},{"value":[7.2,5.8]},{"value":[7.3,6.3]},{"value":[7.4,6.1]},{"value":[7.6,6.6]},{"value":[7.7,6.7]},{"value":[7.7,6.9]},{"value":[7.7,6.7]},{"value":[7.7,6.1]},{"value":[7.9,6.4]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0}],"dataZoom":[{"yAxisIndex":0}],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true,"connect":["chart"]},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-83f7ea8c7d72abbc734b" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-83f7ea8c7d72abbc734b">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value","min":4}],"legend":{"data":["setosa","versicolor","virginica"],"show":false,"type":"plain"},"series":[{"name":"setosa","type":"line","data":[{"value":[4.3,1.1]},{"value":[4.4,1.4]},{"value":[4.4,1.3]},{"value":[4.4,1.3]},{"value":[4.5,1.3]},{"value":[4.6,1.5]},{"value":[4.6,1.4]},{"value":[4.6,1]},{"value":[4.6,1.4]},{"value":[4.7,1.3]},{"value":[4.7,1.6]},{"value":[4.8,1.6]},{"value":[4.8,1.4]},{"value":[4.8,1.9]},{"value":[4.8,1.6]},{"value":[4.8,1.4]},{"value":[4.9,1.4]},{"value":[4.9,1.5]},{"value":[4.9,1.5]},{"value":[4.9,1.4]},{"value":[5,1.4]},{"value":[5,1.5]},{"value":[5,1.6]},{"value":[5,1.6]},{"value":[5,1.2]},{"value":[5,1.3]},{"value":[5,1.6]},{"value":[5,1.4]},{"value":[5.1,1.4]},{"value":[5.1,1.4]},{"value":[5.1,1.5]},{"value":[5.1,1.5]},{"value":[5.1,1.7]},{"value":[5.1,1.5]},{"value":[5.1,1.9]},{"value":[5.1,1.6]},{"value":[5.2,1.5]},{"value":[5.2,1.4]},{"value":[5.2,1.5]},{"value":[5.3,1.5]},{"value":[5.4,1.7]},{"value":[5.4,1.5]},{"value":[5.4,1.3]},{"value":[5.4,1.7]},{"value":[5.4,1.5]},{"value":[5.5,1.4]},{"value":[5.5,1.3]},{"value":[5.7,1.5]},{"value":[5.7,1.7]},{"value":[5.8,1.2]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0},{"name":"versicolor","type":"line","data":[{"value":[4.9,3.3]},{"value":[5,3.5]},{"value":[5,3.3]},{"value":[5.1,3]},{"value":[5.2,3.9]},{"value":[5.4,4.5]},{"value":[5.5,4]},{"value":[5.5,3.8]},{"value":[5.5,3.7]},{"value":[5.5,4]},{"value":[5.5,4.4]},{"value":[5.6,3.6]},{"value":[5.6,4.5]},{"value":[5.6,3.9]},{"value":[5.6,4.1]},{"value":[5.6,4.2]},{"value":[5.7,4.5]},{"value":[5.7,3.5]},{"value":[5.7,4.2]},{"value":[5.7,4.2]},{"value":[5.7,4.1]},{"value":[5.8,4.1]},{"value":[5.8,3.9]},{"value":[5.8,4]},{"value":[5.9,4.2]},{"value":[5.9,4.8]},{"value":[6,4]},{"value":[6,4.5]},{"value":[6,5.1]},{"value":[6,4.5]},{"value":[6.1,4.7]},{"value":[6.1,4]},{"value":[6.1,4.7]},{"value":[6.1,4.6]},{"value":[6.2,4.5]},{"value":[6.2,4.3]},{"value":[6.3,4.7]},{"value":[6.3,4.9]},{"value":[6.3,4.4]},{"value":[6.4,4.5]},{"value":[6.4,4.3]},{"value":[6.5,4.6]},{"value":[6.6,4.6]},{"value":[6.6,4.4]},{"value":[6.7,4.4]},{"value":[6.7,5]},{"value":[6.7,4.7]},{"value":[6.8,4.8]},{"value":[6.9,4.9]},{"value":[7,4.7]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0},{"name":"virginica","type":"line","data":[{"value":[4.9,4.5]},{"value":[5.6,4.9]},{"value":[5.7,5]},{"value":[5.8,5.1]},{"value":[5.8,5.1]},{"value":[5.8,5.1]},{"value":[5.9,5.1]},{"value":[6,5]},{"value":[6,4.8]},{"value":[6.1,4.9]},{"value":[6.1,5.6]},{"value":[6.2,4.8]},{"value":[6.2,5.4]},{"value":[6.3,6]},{"value":[6.3,5.6]},{"value":[6.3,4.9]},{"value":[6.3,5.1]},{"value":[6.3,5.6]},{"value":[6.3,5]},{"value":[6.4,5.3]},{"value":[6.4,5.3]},{"value":[6.4,5.6]},{"value":[6.4,5.6]},{"value":[6.4,5.5]},{"value":[6.5,5.8]},{"value":[6.5,5.1]},{"value":[6.5,5.5]},{"value":[6.5,5.2]},{"value":[6.7,5.8]},{"value":[6.7,5.7]},{"value":[6.7,5.6]},{"value":[6.7,5.7]},{"value":[6.7,5.2]},{"value":[6.8,5.5]},{"value":[6.8,5.9]},{"value":[6.9,5.7]},{"value":[6.9,5.4]},{"value":[6.9,5.1]},{"value":[7.1,5.9]},{"value":[7.2,6.1]},{"value":[7.2,6]},{"value":[7.2,5.8]},{"value":[7.3,6.3]},{"value":[7.4,6.1]},{"value":[7.6,6.6]},{"value":[7.7,6.7]},{"value":[7.7,6.9]},{"value":[7.7,6.7]},{"value":[7.7,6.1]},{"value":[7.9,6.4]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0}],"dataZoom":[{"yAxisIndex":0}],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true,"connect":["chart"]},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
