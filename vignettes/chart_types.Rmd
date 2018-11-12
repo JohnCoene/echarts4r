@@ -64,6 +64,31 @@ df %>%
   e_legend(FALSE) # hide legend
 ```
 
+## Polar
+
+```{r}
+df %>% 
+  e_charts(x) %>% 
+  e_polar() %>% 
+  e_angle_axis(x) %>% # angle = x
+  e_radius_axis() %>% 
+  e_bar(y, coord.system = "polar") %>% 
+  e_scatter(z, coord.system = "polar")
+```
+
+## Radial
+
+```{r}
+df %>% 
+  head(10) %>% 
+  e_charts(x) %>% 
+  e_polar() %>% 
+  e_angle_axis() %>% 
+  e_radius_axis(x) %>% 
+  e_bar(y, coord.system = "polar") %>% 
+  e_scatter(z, coord.system = "polar")
+```
+
 ## Candlestick
 
 ```{r, eval=FALSE}
