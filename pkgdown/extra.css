@@ -57,3 +57,9 @@ li>a {
   color: #d8d8d8;
 }
 
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:hover,
+.nav-pills>li.active>a:focus {
+  color: #d8d8d8;
+  background-color: #293c55;
+}
