@@ -104,6 +104,12 @@ div(
         br(),
         p(
           htmltools::tags$a(
+            href = "https://echarts4r-maps.john-coene.com/",
+            target = "_blank",
+            class = "btn btn-default",
+            "Website"
+          ),
+          htmltools::tags$a(
             href = "https://github.com/JohnCoene/echarts4r.maps",
             target = "_blank",
             class = "btn btn-default",
