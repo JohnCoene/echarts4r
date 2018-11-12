@@ -58,7 +58,7 @@ data %>%
   group_by(airline) %>% 
   e_charts() %>% 
   e_globe(
-    height.texture = ea_asset("world dark"),
+    base.texture = ea_asset("world dark"),
     environment = ea_asset("starfield"),
     displacementScale = 0.1,
     displacementQuality = "high",
@@ -120,7 +120,7 @@ data <- as.data.frame(data) %>%
 data %>%
   e_charts(x) %>% 
   e_globe(
-    base.texture = ea_asset("world bump"),
+    base.texture = ea_asset("world topo"),
     environment = ea_asset("starfield"),
     displacementScale = 0.04,
     shading = "realistic",
