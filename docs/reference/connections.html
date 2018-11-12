@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Set Group — connections • echarts4r</title>
+<title>Connect charts — connections • echarts4r</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -36,9 +36,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Set Group — connections" />
+  <link href="../extra.css" rel="stylesheet">
+  
+<meta property="og:title" content="Connect charts — connections" />
 
-<meta property="og:description" content="Set group to connect two charts together." />
+<meta property="og:description" content="Connect charts together." />
 
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -198,7 +200,7 @@
       <a href="../articles/brush.html">Brush &amp; Slide</a>
     </li>
     <li>
-      <a href="../articles/connect.html">Arrange</a>
+      <a href="../articles/connect.html">Arrange &amp; Connect</a>
     </li>
     <li>
       <a href="../articles/toolbox.html">Toolbox</a>
@@ -253,20 +255,26 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Set Group</h1>
+    <h1>Connect charts</h1>
     
     <div class="hidden name"><code>connections.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Set group to connect two charts together.</p>
+    <p>Connect charts together.</p>
     
     </div>
 
     <pre class="usage"><span class='fu'>e_connect</span>(<span class='no'>e</span>, <span class='no'>ids</span>)
 
-<span class='fu'>e_arrange</span>(<span class='no'>...</span>, <span class='kw'>rows</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>e_group</span>(<span class='no'>e</span>, <span class='no'>group</span>)
+
+<span class='fu'>e_connect_group</span>(<span class='no'>e</span>, <span class='no'>group</span>)
+
+<span class='fu'>e_disconnect_group</span>(<span class='no'>e</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>e_arrange</span>(<span class='no'>...</span>, <span class='kw'>rows</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -280,10 +288,42 @@
       <td><p>Scalar, vector or list of ids of chart to connect with.</p></td>
     </tr>
     <tr>
+      <th>group</th>
+      <td><p>Group name.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
-      <td><p>Any other option to pass, check See Also section.</p></td>
+      <td><p>Any <code>echarts</code> objects.</p></td>
+    </tr>
+    <tr>
+      <th>rows, cols</th>
+      <td><p>Number of rows and columns.</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>Title of charts.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>e_arrange</code>: in an interactive session, returns a <a href='http://www.rdocumentation.org/packages/htmltools/topics/browsable'>browsable</a>, in <code>rmarkdown</code> returns a 
+container (<a href='http://www.rdocumentation.org/packages/htmltools/topics/builder'>div</a>).</p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p><code>e_arrange</code> may not work properly in the RStudio viewer.</p>
+    
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    
+    <ul>
+<li><p><code>e_connect</code>: connects charts by <code>ids</code>, <em>cannot</em> be disconnected.</p></li>
+<li><p><code>e_group</code>: assigns a group to chart.</p></li>
+<li><p><code>e_connect_group</code>: connects chart with another group.</p></li>
+<li><p><code>e_disconnect_group</code>: diconnects chart from group.</p></li>
+<li><p><code>e_arrange</code>: arrange charts.</p></li>
+</ul>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -291,11 +331,11 @@
 <span class='no'>e1</span> <span class='kw'>&lt;-</span> <span class='no'>cars</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(
     <span class='no'>speed</span>,
-    <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>200</span>,
-    <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='st'>"chart1"</span>
+    <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>200</span>
   ) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>dist</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_datazoom.html'>e_datazoom</a></span>(<span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+  <span class='fu'><a href='e_datazoom.html'>e_datazoom</a></span>(<span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_group</span>(<span class='st'>"grp"</span>) <span class='co'># assign group</span>
 
 <span class='no'>e2</span> <span class='kw'>&lt;-</span> <span class='no'>cars</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(
@@ -304,16 +344,22 @@
   ) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>speed</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_datazoom.html'>e_datazoom</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_connect</span>(<span class='st'>"chart1"</span>) <span class='co'># connect</span>
+  <span class='fu'>e_group</span>(<span class='st'>"grp"</span>) <span class='kw'>%&gt;%</span>  <span class='co'># assign group</span>
+  <span class='fu'>e_connect_group</span>(<span class='st'>"grp"</span>) <span class='co'># connect</span>
 
-<span class='fu'>e_arrange</span>(<span class='no'>e1</span>, <span class='no'>e2</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: do not use in Rmarkdown or Shiny</span></div><div class='input'>
-</div></pre>
+<span class='fu'>e_arrange</span>(<span class='no'>e1</span>, <span class='no'>e2</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Linked datazoom"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#note">Note</a></li>
+
+      <li><a href="#functions">Functions</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

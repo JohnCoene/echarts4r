@@ -36,6 +36,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="Choropleth — e_map" />
 
 <meta property="og:description" content="Draw maps." />
@@ -198,7 +200,7 @@
       <a href="../articles/brush.html">Brush &amp; Slide</a>
     </li>
     <li>
-      <a href="../articles/connect.html">Arrange</a>
+      <a href="../articles/connect.html">Arrange &amp; Connect</a>
     </li>
     <li>
       <a href="../articles/toolbox.html">Toolbox</a>
@@ -274,6 +276,9 @@
   <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_map_3d_</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='st'>"world"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+
+<span class='fu'>e_map_3d_custom</span>(<span class='no'>e</span>, <span class='no'>id</span>, <span class='no'>value</span>, <span class='no'>height</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -292,10 +297,6 @@
       <td><p>Map type.</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p>name of the serie.</p></td>
-    </tr>
-    <tr>
       <th>rm.x, rm.y</th>
       <td><p>Whether to remove x and y axis, defaults to <code>TRUE</code>.</p></td>
     </tr>
@@ -306,6 +307,10 @@
     <tr>
       <th>coord.system</th>
       <td><p>Coordinate system to use, one of <code>cartesian3D</code>, <code>geo3D</code>, <code>globe</code>.</p></td>
+    </tr>
+    <tr>
+      <th>value, height, name</th>
+      <td><p>Columns corresponding to registered map.</p></td>
     </tr>
     </table>
     
@@ -333,6 +338,37 @@
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>countries</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_map_3d</span>(<span class='no'>values</span>, <span class='kw'>shading</span> <span class='kw'>=</span> <span class='st'>"lambert"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>30</span>)
+
+<span class='no'>buildings</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>jsonlite</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/jsonlite/topics/read_json'>read_json</a></span>(
+  <span class='fu'>paste0</span>(
+    <span class='st'>"https://ecomfe.github.io/echarts-examples/"</span>,
+    <span class='st'>"public/data-gl/asset/data/buildings.json"</span>
+  )
+)
+
+<span class='no'>heights</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/map'>map</a></span>(<span class='no'>buildings</span>$<span class='no'>features</span>, <span class='st'>"properties"</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/map'>map</a></span>(<span class='st'>"height"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>unlist</span>()
+
+<span class='no'>names</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/map'>map</a></span>(<span class='no'>buildings</span>$<span class='no'>features</span>, <span class='st'>"properties"</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/map'>map</a></span>(<span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>unlist</span>()
+
+<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='no'>names</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'>round</span>(<span class='fu'>runif</span>(<span class='fu'>length</span>(<span class='no'>names</span>), <span class='fl'>0</span>, <span class='fl'>1</span>), <span class='fl'>6</span>),
+  <span class='kw'>height</span> <span class='kw'>=</span> <span class='no'>heights</span> / <span class='fl'>10</span>
+)
+
+<span class='no'>data</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_map_register.html'>e_map_register</a></span>(<span class='st'>"buildings"</span>, <span class='no'>buildings</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_map_3d_custom</span>(<span class='no'>name</span>, <span class='no'>value</span>, <span class='no'>height</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(
+    <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+    <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0.4</span>,
+    <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1</span>
+  )
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>

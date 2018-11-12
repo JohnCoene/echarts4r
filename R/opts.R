@@ -202,6 +202,7 @@ e_toolbox <- function(e, ...){
 #' Add data zoom.
 #' 
 #' @inheritParams e_bar
+#' @param toolbox Whether to add the toolbox, \code{\link{e_toolbox_feature}}, (\code{e_toolbox_feature(e, "dataZoom")}).
 #' 
 #' @examples 
 #' USArrests %>% 
@@ -218,7 +219,7 @@ e_toolbox <- function(e, ...){
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#dataZoom}{Additional arguments}
 #' 
 #' @export
-e_datazoom <- function(e, x.index = NULL, y.index = NULL, ...){
+e_datazoom <- function(e, x.index = NULL, y.index = NULL, toolbox = TRUE, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -229,7 +230,7 @@ e_datazoom <- function(e, x.index = NULL, y.index = NULL, ...){
   if(!length(e$x$opts$dataZoom)) # initiatilise if not existing
     e$x$opts$dataZoom <- list()
   
-  if(!length(e$x$opts$toolbox$feature$dataZoom))
+  if(!length(e$x$opts$toolbox$feature$dataZoom) && isTRUE(toolbox))
     e <- e_toolbox_feature(e, "dataZoom")
   
   opts <- list(...)

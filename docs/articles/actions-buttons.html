@@ -11,7 +11,8 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
 <link href="../docsearch.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Actions &amp; Buttons">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="../extra.css" rel="stylesheet">
+<meta property="og:title" content="Actions &amp; Buttons">
 <meta property="og:description" content="">
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png">
 <meta name="twitter:card" content="summary">
@@ -157,7 +158,7 @@
       <a href="../articles/brush.html">Brush &amp; Slide</a>
     </li>
     <li>
-      <a href="../articles/connect.html">Arrange</a>
+      <a href="../articles/connect.html">Arrange &amp; Connect</a>
     </li>
     <li>
       <a href="../articles/toolbox.html">Toolbox</a>
@@ -210,14 +211,13 @@
       
       </header><script src="actions-buttons_files/htmlwidgets-1.3/htmlwidgets.js"></script><link href="actions-buttons_files/echarts4r-4.3.2/plugins/leaflet/leaflet.css" rel="stylesheet">
 <script src="actions-buttons_files/echarts4r-4.3.2/echarts.min.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/echarts-gl.min.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/ecStat.min.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/dataTool.min.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/world.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/plugins/echarts-wordcloud.min.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/plugins/echarts-liquidfill.min.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/plugins/echarts-graph-modularity.min.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/plugins/leaflet/leaflet.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/plugins/leaflet/echarts-leaflet.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/themes/dark.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/themes/vintage.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/themes/westeros.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/themes/essos.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/themes/wonderland.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/themes/walden.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/themes/chalk.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/themes/infographic.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/themes/macarons.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/themes/roma.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/themes/shine.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/themes/purple-passion.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/themes/halloween.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/themes/wef.js"></script><script src="actions-buttons_files/echarts4r-4.3.2/themes/weforum.js"></script><link href="actions-buttons_files/mapbox-0.38.0/mapbox-gl.css" rel="stylesheet">
-<script src="actions-buttons_files/mapbox-0.38.0/mapbox-gl.js"></script><script src="actions-buttons_files/echarts4r-binding-0.1.2.9000/echarts4r.js"></script><script src="actions-buttons_files/jquery-1.11.3/jquery.min.js"></script><link href="actions-buttons_files/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
-<script src="actions-buttons_files/crosstalk-1.0.0/js/crosstalk.min.js"></script><div class="row">
+<script src="actions-buttons_files/mapbox-0.38.0/mapbox-gl.js"></script><script src="actions-buttons_files/echarts4r-binding-0.1.2.9000/echarts4r.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Actions &amp; Buttons</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2018-11-10</h4>
+            <h4 class="date">2018-11-12</h4>
       
       
       <div class="hidden name"><code>actions-buttons.Rmd</code></div>
@@ -229,103 +229,104 @@
 <p><span class="label label-warning"><i class="fa fa-warning"></i></span> Still under development, please report issues.</p>
 <p>Since version <code>1.2.0</code> one can add actions and optionally tie them to buttons.</p>
 <p>For instance once can use the <code>e_zoom</code> action to zoom on the graph (requires <code>e_datazoom</code> initialised).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cars <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(dist) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(speed) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_datazoom.html">e_datazoom</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_zoom.html">e_zoom</a></span>(
-    <span class="dt">dataZoomIndex =</span> <span class="dv">0</span>,
-    <span class="dt">start =</span> <span class="dv">20</span>,
-    <span class="dt">end =</span> <span class="dv">40</span>
-  ) </code></pre></div>
-<div id="htmlwidget-3be3be6dc6789cfa417e" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3be3be6dc6789cfa417e">{"x":{"theme":"","renderer":"canvas","events":[{"data":{"type":"dataZoom","dataZoomIndex":0,"start":20,"end":40}}],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["speed"]},"series":[{"name":"speed","type":"scatter","data":[{"value":[2,4]},{"value":[4,7]},{"value":[10,4]},{"value":[10,9]},{"value":[14,12]},{"value":[16,8]},{"value":[17,11]},{"value":[18,10]},{"value":[20,12]},{"value":[20,15]},{"value":[22,7]},{"value":[24,12]},{"value":[26,10]},{"value":[26,13]},{"value":[26,14]},{"value":[26,15]},{"value":[28,11]},{"value":[28,12]},{"value":[32,16]},{"value":[32,17]},{"value":[32,20]},{"value":[34,10]},{"value":[34,13]},{"value":[34,13]},{"value":[36,14]},{"value":[36,19]},{"value":[40,16]},{"value":[40,17]},{"value":[42,18]},{"value":[46,13]},{"value":[46,19]},{"value":[48,20]},{"value":[50,17]},{"value":[52,20]},{"value":[54,15]},{"value":[54,23]},{"value":[56,18]},{"value":[56,20]},{"value":[60,14]},{"value":[64,20]},{"value":[66,22]},{"value":[68,19]},{"value":[70,24]},{"value":[76,18]},{"value":[80,14]},{"value":[84,18]},{"value":[85,25]},{"value":[92,24]},{"value":[93,24]},{"value":[120,24]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}],"dataZoom":[[]],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>Add a button to let the user trigger that action. We add a button with <code>e_button</code> and specify the id of our button in the action (<code>e_zoom</code>) so that the button knows which action to trigger.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cars <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(dist) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(speed) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_datazoom.html">e_datazoom</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_zoom.html">e_zoom</a></span>(
-    <span class="dt">dataZoomIndex =</span> <span class="dv">0</span>,
-    <span class="dt">start =</span> <span class="dv">20</span>,
-    <span class="dt">end =</span> <span class="dv">40</span>,
-    <span class="dt">btn =</span> <span class="st">"BUTTON"</span>
-  ) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_button.html">e_button</a></span>(
-    <span class="dt">id =</span> <span class="st">"BUTTON"</span>, 
-    htmltools<span class="op">::</span>tags<span class="op">$</span><span class="kw">i</span>(<span class="dt">class =</span> <span class="st">"fa fa-search"</span>), <span class="co"># passed to the button</span>
-    <span class="dt">class =</span> <span class="st">"btn btn-default"</span>,
-    <span class="st">"Zoom in"</span>
-  )</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">cars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(dist) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(speed) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/e_datazoom.html">e_datazoom</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="../reference/e_zoom.html">e_zoom</a></span>(</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="dt">dataZoomIndex =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">    <span class="dt">start =</span> <span class="dv">20</span>,</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">    <span class="dt">end =</span> <span class="dv">40</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">  ) </a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt; Warning: package 'bindrcpp' was built under R version 3.4.4</span></a></code></pre></div>
+<div id="htmlwidget-98afbf459f5ce4628358" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-98afbf459f5ce4628358">{"x":{"theme":"","renderer":"canvas","events":[{"data":{"type":"dataZoom","dataZoomIndex":0,"start":20,"end":40}}],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["speed"]},"series":[{"name":"speed","type":"scatter","data":[{"value":[2,4]},{"value":[4,7]},{"value":[10,4]},{"value":[10,9]},{"value":[14,12]},{"value":[16,8]},{"value":[17,11]},{"value":[18,10]},{"value":[20,12]},{"value":[20,15]},{"value":[22,7]},{"value":[24,12]},{"value":[26,10]},{"value":[26,13]},{"value":[26,14]},{"value":[26,15]},{"value":[28,11]},{"value":[28,12]},{"value":[32,16]},{"value":[32,17]},{"value":[32,20]},{"value":[34,10]},{"value":[34,13]},{"value":[34,13]},{"value":[36,14]},{"value":[36,19]},{"value":[40,16]},{"value":[40,17]},{"value":[42,18]},{"value":[46,13]},{"value":[46,19]},{"value":[48,20]},{"value":[50,17]},{"value":[52,20]},{"value":[54,15]},{"value":[54,23]},{"value":[56,18]},{"value":[56,20]},{"value":[60,14]},{"value":[64,20]},{"value":[66,22]},{"value":[68,19]},{"value":[70,24]},{"value":[76,18]},{"value":[80,14]},{"value":[84,18]},{"value":[85,25]},{"value":[92,24]},{"value":[93,24]},{"value":[120,24]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}],"dataZoom":[[]],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>Add a button to let the user trigger that action. We add a button with <code>e_button</code> and specify the id of our button in the action (<code>e_zoom</code>) so that the button knows which action to trigger.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">cars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(dist) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(speed) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/e_datazoom.html">e_datazoom</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="../reference/e_zoom.html">e_zoom</a></span>(</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">    <span class="dt">dataZoomIndex =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">    <span class="dt">start =</span> <span class="dv">20</span>,</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">    <span class="dt">end =</span> <span class="dv">40</span>,</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">    <span class="dt">btn =</span> <span class="st">"BUTTON"</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="../reference/e_button.html">e_button</a></span>(</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">    <span class="dt">id =</span> <span class="st">"BUTTON"</span>, </a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">    htmltools<span class="op">::</span>tags<span class="op">$</span><span class="kw">i</span>(<span class="dt">class =</span> <span class="st">"fa fa-search"</span>), <span class="co"># passed to the button</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">    <span class="dt">class =</span> <span class="st">"btn btn-default"</span>,</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">    <span class="st">"Zoom in"</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">  )</a></code></pre></div>
 <button id="BUTTON" class="btn btn-default">
 <i class="fa fa-search"></i>
 Zoom in
 </button>
-<div id="htmlwidget-15f261f00e083029f106" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-15f261f00e083029f106">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":{"BUTTON":[{"data":{"type":"dataZoom","dataZoomIndex":0,"start":20,"end":40}}]},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["speed"]},"series":[{"name":"speed","type":"scatter","data":[{"value":[2,4]},{"value":[4,7]},{"value":[10,4]},{"value":[10,9]},{"value":[14,12]},{"value":[16,8]},{"value":[17,11]},{"value":[18,10]},{"value":[20,12]},{"value":[20,15]},{"value":[22,7]},{"value":[24,12]},{"value":[26,10]},{"value":[26,13]},{"value":[26,14]},{"value":[26,15]},{"value":[28,11]},{"value":[28,12]},{"value":[32,16]},{"value":[32,17]},{"value":[32,20]},{"value":[34,10]},{"value":[34,13]},{"value":[34,13]},{"value":[36,14]},{"value":[36,19]},{"value":[40,16]},{"value":[40,17]},{"value":[42,18]},{"value":[46,13]},{"value":[46,19]},{"value":[48,20]},{"value":[50,17]},{"value":[52,20]},{"value":[54,15]},{"value":[54,23]},{"value":[56,18]},{"value":[56,20]},{"value":[60,14]},{"value":[64,20]},{"value":[66,22]},{"value":[68,19]},{"value":[70,24]},{"value":[76,18]},{"value":[80,14]},{"value":[84,18]},{"value":[85,25]},{"value":[92,24]},{"value":[93,24]},{"value":[120,24]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}],"dataZoom":[[]],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>You can also create the button elsewhere on the document, as long as the <code>id</code> matches the <code>btn</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">value &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">2</span>)
-
-nodes &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">name =</span> <span class="kw">sample</span>(LETTERS, <span class="dv">10</span>),
-  <span class="dt">value =</span> value,
-  <span class="dt">size =</span> value,
-  <span class="dt">grp =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">"grp1"</span>, <span class="st">"grp2"</span>), <span class="dv">5</span>),
-  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>
-)
-
-edges &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">source =</span> <span class="kw">sample</span>(nodes<span class="op">$</span>name, <span class="dv">20</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),
-  <span class="dt">target =</span> <span class="kw">sample</span>(nodes<span class="op">$</span>name, <span class="dv">20</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),
-  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>
-)
-
-<span class="kw"><a href="../reference/init.html">e_charts</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/graph.html">e_graph</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/graph.html">e_graph_nodes</a></span>(nodes, name, value, size, grp) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/graph.html">e_graph_edges</a></span>(edges, source, target) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/graph_action.html">e_focus_adjacency</a></span>(
-    <span class="dt">seriesIndex =</span> <span class="dv">0</span>,
-    <span class="dt">dataIndex =</span> <span class="dv">4</span>,
-    <span class="dt">btn =</span> <span class="st">"graphButton"</span>
-  ) </code></pre></div>
-<div id="htmlwidget-4f0d1b231c75ad550522" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4f0d1b231c75ad550522">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":{"graphButton":[{"id":"graphButton","data":{"type":"focusNodeAdjacency","seriesIndex":0,"dataIndex":4}}]},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"series":[{"name":null,"type":"graph","layout":"force","categories":[{"name":"grp1"},{"name":"grp2"}],"data":[{"name":"I","value":" 8.525537","symbolSize":" 8.525537","category":"grp1"},{"name":"B","value":"11.310157","symbolSize":"11.310157","category":"grp2"},{"name":"C","value":"11.515782","symbolSize":"11.515782","category":"grp1"},{"name":"D","value":"10.556972","symbolSize":"10.556972","category":"grp2"},{"name":"X","value":" 8.686658","symbolSize":" 8.686658","category":"grp1"},{"name":"J","value":" 7.236815","symbolSize":" 7.236815","category":"grp2"},{"name":"N","value":" 9.392550","symbolSize":" 9.392550","category":"grp1"},{"name":"G","value":" 6.851960","symbolSize":" 6.851960","category":"grp2"},{"name":"A","value":" 8.247239","symbolSize":" 8.247239","category":"grp1"},{"name":"V","value":"13.187883","symbolSize":"13.187883","category":"grp2"}],"links":[{"source":"J","target":"D"},{"source":"C","target":"I"},{"source":"N","target":"D"},{"source":"A","target":"A"},{"source":"C","target":"C"},{"source":"X","target":"A"},{"source":"N","target":"B"},{"source":"G","target":"X"},{"source":"N","target":"A"},{"source":"J","target":"D"},{"source":"N","target":"I"},{"source":"D","target":"D"},{"source":"A","target":"D"},{"source":"V","target":"N"},{"source":"N","target":"N"},{"source":"C","target":"A"},{"source":"D","target":"A"},{"source":"C","target":"V"},{"source":"J","target":"G"},{"source":"A","target":"D"}]}],"legend":{"data":["grp1","grp2"]}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>Then create the button with id matching our event (<code>graphButton</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create the button</span>
-htmltools<span class="op">::</span>tags<span class="op">$</span><span class="kw">a</span>(
-  <span class="dt">id =</span> <span class="st">"graphButton"</span>,
-  <span class="dt">class =</span> <span class="st">"btn btn-primary"</span>,
-  <span class="st">"Highlight node #4"</span>
-)</code></pre></div>
+<div id="htmlwidget-13d699d4bdd0df284b95" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-13d699d4bdd0df284b95">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":{"BUTTON":[{"data":{"type":"dataZoom","dataZoomIndex":0,"start":20,"end":40}}]},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["speed"]},"series":[{"name":"speed","type":"scatter","data":[{"value":[2,4]},{"value":[4,7]},{"value":[10,4]},{"value":[10,9]},{"value":[14,12]},{"value":[16,8]},{"value":[17,11]},{"value":[18,10]},{"value":[20,12]},{"value":[20,15]},{"value":[22,7]},{"value":[24,12]},{"value":[26,10]},{"value":[26,13]},{"value":[26,14]},{"value":[26,15]},{"value":[28,11]},{"value":[28,12]},{"value":[32,16]},{"value":[32,17]},{"value":[32,20]},{"value":[34,10]},{"value":[34,13]},{"value":[34,13]},{"value":[36,14]},{"value":[36,19]},{"value":[40,16]},{"value":[40,17]},{"value":[42,18]},{"value":[46,13]},{"value":[46,19]},{"value":[48,20]},{"value":[50,17]},{"value":[52,20]},{"value":[54,15]},{"value":[54,23]},{"value":[56,18]},{"value":[56,20]},{"value":[60,14]},{"value":[64,20]},{"value":[66,22]},{"value":[68,19]},{"value":[70,24]},{"value":[76,18]},{"value":[80,14]},{"value":[84,18]},{"value":[85,25]},{"value":[92,24]},{"value":[93,24]},{"value":[120,24]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}],"dataZoom":[[]],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>You can also create the button elsewhere on the document, as long as the <code>id</code> matches the <code>btn</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">value &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">nodes &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">name =</span> <span class="kw">sample</span>(LETTERS, <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">value =</span> value,</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="dt">size =</span> value,</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">  <span class="dt">grp =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">"grp1"</span>, <span class="st">"grp2"</span>), <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">)</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">edges &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">  <span class="dt">source =</span> <span class="kw">sample</span>(nodes<span class="op">$</span>name, <span class="dv">20</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">  <span class="dt">target =</span> <span class="kw">sample</span>(nodes<span class="op">$</span>name, <span class="dv">20</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">)</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="kw"><a href="../reference/init.html">e_charts</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="st">  </span><span class="kw"><a href="../reference/graph.html">e_graph</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="st">  </span><span class="kw"><a href="../reference/graph.html">e_graph_nodes</a></span>(nodes, name, value, size, grp) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="st">  </span><span class="kw"><a href="../reference/graph.html">e_graph_edges</a></span>(edges, source, target) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="st">  </span><span class="kw"><a href="../reference/graph_action.html">e_focus_adjacency</a></span>(</a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">    <span class="dt">seriesIndex =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb3-23" data-line-number="23">    <span class="dt">dataIndex =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb3-24" data-line-number="24">    <span class="dt">btn =</span> <span class="st">"graphButton"</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">  ) </a></code></pre></div>
+<div id="htmlwidget-cc6730a19ba60fab1596" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cc6730a19ba60fab1596">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":{"graphButton":[{"id":"graphButton","data":{"type":"focusNodeAdjacency","seriesIndex":0,"dataIndex":4}}]},"opts":{"series":[{"name":null,"type":"graph","layout":"force","categories":[{"name":"grp1"},{"name":"grp2"}],"data":[{"name":"U","value":"10.475206","symbolSize":"10.475206","category":"grp1"},{"name":"K","value":"11.342191","symbolSize":"11.342191","category":"grp2"},{"name":"E","value":"10.627858","symbolSize":"10.627858","category":"grp1"},{"name":"O","value":"12.483749","symbolSize":"12.483749","category":"grp2"},{"name":"N","value":"10.069922","symbolSize":"10.069922","category":"grp1"},{"name":"V","value":" 7.117331","symbolSize":" 7.117331","category":"grp2"},{"name":"B","value":"10.512964","symbolSize":"10.512964","category":"grp1"},{"name":"M","value":"11.279927","symbolSize":"11.279927","category":"grp2"},{"name":"T","value":"12.278749","symbolSize":"12.278749","category":"grp1"},{"name":"Y","value":" 8.911954","symbolSize":" 8.911954","category":"grp2"}],"links":[{"source":"K","target":"M"},{"source":"U","target":"B"},{"source":"E","target":"K"},{"source":"E","target":"K"},{"source":"M","target":"K"},{"source":"V","target":"U"},{"source":"T","target":"M"},{"source":"U","target":"U"},{"source":"M","target":"N"},{"source":"K","target":"M"},{"source":"U","target":"K"},{"source":"N","target":"K"},{"source":"E","target":"N"},{"source":"E","target":"B"},{"source":"O","target":"M"},{"source":"T","target":"U"},{"source":"U","target":"N"},{"source":"T","target":"U"},{"source":"K","target":"U"},{"source":"K","target":"V"}]}],"legend":{"data":["grp1","grp2"]}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>Then create the button with id matching our event (<code>graphButton</code>).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># create the button</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">htmltools<span class="op">::</span>tags<span class="op">$</span><span class="kw">a</span>(</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="dt">id =</span> <span class="st">"graphButton"</span>,</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="dt">class =</span> <span class="st">"btn btn-primary"</span>,</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="st">"Highlight node #4"</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">)</a></code></pre></div>
 <a id="graphButton" class="btn btn-primary">Highlight node #4</a>
 <p><span class="label label-warning"><i class="fa fa-warning"></i></span> Note that this means that each button in the document must bear a <em>unique</em> id.</p>
 <p>You can also pass multiple buttons and change their positions.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(Species) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(Sepal.Length) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(Petal.Length) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_datazoom.html">e_datazoom</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/highlight_action.html">e_highlight</a></span>(<span class="dt">series.name =</span> <span class="st">"setosa"</span>, <span class="dt">btn =</span> <span class="st">"highlightButton"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># highlight action</span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_zoom.html">e_zoom</a></span>( <span class="co"># zoom action</span>
-    <span class="dt">dataZoomIndex =</span> <span class="dv">0</span>,
-    <span class="dt">startValue =</span> <span class="dv">4</span>,
-    <span class="dt">endValue =</span> <span class="dv">6</span>,
-    <span class="dt">btn =</span> <span class="st">"zoomBtn"</span>
-  ) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_button.html">e_button</a></span>(
-    <span class="dt">id =</span> <span class="st">"zoomBtn"</span>,
-    <span class="dt">position =</span> <span class="st">"bottom"</span>,
-    <span class="dt">class =</span> <span class="st">"btn btn-primary"</span>,
-    <span class="st">"Zoom"</span>
-  ) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_button.html">e_button</a></span>(
-    <span class="st">"highlightButton"</span>,
-    <span class="dt">position =</span> <span class="st">"bottom"</span>,
-    <span class="dt">class =</span> <span class="st">"btn btn-default"</span>,
-    <span class="st">"highlight"</span>
-  )</code></pre></div>
-<div id="htmlwidget-8d40a5d749719cb5ad85" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">iris <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(Sepal.Length) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(Petal.Length) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="../reference/e_datazoom.html">e_datazoom</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="../reference/highlight_action.html">e_highlight</a></span>(<span class="dt">series.name =</span> <span class="st">"setosa"</span>, <span class="dt">btn =</span> <span class="st">"highlightButton"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># highlight action</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="../reference/e_zoom.html">e_zoom</a></span>( <span class="co"># zoom action</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">    <span class="dt">dataZoomIndex =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">    <span class="dt">startValue =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">    <span class="dt">endValue =</span> <span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">    <span class="dt">btn =</span> <span class="st">"zoomBtn"</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="../reference/e_button.html">e_button</a></span>(</a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">    <span class="dt">id =</span> <span class="st">"zoomBtn"</span>,</a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">    <span class="dt">position =</span> <span class="st">"bottom"</span>,</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16">    <span class="dt">class =</span> <span class="st">"btn btn-primary"</span>,</a>
+<a class="sourceLine" id="cb5-17" data-line-number="17">    <span class="st">"Zoom"</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="st">  </span><span class="kw"><a href="../reference/e_button.html">e_button</a></span>(</a>
+<a class="sourceLine" id="cb5-20" data-line-number="20">    <span class="st">"highlightButton"</span>,</a>
+<a class="sourceLine" id="cb5-21" data-line-number="21">    <span class="dt">position =</span> <span class="st">"bottom"</span>,</a>
+<a class="sourceLine" id="cb5-22" data-line-number="22">    <span class="dt">class =</span> <span class="st">"btn btn-default"</span>,</a>
+<a class="sourceLine" id="cb5-23" data-line-number="23">    <span class="st">"highlight"</span></a>
+<a class="sourceLine" id="cb5-24" data-line-number="24">  )</a></code></pre></div>
+<div id="htmlwidget-2a063b37c28bd703b431" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
 <button id="zoomBtn" class="btn btn-primary">Zoom</button>
 <button id="highlightButton" class="btn btn-default">highlight</button>
-<script type="application/json" data-for="htmlwidget-8d40a5d749719cb5ad85">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":{"highlightButton":[{"data":{"type":"highlight","seriesName":["setosa"]}}],"zoomBtn":[{"data":{"type":"dataZoom","dataZoomIndex":0,"startValue":4,"endValue":6}}]},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["setosa","versicolor","virginica"]},"series":[{"name":"setosa","type":"line","data":[{"value":[4.3,1.1]},{"value":[4.4,1.4]},{"value":[4.4,1.3]},{"value":[4.4,1.3]},{"value":[4.5,1.3]},{"value":[4.6,1.5]},{"value":[4.6,1.4]},{"value":[4.6,1]},{"value":[4.6,1.4]},{"value":[4.7,1.3]},{"value":[4.7,1.6]},{"value":[4.8,1.6]},{"value":[4.8,1.4]},{"value":[4.8,1.9]},{"value":[4.8,1.6]},{"value":[4.8,1.4]},{"value":[4.9,1.4]},{"value":[4.9,1.5]},{"value":[4.9,1.5]},{"value":[4.9,1.4]},{"value":[5,1.4]},{"value":[5,1.5]},{"value":[5,1.6]},{"value":[5,1.6]},{"value":[5,1.2]},{"value":[5,1.3]},{"value":[5,1.6]},{"value":[5,1.4]},{"value":[5.1,1.4]},{"value":[5.1,1.4]},{"value":[5.1,1.5]},{"value":[5.1,1.5]},{"value":[5.1,1.7]},{"value":[5.1,1.5]},{"value":[5.1,1.9]},{"value":[5.1,1.6]},{"value":[5.2,1.5]},{"value":[5.2,1.4]},{"value":[5.2,1.5]},{"value":[5.3,1.5]},{"value":[5.4,1.7]},{"value":[5.4,1.5]},{"value":[5.4,1.3]},{"value":[5.4,1.7]},{"value":[5.4,1.5]},{"value":[5.5,1.4]},{"value":[5.5,1.3]},{"value":[5.7,1.5]},{"value":[5.7,1.7]},{"value":[5.8,1.2]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0},{"name":"versicolor","type":"line","data":[{"value":[4.9,3.3]},{"value":[5,3.5]},{"value":[5,3.3]},{"value":[5.1,3]},{"value":[5.2,3.9]},{"value":[5.4,4.5]},{"value":[5.5,4]},{"value":[5.5,3.8]},{"value":[5.5,3.7]},{"value":[5.5,4]},{"value":[5.5,4.4]},{"value":[5.6,3.6]},{"value":[5.6,4.5]},{"value":[5.6,3.9]},{"value":[5.6,4.1]},{"value":[5.6,4.2]},{"value":[5.7,4.5]},{"value":[5.7,3.5]},{"value":[5.7,4.2]},{"value":[5.7,4.2]},{"value":[5.7,4.1]},{"value":[5.8,4.1]},{"value":[5.8,3.9]},{"value":[5.8,4]},{"value":[5.9,4.2]},{"value":[5.9,4.8]},{"value":[6,4]},{"value":[6,4.5]},{"value":[6,5.1]},{"value":[6,4.5]},{"value":[6.1,4.7]},{"value":[6.1,4]},{"value":[6.1,4.7]},{"value":[6.1,4.6]},{"value":[6.2,4.5]},{"value":[6.2,4.3]},{"value":[6.3,4.7]},{"value":[6.3,4.9]},{"value":[6.3,4.4]},{"value":[6.4,4.5]},{"value":[6.4,4.3]},{"value":[6.5,4.6]},{"value":[6.6,4.6]},{"value":[6.6,4.4]},{"value":[6.7,4.4]},{"value":[6.7,5]},{"value":[6.7,4.7]},{"value":[6.8,4.8]},{"value":[6.9,4.9]},{"value":[7,4.7]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0},{"name":"virginica","type":"line","data":[{"value":[4.9,4.5]},{"value":[5.6,4.9]},{"value":[5.7,5]},{"value":[5.8,5.1]},{"value":[5.8,5.1]},{"value":[5.8,5.1]},{"value":[5.9,5.1]},{"value":[6,5]},{"value":[6,4.8]},{"value":[6.1,4.9]},{"value":[6.1,5.6]},{"value":[6.2,4.8]},{"value":[6.2,5.4]},{"value":[6.3,6]},{"value":[6.3,5.6]},{"value":[6.3,4.9]},{"value":[6.3,5.1]},{"value":[6.3,5.6]},{"value":[6.3,5]},{"value":[6.4,5.3]},{"value":[6.4,5.3]},{"value":[6.4,5.6]},{"value":[6.4,5.6]},{"value":[6.4,5.5]},{"value":[6.5,5.8]},{"value":[6.5,5.1]},{"value":[6.5,5.5]},{"value":[6.5,5.2]},{"value":[6.7,5.8]},{"value":[6.7,5.7]},{"value":[6.7,5.6]},{"value":[6.7,5.7]},{"value":[6.7,5.2]},{"value":[6.8,5.5]},{"value":[6.8,5.9]},{"value":[6.9,5.7]},{"value":[6.9,5.4]},{"value":[6.9,5.1]},{"value":[7.1,5.9]},{"value":[7.2,6.1]},{"value":[7.2,6]},{"value":[7.2,5.8]},{"value":[7.3,6.3]},{"value":[7.4,6.1]},{"value":[7.6,6.6]},{"value":[7.7,6.7]},{"value":[7.7,6.9]},{"value":[7.7,6.7]},{"value":[7.7,6.1]},{"value":[7.9,6.4]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0}],"dataZoom":[[]],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>Actions (all can be tied to buttons):</p>
+<script type="application/json" data-for="htmlwidget-2a063b37c28bd703b431">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":{"highlightButton":[{"data":{"type":"highlight","seriesName":["setosa"]}}],"zoomBtn":[{"data":{"type":"dataZoom","dataZoomIndex":0,"startValue":4,"endValue":6}}]},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["setosa","versicolor","virginica"]},"series":[{"name":"setosa","type":"line","data":[{"value":[4.3,1.1]},{"value":[4.4,1.4]},{"value":[4.4,1.3]},{"value":[4.4,1.3]},{"value":[4.5,1.3]},{"value":[4.6,1.5]},{"value":[4.6,1.4]},{"value":[4.6,1]},{"value":[4.6,1.4]},{"value":[4.7,1.3]},{"value":[4.7,1.6]},{"value":[4.8,1.6]},{"value":[4.8,1.4]},{"value":[4.8,1.9]},{"value":[4.8,1.6]},{"value":[4.8,1.4]},{"value":[4.9,1.4]},{"value":[4.9,1.5]},{"value":[4.9,1.5]},{"value":[4.9,1.4]},{"value":[5,1.4]},{"value":[5,1.5]},{"value":[5,1.6]},{"value":[5,1.6]},{"value":[5,1.2]},{"value":[5,1.3]},{"value":[5,1.6]},{"value":[5,1.4]},{"value":[5.1,1.4]},{"value":[5.1,1.4]},{"value":[5.1,1.5]},{"value":[5.1,1.5]},{"value":[5.1,1.7]},{"value":[5.1,1.5]},{"value":[5.1,1.9]},{"value":[5.1,1.6]},{"value":[5.2,1.5]},{"value":[5.2,1.4]},{"value":[5.2,1.5]},{"value":[5.3,1.5]},{"value":[5.4,1.7]},{"value":[5.4,1.5]},{"value":[5.4,1.3]},{"value":[5.4,1.7]},{"value":[5.4,1.5]},{"value":[5.5,1.4]},{"value":[5.5,1.3]},{"value":[5.7,1.5]},{"value":[5.7,1.7]},{"value":[5.8,1.2]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0},{"name":"versicolor","type":"line","data":[{"value":[4.9,3.3]},{"value":[5,3.5]},{"value":[5,3.3]},{"value":[5.1,3]},{"value":[5.2,3.9]},{"value":[5.4,4.5]},{"value":[5.5,4]},{"value":[5.5,3.8]},{"value":[5.5,3.7]},{"value":[5.5,4]},{"value":[5.5,4.4]},{"value":[5.6,3.6]},{"value":[5.6,4.5]},{"value":[5.6,3.9]},{"value":[5.6,4.1]},{"value":[5.6,4.2]},{"value":[5.7,4.5]},{"value":[5.7,3.5]},{"value":[5.7,4.2]},{"value":[5.7,4.2]},{"value":[5.7,4.1]},{"value":[5.8,4.1]},{"value":[5.8,3.9]},{"value":[5.8,4]},{"value":[5.9,4.2]},{"value":[5.9,4.8]},{"value":[6,4]},{"value":[6,4.5]},{"value":[6,5.1]},{"value":[6,4.5]},{"value":[6.1,4.7]},{"value":[6.1,4]},{"value":[6.1,4.7]},{"value":[6.1,4.6]},{"value":[6.2,4.5]},{"value":[6.2,4.3]},{"value":[6.3,4.7]},{"value":[6.3,4.9]},{"value":[6.3,4.4]},{"value":[6.4,4.5]},{"value":[6.4,4.3]},{"value":[6.5,4.6]},{"value":[6.6,4.6]},{"value":[6.6,4.4]},{"value":[6.7,4.4]},{"value":[6.7,5]},{"value":[6.7,4.7]},{"value":[6.8,4.8]},{"value":[6.9,4.9]},{"value":[7,4.7]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0},{"name":"virginica","type":"line","data":[{"value":[4.9,4.5]},{"value":[5.6,4.9]},{"value":[5.7,5]},{"value":[5.8,5.1]},{"value":[5.8,5.1]},{"value":[5.8,5.1]},{"value":[5.9,5.1]},{"value":[6,5]},{"value":[6,4.8]},{"value":[6.1,4.9]},{"value":[6.1,5.6]},{"value":[6.2,4.8]},{"value":[6.2,5.4]},{"value":[6.3,6]},{"value":[6.3,5.6]},{"value":[6.3,4.9]},{"value":[6.3,5.1]},{"value":[6.3,5.6]},{"value":[6.3,5]},{"value":[6.4,5.3]},{"value":[6.4,5.3]},{"value":[6.4,5.6]},{"value":[6.4,5.6]},{"value":[6.4,5.5]},{"value":[6.5,5.8]},{"value":[6.5,5.1]},{"value":[6.5,5.5]},{"value":[6.5,5.2]},{"value":[6.7,5.8]},{"value":[6.7,5.7]},{"value":[6.7,5.6]},{"value":[6.7,5.7]},{"value":[6.7,5.2]},{"value":[6.8,5.5]},{"value":[6.8,5.9]},{"value":[6.9,5.7]},{"value":[6.9,5.4]},{"value":[6.9,5.1]},{"value":[7.1,5.9]},{"value":[7.2,6.1]},{"value":[7.2,6]},{"value":[7.2,5.8]},{"value":[7.3,6.3]},{"value":[7.4,6.1]},{"value":[7.6,6.6]},{"value":[7.7,6.7]},{"value":[7.7,6.9]},{"value":[7.7,6.7]},{"value":[7.7,6.1]},{"value":[7.9,6.4]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0}],"dataZoom":[[]],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>Actions (all can be tied to buttons):</p>
 <ul>
 <li>
 <code>e_highlight</code> &amp; <code>e_downplay</code> to highlight or downplay a serie.</li>

@@ -11,7 +11,8 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
 <link href="../docsearch.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Connect">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="../extra.css" rel="stylesheet">
+<meta property="og:title" content="Connect">
 <meta property="og:description" content="">
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png">
 <meta name="twitter:card" content="summary">
@@ -157,7 +158,7 @@
       <a href="../articles/brush.html">Brush &amp; Slide</a>
     </li>
     <li>
-      <a href="../articles/connect.html">Arrange</a>
+      <a href="../articles/connect.html">Arrange &amp; Connect</a>
     </li>
     <li>
       <a href="../articles/toolbox.html">Toolbox</a>
@@ -210,14 +211,13 @@
       
       </header><script src="connect_files/htmlwidgets-1.3/htmlwidgets.js"></script><link href="connect_files/echarts4r-4.3.2/plugins/leaflet/leaflet.css" rel="stylesheet">
 <script src="connect_files/echarts4r-4.3.2/echarts.min.js"></script><script src="connect_files/echarts4r-4.3.2/echarts-gl.min.js"></script><script src="connect_files/echarts4r-4.3.2/ecStat.min.js"></script><script src="connect_files/echarts4r-4.3.2/dataTool.min.js"></script><script src="connect_files/echarts4r-4.3.2/world.js"></script><script src="connect_files/echarts4r-4.3.2/plugins/echarts-wordcloud.min.js"></script><script src="connect_files/echarts4r-4.3.2/plugins/echarts-liquidfill.min.js"></script><script src="connect_files/echarts4r-4.3.2/plugins/echarts-graph-modularity.min.js"></script><script src="connect_files/echarts4r-4.3.2/plugins/leaflet/leaflet.js"></script><script src="connect_files/echarts4r-4.3.2/plugins/leaflet/echarts-leaflet.js"></script><script src="connect_files/echarts4r-4.3.2/themes/dark.js"></script><script src="connect_files/echarts4r-4.3.2/themes/vintage.js"></script><script src="connect_files/echarts4r-4.3.2/themes/westeros.js"></script><script src="connect_files/echarts4r-4.3.2/themes/essos.js"></script><script src="connect_files/echarts4r-4.3.2/themes/wonderland.js"></script><script src="connect_files/echarts4r-4.3.2/themes/walden.js"></script><script src="connect_files/echarts4r-4.3.2/themes/chalk.js"></script><script src="connect_files/echarts4r-4.3.2/themes/infographic.js"></script><script src="connect_files/echarts4r-4.3.2/themes/macarons.js"></script><script src="connect_files/echarts4r-4.3.2/themes/roma.js"></script><script src="connect_files/echarts4r-4.3.2/themes/shine.js"></script><script src="connect_files/echarts4r-4.3.2/themes/purple-passion.js"></script><script src="connect_files/echarts4r-4.3.2/themes/halloween.js"></script><script src="connect_files/echarts4r-4.3.2/themes/wef.js"></script><script src="connect_files/echarts4r-4.3.2/themes/weforum.js"></script><link href="connect_files/mapbox-0.38.0/mapbox-gl.css" rel="stylesheet">
-<script src="connect_files/mapbox-0.38.0/mapbox-gl.js"></script><script src="connect_files/echarts4r-binding-0.1.2.9000/echarts4r.js"></script><script src="connect_files/jquery-1.11.3/jquery.min.js"></script><link href="connect_files/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet">
-<script src="connect_files/crosstalk-1.0.0/js/crosstalk.min.js"></script><div class="row">
+<script src="connect_files/mapbox-0.38.0/mapbox-gl.js"></script><script src="connect_files/echarts4r-binding-0.1.2.9000/echarts4r.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Connect</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2018-11-10</h4>
+            <h4 class="date">2018-11-12</h4>
       
       
       <div class="hidden name"><code>connect.Rmd</code></div>
@@ -227,80 +227,81 @@
     
     
 <p>Since version <code>0.1.2</code> you can connect multiple two charts together which might make it even easier. Below we create two charts, with <code>e_datazoom</code>, hiding one of the latter. On the second chart we run <code>e_connect</code> to connect it with the other; sliders are now linked.</p>
-<p>You are not limited to a single chart</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">e1 &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(
-    mpg,
-    <span class="dt">height =</span> <span class="dv">200</span>,
-    <span class="dt">elementId =</span> <span class="st">"chart1"</span> <span class="co"># specify id</span>
-  ) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(wt) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_datazoom.html">e_datazoom</a></span>(<span class="dt">show =</span> <span class="ot">FALSE</span>) <span class="co"># hide</span>
-
-e2 &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(
-    wt,
-    <span class="dt">height =</span> <span class="dv">200</span>,
-    <span class="dt">elementId =</span> <span class="st">"chart2"</span> <span class="co"># specify id</span>
-  ) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(qsec) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_datazoom.html">e_datazoom</a></span>(<span class="dt">show =</span> <span class="ot">FALSE</span>) <span class="co"># hide</span>
-  
-e3 &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(
-    qsec,
-    <span class="dt">height =</span> <span class="dv">200</span>
-  ) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(hp) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/e_datazoom.html">e_datazoom</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/connections.html">e_connect</a></span>(<span class="kw">c</span>(<span class="st">"chart1"</span>, <span class="st">"chart2"</span>)) <span class="co"># connect</span></code></pre></div>
+<p>You can link charts together in two different ways, one with <code>e_connect</code> by refering other charts’s id (<code>elementId</code>)</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">e1 &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">    mpg,</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="dt">height =</span> <span class="dv">200</span>,</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="dt">elementId =</span> <span class="st">"chart1"</span> <span class="co"># specify id</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(wt) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="../reference/e_datazoom.html">e_datazoom</a></span>(<span class="dt">show =</span> <span class="ot">FALSE</span>) <span class="co"># hide</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#&gt; Warning: package 'bindrcpp' was built under R version 3.4.4</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">e2 &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">    wt,</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">    <span class="dt">height =</span> <span class="dv">200</span>,</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">    <span class="dt">elementId =</span> <span class="st">"chart2"</span> <span class="co"># specify id</span></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="st">  </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(qsec) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="st">  </span><span class="kw"><a href="../reference/e_datazoom.html">e_datazoom</a></span>(<span class="dt">show =</span> <span class="ot">FALSE</span>) <span class="co"># hide</span></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">  </a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">e3 &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(</a>
+<a class="sourceLine" id="cb1-22" data-line-number="22">    qsec,</a>
+<a class="sourceLine" id="cb1-23" data-line-number="23">    <span class="dt">height =</span> <span class="dv">200</span></a>
+<a class="sourceLine" id="cb1-24" data-line-number="24">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-25" data-line-number="25"><span class="st">  </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(hp) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-26" data-line-number="26"><span class="st">  </span><span class="kw"><a href="../reference/e_datazoom.html">e_datazoom</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-27" data-line-number="27"><span class="st">  </span><span class="kw"><a href="../reference/connections.html">e_connect</a></span>(<span class="kw">c</span>(<span class="st">"chart1"</span>, <span class="st">"chart2"</span>)) <span class="co"># connect</span></a></code></pre></div>
 <p>You can browse the above from your console like so.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/connections.html">e_arrange</a></span>(e1, e2, e3)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/connections.html">e_arrange</a></span>(e1, e2, e3)</a></code></pre></div>
 <div class="row">
-<div class="col-sm-12">
+<div class="col-xs-12">
 <div id="chart1" style="width:100%;height:200px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="chart1">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["wt"]},"series":[{"name":"wt","type":"scatter","data":[{"value":[10.4,5.25]},{"value":[10.4,5.424]},{"value":[13.3,3.84]},{"value":[14.3,3.57]},{"value":[14.7,5.345]},{"value":[15,3.57]},{"value":[15.2,3.78]},{"value":[15.2,3.435]},{"value":[15.5,3.52]},{"value":[15.8,3.17]},{"value":[16.4,4.07]},{"value":[17.3,3.73]},{"value":[17.8,3.44]},{"value":[18.1,3.46]},{"value":[18.7,3.44]},{"value":[19.2,3.44]},{"value":[19.2,3.845]},{"value":[19.7,2.77]},{"value":[21,2.62]},{"value":[21,2.875]},{"value":[21.4,3.215]},{"value":[21.4,2.78]},{"value":[21.5,2.465]},{"value":[22.8,2.32]},{"value":[22.8,3.15]},{"value":[24.4,3.19]},{"value":[26,2.14]},{"value":[27.3,1.935]},{"value":[30.4,1.615]},{"value":[30.4,1.513]},{"value":[32.4,2.2]},{"value":[33.9,1.835]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}],"dataZoom":[{"show":false}],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="chart1">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["wt"]},"series":[{"name":"wt","type":"scatter","data":[{"value":[10.4,5.25]},{"value":[10.4,5.424]},{"value":[13.3,3.84]},{"value":[14.3,3.57]},{"value":[14.7,5.345]},{"value":[15,3.57]},{"value":[15.2,3.78]},{"value":[15.2,3.435]},{"value":[15.5,3.52]},{"value":[15.8,3.17]},{"value":[16.4,4.07]},{"value":[17.3,3.73]},{"value":[17.8,3.44]},{"value":[18.1,3.46]},{"value":[18.7,3.44]},{"value":[19.2,3.44]},{"value":[19.2,3.845]},{"value":[19.7,2.77]},{"value":[21,2.62]},{"value":[21,2.875]},{"value":[21.4,3.215]},{"value":[21.4,2.78]},{"value":[21.5,2.465]},{"value":[22.8,2.32]},{"value":[22.8,3.15]},{"value":[24.4,3.19]},{"value":[26,2.14]},{"value":[27.3,1.935]},{"value":[30.4,1.615]},{"value":[30.4,1.513]},{"value":[32.4,2.2]},{"value":[33.9,1.835]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}],"dataZoom":[{"show":false}],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="row">
-<div class="col-sm-12">
+<div class="col-xs-12">
 <div id="chart2" style="width:100%;height:200px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="chart2">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["qsec"]},"series":[{"name":"qsec","type":"scatter","data":[{"value":[1.513,16.9]},{"value":[1.615,18.52]},{"value":[1.835,19.9]},{"value":[1.935,18.9]},{"value":[2.14,16.7]},{"value":[2.2,19.47]},{"value":[2.32,18.61]},{"value":[2.465,20.01]},{"value":[2.62,16.46]},{"value":[2.77,15.5]},{"value":[2.78,18.6]},{"value":[2.875,17.02]},{"value":[3.15,22.9]},{"value":[3.17,14.5]},{"value":[3.19,20]},{"value":[3.215,19.44]},{"value":[3.435,17.3]},{"value":[3.44,17.02]},{"value":[3.44,18.3]},{"value":[3.44,18.9]},{"value":[3.46,20.22]},{"value":[3.52,16.87]},{"value":[3.57,15.84]},{"value":[3.57,14.6]},{"value":[3.73,17.6]},{"value":[3.78,18]},{"value":[3.84,15.41]},{"value":[3.845,17.05]},{"value":[4.07,17.4]},{"value":[5.25,17.98]},{"value":[5.345,17.42]},{"value":[5.424,17.82]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}],"dataZoom":[{"show":false}],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="chart2">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["qsec"]},"series":[{"name":"qsec","type":"scatter","data":[{"value":[1.513,16.9]},{"value":[1.615,18.52]},{"value":[1.835,19.9]},{"value":[1.935,18.9]},{"value":[2.14,16.7]},{"value":[2.2,19.47]},{"value":[2.32,18.61]},{"value":[2.465,20.01]},{"value":[2.62,16.46]},{"value":[2.77,15.5]},{"value":[2.78,18.6]},{"value":[2.875,17.02]},{"value":[3.15,22.9]},{"value":[3.17,14.5]},{"value":[3.19,20]},{"value":[3.215,19.44]},{"value":[3.435,17.3]},{"value":[3.44,17.02]},{"value":[3.44,18.3]},{"value":[3.44,18.9]},{"value":[3.46,20.22]},{"value":[3.52,16.87]},{"value":[3.57,15.84]},{"value":[3.57,14.6]},{"value":[3.73,17.6]},{"value":[3.78,18]},{"value":[3.84,15.41]},{"value":[3.845,17.05]},{"value":[4.07,17.4]},{"value":[5.25,17.98]},{"value":[5.345,17.42]},{"value":[5.424,17.82]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}],"dataZoom":[{"show":false}],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="row">
-<div class="col-sm-12">
-<div id="htmlwidget-7ef0966b8756fba0739d" style="width:100%;height:200px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7ef0966b8756fba0739d">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["hp"]},"series":[{"name":"hp","type":"scatter","data":[{"value":[14.5,264]},{"value":[14.6,335]},{"value":[15.41,245]},{"value":[15.5,175]},{"value":[15.84,245]},{"value":[16.46,110]},{"value":[16.7,91]},{"value":[16.87,150]},{"value":[16.9,113]},{"value":[17.02,110]},{"value":[17.02,175]},{"value":[17.05,175]},{"value":[17.3,150]},{"value":[17.4,180]},{"value":[17.42,230]},{"value":[17.6,180]},{"value":[17.82,215]},{"value":[17.98,205]},{"value":[18,180]},{"value":[18.3,123]},{"value":[18.52,52]},{"value":[18.6,109]},{"value":[18.61,93]},{"value":[18.9,123]},{"value":[18.9,66]},{"value":[19.44,110]},{"value":[19.47,66]},{"value":[19.9,65]},{"value":[20,62]},{"value":[20.01,97]},{"value":[20.22,105]},{"value":[22.9,95]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}],"dataZoom":[[]],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true,"connect":["chart1","chart2"]},"evals":[],"jsHooks":[]}</script>
+<div class="col-xs-12">
+<div id="htmlwidget-317d8bda5c199b486695" style="width:100%;height:200px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-317d8bda5c199b486695">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["hp"]},"series":[{"name":"hp","type":"scatter","data":[{"value":[14.5,264]},{"value":[14.6,335]},{"value":[15.41,245]},{"value":[15.5,175]},{"value":[15.84,245]},{"value":[16.46,110]},{"value":[16.7,91]},{"value":[16.87,150]},{"value":[16.9,113]},{"value":[17.02,110]},{"value":[17.02,175]},{"value":[17.05,175]},{"value":[17.3,150]},{"value":[17.4,180]},{"value":[17.42,230]},{"value":[17.6,180]},{"value":[17.82,215]},{"value":[17.98,205]},{"value":[18,180]},{"value":[18.3,123]},{"value":[18.52,52]},{"value":[18.6,109]},{"value":[18.61,93]},{"value":[18.9,123]},{"value":[18.9,66]},{"value":[19.44,110]},{"value":[19.47,66]},{"value":[19.9,65]},{"value":[20,62]},{"value":[20.01,97]},{"value":[20.22,105]},{"value":[22.9,95]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}],"dataZoom":[[]],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true,"connect":["chart1","chart2"]},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>The package natively links interactions, therefore, in the following the legend is acutally unique, one legend will trigger on both charts because they bear the same name.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">e4 &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(
-        mpg,
-        <span class="dt">height =</span> <span class="dv">200</span>,
-        <span class="dt">elementId =</span> <span class="st">"chart"</span> <span class="co"># specify id</span>
-    ) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(wt, <span class="dt">name =</span> <span class="st">"Click me!"</span>)
-
-e5 &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(
-        wt,
-        <span class="dt">height =</span> <span class="dv">200</span>
-    ) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(qsec, <span class="dt">name =</span> <span class="st">"Click me!"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw"><a href="../reference/connections.html">e_connect</a></span>(<span class="st">"chart"</span>) <span class="co"># connect</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/connections.html">e_arrange</a></span>(e4, e5)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">e4 &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">    </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">        mpg,</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">        <span class="dt">height =</span> <span class="dv">200</span>,</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">        <span class="dt">elementId =</span> <span class="st">"chart"</span> <span class="co"># specify id</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="st">    </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(wt, <span class="dt">name =</span> <span class="st">"Click me!"</span>)</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">e5 &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="st">    </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">        wt,</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">        <span class="dt">height =</span> <span class="dv">200</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">    ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="st">    </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(qsec, <span class="dt">name =</span> <span class="st">"Click me!"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="st">    </span><span class="kw"><a href="../reference/connections.html">e_connect</a></span>(<span class="st">"chart"</span>) <span class="co"># connect</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/connections.html">e_arrange</a></span>(e4, e5)</a></code></pre></div>
 <div class="row">
-<div class="col-sm-12">
+<div class="col-xs-12">
 <div id="chart" style="width:100%;height:200px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="chart">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["Click me!"]},"series":[{"name":"Click me!","type":"scatter","data":[{"value":[10.4,5.25]},{"value":[10.4,5.424]},{"value":[13.3,3.84]},{"value":[14.3,3.57]},{"value":[14.7,5.345]},{"value":[15,3.57]},{"value":[15.2,3.78]},{"value":[15.2,3.435]},{"value":[15.5,3.52]},{"value":[15.8,3.17]},{"value":[16.4,4.07]},{"value":[17.3,3.73]},{"value":[17.8,3.44]},{"value":[18.1,3.46]},{"value":[18.7,3.44]},{"value":[19.2,3.44]},{"value":[19.2,3.845]},{"value":[19.7,2.77]},{"value":[21,2.62]},{"value":[21,2.875]},{"value":[21.4,3.215]},{"value":[21.4,2.78]},{"value":[21.5,2.465]},{"value":[22.8,2.32]},{"value":[22.8,3.15]},{"value":[24.4,3.19]},{"value":[26,2.14]},{"value":[27.3,1.935]},{"value":[30.4,1.615]},{"value":[30.4,1.513]},{"value":[32.4,2.2]},{"value":[33.9,1.835]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}]},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="chart">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["Click me!"]},"series":[{"name":"Click me!","type":"scatter","data":[{"value":[10.4,5.25]},{"value":[10.4,5.424]},{"value":[13.3,3.84]},{"value":[14.3,3.57]},{"value":[14.7,5.345]},{"value":[15,3.57]},{"value":[15.2,3.78]},{"value":[15.2,3.435]},{"value":[15.5,3.52]},{"value":[15.8,3.17]},{"value":[16.4,4.07]},{"value":[17.3,3.73]},{"value":[17.8,3.44]},{"value":[18.1,3.46]},{"value":[18.7,3.44]},{"value":[19.2,3.44]},{"value":[19.2,3.845]},{"value":[19.7,2.77]},{"value":[21,2.62]},{"value":[21,2.875]},{"value":[21.4,3.215]},{"value":[21.4,2.78]},{"value":[21.5,2.465]},{"value":[22.8,2.32]},{"value":[22.8,3.15]},{"value":[24.4,3.19]},{"value":[26,2.14]},{"value":[27.3,1.935]},{"value":[30.4,1.615]},{"value":[30.4,1.513]},{"value":[32.4,2.2]},{"value":[33.9,1.835]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}]},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="row">
-<div class="col-sm-12">
-<div id="htmlwidget-53d0a6cedab0d1a40930" style="width:100%;height:200px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-53d0a6cedab0d1a40930">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["Click me!"]},"series":[{"name":"Click me!","type":"scatter","data":[{"value":[1.513,16.9]},{"value":[1.615,18.52]},{"value":[1.835,19.9]},{"value":[1.935,18.9]},{"value":[2.14,16.7]},{"value":[2.2,19.47]},{"value":[2.32,18.61]},{"value":[2.465,20.01]},{"value":[2.62,16.46]},{"value":[2.77,15.5]},{"value":[2.78,18.6]},{"value":[2.875,17.02]},{"value":[3.15,22.9]},{"value":[3.17,14.5]},{"value":[3.19,20]},{"value":[3.215,19.44]},{"value":[3.435,17.3]},{"value":[3.44,17.02]},{"value":[3.44,18.3]},{"value":[3.44,18.9]},{"value":[3.46,20.22]},{"value":[3.52,16.87]},{"value":[3.57,15.84]},{"value":[3.57,14.6]},{"value":[3.73,17.6]},{"value":[3.78,18]},{"value":[3.84,15.41]},{"value":[3.845,17.05]},{"value":[4.07,17.4]},{"value":[5.25,17.98]},{"value":[5.345,17.42]},{"value":[5.424,17.82]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}]},"dispose":true,"connect":["chart"]},"evals":[],"jsHooks":[]}</script>
+<div class="col-xs-12">
+<div id="htmlwidget-70130754a93837382f30" style="width:100%;height:200px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-70130754a93837382f30">{"x":{"theme":"","renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["Click me!"]},"series":[{"name":"Click me!","type":"scatter","data":[{"value":[1.513,16.9]},{"value":[1.615,18.52]},{"value":[1.835,19.9]},{"value":[1.935,18.9]},{"value":[2.14,16.7]},{"value":[2.2,19.47]},{"value":[2.32,18.61]},{"value":[2.465,20.01]},{"value":[2.62,16.46]},{"value":[2.77,15.5]},{"value":[2.78,18.6]},{"value":[2.875,17.02]},{"value":[3.15,22.9]},{"value":[3.17,14.5]},{"value":[3.19,20]},{"value":[3.215,19.44]},{"value":[3.435,17.3]},{"value":[3.44,17.02]},{"value":[3.44,18.3]},{"value":[3.44,18.9]},{"value":[3.46,20.22]},{"value":[3.52,16.87]},{"value":[3.57,15.84]},{"value":[3.57,14.6]},{"value":[3.73,17.6]},{"value":[3.78,18]},{"value":[3.84,15.41]},{"value":[3.845,17.05]},{"value":[4.07,17.4]},{"value":[5.25,17.98]},{"value":[5.345,17.42]},{"value":[5.424,17.82]}],"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}]},"dispose":true,"connect":["chart"]},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
   </div>

@@ -4,7 +4,7 @@
 \alias{e_datazoom}
 \title{Data zoom}
 \usage{
-e_datazoom(e, x.index = NULL, y.index = NULL, ...)
+e_datazoom(e, x.index = NULL, y.index = NULL, toolbox = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -12,6 +12,8 @@ e_datazoom(e, x.index = NULL, y.index = NULL, ...)
 \item{x.index}{Indexes of x and y axis.}
 
 \item{y.index}{Indexes of x and y axis.}
+
+\item{toolbox}{Whether to add the toolbox, \code{\link{e_toolbox_feature}}, (\code{e_toolbox_feature(e, "dataZoom")}).}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

@@ -36,6 +36,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="Function reference" />
 
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
@@ -196,7 +198,7 @@
       <a href="../articles/brush.html">Brush &amp; Slide</a>
     </li>
     <li>
-      <a href="../articles/connect.html">Arrange</a>
+      <a href="../articles/connect.html">Arrange &amp; Connect</a>
     </li>
     <li>
       <a href="../articles/toolbox.html">Toolbox</a>
@@ -296,9 +298,21 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="connections.html">e_connect()</a></code> <code><a href="connections.html">e_arrange()</a></code> </p>
+          <p><code><a href="callbacks.html">e_on()</a></code> <code><a href="callbacks.html">e_off()</a></code> </p>
         </td>
-        <td><p>Set Group</p></td>
+        <td><p>Callbacks</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="connections.html">e_connect()</a></code> <code><a href="connections.html">e_group()</a></code> <code><a href="connections.html">e_connect_group()</a></code> <code><a href="connections.html">e_disconnect_group()</a></code> <code><a href="connections.html">e_arrange()</a></code> </p>
+        </td>
+        <td><p>Connect charts</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="echarts4r-shiny.html">echarts4rOutput()</a></code> <code><a href="echarts4r-shiny.html">renderEcharts4r()</a></code> <code><a href="echarts4r-shiny.html">echarts4rProxy()</a></code> </p>
+        </td>
+        <td><p>Shiny bindings for echarts4r</p></td>
       </tr><tr>
         
         <td>
@@ -662,12 +676,6 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="echarts4r-shiny.html">echarts4rOutput()</a></code> <code><a href="echarts4r-shiny.html">renderEcharts4r()</a></code> <code><a href="echarts4r-shiny.html">echarts4rProxy()</a></code> </p>
-        </td>
-        <td><p>Shiny bindings for echarts4r</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="formatters.html">e_format_axis()</a></code> <code><a href="formatters.html">e_format_x_axis()</a></code> <code><a href="formatters.html">e_format_y_axis()</a></code> </p>
         </td>
         <td><p>Formatters</p></td>
@@ -680,15 +688,15 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="graph_action.html">e_focus_adjacency()</a></code> <code><a href="graph_action.html">e_unfocus_adjacency()</a></code> </p>
-        </td>
-        <td><p>Nodes Adjacency</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="graphic.html">e_graphic_g()</a></code> <code><a href="graphic.html">e_group_g()</a></code> <code><a href="graphic.html">e_image_g()</a></code> <code><a href="graphic.html">e_text_g()</a></code> <code><a href="graphic.html">e_rect_g()</a></code> <code><a href="graphic.html">e_circle_g()</a></code> <code><a href="graphic.html">e_ring_g()</a></code> <code><a href="graphic.html">e_sector_g()</a></code> <code><a href="graphic.html">e_arc_g()</a></code> <code><a href="graphic.html">e_polygon_g()</a></code> <code><a href="graphic.html">e_polyline_g()</a></code> <code><a href="graphic.html">e_line_g()</a></code> <code><a href="graphic.html">e_bezier_curve_g()</a></code> </p>
         </td>
         <td><p>Graphic</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="graph_action.html">e_focus_adjacency()</a></code> <code><a href="graph_action.html">e_unfocus_adjacency()</a></code> </p>
+        </td>
+        <td><p>Nodes Adjacency</p></td>
       </tr><tr>
         
         <td>
@@ -734,7 +742,7 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="map.html">e_map()</a></code> <code><a href="map.html">e_map_()</a></code> <code><a href="map.html">e_map_3d()</a></code> <code><a href="map.html">e_map_3d_()</a></code> </p>
+          <p><code><a href="map.html">e_map()</a></code> <code><a href="map.html">e_map_()</a></code> <code><a href="map.html">e_map_3d()</a></code> <code><a href="map.html">e_map_3d_()</a></code> <code><a href="map.html">e_map_3d_custom()</a></code> </p>
         </td>
         <td><p>Choropleth</p></td>
       </tr><tr>

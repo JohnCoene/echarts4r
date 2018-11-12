@@ -62,35 +62,35 @@ HTMLWidgets.widget({
             Shiny.onInputChange(el.id + '_mouseover_row' + ":echarts4rParse", e.dataIndex + 1);
             Shiny.onInputChange(el.id + '_mouseover_serie' + ":echarts4rParse", e.seriesName);
           });
-        }
-
-        $(document).on('shiny:recalculating', function() {
           
-          if(x.hideWhite === true){
-            var css = '.recalculating {opacity: 1.0 !important; }',
-                head = document.head || document.getElementsByTagName('head')[0],
-                style = document.createElement('style');
+          $(document).on('shiny:recalculating', function() {
             
-            style.type = 'text/css';
-            if (style.styleSheet){
-              style.styleSheet.cssText = css;
-            } else {
-              style.appendChild(document.createTextNode(css));
+            if(x.hideWhite === true){
+              var css = '.recalculating {opacity: 1.0 !important; }',
+                  head = document.head || document.getElementsByTagName('head')[0],
+                  style = document.createElement('style');
+              
+              style.type = 'text/css';
+              if (style.styleSheet){
+                style.styleSheet.cssText = css;
+              } else {
+                style.appendChild(document.createTextNode(css));
+              }
+              head.appendChild(style);
             }
-            head.appendChild(style);
-          }
+            
+            if(x.loading === true){
+              chart.showLoading('default', x.loadingOpts);
+            } else if(x.loading === false) {
+              chart.hideLoading();
+            }
+            
+          });
           
-          if(x.loading === true){
-            chart.showLoading('default', x.loadingOpts);
-          } else if(x.loading === false) {
+          $(document).on('shiny:value', function() {
             chart.hideLoading();
-          }
-          
-        });
-        
-        $(document).on('shiny:value', function() {
-          chart.hideLoading();
-        });
+          });
+        }
         
         if(x.hasOwnProperty('connect')){
           var connections = [];
@@ -98,7 +98,6 @@ HTMLWidgets.widget({
             connections.push(get_e_charts(x.connect[c]));
           }
           connections.push(chart);
-          console.log(connections);
           echarts.connect(connections);
         }
         
@@ -112,8 +111,8 @@ HTMLWidgets.widget({
         // buttons
         for(var key in x.buttons){
            document.getElementById(key).addEventListener('click', function(){
-            for(var e = 0; e < x.buttons[key].length; e++){
-              chart.dispatchAction(x.buttons[key][e].data);
+            for(var b = 0; b < x.buttons[key].length; b++){
+              chart.dispatchAction(x.buttons[key][b].data);
             }
           });
         }
@@ -128,6 +127,18 @@ HTMLWidgets.widget({
           for(var e = 0; e < x.off.length; e++){
             chart.off(x.off[e].event, x.off[e].query, x.off[e].handler);
           }
+        }
+        
+        if(x.hasOwnProperty('chartGroup')){
+          chart.group = x.chartGroup;
+        }
+        
+        if(x.hasOwnProperty('groupConnect')){
+          echarts.connect(x.groupConnect);
+        }
+        
+        if(x.hasOwnProperty('groupDisconnect')){
+          echarts.disconnect(x.groupDisconnect);
         }
 
       },
