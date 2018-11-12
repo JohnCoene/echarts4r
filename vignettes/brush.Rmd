@@ -20,7 +20,7 @@ library(echarts4r)
 
 Leverage `echarts4r` build-in "crosstalk."
 
-### Sliders
+## Sliders
 
 Let's do a fairly standard chart but add a slider on the x axis and one on the y axis.
 
@@ -32,7 +32,7 @@ mtcars %>%
   e_datazoom(y.index = 0, type = "slider") 
 ```
 
-### Zoom
+## Zoom
 
 Let's leverage `e_datazoom`.
 
@@ -48,7 +48,7 @@ USArrests %>%
   e_datazoom(x.index = c(0, 1))
 ```
 
-### Brush
+## Brush
 
 Let's now look at `e_brush`.
 

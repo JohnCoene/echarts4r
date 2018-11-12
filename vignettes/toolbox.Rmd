@@ -20,18 +20,26 @@ library(echarts4r)
 
 The toolbox allows you to add neat little interactive functions to your plots.
 
+## Save plot
+
 ```{r}
 mtcars %>% 
   e_charts(qsec) %>% 
-  e_line(mpg, smooth = TRUE) -> echsart
+  e_line(mpg, smooth = TRUE) -> echart
 
-echsart %>% e_toolbox_feature(feature = "saveAsImage") # hit the download button!
+echart %>% e_toolbox_feature(feature = "saveAsImage") # hit the download button!
 ```
 
-```{r}
-echsart %>% e_toolbox_feature(feature = "dataZoom")
-```
+## data Zoom
 
 ```{r}
-echsart %>% e_toolbox_feature(feature = "dataView")
+echart %>% e_toolbox_feature(feature = "dataZoom")
 ```
+
+## data view
+
+```{r}
+echart %>% e_toolbox_feature(feature = "dataView")
+```
+
+See the [official documentation](https://ecomfe.github.io/echarts-doc/public/en/option.html#toolbox.feature) for the full list.

@@ -20,7 +20,7 @@ library(echarts4r)
 
 There are two core functions that let you build graphs in `echarts4r`; `e_graph` and `e_graph_gl`. The latter is the webGL "version."
 
-### Basic
+## Basic
 
 Initialise your graph with `e_charts` then add nodes and edges with `e_graph_nodes` and `e_graph_edges` respectively.
 
@@ -47,7 +47,7 @@ e_charts() %>%
   e_tooltip()
 ```
 
-### Groups
+## Groups
 
 The same but with groups.
 
@@ -75,7 +75,7 @@ e_charts() %>%
   e_tooltip()
 ```
 
-### Graph GL
+## Graph GL
 
 Simply use `e_graph_gl` instead of `e_graph`.
 

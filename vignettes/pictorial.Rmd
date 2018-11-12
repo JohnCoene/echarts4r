@@ -20,7 +20,7 @@ library(echarts4r)
 
 Pictorial bar chart is a type of bar chart that custimzed glyph (like images, SVG PathData) can be used instead of rectangular bar. This kind of chart is usually used in infographic.
 
-### Built-in symbols
+## Built-in symbols
 
 ```{r}
 y <- rnorm(10, 10, 2)
@@ -39,7 +39,7 @@ df %>%
   e_title("Built-in symbols")
 ```
 
-### SVG path
+## SVG path
 
 ```{r}
 path <- "path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"
@@ -57,7 +57,7 @@ df %>%
   e_title("SVG path")
 ```
 
-### Images
+## Images
 
 ```{r}
 qomo <- paste0(

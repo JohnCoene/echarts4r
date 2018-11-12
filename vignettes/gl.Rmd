@@ -20,7 +20,7 @@ library(echarts4r)
 
 This document details webGL visualisations; webGL is ideal when you have large datasets to plot.
 
-### Scatter 
+## Scatter 
 
 ```{r}
 quakes %>% 
@@ -36,8 +36,7 @@ quakes %>%
   e_visual_map()
 ```
 
-
-### Graph GL
+## Graph GL
 
 ```{r}
 #Use graphGL for larger networks
@@ -61,7 +60,7 @@ e_charts() %>%
   e_graph_edges(edges, source, target)
 ```
 
-### Flow GL
+## Flow GL
 
 ```{r}
 latlong <- seq(-180, 180, by = 5)

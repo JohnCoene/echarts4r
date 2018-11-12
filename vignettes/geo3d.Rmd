@@ -20,7 +20,7 @@ library(echarts4r)
 
 `e_geo_3d` family is similar to `e_geo_3d` `e_map`, `e_map_3d` or `e_globe`.
 
-### Height Choropleth
+## Height Choropleth
 
 ```{r}
 choropleth <- data.frame(
@@ -36,7 +36,7 @@ choropleth %>%
   e_geo_3d(height, color)
 ```
 
-### Lines
+## Lines
 
 ```{r}
 flights <- read.csv(
@@ -59,7 +59,7 @@ flights %>%
    )
 ```
 
-### Bars
+## Bars
 
 ```{r}
 url <- paste0("https://ecomfe.github.io/echarts-examples/",
@@ -74,3 +74,31 @@ data %>%
   e_bar_3d(lat, value, coord.system = "geo3D") %>% 
   e_visual_map()
 ```
+
+## GeoJSON
+
+The companion package [echarts4r.maps](https://echarts4r-maps.john-coene.com) comes with 215 maps.
+
+You can install the package with:
+
+```r
+install.packages("remotes")
+remotes::install_github('JohnCoene/echarts4r.maps')
+```
+
+View the full list of maps with `echarts4r.maps::em_bank()`.
+
+```{r}
+library(echarts4r.maps)
+
+USArrests$state <- row.names(USArrests) # add states as column
+
+USArrests %>% 
+  e_color_range(Murder, Color) %>% 
+  e_charts(state) %>%
+  em_map("USA") %>% 
+  e_geo_3d(Murder, Color, type = "USA", regionHeight = 1) %>% 
+  e_visual_map(Murder)
+```
+
+You can also use your own geoJSON with `e_map_register`.

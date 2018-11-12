@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 library(echarts4r)
 ```
 
-### Bar 3D
+## Bar 3D
 
 ```{r}
 v <- LETTERS[1:10]
@@ -46,7 +46,7 @@ matrix %>%
   e_legend()
 ```
 
-### Scatter
+## Scatter
 
 ```{r}
 v <- LETTERS[1:10]
@@ -82,7 +82,7 @@ matrix %>%
   )
 ```
 
-### Line
+## Line
 
 ```{r}
 df <- data.frame(

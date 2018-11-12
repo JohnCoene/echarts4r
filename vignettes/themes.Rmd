@@ -20,6 +20,8 @@ library(echarts4r)
 
 You can easily customise the appearance of your chart using one of the 13 themes provided, or even build you own theme: use the online [theme builder](http://echarts.baidu.com/download-theme.html) to create your own.
 
+## default
+
 ```{r}
 p <- USArrests %>% 
   dplyr::mutate(
@@ -35,57 +37,85 @@ p <- USArrests %>%
 p # default plot
 ```
 
+## dark
+
 ```{r}
 p %>% e_theme("dark")
 ```
+
+## vintage
 
 ```{r}
 p %>% e_theme("vintage")
 ```
 
+## westeros
+
 ```{r}
 p %>% e_theme("westeros")
 ```
+
+## essos
 
 ```{r}
 p %>% e_theme("essos")
 ```
 
+## wonderland
+
 ```{r}
 p %>% e_theme("wonderland")
 ```
+
+## walden
 
 ```{r}
 p %>% e_theme("walden")
 ```
 
+## chalk
+
 ```{r}
 p %>% e_theme("chalk")
 ```
+
+## infographic
 
 ```{r}
 p %>% e_theme("infographic")
 ```
 
+## macarons
+
 ```{r}
 p %>% e_theme("macarons")
 ```
+
+## roma
 
 ```{r}
 p %>% e_theme("roma")
 ```
 
+## shine
+
 ```{r}
 p %>% e_theme("shine")
 ```
+
+## purple-passion
 
 ```{r}
 p %>% e_theme("purple-passion")
 ```
 
+## halloween
+
 ```{r}
 p %>% e_theme("halloween")
 ```
+
+## custom
 
 ```{r}
 p %>% e_theme_custom('{"color":["#ff715e","#ffaf51"]}')

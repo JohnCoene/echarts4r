@@ -62,7 +62,7 @@ flights %>%
 
 ## Countries
 
-The companion package [echarts4r.maps](https://github.com/JohnCoene/echarts4r.maps) comes with 223 maps.
+The companion package [echarts4r.maps](https://echarts4r-maps.john-coene.com) comes with 215 maps.
 
 You can install the package with:
 

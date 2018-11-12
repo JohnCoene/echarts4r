@@ -35,7 +35,7 @@ Visit the [website](https://echarts4r-assets.john-coene.com) for more examples.
 remotes::install_github("JohnCoene/echarts4r.assets")
 ```
 
-### Scatter 3D
+## Scatter 3D
 
 ```{r}
 library(echarts4r.assets)
@@ -56,7 +56,7 @@ airports %>%
   e_visual_map(inRange = list(symbolSize = c(1, 10)))
 ```
 
-### Bar
+## Bar
 
 ```{r}
 url <- paste0("https://ecomfe.github.io/echarts-examples/",
@@ -77,7 +77,7 @@ data %>%
   e_visual_map(show = FALSE)
 ```
 
-### Lines
+## Lines
 
 ```{r}
 flights <- read.csv(

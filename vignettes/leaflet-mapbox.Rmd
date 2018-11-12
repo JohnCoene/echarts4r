@@ -20,7 +20,7 @@ library(echarts4r)
 
 Leaflet only works with `e_scatter` and `e_effect_scatter`.
 
-### Scatter
+## Scatter
 
 ```{r}
 url <- paste0("https://ecomfe.github.io/echarts-examples/",
@@ -37,7 +37,7 @@ data %>%
   e_scatter(lat, size = value, coord.system = "leaflet")
 ```
 
-### Mapbox
+## Mapbox
 
 You will need [mapbox](https://www.mapbox.com/) token.
 

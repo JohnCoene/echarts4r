@@ -35,7 +35,7 @@ df %>%
   e_tooltip()
 ```
 
-### Density
+## Density
 
 Plot the density on a different Y axis as its range differs much from the that of the histogram.
 
@@ -48,15 +48,7 @@ df %>%
   e_tooltip()
 ```
 
-## Fit
-
-Functions leverage R buil-in:
-
-* `lm`
-* `glm`
-* `loess`
-
-#### Linear
+## Linear
 
 ```{r}
 df %>% 
@@ -65,7 +57,7 @@ df %>%
   e_lm(y ~ x)
 ```
 
-#### Generalised Linear
+## Generalised Linear
 
 ```{r}
 CO2 %>% 
@@ -74,7 +66,7 @@ CO2 %>%
   e_glm(uptake ~ conc, name = "GLM")
 ```
 
-#### Polynomial
+## Polynomial
 
 ```{r}
 mtcars %>% 
@@ -83,7 +75,7 @@ mtcars %>%
   e_loess(mpg ~ disp)
 ```
 
-### Keras
+## Keras
 
 Plot keras history.
 
