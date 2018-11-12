@@ -35,5 +35,5 @@ URL: http://echarts4r.john-coene.com/
 BugReports: https://github.com/JohnCoene/echarts4r/issues
 VignetteBuilder: knitr
 Remotes:
-  JohnCoene/echarts4r.assets
+  JohnCoene/echarts4r.assets,
   JohnCoene/echarts4r.maps
