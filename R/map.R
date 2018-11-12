@@ -7,7 +7,7 @@
 #' @param map Map type.
 #' @param coord.system Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.
 #' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
-#' @param value,height,name Columns corresponding to registered map.
+#' @param id,value,height Columns corresponding to registered map.
 #' 
 #' @examples 
 #' \dontrun{

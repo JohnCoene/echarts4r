@@ -30,13 +30,15 @@ e_map_3d_custom(e, id, value, height, map = NULL, name = NULL,
 
 \item{map}{Map type.}
 
+\item{name}{name of the serie.}
+
 \item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 
 \item{coord.system}{Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.}
 
-\item{value, height, name}{Columns corresponding to registered map.}
+\item{id, value, height}{Columns corresponding to registered map.}
 }
 \description{
 Draw maps.
