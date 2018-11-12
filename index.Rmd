@@ -72,6 +72,7 @@ div(
         h4("echarts4r.assets"),
         p("Assets for globes, add visually interesting globe overlays and background."),
         code("remotes::install_github('JohnCoene/echarts4r.assets')"),
+        br(),
         p(
           htmltools::tags$a(
             href = "https://echarts4r-assets.john-coene.com/",
@@ -100,6 +101,7 @@ div(
         h4("echarts4r.maps"),
         p("A collection of 215 country maps to use with geo-spatial visualisations."),
         code("remotes::install_github('JohnCoene/echarts4r.maps')"),
+        br(),
         p(
           htmltools::tags$a(
             href = "https://github.com/JohnCoene/echarts4r.maps",
