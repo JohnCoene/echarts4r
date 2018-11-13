@@ -182,7 +182,7 @@ USArrests %>%
 
 ## Nested data
 
-You might observe in the official documentation that some series can take more data points than just x and y points, like [e_bar](https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.data).
+You might observe in the official documentation that some series can take more _data_ points than just x and y points, like [e_bar](https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.data); In the [official documentation](https://ecomfe.github.io/echarts-doc/public/en/option.html) go to "serie", select the one you are interested in (i.e.: bar) then select "data".
 
 `e_bar` lets you pass `serie` (from your initial data.frame) which corresponds to `value` in the [original library](https://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar.data). However the latter also takes, `label`, `itemStyle`, and `tooltip` but being JSON arrays they translate to lists in R and dealing with nested data.frames is not ideal. `e_add` remedies to that. It allows adding those nested data points.
 
@@ -193,7 +193,7 @@ Let's add some columns to the `iris` dataset which we will use in `e_add` to cus
 iris_dat <- iris %>% 
   dplyr::mutate(
     show = TRUE, # to show the labels
-    fontSize = round(Sepal.Length) * 2, # font size will correspond to Sepal.Length
+    fontSize = exp(Sepal.Length) / 10, # font size will correspond to Sepal.Length
     color = sample(c("red", "black", "blue"), n(), replace = TRUE) # assign a random color to the label
   )
 
@@ -203,4 +203,19 @@ iris_dat %>%
   e_line(Sepal.Length) %>% 
   e_add("label", show, fontSize, color) %>% # add our columns to "label"
   e_x_axis(min = 2.5)
+```
+
+Another example with `e_funnel`.
+
+```{r}
+funnel <- data.frame(
+  stage = c("View", "Click", "Purchase"), 
+  value = c(80, 30, 20),
+  color = c("blue", "red", "green")
+)
+
+funnel %>% 
+  e_charts() %>% 
+  e_funnel(value, stage) %>% 
+  e_add("itemStyle", color)
 ```
