@@ -215,6 +215,9 @@
       <a href="../articles/graphics.html">Graphics</a>
     </li>
     <li>
+      <a href="../articles/mark.html">Mark</a>
+    </li>
+    <li>
       <a href="../articles/themes.html">Themes</a>
     </li>
   </ul>
@@ -267,10 +270,10 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_heatmap</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
-  <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+  <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>calendar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_heatmap_</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
-  <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>calendar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -296,6 +299,10 @@
       <th>rm.x, rm.y</th>
       <td><p>Whether to remove x and y axis, only applies if <code>coord.system</code> is not 
 set to <code>cartesian2d</code>.</p></td>
+    </tr>
+    <tr>
+      <th>calendar</th>
+      <td><p>The index of the calendar to plot against.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -326,7 +333,7 @@ set to <code>cartesian2d</code>.</p></td>
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='no'>z</span>)
 
 <span class='co'># calendar   </span>
-<span class='no'>dates</span> <span class='kw'>&lt;-</span> <span class='fu'>seq.Date</span>(<span class='fu'>as.Date</span>(<span class='st'>"2018-01-01"</span>), <span class='fu'>as.Date</span>(<span class='st'>"2018-12-31"</span>), <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"day"</span>)
+<span class='no'>dates</span> <span class='kw'>&lt;-</span> <span class='fu'>seq.Date</span>(<span class='fu'>as.Date</span>(<span class='st'>"2017-01-01"</span>), <span class='fu'>as.Date</span>(<span class='st'>"2018-12-31"</span>), <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"day"</span>)
 <span class='no'>values</span> <span class='kw'>&lt;-</span> <span class='fu'>rnorm</span>(<span class='fu'>length</span>(<span class='no'>dates</span>), <span class='fl'>20</span>, <span class='fl'>6</span>)
 
 <span class='no'>year</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='kw'>date</span> <span class='kw'>=</span> <span class='no'>dates</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>values</span>)
@@ -334,6 +341,16 @@ set to <code>cartesian2d</code>.</p></td>
 <span class='no'>year</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>date</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_calendar.html'>e_calendar</a></span>(<span class='kw'>range</span> <span class='kw'>=</span> <span class='st'>"2018"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_heatmap</span>(<span class='no'>values</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"calendar"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>30</span>)
+
+<span class='co'># multiple years</span>
+<span class='no'>year</span> <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fu'>format</span>(<span class='no'>date</span>, <span class='st'>"%Y"</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='http://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>year</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>date</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_calendar.html'>e_calendar</a></span>(<span class='kw'>range</span> <span class='kw'>=</span> <span class='st'>"2017"</span>, <span class='kw'>top</span> <span class='kw'>=</span> <span class='fl'>40</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_calendar.html'>e_calendar</a></span>(<span class='kw'>range</span> <span class='kw'>=</span> <span class='st'>"2018"</span>, <span class='kw'>top</span> <span class='kw'>=</span> <span class='fl'>260</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_heatmap</span>(<span class='no'>values</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"calendar"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>30</span>)</div></pre>
   </div>

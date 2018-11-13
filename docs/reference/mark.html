@@ -215,6 +215,9 @@
       <a href="../articles/graphics.html">Graphics</a>
     </li>
     <li>
+      <a href="../articles/mark.html">Mark</a>
+    </li>
+    <li>
       <a href="../articles/themes.html">Themes</a>
     </li>
   </ul>
@@ -281,7 +284,7 @@
     </tr>
     <tr>
       <th>serie</th>
-      <td><p>Serie to mark on passed to <code>grep</code>, defaults to last added.</p></td>
+      <td><p>Serie or vector of series to mark on passed to <code>grep</code>, defaults to all series.</p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -315,14 +318,15 @@
   <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"AVG"</span>
 )
 
-<span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Murder</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Rape</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>UrbanPop</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_mark_point</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>max</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_mark_point</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>min</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_mark_line</span>(<span class='kw'>serie</span> <span class='kw'>=</span> <span class='st'>"Rape"</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>avg</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_mark_area</span>(<span class='kw'>serie</span> <span class='kw'>=</span> <span class='st'>"Rape"</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>list</span>(
+<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>wt</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>drat</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>cyl</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_mark_point</span>(<span class='st'>"wt"</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>max</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_mark_point</span>(<span class='fu'>c</span>(<span class='st'>"cyl"</span>, <span class='st'>"drat"</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>min</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_mark_line</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>avg</span>) <span class='kw'>%&gt;%</span> <span class='co'># applies to all</span>
+  <span class='fu'>e_mark_area</span>(<span class='kw'>serie</span> <span class='kw'>=</span> <span class='st'>"wt"</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>list</span>(
     <span class='fu'>list</span>(<span class='kw'>xAxis</span> <span class='kw'>=</span> <span class='st'>"min"</span>, <span class='kw'>yAxis</span> <span class='kw'>=</span> <span class='st'>"min"</span>),
     <span class='fu'>list</span>(<span class='kw'>xAxis</span> <span class='kw'>=</span> <span class='st'>"max"</span>, <span class='kw'>yAxis</span> <span class='kw'>=</span> <span class='st'>"max"</span>))
  )</div></pre>

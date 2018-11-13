@@ -26,9 +26,9 @@ library(echarts4r)
   <i class="fa fa-paint-brush" aria-hidden="true"></i>
   Themes
 </a>
-<a class="btn btn-info" href="news/index.html">
-  <i class="fa fa-newspaper-o" aria-hidden="true"></i>
-  Changelog
+<a class="btn btn-info" href="articles/actions-buttons.html">
+  <i class="fa fa-play" aria-hidden="true"></i>
+  Buttons
 </a>
 <a class="btn btn-default" href="http://shiny.john-coene.com/echarts4rShiny" target="_blank">
   <i class="fa fa-desktop" aria-hidden="true"></i>
@@ -138,8 +138,10 @@ e1 <- iris %>%
   e_scatter(Petal.Length, Sepal.Width, scale = "* 3") %>% 
   e_datazoom(show = FALSE, y.index = 0, toolbox = FALSE) %>% 
   e_x_axis(min = 4) %>% 
-  e_highlight(series.name = list("setosa", "versicolor", "virginica"), btn = "btn") %>% 
-  e_button("btn", "Highlight", class = "btn btn-primary", position = "bottom")
+  e_highlight(series.name = list("setosa", "versicolor", "virginica"), btn = "high") %>% 
+  e_downplay(series.name = list("setosa", "versicolor", "virginica"), btn = "down") %>% 
+  e_button("high", "Highlight", class = "btn btn-primary", position = "bottom") %>% 
+  e_button("down", "Downplay", class = "btn btn-default", position = "bottom")
 
 e2 <- iris %>% 
   group_by(Species) %>% 

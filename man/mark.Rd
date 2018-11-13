@@ -15,7 +15,7 @@ e_mark_area(e, serie = NULL, data = NULL, ...)
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{serie}{Serie to mark on passed to \code{\link{grep}}, defaults to last added.}
+\item{serie}{Serie or vector of series to mark on passed to \code{\link{grep}}, defaults to all series.}
 
 \item{data}{Placement.}
 

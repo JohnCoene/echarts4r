@@ -19,6 +19,7 @@ articles:
   leaflet-mapbox: leaflet-mapbox.html
   map: map.html
   map3d: map3d.html
+  mark: mark.html
   pictorial: pictorial.html
   shiny: shiny.html
   stats: stats.html

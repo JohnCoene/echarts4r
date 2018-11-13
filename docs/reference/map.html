@@ -215,6 +215,9 @@
       <a href="../articles/graphics.html">Graphics</a>
     </li>
     <li>
+      <a href="../articles/mark.html">Mark</a>
+    </li>
+    <li>
       <a href="../articles/themes.html">Themes</a>
     </li>
   </ul>
@@ -269,14 +272,14 @@
     <pre class="usage"><span class='fu'>e_map</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='st'>"world"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_map_</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='st'>"world"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+<span class='fu'>e_map_</span>(<span class='no'>e</span>, <span class='kw'>serie</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='st'>"world"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_map_3d</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='st'>"world"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_map_3d_</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='st'>"world"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'>e_map_3d_</span>(<span class='no'>e</span>, <span class='kw'>serie</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='st'>"world"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_map_3d_custom</span>(<span class='no'>e</span>, <span class='no'>id</span>, <span class='no'>value</span>, <span class='no'>height</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
@@ -297,6 +300,10 @@
       <td><p>Map type.</p></td>
     </tr>
     <tr>
+      <th>name</th>
+      <td><p>name of the serie.</p></td>
+    </tr>
+    <tr>
       <th>rm.x, rm.y</th>
       <td><p>Whether to remove x and y axis, defaults to <code>TRUE</code>.</p></td>
     </tr>
@@ -309,7 +316,7 @@
       <td><p>Coordinate system to use, one of <code>cartesian3D</code>, <code>geo3D</code>, <code>globe</code>.</p></td>
     </tr>
     <tr>
-      <th>value, height, name</th>
+      <th>id, value, height</th>
       <td><p>Columns corresponding to registered map.</p></td>
     </tr>
     </table>
