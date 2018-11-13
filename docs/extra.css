@@ -25,7 +25,7 @@ li>a {
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
     color: #f3f3f3;
-    background-color: #333333;
+    background-color: #B03A5B;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
@@ -46,13 +46,13 @@ li>a {
   color: #B03A5B;
 }
 
-.navbar-default .navbar-nav>.open>a, 
-.navbar-default .navbar-nav>.open>a:hover, 
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:hover,
 .navbar-default .navbar-nav>.open>a:focus{
   color: #d8d8d8;
 }
 
-.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover, 
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,
 .navbar-default .navbar-nav .open .dropdown-menu{
   color: #d8d8d8;
 }
