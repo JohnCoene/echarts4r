@@ -5,3 +5,4 @@ echarts4.Rproj
 usa.json
 inst/doc
 *.vs/
+.V8history
