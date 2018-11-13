@@ -508,6 +508,22 @@ e_restore <- function(e, btn = NULL){
 #' @param btn A \code{\link{e_button}} id.
 #' @param ... Any options, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.map}{official documentation}
 #' 
+#' @examples 
+#' choropleth <- data.frame(
+#'   countries = c(
+#'     "France", "Brazil", "China", "Russia", "Canada", "India", "United States",
+#'     "Argentina", "Australia"
+#'   ),
+#'   values = round(runif(9, 10, 25))
+#' )
+#' 
+#' choropleth %>% 
+#'   e_charts(countries) %>% 
+#'   e_map(values) %>% 
+#'   e_visual_map(min = 10, max = 25) %>% 
+#'   e_map_toggle_select(name = "China", btn = "btn") %>% 
+#'   e_button("btn", "Select China")
+#' 
 #' @seealso \code{\link{e_map_register}}
 #' 
 #' @name map_actions
@@ -516,7 +532,7 @@ e_map_select <- function(e, ..., btn = NULL){
   
   opts <- list()
   if(!is.null(btn)) opts$id <- btn
-  opts$data <- list(type = "mapSelect")
+  opts$data <- list(type = "mapSelect", ...)
   
   if(!is.null(btn)){
     if(!btn %in% names(e$x$buttons)){
@@ -537,7 +553,7 @@ e_map_unselect <- function(e, ..., btn = NULL){
   
   opts <- list()
   if(!is.null(btn)) opts$id <- btn
-  opts$data <- list(type = "mapUnSelect")
+  opts$data <- list(type = "mapUnSelect", ...)
   
   if(!is.null(btn)){
     if(!btn %in% names(e$x$buttons)){
@@ -558,7 +574,7 @@ e_map_toggle_select <- function(e, ..., btn = NULL){
   
   opts <- list()
   if(!is.null(btn)) opts$id <- btn
-  opts$data <- list(type = "mapToggleSelect")
+  opts$data <- list(type = "mapToggleSelect", ...)
   
   if(!is.null(btn)){
     if(!btn %in% names(e$x$buttons)){
