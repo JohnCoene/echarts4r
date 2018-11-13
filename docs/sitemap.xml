@@ -22,9 +22,6 @@
     <loc>http://echarts4r.john-coene.com/reference/connections.html</loc>
   </url>
   <url>
-    <loc>http://echarts4r.john-coene.com/reference/echarts4r-shiny.html</loc>
-  </url>
-  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_add.html</loc>
   </url>
   <url>
@@ -184,6 +181,9 @@
     <loc>http://echarts4r.john-coene.com/reference/e_title.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_toolbox_restore.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_tooltip.html</loc>
   </url>
   <url>
@@ -205,16 +205,19 @@
     <loc>http://echarts4r.john-coene.com/reference/e_zoom.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/echarts4r-shiny.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/formatters.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/graph.html</loc>
   </url>
   <url>
-    <loc>http://echarts4r.john-coene.com/reference/graphic.html</loc>
+    <loc>http://echarts4r.john-coene.com/reference/graph_action.html</loc>
   </url>
   <url>
-    <loc>http://echarts4r.john-coene.com/reference/graph_action.html</loc>
+    <loc>http://echarts4r.john-coene.com/reference/graphic.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/highlight_action.html</loc>
@@ -230,6 +233,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/leaflet.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/legend_action.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/line3D.html</loc>
