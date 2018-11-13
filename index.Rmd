@@ -66,19 +66,16 @@ The package is available on [CRAN](https://CRAN.R-project.org/package=echarts4r)
 install.packages("echarts4r")
 ```
 
-You can also install the development version of echarts4r with `devtools` or `remotes` from Github or Bitbucket.
+You can also install the development version of echarts4r with `remotes` from Github.
 
 ```{r, eval=FALSE}
 # install.packages("remotes")
 remotes::install_github("JohnCoene/echarts4r") # github
 ```
 
-```{r, eval=FALSE}
-# install.packages("remotes")
-remotes::install_bitbucket("JohnCoene/echarts4r") # bitbucket
-```
-
 ## Companions
+
+Companion packages to make `echarts4r` even better.
 
 ```{r, echo=FALSE}
 div(
@@ -163,7 +160,7 @@ e1 <- iris %>%
   e_highlight(series.name = list("setosa", "versicolor", "virginica"), btn = "high") %>% 
   e_downplay(series.name = list("setosa", "versicolor", "virginica"), btn = "down") %>% 
   e_button("high", "Highlight", class = "btn btn-primary", position = "bottom") %>% 
-  e_button("down", "Downplay", class = "btn btn-default", position = "bottom")
+  e_button("down", "Downplay", class = "btn btn-default", position = "bottom") 
 
 e2 <- iris %>% 
   group_by(Species) %>% 
