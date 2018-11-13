@@ -18,11 +18,13 @@ knitr::opts_chunk$set(
 library(echarts4r)
 ```
 
-`echarts4r` comes with proxies (functions ending on `_p`) as well as the ability access selected data. You will find a demo of shiny working with `echarts4r` [here](http://shiny.john-coene.com/echarts4rShiny/).
+`echarts4r` comes with proxies (functions ending in `_p`) as well as the ability access selected data. You will find a demo of shiny working with `echarts4r` [here](http://shiny.john-coene.com/echarts4rShiny/).
 
 <a href = "http://shiny.john-coene.com/echarts4rShiny/" target ="_blank" class = "btn btn-default">
   Shiny Demo
 </a>
+
+## Callbacks
 
 Get data from shiny with the following:
 
@@ -36,6 +38,8 @@ Get data from shiny with the following:
 * `elementId` + `_mouseover_data_value` - returns value of hovered data point.
 * `elementId` + `_mouseover_row` - returns row o hovered data point.
 * `elementId` + `_mouseover_serie` - returns name of serie of hovered data point.
+
+## Proxies
 
 Interact with the charts without redrawing (proxies):
 
@@ -86,6 +90,8 @@ server <- function(input, output, session){
 
 shinyApp(ui, server)
 ```
+
+## Loading
 
 You can also show a spinner while shiny recalculates.
 

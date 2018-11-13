@@ -215,7 +215,7 @@
       <h1>Shiny</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2018-11-12</h4>
+            <h4 class="date">2018-11-13</h4>
       
       
       <div class="hidden name"><code>shiny.Rmd</code></div>
@@ -224,8 +224,11 @@
 
     
     
-<p><code>echarts4r</code> comes with proxies (functions ending on <code>_p</code>) as well as the ability access selected data. You will find a demo of shiny working with <code>echarts4r</code> <a href="http://shiny.john-coene.com/echarts4rShiny/">here</a>.</p>
+<p><code>echarts4r</code> comes with proxies (functions ending in <code>_p</code>) as well as the ability access selected data. You will find a demo of shiny working with <code>echarts4r</code> <a href="http://shiny.john-coene.com/echarts4rShiny/">here</a>.</p>
 <p><a href="http://shiny.john-coene.com/echarts4rShiny/" target="_blank" class="btn btn-default"> Shiny Demo </a></p>
+<div id="callbacks" class="section level2">
+<h2 class="hasAnchor">
+<a href="#callbacks" class="anchor"></a>Callbacks</h2>
 <p>Get data from shiny with the following:</p>
 <ul>
 <li>
@@ -249,6 +252,10 @@
 <li>
 <code>elementId</code> + <code>_mouseover_serie</code> - returns name of serie of hovered data point.</li>
 </ul>
+</div>
+<div id="proxies" class="section level2">
+<h2 class="hasAnchor">
+<a href="#proxies" class="anchor"></a>Proxies</h2>
 <p>Interact with the charts without redrawing (proxies):</p>
 <ul>
 <li>
@@ -299,6 +306,10 @@
 <a class="sourceLine" id="cb1-36" data-line-number="36">}</a>
 <a class="sourceLine" id="cb1-37" data-line-number="37"></a>
 <a class="sourceLine" id="cb1-38" data-line-number="38"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
+</div>
+<div id="loading" class="section level2">
+<h2 class="hasAnchor">
+<a href="#loading" class="anchor"></a>Loading</h2>
 <p>You can also show a spinner while shiny recalculates.</p>
 <p>Without loading, chart redraws with neat animation.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># no redraw</span></a>
@@ -350,9 +361,19 @@
 <a class="sourceLine" id="cb3-18" data-line-number="18">}</a>
 <a class="sourceLine" id="cb3-19" data-line-number="19"></a>
 <a class="sourceLine" id="cb3-20" data-line-number="20"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#callbacks">Callbacks</a></li>
+      <li><a href="#proxies">Proxies</a></li>
+      <li><a href="#loading">Loading</a></li>
+      </ul>
+</div>
       </div>
 
 </div>
