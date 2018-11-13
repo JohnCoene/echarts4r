@@ -99,6 +99,8 @@ navbar:
           href: articles/actions-buttons.html
         - text: "Graphics"
           href: articles/graphics.html
+        - text: "Mark"
+          href: articles/mark.html
         - text: "Themes"
           href: articles/themes.html
     - text: "Shiny" 
