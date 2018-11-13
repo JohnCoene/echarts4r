@@ -38,7 +38,7 @@ div(
         tags$i(class = "fa fa-paint-brush"),
         class = "btn btn-primary",
         href = "articles/themes.html",
-        "Get Started"
+        "Themes"
       ),
       tags$a(
         tags$i(class = "fa fa-play"),

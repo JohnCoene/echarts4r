@@ -109,23 +109,14 @@ HTMLWidgets.widget({
         }
         
         // buttons
-        var buttons = x.buttons;
-        console.log(buttons);
-        Object.keys(buttons).map( function(buttonId){
-          console.log(buttonId);
-          document.getElementById(buttonId).addEventListener('click', 
-            (function(id) {
-              const scoped_id = id;
-              return function(e){
-                buttons[scoped_id].forEach(function(el){
-                  chart.dispatchAction(el.data);
-                });
-              };
+        for(var key in x.buttons){
+           document.getElementById(key).addEventListener('click', function(){
+            for(var b = 0; b < x.buttons[key].length; b++){
+              chart.dispatchAction(x.buttons[key][b].data);
             }
-            )(buttonId)
-          );
-        });
-          
+          });
+        }
+        
         if(x.hasOwnProperty('on')){
           for(var e = 0; e < x.on.length; e++){
             chart.on(x.on[e].event, x.on[e].query, x.on[e].handler);
