@@ -25,7 +25,7 @@ li>a {
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
     color: #f3f3f3;
-    background-color: #B03A5B;
+    background-color: #333333;
 }
 
 .navbar-default .navbar-nav > li > a:hover,

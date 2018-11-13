@@ -12,29 +12,51 @@ library(echarts4r)
 
 [![Travis-CI Build Status](https://travis-ci.org/JohnCoene/echarts4r.svg?branch=master)](https://travis-ci.org/JohnCoene/echarts4r) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/JohnCoene/echarts4r?branch=master&svg=true)](https://ci.appveyor.com/project/JohnCoene/echarts4r) [![Bitbucket Build Status](https://img.shields.io/bitbucket/pipelines/JohnCoene/echarts4r.svg)](https://bitbucket.org/JohnCoene/echarts4r) [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing) [![version](https://img.shields.io/github/tag/JohnCoene/echarts4r.svg)](https://github.com/JohnCoene/echarts4r/releases) [![GitHub closed issues](https://img.shields.io/github/issues-closed/JohnCoene/echarts4r.svg)](https://github.com/JohnCoene/echarts4r/issues) [![echarts4r](https://cranlogs.r-pkg.org/badges/echarts4r)](https://CRAN.R-project.org/package=echarts4r)
 
-
-<img src="reference/figures/logo.png" align="left" style="max-height:300px;margin-right:5%;"/>
-
-[ECharts](http://echarts.baidu.com/) 4: powerful interactive visualisations in R.
-
-<div class = "row">
-<a class="btn btn-success" href="articles/get_started.html">
-  <i class="fa fa-rocket" aria-hidden="true"></i>
-  Get Started
-</a>
-<a class="btn btn-primary" href="articles/themes.html">
-  <i class="fa fa-paint-brush" aria-hidden="true"></i>
-  Themes
-</a>
-<a class="btn btn-info" href="articles/actions-buttons.html">
-  <i class="fa fa-play" aria-hidden="true"></i>
-  Buttons
-</a>
-<a class="btn btn-default" href="http://shiny.john-coene.com/echarts4rShiny" target="_blank">
-  <i class="fa fa-desktop" aria-hidden="true"></i>
-  Shiny demo
-</a>
-</div>
+```{r, echo = FALSE}
+div(
+  class = "row",
+  div(
+    class = "col-md-4",
+    img(
+      src = "reference/figures/logo.png",
+      class = "img-responsive responsive-img"
+    )
+  ),
+  div(
+    class = "col-md-8",
+    p(
+      "Powerful interactive visualisations in R."
+    ),
+    p(
+      tags$a(
+        tags$i(class = "fa fa-rocket"),
+        class = "btn btn-success",
+        href = "articles/get_started.html",
+        "Get Started"
+      ),
+      tags$a(
+        tags$i(class = "fa fa-paint-brush"),
+        class = "btn btn-primary",
+        href = "articles/themes.html",
+        "Get Started"
+      ),
+      tags$a(
+        tags$i(class = "fa fa-play"),
+        class = "btn btn-info",
+        href = "articles/actions-buttons",
+        "Buttons"
+      ),
+      tags$a(
+        tags$i(class = "fa fa-desktop"),
+        target = "_blank",
+        class = "btn btn-default",
+        href = "http://shiny.john-coene.com/echarts4rShiny",
+        "Shiny Demo"
+      )
+    )
+  )
+)
+```
 
 ## Installation
 
