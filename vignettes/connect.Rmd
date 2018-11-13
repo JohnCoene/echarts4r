@@ -18,6 +18,8 @@ library(htmltools)
 library(echarts4r)
 ```
 
+## Basics
+
 Since version `0.1.2` you can connect multiple two charts together which might make it even easier. Below we create two charts, with `e_datazoom`, hiding one of the latter. On the second chart we run `e_connect` to connect it with the other; sliders are now linked.
 
 You can link charts together in two different ways, one with `e_connect` by refering other charts's id (`elementId`)
@@ -111,3 +113,51 @@ e_arrange(e6, e7, cols = 2, rows = 1)
 ```
 
 On the geo-spatial visualisations above you can slide the visual map to filter states/kingdoms (because `e_visual_map` defaults to `calculable = TRUE`).
+
+## Shiny
+
+There is no need for `e_arrange` in Shiny, though `e_connect` and `e_arrange` work hand in hand you can use one without the other. In fact you don't truly have to use `e_arrange` in R markdown either.
+
+Once the charts are connected they don't need to be side by side.
+
+```r
+library(shiny)
+library(echarts4r)
+
+ui <- fluidPage(
+  fluidRow(
+  column(5, echarts4rOutput("plot1")),
+  column(2, "Charts are connected, no need for", code("e_arrange")),
+  column(5, echarts4rOutput("plot2"))
+  )
+)
+
+server <- function(input, output, session) {
+  
+  output$plot1 <- renderEcharts4r({
+    cars %>% 
+      e_charts(
+        speed,
+        height = 200
+      ) %>% 
+      e_scatter(dist) %>% 
+      e_datazoom(show = FALSE, y.index = 0) %>% 
+      e_group("grp")
+  })
+  
+  output$plot2 <- renderEcharts4r({
+    cars %>% 
+      e_charts(
+        dist,
+        height = 200
+      ) %>% 
+      e_scatter(speed) %>% 
+      e_datazoom(y.index = 0) %>% 
+      e_group("grp") %>%  # assign group
+      e_connect_group("grp")
+  })
+  
+}
+
+shinyApp(ui, server)
+```
