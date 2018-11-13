@@ -63,6 +63,18 @@ flights %>%
 
 ## GeoJSON
 
+
+The companion package [echarts4r.maps](https://echarts4r-maps.john-coene.com) comes with 215 maps.
+
+You can install the package with:
+
+```r
+install.packages("remotes")
+remotes::install_github('JohnCoene/echarts4r.maps')
+```
+
+View the full list of maps with `echarts4r.maps::em_bank()`.
+
 ```{r}
 library(echarts4r.maps)
 
@@ -84,3 +96,5 @@ flights %>%
     lineStyle = list(normal = list(curveness = 0.3))
    )
 ```
+
+You can also use your own geoJSON with `e_map_register`.

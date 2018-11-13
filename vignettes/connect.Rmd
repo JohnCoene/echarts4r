@@ -80,3 +80,34 @@ e5 <- mtcars %>%
 ```{r, eval = TRUE}
 e_arrange(e4, e5)
 ```
+
+You can connect pretty much anything, including geospatial visualisations, it'll work as long as they share one or more thing in common (i.e.: serie `name`).
+
+```{r}
+library(echarts4r.maps)
+
+USArrests$state <- row.names(USArrests)
+
+e6 <- USArrests %>% 
+  e_charts(state, elementId = "US") %>%
+  em_map("USA") %>% 
+  e_map_3d(Murder, map = "USA", name = "Murder", boxWidth = 70) %>% 
+  e_visual_map(Murder)
+
+# this is made up
+UK <- data.frame(
+  kingdoms = c("England", "Wales", "Nothern Ireland", "Scotland"),
+  murder = c(.8, 5, 13.2, 17.4)
+)
+
+e7 <- UK %>% 
+  e_charts(kingdoms) %>%
+  em_map("United_Kingdom") %>% 
+  e_map_3d(murder, map = "United_Kingdom", name = "Murder", boxWidth = 50) %>% 
+  e_visual_map(murder, show = FALSE) %>% 
+  e_connect("US")
+
+e_arrange(e6, e7, cols = 2, rows = 1)
+```
+
+On the geo-spatial visualisations above you can slide the visual map to filter states/kingdoms (because `e_visual_map` defaults to `calculable = TRUE`).
