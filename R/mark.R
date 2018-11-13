@@ -22,14 +22,15 @@
 #'   name = "AVG"
 #' )
 #' 
-#' USArrests %>% 
-#'   e_charts(Murder) %>% 
-#'   e_line(Rape) %>% 
-#'   e_line(UrbanPop) %>% 
-#'   e_mark_point(data = max) %>% 
-#'   e_mark_point(data = min) %>% 
-#'   e_mark_line(serie = "Rape", data = avg) %>% 
-#'   e_mark_area(serie = "Rape", data = list(
+#' mtcars %>% 
+#'   e_charts(mpg) %>% 
+#'   e_line(wt) %>% 
+#'   e_line(drat) %>% 
+#'   e_line(cyl) %>% 
+#'   e_mark_point("wt", data = max) %>% 
+#'   e_mark_point(c("cyl", "drat"), data = min) %>% 
+#'   e_mark_line(data = avg) %>% # applies to all
+#'   e_mark_area(serie = "wt", data = list(
 #'     list(xAxis = "min", yAxis = "min"), 
 #'     list(xAxis = "max", yAxis = "max"))
 #'  )
@@ -45,19 +46,21 @@ e_mark_point <- function(e, serie = NULL, data = NULL, ...){
     stop("must pass e", call. = FALSE)
   
   if(is.null(serie))
-    index <- length(e$x$opts$series)
+    index <- 1:length(e$x$opts$series)
   else 
     index <- .get_index(e, serie)
   
-  point <- list(...)
-  
-  if(!is.null(data))
-    point$data <- list(data)
-  
-  if(is.null(e$x$opts$series[[index]]$markPoint))
-    e$x$opts$series[[index]]$markPoint <- append(e$x$opts$series[[index]]$markPoint, point)
-  else
-    e$x$opts$series[[index]]$markPoint$data <- append(e$x$opts$series[[index]]$markPoint$data, list(data))
+  for(i in index){
+    point <- list(...)
+    
+    if(!is.null(data))
+      point$data <- list(data)
+    
+    if(is.null(e$x$opts$series[[i]]$markPoint))
+      e$x$opts$series[[i]]$markPoint <- append(e$x$opts$series[[i]]$markPoint, point)
+    else
+      e$x$opts$series[[i]]$markPoint$data <- append(e$x$opts$series[[i]]$markPoint$data, list(data))
+  }
   
   e
 }
@@ -70,19 +73,21 @@ e_mark_line <- function(e, serie = NULL, data = NULL, ...){
     stop("must pass e", call. = FALSE)
   
   if(is.null(serie))
-    index <- length(e$x$opts$series)
+    index <- 1:length(e$x$opts$series)
   else 
     index <- .get_index(e, serie)
   
-  point <- list(...)
-  
-  if(!is.null(data))
-    point$data <- list(data)
-  
-  if(is.null(e$x$opts$series[[index]]$markLine))
-    e$x$opts$series[[index]]$markLine <- append(e$x$opts$series[[index]]$markLine, point)
-  else
-    e$x$opts$series[[index]]$markLine$data <- append(e$x$opts$series[[index]]$markLine$data, list(data))
+  for(i in index){
+    point <- list(...)
+    
+    if(!is.null(data))
+      point$data <- list(data)
+    
+    if(is.null(e$x$opts$series[[i]]$markLine))
+      e$x$opts$series[[i]]$markLine <- append(e$x$opts$series[[i]]$markLine, point)
+    else
+      e$x$opts$series[[i]]$markLine$data <- append(e$x$opts$series[[i]]$markLine$data, list(data))
+  }
   
   e
 }
@@ -95,19 +100,21 @@ e_mark_area <- function(e, serie = NULL, data = NULL, ...){
     stop("must pass e", call. = FALSE)
   
   if(is.null(serie))
-    index <- length(e$x$opts$series)
+    index <- 1:length(e$x$opts$series)
   else 
     index <- .get_index(e, serie)
   
-  point <- list(...)
-  
-  if(!is.null(data))
-    point$data <- list(data)
-  
-  if(is.null(e$x$opts$series[[index]]$markLine))
-    e$x$opts$series[[index]]$markArea <- append(e$x$opts$series[[index]]$markArea, point)
-  else
-    e$x$opts$series[[index]]$markArea$data <- append(e$x$opts$series[[index]]$markArea$data, list(data))
+  for(i in index){
+    point <- list(...)
+    
+    if(!is.null(data))
+      point$data <- list(data)
+    
+    if(is.null(e$x$opts$series[[i]]$markArea))
+      e$x$opts$series[[i]]$markArea <- append(e$x$opts$series[[i]]$markArea, point)
+    else
+      e$x$opts$series[[i]]$markArea$data <- append(e$x$opts$series[[i]]$markArea$data, list(data))
+  }
   
   e
 }

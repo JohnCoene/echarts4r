@@ -500,6 +500,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
 }
 
 .get_index <- function(e, serie){
+  serie <- paste0(serie, collapse = "|")
   purrr::map(e$x$opts$series, "name") %>% 
     unlist() %>% 
     grep(serie, .)

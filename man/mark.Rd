@@ -40,14 +40,15 @@ avg <- list(
   name = "AVG"
 )
 
-USArrests \%>\% 
-  e_charts(Murder) \%>\% 
-  e_line(Rape) \%>\% 
-  e_line(UrbanPop) \%>\% 
-  e_mark_point(data = max) \%>\% 
-  e_mark_point(data = min) \%>\% 
-  e_mark_line(serie = "Rape", data = avg) \%>\% 
-  e_mark_area(serie = "Rape", data = list(
+mtcars \%>\% 
+  e_charts(mpg) \%>\% 
+  e_line(wt) \%>\% 
+  e_line(drat) \%>\% 
+  e_line(cyl) \%>\% 
+  e_mark_point("wt", data = max) \%>\% 
+  e_mark_point(c("cyl", "drat"), data = min) \%>\% 
+  e_mark_line(data = avg) \%>\% # applies to all
+  e_mark_area(serie = "wt", data = list(
     list(xAxis = "min", yAxis = "min"), 
     list(xAxis = "max", yAxis = "max"))
  )
