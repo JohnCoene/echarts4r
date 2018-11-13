@@ -21,6 +21,8 @@ library(echarts4r)
 
 Since version `1.2.0` one can add actions and optionally tie them to buttons.
 
+## Actions
+
 For instance once can use the `e_zoom` action to zoom on the graph (requires `e_datazoom` initialised).
 
 ```{r}
@@ -34,6 +36,8 @@ cars %>%
     end = 40
   ) 
 ```
+
+## Buttons
 
 Add a button to let the user trigger that action. We add a button with `e_button` and specify the id of our button in the action (`e_zoom`) so that the button knows which action to trigger.
 
@@ -127,6 +131,8 @@ iris %>%
     "highlight"
   )
 ```
+
+## All
 
 Actions (all can be tied to buttons):
 
