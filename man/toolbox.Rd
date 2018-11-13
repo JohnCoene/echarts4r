@@ -19,12 +19,33 @@ e_toolbox(e, ...)
 \description{
 Add toolbox interface.
 }
+\details{
+Valid \code{feature}:
+\itemize{
+  \item{\code{saveAsImage}}
+  \item{\code{brush}}
+  \item{\code{restore}}
+  \item{\code{dataView}}
+  \item{\code{dataZoom}}
+  \item{\code{magicType}}
+}
+}
 \examples{
 USArrests \%>\% 
   e_charts(UrbanPop) \%>\% 
   e_line(Assault) \%>\% 
   e_area(Murder, y.index = 1, x.index = 1) \%>\% 
   e_datazoom(x.index = 0) 
+  
+mtcars \%>\% 
+  dplyr::mutate(model = row.names(.)) \%>\%  
+  e_charts(model) \%>\% 
+  e_line(qsec) \%>\% 
+  e_toolbox() \%>\% 
+  e_toolbox_feature(
+    feature = "magicType", 
+    type = list("line", "bar")
+  ) 
 
 }
 \seealso{

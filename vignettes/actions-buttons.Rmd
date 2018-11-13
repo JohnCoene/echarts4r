@@ -136,3 +136,5 @@ Actions (all can be tied to buttons):
 - `e_visual_map_range` to select part of `e_visual_map`.
 - `e_pie_select` & `e_pie_unselect` to select or unselect pie slices.
 - `e_focus_adjacency` & `e_unfocus_adjacency` to focus or unfocus nodes on a graph.
+- `e_legend_scroll`, `e_legend_toggle_select`, `e_legend_unselect` & `e_legend_select` to interact with the legend.
+- `e_toolbox_restore` to restore the toolbox.

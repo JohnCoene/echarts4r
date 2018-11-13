@@ -336,3 +336,158 @@ e_unfocus_adjacency <- function(e, ..., btn = NULL){
   
   return(e)
 }
+
+#' Legend
+#' 
+#' @inheritParams e_bar
+#' @param btn A \code{\link{e_button}} id.
+#' @param name Legend name.
+#' @param scroll_index Controle the scrolling of legend when \code{type = "scroll"} in \code{e_legend}.
+#' @param legend_id Id of legend.
+#' 
+#' @examples 
+#' e <- CO2 %>% 
+#'   group_by(Type) %>% 
+#'   e_charts(conc) %>% 
+#'   e_scatter(uptake) 
+#'   
+#' e %>% 
+#'   e_legend_unselect("Quebec")
+#'   
+#' e %>% 
+#'   e_legend_unselect("Quebec", btn = "btn") %>% 
+#'   e_button("btn", "Quebec")
+#' 
+#' @name legend_action
+#' @export
+e_legend_select <- function(e, name, btn = NULL){
+  
+  if(missing(name))
+    stop("missing name", call. = FALSE)
+  
+  opts <- list()
+  if(!is.null(btn)) opts$id <- btn
+  opts$data <- list(type = "legendSelect")
+  
+  if(!is.null(name))
+    opts$data$name <- name
+  
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  
+  return(e)
+}
+
+#' @rdname legend_action
+#' @export
+e_legend_unselect <- function(e, name, btn = NULL){
+  
+  if(missing(name))
+    stop("missing name", call. = FALSE)
+  
+  opts <- list()
+  if(!is.null(btn)) opts$id <- btn
+  opts$data <- list(type = "legendUnSelect")
+  
+  if(!is.null(name))
+    opts$data$name <- name
+  
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  
+  return(e)
+}
+
+#' @rdname legend_action
+#' @export
+e_legend_toggle_select <- function(e, name, btn = NULL){
+  
+  if(missing(name))
+    stop("missing name", call. = FALSE)
+  
+  opts <- list()
+  if(!is.null(btn)) opts$id <- btn
+  opts$data <- list(type = "legendToggleSelect")
+  
+  if(!is.null(name))
+    opts$data$name <- name
+  
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  
+  return(e)
+}
+
+#' @rdname legend_action
+#' @export
+e_legend_scroll <- function(e, scroll_index = NULL, legend_id = NULL, btn = NULL){
+  opts <- list()
+  if(!is.null(btn)) opts$id <- btn
+  opts$data <- list(type = "legendScroll")
+  
+  if(!is.null(scroll_index))
+    opts$data$scrollDataIndex <- scroll_index
+  
+  if(!is.null(legend_id))
+    opts$data$legendId <- legend_id
+  
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  
+  return(e)
+}
+
+#' Restore Toolbox
+#' 
+#' Restore Toolbox.
+#' 
+#' @inheritParams e_bar
+#' @param btn A \code{\link{e_button}} id.
+#' 
+#' @export
+e_toolbox_restore <- function(e, btn = NULL){
+  
+  opts <- list()
+  if(!is.null(btn)) opts$id <- btn
+  opts$data <- list(type = "legendToggleSelect")
+  
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  
+  return(e)
+}

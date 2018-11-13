@@ -150,12 +150,32 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), ...){
 #' @inheritParams e_bar
 #' @param feature Feature to add, defaults to all.
 #' 
+#' @details Valid \code{feature}:
+#' \itemize{
+#'   \item{\code{saveAsImage}}
+#'   \item{\code{brush}}
+#'   \item{\code{restore}}
+#'   \item{\code{dataView}}
+#'   \item{\code{dataZoom}}
+#'   \item{\code{magicType}}
+#' }
+#' 
 #' @examples 
 #' USArrests %>% 
 #'   e_charts(UrbanPop) %>% 
 #'   e_line(Assault) %>% 
 #'   e_area(Murder, y.index = 1, x.index = 1) %>% 
 #'   e_datazoom(x.index = 0) 
+#'   
+#' mtcars %>% 
+#'   dplyr::mutate(model = row.names(.)) %>%  
+#'   e_charts(model) %>% 
+#'   e_line(qsec) %>% 
+#'   e_toolbox() %>% 
+#'   e_toolbox_feature(
+#'     feature = "magicType", 
+#'     type = list("line", "bar")
+#'   ) 
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#toolbox}{Additional arguments}
 #' 

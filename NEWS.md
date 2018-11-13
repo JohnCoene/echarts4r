@@ -39,7 +39,7 @@ First iteration of the graphic low-level API:
 * `e_datazoom` takes a `toolbox` argument to optionally not the `dataZoom` toolbox element.
 * Much improved documentation
 * `e_map` and `e_map_3d` no longer require the `serie` argument.
-* The `serie` argument of the mark family functions (i.e.: `e_mark_point`) can now take a vector _and_ if left `NULL` the point is marked on all series.
+* `e_mark_*`: The `serie` argument of the mark family functions (i.e.: `e_mark_point`) can now take a vector _and_ if left `NULL` the point is marked on all series.
 
 # echarts4r 0.1.1
 
