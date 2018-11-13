@@ -472,12 +472,93 @@ e_legend_scroll <- function(e, scroll_index = NULL, legend_id = NULL, btn = NULL
 #' @inheritParams e_bar
 #' @param btn A \code{\link{e_button}} id.
 #' 
+#' @examples 
+#' cars %>% 
+#'   e_charts(speed) %>% 
+#'   e_scatter(dist) %>% 
+#'   e_datazoom() %>% 
+#'   e_restore("btn") %>% 
+#'   e_button("btn", "Reset")
+#' 
 #' @export
-e_toolbox_restore <- function(e, btn = NULL){
+e_restore <- function(e, btn = NULL){
   
   opts <- list()
   if(!is.null(btn)) opts$id <- btn
-  opts$data <- list(type = "legendToggleSelect")
+  opts$data <- list(type = "restore")
+  
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  
+  return(e)
+}
+
+#' Map Actions
+#' 
+#' Map-related actions.
+#' 
+#' @inheritParams e_bar
+#' @param btn A \code{\link{e_button}} id.
+#' @param ... Any options, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.map}{official documentation}
+#' 
+#' @seealso \code{\link{e_map_register}}
+#' 
+#' @name map_actions
+#' @export
+e_map_select <- function(e, ..., btn = NULL){
+  
+  opts <- list()
+  if(!is.null(btn)) opts$id <- btn
+  opts$data <- list(type = "mapSelect")
+  
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  
+  return(e)
+}
+
+#' @rdname map_actions
+#' @export
+e_map_unselect <- function(e, ..., btn = NULL){
+  
+  opts <- list()
+  if(!is.null(btn)) opts$id <- btn
+  opts$data <- list(type = "mapUnSelect")
+  
+  if(!is.null(btn)){
+    if(!btn %in% names(e$x$buttons)){
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  
+  return(e)
+}
+
+#' @rdname map_actions
+#' @export
+e_map_toggle_select <- function(e, ..., btn = NULL){
+  
+  opts <- list()
+  if(!is.null(btn)) opts$id <- btn
+  opts$data <- list(type = "mapToggleSelect")
   
   if(!is.null(btn)){
     if(!btn %in% names(e$x$buttons)){
