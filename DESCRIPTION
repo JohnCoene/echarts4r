@@ -13,7 +13,6 @@ Imports:
   magrittr,
   dplyr,
   purrr,
-  base64enc,
   countrycode,
   d3r,
   broom,

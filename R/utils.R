@@ -444,13 +444,6 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     }) 
 }
 
-.get_file <- function(file, convert){
-  file <- system.file(file, package = "echarts4r")
-  if(isTRUE(convert))
-    e_convert_texture(file) -> file
-  file
-}
-
 .build_cartesian3D <- function(e, ..., i = 1){
   e$x$data[[i]] %>%
     dplyr::select_(
