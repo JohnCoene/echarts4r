@@ -1,6 +1,6 @@
 Package: echarts4r
 Title: Create Interactive Graphs with 'Echarts JavaScript' Version 4
-Date: 2018-09-12
+Date: 2018-11-14
 Version: 0.1.2.9000
 Authors@R: person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre"))
 Description: Easily create interactive charts by leveraging the 'Echarts Javascript' library which includes
@@ -17,13 +17,13 @@ Imports:
   countrycode,
   d3r,
   broom,
-  shiny,
-  data.tree
+  shiny
 RoxygenNote: 6.1.0
 Suggests: 
   echarts4r.assets,
   echarts4r.maps,
-  jsonlite, 
+  data.tree,
+  jsonlite,
   knitr,
   rmarkdown,
   quantmod,
