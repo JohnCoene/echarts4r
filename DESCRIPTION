@@ -18,7 +18,7 @@ Imports:
   broom,
   shiny,
   scales
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests: 
   echarts4r.assets,
   echarts4r.maps,

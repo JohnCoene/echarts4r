@@ -84,7 +84,12 @@ e_color_range_ <- function(data, input, output, colors = c("#bf444c", "#d88273",
   
   serie <- data[[input]]
   
-  data[[output]] <- colorRampPalette(colors, ...)(length(serie))
+  if(inherits(serie, "factor") || inherits(serie, "character"))
+    col <- scales::col_numeric(colors, domain = range(serie))(serie)
+  else
+    col <- scales::col_numeric(colors, domain = range(serie))(serie)
+  
+  data[[output]] <- col
   data
 }
 
