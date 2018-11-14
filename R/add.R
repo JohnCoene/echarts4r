@@ -1000,9 +1000,6 @@ e_gauge_ <- e_gauge
 #' flights %>% 
 #'   e_charts() %>% 
 #'   e_globe(
-#'     base.texture = e_map_texture(),
-#'     height.texture = e_map_texture(),
-#'     environment = e_stars_texture(),
 #'     displacementScale = 0.05
 #'   ) %>% 
 #'   e_lines_3d(
@@ -1091,10 +1088,7 @@ e_line_3d <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, rm
 #' 
 #' data %>% 
 #'   e_charts(lon) %>% 
-#'   e_globe(
-#'     environment = e_stars_texture(),
-#'     base.texture = e_globe_texture()
-#'   ) %>% 
+#'   e_globe() %>% 
 #'   e_bar_3d(lat, value, coord_system = "globe") %>% 
 #'   e_visual_map()
 #'   
@@ -1246,8 +1240,6 @@ e_lines <- function(e, source_lon, source_lat, target_lon, target_lat, coord_sys
 #' airports %>% 
 #'   e_charts(long) %>% 
 #'   e_globe(
-#'     environment = e_stars_texture(),
-#'     base.texture = e_globe_texture(), 
 #'     globeOuterRadius = 100
 #'   ) %>% 
 #'   e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = 'lighter') %>% 

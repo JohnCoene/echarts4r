@@ -18,9 +18,6 @@
 #' data %>% 
 #'   e_charts(lon) %>% 
 #'   e_globe(
-#'     environment = e_stars_texture(),
-#'     base_texture = e_globe_texture(),
-#'     height_texture = e_globe_texture(),
 #'     displacementScale = 0.04
 #'   ) %>% 
 #'   e_bar_3d(lat, value, "globe") %>% 

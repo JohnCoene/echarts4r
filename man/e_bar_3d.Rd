@@ -39,10 +39,7 @@ names(data) <- c("lon", "lat", "value")
 
 data \%>\% 
   e_charts(lon) \%>\% 
-  e_globe(
-    environment = e_stars_texture(),
-    base.texture = e_globe_texture()
-  ) \%>\% 
+  e_globe() \%>\% 
   e_bar_3d(lat, value, coord_system = "globe") \%>\% 
   e_visual_map()
   

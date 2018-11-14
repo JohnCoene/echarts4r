@@ -75,8 +75,6 @@ airports <- read.csv(
 airports \%>\% 
   e_charts(long) \%>\% 
   e_globe(
-    environment = e_stars_texture(),
-    base.texture = e_globe_texture(), 
     globeOuterRadius = 100
   ) \%>\% 
   e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = 'lighter') \%>\% 
