@@ -8,16 +8,16 @@
 \title{Histogram & Density}
 \usage{
 e_histogram(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
-  bar.width = "99\%", x.index = 0, y.index = 0, ...)
+  bar.width = "99\%", x_index = 0, y_index = 0, ...)
 
 e_density(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
-  x.index = 0, y.index = 0, ...)
+  x_index = 0, y_index = 0, ...)
 
 e_histogram_(e, serie, breaks = "Sturges", name = NULL,
-  legend = TRUE, bar.width = "99\%", x.index = 0, y.index = 0, ...)
+  legend = TRUE, bar.width = "99\%", x_index = 0, y_index = 0, ...)
 
 e_density_(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
-  x.index = 0, y.index = 0, ...)
+  x_index = 0, y_index = 0, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -32,9 +32,9 @@ e_density_(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
 
 \item{bar.width}{Width of bars.}
 
-\item{x.index}{Indexes of x and y axis.}
+\item{x_index}{Indexes of x and y axis.}
 
-\item{y.index}{Indexes of x and y axis.}
+\item{y_index}{Indexes of x and y axis.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }
@@ -45,7 +45,7 @@ Add a histogram or density plots.
 mtcars \%>\% 
   e_charts() \%>\% 
   e_histogram(mpg, name = "histogram") \%>\% 
-  e_density(mpg, areaStyle = list(opacity = .4), smooth = TRUE, name = "density", y.index = 1) \%>\% 
+  e_density(mpg, areaStyle = list(opacity = .4), smooth = TRUE, name = "density", y_index = 1) \%>\% 
   e_tooltip(trigger = "axis")
 
 }

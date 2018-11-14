@@ -4,14 +4,14 @@
 \alias{e_brush}
 \title{Brush}
 \usage{
-e_brush(e, x.index = NULL, y.index = NULL, ...)
+e_brush(e, x_index = NULL, y_index = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{x.index}{Indexes of x and y axis.}
+\item{x_index}{Indexes of x and y axis.}
 
-\item{y.index}{Indexes of x and y axis.}
+\item{y_index}{Indexes of x and y axis.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

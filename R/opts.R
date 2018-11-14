@@ -164,8 +164,8 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), ...){
 #' USArrests %>% 
 #'   e_charts(UrbanPop) %>% 
 #'   e_line(Assault) %>% 
-#'   e_area(Murder, y.index = 1, x.index = 1) %>% 
-#'   e_datazoom(x.index = 0) 
+#'   e_area(Murder, y_index = 1, x_index = 1) %>% 
+#'   e_datazoom(x_index = 0) 
 #'   
 #' mtcars %>% 
 #'   dplyr::mutate(model = row.names(.)) %>%  
@@ -228,24 +228,24 @@ e_toolbox <- function(e, ...){
 #' USArrests %>% 
 #'   e_charts(UrbanPop) %>% 
 #'   e_line(Assault) %>% 
-#'   e_area(Murder, y.index = 1, x.index = 1) %>% 
+#'   e_area(Murder, y_index = 1, x_index = 1) %>% 
 #'   e_y_axis(gridIndex = 1) %>%
 #'   e_x_axis(gridIndex = 1) %>% 
 #'   e_grid(height = "35%") %>% 
 #'   e_grid(height = "35%", top = "50%") %>% 
 #'   e_toolbox_feature("dataZoom", title = list(zoom = "zoom", back = "back")) %>% 
-#'   e_datazoom(x.index = c(0, 1))
+#'   e_datazoom(x_index = c(0, 1))
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#dataZoom}{Additional arguments}
 #' 
 #' @export
-e_datazoom <- function(e, x.index = NULL, y.index = NULL, toolbox = TRUE, ...){
+e_datazoom <- function(e, x_index = NULL, y_index = NULL, toolbox = TRUE, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  if(!is.null(x.index) && !is.null(y.index))
-    stop("pass x.index or y.index, not both", call. = FALSE)
+  if(!is.null(x_index) && !is.null(y_index))
+    stop("pass x_index or y_index, not both", call. = FALSE)
   
   if(!length(e$x$opts$dataZoom)) # initiatilise if not existing
     e$x$opts$dataZoom <- list()
@@ -254,8 +254,8 @@ e_datazoom <- function(e, x.index = NULL, y.index = NULL, toolbox = TRUE, ...){
     e <- e_toolbox_feature(e, "dataZoom")
   
   opts <- list(...)
-  if(!is.null(x.index)) opts$xAxisIndex <- x.index
-  if(!is.null(y.index)) opts$yAxisIndex <- y.index
+  if(!is.null(x_index)) opts$xAxisIndex <- x_index
+  if(!is.null(y_index)) opts$yAxisIndex <- y_index
   
   e$x$opts$dataZoom <- append(e$x$opts$dataZoom, list(opts))
   
@@ -288,13 +288,13 @@ e_datazoom <- function(e, x.index = NULL, y.index = NULL, toolbox = TRUE, ...){
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#brush}{Additional arguments}
 #' 
 #' @export
-e_brush <- function(e, x.index = NULL, y.index = NULL, ...){
+e_brush <- function(e, x_index = NULL, y_index = NULL, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  if(!is.null(x.index) && !is.null(y.index))
-    stop("pass x.index or y.index, not both", call. = FALSE)
+  if(!is.null(x_index) && !is.null(y_index))
+    stop("pass x_index or y_index, not both", call. = FALSE)
   
   if(!length(e$x$opts$brush)) # initiatilise if not existing
     e$x$opts$brush <- list()
@@ -306,8 +306,8 @@ e_brush <- function(e, x.index = NULL, y.index = NULL, ...){
     brushLink = "all",
     ...
   )
-  opts$xAxisIndex <- x.index
-  opts$yAxisIndex <- y.index
+  opts$xAxisIndex <- x_index
+  opts$yAxisIndex <- y_index
   
   e$x$opts$brush <- append(e$x$opts$brush, opts)
   

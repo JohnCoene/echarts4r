@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -269,11 +269,11 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_heatmap</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
-  <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>calendar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>e_heatmap</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
+  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>calendar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_heatmap_</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
-  <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>calendar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>e_heatmap_</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
+  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>calendar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -291,13 +291,13 @@
       <td><p>name of the serie.</p></td>
     </tr>
     <tr>
-      <th>coord.system</th>
+      <th>coord_system</th>
       <td><p>Coordinate system to plot against, takes 
 <code>cartesian2d</code>, <code>geo</code> or <code>calendar</code>.</p></td>
     </tr>
     <tr>
-      <th>rm.x, rm.y</th>
-      <td><p>Whether to remove x and y axis, only applies if <code>coord.system</code> is not 
+      <th>rm_x, rm_y</th>
+      <td><p>Whether to remove x and y axis, only applies if <code>coord_system</code> is not 
 set to <code>cartesian2d</code>.</p></td>
     </tr>
     <tr>
@@ -341,7 +341,7 @@ set to <code>cartesian2d</code>.</p></td>
 <span class='no'>year</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>date</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_calendar.html'>e_calendar</a></span>(<span class='kw'>range</span> <span class='kw'>=</span> <span class='st'>"2018"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_heatmap</span>(<span class='no'>values</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"calendar"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_heatmap</span>(<span class='no'>values</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"calendar"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>30</span>)
 
 <span class='co'># multiple years</span>
@@ -351,7 +351,7 @@ set to <code>cartesian2d</code>.</p></td>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>date</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_calendar.html'>e_calendar</a></span>(<span class='kw'>range</span> <span class='kw'>=</span> <span class='st'>"2017"</span>, <span class='kw'>top</span> <span class='kw'>=</span> <span class='fl'>40</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_calendar.html'>e_calendar</a></span>(<span class='kw'>range</span> <span class='kw'>=</span> <span class='st'>"2018"</span>, <span class='kw'>top</span> <span class='kw'>=</span> <span class='fl'>260</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_heatmap</span>(<span class='no'>values</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"calendar"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_heatmap</span>(<span class='no'>values</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"calendar"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>30</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

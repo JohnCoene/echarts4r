@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -269,11 +269,11 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_bar_3d</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='no'>bind</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian3D"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>e_bar_3d</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='no'>bind</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian3D"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_bar_3d_</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>bind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian3D"</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>e_bar_3d_</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>bind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian3D"</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -291,7 +291,7 @@
       <td><p>Binding.</p></td>
     </tr>
     <tr>
-      <th>coord.system</th>
+      <th>coord_system</th>
       <td><p>Coordinate system to use, one of <code>cartesian3D</code>, <code>geo3D</code>, <code>globe</code>.</p></td>
     </tr>
     <tr>
@@ -299,7 +299,7 @@
       <td><p>name of the serie.</p></td>
     </tr>
     <tr>
-      <th>rm.x, rm.y</th>
+      <th>rm_x, rm_y</th>
       <td><p>Whether to remove x and y axis, defaults to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
@@ -327,13 +327,13 @@
     <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='textures.html'>e_stars_texture</a></span>(),
     <span class='kw'>base.texture</span> <span class='kw'>=</span> <span class='fu'><a href='textures.html'>e_globe_texture</a></span>()
   ) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_bar_3d</span>(<span class='no'>lat</span>, <span class='no'>value</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"globe"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_bar_3d</span>(<span class='no'>lat</span>, <span class='no'>value</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"globe"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>()
 
 <span class='no'>data</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>lon</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_geo_3d.html'>e_geo_3d</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_bar_3d</span>(<span class='no'>lat</span>, <span class='no'>value</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"geo3D"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_bar_3d</span>(<span class='no'>lat</span>, <span class='no'>value</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"geo3D"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>()
 
 <span class='no'>v</span> <span class='kw'>&lt;-</span> <span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>10</span>]

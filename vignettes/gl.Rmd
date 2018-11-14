@@ -82,7 +82,7 @@ wind %>%
     )
   ) %>% 
   e_flow_gl(lat, slng, slat, color, 
-    coord.system = "geo", 
+    coord_system = "geo", 
     itemStyle = trans,
     particleSize = 2
   ) %>% 

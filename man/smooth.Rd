@@ -13,7 +13,7 @@ e_glm(e, formula, name = NULL, legend = TRUE, symbol = "none",
   smooth = TRUE, ...)
 
 e_loess(e, formula, name = NULL, legend = TRUE, symbol = "none",
-  smooth = TRUE, x.index = 0, y.index = 0, ...)
+  smooth = TRUE, x_index = 0, y_index = 0, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -30,9 +30,9 @@ e_loess(e, formula, name = NULL, legend = TRUE, symbol = "none",
 
 \item{...}{Additional arguments to pass to \code{\link{e_line}}.}
 
-\item{x.index}{Indexes of x and y axis.}
+\item{x_index}{Indexes of x and y axis.}
 
-\item{y.index}{Indexes of x and y axis.}
+\item{y_index}{Indexes of x and y axis.}
 }
 \description{
 Plot formulas.

@@ -5,11 +5,11 @@
 \alias{e_scatter_gl_}
 \title{Scatter GL}
 \usage{
-e_scatter_gl(e, y, z, name = NULL, coord.system = "geo", rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_scatter_gl(e, y, z, name = NULL, coord_system = "geo", rm_x = TRUE,
+  rm_y = TRUE, ...)
 
-e_scatter_gl_(e, y, z, name = NULL, coord.system = "geo",
-  rm.x = TRUE, rm.y = TRUE, ...)
+e_scatter_gl_(e, y, z, name = NULL, coord_system = "geo",
+  rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -18,9 +18,9 @@ e_scatter_gl_(e, y, z, name = NULL, coord.system = "geo",
 
 \item{name}{name of the serie.}
 
-\item{coord.system}{Coordinate system to plot against.}
+\item{coord_system}{Coordinate system to plot against.}
 
-\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
+\item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

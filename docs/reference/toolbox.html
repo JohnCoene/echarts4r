@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -290,6 +290,17 @@
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Valid <code>feature</code>:</p><ul>
+<li><p><code>saveAsImage</code></p></li>
+<li><p><code>brush</code></p></li>
+<li><p><code>restore</code></p></li>
+<li><p><code>dataView</code></p></li>
+<li><p><code>dataZoom</code></p></li>
+<li><p><code>magicType</code></p></li>
+</ul>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://ecomfe.github.io/echarts-doc/public/en/option.html#toolbox'>Additional arguments</a></p></div>
@@ -299,14 +310,26 @@
     <pre class="examples"><div class='input'><span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>UrbanPop</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Assault</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_area.html'>e_area</a></span>(<span class='no'>Murder</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_datazoom.html'>e_datazoom</a></span>(<span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div></pre>
+  <span class='fu'><a href='e_area.html'>e_area</a></span>(<span class='no'>Murder</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_datazoom.html'>e_datazoom</a></span>(<span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>)
+
+<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>model</span> <span class='kw'>=</span> <span class='fu'>row.names</span>(<span class='no'>.</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>model</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>qsec</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_toolbox</span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_toolbox_feature</span>(
+    <span class='kw'>feature</span> <span class='kw'>=</span> <span class='st'>"magicType"</span>,
+    <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='st'>"line"</span>, <span class='st'>"bar"</span>)
+  )</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#details">Details</a></li>
+
       <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>

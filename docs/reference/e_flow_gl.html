@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -269,11 +269,11 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_flow_gl</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>sx</span>, <span class='no'>sy</span>, <span class='no'>color</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>e_flow_gl</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>sx</span>, <span class='no'>sy</span>, <span class='no'>color</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_flow_gl_</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>sx</span>, <span class='no'>sy</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -299,12 +299,12 @@
       <td><p>name of the serie.</p></td>
     </tr>
     <tr>
-      <th>coord.system</th>
+      <th>coord_system</th>
       <td><p>Coordinate system to use.</p></td>
     </tr>
     <tr>
-      <th>rm.x, rm.y</th>
-      <td><p>Whether to remove x and y axis, only applies if <code>coord.system</code> is not <code>null</code>.</p></td>
+      <th>rm_x, rm_y</th>
+      <td><p>Whether to remove x and y axis, only applies if <code>coord_system</code> is not <code>null</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -365,7 +365,7 @@
     )
   ) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_flow_gl</span>(<span class='no'>lat</span>, <span class='no'>slng</span>, <span class='no'>slat</span>, <span class='no'>color</span>,
-    <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>,
+    <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>,
     <span class='kw'>itemStyle</span> <span class='kw'>=</span> <span class='no'>trans</span>,
     <span class='kw'>particleSize</span> <span class='kw'>=</span> <span class='fl'>2</span>
   ) <span class='kw'>%&gt;%</span>

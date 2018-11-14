@@ -5,11 +5,11 @@
 \alias{e_flow_gl_}
 \title{Flow GL}
 \usage{
-e_flow_gl(e, y, sx, sy, color, name = NULL, coord.system = NULL,
-  rm.x = TRUE, rm.y = TRUE, ...)
+e_flow_gl(e, y, sx, sy, color, name = NULL, coord_system = NULL,
+  rm_x = TRUE, rm_y = TRUE, ...)
 
 e_flow_gl_(e, y, sx, sy, color = NULL, name = NULL,
-  coord.system = NULL, rm.x = TRUE, rm.y = TRUE, ...)
+  coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -22,9 +22,9 @@ e_flow_gl_(e, y, sx, sy, color = NULL, name = NULL,
 
 \item{name}{name of the serie.}
 
-\item{coord.system}{Coordinate system to use.}
+\item{coord_system}{Coordinate system to use.}
 
-\item{rm.x, rm.y}{Whether to remove x and y axis, only applies if \code{coord.system} is not \code{null}.}
+\item{rm_x, rm_y}{Whether to remove x and y axis, only applies if \code{coord_system} is not \code{null}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }
@@ -79,7 +79,7 @@ wind \%>\%
     )
   ) \%>\% 
   e_flow_gl(lat, slng, slat, color, 
-    coord.system = "geo", 
+    coord_system = "geo", 
     itemStyle = trans,
     particleSize = 2
   ) \%>\% 

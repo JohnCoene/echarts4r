@@ -5,7 +5,7 @@
 #' @inheritParams e_bar
 #' @param color Color.
 #' @param type Map type.
-#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
+#' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' choropleth <- data.frame(
@@ -25,7 +25,7 @@
 #' 
 #' @rdname e_geo_3d
 #' @export
-e_geo_3d <- function(e, serie, color, type = "world", rm.x = TRUE, rm.y = TRUE, ...){
+e_geo_3d <- function(e, serie, color, type = "world", rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -39,17 +39,17 @@ e_geo_3d <- function(e, serie, color, type = "world", rm.x = TRUE, rm.y = TRUE, 
   else
     cl <- NULL
   
-  e_geo_3d_(e, sr, cl, type, rm.x, rm.y, ...)
+  e_geo_3d_(e, sr, cl, type, rm_x, rm_y, ...)
 }
 
 #' @rdname e_geo_3d
 #' @export
-e_geo_3d_ <- function(e, serie = NULL, color = NULL, type = "world", rm.x = TRUE, rm.y = TRUE, ...){
+e_geo_3d_ <- function(e, serie = NULL, color = NULL, type = "world", rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
+  e <- .rm_axis(e, rm_x, "x")
+  e <- .rm_axis(e, rm_y, "y")
   
   series <- list(
     map = type,

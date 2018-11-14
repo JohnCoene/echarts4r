@@ -7,11 +7,11 @@
 \alias{e_graph_edges}
 \title{Graph}
 \usage{
-e_graph(e, layout = "force", name = NULL, rm.x = TRUE, rm.y = TRUE,
+e_graph(e, layout = "force", name = NULL, rm_x = TRUE, rm_y = TRUE,
   ...)
 
-e_graph_gl(e, layout = "force", name = NULL, rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_graph_gl(e, layout = "force", name = NULL, rm_x = TRUE,
+  rm_y = TRUE, ...)
 
 e_graph_nodes(e, nodes, names, value, size, category, legend = TRUE)
 
@@ -24,7 +24,7 @@ e_graph_edges(e, edges, source, target)
 
 \item{name}{Name of graph.}
 
-\item{rm.x, rm.y}{Whether to remove the x and y axis, defaults to \code{TRUE}.}
+\item{rm_x, rm_y}{Whether to remove the x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other parameter.}
 

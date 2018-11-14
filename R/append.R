@@ -3,7 +3,7 @@
 #' Append data.
 #' 
 #' @inheritParams e_highlight_p
-#' @param series.index Index of serie to append to (starts from 0).
+#' @param series_index Index of serie to append to (starts from 0).
 #' @param data Data.frame containing data to append.
 #' @param x,y,z Columns names to plot.
 #' 
@@ -62,24 +62,24 @@
 #' 
 #' @rdname append
 #' @export
-e_append1_p <- function(proxy, series.index = NULL, data, x, y){
+e_append1_p <- function(proxy, series_index = NULL, data, x, y){
   
   if (!"echarts4rProxy" %in% class(proxy)) 
     stop("must pass echarts4rProxy object", call. = FALSE)
   
-  e_append1_p_(proxy, series.index, data, deparse(substitute(x)), deparse(substitute(y)))
+  e_append1_p_(proxy, series_index, data, deparse(substitute(x)), deparse(substitute(y)))
 }
 
 #' @rdname append
 #' @export
-e_append1_p_ <- function(proxy, series.index = NULL, data, x, y){
+e_append1_p_ <- function(proxy, series_index = NULL, data, x, y){
   
   if (!"echarts4rProxy" %in% class(proxy)) 
     stop("must pass echarts4rProxy object", call. = FALSE)
   
   data <- .build_data_p(data, x, y)
   
-  opts <- list(id = proxy$id, seriesIndex = series.index, data = data)
+  opts <- list(id = proxy$id, seriesIndex = series_index, data = data)
   
   proxy$session$sendCustomMessage("e_append_p", opts)
   
@@ -88,24 +88,24 @@ e_append1_p_ <- function(proxy, series.index = NULL, data, x, y){
 
 #' @rdname append
 #' @export
-e_append2_p <- function(proxy, series.index = NULL, data, x, y, z){
+e_append2_p <- function(proxy, series_index = NULL, data, x, y, z){
   
   if (!"echarts4rProxy" %in% class(proxy)) 
     stop("must pass echarts4rProxy object", call. = FALSE)
   
-  e_append2_p_(proxy, series.index = NULL, data, deparse(substitute(x)), deparse(substitute(y)), deparse(substitute(z)))
+  e_append2_p_(proxy, series_index = NULL, data, deparse(substitute(x)), deparse(substitute(y)), deparse(substitute(z)))
 }
 
 #' @rdname append
 #' @export
-e_append2_p_ <- function(proxy, series.index = NULL, data, x, y, z){
+e_append2_p_ <- function(proxy, series_index = NULL, data, x, y, z){
   
   if (!"echarts4rProxy" %in% class(proxy)) 
     stop("must pass echarts4rProxy object", call. = FALSE)
   
   data <- .build_data_p(data, x, y, z)
   
-  opts <- list(id = proxy$id, seriesIndex = series.index, data = data)
+  opts <- list(id = proxy$id, seriesIndex = series_index, data = data)
   
   proxy$session$sendCustomMessage("e_append_p", opts)
   

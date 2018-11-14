@@ -5,11 +5,11 @@
 \alias{e_sankey_}
 \title{Sankey}
 \usage{
-e_sankey(e, source, target, value, layout = "none", rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_sankey(e, source, target, value, layout = "none", rm_x = TRUE,
+  rm_y = TRUE, ...)
 
-e_sankey_(e, source, target, value, layout = "none", rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_sankey_(e, source, target, value, layout = "none", rm_x = TRUE,
+  rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -20,7 +20,7 @@ e_sankey_(e, source, target, value, layout = "none", rm.x = TRUE,
 
 \item{layout}{Layout of sankey.}
 
-\item{rm.x, rm.y}{Whether to remove the x and y axis, defaults to \code{TRUE}.}
+\item{rm_x, rm_y}{Whether to remove the x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

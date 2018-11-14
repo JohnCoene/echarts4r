@@ -5,16 +5,16 @@
 \alias{e_tree_}
 \title{Tree}
 \usage{
-e_tree(e, parent, child, rm.x = TRUE, rm.y = TRUE, ...)
+e_tree(e, parent, child, rm_x = TRUE, rm_y = TRUE, ...)
 
-e_tree_(e, parent, child, rm.x = TRUE, rm.y = TRUE, ...)
+e_tree_(e, parent, child, rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{parent, child}{Edges.}
 
-\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
+\item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

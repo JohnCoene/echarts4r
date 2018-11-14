@@ -4,14 +4,14 @@
 \alias{e_datazoom}
 \title{Data zoom}
 \usage{
-e_datazoom(e, x.index = NULL, y.index = NULL, toolbox = TRUE, ...)
+e_datazoom(e, x_index = NULL, y_index = NULL, toolbox = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{x.index}{Indexes of x and y axis.}
+\item{x_index}{Indexes of x and y axis.}
 
-\item{y.index}{Indexes of x and y axis.}
+\item{y_index}{Indexes of x and y axis.}
 
 \item{toolbox}{Whether to add the toolbox, \code{\link{e_toolbox_feature}}, (\code{e_toolbox_feature(e, "dataZoom")}).}
 
@@ -24,13 +24,13 @@ Add data zoom.
 USArrests \%>\% 
   e_charts(UrbanPop) \%>\% 
   e_line(Assault) \%>\% 
-  e_area(Murder, y.index = 1, x.index = 1) \%>\% 
+  e_area(Murder, y_index = 1, x_index = 1) \%>\% 
   e_y_axis(gridIndex = 1) \%>\%
   e_x_axis(gridIndex = 1) \%>\% 
   e_grid(height = "35\%") \%>\% 
   e_grid(height = "35\%", top = "50\%") \%>\% 
   e_toolbox_feature("dataZoom", title = list(zoom = "zoom", back = "back")) \%>\% 
-  e_datazoom(x.index = c(0, 1))
+  e_datazoom(x_index = c(0, 1))
 
 }
 \seealso{

@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -269,11 +269,11 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_lines</span>(<span class='no'>e</span>, <span class='no'>source.lon</span>, <span class='no'>source.lat</span>, <span class='no'>target.lon</span>, <span class='no'>target.lat</span>,
-  <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>e_lines</span>(<span class='no'>e</span>, <span class='no'>source_lon</span>, <span class='no'>source_lat</span>, <span class='no'>target_lon</span>, <span class='no'>target_lat</span>,
+  <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_lines_</span>(<span class='no'>e</span>, <span class='no'>source.lon</span>, <span class='no'>source.lat</span>, <span class='no'>target.lon</span>, <span class='no'>target.lat</span>,
-  <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>e_lines_</span>(<span class='no'>e</span>, <span class='no'>source_lon</span>, <span class='no'>source_lat</span>, <span class='no'>target_lon</span>, <span class='no'>target_lat</span>,
+  <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -283,11 +283,11 @@
       <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code>.</p></td>
     </tr>
     <tr>
-      <th>source.lon, source.lat, target.lon, target.lat</th>
+      <th>source_lon, source_lat, target_lon, target_lat</th>
       <td><p>coordinates.</p></td>
     </tr>
     <tr>
-      <th>coord.system</th>
+      <th>coord_system</th>
       <td><p>Coordinate system to use, one of <code>geo</code>, or <code>cartesian2d</code>.</p></td>
     </tr>
     <tr>
@@ -295,7 +295,7 @@
       <td><p>name of the serie.</p></td>
     </tr>
     <tr>
-      <th>rm.x, rm.y</th>
+      <th>rm_x, rm_y</th>
       <td><p>Whether to remove x and y axis, defaults to <code>TRUE</code>.</p></td>
     </tr>
     <tr>

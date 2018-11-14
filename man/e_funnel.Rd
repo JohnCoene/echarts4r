@@ -5,11 +5,11 @@
 \alias{e_funnel_}
 \title{Funnel}
 \usage{
-e_funnel(e, values, labels, name = NULL, legend = TRUE, rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_funnel(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE,
+  rm_y = TRUE, ...)
 
-e_funnel_(e, values, labels, name = NULL, legend = TRUE, rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_funnel_(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE,
+  rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -20,7 +20,7 @@ e_funnel_(e, values, labels, name = NULL, legend = TRUE, rm.x = TRUE,
 
 \item{legend}{Whether to add serie to legend.}
 
-\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
+\item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass to \code{bar} or \code{line} char types.}
 }

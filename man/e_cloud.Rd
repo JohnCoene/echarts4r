@@ -5,9 +5,9 @@
 \alias{e_cloud_}
 \title{Wordcloud}
 \usage{
-e_cloud(e, word, freq, color, rm.x = TRUE, rm.y = TRUE, ...)
+e_cloud(e, word, freq, color, rm_x = TRUE, rm_y = TRUE, ...)
 
-e_cloud_(e, word, freq, color = NULL, rm.x = TRUE, rm.y = TRUE, ...)
+e_cloud_(e, word, freq, color = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -16,7 +16,7 @@ e_cloud_(e, word, freq, color = NULL, rm.x = TRUE, rm.y = TRUE, ...)
 
 \item{color}{Word color.}
 
-\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
+\item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

@@ -5,11 +5,11 @@
 \alias{e_pie_}
 \title{Pie}
 \usage{
-e_pie(e, serie, name = NULL, legend = TRUE, rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_pie(e, serie, name = NULL, legend = TRUE, rm_x = TRUE,
+  rm_y = TRUE, ...)
 
-e_pie_(e, serie, name = NULL, legend = TRUE, rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_pie_(e, serie, name = NULL, legend = TRUE, rm_x = TRUE,
+  rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -20,7 +20,7 @@ e_pie_(e, serie, name = NULL, legend = TRUE, rm.x = TRUE,
 
 \item{legend}{Whether to add serie to legend.}
 
-\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
+\item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

@@ -5,22 +5,22 @@
 \alias{e_lines_}
 \title{Lines}
 \usage{
-e_lines(e, source.lon, source.lat, target.lon, target.lat,
-  coord.system = "geo", name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
+e_lines(e, source_lon, source_lat, target_lon, target_lat,
+  coord_system = "geo", name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 
-e_lines_(e, source.lon, source.lat, target.lon, target.lat,
-  coord.system = "geo", name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
+e_lines_(e, source_lon, source_lat, target_lon, target_lat,
+  coord_system = "geo", name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{source.lon, source.lat, target.lon, target.lat}{coordinates.}
+\item{source_lon, source_lat, target_lon, target_lat}{coordinates.}
 
-\item{coord.system}{Coordinate system to use, one of \code{geo}, or \code{cartesian2d}.}
+\item{coord_system}{Coordinate system to use, one of \code{geo}, or \code{cartesian2d}.}
 
 \item{name}{name of the serie.}
 
-\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
+\item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

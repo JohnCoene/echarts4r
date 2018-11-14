@@ -7,30 +7,30 @@
 \alias{e_line_3d_}
 \title{Lines 3D}
 \usage{
-e_lines_3d(e, source.lon, source.lat, target.lon, target.lat,
-  name = NULL, coord.system = "globe", rm.x = TRUE, rm.y = TRUE,
+e_lines_3d(e, source_lon, source_lat, target_lon, target_lat,
+  name = NULL, coord_system = "globe", rm_x = TRUE, rm_y = TRUE,
   ...)
 
-e_line_3d(e, y, z, name = NULL, coord.system = NULL, rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_line_3d(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE,
+  rm_y = TRUE, ...)
 
-e_lines_3d_(e, source.lon, source.lat, target.lon, target.lat,
-  name = NULL, coord.system = "globe", rm.x = TRUE, rm.y = TRUE,
+e_lines_3d_(e, source_lon, source_lat, target_lon, target_lat,
+  name = NULL, coord_system = "globe", rm_x = TRUE, rm_y = TRUE,
   ...)
 
-e_line_3d_(e, y, z, name = NULL, coord.system = NULL, rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_line_3d_(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE,
+  rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{source.lon, source.lat, target.lon, target.lat}{coordinates.}
+\item{source_lon, source_lat, target_lon, target_lat}{coordinates.}
 
 \item{name}{name of the serie.}
 
-\item{coord.system}{Coordinate system to use, such as \code{cartesian3D}, or \code{globe}.}
+\item{coord_system}{Coordinate system to use, such as \code{cartesian3D}, or \code{globe}.}
 
-\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
+\item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 
@@ -75,7 +75,7 @@ flights \%>\%
     start_lat, 
     end_lon, 
     end_lat,
-    coord.system = "geo3D"
+    coord_system = "geo3D"
   )
  
 # line 3D 

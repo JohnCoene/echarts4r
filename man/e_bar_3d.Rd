@@ -5,11 +5,11 @@
 \alias{e_bar_3d_}
 \title{Bar 3D}
 \usage{
-e_bar_3d(e, y, z, bind, coord.system = "cartesian3D", name = NULL,
-  rm.x = TRUE, rm.y = TRUE, ...)
+e_bar_3d(e, y, z, bind, coord_system = "cartesian3D", name = NULL,
+  rm_x = TRUE, rm_y = TRUE, ...)
 
-e_bar_3d_(e, y, z, bind = NULL, coord.system = "cartesian3D",
-  name = NULL, rm.x = TRUE, rm.y = TRUE, ...)
+e_bar_3d_(e, y, z, bind = NULL, coord_system = "cartesian3D",
+  name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -18,11 +18,11 @@ e_bar_3d_(e, y, z, bind = NULL, coord.system = "cartesian3D",
 
 \item{bind}{Binding.}
 
-\item{coord.system}{Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.}
+\item{coord_system}{Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.}
 
 \item{name}{name of the serie.}
 
-\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
+\item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }
@@ -43,13 +43,13 @@ data \%>\%
     environment = e_stars_texture(),
     base.texture = e_globe_texture()
   ) \%>\% 
-  e_bar_3d(lat, value, coord.system = "globe") \%>\% 
+  e_bar_3d(lat, value, coord_system = "globe") \%>\% 
   e_visual_map()
   
 data \%>\% 
   e_charts(lon) \%>\% 
   e_geo_3d() \%>\% 
-  e_bar_3d(lat, value, coord.system = "geo3D") \%>\% 
+  e_bar_3d(lat, value, coord_system = "geo3D") \%>\% 
   e_visual_map()
   
 v <- LETTERS[1:10]

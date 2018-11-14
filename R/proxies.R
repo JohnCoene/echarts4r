@@ -4,8 +4,8 @@
 #' 
 #' @inheritParams e_bar
 #' @param proxy An echarts4r proxy as returned by \code{\link{echarts4rProxy}}.
-#' @param series.index Series index, can be a vector.
-#' @param series.name Series Name, can be vector.
+#' @param series_index Series index, can be a vector.
+#' @param series_name Series Name, can be vector.
 #' 
 #' @examples 
 #' \dontrun{
@@ -45,24 +45,24 @@
 #'    
 #'    observeEvent(input$highlightmpg, {
 #'      echarts4rProxy("plot") %>% 
-#'        e_highlight_p(series.index = 0) # using index
+#'        e_highlight_p(series_index = 0) # using index
 #'    })
 #'    
 #'    observeEvent(input$highlighthp, {
 #'      echarts4rProxy("plot") %>% 
-#'        e_highlight_p(series.name = "HP") # using name
+#'        e_highlight_p(series_name = "HP") # using name
 #'    })
 #'    
 #'    # downplay
 #'    
 #'    observeEvent(input$downplaympg, {
 #'      echarts4rProxy("plot") %>% 
-#'        e_downplay_p(series.name = "disp")
+#'        e_downplay_p(series_name = "disp")
 #'    })
 #'    
 #'    observeEvent(input$downplayhp, {
 #'      echarts4rProxy("plot") %>% 
-#'        e_downplay_p(series.index = 1)
+#'        e_downplay_p(series_index = 1)
 #'    })
 #'  }
 #'  
@@ -72,14 +72,14 @@
 #' 
 #' @rdname highlight_proxy
 #' @export
-e_highlight_p <- function(proxy, series.index = NULL, series.name = NULL){
+e_highlight_p <- function(proxy, series_index = NULL, series_name = NULL){
   
   if (!"echarts4rProxy" %in% class(proxy)) 
     stop("must pass echarts4rProxy object", call. = FALSE)
   
   data <- list(id = proxy$id)
-  if(!is.null(series.index)) data$seriesIndex <- series.index
-  if(!is.null(series.name)) data$seriesName <- series.name
+  if(!is.null(series_index)) data$seriesIndex <- series_index
+  if(!is.null(series_name)) data$seriesName <- series_name
   
   proxy$session$sendCustomMessage("e_highlight_p", data)
   
@@ -88,14 +88,14 @@ e_highlight_p <- function(proxy, series.index = NULL, series.name = NULL){
 
 #' @rdname highlight_proxy
 #' @export
-e_downplay_p <- function(proxy, series.index = NULL, series.name = NULL){
+e_downplay_p <- function(proxy, series_index = NULL, series_name = NULL){
   
   if (!"echarts4rProxy" %in% class(proxy)) 
     stop("must pass echarts4rProxy object", call. = FALSE)
   
   data <- list(id = proxy$id)
-  if(!is.null(series.index)) data$seriesIndex <- series.index
-  if(!is.null(series.name)) data$seriesName <- series.name
+  if(!is.null(series_index)) data$seriesIndex <- series_index
+  if(!is.null(series_name)) data$seriesName <- series_name
   
   proxy$session$sendCustomMessage("e_downplay_p", data)
   

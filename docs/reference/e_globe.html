@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -269,8 +269,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_globe</span>(<span class='no'>e</span>, <span class='kw'>environment</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>base.texture</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>height.texture</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_globe</span>(<span class='no'>e</span>, <span class='kw'>environment</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>base_texture</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>height_texture</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -284,11 +284,11 @@
       <td><p>Texture of background.</p></td>
     </tr>
     <tr>
-      <th>base.texture</th>
+      <th>base_texture</th>
       <td><p>Base texture of globe.</p></td>
     </tr>
     <tr>
-      <th>height.texture</th>
+      <th>height_texture</th>
       <td><p>Texture of height.</p></td>
     </tr>
     <tr>
@@ -314,8 +314,8 @@
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>lon</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_globe</span>(
     <span class='kw'>environment</span> <span class='kw'>=</span> <span class='fu'><a href='textures.html'>e_stars_texture</a></span>(),
-    <span class='kw'>base.texture</span> <span class='kw'>=</span> <span class='fu'><a href='textures.html'>e_globe_texture</a></span>(),
-    <span class='kw'>height.texture</span> <span class='kw'>=</span> <span class='fu'><a href='textures.html'>e_globe_texture</a></span>(),
+    <span class='kw'>base_texture</span> <span class='kw'>=</span> <span class='fu'><a href='textures.html'>e_globe_texture</a></span>(),
+    <span class='kw'>height_texture</span> <span class='kw'>=</span> <span class='fu'><a href='textures.html'>e_globe_texture</a></span>(),
     <span class='kw'>displacementScale</span> <span class='kw'>=</span> <span class='fl'>0.04</span>
   ) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_bar_3d.html'>e_bar_3d</a></span>(<span class='no'>lat</span>, <span class='no'>value</span>, <span class='st'>"globe"</span>) <span class='kw'>%&gt;%</span>

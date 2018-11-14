@@ -34,7 +34,7 @@ data %>%
   e_charts(lon) %>% 
   e_leaflet() %>%
   e_leaflet_tile() %>%  
-  e_scatter(lat, size = value, coord.system = "leaflet")
+  e_scatter(lat, size = value, coord_system = "leaflet")
 ```
 
 ## Mapbox
@@ -48,7 +48,7 @@ data %>%
     token = "YOUR_TOKEN",
     style = "mapbox://styles/mapbox/dark-v9"
   ) %>% 
-  e_bar_3d(lat, value, coord.system = "mapbox") %>% 
+  e_bar_3d(lat, value, coord_system = "mapbox") %>% 
   e_visual_map(value)
 ```
 
@@ -59,6 +59,6 @@ data %>%
     token = "pk.eyJ1IjoiamNvZW5lcCIsImEiOiJjamwyYXJyMjExb2R0M3FxcDlmemg2czFiIn0.OL6qEEADz5qBjhKecwgBdg",
     style = "mapbox://styles/mapbox/dark-v9"
   ) %>% 
-  e_bar_3d(lat, value, coord.system = "mapbox") %>% 
+  e_bar_3d(lat, value, coord_system = "mapbox") %>% 
   e_visual_map(value)
 ```

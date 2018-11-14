@@ -5,11 +5,11 @@
 \alias{e_geo_3d_}
 \title{Geo 3D}
 \usage{
-e_geo_3d(e, serie, color, type = "world", rm.x = TRUE, rm.y = TRUE,
+e_geo_3d(e, serie, color, type = "world", rm_x = TRUE, rm_y = TRUE,
   ...)
 
 e_geo_3d_(e, serie = NULL, color = NULL, type = "world",
-  rm.x = TRUE, rm.y = TRUE, ...)
+  rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -20,7 +20,7 @@ e_geo_3d_(e, serie = NULL, color = NULL, type = "world",
 
 \item{type}{Map type.}
 
-\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
+\item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

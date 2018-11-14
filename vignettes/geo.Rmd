@@ -34,7 +34,7 @@ quakes %>%
   ) %>% 
   e_effect_scatter(
     lat, mag, 
-    coord.system = "geo", 
+    coord_system = "geo", 
     scale = "* 1.5",
     rippleEffect = list(brushType = "stroke")) %>% 
   e_visual_map(min = 4, max = 6.5)

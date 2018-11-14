@@ -4,8 +4,8 @@
 #' 
 #' @inheritParams e_bar
 #' @param environment Texture of background.
-#' @param base.texture Base texture of globe.
-#' @param height.texture Texture of height.
+#' @param base_texture Base texture of globe.
+#' @param height_texture Texture of height.
 #' 
 #' @examples 
 #' \dontrun{
@@ -19,8 +19,8 @@
 #'   e_charts(lon) %>% 
 #'   e_globe(
 #'     environment = e_stars_texture(),
-#'     base.texture = e_globe_texture(),
-#'     height.texture = e_globe_texture(),
+#'     base_texture = e_globe_texture(),
+#'     height_texture = e_globe_texture(),
 #'     displacementScale = 0.04
 #'   ) %>% 
 #'   e_bar_3d(lat, value, "globe") %>% 
@@ -30,12 +30,12 @@
 #' @seealso \code{\link{e_country_names}}, \href{http://echarts.baidu.com/option-gl.html#globe}{Additional arguments}
 #' 
 #' @export
-e_globe <- function(e, environment = NULL, base.texture = NULL, height.texture = NULL, ...){
+e_globe <- function(e, environment = NULL, base_texture = NULL, height_texture = NULL, ...){
   
   ls <- list(
     environment = environment,
-    heightTexture = height.texture,
-    baseTexture = base.texture,
+    heightTexture = height_texture,
+    baseTexture = base_texture,
     series = list(),
     ...
   )

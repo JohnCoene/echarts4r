@@ -20,6 +20,15 @@ library(echarts4r)
 
 The toolbox allows you to add neat little interactive functions to your plots.
 
+## Features
+
+- saveAsImage
+- brush
+- restore
+- dataView
+- dataZoom
+- magicType
+
 ## Save plot
 
 ```{r}

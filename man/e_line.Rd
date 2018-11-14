@@ -5,11 +5,11 @@
 \alias{e_line_}
 \title{Line}
 \usage{
-e_line(e, serie, bind, name = NULL, legend = TRUE, y.index = 0,
-  x.index = 0, coord.system = "cartesian2d", ...)
+e_line(e, serie, bind, name = NULL, legend = TRUE, y_index = 0,
+  x_index = 0, coord_system = "cartesian2d", ...)
 
 e_line_(e, serie, bind = NULL, name = NULL, legend = TRUE,
-  y.index = 0, x.index = 0, coord.system = "cartesian2d", ...)
+  y_index = 0, x_index = 0, coord_system = "cartesian2d", ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -22,11 +22,11 @@ e_line_(e, serie, bind = NULL, name = NULL, legend = TRUE,
 
 \item{legend}{Whether to add serie to legend.}
 
-\item{y.index}{Indexes of x and y axis.}
+\item{y_index}{Indexes of x and y axis.}
 
-\item{x.index}{Indexes of x and y axis.}
+\item{x_index}{Indexes of x and y axis.}
 
-\item{coord.system}{Coordinate system to plot against.}
+\item{coord_system}{Coordinate system to plot against.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

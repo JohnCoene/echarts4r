@@ -5,16 +5,16 @@
 \alias{e_downplay_p}
 \title{Highlight & Downplay Proxy}
 \usage{
-e_highlight_p(proxy, series.index = NULL, series.name = NULL)
+e_highlight_p(proxy, series_index = NULL, series_name = NULL)
 
-e_downplay_p(proxy, series.index = NULL, series.name = NULL)
+e_downplay_p(proxy, series_index = NULL, series_name = NULL)
 }
 \arguments{
 \item{proxy}{An echarts4r proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{series.index}{Series index, can be a vector.}
+\item{series_index}{Series index, can be a vector.}
 
-\item{series.name}{Series Name, can be vector.}
+\item{series_name}{Series Name, can be vector.}
 }
 \description{
 Proxies to highlight and downplay series.
@@ -57,24 +57,24 @@ Proxies to highlight and downplay series.
    
    observeEvent(input$highlightmpg, {
      echarts4rProxy("plot") \%>\% 
-       e_highlight_p(series.index = 0) # using index
+       e_highlight_p(series_index = 0) # using index
    })
    
    observeEvent(input$highlighthp, {
      echarts4rProxy("plot") \%>\% 
-       e_highlight_p(series.name = "HP") # using name
+       e_highlight_p(series_name = "HP") # using name
    })
    
    # downplay
    
    observeEvent(input$downplaympg, {
      echarts4rProxy("plot") \%>\% 
-       e_downplay_p(series.name = "disp")
+       e_downplay_p(series_name = "disp")
    })
    
    observeEvent(input$downplayhp, {
      echarts4rProxy("plot") \%>\% 
-       e_downplay_p(series.index = 1)
+       e_downplay_p(series_index = 1)
    })
  }
  

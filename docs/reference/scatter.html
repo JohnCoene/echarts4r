@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -269,23 +269,23 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_scatter</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='no'>size</span>, <span class='no'>bind</span>, <span class='kw'>symbol.size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"* 1"</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>e_scatter</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='no'>size</span>, <span class='no'>bind</span>, <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"* 1"</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_effect_scatter</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='no'>size</span>, <span class='no'>bind</span>, <span class='kw'>symbol.size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"* 1"</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'>e_effect_scatter</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='no'>size</span>, <span class='no'>bind</span>, <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"* 1"</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_scatter_</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>symbol.size</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"* 1"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'>e_scatter_</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"* 1"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_effect_scatter_</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>symbol.size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"* 1"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rm.x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm.y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"* 1"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -307,7 +307,7 @@
       <td><p>Binding between datasets, namely for use of <code><a href='e_brush.html'>e_brush</a></code>.</p></td>
     </tr>
     <tr>
-      <th>symbol.size</th>
+      <th>symbol_size</th>
       <td><p>Size of points, either an integer or a vector of length 2, 
 only used if <code>size</code> is <code>NULL</code> or missing.</p></td>
     </tr>
@@ -321,7 +321,7 @@ by <code>1</code> (equivalent to no multiplier).</p></td>
       <td><p>name of the serie.</p></td>
     </tr>
     <tr>
-      <th>coord.system</th>
+      <th>coord_system</th>
       <td><p>Coordinate system to plot against, see examples.</p></td>
     </tr>
     <tr>
@@ -329,16 +329,16 @@ by <code>1</code> (equivalent to no multiplier).</p></td>
       <td><p>Whether to add serie to legend.</p></td>
     </tr>
     <tr>
-      <th>y.index</th>
+      <th>y_index</th>
       <td><p>Indexes of x and y axis.</p></td>
     </tr>
     <tr>
-      <th>x.index</th>
+      <th>x_index</th>
       <td><p>Indexes of x and y axis.</p></td>
     </tr>
     <tr>
-      <th>rm.x, rm.y</th>
-      <td><p>Whether to remove x and y axis, only applies if <code>coord.system</code> is not 
+      <th>rm_x, rm_y</th>
+      <td><p>Whether to remove x and y axis, only applies if <code>coord_system</code> is not 
 set to <code>cartesian2d</code>.</p></td>
     </tr>
     <tr>
@@ -357,7 +357,7 @@ set to <code>cartesian2d</code>.</p></td>
     <pre class="examples"><div class='input'><span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Assault</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_scatter</span>(<span class='no'>Murder</span>, <span class='no'>Rape</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_effect_scatter</span>(<span class='no'>Rape</span>, <span class='no'>Murder</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_effect_scatter</span>(<span class='no'>Rape</span>, <span class='no'>Murder</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_grid.html'>e_grid</a></span>(<span class='kw'>index</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_tooltip.html'>e_tooltip</a></span>()
 
@@ -365,7 +365,7 @@ set to <code>cartesian2d</code>.</p></td>
   <span class='fu'><a href='init.html'>e_charts_</a></span>(<span class='st'>"Sepal.Length"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_scatter_</span>(
     <span class='st'>"Sepal.Width"</span>,
-    <span class='kw'>symbol.size</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>8</span>, <span class='fl'>2</span>),
+    <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>8</span>, <span class='fl'>2</span>),
     <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"rect"</span>
   ) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='axis.html'>e_x_axis</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>4</span>)
@@ -379,7 +379,7 @@ set to <code>cartesian2d</code>.</p></td>
       <span class='fu'>c</span>(<span class='fl'>165</span>, -<span class='fl'>40</span>)
     )
   ) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_scatter</span>(<span class='no'>lat</span>, <span class='no'>mag</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_scatter</span>(<span class='no'>lat</span>, <span class='no'>mag</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>6.5</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

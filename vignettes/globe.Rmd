@@ -49,10 +49,10 @@ airports %>%
   e_charts(long) %>% 
   e_globe(
     environment = ea_asset("starfield"),
-    base.texture = ea_asset("world"), 
+    base_texture = ea_asset("world"), 
     globeOuterRadius = 100
   ) %>% 
-  e_scatter_3d(lat, cnt, coord.system = "globe", blendMode = 'lighter') %>% 
+  e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = 'lighter') %>% 
   e_visual_map(inRange = list(symbolSize = c(1, 10)))
 ```
 
@@ -69,11 +69,11 @@ data %>%
   e_charts(lon) %>% 
   e_globe(
     environment = ea_asset("starfield"),
-    base.texture = ea_asset("world topo"), 
-    height.texture = ea_asset("world topo"),
+    base_texture = ea_asset("world topo"), 
+    height_texture = ea_asset("world topo"),
     displacementScale = 0.04
   ) %>% 
-  e_bar_3d(lat, value, coord.system = "globe") %>% 
+  e_bar_3d(lat, value, coord_system = "globe") %>% 
   e_visual_map(show = FALSE)
 ```
 
@@ -89,8 +89,8 @@ flights %>%
   e_charts() %>% 
   e_globe(
     environment = ea_asset("starfield"),
-    base.texture = ea_asset("world topo"), 
-    height.texture = ea_asset("world topo"),
+    base_texture = ea_asset("world topo"), 
+    height_texture = ea_asset("world topo"),
     displacementScale = 0.05
   ) %>% 
   e_lines_3d(

@@ -38,8 +38,8 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   x
 }
 
-.rm_axis <- function(e, rm.x, axis){
-  if(isTRUE(rm.x)){
+.rm_axis <- function(e, rm_x, axis){
+  if(isTRUE(rm_x)){
     axis <- .r2axis(axis)
     e$x$opts[[axis]] <- NULL
   }
@@ -375,8 +375,8 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   e
 }
 
-.set_x_axis <- function(e, x.index, i){
-  .set_any_axis(e, e$x$mapping$x, x.index, axis = "x", i)
+.set_x_axis <- function(e, x_index, i){
+  .set_any_axis(e, e$x$mapping$x, x_index, axis = "x", i)
 }
 
 .set_y_axis <- function(e, serie, y.index, i){

@@ -57,7 +57,7 @@ df %>%
   e_charts() %>% 
   e_histogram(y) %>% 
   e_density(y, name = "density", areaStyle = list(opacity = .4), 
-            smooth = TRUE, y.index = 1) %>% 
+            smooth = TRUE, y_index = 1) %>% 
   e_tooltip()
 ```
 

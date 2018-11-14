@@ -5,9 +5,9 @@
 \alias{e_gauge_}
 \title{Gauge}
 \usage{
-e_gauge(e, value, name, rm.x = TRUE, rm.y = TRUE, ...)
+e_gauge(e, value, name, rm_x = TRUE, rm_y = TRUE, ...)
 
-e_gauge_(e, value, name, rm.x = TRUE, rm.y = TRUE, ...)
+e_gauge_(e, value, name, rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -16,7 +16,7 @@ e_gauge_(e, value, name, rm.x = TRUE, rm.y = TRUE, ...)
 
 \item{name}{Text on gauge.}
 
-\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
+\item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

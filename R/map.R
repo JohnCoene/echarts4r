@@ -5,8 +5,8 @@
 #' @inheritParams e_bar
 #' @param serie Values to plot.
 #' @param map Map type.
-#' @param coord.system Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.
-#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
+#' @param coord_system Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.
+#' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' @param id,value,height Columns corresponding to registered map.
 #' 
 #' @examples 
@@ -65,7 +65,7 @@
 #' 
 #' @rdname map
 #' @export
-e_map <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+e_map <- function(e, serie, map = "world", name = NULL, rm_x = TRUE, rm_y = TRUE, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -75,18 +75,18 @@ e_map <- function(e, serie, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE
   else
     sr <- NULL
   
-  e_map_(e, sr, map, name, rm.x, rm.y, ...)
+  e_map_(e, sr, map, name, rm_x, rm_y, ...)
 }
 
 #' @rdname map
 #' @export
-e_map_ <- function(e, serie = NULL, map = "world", name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+e_map_ <- function(e, serie = NULL, map = "world", name = NULL, rm_x = TRUE, rm_y = TRUE, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
+  e <- .rm_axis(e, rm_x, "x")
+  e <- .rm_axis(e, rm_y, "y")
   
   app <- list(
     type = "map",
@@ -110,7 +110,7 @@ e_map_ <- function(e, serie = NULL, map = "world", name = NULL, rm.x = TRUE, rm.
 
 #' @rdname map
 #' @export
-e_map_3d <- function(e, serie, map = "world", name = NULL, coord.system = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+e_map_3d <- function(e, serie, map = "world", name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -119,18 +119,18 @@ e_map_3d <- function(e, serie, map = "world", name = NULL, coord.system = NULL, 
   else
     sr <- NULL
   
-  e_map_3d_(e = e, serie = sr, map, name, coord.system, rm.x, rm.y, ...)
+  e_map_3d_(e = e, serie = sr, map, name, coord_system, rm_x, rm_y, ...)
 }
 
 #' @rdname map
 #' @export
-e_map_3d_ <- function(e, serie = NULL, map = "world", name = NULL, coord.system = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+e_map_3d_ <- function(e, serie = NULL, map = "world", name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
+  e <- .rm_axis(e, rm_x, "x")
+  e <- .rm_axis(e, rm_y, "y")
   
   app <- list(
     type = "map3D",
@@ -141,8 +141,8 @@ e_map_3d_ <- function(e, serie = NULL, map = "world", name = NULL, coord.system 
   if(is.null(name) && !is.null(serie))
     app$name <- serie
   
-  if(!is.null(coord.system))
-    app$coordinateSystem <- coord.system
+  if(!is.null(coord_system))
+    app$coordinateSystem <- coord_system
   
   if(!is.null(serie)){
     data <- .build_data(e, serie)
@@ -157,7 +157,7 @@ e_map_3d_ <- function(e, serie = NULL, map = "world", name = NULL, coord.system 
 
 #' @rdname map
 #' @export
-e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x = TRUE, rm_y = TRUE, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -172,8 +172,8 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm.x 
   
   e$x$renderer <- "webgl"
   
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
+  e <- .rm_axis(e, rm_x, "x")
+  e <- .rm_axis(e, rm_y, "y")
   
   app <- list(
     type = "map3D",
@@ -253,7 +253,7 @@ e_map_register <- function(e, name, json){
 #'     token = "YOUR_MAPBOX_TOKEN",
 #'     style = "mapbox://styles/mapbox/dark-v9"
 #'   ) %>% 
-#'   e_bar_3d(lat, value, coord.system = "mapbox") %>% 
+#'   e_bar_3d(lat, value, coord_system = "mapbox") %>% 
 #'   e_visual_map()
 #' }
 #' 

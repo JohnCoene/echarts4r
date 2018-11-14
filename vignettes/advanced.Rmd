@@ -20,7 +20,7 @@ library(echarts4r)
 
 This document details some more advanced usage of the `echarts4r` package.
 
-## coord.system
+## coord_system
 
 Chart types are not only applicable to the standard 2D cartesian coordinate system, though most charts will default to the `cartesian2d` coordinate system, they may be applied to others.
 
@@ -44,7 +44,7 @@ matrix %>%
   e_visual_map(z)
 ```
 
-One could also plot the heatmap on different coordinates, such as a calendar by first adding a calendar with `e_calendar` then specifying `coord.system = "calendar"`.
+One could also plot the heatmap on different coordinates, such as a calendar by first adding a calendar with `e_calendar` then specifying `coord_system = "calendar"`.
 
 ```{r}
 dates <- seq.Date(as.Date("2018-01-01"), as.Date("2018-12-31"), by = "day")
@@ -55,7 +55,7 @@ year <- data.frame(date = dates, values = values)
 year %>% 
   e_charts(date) %>% 
   e_calendar(range = "2018") %>% 
-  e_heatmap(values, coord.system = "calendar") %>% 
+  e_heatmap(values, coord_system = "calendar") %>% 
   e_visual_map(max = 30)
 ```
 
@@ -75,20 +75,20 @@ df %>%
   e_polar() %>% 
   e_angle_axis() %>% 
   e_radius_axis() %>% 
-  e_line(y, coord.system = "polar", smooth = TRUE) 
+  e_line(y, coord_system = "polar", smooth = TRUE) 
 ```
 
-There are numerous coordinate system available in `echarts4r`; `globe`, `cartesian3d` and `polar` **to name a few.** Note that when there are more than one `coord.system` available the latter are documented with examples in their respective function's `man` page.
+There are numerous coordinate system available in `echarts4r`; `globe`, `cartesian3d` and `polar` **to name a few.** Note that when there are more than one `coord_system` available the latter are documented with examples in their respective function's `man` page.
 
 ## Customise the Axis
 
-Use multiple axis, by speecifying the index of the axis. *Note that JavaScript starts from 0 not 1, so `y.index = 1` is the second axis, `y.index = 0` is the first axis (default)*
+Use multiple axis, by speecifying the index of the axis. *Note that JavaScript starts from 0 not 1, so `y_index = 1` is the second axis, `y_index = 0` is the first axis (default)*
 
 ```{r}
 USArrests %>% 
   e_charts(Assault) %>% 
   e_line(Murder, smooth = TRUE) %>% 
-  e_line(Rape, y.index = 1) %>%  # add secondary axis
+  e_line(Rape, y_index = 1) %>%  # add secondary axis
   e_y_axis(spliLine = list(show = FALSE)) # hide split lines on first Y axis
 ```
 
@@ -118,7 +118,7 @@ USArrests %>%
   ) %>% 
   e_charts(State) %>% 
   e_area(Murder) %>%
-  e_bar(Rape, name = "Sick basterd", x.index = 1) %>% # second y axis 
+  e_bar(Rape, name = "Sick basterd", x_index = 1) %>% # second y axis 
   e_mark_line("Sick basterd", data = list(type = "average")) %>% 
   e_mark_point("Murder", data = list(type = "min"))
 ```

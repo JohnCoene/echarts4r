@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -269,7 +269,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_datazoom</span>(<span class='no'>e</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>toolbox</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_datazoom</span>(<span class='no'>e</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>toolbox</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -279,11 +279,11 @@
       <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code>.</p></td>
     </tr>
     <tr>
-      <th>x.index</th>
+      <th>x_index</th>
       <td><p>Indexes of x and y axis.</p></td>
     </tr>
     <tr>
-      <th>y.index</th>
+      <th>y_index</th>
       <td><p>Indexes of x and y axis.</p></td>
     </tr>
     <tr>
@@ -305,13 +305,13 @@
     <pre class="examples"><div class='input'><span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>UrbanPop</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Assault</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_area.html'>e_area</a></span>(<span class='no'>Murder</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_area.html'>e_area</a></span>(<span class='no'>Murder</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='axis.html'>e_y_axis</a></span>(<span class='kw'>gridIndex</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='axis.html'>e_x_axis</a></span>(<span class='kw'>gridIndex</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_grid.html'>e_grid</a></span>(<span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"35%"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_grid.html'>e_grid</a></span>(<span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"35%"</span>, <span class='kw'>top</span> <span class='kw'>=</span> <span class='st'>"50%"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='toolbox.html'>e_toolbox_feature</a></span>(<span class='st'>"dataZoom"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>zoom</span> <span class='kw'>=</span> <span class='st'>"zoom"</span>, <span class='kw'>back</span> <span class='kw'>=</span> <span class='st'>"back"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_datazoom</span>(<span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1</span>))</div></pre>
+  <span class='fu'>e_datazoom</span>(<span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1</span>))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -7,18 +7,18 @@
 \alias{e_append2_p_}
 \title{Append data}
 \usage{
-e_append1_p(proxy, series.index = NULL, data, x, y)
+e_append1_p(proxy, series_index = NULL, data, x, y)
 
-e_append1_p_(proxy, series.index = NULL, data, x, y)
+e_append1_p_(proxy, series_index = NULL, data, x, y)
 
-e_append2_p(proxy, series.index = NULL, data, x, y, z)
+e_append2_p(proxy, series_index = NULL, data, x, y, z)
 
-e_append2_p_(proxy, series.index = NULL, data, x, y, z)
+e_append2_p_(proxy, series_index = NULL, data, x, y, z)
 }
 \arguments{
 \item{proxy}{An echarts4r proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{series.index}{Index of serie to append to (starts from 0).}
+\item{series_index}{Index of serie to append to (starts from 0).}
 
 \item{data}{Data.frame containing data to append.}
 

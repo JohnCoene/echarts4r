@@ -53,7 +53,7 @@ flights %>%
     end_lon, 
     end_lat,
     name = "flights",
-    coord.system = "geo3D",
+    coord_system = "geo3D",
     lineStyle = list(normal = list(curveness = 0.3)),
     effect = list(show = TRUE)
    )
@@ -71,7 +71,7 @@ names(data) <- c("lon", "lat", "value")
 data %>% 
   e_charts(lon) %>% 
   e_geo_3d() %>% 
-  e_bar_3d(lat, value, coord.system = "geo3D") %>% 
+  e_bar_3d(lat, value, coord_system = "geo3D") %>% 
   e_visual_map()
 ```
 

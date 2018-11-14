@@ -1,4 +1,16 @@
-# echarts4r 0.1.2.9000
+# echarts4r 0.2.0
+
+Arguments containing `.` have been replaced by `_` for clarity. I.e.: `coord.system` => `coord_system`.
+
+Deprecated functions from `0.1.2` have been removed, they can be found in the [echarts4r.assets](http://echarts4r-assets.john-coene.com/) package:
+
+- `e_convert_texture`
+- `e_stars_texture`
+- `e_composite_texture`
+- `e_globe_texture`
+- `e_map_texture`
+
+# echarts4r 0.1.2
 
 * `e_labels` to easily add labels.
 * Mapbox support see `e_mapbox`.

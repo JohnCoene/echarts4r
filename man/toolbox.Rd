@@ -34,8 +34,8 @@ Valid \code{feature}:
 USArrests \%>\% 
   e_charts(UrbanPop) \%>\% 
   e_line(Assault) \%>\% 
-  e_area(Murder, y.index = 1, x.index = 1) \%>\% 
-  e_datazoom(x.index = 0) 
+  e_area(Murder, y_index = 1, x_index = 1) \%>\% 
+  e_datazoom(x_index = 0) 
   
 mtcars \%>\% 
   dplyr::mutate(model = row.names(.)) \%>\%  

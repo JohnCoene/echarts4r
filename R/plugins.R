@@ -5,7 +5,7 @@
 #' @inheritParams e_bar
 #' @param word,freq Terms and their frequencies.
 #' @param color Word color.
-#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
+#' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' words <- function(n = 5000) {
@@ -26,7 +26,7 @@
 #' 
 #' @rdname e_cloud
 #' @export
-e_cloud <- function(e, word, freq, color, rm.x = TRUE, rm.y = TRUE, ...){
+e_cloud <- function(e, word, freq, color, rm_x = TRUE, rm_y = TRUE, ...){
   
   if(missing(e))
     stop("missing e", call. = FALSE)
@@ -36,19 +36,19 @@ e_cloud <- function(e, word, freq, color, rm.x = TRUE, rm.y = TRUE, ...){
   else 
     cl <- NULL
   
-  e_cloud_(e, deparse(substitute(word)), deparse(substitute(freq)), cl, rm.x, rm.y, ...)
+  e_cloud_(e, deparse(substitute(word)), deparse(substitute(freq)), cl, rm_x, rm_y, ...)
   
 }
 
 #' @rdname e_cloud
 #' @export
-e_cloud_ <- function(e, word, freq, color = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+e_cloud_ <- function(e, word, freq, color = NULL, rm_x = TRUE, rm_y = TRUE, ...){
   
   if(missing(e))
     stop("missing e", call. = FALSE)
   
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
+  e <- .rm_axis(e, rm_x, "x")
+  e <- .rm_axis(e, rm_y, "y")
   
   data <- .build_data(e, freq)
   data <- .add_bind(e, data, word)
@@ -83,7 +83,7 @@ e_cloud_ <- function(e, word, freq, color = NULL, rm.x = TRUE, rm.y = TRUE, ...)
 #' 
 #' @inheritParams e_bar
 #' @param color Color to plot.
-#' @param rm.x,rm.y Whether to remove x and y axis, defaults to \code{TRUE}.
+#' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' df <- data.frame(val = c(0.6, 0.5, 0.4))
@@ -97,7 +97,7 @@ e_cloud_ <- function(e, word, freq, color = NULL, rm.x = TRUE, rm.y = TRUE, ...)
 #' 
 #' @rdname e_liquid
 #' @export
-e_liquid <- function(e, serie, color, rm.x = TRUE, rm.y = TRUE, ...){
+e_liquid <- function(e, serie, color, rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("missing e", call. = FALSE)
   
@@ -106,17 +106,17 @@ e_liquid <- function(e, serie, color, rm.x = TRUE, rm.y = TRUE, ...){
   else
     cl <- NULL
   
-  e_liquid_(e, deparse(substitute(serie)), cl, rm.x, rm.y, ...)
+  e_liquid_(e, deparse(substitute(serie)), cl, rm_x, rm_y, ...)
 }
 
 #' @rdname e_liquid
 #' @export
-e_liquid_ <- function(e, serie, color = NULL, rm.x = TRUE, rm.y = TRUE, ...){
+e_liquid_ <- function(e, serie, color = NULL, rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("missing e", call. = FALSE)
   
-  e <- .rm_axis(e, rm.x, "x")
-  e <- .rm_axis(e, rm.y, "y")
+  e <- .rm_axis(e, rm_x, "x")
+  e <- .rm_axis(e, rm_y, "y")
   
   data <- .get_data(e, serie) %>% unlist() %>% unname()
   

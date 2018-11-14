@@ -6,10 +6,10 @@
 \title{Radar}
 \usage{
 e_radar(e, serie, max = 100, name = NULL, legend = TRUE,
-  rm.x = TRUE, rm.y = TRUE, ...)
+  rm_x = TRUE, rm_y = TRUE, ...)
 
 e_radar_(e, serie, max = 100, name = NULL, legend = TRUE,
-  rm.x = TRUE, rm.y = TRUE, ...)
+  rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -22,7 +22,7 @@ e_radar_(e, serie, max = 100, name = NULL, legend = TRUE,
 
 \item{legend}{Whether to add serie to legend.}
 
-\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
+\item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -270,16 +270,16 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_histogram</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='st'>"Sturges"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>bar.width</span> <span class='kw'>=</span> <span class='st'>"99%"</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
+  <span class='kw'>bar.width</span> <span class='kw'>=</span> <span class='st'>"99%"</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_density</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='st'>"Sturges"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
+  <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_histogram_</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='st'>"Sturges"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>bar.width</span> <span class='kw'>=</span> <span class='st'>"99%"</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>bar.width</span> <span class='kw'>=</span> <span class='st'>"99%"</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_density_</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='st'>"Sturges"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -309,11 +309,11 @@
       <td><p>Width of bars.</p></td>
     </tr>
     <tr>
-      <th>x.index</th>
+      <th>x_index</th>
       <td><p>Indexes of x and y axis.</p></td>
     </tr>
     <tr>
-      <th>y.index</th>
+      <th>y_index</th>
       <td><p>Indexes of x and y axis.</p></td>
     </tr>
     <tr>
@@ -327,7 +327,7 @@
     <pre class="examples"><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>e_histogram</span>(<span class='no'>mpg</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"histogram"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_density</span>(<span class='no'>mpg</span>, <span class='kw'>areaStyle</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>opacity</span> <span class='kw'>=</span> <span class='fl'>.4</span>), <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"density"</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_density</span>(<span class='no'>mpg</span>, <span class='kw'>areaStyle</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>opacity</span> <span class='kw'>=</span> <span class='fl'>.4</span>), <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"density"</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_tooltip.html'>e_tooltip</a></span>(<span class='kw'>trigger</span> <span class='kw'>=</span> <span class='st'>"axis"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

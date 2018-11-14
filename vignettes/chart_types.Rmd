@@ -83,8 +83,8 @@ df %>%
   e_polar() %>% 
   e_angle_axis(x) %>% # angle = x
   e_radius_axis() %>% 
-  e_bar(y, coord.system = "polar") %>% 
-  e_scatter(z, coord.system = "polar")
+  e_bar(y, coord_system = "polar") %>% 
+  e_scatter(z, coord_system = "polar")
 ```
 
 ## Radial
@@ -96,8 +96,8 @@ df %>%
   e_polar() %>% 
   e_angle_axis() %>% 
   e_radius_axis(x) %>% 
-  e_bar(y, coord.system = "polar") %>% 
-  e_scatter(z, coord.system = "polar")
+  e_bar(y, coord_system = "polar") %>% 
+  e_scatter(z, coord_system = "polar")
 ```
 
 ## Candlestick
@@ -268,7 +268,7 @@ year <- data.frame(date = dates, values = values)
 year %>% 
   e_charts(date) %>% 
   e_calendar(range = "2018") %>% 
-  e_heatmap(values, coord.system = "calendar") %>% 
+  e_heatmap(values, coord_system = "calendar") %>% 
   e_visual_map(max = 30) %>% 
   e_title("Calendar", "Heatmap")
 ```
@@ -282,7 +282,7 @@ year %>%
   e_charts(date) %>% 
   e_calendar(range = "2017",top="40") %>% 
   e_calendar(range = "2018",top="260") %>% 
-  e_heatmap(values, coord.system = "calendar") %>% 
+  e_heatmap(values, coord_system = "calendar") %>% 
   e_visual_map(max = 30) %>% 
   e_title("Calendar", "Heatmap")%>%
   e_tooltip("item") 

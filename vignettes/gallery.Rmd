@@ -95,7 +95,7 @@ data %>%
   ) %>% 
   e_lines_3d(
     longitude.start, latitude.start, longitude.end, latitude.end, 
-    coord.system = "globe", 
+    coord_system = "globe", 
     effect = list(
       show = TRUE,
       trailWidth = 2,
@@ -136,7 +136,7 @@ data %>%
   ) %>% 
   e_scatter_3d(
     y, z,
-    coord.system = "globe",
+    coord_system = "globe",
     blendMode = "lighter",
     symbolSize = 2
   ) %>% 

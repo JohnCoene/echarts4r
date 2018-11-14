@@ -5,12 +5,12 @@
 \alias{e_scatter_3d_}
 \title{Scatter 3D}
 \usage{
-e_scatter_3d(e, y, z, color, size, bind, coord.system = "cartesian3D",
-  name = NULL, rm.x = TRUE, rm.y = TRUE, legend = FALSE, ...)
+e_scatter_3d(e, y, z, color, size, bind, coord_system = "cartesian3D",
+  name = NULL, rm_x = TRUE, rm_y = TRUE, legend = FALSE, ...)
 
 e_scatter_3d_(e, y, z, color = NULL, size = NULL, bind = NULL,
-  coord.system = "cartesian3D", name = NULL, rm.x = TRUE,
-  rm.y = TRUE, legend = FALSE, ...)
+  coord_system = "cartesian3D", name = NULL, rm_x = TRUE,
+  rm_y = TRUE, legend = FALSE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -21,11 +21,11 @@ e_scatter_3d_(e, y, z, color = NULL, size = NULL, bind = NULL,
 
 \item{bind}{Binding.}
 
-\item{coord.system}{Coordinate system to use, one of \code{geo3D}, \code{globe}, or \code{cartesian3D}.}
+\item{coord_system}{Coordinate system to use, one of \code{geo3D}, \code{globe}, or \code{cartesian3D}.}
 
 \item{name}{name of the serie.}
 
-\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
+\item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{legend}{Whether to add serie to legend.}
 
@@ -79,7 +79,7 @@ airports \%>\%
     base.texture = e_globe_texture(), 
     globeOuterRadius = 100
   ) \%>\% 
-  e_scatter_3d(lat, cnt, coord.system = "globe", blendMode = 'lighter') \%>\% 
+  e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = 'lighter') \%>\% 
   e_visual_map(inRange = list(symbolSize = c(1, 10)))
 
 }

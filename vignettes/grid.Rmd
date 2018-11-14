@@ -68,7 +68,7 @@ First two plots on the same canvas means multiple axis, so we'll plot each serie
 df %>% 
   e_charts(x) %>% 
   e_line(w) %>% 
-  e_line(z, x.index = 1, y.index = 1)
+  e_line(z, x_index = 1, y_index = 1)
 ```
 
 Notice how `echarts4r` puts the additional axis on the top and right of the plot. This is a useful feature but not what we want; we're missing a split grid.
@@ -79,7 +79,7 @@ We use `e_grid` twice for two grids, we define the height of each; `35%` is idea
 df %>% 
   e_charts(x) %>% 
   e_line(w) %>% 
-  e_line(z, x.index = 1, y.index = 1) %>% 
+  e_line(z, x_index = 1, y_index = 1) %>% 
   e_grid(height = "35%") %>% # two grids of 35% height
   e_grid(height = "35%", top = "50%") # this grid is 50% from the top
 ```
@@ -95,7 +95,7 @@ So we have two grids and two axis but the axis are both plotted on the same grid
 df %>% 
   e_charts(x) %>% 
   e_line(w) %>% 
-  e_line(z, x.index = 1, y.index = 1) %>% 
+  e_line(z, x_index = 1, y_index = 1) %>% 
   e_grid(height = "35%") %>% 
   e_grid(height = "35%", top = "50%") %>% 
   e_y_axis(gridIndex = 1) %>% # put x and y on grid index 1
@@ -110,7 +110,7 @@ You can also have a different grid to put the plots side by side.
 df %>% 
   e_charts(x) %>% 
   e_line(w) %>% 
-  e_line(z, x.index = 1, y.index = 1) %>% 
+  e_line(z, x_index = 1, y_index = 1) %>% 
   e_grid(width = "35%") %>% 
   e_grid(width = "35%", left = "55%") %>% 
   e_y_axis(gridIndex = 1) %>% # put x and y on grid index 1
@@ -125,13 +125,13 @@ Well now those charts can share interactions.
 df %>% 
   e_charts(x) %>% 
   e_line(w) %>% 
-  e_line(z, x.index = 1, y.index = 1) %>% 
+  e_line(z, x_index = 1, y_index = 1) %>% 
   e_grid(height = "35%") %>% 
   e_grid(height = "35%", top = "50%") %>% 
   e_y_axis(gridIndex = 1) %>% 
   e_x_axis(gridIndex = 1) %>% 
   e_tooltip(trigger = "axis") %>% 
-  e_datazoom(x.index = c(0, 1)) # add data zoom for for x axis
+  e_datazoom(x_index = c(0, 1)) # add data zoom for for x axis
 ```
 
 ## Axis
@@ -158,7 +158,7 @@ df %>%
   e_polar() %>% 
   e_angle_axis(x) %>% # angle = x
   e_radius_axis() %>% 
-  e_bar(y, coord.system = "polar")
+  e_bar(y, coord_system = "polar")
 ```
 
 or a radial chart one.
@@ -169,7 +169,7 @@ df %>%
   e_polar() %>% 
   e_angle_axis() %>% 
   e_radius_axis(x) %>% # radius = x 
-  e_bar(y, coord.system = "polar")
+  e_bar(y, coord_system = "polar")
 ```
 
 This will also work with other chart types.
@@ -180,6 +180,6 @@ df %>%
   e_polar() %>% 
   e_angle_axis() %>% 
   e_radius_axis(x) %>% 
-  e_line(y, coord.system = "polar") %>% 
-  e_scatter(z, coord.system = "polar")
+  e_line(y, coord_system = "polar") %>% 
+  e_scatter(z, coord_system = "polar")
 ```

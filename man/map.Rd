@@ -8,20 +8,20 @@
 \alias{e_map_3d_custom}
 \title{Choropleth}
 \usage{
-e_map(e, serie, map = "world", name = NULL, rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_map(e, serie, map = "world", name = NULL, rm_x = TRUE,
+  rm_y = TRUE, ...)
 
-e_map_(e, serie = NULL, map = "world", name = NULL, rm.x = TRUE,
-  rm.y = TRUE, ...)
+e_map_(e, serie = NULL, map = "world", name = NULL, rm_x = TRUE,
+  rm_y = TRUE, ...)
 
-e_map_3d(e, serie, map = "world", name = NULL, coord.system = NULL,
-  rm.x = TRUE, rm.y = TRUE, ...)
+e_map_3d(e, serie, map = "world", name = NULL, coord_system = NULL,
+  rm_x = TRUE, rm_y = TRUE, ...)
 
 e_map_3d_(e, serie = NULL, map = "world", name = NULL,
-  coord.system = NULL, rm.x = TRUE, rm.y = TRUE, ...)
+  coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 
 e_map_3d_custom(e, id, value, height, map = NULL, name = NULL,
-  rm.x = TRUE, rm.y = TRUE, ...)
+  rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -32,11 +32,11 @@ e_map_3d_custom(e, id, value, height, map = NULL, name = NULL,
 
 \item{name}{name of the serie.}
 
-\item{rm.x, rm.y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
+\item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 
-\item{coord.system}{Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.}
+\item{coord_system}{Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.}
 
 \item{id, value, height}{Columns corresponding to registered map.}
 }
