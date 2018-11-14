@@ -111,7 +111,7 @@ iris %>%
   e_charts(Sepal.Length) %>% 
   e_line(Petal.Length) %>% 
   e_datazoom() %>% 
-  e_highlight(series.name = "setosa", btn = "highlightButton") %>% # highlight action
+  e_highlight(series_name = "setosa", btn = "highlightButton") %>% # highlight action
   e_zoom( # zoom action
     dataZoomIndex = 0,
     startValue = 4,

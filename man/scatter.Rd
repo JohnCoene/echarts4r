@@ -3,25 +3,29 @@
 \name{e_scatter}
 \alias{e_scatter}
 \alias{e_effect_scatter}
+\alias{e_scale}
 \alias{e_scatter_}
 \alias{e_effect_scatter_}
 \title{Scatter}
 \usage{
-e_scatter(e, serie, size, bind, symbol_size = 10, scale = "* 1",
+e_scatter(e, serie, size, bind, symbol_size = 1, scale = e_scale,
   name = NULL, coord_system = "cartesian2d", legend = TRUE,
   y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE, ...)
 
-e_effect_scatter(e, serie, size, bind, symbol_size = 10, scale = "* 1",
-  name = NULL, coord_system = "cartesian2d", legend = TRUE,
-  y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE, ...)
+e_effect_scatter(e, serie, size, bind, symbol_size = 1,
+  scale = e_scale, name = NULL, coord_system = "cartesian2d",
+  legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE,
+  rm_y = TRUE, ...)
 
-e_scatter_(e, serie, size = NULL, bind = NULL, symbol_size = 10,
-  scale = "* 1", name = NULL, coord_system = "cartesian2d",
+e_scale(x)
+
+e_scatter_(e, serie, size = NULL, bind = NULL, symbol_size = 1,
+  scale = e_scale, name = NULL, coord_system = "cartesian2d",
   legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE,
   rm_y = TRUE, ...)
 
 e_effect_scatter_(e, serie, size = NULL, bind = NULL,
-  symbol_size = 10, scale = "* 1", name = NULL,
+  symbol_size = 1, scale = e_scale, name = NULL,
   coord_system = "cartesian2d", legend = TRUE, y_index = 0,
   x_index = 0, rm_x = TRUE, rm_y = TRUE, ...)
 }
@@ -35,10 +39,10 @@ e_effect_scatter_(e, serie, size = NULL, bind = NULL,
 \item{bind}{Binding between datasets, namely for use of \code{\link{e_brush}}.}
 
 \item{symbol_size}{Size of points, either an integer or a vector of length 2, 
-only used if \code{size} is \code{NULL} or missing.}
+if \code{size} is \emph{not} \code{NULL} or missing it is applied as a multiplier to \code{scale}.}
 
-\item{scale}{Scale for \code{size}, defaults to \code{* 1} which multiplies the size
-by \code{1} (equivalent to no multiplier).}
+\item{scale}{A function that takes a vector of \code{numeric} and returns a vector of \code{numeric}
+of the same length.}
 
 \item{name}{name of the serie.}
 
@@ -54,11 +58,42 @@ by \code{1} (equivalent to no multiplier).}
 set to \code{cartesian2d}.}
 
 \item{...}{Any other option to pass, check See Also section.}
+
+\item{x}{A vector of integers or numeric.}
 }
 \description{
 Add scatter serie.
 }
+\section{Scaling function}{
+ defaults to \code{e_scale} which is a basic function that rescales \code{size}
+between 1 and 20 for that makes for decent sized points on the chart.
+}
+
 \examples{
+# scaling
+e_scale(c(1, 1000))
+
+mtcars \%>\% 
+  e_charts(mpg) \%>\% 
+  e_scatter(wt, qsec)
+  
+my_scale <- function(x) scales::rescale(x, to = c(2, 50))
+  
+echart <- mtcars \%>\% 
+  e_charts(mpg) \%>\% 
+  e_scatter(wt, qsec, scale = my_scale)
+  
+echart
+
+# rescale color too
+echart \%>\% 
+  e_visual_map(wt, scale = my_scale)
+  
+# or
+echart \%>\% 
+  e_visual_map(min = 2, max = 50)
+
+# applications
 USArrests \%>\% 
   e_charts(Assault) \%>\% 
   e_scatter(Murder, Rape) \%>\% 

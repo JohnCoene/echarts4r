@@ -23,7 +23,7 @@ GS <- as.data.frame(GS)
 GS$date <- row.names(GS)
 ```
 
-This document include the **standard** chart types (does not include maps and the more fancy type).
+This document include the _standard_ chart types _only_.
 
 ## Line and Area
 
@@ -60,7 +60,7 @@ df %>%
 df %>% 
   e_charts(x) %>% 
   e_scatter(y, z) %>% 
-  e_visual_map(z) %>% # scale color
+  e_visual_map(z, scale = e_scale) %>% # scale color
   e_legend(FALSE) # hide legend
 ```
 
@@ -190,6 +190,27 @@ mtcars %>%
   e_charts(model) %>% 
   e_pie(carb) %>% 
   e_title("Pie chart")
+```
+
+## Donut
+
+```{r}
+mtcars %>% 
+  head() %>% 
+  dplyr::mutate(model = row.names(.)) %>% 
+  e_charts(model) %>% 
+  e_pie(carb, radius = c("50%", "70%")) %>% 
+  e_title("Donut chart")
+```
+
+## Rosetype
+
+```{r}
+mtcars %>% 
+  head() %>% 
+  dplyr::mutate(model = row.names(.)) %>% 
+  e_charts(model) %>% 
+  e_pie(hp, roseType = "radius")
 ```
 
 ## Sunburst

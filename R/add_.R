@@ -189,8 +189,18 @@ e_step_ <- function(e, serie, bind = NULL, step = c("start", "middle", "end"), f
 
 #' @rdname scatter
 #' @export
-e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 10, 
-                       scale = "* 1", name = NULL, coord_system = "cartesian2d", 
+e_scale <- function(x){
+  
+  if(!inherits(x, "numeric"))
+    stop("x must be numeric")
+  
+  scales::rescale(x, to = c(1, 20))
+}
+
+#' @rdname scatter
+#' @export
+e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1, 
+                       scale = e_scale, name = NULL, coord_system = "cartesian2d", 
                        legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE, 
                        rm_y = TRUE, ...){
   
@@ -208,7 +218,7 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 10,
       e <- .set_x_axis(e, x_index, i)
     
     if(!is.null(size))
-      xy <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie, size)
+      xy <- .build_data_size(e$x$data[[i]], e$x$mapping$x, serie, size, scale, symbol_size)
     else
       xy <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie)
     
@@ -242,10 +252,16 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 10,
     }
     
     if(!is.null(size)){
+      e$scaling <- scale
       e.serie$symbolSize <- htmlwidgets::JS(
-        paste("function(data){ return data[2]", scale, ";}")
+        "function(data){ return data[3];}"
       )
     } else {
+      size_total <- sum(symbol_size)
+      
+      if(size_total == 1)
+        symbol_size <- 10
+      
       e.serie$symbolSize <- symbol_size
     }
     
@@ -257,8 +273,8 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 10,
 
 #' @rdname scatter
 #' @export
-e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 10, 
-                              scale = "* 1", name = NULL, coord_system = "cartesian2d", 
+e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1, 
+                              scale = e_scale, name = NULL, coord_system = "cartesian2d", 
                               legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE, 
                               rm_y = TRUE, ...){
   
@@ -276,12 +292,12 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 
       e <- .set_x_axis(e, x_index, i)
     
     if(!is.null(size))
-      xy <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie, size)
+      xy <- .build_data_size(e$x$data[[i]], e$x$mapping$x, serie, size, scale, symbol_size)
     else
       xy <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie)
     
     if(!is.null(bind))
-      xy <- .add_bind2(e, xy, bind, i= i)
+      xy <- .add_bind2(e, xy, bind, i = i)
     
     if(coord_system != "cartesian2d"){
       e <- .rm_axis(e, rm_x, "x")
@@ -303,9 +319,13 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 
     
     if(!is.null(size)){
       e.serie$symbolSize <- htmlwidgets::JS(
-        paste("function(data){ return data[2]", scale, ";}")
+        "function(data){ return data[3];}"
       )
     } else {
+      size_total <- sum(symbol_size)
+      
+      if(size_total == 1)
+        symbol_size <- 10
       e.serie$symbolSize <- symbol_size
     }
     

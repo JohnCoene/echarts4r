@@ -6,14 +6,14 @@
 \alias{e_downplay}
 \title{Highlight & Downplay}
 \usage{
-e_highlight(e, series.index = NULL, series.name = NULL, btn = NULL)
+e_highlight(e, series_index = NULL, series_name = NULL, btn = NULL)
 
-e_downplay(e, series.index = NULL, series.name = NULL, btn = NULL)
+e_downplay(e, series_index = NULL, series_name = NULL, btn = NULL)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{series.index, series.name}{Index or name of serie to highlight or \code{list} or \code{vector} of series.}
+\item{series_index, series_name}{Index or name of serie to highlight or \code{list} or \code{vector} of series.}
 
 \item{btn}{A \code{\link{e_button}} id.}
 }
@@ -26,6 +26,6 @@ iris \%>\%
   e_charts(Sepal.Length) \%>\% 
   e_line(Sepal.Width) \%>\% 
   e_line(Petal.Length) \%>\% 
-  e_highlight(series.name = "setosa") # highlight group
+  e_highlight(series_name = "setosa") # highlight group
 
 }

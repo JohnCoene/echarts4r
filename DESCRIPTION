@@ -16,7 +16,8 @@ Imports:
   countrycode,
   d3r,
   broom,
-  shiny
+  shiny,
+  scales
 RoxygenNote: 6.1.0
 Suggests: 
   echarts4r.assets,

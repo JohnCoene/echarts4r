@@ -4,8 +4,18 @@
 #' @param serie Column name of serie to scale against.
 #' @param calculable Whether show handles, which can be dragged to adjust "selected range".
 #' @param type One of \code{continuous} or \code{piecewise}.
+#' @param scale A function that takes a vector of \code{numeric} and returns a vector of \code{numeric}
+#' of the same length.
+#' 
+#' @section Scaling function: defaults to \code{e_scale} which is a basic function that rescales \code{size}
+#' between 1 and 20 for that makes for decent sized points on the chart.
 #' 
 #' @examples 
+#' mtcars %>% 
+#'   e_charts(mpg) %>% 
+#'   e_scatter(wt, qsec, scale = e_scale) %>% 
+#'   e_visual_map(qsec, scale = e_scale)
+#' 
 #' v <- LETTERS[1:10]
 #' matrix <- data.frame(
 #'   x = sample(v, 300, replace = TRUE), 
@@ -42,7 +52,7 @@
 #' 
 #' @rdname e_visual_map
 #' @export
-e_visual_map <- function(e, serie, calculable = TRUE, type = c("continuous", "piecewise"), ...){
+e_visual_map <- function(e, serie, calculable = TRUE, type = c("continuous", "piecewise"), scale = NULL, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -52,12 +62,12 @@ e_visual_map <- function(e, serie, calculable = TRUE, type = c("continuous", "pi
   else
     serie <- NULL
   
-  e_visual_map_(e, serie, calculable, type, ...)
+  e_visual_map_(e, serie, calculable, type, scale, ...)
 }
 
 #' @rdname e_visual_map
 #' @export
-e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuous", "piecewise"), ...){
+e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuous", "piecewise"), scale = NULL, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -70,7 +80,10 @@ e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuo
   vm$type <- type[1]
   
   if(!is.null(serie)){
-    rng <- range(.get_data(e, serie))
+    dat <- .get_data(e, serie)
+    if(!is.null(scale))
+      dat <- scale(dat)
+    rng <- range(dat)
     vm$min <- rng[1]
     vm$max <- rng[2]
   }
@@ -277,9 +290,9 @@ e_datazoom <- function(e, x_index = NULL, y_index = NULL, toolbox = TRUE, ...){
 #'       c(180, -40)
 #'      )
 #'   ) %>% 
-#'   e_scatter(lat, mag, stations, coord.system = "geo", scale = "* 1.5", name = "mag") %>% 
+#'   e_scatter(lat, mag, stations, coord.system = "geo", name = "mag") %>% 
 #'   e_data(quakes, depth) %>% 
-#'   e_scatter(mag, mag, stations, scale = "* 3", name = "mag & depth") %>%  
+#'   e_scatter(mag, mag, stations, name = "mag & depth") %>%  
 #'   e_grid(right = 40, top = 100, width = "30%") %>% 
 #'   e_y_axis(type = "value", name = "depth", min = 3.5) %>% 
 #'   e_brush() %>% 

@@ -3,7 +3,7 @@
 #' Highlight series
 #' 
 #' @inheritParams e_bar
-#' @param series.index,series.name Index or name of serie to highlight or \code{list} or \code{vector} of series.
+#' @param series_index,series_name Index or name of serie to highlight or \code{list} or \code{vector} of series.
 #' @param btn A \code{\link{e_button}} id.
 #' 
 #' @examples 
@@ -12,20 +12,20 @@
 #'   e_charts(Sepal.Length) %>% 
 #'   e_line(Sepal.Width) %>% 
 #'   e_line(Petal.Length) %>% 
-#'   e_highlight(series.name = "setosa") # highlight group
+#'   e_highlight(series_name = "setosa") # highlight group
 #' 
 #' @name highlight_action
 #' @export
-e_highlight <- function(e, series.index = NULL, series.name = NULL, btn = NULL){
+e_highlight <- function(e, series_index = NULL, series_name = NULL, btn = NULL){
   
-  if(is.null(series.index) && is.null(series.name))
+  if(is.null(series_index) && is.null(series_name))
     stop("must set index or name", call. = FALSE)
   
   opts <- list()
   
   data <- list(type = "highlight")
-  if(!is.null(series.index)) data$seriesIndex <- as.list(series.index)
-  if(!is.null(series.name)) data$seriesName <- as.list(series.name)
+  if(!is.null(series_index)) data$seriesIndex <- as.list(series_index)
+  if(!is.null(series_name)) data$seriesName <- as.list(series_name)
   opts$data <- data
   
   if(!is.null(btn)){
@@ -43,16 +43,16 @@ e_highlight <- function(e, series.index = NULL, series.name = NULL, btn = NULL){
 
 #' @name highlight_action
 #' @export
-e_downplay <- function(e, series.index = NULL, series.name = NULL, btn = NULL){
+e_downplay <- function(e, series_index = NULL, series_name = NULL, btn = NULL){
   
-  if(is.null(series.index) && is.null(series.name))
+  if(is.null(series_index) && is.null(series_name))
     stop("must set index or name", call. = FALSE)
   
   opts <- list()
   
   data <- list(type = "downplay")
-  if(!is.null(series.index)) data$seriesIndex <- as.list(series.index)
-  if(!is.null(series.name)) data$seriesName <- as.list(series.name)
+  if(!is.null(series_index)) data$seriesIndex <- as.list(series_index)
+  if(!is.null(series_name)) data$seriesName <- as.list(series_name)
   opts$data <- data
   
   if(!is.null(btn)){
@@ -181,8 +181,8 @@ e_zoom <- function(e, ..., btn = NULL){
 #' 
 #' as.data.frame(state.x77) %>% 
 #'   e_charts(Population) %>% 
-#'   e_scatter(Income, Frost, scale = "/5") %>% 
-#'   e_visual_map(Frost) %>% 
+#'   e_scatter(Income, Frost) %>% 
+#'   e_visual_map(Frost, scale = e_scale) %>% 
 #'   e_legend(FALSE) %>% 
 #'   e_visual_map_range(
 #'     selected = list(60, 120)

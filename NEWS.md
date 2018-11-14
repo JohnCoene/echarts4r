@@ -10,6 +10,9 @@ Deprecated functions from `0.1.2` have been removed, they can be found in the [e
 - `e_globe_texture`
 - `e_map_texture`
 
+The `scatter` family of function has been reworked: the `scale` argument now takes a scaling function. To accomodate to this, the `e_visual_map` function also takes, optionally, a `scaling` function.
+Retired `e_keras_history` due to 
+
 # echarts4r 0.1.2
 
 * `e_labels` to easily add labels.

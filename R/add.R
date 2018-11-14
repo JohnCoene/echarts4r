@@ -156,14 +156,42 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' @inheritParams e_bar
 #' @param size Column name containing size of points.
 #' @param symbol_size Size of points, either an integer or a vector of length 2, 
-#' only used if \code{size} is \code{NULL} or missing. 
-#' @param scale Scale for \code{size}, defaults to \code{* 1} which multiplies the size
-#'  by \code{1} (equivalent to no multiplier).
+#' if \code{size} is \emph{not} \code{NULL} or missing it is applied as a multiplier to \code{scale}. 
+#' @param scale A function that takes a vector of \code{numeric} and returns a vector of \code{numeric}
+#' of the same length.
 #' @param coord_system Coordinate system to plot against, see examples.
 #' @param rm_x,rm_y Whether to remove x and y axis, only applies if \code{coord_system} is not 
 #' set to \code{cartesian2d}.
+#' @param x A vector of integers or numeric.
+#' 
+#' @section Scaling function: defaults to \code{e_scale} which is a basic function that rescales \code{size}
+#' between 1 and 20 for that makes for decent sized points on the chart.
 #' 
 #' @examples 
+#' # scaling
+#' e_scale(c(1, 1000))
+#' 
+#' mtcars %>% 
+#'   e_charts(mpg) %>% 
+#'   e_scatter(wt, qsec)
+#'   
+#' my_scale <- function(x) scales::rescale(x, to = c(2, 50))
+#'   
+#' echart <- mtcars %>% 
+#'   e_charts(mpg) %>% 
+#'   e_scatter(wt, qsec, scale = my_scale)
+#'   
+#' echart
+#' 
+#' # rescale color too
+#' echart %>% 
+#'   e_visual_map(wt, scale = my_scale)
+#'   
+#' # or
+#' echart %>% 
+#'   e_visual_map(min = 2, max = 50)
+#' 
+#' # applications
 #' USArrests %>% 
 #'   e_charts(Assault) %>% 
 #'   e_scatter(Murder, Rape) %>% 
@@ -197,7 +225,7 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' 
 #' @rdname scatter
 #' @export
-e_scatter <- function(e, serie, size, bind, symbol_size = 10, scale = "* 1", name = NULL, 
+e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, name = NULL, 
                       coord_system = "cartesian2d", legend = TRUE, y_index = 0, 
                       x_index = 0, rm_x = TRUE, rm_y = TRUE, ...){
   
@@ -225,7 +253,7 @@ e_scatter <- function(e, serie, size, bind, symbol_size = 10, scale = "* 1", nam
 
 #' @rdname scatter
 #' @export
-e_effect_scatter <- function(e, serie, size, bind, symbol_size = 10, scale = "* 1", name = NULL, 
+e_effect_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, name = NULL, 
                              coord_system = "cartesian2d", legend = TRUE, 
                              y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE, ...){
   
@@ -244,8 +272,8 @@ e_effect_scatter <- function(e, serie, size, bind, symbol_size = 10, scale = "* 
   else
     bd <- deparse(substitute(bind))
   
-  e_effect_scatter_(e, serie, size, bd, 
-                    symbol_size, scale, name, 
+  e_effect_scatter_(e, serie = serie, size = size, bind = bd, 
+                    symbol_size = symbol_size, scale = scale, name = name, 
                     coord_system, legend, 
                     y_index, x_index, rm_x, rm_y, ...)
 }
@@ -1509,17 +1537,17 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y_in
 #' @examples 
 #' mtcars %>% 
 #'   e_charts(mpg) %>% 
-#'   e_scatter(qsec) %>% 
+#'   e_scatter(qsec, symbol_size = 10) %>% 
 #'   e_lm(qsec ~ mpg, name = "y = ax + b")
 #'   
 #' mtcars %>% 
 #'   e_charts(disp) %>% 
-#'   e_scatter(mpg) %>% 
+#'   e_scatter(mpg, qsec) %>% 
 #'   e_loess(mpg ~ disp)
 #'   
 #' CO2 %>% 
 #'   e_charts(conc) %>% 
-#'   e_scatter(uptake) %>% 
+#'   e_scatter(uptake, symbol_size = 10) %>% 
 #'   e_glm(uptake ~ conc, name = "GLM")
 #' 
 #' @rdname smooth
@@ -1638,56 +1666,3 @@ e_density <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
   e_density_(e, deparse(substitute(serie)), breaks, name, legend, x_index, y_index, ...)
 }
 
-#' History
-#'
-#' Plot \pkg{keras} history in R.
-#'
-#' @inheritParams e_bar
-#'
-#' @examples
-#' \dontrun{
-#' history <- model %>% 
-#'  fit(...)
-#' 
-#' history %>%
-#'  e_charts() %>%
-#'  e_keras_history()
-#' }
-#' 
-#' @export
-e_keras_history <- function(e){
-
-  e <- .keras_history(e)
-  
-  axis_opts <- list(
-    padding = 25
-  )
-
-  e %>%
-    e_data(e$x$data, epoch) %>% 
-    e_scatter_("acc", "size", name = "Training", scale = "* 5") %>%
-    e_scatter_("val_acc", "size", name = "Validation", scale = "* 5", 
-              symbol = "triangle") %>%
-    e_loess(acc ~ epoch, name = "Training", showSymbol = FALSE) %>%
-    e_loess(val_acc ~ epoch, name = "Validation", showSymbol = FALSE) %>%  # loss
-    e_scatter_("loss", "size", name = "Training", scale = "* 5", y_index = 1, x_index = 1) %>%
-    e_scatter_("val_loss", "size", name = "Validation", scale = "* 5", 
-              y_index = 1, x_index = 1, symbol = "triangle") %>%
-    e_loess(loss ~ epoch, y_index = 1, x_index = 1, name = "Training", showSymbol = FALSE) %>%
-    e_loess(val_loss ~ epoch, y_index = 1, x_index = 1, name = "Validation", showSymbol = FALSE) %>% 
-    e_y_axis(gridIndex = 1, name = "Accuracy", nameRotate = 90, nameTextStyle = axis_opts, nameLocation = "center") %>%
-    e_y_axis(index = 1, name = "Loss", nameRotate = 90, nameTextStyle = axis_opts, nameLocation = "center") %>%
-    e_x_axis(gridIndex = 1, name = "Epoch") %>% 
-    e_x_axis(index = 1, name = "Epoch") %>% 
-    e_grid(height = "35%") %>% 
-    e_grid(height = "35%", top = "50%") %>% 
-    e_datazoom(x_index = c(0, 1)) %>% 
-    e_axis_pointer(show = TRUE, link = list(xAxisIndex = "all")) %>% 
-    e_color(color = c(
-      "#c23531", "#2f4554","#c23531", "#2f4554",
-      "#c23531","#c23531", "#2f4554", "#2f4554"
-      )
-    ) %>% 
-    e_legend(TRUE) %>% 
-    e_title("Model History", "Accuracy & loss")
-}

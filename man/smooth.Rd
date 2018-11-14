@@ -40,17 +40,17 @@ Plot formulas.
 \examples{
 mtcars \%>\% 
   e_charts(mpg) \%>\% 
-  e_scatter(qsec) \%>\% 
+  e_scatter(qsec, symbol_size = 10) \%>\% 
   e_lm(qsec ~ mpg, name = "y = ax + b")
   
 mtcars \%>\% 
   e_charts(disp) \%>\% 
-  e_scatter(mpg) \%>\% 
+  e_scatter(mpg, qsec) \%>\% 
   e_loess(mpg ~ disp)
   
 CO2 \%>\% 
   e_charts(conc) \%>\% 
-  e_scatter(uptake) \%>\% 
+  e_scatter(uptake, symbol_size = 10) \%>\% 
   e_glm(uptake ~ conc, name = "GLM")
 
 }

@@ -269,9 +269,9 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_highlight</span>(<span class='no'>e</span>, <span class='kw'>series.index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>series.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>btn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>e_highlight</span>(<span class='no'>e</span>, <span class='kw'>series_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>series_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>btn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>e_downplay</span>(<span class='no'>e</span>, <span class='kw'>series.index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>series.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>btn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>e_downplay</span>(<span class='no'>e</span>, <span class='kw'>series_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>series_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>btn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -281,7 +281,7 @@
       <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code>.</p></td>
     </tr>
     <tr>
-      <th>series.index, series.name</th>
+      <th>series_index, series_name</th>
       <td><p>Index or name of serie to highlight or <code>list</code> or <code>vector</code> of series.</p></td>
     </tr>
     <tr>
@@ -297,7 +297,7 @@
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Sepal.Length</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Sepal.Width</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Petal.Length</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_highlight</span>(<span class='kw'>series.name</span> <span class='kw'>=</span> <span class='st'>"setosa"</span>) <span class='co'># highlight group</span></div></pre>
+  <span class='fu'>e_highlight</span>(<span class='kw'>series_name</span> <span class='kw'>=</span> <span class='st'>"setosa"</span>) <span class='co'># highlight group</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

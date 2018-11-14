@@ -6,10 +6,10 @@
 \title{Visual Map}
 \usage{
 e_visual_map(e, serie, calculable = TRUE, type = c("continuous",
-  "piecewise"), ...)
+  "piecewise"), scale = NULL, ...)
 
 e_visual_map_(e, serie = NULL, calculable = TRUE,
-  type = c("continuous", "piecewise"), ...)
+  type = c("continuous", "piecewise"), scale = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -20,12 +20,25 @@ e_visual_map_(e, serie = NULL, calculable = TRUE,
 
 \item{type}{One of \code{continuous} or \code{piecewise}.}
 
+\item{scale}{A function that takes a vector of \code{numeric} and returns a vector of \code{numeric}
+of the same length.}
+
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Visual Map
 }
+\section{Scaling function}{
+ defaults to \code{e_scale} which is a basic function that rescales \code{size}
+between 1 and 20 for that makes for decent sized points on the chart.
+}
+
 \examples{
+mtcars \%>\% 
+  e_charts(mpg) \%>\% 
+  e_scatter(wt, qsec, scale = e_scale) \%>\% 
+  e_visual_map(qsec, scale = e_scale)
+
 v <- LETTERS[1:10]
 matrix <- data.frame(
   x = sample(v, 300, replace = TRUE), 

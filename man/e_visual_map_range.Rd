@@ -21,8 +21,8 @@ data("state")
 
 as.data.frame(state.x77) \%>\% 
   e_charts(Population) \%>\% 
-  e_scatter(Income, Frost, scale = "/5") \%>\% 
-  e_visual_map(Frost) \%>\% 
+  e_scatter(Income, Frost) \%>\% 
+  e_visual_map(Frost, scale = e_scale) \%>\% 
   e_legend(FALSE) \%>\% 
   e_visual_map_range(
     selected = list(60, 120)

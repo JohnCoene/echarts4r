@@ -57,6 +57,23 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     
 }
 
+.build_data_size <- function(data, x, y, size, scale, symbol_size){
+  row.names(data) <- NULL
+  
+  data[, "sizeECHARTS"] <- data[, size]
+  
+  data[, "sizeECHARTS"] <- scale(data[, "sizeECHARTS"]) * symbol_size
+  
+  data %>% 
+    dplyr::select_(x, y, size, "sizeECHARTS") %>% 
+    unname(.) -> data
+  
+  apply(data, 1, function(x){
+    list(value = unlist(x, use.names = FALSE))
+  }) 
+  
+}
+
 .build_data2 <- function(data, ...){
   row.names(data) <- NULL
   data %>% 
@@ -402,23 +419,6 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     e$x$opts[[ax]][[index + 1]] <- axis
   }
   e
-}
-
-.keras_history <- function(e){
-
-  e$x$mapping <- list(
-    x = "epoch",
-    x_class = "numeric",
-    include_x = TRUE
-  )
-
-  data <- e$x$data[[1]]$metrics
-  data <- as.data.frame(data)
-  data$epoch <- seq(0, nrow(data) - 1)
-  data$size <- 1
-
-  e$x$data <- data
-  return(e)
 }
 
 .r2axis <- function(axis){
