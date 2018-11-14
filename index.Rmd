@@ -32,18 +32,21 @@ div(
         tags$i(class = "fa fa-rocket"),
         class = "btn btn-success",
         href = "articles/get_started.html",
+        style = "margin-bottom: 5px;",
         "Get Started"
       ),
       tags$a(
         tags$i(class = "fa fa-paint-brush"),
         class = "btn btn-primary",
         href = "articles/themes.html",
+        style = "margin-bottom: 5px;",
         "Themes"
       ),
       tags$a(
         tags$i(class = "fa fa-play"),
         class = "btn btn-info",
         href = "articles/actions-buttons",
+        style = "margin-bottom: 5px;",
         "Buttons"
       ),
       tags$a(
@@ -51,6 +54,7 @@ div(
         target = "_blank",
         class = "btn btn-default",
         href = "http://shiny.john-coene.com/echarts4rShiny",
+        style = "margin-bottom: 5px;",
         "Shiny Demo"
       )
     )
