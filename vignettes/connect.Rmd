@@ -1,10 +1,10 @@
 ---
-title: "Connect"
+title: "Arrange & Connect"
 author: "John Coene"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Connect}
+  %\VignetteIndexEntry{Arrange & Connect}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -141,7 +141,7 @@ server <- function(input, output, session) {
         height = 200
       ) %>% 
       e_scatter(dist) %>% 
-      e_datazoom(show = FALSE, y.index = 0) %>% 
+      e_datazoom(show = FALSE, y_index = 0) %>% 
       e_group("grp")
   })
   
@@ -152,7 +152,7 @@ server <- function(input, output, session) {
         height = 200
       ) %>% 
       e_scatter(speed) %>% 
-      e_datazoom(y.index = 0) %>% 
+      e_datazoom(y_index = 0) %>% 
       e_group("grp") %>%  # assign group
       e_connect_group("grp")
   })
