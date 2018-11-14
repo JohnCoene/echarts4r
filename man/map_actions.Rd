@@ -23,6 +23,23 @@ e_map_toggle_select(e, ..., btn = NULL)
 \description{
 Map-related actions.
 }
+\examples{
+choropleth <- data.frame(
+  countries = c(
+    "France", "Brazil", "China", "Russia", "Canada", "India", "United States",
+    "Argentina", "Australia"
+  ),
+  values = round(runif(9, 10, 25))
+)
+
+choropleth \%>\% 
+  e_charts(countries) \%>\% 
+  e_map(values) \%>\% 
+  e_visual_map(min = 10, max = 25) \%>\% 
+  e_map_toggle_select(name = "China", btn = "btn") \%>\% 
+  e_button("btn", "Select China")
+
+}
 \seealso{
 \code{\link{e_map_register}}
 }
