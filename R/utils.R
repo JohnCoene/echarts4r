@@ -60,9 +60,9 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
 .build_data_size <- function(data, x, y, size, scale, symbol_size){
   row.names(data) <- NULL
   
-  data[, "sizeECHARTS"] <- data[, size]
+  data[["sizeECHARTS"]] <- data[[size]]
   
-  data[, "sizeECHARTS"] <- scale(data[, "sizeECHARTS"]) * symbol_size
+  data[["sizeECHARTS"]] <- scale(data[["sizeECHARTS"]]) * symbol_size
   
   data %>% 
     dplyr::select_(x, y, size, "sizeECHARTS") %>% 

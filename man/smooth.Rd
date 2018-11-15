@@ -38,10 +38,12 @@ e_loess(e, formula, name = NULL, legend = TRUE, symbol = "none",
 Plot formulas.
 }
 \examples{
-mtcars \%>\% 
-  e_charts(mpg) \%>\% 
-  e_scatter(qsec, symbol_size = 10) \%>\% 
-  e_lm(qsec ~ mpg, name = "y = ax + b")
+iris \%>\% 
+  group_by(Species) \%>\% 
+  e_charts(Sepal.Length) \%>\% 
+  e_line(Sepal.Width) \%>\% 
+  e_lm(Sepal.Width ~ Sepal.Length) \%>\% 
+  e_x_axis(min = 4)
   
 mtcars \%>\% 
   e_charts(disp) \%>\% 

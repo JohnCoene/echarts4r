@@ -2,6 +2,9 @@
 
 - `e_clean` removed as it was not of use anymore.
 - `e_list` added to pas raw list of options.
+- Improved `e_color_range` helper.
+- `e_lm` & `e_loess` now support `group_by`.
+- `e_scattter` scaling much more robust.
 
 # echarts4r 0.2.0
 

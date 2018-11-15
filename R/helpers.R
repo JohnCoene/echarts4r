@@ -99,6 +99,18 @@ e_color_range_ <- function(data, input, output, colors = c("#bf444c", "#d88273",
 #' 
 #' @inheritParams e_bar
 #' 
+#' @return A list of data.frames, one for each group.
+#' 
+#' @examples 
+#' echart <- cars %>% 
+#'   e_charts(speed) %>% 
+#'   e_scatter(dist) %>% 
+#'   e_lm(dist ~ speed) 
+#'   
+#' echart
+#' 
+#' e_get_data(echart)[[1]]
+#' 
 #' @export
 e_get_data <- function(e){
   e$x$data
