@@ -1,3 +1,8 @@
+# echarts4r 0.2.1.9000
+
+- `e_clean` removed as it was not of use anymore.
+- `e_list` added to pas raw list of options.
+
 # echarts4r 0.2.0
 
 Arguments containing `.` have been replaced by `_` for clarity. I.e.: `coord.system` => `coord_system`.
@@ -11,7 +16,7 @@ Deprecated functions from `0.1.2` have been removed, they can be found in the [e
 - `e_map_texture`
 
 The `scatter` family of function has been reworked: the `scale` argument now takes a scaling function. To accomodate to this, the `e_visual_map` function also takes, optionally, a `scaling` function.
-Retired `e_keras_history` due to 
+Retired `e_keras_history` due to its uselessness.
 
 # echarts4r 0.1.2
 
