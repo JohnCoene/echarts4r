@@ -128,10 +128,6 @@ e_append2_p_ <- function(proxy, series_index = NULL, data, x, y, z, scale = NULL
   
   opts <- list(id = proxy$id, seriesIndex = series_index, data = dlist)
   
-  print(
-    jsonlite::toJSON(opts, auto_unbox = T, pretty = T)
-  )
-  
   proxy$session$sendCustomMessage("e_append_p", opts)
   
   return(proxy)
