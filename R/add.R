@@ -158,7 +158,7 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' @param symbol_size Size of points, either an integer or a vector of length 2, 
 #' if \code{size} is \emph{not} \code{NULL} or missing it is applied as a multiplier to \code{scale}. 
 #' @param scale A function that takes a vector of \code{numeric} and returns a vector of \code{numeric}
-#' of the same length.
+#' of the same length. You can disable the scaling by setting it to \code{NULL}.
 #' @param coord_system Coordinate system to plot against, see examples.
 #' @param rm_x,rm_y Whether to remove x and y axis, only applies if \code{coord_system} is not 
 #' set to \code{cartesian2d}.
@@ -174,7 +174,8 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' mtcars %>% 
 #'   e_charts(mpg) %>% 
 #'   e_scatter(wt, qsec)
-#'   
+#' 
+#' # custom function
 #' my_scale <- function(x) scales::rescale(x, to = c(2, 50))
 #'   
 #' echart <- mtcars %>% 
@@ -190,6 +191,11 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' # or
 #' echart %>% 
 #'   e_visual_map(min = 2, max = 50)
+#'   
+#' # disable scaling
+#' mtcars %>% 
+#'   e_charts(qsec) %>% 
+#'   e_scatter(wt, mpg, scale = NULL)
 #' 
 #' # applications
 #' USArrests %>% 

@@ -62,7 +62,10 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   
   data[["sizeECHARTS"]] <- data[[size]]
   
-  data[["sizeECHARTS"]] <- scale(data[["sizeECHARTS"]]) * symbol_size
+  if(!is.null(scale))
+    data[["sizeECHARTS"]] <- scale(data[["sizeECHARTS"]]) * symbol_size
+  else 
+    data[["sizeECHARTS"]] <- data[[size]]
   
   data %>% 
     dplyr::select_(x, y, size, "sizeECHARTS") %>% 
@@ -106,10 +109,15 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   l
 }
 
-.build_data_p <- function(data, ..., names = NULL, vector = FALSE){
+.build_data_p <- function(data, ..., vector = FALSE, scale = NULL, symbol_size = 1){
   data %>% 
     dplyr::select_(...) %>% 
-    purrr::set_names(names) -> data
+    purrr::set_names(NULL) -> data
+  
+  if(!is.null(scale))
+    data[[4]] <- scale(data[[3]]) * symbol_size
+  else
+    data[[4]] <- data[[3]]
   
   if(isTRUE(vector))
     unlist(data)

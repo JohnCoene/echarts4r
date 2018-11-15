@@ -6,6 +6,8 @@
 #' @param series_index Index of serie to append to (starts from 0).
 #' @param data Data.frame containing data to append.
 #' @param x,y,z Columns names to plot.
+#' @param scale A scaling function as passed to \code{\link{e_scatter}}.
+#' @param symbol_size Multiplier of scaling function as in \code{\link{e_scatter}}.
 #' 
 #' @details Currently not all types of series supported incremental rendering when using appendData. 
 #' Only these types of series support it: \code{\link{e_scatter}} and \code{\link{e_line}} of pure echarts, and 
@@ -26,17 +28,17 @@
 #'   
 #'   server <- function(input, output, session){
 #'   
-#'     data <- data.frame(x = rnorm(10, 5, 3), y = rnorm(10, 50, 12), z = rnorm(10, 50, 5))
+#'     data <- data.frame(x = rnorm(10, 5, 3), y = rnorm(10, 50, 12), z = rnorm(10, 5, 20))
 #'     
 #'     react <- eventReactive(input$add, {
 #'       set.seed(sample(1:1000, 1))
-#'       data.frame(x = rnorm(10, 5, 2), y = rnorm(10, 50, 10), z = rnorm(10, 1, 5))
+#'       data.frame(x = rnorm(10, 5, 2), y = rnorm(10, 50, 10), z = rnorm(10, 5, 20))
 #'     })
 #'     
 #'     output$plot <- renderEcharts4r({
 #'       data %>% 
 #'        e_charts(x) %>% 
-#'        e_scatter(y, z) %>%
+#'        e_scatter(y, z, scale = NULL) %>%
 #'        e_scatter(z) %>% 
 #'        e_brush()
 #'     })
@@ -88,24 +90,47 @@ e_append1_p_ <- function(proxy, series_index = NULL, data, x, y){
 
 #' @rdname append
 #' @export
-e_append2_p <- function(proxy, series_index = NULL, data, x, y, z){
+e_append2_p <- function(proxy, series_index = NULL, data, x, y, z, scale = NULL, symbol_size = 1){
   
   if (!"echarts4rProxy" %in% class(proxy)) 
     stop("must pass echarts4rProxy object", call. = FALSE)
   
-  e_append2_p_(proxy, series_index = NULL, data, deparse(substitute(x)), deparse(substitute(y)), deparse(substitute(z)))
+  e_append2_p_(
+    proxy = proxy, 
+    series_index = series_index,
+    data = data, 
+    x = deparse(substitute(x)), 
+    y = deparse(substitute(y)), 
+    z = deparse(substitute(z)),
+    scale = scale,
+    symbol_size = symbol_size
+  )
 }
 
 #' @rdname append
 #' @export
-e_append2_p_ <- function(proxy, series_index = NULL, data, x, y, z){
+e_append2_p_ <- function(proxy, series_index = NULL, data, x, y, z, scale = NULL, symbol_size = 1){
   
   if (!"echarts4rProxy" %in% class(proxy)) 
     stop("must pass echarts4rProxy object", call. = FALSE)
   
-  data <- .build_data_p(data, x, y, z)
+  data %>% 
+    dplyr::select_(x, y, z) -> data
   
-  opts <- list(id = proxy$id, seriesIndex = series_index, data = data)
+  if(!is.null(scale))
+    data[[4]] <- scale(data[[3]]) * symbol_size
+  else
+    data[[4]] <- data[[3]]
+  
+  data <- unname(data)
+  
+  dlist <- apply(data, 1, function(x){list(value = unlist(x, use.names = FALSE))}) 
+  
+  opts <- list(id = proxy$id, seriesIndex = series_index, data = dlist)
+  
+  print(
+    jsonlite::toJSON(opts, auto_unbox = T, pretty = T)
+  )
   
   proxy$session$sendCustomMessage("e_append_p", opts)
   
