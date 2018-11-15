@@ -1,0 +1,70 @@
+---
+title: "MAKE GEO JSON DATA"
+author: "Pengfei Li"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{MAKE_GEO_JSON}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Basic
+
+Since you may need different level of map json data just like city or county which was not included in this package,you may get the detail map data from website(https://gadm.org/) . This is a example of how to make your own geo json file which can be used in `e_map_register`
+
+
+## Load Packages
+
+- `sp` : spatial data manage package
+- `raster` :  get spatial data from gadm website(https://gadm.org/)
+- `geojsonio` :  convert spatial data into json format
+- `rmapshaper` : simplify the spatial data 
+
+```{r}
+library(echarts4r)
+library(sp)
+library(raster)
+library(geojsonio)
+library(rmapshaper)
+```
+
+## Example Code
+
+```{r}
+India <- raster::getData('GADM', country='INDIA', level=2) # get India map data from gadm website, this command need network available, it will download the rds data to the current directory.
+head(India) # Check the data format
+
+# get sub data of India ,use the below command
+# not run 
+# India_sub <- India[1:30,]
+
+# combine two sp data
+# not run
+# union <- raster::union(India,other) # combine two sp data
+
+
+India_json <- geojsonio::geojson_list(India) # convert sp data into json format , the data is very big which need a long time
+
+# combine two json data
+# not run 
+# jsons <- India_json + other_json
+
+print(object.size(India_json),units="Mb") # 59.7Mb
+India_small <- rmapshaper::ms_simplify(India,keep = 0.05) # simplify the sp data
+India_json_small <- geojsonio::geojson_list(India_small) # the data is small now 
+print(object.size(India_json_small),units="Mb") # 6.9 Mb
+
+# plot 
+df <- data.frame(city="",value="")
+df %>% 
+  e_charts(city) %>%
+  e_map_register("India_small",India_json_small) %>%
+  e_map(value,map="India_small")
+
+```
+
+
+
+
+
