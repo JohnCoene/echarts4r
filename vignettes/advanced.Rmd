@@ -31,11 +31,11 @@ iris %>%
     e_scatter(Petal.Length, Sepal.Width)
 ```
 
-The default scaling function is `e_scale` which rescales from 1 to 20, but you can pass your own. The scaling function should take a vector of `integer` or `numeric` and return a similar vector of the same length. For instance, to create a function that rescales from 1 to 50:
+The default scaling function is `e_scale` which rescales from 1 to 20, but you can pass your own. The scaling function should take a vector of `integer` or `numeric` and return a similar vector of the same length. For instance, to create a function that rescales from 5 to 30:
 
 ```{r}
 my_scale <- function(x){
-  scales::rescale(x, to = c(1, 50))
+  scales::rescale(x, to = c(5, 30))
 }
 
 iris %>% 
@@ -53,7 +53,7 @@ iris %>%
     e_scatter(Petal.Length, symbol_size = 15)
 ```
 
-When `size` is passed `symbol_size` becomes a multiplier executed after the scaling function is run. For instance $\log(1+x)*2$
+When `size` is passed `symbol_size` becomes a multiplier executed after the scaling function is run. For instance $\log(1+x)*5$
 
 ```{r}
 iris %>% 
