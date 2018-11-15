@@ -499,34 +499,6 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     grep(serie, .)
 }
 
-.build_model <- function(e, model, name, symbol, smooth, ...){
-  data <- broom::augment(model)
-  
-  data_keep <- e$x$data
-  e <- e %>% e_data(data)
-  
-  vector <- .build_data(
-    e, 
-    names(data)[[2]],
-    names(data)[[3]]
-  )
-  
-  l <- list(
-    name = name,
-    type = "line",
-    data = vector,
-    symbol = symbol,
-    smooth = smooth,
-    ...
-  )
-  
-  e <- e %>% e_data(data_keep)
-  
-  e$x$opts$series <- append(e$x$opts$series, list(l))
-  
-  e
-}
-
 .add_indicators <- function(e, r.index, max){
   
   if(!length(e$x$opts$radar))
