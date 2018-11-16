@@ -169,14 +169,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   
   names(data) <- c("name", "value", "symbolSize", "category")[1:ncol(data)]
   
-  x <- apply(data, 1, as.list)
-  
-  # for(i in 1:length(x)){
-  #   x[[i]]$symbolSize <- as.numeric(paste(x[[i]]$symbolSize))
-  #   x[[i]]$value <- as.numeric(paste(x[[i]]$value))
-  #   x[[i]]$name <- trimws(as.character(x[[i]]$name))
-  # }
-  x
+  apply(data, 1, as.list)
 }
 
 .build_graph_nodes_no_size <- function(nodes, names, value){
@@ -191,13 +184,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   
   names(data) <- c("name", "value")[1:ncol(data)]
   
-  x <- apply(data, 1, as.list)
-  
-  # for(i in 1:length(x)){
-  #   x[[i]]$value <- as.numeric(paste(x[[i]]$value))
-  #   x[[i]]$name <- trimws(as.character(x[[i]]$name))
-  # }
-  x
+  apply(data, 1, as.list)
 }
 
 .build_graph_nodes_no_cat <- function(nodes, names, value, symbolSize){
@@ -213,14 +200,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   
   names(data) <- c("name", "value", "symbolSize")[1:ncol(data)]
   
-  x <- apply(data, 1, as.list)
-  
-  # for(i in 1:length(x)){
-  #   x[[i]]$symbolSize <- as.numeric(paste(x[[i]]$symbolSize))
-  #   x[[i]]$value <- as.numeric(paste(x[[i]]$value))
-  #   x[[i]]$name <- trimws(as.character(x[[i]]$name))
-  # }
-  x
+  apply(data, 1, as.list)
 }
 
 .build_graph_edges <- function(edges, source, target){
