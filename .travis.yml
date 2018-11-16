@@ -14,6 +14,7 @@ before_install:
   - sudo apt-get install protobuf-compiler libprotobuf-dev libprotoc-dev
   - sudo apt-get install libudunits2-dev
   - sudo apt-get install libv8-3.14-dev
+  - sudo apt-get -y install libspatialite5
   - sudo apt-get -y install libgdal1h
   - sudo apt-get -y install libgdal1-dev
   - sudo apt-get install libproj-dev
