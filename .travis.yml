@@ -3,7 +3,12 @@
 language: R
 sudo: false
 cache: packages
-
+addons:
+  apt:
+    packages:
+      - libgdal-dev
+      - libproj-dev
+      
 warnings_are_errors: false
 
 before_install:
@@ -14,12 +19,6 @@ before_install:
   - sudo apt-get install protobuf-compiler libprotobuf-dev libprotoc-dev
   - sudo apt-get install libudunits2-dev
   - sudo apt-get install libv8-3.14-dev
-  - sudo apt-get -y install libspatialite5
-  - sudo apt-get -y install libgdal1i
-  - sudo apt-get -y install libgdal1i-dev
-  - sudo apt-get install libproj-dev
-  - sudo apt-get install libgeos-dev
-  - sudo apt-get install gdal-bin
 
 r_build_args: --no-build-vignettes --no-manual --no-resave-data
 r_check_args: --no-build-vignettes --no-manual
