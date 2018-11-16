@@ -1722,3 +1722,29 @@ e_density <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
   e_density_(e, deparse(substitute(serie)), breaks, name, legend, x_index, y_index, ...)
 }
 
+
+#' Lines WebGL
+#' 
+#' Draw WebGL lines.}
+#' 
+#' @inheritParams e_bar
+#' @param data A list.
+#' @param ... Any other options, see this \href{https://ecomfe.github.io/echarts-examples/public/editor.html?c=linesGL-ny&gl=1}{example}
+#' for possible options, as this series type is mostly undocumented.
+#' 
+#' @export
+e_lines_gl <- function(e, data, coord_system = "geo", ...){
+  
+  if(missing(data) || missing(e))
+    stop("missing e or data", call. = FALSE)
+  
+  serie <- list(
+    type = "linesGL",
+    coordinateSystem = coord_system,
+    data = data,
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  e
+}

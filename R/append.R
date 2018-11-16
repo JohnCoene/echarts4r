@@ -1,6 +1,6 @@
-#' Append data
+#' Append Proxy
 #' 
-#' Append data.
+#' Append data dynamically.
 #' 
 #' @inheritParams e_highlight_p
 #' @param series_index Index of serie to append to (starts from 0).
@@ -131,4 +131,50 @@ e_append2_p_ <- function(proxy, series_index = NULL, data, x, y, z, scale = NULL
   proxy$session$sendCustomMessage("e_append_p", opts)
   
   return(proxy)
+}
+
+#' Append
+e_append <- function(e, ..., data = NULL, series_name = NULL, series_index = NULL, split = 0, timeout = 0){
+  
+  if(is.null(series_name) && is.null(series_index))
+    stop("must set series_index or series_name", call. = FALSE)
+  
+  if(!is.null(series_index))
+    if(series_index > length(e$x$opts$series)) stop("series_index incorrect", call. = FALSE)
+  
+  if(!is.null(series_name))
+    series_index <- purrr::map(e$x$opts$series,"name") %>% unlist() %>% grep(series_name, .)
+  
+  if(length(series_index) == 0) stop("wrong series name", call. = FALSE)
+  
+  if(is.null(data)){
+    data <- e$x$data[[1]]
+  } else {
+    row.names(data) <- NULL
+  }
+  
+  data <- data %>% 
+    dplyr::select(...) %>% 
+    unname() 
+  
+  fmt <- purrr::map(e$x$opts$series[[series_index]]$data, "value") %>% unlist %>% sum()
+  
+  data <- split(data, split)
+  
+  if(fmt == 0)
+    preproc <- function(data){apply(data, 1, as.list)}
+  else
+    preproc <- function(data){apply(data, 1, function(x){ list(value = unlist(x, use.names = FALSE)) })}
+  
+  for(i in 1:length(data)){
+    data[[i]] <- preproc(data[[i]])
+  }
+  
+  data <- list(
+    seriesIndex = series_index,
+    data = data
+  )
+  
+  e$x$appendAction <- data
+  e
 }

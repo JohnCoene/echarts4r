@@ -6,6 +6,7 @@
 - `e_lm` & `e_loess` now support `group_by`.
 - `e_scattter` scaling much more robust.
 - `e_append` adapated to work with new scatter-family of function (scaling).
+- `e_lines_gl` added.
 
 # echarts4r 0.2.0
 
