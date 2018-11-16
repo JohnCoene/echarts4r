@@ -12,6 +12,7 @@ before_install:
   - sudo apt-get install libjq-dev
   - sudo apt-get install libprotobuf-dev
   - sudo apt-get install protobuf-compiler libprotobuf-dev libprotoc-dev
+  - sudo apt-get install libudunits2-dev
 
 r_build_args: --no-build-vignettes --no-manual --no-resave-data
 r_check_args: --no-build-vignettes --no-manual
