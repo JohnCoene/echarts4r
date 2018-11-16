@@ -13,6 +13,7 @@ before_install:
   - sudo apt-get install libprotobuf-dev
   - sudo apt-get install protobuf-compiler libprotobuf-dev libprotoc-dev
   - sudo apt-get install libudunits2-dev
+  - sudo apt-get install libv8-3.14-dev
 
 r_build_args: --no-build-vignettes --no-manual --no-resave-data
 r_check_args: --no-build-vignettes --no-manual
