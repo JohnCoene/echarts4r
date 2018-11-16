@@ -14,7 +14,10 @@ before_install:
   - sudo apt-get install protobuf-compiler libprotobuf-dev libprotoc-dev
   - sudo apt-get install libudunits2-dev
   - sudo apt-get install libv8-3.14-dev
-  - sudo apt-get install libgeos-c1v5 libspatialite5 libgdal1h libgdal-dev libgdal1-dev gdal-abi-2-1-0 libproj-dev gdal-bin
+  - sudo apt-get -y install libgdal1h
+  - sudo apt-get -y install libgdal1-dev
+  - sudo apt-get install libproj-dev
+  - sudo apt-get install gdal-bin
 
 r_build_args: --no-build-vignettes --no-manual --no-resave-data
 r_check_args: --no-build-vignettes --no-manual
