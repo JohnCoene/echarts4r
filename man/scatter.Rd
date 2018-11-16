@@ -42,7 +42,7 @@ e_effect_scatter_(e, serie, size = NULL, bind = NULL,
 if \code{size} is \emph{not} \code{NULL} or missing it is applied as a multiplier to \code{scale}.}
 
 \item{scale}{A function that takes a vector of \code{numeric} and returns a vector of \code{numeric}
-of the same length.}
+of the same length. You can disable the scaling by setting it to \code{NULL}.}
 
 \item{name}{name of the serie.}
 
@@ -76,7 +76,8 @@ e_scale(c(1, 1000))
 mtcars \%>\% 
   e_charts(mpg) \%>\% 
   e_scatter(wt, qsec)
-  
+
+# custom function
 my_scale <- function(x) scales::rescale(x, to = c(2, 50))
   
 echart <- mtcars \%>\% 
@@ -92,6 +93,11 @@ echart \%>\%
 # or
 echart \%>\% 
   e_visual_map(min = 2, max = 50)
+  
+# disable scaling
+mtcars \%>\% 
+  e_charts(qsec) \%>\% 
+  e_scatter(wt, mpg, scale = NULL)
 
 # applications
 USArrests \%>\% 

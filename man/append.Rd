@@ -11,9 +11,11 @@ e_append1_p(proxy, series_index = NULL, data, x, y)
 
 e_append1_p_(proxy, series_index = NULL, data, x, y)
 
-e_append2_p(proxy, series_index = NULL, data, x, y, z)
+e_append2_p(proxy, series_index = NULL, data, x, y, z, scale = NULL,
+  symbol_size = 1)
 
-e_append2_p_(proxy, series_index = NULL, data, x, y, z)
+e_append2_p_(proxy, series_index = NULL, data, x, y, z, scale = NULL,
+  symbol_size = 1)
 }
 \arguments{
 \item{proxy}{An echarts4r proxy as returned by \code{\link{echarts4rProxy}}.}
@@ -23,6 +25,10 @@ e_append2_p_(proxy, series_index = NULL, data, x, y, z)
 \item{data}{Data.frame containing data to append.}
 
 \item{x, y, z}{Columns names to plot.}
+
+\item{scale}{A scaling function as passed to \code{\link{e_scatter}}.}
+
+\item{symbol_size}{Multiplier of scaling function as in \code{\link{e_scatter}}.}
 }
 \description{
 Append data.
@@ -47,17 +53,17 @@ Only these types of series support it: \code{\link{e_scatter}} and \code{\link{e
   
   server <- function(input, output, session){
   
-    data <- data.frame(x = rnorm(10, 5, 3), y = rnorm(10, 50, 12), z = rnorm(10, 50, 5))
+    data <- data.frame(x = rnorm(10, 5, 3), y = rnorm(10, 50, 12), z = rnorm(10, 5, 20))
     
     react <- eventReactive(input$add, {
       set.seed(sample(1:1000, 1))
-      data.frame(x = rnorm(10, 5, 2), y = rnorm(10, 50, 10), z = rnorm(10, 1, 5))
+      data.frame(x = rnorm(10, 5, 2), y = rnorm(10, 50, 10), z = rnorm(10, 5, 20))
     })
     
     output$plot <- renderEcharts4r({
       data \%>\% 
        e_charts(x) \%>\% 
-       e_scatter(y, z) \%>\%
+       e_scatter(y, z, scale = NULL) \%>\%
        e_scatter(z) \%>\% 
        e_brush()
     })

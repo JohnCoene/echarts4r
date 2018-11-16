@@ -99,6 +99,18 @@ e_color_range_ <- function(data, input, output, colors = c("#bf444c", "#d88273",
 #' 
 #' @inheritParams e_bar
 #' 
+#' @return A list of data.frames, one for each group.
+#' 
+#' @examples 
+#' echart <- cars %>% 
+#'   e_charts(speed) %>% 
+#'   e_scatter(dist) %>% 
+#'   e_lm(dist ~ speed) 
+#'   
+#' echart
+#' 
+#' e_get_data(echart)[[1]]
+#' 
 #' @export
 e_get_data <- function(e){
   e$x$data
@@ -164,36 +176,6 @@ e_format_y_axis <- function(e, suffix = NULL, prefix = NULL, ...){
   e_format_axis(e, "y", suffix, prefix, ...)
 }
 
-#' Clean
-#' 
-#' Removes base \code{data.frame}.
-#' 
-#' @inheritParams e_bar
-#' 
-#' @details Removes the core database after all operations are exectuted, lightens up the load on final visualisation.
-#' 
-#' @examples 
-#' df <- data.frame(
-#'   x = 1:10,
-#'   y = round(
-#'     runif(10, 1, 100), 2
-#'   ) 
-#' )
-#' 
-#' df %>% 
-#'   e_charts(x) %>% 
-#'   e_line(y) %>% 
-#'   e_format_y_axis(suffix = "%") %>%
-#'   e_format_x_axis(prefix = "A") %>% 
-#'   e_clean()
-#' 
-#' @export
-e_clean <- function(e){
-  warning("There is no need for this function any longer.")
-  e$x$data <- NULL
-  e
-}
-
 #' Format labels
 #' 
 #' @inheritParams e_bar
@@ -227,5 +209,51 @@ e_labels <- function(e, show = TRUE, position = "top", ...){
   }
   
   return(e)
+  
+}
+
+#' List
+#' 
+#' simply pass a list of options, similar to a \code{JSON}.
+#' 
+#' @inheritParams e_bar
+#' @param list A \code{list} of options passed to \code{setOptions}.
+#' @param append if \code{TRUE} the \code{list} is appended to the options,
+#' otherwise it \emph{overwrites} everything. 
+#' 
+#' @examples 
+#' N <- 20 # data points
+#' 
+#' opts <- list(
+#'   xAxis = list(
+#'     type = "category",
+#'     data = LETTERS[1:N]
+#'   ),
+#'   yAxis = list(
+#'     type = "value"
+#'   ),
+#'   series = list(
+#'     list(
+#'       type = "line",
+#'       data = round(runif(N, 5, 20))
+#'     )
+#'   )
+#' )
+#' 
+#' e_charts() %>% 
+#'   e_list(opts)
+#' 
+#' @export
+e_list <- function(e, list, append = FALSE){
+  
+  if(missing(list))
+    stop("missing list", call. = FALSE)
+  
+  if(isTRUE(append))
+    e$x$opts <- append(e$x$opts, list)
+  else
+    e$x$opts <- list
+  
+  e
   
 }

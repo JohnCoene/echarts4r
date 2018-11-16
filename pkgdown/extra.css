@@ -20,6 +20,22 @@ li>a {
   color: #B03A5B;
 }
 
+.sourceCode>a{
+  color: #293c55;
+}
+
+.st{
+  color: #B03A5B;
+}
+
+.op{
+  color: #666666;
+}
+
+.dv, .dt{
+  color: #191919;
+}
+
 pre {
   box-shadow:
     rgba(0, 0, 0, 0.1) 0 2px 3px 1px,

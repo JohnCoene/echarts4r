@@ -158,7 +158,7 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' @param symbol_size Size of points, either an integer or a vector of length 2, 
 #' if \code{size} is \emph{not} \code{NULL} or missing it is applied as a multiplier to \code{scale}. 
 #' @param scale A function that takes a vector of \code{numeric} and returns a vector of \code{numeric}
-#' of the same length.
+#' of the same length. You can disable the scaling by setting it to \code{NULL}.
 #' @param coord_system Coordinate system to plot against, see examples.
 #' @param rm_x,rm_y Whether to remove x and y axis, only applies if \code{coord_system} is not 
 #' set to \code{cartesian2d}.
@@ -174,7 +174,8 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' mtcars %>% 
 #'   e_charts(mpg) %>% 
 #'   e_scatter(wt, qsec)
-#'   
+#' 
+#' # custom function
 #' my_scale <- function(x) scales::rescale(x, to = c(2, 50))
 #'   
 #' echart <- mtcars %>% 
@@ -190,6 +191,11 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' # or
 #' echart %>% 
 #'   e_visual_map(min = 2, max = 50)
+#'   
+#' # disable scaling
+#' mtcars %>% 
+#'   e_charts(qsec) %>% 
+#'   e_scatter(wt, mpg, scale = NULL)
 #' 
 #' # applications
 #' USArrests %>% 
@@ -1535,10 +1541,12 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y_in
 #' @param ... Additional arguments to pass to \code{\link{e_line}}.
 #' 
 #' @examples 
-#' mtcars %>% 
-#'   e_charts(mpg) %>% 
-#'   e_scatter(qsec, symbol_size = 10) %>% 
-#'   e_lm(qsec ~ mpg, name = "y = ax + b")
+#' iris %>% 
+#'   group_by(Species) %>% 
+#'   e_charts(Sepal.Length) %>% 
+#'   e_line(Sepal.Width) %>% 
+#'   e_lm(Sepal.Width ~ Sepal.Length) %>% 
+#'   e_x_axis(min = 4)
 #'   
 #' mtcars %>% 
 #'   e_charts(disp) %>% 
@@ -1553,30 +1561,76 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y_in
 #' @rdname smooth
 #' @export
 e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, ...){
+  
   form <- as.formula(formula)
-  model <- eval(
-    lm(form, data = e$x$data[[1]])
-  )
   
-  e <- .build_model(e, model, name, symbol, smooth, ...)
+  for(i in 1:length(e$x$data)){
+    
+    model <- eval(
+      lm(form, data = e$x$data[[i]])
+    )
+    
+    data <- broom::augment(model)
+    data <- data %>% dplyr::select(-dplyr::one_of(names(model$model)))
+    
+    e$x$data[[i]] <- dplyr::bind_cols(e$x$data[[i]], data)
+    
+    vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, ".fitted")
+    
+    l <- list(
+      name = name,
+      type = "line",
+      data = vector,
+      symbol = symbol,
+      smooth = smooth,
+      ...
+    )
+    
+    e$x$opts$series <- append(e$x$opts$series, list(l))
+    
+    if(isTRUE(legend))
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+    
+  }
   
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   e 
 }
 
 #' @rdname smooth
 #' @export
 e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, ...){
+  
   form <- as.formula(formula)
-  model <- eval(
-    glm(form, data = e$x$data[[1]])
-  )
   
-  e <- .build_model(e, model, name, symbol, smooth, ...)
+  for(i in 1:length(e$x$data)){
+    
+    model <- eval(
+      glm(form, data = e$x$data[[i]])
+    )
+    
+    data <- broom::augment(model)
+    data <- data %>% dplyr::select(-dplyr::one_of(names(model$model)))
+    
+    e$x$data[[i]] <- dplyr::bind_cols(e$x$data[[i]], data)
+    
+    vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, ".fitted")
+    
+    l <- list(
+      name = name,
+      type = "line",
+      data = vector,
+      symbol = symbol,
+      smooth = smooth,
+      ...
+    )
+    
+    e$x$opts$series <- append(e$x$opts$series, list(l))
+    
+    if(isTRUE(legend))
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+    
+  }
   
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   e 
 }
 
@@ -1584,42 +1638,44 @@ e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smoot
 #' @export
 e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, 
                     x_index = 0, y_index = 0, ...){
-  mod <- eval(
-    loess(as.formula(formula), data = e$x$data[[1]])
-  )
-  
-  if(is.null(name))
-    name <- "ECHARTS4RLOESS"
-  
-  e$x$data[[1]][,name] <- predict(mod)
-  
-  vector <- .build_data(
-    e, 
-    e$x$mapping$x,
-    name
-  )
 
-  l <- list(
-    name = name,
-    type = "line",
-    data = vector,
-    ...
-  )
-  
-  if(y_index != 0)
-    e <- .set_y_axis(e, name, y_index)
-  
-  if(x_index != 0)
-    e <- .set_x_axis(e, x_index)
-  
-  l$yAxisIndex <- y_index
-  l$xAxisIndex <- x_index
-  
-  if(isTRUE(legend) && !is.null(name))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(l))
-  e
+  for(i in 1:length(e$x$data)){
+    mod <- eval(
+      loess(as.formula(formula), data = e$x$data[[i]])
+    )
+    
+    if(is.null(name))
+      name <- "ECHARTS4RLOESS"
+    
+    e$x$data[[i]][,name] <- predict(mod)
+    
+    vector <- .build_data(
+      e, 
+      e$x$mapping$x,
+      name
+    )
+    
+    l <- list(
+      name = name,
+      type = "line",
+      data = vector,
+      ...
+    )
+    
+    if(y_index != 0)
+      e <- .set_y_axis(e, name, y_index)
+    
+    if(x_index != 0)
+      e <- .set_x_axis(e, x_index)
+    
+    l$yAxisIndex <- y_index
+    l$xAxisIndex <- x_index
+    
+    if(isTRUE(legend) && !is.null(name))
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+    
+    e$x$opts$series <- append(e$x$opts$series, list(l))
+  }
   
   e
 }

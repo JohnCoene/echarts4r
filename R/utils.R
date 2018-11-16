@@ -60,9 +60,12 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
 .build_data_size <- function(data, x, y, size, scale, symbol_size){
   row.names(data) <- NULL
   
-  data[, "sizeECHARTS"] <- data[, size]
+  data[["sizeECHARTS"]] <- data[[size]]
   
-  data[, "sizeECHARTS"] <- scale(data[, "sizeECHARTS"]) * symbol_size
+  if(!is.null(scale))
+    data[["sizeECHARTS"]] <- scale(data[["sizeECHARTS"]]) * symbol_size
+  else 
+    data[["sizeECHARTS"]] <- data[[size]]
   
   data %>% 
     dplyr::select_(x, y, size, "sizeECHARTS") %>% 
@@ -106,10 +109,15 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   l
 }
 
-.build_data_p <- function(data, ..., names = NULL, vector = FALSE){
+.build_data_p <- function(data, ..., vector = FALSE, scale = NULL, symbol_size = 1){
   data %>% 
     dplyr::select_(...) %>% 
-    purrr::set_names(names) -> data
+    purrr::set_names(NULL) -> data
+  
+  if(!is.null(scale))
+    data[[4]] <- scale(data[[3]]) * symbol_size
+  else
+    data[[4]] <- data[[3]]
   
   if(isTRUE(vector))
     unlist(data)
@@ -497,34 +505,6 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   purrr::map(e$x$opts$series, "name") %>% 
     unlist() %>% 
     grep(serie, .)
-}
-
-.build_model <- function(e, model, name, symbol, smooth, ...){
-  data <- broom::augment(model)
-  
-  data_keep <- e$x$data
-  e <- e %>% e_data(data)
-  
-  vector <- .build_data(
-    e, 
-    names(data)[[2]],
-    names(data)[[3]]
-  )
-  
-  l <- list(
-    name = name,
-    type = "line",
-    data = vector,
-    symbol = symbol,
-    smooth = smooth,
-    ...
-  )
-  
-  e <- e %>% e_data(data_keep)
-  
-  e$x$opts$series <- append(e$x$opts$series, list(l))
-  
-  e
 }
 
 .add_indicators <- function(e, r.index, max){

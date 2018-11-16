@@ -20,6 +20,66 @@ library(echarts4r)
 
 This document details some more advanced usage of the `echarts4r` package.
 
+## Scatter
+
+Since `0.2.0` the `e_scatter` and `e_effect_scatter` functions take a different, much improved `scale` argument which is a scaling function.
+
+```{r}
+iris %>% 
+    group_by(Species) %>% 
+    e_charts(Sepal.Length) %>% 
+    e_scatter(Petal.Length, Sepal.Width)
+```
+
+The default scaling function is `e_scale` which rescales from 1 to 20, but you can pass your own. The scaling function should take a vector of `integer` or `numeric` and return a similar vector of the same length. For instance, to create a function that rescales from 5 to 30:
+
+```{r}
+my_scale <- function(x){
+  scales::rescale(x, to = c(5, 30))
+}
+
+iris %>% 
+    group_by(Species) %>% 
+    e_charts(Sepal.Length) %>% 
+    e_scatter(Petal.Length, Sepal.Width, scale = my_scale)
+```
+
+When `size` is not passed the size of the poitns are defined by `symbol_size`.
+
+```{r}
+iris %>% 
+    group_by(Species) %>% 
+    e_charts(Sepal.Length) %>% 
+    e_scatter(Petal.Length, symbol_size = 15)
+```
+
+When `size` is passed `symbol_size` becomes a multiplier executed after the scaling function is run. For instance $\log(1+x)*5$
+
+```{r}
+iris %>% 
+    group_by(Species) %>% 
+    e_charts(Sepal.Length) %>% 
+    e_scatter(Petal.Length, Sepal.Width, scale = log1p, symbol_size = 5)
+```
+
+This behaviour was added as it is important to be able to scale points within a reasonable range, ideally points are between 1 and 30~40 in size.
+
+Note that rescaling the color means you should also rescale the `e_visual_map`, if used.
+
+```{r}
+echart <- mtcars %>% 
+  e_charts(mpg) %>% 
+  e_scatter(qsec, wt, scale = e_scale) %>% 
+  e_legend(show = FALSE)
+
+echart %>% 
+  e_visual_map(wt, scale = e_scale)
+
+# or 
+# echart %>% 
+#   e_visual_map(min = 1, max = 20)
+```
+
 ## coord_system
 
 Chart types are not only applicable to the standard 2D cartesian coordinate system, though most charts will default to the `cartesian2d` coordinate system, they may be applied to others.
@@ -219,3 +279,32 @@ funnel %>%
   e_funnel(value, stage) %>% 
   e_add("itemStyle", color)
 ```
+
+## List
+
+Since version `0.2.1` you can pass a raw list of options.
+
+```{r}
+N <- 20 # data points
+
+opts <- list(
+  xAxis = list(
+    type = "category",
+    data = LETTERS[1:N]
+  ),
+  yAxis = list(
+    type = "value"
+  ),
+  series = list(
+    list(
+      type = "line",
+      data = round(runif(N, 5, 20))
+    )
+  )
+)
+
+e_charts() %>% 
+  e_list(opts)
+```
+
+`e_list` can also be used to append options.

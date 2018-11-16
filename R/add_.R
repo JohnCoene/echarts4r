@@ -1,6 +1,7 @@
 #' @rdname e_bar
 #' @export
 e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 0, x_index = 0, coord_system = "cartesian2d", ...){
+  
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
