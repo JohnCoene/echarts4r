@@ -83,6 +83,8 @@ navbar:
           href: articles/globe.html
         - text: "Leaflet & Mapbox"
           href: articles/leaflet-mapbox.html
+        - text: "GeoJSON"
+          href: articles/make-geo-json.html
     - text: "Style"
       menu:
         - text: "Grid & Axis"

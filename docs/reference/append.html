@@ -184,6 +184,9 @@
     <li>
       <a href="../articles/leaflet-mapbox.html">Leaflet &amp; Mapbox</a>
     </li>
+    <li>
+      <a href="../articles/make-geo-json.html">GeoJSON</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -273,9 +276,11 @@
 
 <span class='fu'>e_append1_p_</span>(<span class='no'>proxy</span>, <span class='kw'>series_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>)
 
-<span class='fu'>e_append2_p</span>(<span class='no'>proxy</span>, <span class='kw'>series_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>)
+<span class='fu'>e_append2_p</span>(<span class='no'>proxy</span>, <span class='kw'>series_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 
-<span class='fu'>e_append2_p_</span>(<span class='no'>proxy</span>, <span class='kw'>series_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>)</pre>
+<span class='fu'>e_append2_p_</span>(<span class='no'>proxy</span>, <span class='kw'>series_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -295,6 +300,14 @@
     <tr>
       <th>x, y, z</th>
       <td><p>Columns names to plot.</p></td>
+    </tr>
+    <tr>
+      <th>scale</th>
+      <td><p>A scaling function as passed to <code><a href='scatter.html'>e_scatter</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>symbol_size</th>
+      <td><p>Multiplier of scaling function as in <code><a href='scatter.html'>e_scatter</a></code>.</p></td>
     </tr>
     </table>
     
@@ -320,17 +333,17 @@ Only these types of series support it: <code><a href='scatter.html'>e_scatter</a
 
   <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>){
 
-    <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>5</span>, <span class='fl'>3</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>12</span>), <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>5</span>))
+    <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>5</span>, <span class='fl'>3</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>12</span>), <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>5</span>, <span class='fl'>20</span>))
 
     <span class='no'>react</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/observeEvent'>eventReactive</a></span>(<span class='no'>input</span>$<span class='no'>add</span>, {
       <span class='fu'>set.seed</span>(<span class='fu'>sample</span>(<span class='fl'>1</span>:<span class='fl'>1000</span>, <span class='fl'>1</span>))
-      <span class='fu'>data.frame</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>5</span>, <span class='fl'>2</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>10</span>), <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>1</span>, <span class='fl'>5</span>))
+      <span class='fu'>data.frame</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>5</span>, <span class='fl'>2</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>10</span>), <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>10</span>, <span class='fl'>5</span>, <span class='fl'>20</span>))
     })
 
     <span class='no'>output</span>$<span class='no'>plot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span>({
       <span class='no'>data</span> <span class='kw'>%&gt;%</span>
        <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
-       <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>y</span>, <span class='no'>z</span>) <span class='kw'>%&gt;%</span>
+       <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>) <span class='kw'>%&gt;%</span>
        <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>z</span>) <span class='kw'>%&gt;%</span>
        <span class='fu'><a href='e_brush.html'>e_brush</a></span>()
     })

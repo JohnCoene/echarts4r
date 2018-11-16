@@ -184,6 +184,9 @@
     <li>
       <a href="../articles/leaflet-mapbox.html">Leaflet &amp; Mapbox</a>
     </li>
+    <li>
+      <a href="../articles/make-geo-json.html">GeoJSON</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -317,7 +320,7 @@ if <code>size</code> is <em>not</em> <code>NULL</code> or missing it is applied 
     <tr>
       <th>scale</th>
       <td><p>A function that takes a vector of <code>numeric</code> and returns a vector of <code>numeric</code>
-of the same length.</p></td>
+of the same length. You can disable the scaling by setting it to <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>name</th>
@@ -372,6 +375,7 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_scatter</span>(<span class='no'>wt</span>, <span class='no'>qsec</span>)
 
+<span class='co'># custom function</span>
 <span class='no'>my_scale</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='kw pkg'>scales</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/scales/topics/rescale'>rescale</a></span>(<span class='no'>x</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>50</span>))
 
 <span class='no'>echart</span> <span class='kw'>&lt;-</span> <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
@@ -387,6 +391,11 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
 <span class='co'># or</span>
 <span class='no'>echart</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>50</span>)
+
+<span class='co'># disable scaling</span>
+<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>qsec</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_scatter</span>(<span class='no'>wt</span>, <span class='no'>mpg</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># applications</span>
 <span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
