@@ -1725,7 +1725,7 @@ e_density <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
 
 #' Lines WebGL
 #' 
-#' Draw WebGL lines.}
+#' Draw WebGL lines.
 #' 
 #' @inheritParams e_bar
 #' @param data A list.

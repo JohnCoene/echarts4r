@@ -7,6 +7,7 @@
 - `e_scattter` scaling much more robust.
 - `e_append` adapated to work with new scatter-family of function (scaling).
 - `e_lines_gl` added.
+- Improved examples.
 
 # echarts4r 0.2.0
 

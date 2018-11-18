@@ -17,5 +17,5 @@ e_lines_gl(e, data, coord_system = "geo", ...)
 for possible options, as this series type is mostly undocumented.}
 }
 \description{
-Lines WebGL
+Draw WebGL lines.
 }
