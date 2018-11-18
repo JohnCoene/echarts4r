@@ -26,8 +26,10 @@ HTMLWidgets.widget({
             echarts.registerTheme(x.theme, th);
           }
           
-          if(x.registerMap === true){
-            echarts.registerMap(x.mapName, x.geoJSON);
+          if(x.hasOwnProperty('registerMap')){
+            for( var map = 0; map < x.registerMap.length; map++){
+              echarts.registerMap(x.registerMap[map].mapName, x.registerMap[map].geoJSON);
+            }
           }
         }
         

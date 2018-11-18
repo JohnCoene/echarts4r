@@ -8,6 +8,7 @@
 - `e_append` adapated to work with new scatter-family of function (scaling).
 - `e_lines_gl` added.
 - Improved examples.
+- Can now register multiple maps with `e_map_regiter`.
 
 # echarts4r 0.2.0
 

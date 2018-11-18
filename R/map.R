@@ -220,14 +220,21 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
 #'   e_charts(states) %>%
 #'   e_map_register("USA", json) %>%
 #'   e_map(Murder, map = "USA") %>% 
-#'   e_visual_map(min = 0, max = 18)
+#'   e_visual_map(Murder)
 #' }
 #' 
 #' @export
 e_map_register <- function(e, name, json){
-  e$x$registerMap <- TRUE
-  e$x$mapName <- name
-  e$x$geoJSON <- json
+  
+  if(!length(e$x$registerMap))
+    e$x$registerMap <- list()
+  
+  opts <- list(
+    mapName = name,
+    geoJSON = json
+  )
+  
+  e$x$registerMap <- append(e$x$registerMap, list(opts))
   e
 }
 
