@@ -147,6 +147,18 @@ e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = N
 #' @export
 e_chart <- e_charts
 
+
+#' Add a dataset 
+#' This function can add one or more dataset into a echarts object. 
+#' 
+#' @examples 
+#' points <- mtcars[1:3,]
+#' mtcars %>% 
+#'   e_charts_("qsec") %>%
+#'   e_line(mpg) %>%
+#'   e_data(points,qsec) %>%
+#'   e_scatter(mpg,color="blue")
+#'
 #' @rdname init
 #' @export
 e_data <- function(e, data, x){
