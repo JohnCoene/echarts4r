@@ -30,6 +30,8 @@ e_scatter_3d_(e, y, z, color = NULL, size = NULL, bind = NULL,
 
 \item{legend}{Whether to add serie to legend.}
 
+\item{names}{name showed in tooltip}
+
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{

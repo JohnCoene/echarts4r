@@ -22,6 +22,8 @@ e_pie_(e, serie, name = NULL, legend = TRUE, rm_x = TRUE,
 
 \item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
+\item{names}{name showed in tooltip}
+
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{

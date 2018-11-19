@@ -28,6 +28,8 @@ e_pictorial_(e, serie, symbol, bind = NULL, name = NULL,
 
 \item{x_index}{Indexes of x and y axis.}
 
+\item{names}{name showed in tooltip}
+
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{

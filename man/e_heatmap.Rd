@@ -26,6 +26,8 @@ set to \code{cartesian2d}.}
 
 \item{calendar}{The index of the calendar to plot against.}
 
+\item{names}{name showed in tooltip}
+
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{

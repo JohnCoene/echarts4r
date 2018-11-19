@@ -22,6 +22,8 @@ e_candle_(e, opening, closing, low, high, bind = NULL, name = NULL,
 
 \item{legend}{Whether to add serie to legend.}
 
+\item{names}{name showed in tooltip}
+
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{

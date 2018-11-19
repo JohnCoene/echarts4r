@@ -35,6 +35,8 @@ e_line_3d_(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE,
 \item{...}{Any other option to pass, check See Also section.}
 
 \item{y, z}{Coordinates of lines.}
+
+\item{names}{name showed in tooltip}
 }
 \description{
 Add 3D lines.

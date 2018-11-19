@@ -27,6 +27,8 @@ e_bar_(e, serie, bind = NULL, name = NULL, legend = TRUE,
 
 \item{coord_system}{Coordinate system to plot against.}
 
+\item{names}{name showed in tooltip}
+
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{

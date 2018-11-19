@@ -24,6 +24,8 @@ e_bar_3d_(e, y, z, bind = NULL, coord_system = "cartesian3D",
 
 \item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
+\item{names}{name showed in tooltip}
+
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{

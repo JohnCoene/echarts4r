@@ -32,6 +32,8 @@ e_step_(e, serie, bind = NULL, step = c("start", "middle", "end"),
 
 \item{x_index}{Indexes of x and y axis.}
 
+\item{names}{name showed in tooltip}
+
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{

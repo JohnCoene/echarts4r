@@ -26,6 +26,8 @@ e_flow_gl_(e, y, sx, sy, color = NULL, name = NULL,
 
 \item{rm_x, rm_y}{Whether to remove x and y axis, only applies if \code{coord_system} is not \code{null}.}
 
+\item{names}{name showed in tooltip}
+
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{

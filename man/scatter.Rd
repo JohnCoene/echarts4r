@@ -10,7 +10,8 @@
 \usage{
 e_scatter(e, serie, size, bind, symbol_size = 1, scale = e_scale,
   name = NULL, coord_system = "cartesian2d", legend = TRUE,
-  y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE, names, ...)
+  y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE,
+  names = NULL, ...)
 
 e_effect_scatter(e, serie, size, bind, symbol_size = 1,
   scale = e_scale, name = NULL, coord_system = "cartesian2d",
@@ -56,6 +57,8 @@ of the same length. You can disable the scaling by setting it to \code{NULL}.}
 
 \item{rm_x, rm_y}{Whether to remove x and y axis, only applies if \code{coord_system} is not 
 set to \code{cartesian2d}.}
+
+\item{names}{names showed in tooltip}
 
 \item{...}{Any other option to pass, check See Also section.}
 

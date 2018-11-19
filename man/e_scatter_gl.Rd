@@ -22,6 +22,8 @@ e_scatter_gl_(e, y, z, name = NULL, coord_system = "geo",
 
 \item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
+\item{names}{name showed in tooltip}
+
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{

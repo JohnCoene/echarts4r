@@ -26,6 +26,8 @@ e_area_(e, serie, bind = NULL, name = NULL, legend = TRUE,
 
 \item{x_index}{Indexes of x and y axis.}
 
+\item{names}{name showed in tooltip}
+
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{
