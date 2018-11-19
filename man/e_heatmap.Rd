@@ -6,10 +6,10 @@
 \title{Heatmap}
 \usage{
 e_heatmap(e, y, z, name = NULL, coord_system = "cartesian2d",
-  rm_x = TRUE, rm_y = TRUE, calendar = NULL, ...)
+  rm_x = TRUE, rm_y = TRUE, calendar = NULL, names, ...)
 
 e_heatmap_(e, y, z = NULL, name = NULL, coord_system = "cartesian2d",
-  rm_x = TRUE, rm_y = TRUE, calendar = NULL, ...)
+  rm_x = TRUE, rm_y = TRUE, calendar = NULL, names = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

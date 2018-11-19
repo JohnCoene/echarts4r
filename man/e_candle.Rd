@@ -6,10 +6,10 @@
 \title{Candlestick}
 \usage{
 e_candle(e, opening, closing, low, high, bind, name = NULL,
-  legend = TRUE, ...)
+  legend = TRUE, names, ...)
 
 e_candle_(e, opening, closing, low, high, bind = NULL, name = NULL,
-  legend = TRUE, ...)
+  legend = TRUE, names = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

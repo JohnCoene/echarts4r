@@ -6,10 +6,10 @@
 \title{Scatter GL}
 \usage{
 e_scatter_gl(e, y, z, name = NULL, coord_system = "geo", rm_x = TRUE,
-  rm_y = TRUE, ...)
+  rm_y = TRUE, names, ...)
 
 e_scatter_gl_(e, y, z, name = NULL, coord_system = "geo",
-  rm_x = TRUE, rm_y = TRUE, ...)
+  rm_x = TRUE, rm_y = TRUE, names = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

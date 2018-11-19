@@ -46,18 +46,26 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   e
 }
 
-.build_data <- function(e, ...){
+.build_data <- function(e,...){
   e$x$data[[1]] %>% 
     dplyr::select_(...) %>% 
     unname(.) -> data
-  
-  apply(data, 1, function(x){
-    list(value = unlist(x, use.names = FALSE))
-  }) 
+  if(is.null(names)){
+    l = apply(data, 1, function(x){
+      list(value = unlist(x, use.names = FALSE))
+    }) 
+  }else{
+    l = apply(data, 1, function(x){
+      list(value = unlist(x[-1], use.names = FALSE)
+           ,name = unlist(x[1], use.names = FALSE)
+           )
+    }) 
+  }
+  l
     
 }
 
-.build_data_size <- function(data, x, y, size, scale, symbol_size){
+.build_data_size <- function(data, names, x, y, size, scale, symbol_size){
   row.names(data) <- NULL
   
   data[["sizeECHARTS"]] <- data[[size]]
@@ -66,14 +74,25 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     data[["sizeECHARTS"]] <- scale(data[["sizeECHARTS"]]) * symbol_size
   else 
     data[["sizeECHARTS"]] <- data[[size]]
-  
+  if (is.null(names)){ 
   data %>% 
     dplyr::select_(x, y, size, "sizeECHARTS") %>% 
     unname(.) -> data
-  
-  apply(data, 1, function(x){
+    l <- apply(data, 1, function(x){
     list(value = unlist(x, use.names = FALSE))
-  }) 
+  })
+  }else{
+    data %>% 
+      dplyr::select_(names,x, y, size, "sizeECHARTS") %>% 
+      unname(.) -> data
+    l <- apply(data, 1, function(x){
+      list(value = unlist(x[-1], use.names = FALSE),
+           name = unlist(x[1], use.names = FALSE)
+           )
+    })
+    l
+  }
+
   
 }
 
@@ -82,11 +101,18 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   data %>% 
     dplyr::select_(...) %>% 
     unname(.) -> data
-  
-  apply(data, 1, function(x){
-    list(value = unlist(x, use.names = FALSE))
-  }) 
-  
+  if(is.null(names)){
+    l <- apply(data, 1, function(x){
+      list(value = unlist(x, use.names = FALSE))
+    }) 
+  }else{
+    l = apply(data, 1, function(x){
+      list(value = unlist(x[-1], use.names = FALSE)
+           ,name = unlist(x[1], use.names = FALSE)
+      )
+    }) 
+  }
+  l
 }
 
 .add_bind2 <- function(e, l, bind, col = "name", i){

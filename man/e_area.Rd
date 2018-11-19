@@ -6,10 +6,10 @@
 \title{Area}
 \usage{
 e_area(e, serie, bind, name = NULL, legend = TRUE, y_index = 0,
-  x_index = 0, ...)
+  x_index = 0, names, ...)
 
 e_area_(e, serie, bind = NULL, name = NULL, legend = TRUE,
-  y_index = 0, x_index = 0, ...)
+  y_index = 0, x_index = 0, names = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

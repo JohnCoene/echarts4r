@@ -6,10 +6,10 @@
 \title{Bar 3D}
 \usage{
 e_bar_3d(e, y, z, bind, coord_system = "cartesian3D", name = NULL,
-  rm_x = TRUE, rm_y = TRUE, ...)
+  rm_x = TRUE, rm_y = TRUE, names, ...)
 
 e_bar_3d_(e, y, z, bind = NULL, coord_system = "cartesian3D",
-  name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
+  name = NULL, rm_x = TRUE, rm_y = TRUE, names = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

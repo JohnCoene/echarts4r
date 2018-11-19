@@ -1,6 +1,6 @@
 #' @rdname e_bar
 #' @export
-e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 0, x_index = 0, coord_system = "cartesian2d", ...){
+e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 0, x_index = 0, coord_system = "cartesian2d", names = NULL,...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -12,7 +12,7 @@ e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 
     
     nm <- .name_it(e, serie, name, i)
     
-    .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
+    .build_data2(e$x$data[[i]], names, e$x$mapping$x, serie) -> vector
     
     if(!is.null(bind))
       vector <- .add_bind2(e$x$data[[i]], vector, bind, i = i)
@@ -48,7 +48,7 @@ e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 
 #' @rdname e_line
 #' @export
 e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 0, x_index = 0, 
-                    coord_system = "cartesian2d", ...){
+                    coord_system = "cartesian2d", names = NULL,...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -60,7 +60,7 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
     nm <- .name_it(e, serie, name, i)
     
     # build JSON data
-    .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
+    .build_data2(e$x$data[[i]], names,e$x$mapping$x, serie) -> vector
     
     if(!is.null(bind))
       vector <- .add_bind2(e, vector, bind, i = i)
@@ -97,7 +97,7 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
 
 #' @rdname e_area
 #' @export
-e_area_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 0, x_index = 0, ...){
+e_area_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 0, x_index = 0, names = NULL,...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -114,7 +114,7 @@ e_area_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
       e <- .set_x_axis(e, x_index, i)
     
     # build JSON data
-    .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
+    .build_data2(e$x$data[[i]], names,e$x$mapping$x, serie) -> vector
     
     if(!is.null(bind))
       vector <- .add_bind2(e, vector, bind, i = i)
@@ -141,7 +141,7 @@ e_area_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
 #' @rdname e_step
 #' @export
 e_step_ <- function(e, serie, bind = NULL, step = c("start", "middle", "end"), fill = FALSE, 
-                   name = NULL, legend = TRUE, y_index = 0, x_index = 0, ...){
+                   name = NULL, legend = TRUE, y_index = 0, x_index = 0, names = NULL,...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -162,7 +162,7 @@ e_step_ <- function(e, serie, bind = NULL, step = c("start", "middle", "end"), f
       e <- .set_x_axis(e, x_index, i)
     
     # build JSON data
-    .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
+    .build_data2(e$x$data[[i]],names, e$x$mapping$x, serie) -> vector
     
     if(!is.null(bind))
       vector <- .add_bind2(e, vector, bind, i = i)
@@ -203,7 +203,7 @@ e_scale <- function(x){
 e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1, 
                        scale = e_scale, name = NULL, coord_system = "cartesian2d", 
                        legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE, 
-                       rm_y = TRUE, ...){
+                       rm_y = TRUE,names = NULL, ...){
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
@@ -219,9 +219,9 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
       e <- .set_x_axis(e, x_index, i)
     
     if(!is.null(size))
-      xy <- .build_data_size(e$x$data[[i]], e$x$mapping$x, serie, size, scale, symbol_size)
+      xy <- .build_data_size(e$x$data[[i]], names,e$x$mapping$x, serie, size, scale, symbol_size)
     else
-      xy <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie)
+      xy <- .build_data2(e$x$data[[i]],names, e$x$mapping$x, serie)
     
     if(!is.null(bind))
       xy <- .add_bind2(e, xy, bind, i = i)
@@ -277,7 +277,7 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
 e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1, 
                               scale = e_scale, name = NULL, coord_system = "cartesian2d", 
                               legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE, 
-                              rm_y = TRUE, ...){
+                              rm_y = TRUE, names = NULL,...){
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
@@ -295,7 +295,7 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 
     if(!is.null(size))
       xy <- .build_data_size(e$x$data[[i]], e$x$mapping$x, serie, size, scale, symbol_size)
     else
-      xy <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie)
+      xy <- .build_data2(e$x$data[[i]], names,e$x$mapping$x, serie)
     
     if(!is.null(bind))
       xy <- .add_bind2(e, xy, bind, i = i)
@@ -338,14 +338,14 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 
 
 #' @rdname e_candle
 #' @export
-e_candle_ <- function(e, opening, closing, low, high, bind = NULL, name = NULL, legend = TRUE, ...){
+e_candle_ <- function(e, opening, closing, low, high, bind = NULL, name = NULL, legend = TRUE, names = NULL,...){
   
   if(missing(opening) || missing(closing) || missing(low) || missing(high))
     stop("missing inputs", call. = FALSE)
   
   for(i in 1:length(e$x$data)){
     
-    data <- .build_data2(e$x$data[[i]], opening, closing, low, high)
+    data <- .build_data2(e$x$data[[i]],names, opening, closing, low, high)
     
     if(!is.null(bind))
       data <- .add_bind2(e, data, bind, i = i)
@@ -432,7 +432,7 @@ e_funnel_ <- function(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE
   e <- .rm_axis(e, rm_y, "y")
   
   # build JSON data
-  funnel <- .build_data(e, values)
+  funnel <- .build_data(e, names = NULL,values)
   
   funnel <- .add_bind(e, funnel, labels)
   
@@ -486,7 +486,7 @@ e_sankey_ <- function(e, source, target, value, layout = "none", rm_x = TRUE, rm
 #' @rdname e_heatmap
 #' @export
 e_heatmap_ <- function(e, y, z = NULL, name = NULL, coord_system = "cartesian2d", 
-                       rm_x = TRUE, rm_y = TRUE, calendar = NULL, ...){
+                       rm_x = TRUE, rm_y = TRUE, calendar = NULL,names = NULL, ...){
   
   if(missing(y))
     stop("must pass y", call. = FALSE)
@@ -494,9 +494,9 @@ e_heatmap_ <- function(e, y, z = NULL, name = NULL, coord_system = "cartesian2d"
   for(i in 1:length(e$x$data)){
     
     if(!is.null(z))
-      xyz <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
+      xyz <- .build_data2(e$x$data[[i]], names, e$x$mapping$x, y, z)
     else 
-      xyz <- .build_data2(e$x$data[[i]], e$x$mapping$x, y)
+      xyz <- .build_data2(e$x$data[[i]], names,e$x$mapping$x, y)
     
     serie <- list(
       name = name,
@@ -595,7 +595,7 @@ e_parallel_ <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE){
 
 #' @rdname e_pie
 #' @export
-e_pie_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...){
+e_pie_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, names = NULL,...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -609,7 +609,7 @@ e_pie_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRU
     name <- serie
   
   # build JSON data
-  data <- .build_data(e, serie)
+  data <- .build_data(e,names, serie)
   data <- .add_bind(e, data, e$x$mapping$x)
   
   serie <- list(
@@ -823,7 +823,7 @@ e_lines_3d_ <- function(e, source_lon, source_lat, target_lon, target_lat, name 
 
 #' @rdname line3D
 #' @export
-e_line_3d_ <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...){
+e_line_3d_ <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, names = NULL,...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -852,7 +852,7 @@ e_line_3d_ <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, r
     e <- .set_axis_3D(e, "z", z, 0)
     
     # build JSON data
-    data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
+    data <- .build_data2(e$x$data[[i]],names, e$x$mapping$x, y, z)
     
     e.serie <- list(
       type = "line3D",
@@ -872,7 +872,7 @@ e_line_3d_ <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, r
 
 #' @rdname e_bar_3d
 #' @export
-e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name = NULL, rm_x = TRUE, rm_y = TRUE, ...){
+e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name = NULL, rm_x = TRUE, rm_y = TRUE, names = NULL,...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -889,7 +889,7 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
     # globe
     if(coord_system != "cartesian3D"){
       
-      data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
+      data <- .build_data2(e$x$data[[i]], names, e$x$mapping$x, y, z)
       
       if(!is.null(bind))
         data <- .add_bind2(e, data, bind, i = i)
@@ -967,7 +967,7 @@ e_lines_ <- function(e, source_lon, source_lat, target_lon, target_lat, coord_sy
 #' @rdname e_scatter_3d
 #' @export
 e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord_system = "cartesian3D", name = NULL, 
-                         rm_x = TRUE, rm_y = TRUE, legend = FALSE, ...){
+                         rm_x = TRUE, rm_y = TRUE, legend = FALSE, names = NULL,...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -985,7 +985,7 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
     # globe
     if(coord_system != "cartesian3D"){
       
-      data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
+      data <- .build_data2(e$x$data[[i]],names, e$x$mapping$x, y, z)
       
       if(!is.null(bind))
         data <- .add_bind2(e, data, bind, i = i)
@@ -1004,11 +1004,11 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
       e <- .set_axis_3D(e, "z", z, 0)
       
       if(is.null(color))
-        data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
+        data <- .build_data2(e$x$data[[i]],names, e$x$mapping$x, y, z)
       else if(!is.null(color) && is.null(size))
-        data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z, color)
+        data <- .build_data2(e$x$data[[i]], names,e$x$mapping$x, y, z, color)
       else if(!is.null(color) && !is.null(size))
-        data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z, color, size)
+        data <- .build_data2(e$x$data[[i]],names, e$x$mapping$x, y, z, color, size)
       
     }
     
@@ -1033,7 +1033,7 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
 
 #' @rdname e_flow_gl
 #' @export
-e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...){
+e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, names = NULL,...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1050,9 +1050,9 @@ e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = N
   }
   
   if(is.null(color))
-    data <- .build_data(e, e$x$mapping$x, y, sx,sy)
+    data <- .build_data(e,names, e$x$mapping$x, y, sx,sy)
   else 
-    data <- .build_data(e, e$x$mapping$x, y, sx, sy, color)
+    data <- .build_data(e, names,e$x$mapping$x, y, sx, sy, color)
   
   serie <- list(
     type = "flowGL",
@@ -1073,7 +1073,7 @@ e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = N
 
 #' @rdname e_scatter_gl
 #' @export
-e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRUE, rm_y = TRUE, ...){
+e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRUE, rm_y = TRUE, names = NULL,...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1088,7 +1088,7 @@ e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRU
     e <- .rm_axis(e, rm_x, "x")
     e <- .rm_axis(e, rm_y, "y")
     
-    data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
+    data <- .build_data2(e$x$data[[i]], names,e$x$mapping$x, y, z)
     
     # globe
     if(coord_system == "cartesian3D"){
@@ -1119,7 +1119,7 @@ e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRU
 
 #' @rdname e_pictorial
 #' @export
-e_pictorial_ <- function(e, serie, symbol, bind = NULL, name = NULL, legend = TRUE, y_index = 0, x_index = 0, ...){
+e_pictorial_ <- function(e, serie, symbol, bind = NULL, name = NULL, legend = TRUE, y_index = 0, x_index = 0, names = NULL, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -1137,7 +1137,7 @@ e_pictorial_ <- function(e, serie, symbol, bind = NULL, name = NULL, legend = TR
     e <- .set_x_axis(e, x_index)
   
   # build JSON data
-  .build_data(e, e$x$mapping$x, serie) -> vector
+  .build_data(e, names,e$x$mapping$x, serie) -> vector
   
   if(!is.null(bind))
     vector <- .add_bind(e, vector, bind)

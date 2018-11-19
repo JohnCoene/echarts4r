@@ -10,24 +10,24 @@
 \usage{
 e_scatter(e, serie, size, bind, symbol_size = 1, scale = e_scale,
   name = NULL, coord_system = "cartesian2d", legend = TRUE,
-  y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE, ...)
+  y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE, names, ...)
 
 e_effect_scatter(e, serie, size, bind, symbol_size = 1,
   scale = e_scale, name = NULL, coord_system = "cartesian2d",
   legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE,
-  rm_y = TRUE, ...)
+  rm_y = TRUE, names, ...)
 
 e_scale(x)
 
 e_scatter_(e, serie, size = NULL, bind = NULL, symbol_size = 1,
   scale = e_scale, name = NULL, coord_system = "cartesian2d",
   legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE,
-  rm_y = TRUE, ...)
+  rm_y = TRUE, names = NULL, ...)
 
 e_effect_scatter_(e, serie, size = NULL, bind = NULL,
   symbol_size = 1, scale = e_scale, name = NULL,
   coord_system = "cartesian2d", legend = TRUE, y_index = 0,
-  x_index = 0, rm_x = TRUE, rm_y = TRUE, ...)
+  x_index = 0, rm_x = TRUE, rm_y = TRUE, names = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

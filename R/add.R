@@ -21,7 +21,7 @@
 #' 
 #' @rdname e_bar
 #' @export
-e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, coord_system = "cartesian2d", ...){
+e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, coord_system = "cartesian2d", names,...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -34,9 +34,14 @@ e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_ind
   else
     bd <- deparse(substitute(bind))
   
-  sr <- deparse(substitute(serie))
+  if(missing(names))
+    names <- NULL
+  else
+    names <- deparse(substitute(names))
   
-  e_bar_(e, sr, bd, name, legend, y_index, x_index, coord_system, ...)
+  
+  sr <- deparse(substitute(serie))
+  e_bar_(e, sr, bd, name, legend, y_index, x_index, coord_system, names,...)
 }
 
 #' Line 
@@ -58,7 +63,7 @@ e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_ind
 #' @rdname e_line
 #' @export
 e_line <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, 
-                   coord_system = "cartesian2d", ...){
+                   coord_system = "cartesian2d", names,...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -72,7 +77,12 @@ e_line <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_in
   else
     bd <- deparse(substitute(bind))
   
-  e_line_(e, serie, bd, name, legend, y_index, x_index, coord_system, ...)
+  if(missing(names))
+    names <- NULL
+  else
+    names <- deparse(substitute(names))
+  
+  e_line_(e, serie, bd, name, legend, y_index, x_index, coord_system, names,...)
 }
 
 #' Area 
@@ -92,7 +102,7 @@ e_line <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_in
 #' 
 #' @rdname e_area
 #' @export
-e_area <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, ...){
+e_area <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, names,...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -106,6 +116,10 @@ e_area <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_in
     bd <- NULL
   else
     bd <- deparse(substitute(bind))
+  if(missing(names))
+    names <- NULL
+  else
+    names <- deparse(substitute(names))
   
   e_area_(e, serie, bd, name, legend, y_index, x_index, ...)
 }
@@ -132,7 +146,7 @@ e_area <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_in
 #' @rdname e_step
 #' @export
 e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FALSE, 
-                   name = NULL, legend = TRUE, y_index = 0, x_index = 0, ...){
+                   name = NULL, legend = TRUE, y_index = 0, x_index = 0, names,...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -145,8 +159,12 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
     bd <- NULL
   else
     bd <- deparse(substitute(bind))
+  if(missing(names))
+    names <- NULL
+  else
+    names <- deparse(substitute(names))
   
-  e_step_(e, serie, bd, step, fill, name, legend, y_index, x_index, ...)
+  e_step_(e, serie, bd, step, fill, name, legend, y_index, x_index, names, ...)
 }
 
 #' Scatter
@@ -233,7 +251,7 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' @export
 e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, name = NULL, 
                       coord_system = "cartesian2d", legend = TRUE, y_index = 0, 
-                      x_index = 0, rm_x = TRUE, rm_y = TRUE, ...){
+                      x_index = 0, rm_x = TRUE, rm_y = TRUE, names,...){
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
@@ -249,11 +267,15 @@ e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, na
     bd <- NULL
   else
     bd <- deparse(substitute(bind))
-  
+
+  if(missing(names))
+    names <- NULL
+  else
+    names <- deparse(substitute(names))  
   e_scatter_(e = e, serie = serie, size = size, bind = bd, symbol_size = symbol_size, 
              scale = scale, name = name, coord_system = coord_system, 
              legend = legend, y_index = y_index, x_index = x_index, rm_x = rm_x, 
-             rm_y = rm_y, ...)
+             rm_y = rm_y,names, ...)
  
 }
 
@@ -261,7 +283,7 @@ e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, na
 #' @export
 e_effect_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, name = NULL, 
                              coord_system = "cartesian2d", legend = TRUE, 
-                             y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE, ...){
+                             y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE, names,...){
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
@@ -277,11 +299,15 @@ e_effect_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_sc
     bd <- NULL
   else
     bd <- deparse(substitute(bind))
+  if(missing(names))
+    names <- NULL
+  else
+    names <- deparse(substitute(names))
   
   e_effect_scatter_(e, serie = serie, size = size, bind = bd, 
                     symbol_size = symbol_size, scale = scale, name = name, 
                     coord_system, legend, 
-                    y_index, x_index, rm_x, rm_y, ...)
+                    y_index, x_index, rm_x, rm_y, names,...)
 }
 
 #' Candlestick
@@ -312,7 +338,7 @@ e_effect_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_sc
 #' 
 #' @rdname e_candle
 #' @export
-e_candle <- function(e, opening, closing, low, high, bind, name = NULL, legend = TRUE, ...){
+e_candle <- function(e, opening, closing, low, high, bind, name = NULL, legend = TRUE, names,...){
   
   if(missing(opening) || missing(closing) || missing(low) || missing(high))
     stop("missing inputs", call. = FALSE)
@@ -321,12 +347,16 @@ e_candle <- function(e, opening, closing, low, high, bind, name = NULL, legend =
     bind <- deparse(substitute(bind))
   else 
     bind <- NULL
+  if(missing(names))
+    names <- NULL
+  else
+    names <- deparse(substitute(names))
   
   e_candle_(e, deparse(substitute(opening)), 
             deparse(substitute(closing)), 
             deparse(substitute(low)), 
             deparse(substitute(high)), 
-            bind, name, legend, ...)
+            bind, name, legend, names,...)
 }
 
 #' Radar
@@ -671,7 +701,7 @@ e_graph_edges <- function(e, edges, source, target){
 #' @rdname e_heatmap
 #' @export
 e_heatmap <- function(e, y, z, name = NULL, coord_system = "cartesian2d", rm_x = TRUE, rm_y = TRUE, 
-                      calendar = NULL, ...){
+                      calendar = NULL, names,...){
   if(missing(y))
     stop("must pass y", call. = FALSE)
   
@@ -679,6 +709,10 @@ e_heatmap <- function(e, y, z, name = NULL, coord_system = "cartesian2d", rm_x =
     z <- deparse(substitute(z))
   else
     z <- NULL
+  if(missing(names))
+    names <- NULL
+  else
+    names <- deparse(substitute(names))
   
   e_heatmap_(e, deparse(substitute(y)), z, name, coord_system, rm_x, rm_y, calendar, ...)
 }
@@ -764,14 +798,18 @@ e_parallel <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE){
 #' 
 #' @rdname e_pie
 #' @export
-e_pie <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...){
+e_pie <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, names,...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
+  if(missing(names))
+    names <- NULL
+  else
+    names <- deparse(substitute(names))
   
-  e_pie_(e, deparse(substitute(serie)), name, legend, rm_x, rm_y, ...)
+  e_pie_(e, deparse(substitute(serie)), name, legend, rm_x, rm_y, names,...)
 }
 
 #' Sunburst
@@ -1091,15 +1129,19 @@ e_lines_3d <- function(e, source_lon, source_lat, target_lon, target_lat, name =
 
 #' @rdname line3D
 #' @export
-e_line_3d <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...){
+e_line_3d <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, names, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(y) || missing(z))
     stop("missing coordinates", call. = FALSE)
+  if(missing(names))
+    names <- NULL
+  else
+    names <- deparse(substitute(names))
   
   e_line_3d_(e, deparse(substitute(y)), deparse(substitute(z)), 
-             name, coord_system, rm_x, rm_y, ...)
+             name, coord_system, rm_x, rm_y, names,...)
 }
 
 #' Bar 3D
@@ -1162,7 +1204,7 @@ e_line_3d <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, rm
 #' @rdname e_bar_3d
 #' @export
 e_bar_3d <- function(e, y, z, bind, coord_system = "cartesian3D", name = NULL, 
-                     rm_x = TRUE, rm_y = TRUE, ...){
+                     rm_x = TRUE, rm_y = TRUE, names,...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1173,9 +1215,13 @@ e_bar_3d <- function(e, y, z, bind, coord_system = "cartesian3D", name = NULL,
     bd <- NULL
   else
     bd <- deparse(substitute(bind))
+  if(missing(names))
+    names <- NULL
+  else
+    names <- deparse(substitute(names))
   
   e_bar_3d_(e, deparse(substitute(y)), deparse(substitute(z)), bd, 
-            coord_system, name, rm_x, rm_y, ...)
+            coord_system, name, rm_x, rm_y, names,...)
 }
 
 #' Lines
@@ -1284,7 +1330,7 @@ e_lines <- function(e, source_lon, source_lat, target_lon, target_lat, coord_sys
 #' @rdname e_scatter_3d
 #' @export
 e_scatter_3d <- function(e, y, z, color, size, bind, coord_system = "cartesian3D", name = NULL, 
-                         rm_x = TRUE, rm_y = TRUE, legend = FALSE, ...){
+                         rm_x = TRUE, rm_y = TRUE, legend = FALSE, names,...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1305,9 +1351,13 @@ e_scatter_3d <- function(e, y, z, color, size, bind, coord_system = "cartesian3D
     bd <- deparse(substitute(bind))
   else
     bd <- NULL
+  if(missing(names))
+    names <- NULL
+  else
+    names <- deparse(substitute(names))
   
   e_scatter_3d_(e, deparse(substitute(y)), deparse(substitute(z)), colour, sz, bd, coord_system, name, 
-                rm_x, rm_y, legend, ...)
+                rm_x, rm_y, legend, names,...)
 }
 
 #' Flow GL
@@ -1385,7 +1435,7 @@ e_scatter_3d <- function(e, y, z, color, size, bind, coord_system = "cartesian3D
 #' 
 #' @rdname e_flow_gl
 #' @export
-e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...){
+e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, names,...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1396,9 +1446,13 @@ e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord_system = NULL, rm_
     colour <- deparse(substitute(color))
   else
     colour <- NULL
+  if(missing(names))
+    names <- NULL
+  else
+    names <- deparse(substitute(names))
   
   e_flow_gl_(e, deparse(substitute(y)), deparse(substitute(sx)), deparse(substitute(sy)), colour, 
-             name, coord_system, rm_x, rm_y, ...)
+             name, coord_system, rm_x, rm_y, names,...)
 }
 
 #' Scatter GL
@@ -1426,14 +1480,18 @@ e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord_system = NULL, rm_
 #' 
 #' @rdname e_scatter_gl
 #' @export
-e_scatter_gl <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRUE, rm_y = TRUE, ...){
+e_scatter_gl <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRUE, rm_y = TRUE, names,...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(y) || missing(z))
     stop("must pass y and z", call. = FALSE)
+  if(missing(names))
+    names <- NULL
+  else
+    names <- deparse(substitute(names))
   
-  e_scatter_gl_(e, deparse(substitute(y)), deparse(substitute(z)), name, coord_system, rm_x, rm_y, ...)
+  e_scatter_gl_(e, deparse(substitute(y)), deparse(substitute(z)), name, coord_system, rm_x, rm_y, names,...)
 }
 
 #' Pictorial
@@ -1510,7 +1568,7 @@ e_scatter_gl <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRUE
 #' 
 #' @rdname e_pictorial
 #' @export
-e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, ...){
+e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, names,...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -1526,8 +1584,12 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y_in
   # only deparse if it is a column name
   if(deparse(substitute(symbol)) %in% colnames(e$x$data[[1]]))
     symbol <- deparse(substitute(symbol))
+  if(missing(names))
+    names <- NULL
+  else
+    names <- deparse(substitute(names))
   
-  e_pictorial_(e, deparse(substitute(serie)), symbol, bd, name, legend, y_index, x_index, ...)
+  e_pictorial_(e, deparse(substitute(serie)), symbol, bd, name, legend, y_index, x_index, names,...)
 }
 
 #' Smooth
