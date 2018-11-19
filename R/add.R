@@ -10,6 +10,7 @@
 #' @param ... Any other option to pass, check See Also section.
 #' @param x_index,y_index Indexes of x and y axis.
 #' @param coord_system Coordinate system to plot against.
+#' @param names name showed in tooltip
 #' 
 #' @examples 
 #' iris %>% 
@@ -180,6 +181,7 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' @param coord_system Coordinate system to plot against, see examples.
 #' @param rm_x,rm_y Whether to remove x and y axis, only applies if \code{coord_system} is not 
 #' set to \code{cartesian2d}.
+#' @param names names showed in tooltip
 #' @param x A vector of integers or numeric.
 #' 
 #' @section Scaling function: defaults to \code{e_scale} which is a basic function that rescales \code{size}

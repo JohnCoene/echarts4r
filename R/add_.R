@@ -293,7 +293,7 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 
       e <- .set_x_axis(e, x_index, i)
     
     if(!is.null(size))
-      xy <- .build_data_size(e$x$data[[i]], e$x$mapping$x, serie, size, scale, symbol_size)
+      xy <- .build_data_size(e$x$data[[i]],names, e$x$mapping$x, serie, size, scale, symbol_size)
     else
       xy <- .build_data2(e$x$data[[i]], names,e$x$mapping$x, serie)
     
