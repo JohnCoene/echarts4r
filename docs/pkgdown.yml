@@ -17,6 +17,8 @@ articles:
   graphics: graphics.html
   grid: grid.html
   leaflet-mapbox: leaflet-mapbox.html
+  make-geo-json: make-geo-json.html
+  make_geo_json: make_geo_json.html
   map: map.html
   map3d: map3d.html
   mark: mark.html

@@ -1,6 +1,6 @@
-#' Append data
+#' Append Proxy
 #' 
-#' Append data.
+#' Append data dynamically.
 #' 
 #' @inheritParams e_highlight_p
 #' @param series_index Index of serie to append to (starts from 0).

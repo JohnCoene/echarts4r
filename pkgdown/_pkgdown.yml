@@ -1,6 +1,7 @@
 url: http://echarts4r.john-coene.com
 
 template:
+  path: pkgdown/template
   params:
     bootswatch: lumen
     ganalytics: UA-74544116-1
@@ -83,6 +84,8 @@ navbar:
           href: articles/globe.html
         - text: "Leaflet & Mapbox"
           href: articles/leaflet-mapbox.html
+        - text: "GeoJSON"
+          href: articles/make-geo-json.html
     - text: "Style"
       menu:
         - text: "Grid & Axis"

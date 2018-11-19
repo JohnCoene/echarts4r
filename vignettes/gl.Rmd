@@ -41,16 +41,16 @@ quakes %>%
 ```{r}
 #Use graphGL for larger networks
 nodes <- data.frame(
-  name = paste0(LETTERS, 1:1000),
-  value = rnorm(1000, 10, 2),
-  size = rnorm(1000, 10, 2),
-  grp = rep(c("grp1", "grp2"), 500),
+  name = paste0(LETTERS, 1:300),
+  value = rnorm(300, 10, 2),
+  size = rnorm(300, 10, 2),
+  grp = rep(c("grp1", "grp2", "grp3"), 100),
   stringsAsFactors = FALSE
 )
 
 edges <- data.frame(
-  source = sample(nodes$name, 2000, replace = TRUE),
-  target = sample(nodes$name, 2000, replace = TRUE),
+  source = sample(nodes$name, 400, replace = TRUE),
+  target = sample(nodes$name, 400, replace = TRUE),
   stringsAsFactors = FALSE
 )
 
@@ -61,6 +61,37 @@ e_charts() %>%
 ```
 
 ## Flow GL
+
+Van der Pol oscillator by [David Granjon](https://twitter.com/divadnojnarg).
+
+```{r}
+vectors <- expand.grid(x = -3:3, y = -3:3)
+mu <- 1
+vectors$sx <- vectors$y
+vectors$sy <- mu * (1 - vectors$x^2) * vectors$y - vectors$x
+vectors$color <- log10(runif(nrow(vectors), 1, 10))
+
+vectors %>% 
+  e_charts(x) %>% 
+  e_flow_gl(y, sx, sy, color) %>% 
+  e_visual_map(
+    min = 0, max = 1, # log 10
+    dimension = 4, # x = 0, y = 1, sx = 3, sy = 4
+    show = FALSE, # hide
+    inRange = list(
+      color = c('#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8',
+                '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026')
+    )
+  ) %>% 
+  e_x_axis(
+    splitLine = list(show = FALSE)
+  ) %>% 
+  e_y_axis(
+    splitLine = list(show = FALSE)
+  ) 
+```
+
+You can also plot it against different coordinates (`coord_system`).
 
 ```{r}
 latlong <- seq(-180, 180, by = 5)

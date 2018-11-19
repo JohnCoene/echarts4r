@@ -15,3 +15,5 @@ logo\.png
 .vs/echarts4r/v15/.suo
 .vs
 pkgdown
+vignettes/make-gep-json_cache
+vignettes/GAM_2.8_IND_adm2.rds

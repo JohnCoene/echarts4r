@@ -34,10 +34,24 @@ between 1 and 20 for that makes for decent sized points on the chart.
 }
 
 \examples{
+# scaled data
 mtcars \%>\% 
   e_charts(mpg) \%>\% 
   e_scatter(wt, qsec, scale = e_scale) \%>\% 
   e_visual_map(qsec, scale = e_scale)
+
+# dimension
+# color according to y axis
+mtcars \%>\% 
+  e_charts(mpg) \%>\% 
+  e_scatter(wt) \%>\% 
+  e_visual_map(wt, dimension = 1)
+  
+# color according to x axis
+mtcars \%>\% 
+  e_charts(mpg) \%>\% 
+  e_scatter(wt) \%>\% 
+  e_visual_map(mpg, dimension = 0)
 
 v <- LETTERS[1:10]
 matrix <- data.frame(

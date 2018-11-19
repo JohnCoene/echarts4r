@@ -5,7 +5,7 @@
 \alias{e_append1_p_}
 \alias{e_append2_p}
 \alias{e_append2_p_}
-\title{Append data}
+\title{Append Proxy}
 \usage{
 e_append1_p(proxy, series_index = NULL, data, x, y)
 
@@ -31,7 +31,7 @@ e_append2_p_(proxy, series_index = NULL, data, x, y, z, scale = NULL,
 \item{symbol_size}{Multiplier of scaling function as in \code{\link{e_scatter}}.}
 }
 \description{
-Append data.
+Append data dynamically.
 }
 \details{
 Currently not all types of series supported incremental rendering when using appendData. 

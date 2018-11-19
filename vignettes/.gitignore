@@ -1,2 +1,4 @@
 *.html
 *.R
+make-gep-json_cache
+GAM_2.8_IND_adm2.rds

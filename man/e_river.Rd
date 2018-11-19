@@ -29,19 +29,18 @@ Build a theme river.
 }
 \examples{
 dates <- seq.Date(Sys.Date() - 30, Sys.Date(), by = "day")
+grps <- lapply(LETTERS[1:3], rep, 31) \%>\% unlist
 
 df <- data.frame(
-  dates = dates,
-  apples = runif(length(dates)),
-  bananas = runif(length(dates)),
-  pears = runif(length(dates))
+  dates = rep(dates, 3),
+  groups = grps,
+  values = runif(length(grps), 1, 50)
 )
 
 df \%>\% 
-  e_charts(dates) \%>\% 
-  e_river(apples) \%>\% 
-  e_river(bananas) \%>\% 
-  e_river(pears) \%>\% 
+  group_by(groups) \%>\% 
+  e_charts(dates) \%>\%
+  e_river(values) \%>\%  
   e_tooltip(trigger = "axis")
 
 }
