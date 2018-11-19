@@ -23,9 +23,10 @@ library(echarts4r)
 You can display a default tooltip by adding `e_tooltip()` to the code that creates your visualization, such as
 
 ```{r}
+mtcars$car = rownames(mtcars)
 mtcars %>%
   e_charts(wt) %>%
-  e_scatter(mpg, qsec) %>%
+  e_scatter(mpg, qsec,names="car") %>%
   e_tooltip(trigger = "item")
 ```
 
