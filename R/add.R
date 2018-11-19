@@ -251,7 +251,7 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' @export
 e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, name = NULL, 
                       coord_system = "cartesian2d", legend = TRUE, y_index = 0, 
-                      x_index = 0, rm_x = TRUE, rm_y = TRUE, names,...){
+                      x_index = 0, rm_x = TRUE, rm_y = TRUE, names=NULL ,...){
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
@@ -268,10 +268,9 @@ e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, na
   else
     bd <- deparse(substitute(bind))
 
-  if(missing(names))
-    names <- NULL
-  else
+  if(!is.null(names))
     names <- deparse(substitute(names))  
+  
   e_scatter_(e = e, serie = serie, size = size, bind = bd, symbol_size = symbol_size, 
              scale = scale, name = name, coord_system = coord_system, 
              legend = legend, y_index = y_index, x_index = x_index, rm_x = rm_x, 

@@ -46,15 +46,18 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   e
 }
 
-.build_data <- function(e,...){
-  e$x$data[[1]] %>% 
-    dplyr::select_(...) %>% 
-    unname(.) -> data
+.build_data <- function(e,names=NULL,...){
   if(is.null(names)){
+    e$x$data[[1]] %>% 
+      dplyr::select_(...) %>% 
+      unname(.) -> data
     l = apply(data, 1, function(x){
       list(value = unlist(x, use.names = FALSE))
     }) 
   }else{
+    e$x$data[[1]] %>% 
+      dplyr::select_(names,...) %>% 
+      unname(.) -> data
     l = apply(data, 1, function(x){
       list(value = unlist(x[-1], use.names = FALSE)
            ,name = unlist(x[1], use.names = FALSE)
@@ -65,7 +68,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     
 }
 
-.build_data_size <- function(data, names, x, y, size, scale, symbol_size){
+.build_data_size <- function(data, names=NULL, x, y, size, scale, symbol_size){
   row.names(data) <- NULL
   
   data[["sizeECHARTS"]] <- data[[size]]
@@ -96,16 +99,19 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   
 }
 
-.build_data2 <- function(data, ...){
+.build_data2 <- function(data,names=NULL, ...){
   row.names(data) <- NULL
-  data %>% 
-    dplyr::select_(...) %>% 
-    unname(.) -> data
   if(is.null(names)){
+    data %>% 
+      dplyr::select_(...) %>% 
+      unname(.) -> data
     l <- apply(data, 1, function(x){
       list(value = unlist(x, use.names = FALSE))
     }) 
   }else{
+    data %>% 
+      dplyr::select_(names,...) %>% 
+      unname(.) -> data
     l = apply(data, 1, function(x){
       list(value = unlist(x[-1], use.names = FALSE)
            ,name = unlist(x[1], use.names = FALSE)
