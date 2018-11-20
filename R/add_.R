@@ -785,7 +785,8 @@ e_tree_ <- function(e, parent, child, rm_x = TRUE, rm_y = TRUE, ...){
 
 #' @rdname line3D
 #' @export
-e_lines_3d_ <- function(e, source_lon, source_lat, target_lon, target_lat, name = NULL, coord_system = "globe",
+e_lines_3d_ <- function(e, source_lon, source_lat, target_lon, target_lat, source_name = NULL, target_name = NULL, 
+                        value = NULL, name = NULL, coord_system = "globe",
                         rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -793,13 +794,22 @@ e_lines_3d_ <- function(e, source_lon, source_lat, target_lon, target_lat, name 
   if(missing(source_lat) || missing(source_lon) || missing(target_lat) || missing(target_lon))
     stop("missing coordinates", call. = FALSE)
   
+  if(missing(source_name))
+    source_name <- NULL
+  
+  if(missing(target_name))
+    target_name <- NULL
+  
+  if(missing(value))
+    value <- NULL
+  
   # remove axis
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
   
   for(i in 1:length(e$x$data)){
     
-    data <- .map_lines(e, source_lon, source_lat, target_lon, target_lat, i)
+    data <- .map_lines(e, source_lon, source_lat, target_lon, target_lat, source_name, target_name, value, i=i)
     
     serie <- list(
       type = "lines3D",
@@ -931,13 +941,22 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
 
 #' @rdname e_lines
 #' @export
-e_lines_ <- function(e, source_lon, source_lat, target_lon, target_lat, coord_system = "geo", name = NULL, 
+e_lines_ <- function(e, source_lon, source_lat, target_lon, target_lat, source_name = NULL, target_name = NULL, 
+                     value = NULL, coord_system = "geo", name = NULL, 
                     rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(source_lat) || missing(source_lon) || missing(target_lat) || missing(target_lon))
     stop("missing coordinates", call. = FALSE)
+  if(missing(source_name))
+    source_name <- NULL
+  
+  if(missing(target_name))
+    target_name <- NULL
+  
+  if(missing(value))
+    value <- NULL
   
   # remove axis
   e <- .rm_axis(e, rm_x, "x")
@@ -948,7 +967,7 @@ e_lines_ <- function(e, source_lon, source_lat, target_lon, target_lat, coord_sy
     
     nm <- .name_it(e, NULL, name, i)
     
-    data <- .map_lines(e, source_lon, source_lat, target_lon, target_lat, i)
+    data <- .map_lines(e, source_lon, source_lat, target_lon, target_lat, source_name, target_name, value, i)
     
     e.serie <- list(
       name = nm,

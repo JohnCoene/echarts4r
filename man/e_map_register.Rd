@@ -25,7 +25,7 @@ USArrests \%>\%
   e_charts(states) \%>\%
   e_map_register("USA", json) \%>\%
   e_map(Murder, map = "USA") \%>\% 
-  e_visual_map(min = 0, max = 18)
+  e_visual_map(Murder)
 }
 
 }

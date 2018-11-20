@@ -417,19 +417,31 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   paste0(axis, "Axis3D")
 }
 
-.map_lines <- function(e, source.lon, source.lat, target.lon, target.lat, i){
+.map_lines <- function(e, source.lon, source.lat, target.lon, target.lat, source.name, target.name, value, i){
   
-  e$x$data[[i]] %>% 
+  data <- e$x$data[[i]] %>% 
     dplyr::select_(
       source.lon, source.lat, target.lon, target.lat
     ) %>% 
     apply(., 1, function(x){
       x <- unname(x)
       list(
-        c(x[1], x[2]),
-        c(x[3], x[4])
+        coords = list(
+          c(x[1], x[2]),
+          c(x[3], x[4])
+        )
       )
     }) 
+  if (!is.null(source.name)){
+    data <- .add_bind2(e,data,source.name,col="source_name",i)
+  }
+  if (!is.null(target.name)){
+    data <- .add_bind2(e,data,target.name,col="target_name",i)
+  }
+  if (!is.null(value)){
+    data <- .add_bind2(e,data,value,col="value",i)
+  }
+  data
 }
 
 .build_cartesian3D <- function(e, ..., i = 1){
