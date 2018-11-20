@@ -1019,6 +1019,8 @@ e_gauge_ <- e_gauge
 #' @param coord_system Coordinate system to use, such as \code{cartesian3D}, or \code{globe}.
 #' @param y,z Coordinates of lines.
 #' @param source_lon,source_lat,target_lon,target_lat coordinates.
+#' @param source_name,target_name names.
+#' @param value  values.
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
@@ -1075,16 +1077,26 @@ e_gauge_ <- e_gauge
 #' 
 #' @rdname line3D
 #' @export
-e_lines_3d <- function(e, source_lon, source_lat, target_lon, target_lat, name = NULL, 
+e_lines_3d <- function(e, source_lon, source_lat, target_lon, target_lat, source_name, target_name, value, name = NULL, 
                        coord_system = "globe", rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(source_lat) || missing(source_lon) || missing(target_lat) || missing(target_lon))
     stop("missing coordinates", call. = FALSE)
+  if(missing(source_name))
+    source_name <- NULL
+  
+  if(missing(target_name))
+    target_name <- NULL
+  
+  if(missing(value))
+    value <- NULL
   
   e_lines_3d_(e, deparse(substitute(source_lon)), deparse(substitute(source_lat)), 
               deparse(substitute(target_lon)), deparse(substitute(target_lat)), 
+              deparse(substitute(source_name)), deparse(substitute(target_name)),
+              deparse(substitute(value)),
               name, coord_system, rm_x, rm_y, ...)
 }
 
@@ -1225,6 +1237,15 @@ e_lines <- function(e, source_lon, source_lat, target_lon, target_lat, source_na
   
   if(missing(source_lat) || missing(source_lon) || missing(target_lat) || missing(target_lon))
     stop("missing coordinates", call. = FALSE)
+  
+  if(missing(source_name))
+    source_name <- NULL
+  
+  if(missing(target_name))
+    target_name <- NULL
+  
+  if(missing(value))
+    value <- NULL
   
   e_lines_(e, deparse(substitute(source_lon)), deparse(substitute(source_lat)), 
            deparse(substitute(target_lon)), deparse(substitute(target_lat)),
