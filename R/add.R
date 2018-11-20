@@ -1183,6 +1183,8 @@ e_bar_3d <- function(e, y, z, bind, coord_system = "cartesian3D", name = NULL,
 #' 
 #' @inheritParams e_bar
 #' @param source_lon,source_lat,target_lon,target_lat coordinates.
+#' @param source_name,target_name names
+#' @param value values
 #' @param coord_system Coordinate system to use, one of \code{geo}, or \code{cartesian2d}.
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
@@ -1200,15 +1202,23 @@ e_bar_3d <- function(e, y, z, bind, coord_system = "cartesian3D", name = NULL,
 #'     start_lat, 
 #'     end_lon, 
 #'     end_lat,
+#'     airport1,
+#'     airport2,
+#'     cnt,
 #'     name = "flights",
 #'     lineStyle = list(normal = list(curveness = 0.3))
-#'    )
+#'   )%>%e_tooltip(trigger="item",
+#'   formatter = htmlwidgets::JS("
+#'       function(params){
+#'       return(params.seriesName +'<br />' + params.data.source_name + ' -> ' + params.data.target_name + ':'+params.value)
+#'       }
+#'    "))
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-lines}{Additional arguments}
 #' 
 #' @rdname e_lines
 #' @export
-e_lines <- function(e, source_lon, source_lat, target_lon, target_lat, coord_system = "geo", name = NULL, 
+e_lines <- function(e, source_lon, source_lat, target_lon, target_lat, source_name, target_name ,value, coord_system = "geo", name = NULL, 
                     rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -1217,7 +1227,9 @@ e_lines <- function(e, source_lon, source_lat, target_lon, target_lat, coord_sys
     stop("missing coordinates", call. = FALSE)
   
   e_lines_(e, deparse(substitute(source_lon)), deparse(substitute(source_lat)), 
-           deparse(substitute(target_lon)), deparse(substitute(target_lat)), 
+           deparse(substitute(target_lon)), deparse(substitute(target_lat)),
+           deparse(substitute(source_name)), deparse(substitute(target_name)),
+           deparse(substitute(value)),
            coord_system, name, rm_x, rm_y, ...)
 }
 
