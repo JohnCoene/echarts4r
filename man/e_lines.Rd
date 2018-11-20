@@ -9,18 +9,18 @@ e_lines(e, source_lon, source_lat, target_lon, target_lat, source_name,
   target_name, value, coord_system = "geo", name = NULL, rm_x = TRUE,
   rm_y = TRUE, ...)
 
-e_lines_(e, source_lon, source_lat, target_lon, target_lat, source_name,
-  target_name, value, coord_system = "geo", name = NULL, rm_x = TRUE,
-  rm_y = TRUE, ...)
+e_lines_(e, source_lon, source_lat, target_lon, target_lat,
+  source_name = NULL, target_name = NULL, value = NULL,
+  coord_system = "geo", name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{source_lon, source_lat, target_lon, target_lat}{coordinates.}
 
-\item{source_name, target_name}{names}
+\item{source_name, target_name}{Names of source and target.}
 
-\item{value}{values}
+\item{value}{Value of edges.}
 
 \item{coord_system}{Coordinate system to use, one of \code{geo}, or \code{cartesian2d}.}
 
@@ -52,12 +52,18 @@ flights \%>\%
     cnt,
     name = "flights",
     lineStyle = list(normal = list(curveness = 0.3))
-  )\%>\%e_tooltip(trigger="item",
-  formatter = htmlwidgets::JS("
+  ) \%>\% 
+  e_tooltip(trigger="item",
+    formatter = htmlwidgets::JS("
       function(params){
-      return(params.seriesName +'<br />' + params.data.source_name + ' -> ' + params.data.target_name + ':'+params.value)
+        return(
+          params.seriesName +'<br />' + 
+          params.data.source_name + ' -> ' + 
+          params.data.target_name + ':'+ params.value
+        )
       }
-   "))
+   ")
+  )
 
 }
 \seealso{

@@ -31,24 +31,39 @@ Add 3D bars
 }
 \examples{
 \dontrun{
+# volcano
+volcano \%>\% 
+  as.table() \%>\% 
+  as.data.frame() \%>\% 
+  dplyr::mutate(
+    Var1 = as.integer(Var1),
+    Var2 = as.integer(Var2)
+  ) \%>\% 
+  e_charts(Var1) \%>\% 
+  e_bar_3d(Var2, Freq) \%>\% 
+  e_visual_map(Freq)
+
 url <- paste0("https://ecomfe.github.io/echarts-examples/",
               "public/data-gl/asset/data/population.json")
 data <- jsonlite::fromJSON(url)
 data <- as.data.frame(data)
 names(data) <- c("lon", "lat", "value")
 
+# globe
 data \%>\% 
   e_charts(lon) \%>\% 
   e_globe() \%>\% 
   e_bar_3d(lat, value, coord_system = "globe") \%>\% 
   e_visual_map()
-  
+
+# get3d
 data \%>\% 
   e_charts(lon) \%>\% 
   e_geo_3d() \%>\% 
   e_bar_3d(lat, value, coord_system = "geo3D") \%>\% 
   e_visual_map()
-  
+
+# stacked
 v <- LETTERS[1:10]
 matrix <- data.frame(
   x = sample(v, 300, replace = TRUE), 

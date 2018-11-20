@@ -785,7 +785,8 @@ e_tree_ <- function(e, parent, child, rm_x = TRUE, rm_y = TRUE, ...){
 
 #' @rdname line3D
 #' @export
-e_lines_3d_ <- function(e, source_lon, source_lat, target_lon, target_lat, source_name, target_name, value, name = NULL, coord_system = "globe",
+e_lines_3d_ <- function(e, source_lon, source_lat, target_lon, target_lat, source_name = NULL, target_name = NULL, 
+                        value = NULL, name = NULL, coord_system = "globe",
                         rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -940,7 +941,8 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
 
 #' @rdname e_lines
 #' @export
-e_lines_ <- function(e, source_lon, source_lat, target_lon, target_lat, source_name, target_name ,value, coord_system = "geo", name = NULL, 
+e_lines_ <- function(e, source_lon, source_lat, target_lon, target_lat, source_name = NULL, target_name = NULL, 
+                     value = NULL, coord_system = "geo", name = NULL, 
                     rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)

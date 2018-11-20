@@ -14,9 +14,10 @@ e_lines_3d(e, source_lon, source_lat, target_lon, target_lat, source_name,
 e_line_3d(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE,
   rm_y = TRUE, ...)
 
-e_lines_3d_(e, source_lon, source_lat, target_lon, target_lat, source_name,
-  target_name, value, name = NULL, coord_system = "globe",
-  rm_x = TRUE, rm_y = TRUE, ...)
+e_lines_3d_(e, source_lon, source_lat, target_lon, target_lat,
+  source_name = NULL, target_name = NULL, value = NULL,
+  name = NULL, coord_system = "globe", rm_x = TRUE, rm_y = TRUE,
+  ...)
 
 e_line_3d_(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE,
   rm_y = TRUE, ...)
@@ -26,9 +27,9 @@ e_line_3d_(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE,
 
 \item{source_lon, source_lat, target_lon, target_lat}{coordinates.}
 
-\item{source_name, target_name}{names.}
+\item{source_name, target_name}{Names of source and target.}
 
-\item{value}{values.}
+\item{value}{Value of edges.}
 
 \item{name}{name of the serie.}
 

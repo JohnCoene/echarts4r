@@ -1001,7 +1001,8 @@ e_gauge <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...){
   e$x$opts$series <- list(
     list(
       type = "gauge",
-      data = list(list(value = value, name = name))
+      data = list(list(value = value, name = name)),
+      ...
     )
   )
   e
@@ -1019,8 +1020,8 @@ e_gauge_ <- e_gauge
 #' @param coord_system Coordinate system to use, such as \code{cartesian3D}, or \code{globe}.
 #' @param y,z Coordinates of lines.
 #' @param source_lon,source_lat,target_lon,target_lat coordinates.
-#' @param source_name,target_name names.
-#' @param value  values.
+#' @param source_name,target_name Names of source and target.
+#' @param value Value of edges.
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
@@ -1125,24 +1126,39 @@ e_line_3d <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, rm
 #' 
 #' @examples 
 #' \dontrun{
+#' # volcano
+#' volcano %>% 
+#'   as.table() %>% 
+#'   as.data.frame() %>% 
+#'   dplyr::mutate(
+#'     Var1 = as.integer(Var1),
+#'     Var2 = as.integer(Var2)
+#'   ) %>% 
+#'   e_charts(Var1) %>% 
+#'   e_bar_3d(Var2, Freq) %>% 
+#'   e_visual_map(Freq)
+#' 
 #' url <- paste0("https://ecomfe.github.io/echarts-examples/",
 #'               "public/data-gl/asset/data/population.json")
 #' data <- jsonlite::fromJSON(url)
 #' data <- as.data.frame(data)
 #' names(data) <- c("lon", "lat", "value")
 #' 
+#' # globe
 #' data %>% 
 #'   e_charts(lon) %>% 
 #'   e_globe() %>% 
 #'   e_bar_3d(lat, value, coord_system = "globe") %>% 
 #'   e_visual_map()
-#'   
+#' 
+#' # get3d
 #' data %>% 
 #'   e_charts(lon) %>% 
 #'   e_geo_3d() %>% 
 #'   e_bar_3d(lat, value, coord_system = "geo3D") %>% 
 #'   e_visual_map()
-#'   
+#' 
+#' # stacked
 #' v <- LETTERS[1:10]
 #' matrix <- data.frame(
 #'   x = sample(v, 300, replace = TRUE), 
@@ -1195,8 +1211,8 @@ e_bar_3d <- function(e, y, z, bind, coord_system = "cartesian3D", name = NULL,
 #' 
 #' @inheritParams e_bar
 #' @param source_lon,source_lat,target_lon,target_lat coordinates.
-#' @param source_name,target_name names
-#' @param value values
+#' @param source_name,target_name Names of source and target.
+#' @param value Value of edges.
 #' @param coord_system Coordinate system to use, one of \code{geo}, or \code{cartesian2d}.
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
@@ -1219,12 +1235,18 @@ e_bar_3d <- function(e, y, z, bind, coord_system = "cartesian3D", name = NULL,
 #'     cnt,
 #'     name = "flights",
 #'     lineStyle = list(normal = list(curveness = 0.3))
-#'   )%>%e_tooltip(trigger="item",
-#'   formatter = htmlwidgets::JS("
+#'   ) %>% 
+#'   e_tooltip(trigger="item",
+#'     formatter = htmlwidgets::JS("
 #'       function(params){
-#'       return(params.seriesName +'<br />' + params.data.source_name + ' -> ' + params.data.target_name + ':'+params.value)
+#'         return(
+#'           params.seriesName +'<br />' + 
+#'           params.data.source_name + ' -> ' + 
+#'           params.data.target_name + ':'+ params.value
+#'         )
 #'       }
-#'    "))
+#'    ")
+#'   )
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-lines}{Additional arguments}
 #' 
