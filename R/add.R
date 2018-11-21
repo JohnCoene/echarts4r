@@ -163,6 +163,7 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' @param rm_x,rm_y Whether to remove x and y axis, only applies if \code{coord_system} is not 
 #' set to \code{cartesian2d}.
 #' @param x A vector of integers or numeric.
+#' @param scale_js the JavaScript scaling function.
 #' 
 #' @section Scaling function: defaults to \code{e_scale} which is a basic function that rescales \code{size}
 #' between 1 and 20 for that makes for decent sized points on the chart.
@@ -231,7 +232,8 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' 
 #' @rdname scatter
 #' @export
-e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, name = NULL, 
+e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, 
+                      scale_js = "function(data){ return data[3];}", name = NULL, 
                       coord_system = "cartesian2d", legend = TRUE, y_index = 0, 
                       x_index = 0, rm_x = TRUE, rm_y = TRUE, ...){
   
@@ -251,7 +253,7 @@ e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, na
     bd <- deparse(substitute(bind))
   
   e_scatter_(e = e, serie = serie, size = size, bind = bd, symbol_size = symbol_size, 
-             scale = scale, name = name, coord_system = coord_system, 
+             scale = scale, scale_js = scale_js, name = name, coord_system = coord_system, 
              legend = legend, y_index = y_index, x_index = x_index, rm_x = rm_x, 
              rm_y = rm_y, ...)
  
@@ -259,7 +261,8 @@ e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, na
 
 #' @rdname scatter
 #' @export
-e_effect_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, name = NULL, 
+e_effect_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, 
+                             scale_js = "function(data){ return data[3];}", name = NULL, 
                              coord_system = "cartesian2d", legend = TRUE, 
                              y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE, ...){
   
@@ -279,8 +282,8 @@ e_effect_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_sc
     bd <- deparse(substitute(bind))
   
   e_effect_scatter_(e, serie = serie, size = size, bind = bd, 
-                    symbol_size = symbol_size, scale = scale, name = name, 
-                    coord_system, legend, 
+                    symbol_size = symbol_size, scale = scale, scale_js = scale_js,
+                    name = name, coord_system, legend, 
                     y_index, x_index, rm_x, rm_y, ...)
 }
 

@@ -201,7 +201,8 @@ e_scale <- function(x){
 #' @rdname scatter
 #' @export
 e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1, 
-                       scale = e_scale, name = NULL, coord_system = "cartesian2d", 
+                       scale = e_scale, scale_js = "function(data){ return data[3];}", 
+                       name = NULL, coord_system = "cartesian2d", 
                        legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE, 
                        rm_y = TRUE, ...){
   
@@ -255,7 +256,7 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
     if(!is.null(size)){
       e$scaling <- scale
       e.serie$symbolSize <- htmlwidgets::JS(
-        "function(data){ return data[3];}"
+        scale_js
       )
     } else {
       size_total <- sum(symbol_size)
@@ -275,7 +276,8 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
 #' @rdname scatter
 #' @export
 e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1, 
-                              scale = e_scale, name = NULL, coord_system = "cartesian2d", 
+                              scale = e_scale, scale_js = "function(data){ return data[3];}", 
+                              name = NULL, coord_system = "cartesian2d", 
                               legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE, 
                               rm_y = TRUE, ...){
   
@@ -320,7 +322,7 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 
     
     if(!is.null(size)){
       e.serie$symbolSize <- htmlwidgets::JS(
-        "function(data){ return data[3];}"
+        scale_js
       )
     } else {
       size_total <- sum(symbol_size)
@@ -1093,6 +1095,7 @@ e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = N
 #' @rdname e_scatter_gl
 #' @export
 e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRUE, rm_y = TRUE, ...){
+  
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
