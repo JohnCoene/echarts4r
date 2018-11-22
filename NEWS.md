@@ -10,6 +10,7 @@
 - Improved examples.
 - Can now register multiple maps with `e_map_regiter`.
 - Error handling in `e_loess` and `e_lm` to better work with groups.
+- `e_capture` to capture events not implemented.
 
 # echarts4r 0.2.0
 
