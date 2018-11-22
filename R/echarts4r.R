@@ -156,15 +156,15 @@ e_chart <- e_charts
 #' mtcars %>% 
 #'   e_charts_("qsec") %>%
 #'   e_line(mpg) %>%
-#'   e_data(points,qsec) %>%
-#'   e_scatter(mpg,color="blue")
+#'   e_data(points, qsec) %>%
+#'   e_scatter(mpg, color = "blue")
 #'
 #' @rdname init
 #' @export
 e_data <- function(e, data, x){
   
   if(missing(data))
-    stop("must pass data")
+    data <- e$x$data[[1]]
   
   if(!missing(x))
     xmap <- deparse(substitute(x))
