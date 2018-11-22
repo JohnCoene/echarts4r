@@ -9,6 +9,7 @@
 - `e_lines_gl` added.
 - Improved examples.
 - Can now register multiple maps with `e_map_regiter`.
+- Error handling in `e_loess` and `e_lm` to better work with groups.
 
 # echarts4r 0.2.0
 

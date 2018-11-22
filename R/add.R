@@ -1177,6 +1177,47 @@ e_bar_3d <- function(e, y, z, bind, coord_system = "cartesian3D", name = NULL,
             coord_system, name, rm_x, rm_y, ...)
 }
 
+#' Surface
+#' 
+#' Add a surface plot.
+#' 
+#' @inheritParams e_bar
+#' @param y,z Coordinates.
+#' @param bind Binding.
+#' @param coord_system Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.
+#' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
+#' 
+#' @examples
+#' data("volcano")
+#' 
+#' surface <- as.data.frame(as.table(volcano))
+#' surface$Var1 <- as.numeric(surface$Var1)
+#' surface$Var2 <- as.numeric(surface$Var2)
+#' 
+#' surface %>% 
+#'   e_charts(Var1) %>% 
+#'   e_surface(Var2, Freq) %>% 
+#'   e_visual_map(Freq)
+#' 
+#' @rdname e_surface
+#' @export
+e_surface <- function(e, y, z, bind, name = NULL, 
+                     rm_x = TRUE, rm_y = TRUE, ...){
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(y) || missing(z))
+    stop("must pass y and z", call. = FALSE)
+  
+  if(missing(bind))
+    bd <- NULL
+  else
+    bd <- deparse(substitute(bind))
+  
+  e_surface_(e, deparse(substitute(y)), deparse(substitute(z)), bd, 
+            name, rm_x, rm_y, ...)
+}
+
 #' Lines
 #' 
 #' Add lines.
@@ -1550,7 +1591,7 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y_in
 #' mtcars %>% 
 #'   e_charts(disp) %>% 
 #'   e_scatter(mpg, qsec) %>% 
-#'   e_loess(mpg ~ disp)
+#'   e_loess(mpg ~ disp, smooth = TRUE, showSymbol = FALSE)
 #'   
 #' CO2 %>% 
 #'   e_charts(conc) %>% 
@@ -1565,30 +1606,42 @@ e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth
   
   for(i in 1:length(e$x$data)){
     
-    model <- eval(
-      lm(form, data = e$x$data[[i]])
+    model <- tryCatch(
+      eval(
+        lm(form, data = e$x$data[[i]])
+      ),
+      error = function(e) e
     )
     
-    data <- broom::augment(model)
-    data <- data %>% dplyr::select(-dplyr::one_of(names(model$model)))
-    
-    e$x$data[[i]] <- dplyr::bind_cols(e$x$data[[i]], data)
-    
-    vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, ".fitted")
-    
-    l <- list(
-      name = name,
-      type = "line",
-      data = vector,
-      symbol = symbol,
-      smooth = smooth,
-      ...
-    )
-    
-    e$x$opts$series <- append(e$x$opts$series, list(l))
-    
-    if(isTRUE(legend))
-      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+    if(!inherits(model, "error")){
+      
+      if(is.null(name)) 
+        nm <- paste0(names(e$x$data)[i],"-lm")
+      else
+        nm <- name
+      
+      data <- broom::augment(model)
+      data <- data %>% dplyr::select(-dplyr::one_of(names(model$model)))
+      
+      e$x$data[[i]] <- dplyr::bind_cols(e$x$data[[i]], data)
+      
+      vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, ".fitted")
+      
+      l <- list(
+        name = nm,
+        type = "line",
+        data = vector,
+        symbol = symbol,
+        smooth = smooth,
+        ...
+      )
+      
+      e$x$opts$series <- append(e$x$opts$series, list(l))
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+      
+    }
     
   }
   
@@ -1603,30 +1656,41 @@ e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smoot
   
   for(i in 1:length(e$x$data)){
     
-    model <- eval(
-      glm(form, data = e$x$data[[i]])
+    model <- tryCatch(
+      eval(
+        glm(form, data = e$x$data[[i]])
+      ),
+      error = function(e) e
     )
     
-    data <- broom::augment(model)
-    data <- data %>% dplyr::select(-dplyr::one_of(names(model$model)))
-    
-    e$x$data[[i]] <- dplyr::bind_cols(e$x$data[[i]], data)
-    
-    vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, ".fitted")
-    
-    l <- list(
-      name = name,
-      type = "line",
-      data = vector,
-      symbol = symbol,
-      smooth = smooth,
-      ...
-    )
-    
-    e$x$opts$series <- append(e$x$opts$series, list(l))
-    
-    if(isTRUE(legend))
-      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+    if(!inherits(model, "error")){
+      
+      if(is.null(name)) 
+        nm <- paste0(names(e$x$data)[i],"-glm")
+      else
+        nm <- name
+      
+      data <- broom::augment(model)
+      data <- data %>% dplyr::select(-dplyr::one_of(names(model$model)))
+      
+      e$x$data[[i]] <- dplyr::bind_cols(e$x$data[[i]], data)
+      
+      vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, ".fitted")
+      
+      l <- list(
+        name = nm,
+        type = "line",
+        data = vector,
+        symbol = symbol,
+        smooth = smooth,
+        ...
+      )
+      
+      e$x$opts$series <- append(e$x$opts$series, list(l))
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+    }
     
   }
   
@@ -1639,41 +1703,52 @@ e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smo
                     x_index = 0, y_index = 0, ...){
 
   for(i in 1:length(e$x$data)){
-    mod <- eval(
-      loess(as.formula(formula), data = e$x$data[[i]])
+    mod <- tryCatch(
+      eval(
+        loess(as.formula(formula), data = e$x$data[[i]])
+      ),
+      error = function(e) e
     )
     
-    if(is.null(name))
-      name <- "ECHARTS4RLOESS"
-    
-    e$x$data[[i]][,name] <- predict(mod)
-    
-    vector <- .build_data(
-      e, 
-      e$x$mapping$x,
-      name
-    )
-    
-    l <- list(
-      name = name,
-      type = "line",
-      data = vector,
-      ...
-    )
-    
-    if(y_index != 0)
-      e <- .set_y_axis(e, name, y_index)
-    
-    if(x_index != 0)
-      e <- .set_x_axis(e, x_index)
-    
-    l$yAxisIndex <- y_index
-    l$xAxisIndex <- x_index
-    
-    if(isTRUE(legend) && !is.null(name))
-      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-    
-    e$x$opts$series <- append(e$x$opts$series, list(l))
+    if(!inherits(mod, "error")){
+      
+      if(is.null(name))
+        nm <- paste0(names(e$x$data)[i],"-loess")
+      else
+        nm <- name
+      
+      if(is.null(name))
+        name <- "ECHARTS4RLOESS"
+      
+      e$x$data[[i]][,name] <- predict(mod)
+      
+      vector <- .build_data(
+        e, 
+        e$x$mapping$x,
+        name
+      )
+      
+      l <- list(
+        name = nm,
+        type = "line",
+        data = vector,
+        ...
+      )
+      
+      if(y_index != 0)
+        e <- .set_y_axis(e, name, y_index)
+      
+      if(x_index != 0)
+        e <- .set_x_axis(e, x_index)
+      
+      l$yAxisIndex <- y_index
+      l$xAxisIndex <- x_index
+      
+      if(isTRUE(legend) && !is.null(nm))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+      
+      e$x$opts$series <- append(e$x$opts$series, list(l))
+    }
   }
   
   e

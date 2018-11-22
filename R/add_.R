@@ -929,6 +929,57 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
   e
 }
 
+#' @rdname e_surface
+#' @export
+e_surface_ <- function(e, y, z, bind = NULL, name = NULL, rm_x = TRUE, rm_y = TRUE, ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(y) || missing(z))
+    stop("must pass y and z", call. = FALSE)
+  
+  # remove axis
+  e <- .rm_axis(e, rm_x, "x")
+  e <- .rm_axis(e, rm_y, "y")
+  
+  if(!length(e$x$opts$zAxis3D))
+    e$x$opts$zAxis3D <- list(type = "value")
+  
+  if(!length(e$x$opts$yAxis3D))
+    e$x$opts$yAxis3D <- list(type = "value")
+  
+  if(!length(e$x$opts$xAxis3D))
+    e$x$opts$xAxis3D <- list(type = "value")
+  
+  if(!length(e$x$opts$grid3D))
+    e$x$opts$grid3D <- list(show = TRUE)
+  
+  for(i in 1:length(e$x$data)){
+    
+    row.names(e$x$data[[i]]) <- NULL
+    
+    data <- e$x$data[[i]] %>% 
+      dplyr::select_(e$x$mapping$x, y, z) %>% 
+      unname(.) -> data
+    
+    data <- apply(data, 1, as.list) 
+    
+    e.serie <- list(
+      type = "surface",
+      data = data,
+      ...
+    )
+    
+    if(!is.null(name)) e.serie$name <- name
+    
+    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+    
+  }
+  
+  e
+}
+
 #' @rdname e_lines
 #' @export
 e_lines_ <- function(e, source_lon, source_lat, target_lon, target_lat, coord_system = "geo", name = NULL, 

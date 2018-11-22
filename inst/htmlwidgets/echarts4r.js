@@ -44,7 +44,7 @@ HTMLWidgets.widget({
         // shiny callbacks
         if (HTMLWidgets.shinyMode) {
           chart.on("brushselected", function(e){
-            Shiny.onInputChange(el.id + '_brush' + ":echarts4rParse", e.batch[0].selected);
+            Shiny.onInputChange(el.id + '_brush' + ":echarts4rParse", e);
           });
           
           chart.on("legendselectchanged", function(e){
