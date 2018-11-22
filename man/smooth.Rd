@@ -48,7 +48,7 @@ iris \%>\%
 mtcars \%>\% 
   e_charts(disp) \%>\% 
   e_scatter(mpg, qsec) \%>\% 
-  e_loess(mpg ~ disp)
+  e_loess(mpg ~ disp, smooth = TRUE, showSymbol = FALSE)
   
 CO2 \%>\% 
   e_charts(conc) \%>\% 

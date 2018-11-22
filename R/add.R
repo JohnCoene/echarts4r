@@ -1215,7 +1215,6 @@ e_bar_3d <- function(e, y, z, bind, coord_system = "cartesian3D", name = NULL,
 #' @inheritParams e_bar
 #' @param y,z Coordinates.
 #' @param bind Binding.
-#' @param coord_system Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples

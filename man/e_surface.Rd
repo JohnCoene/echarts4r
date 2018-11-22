@@ -22,8 +22,6 @@ e_surface_(e, y, z, bind = NULL, name = NULL, rm_x = TRUE,
 \item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
-
-\item{coord_system}{Coordinate system to use, one of \code{cartesian3D}, \code{geo3D}, \code{globe}.}
 }
 \description{
 Add a surface plot.
