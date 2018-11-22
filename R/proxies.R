@@ -362,3 +362,46 @@ e_dispatch_action_p <- function(proxy, type, ...){
   
   proxy$session$sendCustomMessage("e_dispatch_action_p", data)
 }
+
+
+#' Capture event
+#' 
+#' Add an event capture.
+#' 
+#' @inheritParams e_bar
+#' @param event An event name from the \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#events}{event documentation}.
+#' 
+#' @details Many events can be capture, however not all are integrated, you can pass one that is not implemented with this function.
+#' 
+#' @examples 
+#' \dontrun{
+#' # add datazoom
+#' library(shiny)
+#' 
+#' ui <- fluidPage(
+#'   echarts4rOutput("chart"),
+#'   verbatimTextOutput("zoom")
+#' )
+#' 
+#' server <- function(input, output){
+#'   output$chart <- renderEcharts4r({
+#'     mtcars %>% 
+#'       e_charts(mpg) %>% 
+#'       e_scatter(qsec) %>% 
+#'       e_datazoom() %>% 
+#'       e_capture("datazoom")
+#'   })
+#'   
+#'   output$zoom <- renderPrint({
+#'     input$chart_datazoom
+#'   })
+#' }
+#' 
+#' shinyApp(ui, server)
+#' }
+#' 
+#' @export
+e_capture <- function(e, event){
+  e$x$capture <- event
+  e
+}

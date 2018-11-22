@@ -49,7 +49,7 @@ points <- mtcars[1:3,]
 mtcars \%>\% 
   e_charts_("qsec") \%>\%
   e_line(mpg) \%>\%
-  e_data(points,qsec) \%>\%
-  e_scatter(mpg,color="blue")
+  e_data(points, qsec) \%>\%
+  e_scatter(mpg, color = "blue")
 
 }
