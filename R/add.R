@@ -163,6 +163,7 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' @param rm_x,rm_y Whether to remove x and y axis, only applies if \code{coord_system} is not 
 #' set to \code{cartesian2d}.
 #' @param x A vector of integers or numeric.
+#' @param scale_js the JavaScript scaling function.
 #' 
 #' @section Scaling function: defaults to \code{e_scale} which is a basic function that rescales \code{size}
 #' between 1 and 20 for that makes for decent sized points on the chart.
@@ -231,7 +232,8 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' 
 #' @rdname scatter
 #' @export
-e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, name = NULL, 
+e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, 
+                      scale_js = "function(data){ return data[3];}", name = NULL, 
                       coord_system = "cartesian2d", legend = TRUE, y_index = 0, 
                       x_index = 0, rm_x = TRUE, rm_y = TRUE, ...){
   
@@ -251,7 +253,7 @@ e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, na
     bd <- deparse(substitute(bind))
   
   e_scatter_(e = e, serie = serie, size = size, bind = bd, symbol_size = symbol_size, 
-             scale = scale, name = name, coord_system = coord_system, 
+             scale = scale, scale_js = scale_js, name = name, coord_system = coord_system, 
              legend = legend, y_index = y_index, x_index = x_index, rm_x = rm_x, 
              rm_y = rm_y, ...)
  
@@ -259,7 +261,8 @@ e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, na
 
 #' @rdname scatter
 #' @export
-e_effect_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, name = NULL, 
+e_effect_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, 
+                             scale_js = "function(data){ return data[3];}", name = NULL, 
                              coord_system = "cartesian2d", legend = TRUE, 
                              y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE, ...){
   
@@ -279,8 +282,8 @@ e_effect_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_sc
     bd <- deparse(substitute(bind))
   
   e_effect_scatter_(e, serie = serie, size = size, bind = bd, 
-                    symbol_size = symbol_size, scale = scale, name = name, 
-                    coord_system, legend, 
+                    symbol_size = symbol_size, scale = scale, scale_js = scale_js,
+                    name = name, coord_system, legend, 
                     y_index, x_index, rm_x, rm_y, ...)
 }
 
@@ -1001,7 +1004,8 @@ e_gauge <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...){
   e$x$opts$series <- list(
     list(
       type = "gauge",
-      data = list(list(value = value, name = name))
+      data = list(list(value = value, name = name)),
+      ...
     )
   )
   e
@@ -1019,6 +1023,8 @@ e_gauge_ <- e_gauge
 #' @param coord_system Coordinate system to use, such as \code{cartesian3D}, or \code{globe}.
 #' @param y,z Coordinates of lines.
 #' @param source_lon,source_lat,target_lon,target_lat coordinates.
+#' @param source_name,target_name Names of source and target.
+#' @param value Value of edges.
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
@@ -1075,16 +1081,26 @@ e_gauge_ <- e_gauge
 #' 
 #' @rdname line3D
 #' @export
-e_lines_3d <- function(e, source_lon, source_lat, target_lon, target_lat, name = NULL, 
+e_lines_3d <- function(e, source_lon, source_lat, target_lon, target_lat, source_name, target_name, value, name = NULL, 
                        coord_system = "globe", rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(source_lat) || missing(source_lon) || missing(target_lat) || missing(target_lon))
     stop("missing coordinates", call. = FALSE)
+  if(missing(source_name))
+    source_name <- NULL
+  
+  if(missing(target_name))
+    target_name <- NULL
+  
+  if(missing(value))
+    value <- NULL
   
   e_lines_3d_(e, deparse(substitute(source_lon)), deparse(substitute(source_lat)), 
               deparse(substitute(target_lon)), deparse(substitute(target_lat)), 
+              deparse(substitute(source_name)), deparse(substitute(target_name)),
+              deparse(substitute(value)),
               name, coord_system, rm_x, rm_y, ...)
 }
 
@@ -1113,24 +1129,39 @@ e_line_3d <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, rm
 #' 
 #' @examples 
 #' \dontrun{
+#' # volcano
+#' volcano %>% 
+#'   as.table() %>% 
+#'   as.data.frame() %>% 
+#'   dplyr::mutate(
+#'     Var1 = as.integer(Var1),
+#'     Var2 = as.integer(Var2)
+#'   ) %>% 
+#'   e_charts(Var1) %>% 
+#'   e_bar_3d(Var2, Freq) %>% 
+#'   e_visual_map(Freq)
+#' 
 #' url <- paste0("https://ecomfe.github.io/echarts-examples/",
 #'               "public/data-gl/asset/data/population.json")
 #' data <- jsonlite::fromJSON(url)
 #' data <- as.data.frame(data)
 #' names(data) <- c("lon", "lat", "value")
 #' 
+#' # globe
 #' data %>% 
 #'   e_charts(lon) %>% 
 #'   e_globe() %>% 
 #'   e_bar_3d(lat, value, coord_system = "globe") %>% 
 #'   e_visual_map()
-#'   
+#' 
+#' # get3d
 #' data %>% 
 #'   e_charts(lon) %>% 
 #'   e_geo_3d() %>% 
 #'   e_bar_3d(lat, value, coord_system = "geo3D") %>% 
 #'   e_visual_map()
-#'   
+#' 
+#' # stacked
 #' v <- LETTERS[1:10]
 #' matrix <- data.frame(
 #'   x = sample(v, 300, replace = TRUE), 
@@ -1224,6 +1255,8 @@ e_surface <- function(e, y, z, bind, name = NULL,
 #' 
 #' @inheritParams e_bar
 #' @param source_lon,source_lat,target_lon,target_lat coordinates.
+#' @param source_name,target_name Names of source and target.
+#' @param value Value of edges.
 #' @param coord_system Coordinate system to use, one of \code{geo}, or \code{cartesian2d}.
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
@@ -1241,15 +1274,29 @@ e_surface <- function(e, y, z, bind, name = NULL,
 #'     start_lat, 
 #'     end_lon, 
 #'     end_lat,
+#'     airport1,
+#'     airport2,
+#'     cnt,
 #'     name = "flights",
 #'     lineStyle = list(normal = list(curveness = 0.3))
-#'    )
+#'   ) %>% 
+#'   e_tooltip(trigger="item",
+#'     formatter = htmlwidgets::JS("
+#'       function(params){
+#'         return(
+#'           params.seriesName +'<br />' + 
+#'           params.data.source_name + ' -> ' + 
+#'           params.data.target_name + ':'+ params.value
+#'         )
+#'       }
+#'    ")
+#'   )
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-lines}{Additional arguments}
 #' 
 #' @rdname e_lines
 #' @export
-e_lines <- function(e, source_lon, source_lat, target_lon, target_lat, coord_system = "geo", name = NULL, 
+e_lines <- function(e, source_lon, source_lat, target_lon, target_lat, source_name, target_name ,value, coord_system = "geo", name = NULL, 
                     rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -1257,8 +1304,19 @@ e_lines <- function(e, source_lon, source_lat, target_lon, target_lat, coord_sys
   if(missing(source_lat) || missing(source_lon) || missing(target_lat) || missing(target_lon))
     stop("missing coordinates", call. = FALSE)
   
+  if(missing(source_name))
+    source_name <- NULL
+  
+  if(missing(target_name))
+    target_name <- NULL
+  
+  if(missing(value))
+    value <- NULL
+  
   e_lines_(e, deparse(substitute(source_lon)), deparse(substitute(source_lat)), 
-           deparse(substitute(target_lon)), deparse(substitute(target_lat)), 
+           deparse(substitute(target_lon)), deparse(substitute(target_lat)),
+           deparse(substitute(source_name)), deparse(substitute(target_name)),
+           deparse(substitute(value)),
            coord_system, name, rm_x, rm_y, ...)
 }
 

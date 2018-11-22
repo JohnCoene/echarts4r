@@ -9,23 +9,25 @@
 \title{Scatter}
 \usage{
 e_scatter(e, serie, size, bind, symbol_size = 1, scale = e_scale,
-  name = NULL, coord_system = "cartesian2d", legend = TRUE,
-  y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE, ...)
+  scale_js = "function(data){ return data[3];}", name = NULL,
+  coord_system = "cartesian2d", legend = TRUE, y_index = 0,
+  x_index = 0, rm_x = TRUE, rm_y = TRUE, ...)
 
 e_effect_scatter(e, serie, size, bind, symbol_size = 1,
-  scale = e_scale, name = NULL, coord_system = "cartesian2d",
-  legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE,
-  rm_y = TRUE, ...)
+  scale = e_scale, scale_js = "function(data){ return data[3];}",
+  name = NULL, coord_system = "cartesian2d", legend = TRUE,
+  y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE, ...)
 
 e_scale(x)
 
 e_scatter_(e, serie, size = NULL, bind = NULL, symbol_size = 1,
-  scale = e_scale, name = NULL, coord_system = "cartesian2d",
-  legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE,
-  rm_y = TRUE, ...)
+  scale = e_scale, scale_js = "function(data){ return data[3];}",
+  name = NULL, coord_system = "cartesian2d", legend = TRUE,
+  y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE, ...)
 
 e_effect_scatter_(e, serie, size = NULL, bind = NULL,
-  symbol_size = 1, scale = e_scale, name = NULL,
+  symbol_size = 1, scale = e_scale,
+  scale_js = "function(data){ return data[3];}", name = NULL,
   coord_system = "cartesian2d", legend = TRUE, y_index = 0,
   x_index = 0, rm_x = TRUE, rm_y = TRUE, ...)
 }
@@ -43,6 +45,8 @@ if \code{size} is \emph{not} \code{NULL} or missing it is applied as a multiplie
 
 \item{scale}{A function that takes a vector of \code{numeric} and returns a vector of \code{numeric}
 of the same length. You can disable the scaling by setting it to \code{NULL}.}
+
+\item{scale_js}{the JavaScript scaling function.}
 
 \item{name}{name of the serie.}
 

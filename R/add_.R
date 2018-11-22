@@ -201,7 +201,8 @@ e_scale <- function(x){
 #' @rdname scatter
 #' @export
 e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1, 
-                       scale = e_scale, name = NULL, coord_system = "cartesian2d", 
+                       scale = e_scale, scale_js = "function(data){ return data[3];}", 
+                       name = NULL, coord_system = "cartesian2d", 
                        legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE, 
                        rm_y = TRUE, ...){
   
@@ -255,7 +256,7 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
     if(!is.null(size)){
       e$scaling <- scale
       e.serie$symbolSize <- htmlwidgets::JS(
-        "function(data){ return data[3];}"
+        scale_js
       )
     } else {
       size_total <- sum(symbol_size)
@@ -275,7 +276,8 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
 #' @rdname scatter
 #' @export
 e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1, 
-                              scale = e_scale, name = NULL, coord_system = "cartesian2d", 
+                              scale = e_scale, scale_js = "function(data){ return data[3];}", 
+                              name = NULL, coord_system = "cartesian2d", 
                               legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE, 
                               rm_y = TRUE, ...){
   
@@ -320,7 +322,7 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 
     
     if(!is.null(size)){
       e.serie$symbolSize <- htmlwidgets::JS(
-        "function(data){ return data[3];}"
+        scale_js
       )
     } else {
       size_total <- sum(symbol_size)
@@ -785,7 +787,8 @@ e_tree_ <- function(e, parent, child, rm_x = TRUE, rm_y = TRUE, ...){
 
 #' @rdname line3D
 #' @export
-e_lines_3d_ <- function(e, source_lon, source_lat, target_lon, target_lat, name = NULL, coord_system = "globe",
+e_lines_3d_ <- function(e, source_lon, source_lat, target_lon, target_lat, source_name = NULL, target_name = NULL, 
+                        value = NULL, name = NULL, coord_system = "globe",
                         rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -793,13 +796,22 @@ e_lines_3d_ <- function(e, source_lon, source_lat, target_lon, target_lat, name 
   if(missing(source_lat) || missing(source_lon) || missing(target_lat) || missing(target_lon))
     stop("missing coordinates", call. = FALSE)
   
+  if(missing(source_name))
+    source_name <- NULL
+  
+  if(missing(target_name))
+    target_name <- NULL
+  
+  if(missing(value))
+    value <- NULL
+  
   # remove axis
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
   
   for(i in 1:length(e$x$data)){
     
-    data <- .map_lines(e, source_lon, source_lat, target_lon, target_lat, i)
+    data <- .map_lines(e, source_lon, source_lat, target_lon, target_lat, source_name, target_name, value, i=i)
     
     serie <- list(
       type = "lines3D",
@@ -982,13 +994,22 @@ e_surface_ <- function(e, y, z, bind = NULL, name = NULL, rm_x = TRUE, rm_y = TR
 
 #' @rdname e_lines
 #' @export
-e_lines_ <- function(e, source_lon, source_lat, target_lon, target_lat, coord_system = "geo", name = NULL, 
+e_lines_ <- function(e, source_lon, source_lat, target_lon, target_lat, source_name = NULL, target_name = NULL, 
+                     value = NULL, coord_system = "geo", name = NULL, 
                     rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(source_lat) || missing(source_lon) || missing(target_lat) || missing(target_lon))
     stop("missing coordinates", call. = FALSE)
+  if(missing(source_name))
+    source_name <- NULL
+  
+  if(missing(target_name))
+    target_name <- NULL
+  
+  if(missing(value))
+    value <- NULL
   
   # remove axis
   e <- .rm_axis(e, rm_x, "x")
@@ -999,7 +1020,7 @@ e_lines_ <- function(e, source_lon, source_lat, target_lon, target_lat, coord_sy
     
     nm <- .name_it(e, NULL, name, i)
     
-    data <- .map_lines(e, source_lon, source_lat, target_lon, target_lat, i)
+    data <- .map_lines(e, source_lon, source_lat, target_lon, target_lat, source_name, target_name, value, i)
     
     e.serie <- list(
       name = nm,
@@ -1125,6 +1146,7 @@ e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = N
 #' @rdname e_scatter_gl
 #' @export
 e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRUE, rm_y = TRUE, ...){
+  
   if(missing(e))
     stop("must pass e", call. = FALSE)
   

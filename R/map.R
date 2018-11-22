@@ -165,8 +165,8 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
   if(missing(id) || missing(value) || missing(height))
     stop("must pass id, value, and height", call. = FALSE)
   
-  if(is.null(map) && length(e$x$mapName))
-    map <- unlist(e$x$mapName)
+  if(is.null(map) && length(e$x$registerMap[[1]]$mapName))
+    map <- unlist(e$x$registerMap[[1]]$mapName)
   else
     stop("not map registered, see e_map_register", call. = FALSE)
   

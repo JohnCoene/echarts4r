@@ -80,6 +80,18 @@ echart %>%
 #   e_visual_map(min = 1, max = 20)
 ```
 
+If you want to keep the original size then you can use `scale_js`, because you might want the `e_visual_map` to remain true to the original data.
+
+```{r}
+mtcars %>% 
+  e_charts(mpg) %>% 
+  e_scatter(qsec, wt, scale = NULL, scale_js = "function(data){ return data[3] * 3;}") %>% 
+  e_legend(show = FALSE) %>% 
+  e_visual_map(wt, scale = NULL)
+```
+
+This way the bubbles are of an appropriate size but the the range of the visual map remains true.
+
 ## coord_system
 
 Chart types are not only applicable to the standard 2D cartesian coordinate system, though most charts will default to the `cartesian2d` coordinate system, they may be applied to others.

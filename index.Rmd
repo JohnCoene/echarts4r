@@ -159,7 +159,7 @@ e1 <- iris %>%
     elementId = "chart"
   ) %>% 
   e_scatter(Petal.Length, Sepal.Width) %>% 
-  e_datazoom(show = FALSE, y.index = 0) %>% 
+  e_datazoom(show = FALSE, y_index = 0) %>% 
   e_x_axis(min = 4) %>% 
   e_highlight(series_name = list("setosa", "versicolor", "virginica"), btn = "high") %>% 
   e_downplay(series_name = list("setosa", "versicolor", "virginica"), btn = "down") %>% 
