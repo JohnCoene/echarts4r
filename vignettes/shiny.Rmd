@@ -39,6 +39,8 @@ Get data from shiny with the following:
 * `elementId` + `_mouseover_row` - returns row o hovered data point.
 * `elementId` + `_mouseover_serie` - returns name of serie of hovered data point.
 
+If you want to implement a missing callback with `e_distpatch_action_p`.
+
 ## Proxies
 
 Interact with the charts without redrawing (proxies):

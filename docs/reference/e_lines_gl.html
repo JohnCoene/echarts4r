@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Lines 3D — e_lines_3d • echarts4r</title>
+<title>Lines WebGL — e_lines_gl • echarts4r</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -40,9 +40,9 @@
   
 <meta name="theme-color" content="#293c55">
 
-<meta property="og:title" content="Lines 3D — e_lines_3d" />
+<meta property="og:title" content="Lines WebGL — e_lines_gl" />
 
-<meta property="og:description" content="Add 3D lines." />
+<meta property="og:description" content="Draw WebGL lines." />
 
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -263,31 +263,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Lines 3D</h1>
+    <h1>Lines WebGL</h1>
     
-    <div class="hidden name"><code>line3D.Rd</code></div>
+    <div class="hidden name"><code>e_lines_gl.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Add 3D lines.</p>
+    <p>Draw WebGL lines.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_lines_3d</span>(<span class='no'>e</span>, <span class='no'>source_lon</span>, <span class='no'>source_lat</span>, <span class='no'>target_lon</span>, <span class='no'>target_lat</span>, <span class='no'>source_name</span>,
-  <span class='no'>target_name</span>, <span class='no'>value</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"globe"</span>,
-  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>e_line_3d</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>e_lines_3d_</span>(<span class='no'>e</span>, <span class='no'>source_lon</span>, <span class='no'>source_lat</span>, <span class='no'>target_lon</span>, <span class='no'>target_lat</span>,
-  <span class='kw'>source_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>target_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"globe"</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>)
-
-<span class='fu'>e_line_3d_</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_lines_gl</span>(<span class='no'>e</span>, <span class='no'>data</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -297,103 +284,27 @@
       <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code>.</p></td>
     </tr>
     <tr>
-      <th>source_lon, source_lat, target_lon, target_lat</th>
-      <td><p>coordinates.</p></td>
-    </tr>
-    <tr>
-      <th>source_name, target_name</th>
-      <td><p>Names of source and target.</p></td>
-    </tr>
-    <tr>
-      <th>value</th>
-      <td><p>Value of edges.</p></td>
-    </tr>
-    <tr>
-      <th>name</th>
-      <td><p>name of the serie.</p></td>
+      <th>data</th>
+      <td><p>A list.</p></td>
     </tr>
     <tr>
       <th>coord_system</th>
-      <td><p>Coordinate system to use, such as <code>cartesian3D</code>, or <code>globe</code>.</p></td>
-    </tr>
-    <tr>
-      <th>rm_x, rm_y</th>
-      <td><p>Whether to remove x and y axis, defaults to <code>TRUE</code>.</p></td>
+      <td><p>Coordinate system to plot against.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Any other option to pass, check See Also section.</p></td>
-    </tr>
-    <tr>
-      <th>y, z</th>
-      <td><p>Coordinates of lines.</p></td>
+      <td><p>Any other options, see this <a href='https://ecomfe.github.io/echarts-examples/public/editor.html?c=linesGL-ny&amp;gl=1'>example</a>
+for possible options, as this series type is mostly undocumented.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='http://echarts.baidu.com/option-gl.html#series-lines3D'>Additional arguments for lines 3D</a>,
- <a href='http://echarts.baidu.com/option-gl.html#series-line3D'>Additional arguments for line 3D</a></p></div>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># get data</span>
-<span class='no'>flights</span> <span class='kw'>&lt;-</span> <span class='fu'>read.csv</span>(
-  <span class='fu'>paste0</span>(<span class='st'>"https://raw.githubusercontent.com/plotly/datasets/"</span>,
-         <span class='st'>"master/2011_february_aa_flight_paths.csv"</span>)
-)
-
-<span class='co'># Lines 3D</span>
-<span class='co'># Globe</span>
-<span class='no'>flights</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_globe.html'>e_globe</a></span>(
-    <span class='kw'>displacementScale</span> <span class='kw'>=</span> <span class='fl'>0.05</span>
-  ) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_lines_3d</span>(
-    <span class='no'>start_lon</span>,
-    <span class='no'>start_lat</span>,
-    <span class='no'>end_lon</span>,
-    <span class='no'>end_lat</span>,
-    <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"flights"</span>,
-    <span class='kw'>effect</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-  ) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_legend.html'>e_legend</a></span>(<span class='fl'>FALSE</span>)
-
-<span class='co'># Geo 3D</span>
-<span class='no'>flights</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_geo_3d.html'>e_geo_3d</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_lines_3d</span>(
-    <span class='no'>start_lon</span>,
-    <span class='no'>start_lat</span>,
-    <span class='no'>end_lon</span>,
-    <span class='no'>end_lat</span>,
-    <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"geo3D"</span>
-  )
-
-<span class='co'># line 3D </span>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>100</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='fl'>100</span>, <span class='fl'>10</span>, <span class='fl'>25</span>),
-  <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>100</span>, <span class='fl'>100</span>, <span class='fl'>50</span>)
-)
-
-<span class='no'>df</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_line_3d</span>(<span class='no'>y</span>, <span class='no'>z</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_title.html'>e_title</a></span>(<span class='st'>"nonsense"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+                </ul>
 
   </div>
 </div>

@@ -274,10 +274,12 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_lines</span>(<span class='no'>e</span>, <span class='no'>source_lon</span>, <span class='no'>source_lat</span>, <span class='no'>target_lon</span>, <span class='no'>target_lat</span>,
-  <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>e_lines</span>(<span class='no'>e</span>, <span class='no'>source_lon</span>, <span class='no'>source_lat</span>, <span class='no'>target_lon</span>, <span class='no'>target_lat</span>, <span class='no'>source_name</span>,
+  <span class='no'>target_name</span>, <span class='no'>value</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_lines_</span>(<span class='no'>e</span>, <span class='no'>source_lon</span>, <span class='no'>source_lat</span>, <span class='no'>target_lon</span>, <span class='no'>target_lat</span>,
+  <span class='kw'>source_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>target_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -290,6 +292,14 @@
     <tr>
       <th>source_lon, source_lat, target_lon, target_lat</th>
       <td><p>coordinates.</p></td>
+    </tr>
+    <tr>
+      <th>source_name, target_name</th>
+      <td><p>Names of source and target.</p></td>
+    </tr>
+    <tr>
+      <th>value</th>
+      <td><p>Value of edges.</p></td>
     </tr>
     <tr>
       <th>coord_system</th>
@@ -328,9 +338,23 @@
     <span class='no'>start_lat</span>,
     <span class='no'>end_lon</span>,
     <span class='no'>end_lat</span>,
+    <span class='no'>airport1</span>,
+    <span class='no'>airport2</span>,
+    <span class='no'>cnt</span>,
     <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"flights"</span>,
     <span class='kw'>lineStyle</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>normal</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>curveness</span> <span class='kw'>=</span> <span class='fl'>0.3</span>))
-   )</div></pre>
+  ) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_tooltip.html'>e_tooltip</a></span>(<span class='kw'>trigger</span><span class='kw'>=</span><span class='st'>"item"</span>,
+    <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='kw pkg'>htmlwidgets</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/htmlwidgets/topics/JS'>JS</a></span>(<span class='st'>"
+      function(params){
+        return(
+          params.seriesName +'&lt;br /&gt;' + 
+          params.data.source_name + ' -&gt; ' + 
+          params.data.target_name + ':'+ params.value
+        )
+      }
+   "</span>)
+  )</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

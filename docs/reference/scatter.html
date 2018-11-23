@@ -275,23 +275,25 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_scatter</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='no'>size</span>, <span class='no'>bind</span>, <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='no'>e_scale</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+  <span class='kw'>scale_js</span> <span class='kw'>=</span> <span class='st'>"function(data){ return data[3];}"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_effect_scatter</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='no'>size</span>, <span class='no'>bind</span>, <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='no'>e_scale</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='no'>e_scale</span>, <span class='kw'>scale_js</span> <span class='kw'>=</span> <span class='st'>"function(data){ return data[3];}"</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_scale</span>(<span class='no'>x</span>)
 
 <span class='fu'>e_scatter_</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='no'>e_scale</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='no'>e_scale</span>, <span class='kw'>scale_js</span> <span class='kw'>=</span> <span class='st'>"function(data){ return data[3];}"</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_effect_scatter_</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='no'>e_scale</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='no'>e_scale</span>,
+  <span class='kw'>scale_js</span> <span class='kw'>=</span> <span class='st'>"function(data){ return data[3];}"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
@@ -323,6 +325,10 @@ if <code>size</code> is <em>not</em> <code>NULL</code> or missing it is applied 
       <th>scale</th>
       <td><p>A function that takes a vector of <code>numeric</code> and returns a vector of <code>numeric</code>
 of the same length. You can disable the scaling by setting it to <code>NULL</code>.</p></td>
+    </tr>
+    <tr>
+      <th>scale_js</th>
+      <td><p>the JavaScript scaling function.</p></td>
     </tr>
     <tr>
       <th>name</th>

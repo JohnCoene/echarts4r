@@ -336,7 +336,7 @@
 <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>disp</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>mpg</span>, <span class='no'>qsec</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_loess</span>(<span class='no'>mpg</span> ~ <span class='no'>disp</span>)
+  <span class='fu'>e_loess</span>(<span class='no'>mpg</span> ~ <span class='no'>disp</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>showSymbol</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='no'>CO2</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>conc</span>) <span class='kw'>%&gt;%</span>
