@@ -349,6 +349,40 @@ e_unfocus_adjacency_p <- function(proxy, ...){
 #' @param type Type of action to dispatch, i.e.: \code{highlight}.
 #' @param ... Named options.
 #' 
+#' @examples 
+#' \dontrun{
+#' 
+#'   library(shiny)
+#' 
+#'   ui <- fluidPage(
+#'     fluidRow(
+#'       column(8, echarts4rOutput("chart")),
+#'       column(4, actionButton("zoom", "Zoom"))
+#'     )
+#'   )
+#'   
+#'   server <- function(input, output, session){
+#'   
+#'     output$chart <- renderEcharts4r({
+#'       cars %>% 
+#'         e_charts(speed) %>% 
+#'         e_scatter(dist) %>% 
+#'         e_datazoom()
+#'     })
+#'     
+#'     observe({
+#'       req(input$zoom)
+#'       
+#'       echarts4rProxy("chart") %>% 
+#'         e_dispatch_action_p("dataZoom", startValue = 1, endValue = 10)
+#'     })
+#'   
+#'   }
+#'   
+#'   shinyApp(ui, server)
+#' 
+#' }
+#' 
 #' @export
 e_dispatch_action_p <- function(proxy, type, ...){
   
