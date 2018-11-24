@@ -6,10 +6,10 @@
 \title{Area}
 \usage{
 e_area(e, serie, bind, name = NULL, legend = TRUE, y_index = 0,
-  x_index = 0, ...)
+  x_index = 0, coord_system = "cartesian2d", ...)
 
 e_area_(e, serie, bind = NULL, name = NULL, legend = TRUE,
-  y_index = 0, x_index = 0, ...)
+  y_index = 0, x_index = 0, coord_system = "cartesian2d", ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -25,6 +25,8 @@ e_area_(e, serie, bind = NULL, name = NULL, legend = TRUE,
 \item{y_index}{Indexes of x and y axis.}
 
 \item{x_index}{Indexes of x and y axis.}
+
+\item{coord_system}{Coordinate system to plot against.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

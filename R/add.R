@@ -99,7 +99,8 @@ e_line <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_in
 #' 
 #' @rdname e_area
 #' @export
-e_area <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, ...){
+e_area <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, 
+                   coord_system = "cartesian2d", ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -114,7 +115,7 @@ e_area <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_in
   else
     bd <- deparse(substitute(bind))
   
-  e_area_(e, serie, bd, name, legend, y_index, x_index, ...)
+  e_area_(e, serie, bd, name, legend, y_index, x_index, coord_system,...)
 }
 
 #' Step 
@@ -139,7 +140,8 @@ e_area <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_in
 #' @rdname e_step
 #' @export
 e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FALSE, 
-                   name = NULL, legend = TRUE, y_index = 0, x_index = 0, ...){
+                   name = NULL, legend = TRUE, y_index = 0, x_index = 0, coord_system = "cartesian2d", 
+                   ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -153,7 +155,7 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
   else
     bd <- deparse(substitute(bind))
   
-  e_step_(e, serie, bd, step, fill, name, legend, y_index, x_index, ...)
+  e_step_(e, serie, bd, step, fill, name, legend, y_index, x_index, coord_system = "cartesian2d", ...)
 }
 
 #' Scatter
