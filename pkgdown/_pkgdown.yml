@@ -1,7 +1,6 @@
 url: http://echarts4r.john-coene.com
 
 template:
-  path: pkgdown/template
   params:
     bootswatch: lumen
     ganalytics: UA-74544116-1
