@@ -161,12 +161,32 @@ e1 <- iris %>%
   e_scatter(Petal.Length, Sepal.Width) %>% 
   e_datazoom(show = FALSE, y_index = 0) %>% 
   e_x_axis(min = 4) %>% 
-  e_highlight(series_name = list("setosa", "versicolor", "virginica"), btn = "high") %>% 
-  e_downplay(series_name = list("setosa", "versicolor", "virginica"), btn = "down") %>% 
-  e_button("high", "Highlight", class = "btn btn-primary", position = "bottom") %>% 
-  e_button("down", "Downplay", class = "btn btn-default", position = "bottom") %>% 
+  e_highlight(
+    series_name = list("setosa", "versicolor", "virginica"), 
+    btn = "high"
+  ) %>% 
+  e_downplay(
+    series_name = list("setosa", "versicolor", "virginica"), 
+    btn = "down"
+  ) %>% 
+  e_button(
+    "high", "Highlight", 
+    class = "btn btn-primary", 
+    position = "bottom"
+  ) %>% 
+  e_button(
+    "down", "Downplay", 
+    class = "btn btn-default", 
+    position = "bottom"
+  ) %>% 
   e_legend(FALSE) %>% 
-  e_title("Connect charts")
+  e_title("Connect charts") %>% 
+  e_tooltip(
+    trigger = "item",
+    axisPointer = list(
+      type = "cross"
+    )
+  )
 
 e2 <- iris %>% 
   group_by(Species) %>% 
@@ -175,7 +195,13 @@ e2 <- iris %>%
   e_connect("chart") %>% 
   e_datazoom(y_index = 0) %>% 
   e_x_axis(min = 4) %>% 
-  e_legend(bottom = 5) 
+  e_legend(bottom = 5) %>% 
+  e_tooltip(
+    trigger = "item",
+    axisPointer = list(
+      type = "cross"
+    )
+  )
 
 e_arrange(e1, e2, rows = 1, cols = 2)
 ```
