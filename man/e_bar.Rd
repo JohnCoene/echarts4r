@@ -32,10 +32,17 @@ e_bar_(e, serie, bind = NULL, name = NULL, legend = TRUE,
 Add bar serie.
 }
 \examples{
-iris \%>\% 
-  group_by(Species) \%>\% 
-  e_charts(Sepal.Length) \%>\% 
-  e_line(Sepal.Width)
+library(dplyr)
+
+mtcars \%>\% 
+  mutate(
+    model = row.names(.),
+    total = mpg + qsec
+  ) \%>\% 
+  arrange(desc(total)) \%>\% 
+  e_charts(model) \%>\% 
+  e_bar(mpg, stack = "grp") \%>\% 
+  e_bar(qsec, stack = "grp")
 
 }
 \seealso{

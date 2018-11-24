@@ -10,12 +10,12 @@ e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 
   
   for(i in 1:length(e$x$data)){
     
-    nm <- .name_it(e, serie, name, i)
-    
     .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
     
     if(!is.null(bind))
       vector <- .add_bind2(e$x$data[[i]], vector, bind, i = i)
+    
+    e_serie <- list(data = vector)
     
     if(y_index != 0)
       e <- .set_y_axis(e, serie, y_index, i)
@@ -23,25 +23,58 @@ e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 
     if(x_index != 0)
       e <- .set_x_axis(e, x_index, i)
     
-    e.serie <- list(
-      name = nm,
+    if(coord_system == "polar"){
+      e.serie$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
+    }
+    
+    
+    # timeline
+    if(!e$x$tl){
+      nm <- .name_it(e, serie, name, i)
+      
+      opts <- list(
+        name = nm,
+        type = "bar",
+        yAxisIndex = y_index,
+        xAxisIndex = x_index,
+        coordinateSystem = coord_system,
+        ...
+      )
+      
+      e_serie <- append(e_serie, opts)
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+      
+      e$x$opts$series <- append(e$x$opts$series, list(e_serie))  
+    } else {
+      
+      opts <- list(...)
+      e_serie <- append(e_serie, opts)
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+      
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(e_serie))
+      
+    }
+    
+  }
+  
+  if(isTRUE(e$x$tl)){
+    
+    series_opts <- list(
+      name = name,
       type = "bar",
-      data = vector,
       yAxisIndex = y_index,
       xAxisIndex = x_index,
       coordinateSystem = coord_system,
       ...
     )
     
-    if(coord_system == "polar"){
-      e.serie$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
-    }
-    
-    if(isTRUE(legend))
-      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
-    
-    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(series_opts))
   }
+  
   e
 }
 
@@ -54,10 +87,8 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
-  
 
   for(i in 1:length(e$x$data)){
-    nm <- .name_it(e, serie, name, i)
     
     # build JSON data
     .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
@@ -66,11 +97,7 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
       vector <- .add_bind2(e, vector, bind, i = i)
     
     l <- list(
-      name = nm,
-      type = "line",
-      data = vector,
-      coordinateSystem = coord_system,
-      ...
+      data = vector
     )
     
     if(coord_system == "cartesian2d"){
@@ -86,10 +113,45 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
       l$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
     }
     
-    if(isTRUE(legend))
-      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+    if(!e$x$tl){
+      nm <- .name_it(e, serie, name, i)
+      
+      opts <- list(
+        name = nm,
+        type = "line",
+        coordinateSystem = coord_system,
+        ...
+      )
+      
+      l <- append(l, opts)
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+      
+      e$x$opts$series <- append(e$x$opts$series, list(l))
+    } else {
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+      
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(l))
+      
+    }
     
-    e$x$opts$series <- append(e$x$opts$series, list(l))
+  }
+  
+  if(isTRUE(e$x$tl)){
+    
+    series_opts <- list(
+      name = name,
+      type = "line",
+      yAxisIndex = y_index,
+      xAxisIndex = x_index,
+      coordinateSystem = coord_system,
+      ...
+    )
+    
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(series_opts))
   }
   
   e

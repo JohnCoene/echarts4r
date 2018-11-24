@@ -12,10 +12,17 @@
 #' @param coord_system Coordinate system to plot against.
 #' 
 #' @examples 
-#' iris %>% 
-#'   group_by(Species) %>% 
-#'   e_charts(Sepal.Length) %>% 
-#'   e_line(Sepal.Width)
+#' library(dplyr)
+#' 
+#' mtcars %>% 
+#'   mutate(
+#'     model = row.names(.),
+#'     total = mpg + qsec
+#'   ) %>% 
+#'   arrange(desc(total)) %>% 
+#'   e_charts(model) %>% 
+#'   e_bar(mpg, stack = "grp") %>% 
+#'   e_bar(qsec, stack = "grp")
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar}{Additional arguments}
 #' 
