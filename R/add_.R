@@ -1113,8 +1113,8 @@ e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = N
     stop("must pass y and z", call. = FALSE)
   
   if(is.null(coord_system)){
-    e <- .set_x_axis(e, 0)
-    e <- .set_y_axis(e, deparse(substitute(y)), 0)
+    e$x$opts$xAxis <- list(type = "value")
+    e$x$opts$yAxis <- list(type = "value")
   } else {
     # remove axis
     e <- .rm_axis(e, rm_x, "x")

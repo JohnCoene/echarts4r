@@ -1494,8 +1494,13 @@ e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord_system = NULL, rm_
   else
     colour <- NULL
   
-  e_flow_gl_(e, deparse(substitute(y)), deparse(substitute(sx)), deparse(substitute(sy)), colour, 
-             name, coord_system, rm_x, rm_y, ...)
+  e_flow_gl_(
+    e = e, 
+    y = deparse(substitute(y)), 
+    sx = deparse(substitute(sx)), 
+    sy = deparse(substitute(sy)), 
+    color = colour, 
+    name, coord_system, rm_x, rm_y, ...)
 }
 
 #' Scatter GL

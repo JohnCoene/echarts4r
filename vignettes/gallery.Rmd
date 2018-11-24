@@ -18,7 +18,7 @@ library(dplyr)
 library(echarts4r)
 ```
 
-### Lines
+## Lines
 
 ```{r}
 library(dplyr)
@@ -107,7 +107,7 @@ data %>%
   )
 ```
 
-### Scatter 3D
+## Scatter 3D
 
 ```{r}
 data <- jsonlite::fromJSON("http://gallery.echartsjs.com/asset/get/s/data-1491887968120-rJODPy9ae.json")
@@ -147,7 +147,7 @@ data %>%
   )
 ```
 
-### Timeline
+## Timeline
 
 This is a temporary implementation of the timeline component, it will, eventually, be properly incorporated into the package.
 

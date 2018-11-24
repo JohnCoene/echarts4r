@@ -28,6 +28,8 @@ e_timeline_serie_(e, y, z = NULL, type = "line", name = NULL,
 \item{legend}{Set to \code{TRUE} to show \code{serie_name} in legend.}
 
 \item{base_opts}{A \code{list} of base serie options.}
+
+\item{coord_system}{Coordinate system.}
 }
 \description{
 Add timeline series.

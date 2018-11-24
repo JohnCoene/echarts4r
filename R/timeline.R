@@ -111,6 +111,7 @@ e_timeline <- function(data, x, width = NULL, height = NULL, elementId = NULL, d
 #' @param type Chart type.
 #' @param name name of serie.
 #' @param serie_name Name of serie, used for legend.
+#' @param coord_system Coordinate system.
 #' @param legend Set to \code{TRUE} to show \code{serie_name} in legend.
 #' @param y,z Any column name.
 #' @param base_opts A \code{list} of base serie options.

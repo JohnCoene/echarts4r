@@ -54,7 +54,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   apply(data, 1, function(x){
     list(value = unlist(x, use.names = FALSE))
   }) 
-    
+  
 }
 
 .build_data_size <- function(data, x, y, size, scale, symbol_size){
@@ -558,5 +558,4 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   e$x$opts$graphic <- append(e$x$opts$graphic, opts)
   e
 }
-
 
