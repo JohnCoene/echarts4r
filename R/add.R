@@ -423,26 +423,6 @@ e_radar <- function(e, serie, max = 100, name = NULL, legend = TRUE,
 #' funnel %>% 
 #'   e_charts() %>% 
 #'   e_funnel(value, stage)
-#'   
-#' # timeline
-#' funnel <- data.frame(
-#'   grp = rep(LETTERS[1:3], 3),
-#'   value = c(
-#'     runif(3, 7, 10),
-#'     runif(3, 4, 6),
-#'     runif(3, 1, 3)
-#'   ),
-#'   stage = c(
-#'     rep(c("View", "View", "View"), 3),
-#'     rep(c("Click", "Click", "Click"), 3),
-#'     rep(c("Purchase", "Purchase", "Purchase"), 3)
-#'   )
-#' )
-#' 
-#' funnel %>% 
-#'   group_by(grp) %>% 
-#'   e_charts(timeline = TRUE) %>% 
-#'   e_funnel(value, stage)
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel}{Additional arguments}
 #' 
