@@ -40,6 +40,13 @@ CO2 \%>\%
   e_area(uptake) \%>\% 
   e_tooltip(trigger = "axis")
 
+# timeline  
+iris \%>\% 
+  group_by(Species) \%>\% 
+  e_charts(Sepal.Length, timeline = TRUE) \%>\% 
+  e_area(Sepal.Width) \%>\% 
+  e_tooltip(trigger = "axis")
+
 }
 \seealso{
 \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}{Additional arguments}

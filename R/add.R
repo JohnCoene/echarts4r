@@ -59,6 +59,13 @@ e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_ind
 #'   e_charts(Sepal.Length) %>% 
 #'   e_line(Sepal.Width) %>% 
 #'   e_tooltip(trigger = "axis")
+#'   
+#' # timeline  
+#' iris %>% 
+#'   group_by(Species) %>% 
+#'   e_charts(Sepal.Length, timeline = TRUE) %>% 
+#'   e_line(Sepal.Width) %>% 
+#'   e_tooltip(trigger = "axis")
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}{Additional arguments}  
 #' 
@@ -93,6 +100,13 @@ e_line <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_in
 #'   group_by(Plant) %>% 
 #'   e_charts(conc) %>% 
 #'   e_area(uptake) %>% 
+#'   e_tooltip(trigger = "axis")
+#' 
+#' # timeline  
+#' iris %>% 
+#'   group_by(Species) %>% 
+#'   e_charts(Sepal.Length, timeline = TRUE) %>% 
+#'   e_area(Sepal.Width) %>% 
 #'   e_tooltip(trigger = "axis")
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}{Additional arguments}
@@ -133,6 +147,13 @@ e_area <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_in
 #'   e_step(Murder, name = "Start", step = "start", fill = TRUE) %>% 
 #'   e_step(Rape, name = "Middle", step = "middle") %>% 
 #'   e_step(Assault, name = "End", step = "end") %>% 
+#'   e_tooltip(trigger = "axis")
+#'   
+#' # timeline  
+#' iris %>% 
+#'   group_by(Species) %>% 
+#'   e_charts(Sepal.Length, timeline = TRUE) %>% 
+#'   e_step(Sepal.Width) %>% 
 #'   e_tooltip(trigger = "axis")
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line}{Additional arguments}
@@ -394,10 +415,33 @@ e_radar <- function(e, serie, max = 100, name = NULL, legend = TRUE,
 #' @details No \code{bind} argument here, with a funnel \code{bind} = \code{labels}.
 #' 
 #' @examples 
-#' funnel <- data.frame(stage = c("View", "Click", "Purchase"), value = c(80, 30, 20))
+#' funnel <- data.frame(
+#'   stage = c("View", "Click", "Purchase"), 
+#'   value = c(80, 30, 20)
+#' )
 #' 
 #' funnel %>% 
 #'   e_charts() %>% 
+#'   e_funnel(value, stage)
+#'   
+#' # timeline
+#' funnel <- data.frame(
+#'   grp = rep(LETTERS[1:3], 3),
+#'   value = c(
+#'     runif(3, 7, 10),
+#'     runif(3, 4, 6),
+#'     runif(3, 1, 3)
+#'   ),
+#'   stage = c(
+#'     rep(c("View", "View", "View"), 3),
+#'     rep(c("Click", "Click", "Click"), 3),
+#'     rep(c("Purchase", "Purchase", "Purchase"), 3)
+#'   )
+#' )
+#' 
+#' funnel %>% 
+#'   group_by(grp) %>% 
+#'   e_charts(timeline = TRUE) %>% 
 #'   e_funnel(value, stage)
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel}{Additional arguments}

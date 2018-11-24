@@ -565,20 +565,51 @@ e_candle_ <- function(e, opening, closing, low, high, bind = NULL, name = NULL, 
     if(!is.null(bind))
       data <- .add_bind2(e, data, bind, i = i)
     
-    nm <- .name_it(e, NULL, name, i)
-    
     e.serie <- list(
+      data = data
+    )
+    
+    if(!e$x$tl){
+      
+      nm <- .name_it(e, NULL, name, i)
+      
+      opts <- list(
+        name = nm,
+        type = "candlestick",
+        ...
+      )
+      
+      e.serie <- append(e.serie, opts)
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+      
+      e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+    } else {
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+      
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(e.serie))
+      
+    }
+    
+  }
+  
+  
+  if(isTRUE(e$x$tl)){
+    
+    add_opts <- list(
       name = nm,
       type = "candlestick",
-      data = data,
       ...
     )
     
-    if(isTRUE(legend))
-      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+    series_opts <- append(opts, add_opts)
     
-    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(series_opts))
   }
+  
   e
 }
 
@@ -642,32 +673,55 @@ e_funnel_ <- function(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE
   if(missing(values) || missing(labels))
     stop("missing values or labels", call. = FALSE)
   
-  # remove axis
-  e <- .rm_axis(e, rm_x, "x")
-  e <- .rm_axis(e, rm_y, "y")
-  
-  # build JSON data
-  funnel <- .build_data(e, values)
-  
-  funnel <- .add_bind(e, funnel, labels)
-  
-  serie <- list(
-    name = name,
-    type = "funnel",
-    data = funnel,
-    ...
-  )
-  
-  # addlegend
-  
-  if(isTRUE(legend)){
-    legend <- .get_data(e, labels) %>% as.character()
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, legend)
+  for(i in 1:length(e$x$data)){
+    
+    # build JSON data
+    funnel <- .build_data2(e$x$data[[i]], values)
+    
+    funnel <- .add_bind2(e, funnel, labels, i = i)
+    
+    serie <- list(data = funnel)
+    
+    opts <- list(
+      name = name,
+      type = "funnel",
+      ...
+    )
+    
+    # remove axis
+    e <- .rm_axis(e, rm_x, "x")
+    e <- .rm_axis(e, rm_y, "y")
+    
+    if(!e$x$tl){
+      
+      serie <- append(serie, opts)
+      
+      # addlegend
+      if(isTRUE(legend)){
+        legend <- .get_data(e, labels) %>% as.character() %>% unique
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, legend)
+      }
+      
+      e$x$opts$series <- append(e$x$opts$series, list(serie))
+    } else {
+      
+      if(isTRUE(legend)){
+        legend <- .get_data(e, labels) %>% as.character() %>% unique
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, legend)
+      }
+      
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie))
+
+    }
+    
   }
   
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-  e
+  if(isTRUE(e$x$tl)){
+    
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(opts))
+  }
   
+  e
 }
 
 #' @rdname e_sankey

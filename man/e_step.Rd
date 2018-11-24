@@ -47,6 +47,13 @@ USArrests \%>\%
   e_step(Rape, name = "Middle", step = "middle") \%>\% 
   e_step(Assault, name = "End", step = "end") \%>\% 
   e_tooltip(trigger = "axis")
+  
+# timeline  
+iris \%>\% 
+  group_by(Species) \%>\% 
+  e_charts(Sepal.Length, timeline = TRUE) \%>\% 
+  e_step(Sepal.Width) \%>\% 
+  e_tooltip(trigger = "axis")
 
 }
 \seealso{
