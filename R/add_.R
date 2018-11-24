@@ -348,8 +348,6 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
   
   for(i in 1:length(e$x$data)){
     
-    nm <- .name_it(e, serie, name, i)
-    
     if(y_index != 0)
       e <- .set_y_axis(e, serie, y_index, i)
     
@@ -364,35 +362,26 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
     if(!is.null(bind))
       xy <- .add_bind2(e, xy, bind, i = i)
     
-    e.serie <- list(
-      name = nm,
-      type = "scatter",
-      data = xy,
+    e.serie <- list(data = xy)
+    
+    if(coord_system == "polar"){
+      e.serie$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
+    }
+    
+    opts <- list(
       coordinateSystem = coord_system,
       ...
     )
     
-    if(!coord_system %in% c("cartesian2d", "singleAxis", "polar")){
-      e <- .rm_axis(e, rm_x, "x")
-      e <- .rm_axis(e, rm_y, "y")
-    } else {
-      
-      if(coord_system == "cartesian2d"){
-        e.serie$yAxisIndex = y_index
-        e.serie$xAxisIndex = x_index
-      } else if(coord_system == "singleAxis") {
-        e.serie$singleAxisIndex = x_index
-      } else if(coord_system == "polar"){
-        e.serie$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
-      }
-      
-      if(isTRUE(legend))
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+    if(coord_system == "cartesian2d"){
+      opts$yAxisIndex = y_index
+      opts$xAxisIndex = x_index
+    } else if(coord_system == "singleAxis") {
+      opts$singleAxisIndex = x_index
     }
     
     if(!is.null(size)){
-      e$scaling <- scale
-      e.serie$symbolSize <- htmlwidgets::JS(
+      opts$symbolSize <- htmlwidgets::JS(
         scale_js
       )
     } else {
@@ -401,10 +390,54 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
       if(size_total == 1)
         symbol_size <- 10
       
-      e.serie$symbolSize <- symbol_size
+      opts$symbolSize <- symbol_size
     }
     
-    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+    if(!e$x$tl){
+      
+      nm <- .name_it(e, serie, name, i)
+      
+      add_opts <- list(
+        name = nm,
+        type = "scatter",
+        ...
+      )
+      
+      e.serie <- append(e.serie, add_opts)
+      e.serie <- append(e.serie, opts)
+      
+      if(!coord_system %in% c("cartesian2d", "singleAxis", "polar")){
+        e <- .rm_axis(e, rm_x, "x")
+        e <- .rm_axis(e, rm_y, "y")
+      }
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+      
+      e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+      
+    } else {
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+      
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(e.serie))
+      
+    }
+    
+  }
+  
+  if(isTRUE(e$x$tl)){
+    
+    add_opts <- list(
+      name = name,
+      type = "scatter",
+      ...
+    )
+    
+    series_opts <- append(opts, add_opts)
+    
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(series_opts))
   }
   
   e
@@ -423,8 +456,6 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 
   
   for(i in 1:length(e$x$data)){
     
-    nm <- .name_it(e, serie, name, i)
-    
     if(y_index != 0)
       e <- .set_y_axis(e, serie, y_index, i)
     
@@ -439,26 +470,26 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 
     if(!is.null(bind))
       xy <- .add_bind2(e, xy, bind, i = i)
     
-    if(coord_system != "cartesian2d"){
-      e <- .rm_axis(e, rm_x, "x")
-      e <- .rm_axis(e, rm_y, "y")
-    } else {
-      if(isTRUE(legend))
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+    e.serie <- list(data = xy)
+    
+    if(coord_system == "polar"){
+      e.serie$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
     }
     
-    e.serie <- list(
-      name = nm,
-      type = "effectScatter",
-      data = xy,
+    opts <- list(
       coordinateSystem = coord_system,
-      yAxisIndex = y_index,
-      xAxisIndex = x_index,
       ...
     )
     
+    if(coord_system == "cartesian2d"){
+      opts$yAxisIndex = y_index
+      opts$xAxisIndex = x_index
+    } else if(coord_system == "singleAxis") {
+      opts$singleAxisIndex = x_index
+    }
+    
     if(!is.null(size)){
-      e.serie$symbolSize <- htmlwidgets::JS(
+      opts$symbolSize <- htmlwidgets::JS(
         scale_js
       )
     } else {
@@ -466,10 +497,55 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 
       
       if(size_total == 1)
         symbol_size <- 10
-      e.serie$symbolSize <- symbol_size
+      
+      opts$symbolSize <- symbol_size
     }
     
-    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+    if(!e$x$tl){
+      
+      nm <- .name_it(e, serie, name, i)
+      
+      add_opts <- list(
+        name = nm,
+        type = "effectScatter",
+        ...
+      )
+      
+      e.serie <- append(e.serie, add_opts)
+      e.serie <- append(e.serie, opts)
+      
+      if(!coord_system %in% c("cartesian2d", "singleAxis", "polar")){
+        e <- .rm_axis(e, rm_x, "x")
+        e <- .rm_axis(e, rm_y, "y")
+      }
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+      
+      e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+      
+    } else {
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+      
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(e.serie))
+      
+    }
+    
+  }
+  
+  if(isTRUE(e$x$tl)){
+    
+    add_opts <- list(
+      name = name,
+      type = "effectScatter",
+      ...
+    )
+    
+    series_opts <- append(opts, add_opts)
+    
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(series_opts))
   }
   
   e
