@@ -17,11 +17,12 @@ echarts_build <- function(e) {
 #' @param elementId Id of element.
 #' @param dispose Set to \code{TRUE} to force redraw of chart, set to \code{FALSE} to update.
 #' @param renderer Renderer, takes \code{canvas} (default) or \code{svg}.
+#' @param timeline Set to \code{TRUE} to build a timeline.
 #' @param ... Any other argument.
 #' 
 #' @examples 
 #' mtcars %>% 
-#'   e_charts_("qsec") %>%
+#'   e_charts(qsec) %>%
 #'   e_line(mpg)
 #'
 #' @import htmlwidgets
@@ -30,9 +31,10 @@ echarts_build <- function(e) {
 #' @importFrom stats as.formula lm glm loess predict
 #' @importFrom graphics hist
 #' 
-#' @rdname init
+#' @name init
 #' @export
-e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dispose = TRUE, renderer = "canvas", ...) {
+e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dispose = TRUE, 
+                     renderer = "canvas", timeline = FALSE, ...) {
 
   xmap <- NULL
   if(!missing(x))
@@ -41,6 +43,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
   # forward options using x
   x = list(
     theme = "",
+    tl = timeline,
     renderer = tolower(renderer),
     mapping = list(),
     events = list(),
@@ -69,6 +72,56 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
     x <- .assign_axis(x, data)
   }
   
+  if(isTRUE(timeline)){
+    
+    if(!dplyr::is_grouped_df(data))
+      stop("must pass grouped data", call. = FALSE)
+    
+    tl <- list(
+      baseOption = list(
+        yAxis = list(
+          list(show = TRUE)
+        )
+      ),
+      options = lapply(1:dplyr::n_groups(data), function(x) list())      
+    )
+    
+    x$opts <- tl
+    
+    x$opts$baseOption$timeline <- list(
+      data = names(x$data),
+      axisType = "category",
+      ...
+    )
+    
+    if(!is.null(xmap)){
+      x$mapping$x <- xmap[1]
+      x$mapping$x_class <- class(data[[xmap]])
+      
+      x$mapping$include_x <- FALSE
+      cl <- x$mapping$x_class
+      if(cl == "character" || cl == "factor"){
+        labs <- unique(data[[x$mapping$x]])
+        
+        if(length(labs) == 1)
+          labs <- list(labs)
+        
+        x$opts$baseOption$xAxis <- list(list(data = labs, type = "category", boundaryGap = TRUE))
+      } else if(cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
+        
+        labs <- unique(data[[x$mapping$x]])
+        
+        if(length(labs) == 1)
+          labs <- list(labs)
+        
+        x$opts$baseOption$xAxis <- list(list(data = labs, type = "time", boundaryGap = TRUE))
+      } else {
+        x$mapping$include_x <- TRUE
+        x$opts$baseOption$xAxis <- list(list(type = "value"))
+      }
+    }
+  }
+  
   x$dispose <- dispose
   
   # create widget
@@ -90,13 +143,15 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
 
 #' @rdname init
 #' @export
-e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = NULL, dispose = TRUE, renderer = "canvas", ...) {
+e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = NULL, dispose = TRUE, 
+                      renderer = "canvas", timeline = FALSE, ...) {
   
   xmap <- x
   
   # forward options using x
   x = list(
     theme = "",
+    tl = timeline,
     renderer = tolower(renderer),
     mapping = list(),
     events = list(),

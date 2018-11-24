@@ -374,9 +374,13 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
       
       axis$data <- axis_data
     }
-    
-    e$x$opts[[raxis]][[index + 1]] <- axis
   }
+  
+  if(!e$x$tl)
+    e$x$opts[[raxis]][[index + 1]] <- axis
+  else
+    e$x$opts$baseOption[[raxis]][[index + 1]] <- axis
+  
   e
 }
 

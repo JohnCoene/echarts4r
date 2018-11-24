@@ -58,7 +58,7 @@ data %>%
   group_by(airline) %>% 
   e_charts() %>% 
   e_globe(
-    base.texture = ea_asset("world dark"),
+    base_texture = ea_asset("world dark"),
     environment = ea_asset("starfield"),
     displacementScale = 0.1,
     displacementQuality = "high",
@@ -120,7 +120,7 @@ data <- as.data.frame(data) %>%
 data %>%
   e_charts(x) %>% 
   e_globe(
-    base.texture = ea_asset("world topo"),
+    base_texture = ea_asset("world topo"),
     environment = ea_asset("starfield"),
     displacementScale = 0.04,
     shading = "realistic",
@@ -145,4 +145,27 @@ data %>%
     min = 0, max = 60,
     inRange = list(1, 10)
   )
+```
+
+### Timeline
+
+This is a temporary implementation of the timeline component, it will, eventually, be properly incorporated into the package.
+
+```{r}
+aggregate <- OrchardSprays %>% 
+  group_by(treatment, colpos) %>% 
+  summarise(
+      decrease = sum(decrease)
+  ) %>% 
+  group_by(treatment)
+
+OrchardSprays %>% 
+  group_by(treatment) %>% 
+  e_timeline(rowpos) %>% 
+  e_timeline_serie(decrease) %>% 
+  e_data(aggregate, colpos) %>% 
+  e_timeline_serie(decrease, type = "pie", base_opts = list(
+      center = list("75%", "35%"),
+      radius = "20%"
+  ))
 ```
