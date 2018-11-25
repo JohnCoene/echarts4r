@@ -128,14 +128,4 @@ mtcars %>%
   e_format_y_axis(suffix = "mpg")
 ```
 
-The package also understands `dplyr::group_by` in order to avoid having to add many layers manually one by one. `echarts4r` essentially will plot one serie for each group.
-
-```{r}
-iris %>% 
-  group_by(Species) %>% 
-  e_charts(Sepal.Length) %>% 
-  e_line(Sepal.Width) %>% 
-  e_title("Grouped data")
-```
-
-You're in on the basics, go to the [advanced](docs/articles/advanced.html) section or navigate the site to discover how add multiple linked graphs, draw on globes, use the package in shiny, and more.
+You're in on the basics, go to the [advanced](articles/advanced.html) section or navigate the site to discover how add multiple linked graphs, draw on globes, use the package in shiny, and more.

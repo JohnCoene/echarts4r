@@ -67,7 +67,12 @@ e_add <- function(e, param, ...){
     data <- apply(data, 1, as.list)
     
     for(j in 1:length(data)){
-      e$x$opts$series[[i]]$data[[j]][[param]] <- data[[j]]
+      
+      if(!e$x$tl)
+        e$x$opts$series[[i]]$data[[j]][[param]] <- data[[j]]
+      else
+        e$x$opts$options$series[[i]]$data[[j]][[param]] <- data[[j]]
+      
     }
   }
   e

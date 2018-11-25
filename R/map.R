@@ -332,7 +332,12 @@ e_mapbox <- function(e, token, ...){
   if(missing(token))
     stop("missing token", call. = FALSE)
   
-  e$x$opts$mapbox <- list(...)
   e$x$mapboxToken <- token
+  
+  if(!e$x$tl)
+    e$x$opts$mapbox <- list(...)
+  else
+    e$x$opts$baseOption$mapbox <- list(...)
+  
   e
 }

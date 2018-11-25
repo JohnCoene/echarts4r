@@ -20,6 +20,28 @@ library(echarts4r)
 
 This document details some more advanced usage of the `echarts4r` package.
 
+## Grouping
+
+The package also understands `dplyr::group_by` in order to avoid having to add many layers manually one by one. `echarts4r` essentially will plot one serie for each group.
+
+```{r}
+iris %>% 
+  group_by(Species) %>% 
+  e_charts(Sepal.Length) %>% 
+  e_line(Sepal.Width) %>% 
+  e_title("Grouped data")
+```
+
+The above plot one line (`e_line`) for each group (`group_by`). _At one exception_, when `timeline` is set to `TRUE` when the chart is initialised with `e_charts`. In the latter case each group is used as a step of the timeline.
+
+```{r}
+iris %>% 
+  group_by(Species) %>% 
+  e_charts(Sepal.Length, timeline = TRUE) %>% 
+  e_line(Sepal.Width) %>% 
+  e_title("Timeline")
+```
+
 ## Scatter
 
 Since `0.2.0` the `e_scatter` and `e_effect_scatter` functions take a different, much improved `scale` argument which is a scaling function.

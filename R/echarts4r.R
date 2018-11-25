@@ -33,10 +33,21 @@ echarts_build <- function(e) {
 #'   \item{\code{\link{e_heatmap}}}
 #'   \item{\code{\link{e_pie}}}
 #'   \item{\code{\link{e_line_3d}}}
+#'   \item{\code{\link{e_lines_3d}}}
 #'   \item{\code{\link{e_bar_3d}}}
 #'   \item{\code{\link{e_lines}}}
 #'   \item{\code{\link{e_scatter_3d}}}
 #'   \item{\code{\link{e_scatter_gl}}}
+#'   \item{\code{\link{e_histogram}}}
+#'   \item{\code{\link{e_lm}}}
+#'   \item{\code{\link{e_loess}}}
+#'   \item{\code{\link{e_glm}}}
+#'   \item{\code{\link{e_density}}}
+#'   \item{\code{\link{e_pictorial}}}
+#'   \item{\code{\link{e_boxplot}}}
+#'   \item{\code{\link{e_map}}}
+#'   \item{\code{\link{e_map_3d}}}
+#'   \item{\code{\link{e_line_3d}}}
 #' }
 #' 
 #' @examples 

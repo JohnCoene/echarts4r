@@ -120,7 +120,7 @@ e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuo
 #' @examples 
 #' USArrests %>% 
 #'   e_charts(Assault) %>% 
-#'   e_bar(Murder) %>% 
+#'   e_scatter(Murder) %>% 
 #'   e_tooltip()
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip}{Additional arguments}
@@ -133,7 +133,10 @@ e_tooltip <- function(e, trigger = c("item", "axis"), ...){
   
   tooltip <- list(trigger = trigger[1], ...)
   
-  e$x$opts$tooltip <- tooltip
+  if(!e$x$tl)
+    e$x$opts$tooltip <- tooltip
+  else
+    e$x$opts$baseOption$tooltip <- tooltip
   
   e
 }
@@ -168,7 +171,10 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), ...){
     ...
   )
   
-  e$x$opts$legend <- append(e$x$opts$legend, legend)
+  if(!e$x$tl)
+    e$x$opts$legend <- append(e$x$opts$legend, legend)
+  else
+    e$x$opts$baseOption$legend <- append(e$x$opts$baseOption$legend, legend)
   
   e
   
@@ -220,18 +226,36 @@ e_toolbox_feature <- function(e, feature, ...){
   if(missing(feature))
     feature <- c("saveAsImage", "restore", "dataView", "dataView", "dataZoom", "magicType", "brush")
   
-  if(!length(e$x$opts$toolbox))
-    e$x$opts$toolbox <- list(feature = list())
-  
-  for(i in 1:length(feature)){
-    e$x$opts$toolbox$feature[[feature[i]]] <- list()
-  }
-  
   options <- list(...)
-  if(length(options)){
-    for(i in 1:length(options)){
-      e$x$opts$toolbox$feature[[feature]][[names(options)[i]]] <- options[[i]]
+  
+  if(!e$x$tl){
+    if(!length(e$x$opts$toolbox))
+      e$x$opts$toolbox <- list(feature = list())
+    
+    for(i in 1:length(feature)){
+      e$x$opts$toolbox$feature[[feature[i]]] <- list()
     }
+    
+    if(length(options)){
+      for(i in 1:length(options)){
+        e$x$opts$toolbox$feature[[feature]][[names(options)[i]]] <- options[[i]]
+      }
+    }
+  } else {
+    
+    if(!length(e$x$opts$baseOption$toolbox))
+      e$x$opts$baseOption$toolbox <- list(feature = list())
+    
+    for(i in 1:length(feature)){
+      e$x$opts$baseOption$toolbox$feature[[feature[i]]] <- list()
+    }
+    
+    if(length(options)){
+      for(i in 1:length(options)){
+        e$x$opts$baseOption$toolbox$feature[[feature]][[names(options)[i]]] <- options[[i]]
+      }
+    }
+    
   }
   
   e
@@ -241,9 +265,10 @@ e_toolbox_feature <- function(e, feature, ...){
 #' @export
 e_toolbox <- function(e, ...){
   
-  e$x$opts$toolbox <- list(
-    ...
-  )
+  if(!e$x$tl)
+    e$x$opts$toolbox <- list(...)
+  else
+    e$x$opts$baseOption$toolbox <- list(...)
   
   e
 }
@@ -278,17 +303,30 @@ e_datazoom <- function(e, x_index = NULL, y_index = NULL, toolbox = TRUE, ...){
   if(!is.null(x_index) && !is.null(y_index))
     stop("pass x_index or y_index, not both", call. = FALSE)
   
-  if(!length(e$x$opts$dataZoom)) # initiatilise if not existing
-    e$x$opts$dataZoom <- list()
+  if(!e$x$tl){
+    if(!length(e$x$opts$dataZoom)) # initiatilise if not existing
+      e$x$opts$dataZoom <- list()
+  } else {
+    if(!length(e$x$opts$baseOption$dataZoom)) # initiatilise if not existing
+      e$x$opts$baseOption$dataZoom <- list()
+  }
   
-  if(!length(e$x$opts$toolbox$feature$dataZoom) && isTRUE(toolbox))
-    e <- e_toolbox_feature(e, "dataZoom")
-  
+  if(!e$x$tl){
+    if(!length(e$x$opts$toolbox$feature$dataZoom) && isTRUE(toolbox))
+      e <- e_toolbox_feature(e, "dataZoom")
+  } else {
+    if(!length(e$x$opts$baseOption$toolbox$feature$dataZoom) && isTRUE(toolbox))
+      e <- e_toolbox_feature(e, "dataZoom")
+  }
+    
   opts <- list(...)
   if(!is.null(x_index)) opts$xAxisIndex <- x_index
   if(!is.null(y_index)) opts$yAxisIndex <- y_index
   
-  e$x$opts$dataZoom <- append(e$x$opts$dataZoom, list(opts))
+  if(!e$x$tl)
+    e$x$opts$dataZoom <- append(e$x$opts$dataZoom, list(opts))
+  else
+    e$x$opts$baseOption$dataZoom <- append(e$x$opts$baseOption$dataZoom, list(opts))
   
   e
 }
@@ -327,11 +365,21 @@ e_brush <- function(e, x_index = NULL, y_index = NULL, ...){
   if(!is.null(x_index) && !is.null(y_index))
     stop("pass x_index or y_index, not both", call. = FALSE)
   
-  if(!length(e$x$opts$brush)) # initiatilise if not existing
-    e$x$opts$brush <- list()
+  if(!e$x$tl){
+    if(!length(e$x$opts$brush)) # initiatilise if not existing
+      e$x$opts$brush <- list()
+  } else {
+    if(!length(e$x$opts$baseOption$brush)) # initiatilise if not existing
+      e$x$opts$baseOption$brush <- list()
+  }
   
-  if(!length(e$x$opts$toolbox$feature$brush))
-    e <- e_toolbox_feature(e, "brush")
+  if(!e$x$tl){
+    if(!length(e$x$opts$toolbox$feature$brush))
+      e <- e_toolbox_feature(e, "brush")
+  } else {
+    if(!length(e$x$opts$baseOption$toolbox$feature$brush))
+      e <- e_toolbox_feature(e, "brush")
+  }
   
   opts <- list(
     brushLink = "all",
@@ -340,7 +388,10 @@ e_brush <- function(e, x_index = NULL, y_index = NULL, ...){
   opts$xAxisIndex <- x_index
   opts$yAxisIndex <- y_index
   
-  e$x$opts$brush <- append(e$x$opts$brush, opts)
+  if(!e$x$tl)
+    e$x$opts$brush <- append(e$x$opts$brush, opts)
+  else
+    e$x$opts$baseOption$brush <- append(e$x$opts$baseOption$brush, opts)
   
   e
 }
@@ -375,7 +426,10 @@ e_title <- function(e, text, subtext = NULL, link = NULL, sublink = NULL, ...){
   title$link <- link
   title$sublink <- sublink
   
-  e$x$opts$title <- title
+  if(!e$x$tl)
+    e$x$opts$title <- title
+  else
+    e$x$opts$baseOption$title <- title
   
   e
   
@@ -406,10 +460,17 @@ e_polar <- function(e, show = TRUE, ...){
   if(missing(e))
     stop("missing e", call. = FALSE)
   
-  e$x$opts$yAxis <- NULL
-  e$x$opts$xAxis <- NULL
-  
-  e$x$opts$polar <- list(show = show, ...)
+  if(!e$x$tl){
+    e$x$opts$yAxis <- NULL
+    e$x$opts$xAxis <- NULL
+    
+    e$x$opts$polar <- list(show = show, ...)
+  } else {
+    e$x$opts$baseOption$yAxis <- NULL
+    e$x$opts$baseOption$xAxis <- NULL
+    
+    e$x$opts$baseOption$polar <- list(show = show, ...)
+  }
   
   e
 }
@@ -428,7 +489,10 @@ e_axis_pointer <- function(e, ...){
   if(missing(e))
     stop("missing e", call. = FALSE)
   
-  e$x$opts$axisPointer <- list(...)
+  if(!e$x$tl)
+    e$x$opts$axisPointer <- list(...)
+  else
+    e$x$opts$baseOption$axisPointer <- list(...)
   
   e
 }
@@ -461,14 +525,25 @@ e_axis_pointer <- function(e, ...){
 e_animation <- function(e, show = TRUE, threshold = NULL, duration = NULL, easing = NULL, delay = NULL,
                         duration.update = NULL, easing.update = NULL, delay.update = NULL){
   
-  e$x$opts$animation <- show
-  e$x$opts$animationThreshold <- threshold
-  e$x$opts$animationDuration <- duration
-  e$x$opts$animationEasing <- easing
-  e$x$opts$animationDelay <- delay
-  e$x$opts$animationDurationUpdate <- duration.update
-  e$x$opts$animationEasingUpdate <- easing.update
-  e$x$opts$animationDelayUpdate <- delay.update
+  if(!e$x$tl){
+    e$x$opts$animation <- show
+    e$x$opts$animationThreshold <- threshold
+    e$x$opts$animationDuration <- duration
+    e$x$opts$animationEasing <- easing
+    e$x$opts$animationDelay <- delay
+    e$x$opts$animationDurationUpdate <- duration.update
+    e$x$opts$animationEasingUpdate <- easing.update
+    e$x$opts$animationDelayUpdate <- delay.update
+  } else {
+    e$x$opts$baseOption$animation <- show
+    e$x$opts$baseOption$animationThreshold <- threshold
+    e$x$opts$baseOption$animationDuration <- duration
+    e$x$opts$baseOption$animationEasing <- easing
+    e$x$opts$baseOption$animationDelay <- delay
+    e$x$opts$baseOption$animationDurationUpdate <- duration.update
+    e$x$opts$baseOption$animationEasingUpdate <- easing.update
+    e$x$opts$baseOption$animationDelayUpdate <- delay.update
+  }
   
   e
   
@@ -482,7 +557,12 @@ e_animation <- function(e, show = TRUE, threshold = NULL, duration = NULL, easin
 #' 
 #' @export
 e_utc <- function(e){
-  e$useUTC <- TRUE
+  
+  if(!e$x$tl)
+    e$x$opts$useUTC <- TRUE
+  else
+    e$x$opts$baseOption$useUTC <- TRUE
+  
   e
 }
 
@@ -548,7 +628,12 @@ e_flip_coords <- function(e){
 #' 
 #' @export
 e_text_style <- function(e, ...){
-  e$x$opts$textStyle <- list(...)
+  
+  if(!e$x$tl)
+    e$x$opts$textStyle <- list(...)
+  else
+    e$x$opts$baseOption$textStyle <- list(...)
+  
   e
 }
 

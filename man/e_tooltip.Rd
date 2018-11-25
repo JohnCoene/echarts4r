@@ -19,7 +19,7 @@ Customise tooltip
 \examples{
 USArrests \%>\% 
   e_charts(Assault) \%>\% 
-  e_bar(Murder) \%>\% 
+  e_scatter(Murder) \%>\% 
   e_tooltip()
 
 }

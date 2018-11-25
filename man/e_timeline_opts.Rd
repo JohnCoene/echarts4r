@@ -2,31 +2,29 @@
 % Please edit documentation in R/timeline.R
 \name{e_timeline_opts}
 \alias{e_timeline_opts}
-\title{Timeline options}
+\title{Timeline}
 \usage{
-e_timeline_opts(e, axis_type = "category", data = NULL, ...)
+e_timeline_opts(e, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_timeline}}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{axis_type}{Type of axis, \code{category}, \code{value} or \code{time}.}
-
-\item{data}{Timeline steps.}
-
-\item{...}{Any other named option.}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
-Set timeline options.
+Set timeline options
 }
 \examples{
 iris \%>\% 
   group_by(Species) \%>\% 
-  e_timeline(Sepal.Length) \%>\% 
-  e_timeline_serie_("Sepal.Width") \%>\% 
-  e_timeline_serie_("Petal.Length") \%>\% 
+  e_charts(Sepal.Length, timeline = TRUE) \%>\% 
+  e_line(Sepal.Width) \%>\% 
   e_timeline_opts(
     autoPlay = TRUE,
     rewind = TRUE
   )
-
+  
+}
+\seealso{
+\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#timeline}{official documentation}
 }

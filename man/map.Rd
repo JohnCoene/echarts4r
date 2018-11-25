@@ -60,7 +60,8 @@ choropleth \%>\%
   e_charts(countries) \%>\% 
   e_map_3d(values, shading = "lambert") \%>\% 
   e_visual_map(min = 10, max = 30)
-  
+        
+# custom
 buildings <- jsonlite::read_json(
   paste0(
     "https://ecomfe.github.io/echarts-examples/",
@@ -91,6 +92,31 @@ data \%>\%
     min = 0.4,
     max = 1
   ) 
+  
+# timeline
+choropleth <- data.frame(
+    countries = rep(choropleth$countries, 3)
+  ) \%>\% 
+  dplyr::mutate(
+    grp = c(
+      rep(2016, nrow(choropleth)),
+      rep(2017, nrow(choropleth)),
+      rep(2018, nrow(choropleth))
+    ),
+    values = runif(27, 1, 10)
+  )
+  
+choropleth \%>\% 
+  group_by(grp) \%>\% 
+  e_charts(countries, timeline = TRUE) \%>\% 
+  e_map(values) \%>\% 
+  e_visual_map(min = 1, max = 10)
+  
+choropleth \%>\% 
+  group_by(grp) \%>\% 
+  e_charts(countries, timeline = TRUE) \%>\% 
+  e_map_3d(values) \%>\% 
+  e_visual_map(min = 1, max = 10)
 }
 
 }

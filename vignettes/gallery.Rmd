@@ -153,19 +153,23 @@ This is a temporary implementation of the timeline component, it will, eventuall
 
 ```{r}
 aggregate <- OrchardSprays %>% 
-  group_by(treatment, colpos) %>% 
-  summarise(
-      decrease = sum(decrease)
-  ) %>% 
-  group_by(treatment)
+    group_by(treatment, colpos) %>% 
+    summarise(
+        decrease = sum(decrease)
+    ) %>% 
+    group_by(treatment)
 
 OrchardSprays %>% 
-  group_by(treatment) %>% 
-  e_timeline(rowpos) %>% 
-  e_timeline_serie(decrease) %>% 
-  e_data(aggregate, colpos) %>% 
-  e_timeline_serie(decrease, type = "pie", base_opts = list(
+    group_by(treatment) %>% 
+    e_charts(rowpos, timeline = TRUE) %>% 
+    e_line(decrease) %>% 
+    e_data(aggregate, colpos) %>% 
+    e_pie(
+      decrease, 
       center = list("75%", "35%"),
-      radius = "20%"
-  ))
+      radius = "20%",
+      rm_x = FALSE, 
+      rm_y = FALSE
+    ) %>% 
+  e_timeline_opts(autoPlay = TRUE)
 ```
