@@ -41,7 +41,7 @@ Plot formulas.
 iris \%>\% 
   group_by(Species) \%>\% 
   e_charts(Sepal.Length) \%>\% 
-  e_line(Sepal.Width) \%>\% 
+  e_scatter(Sepal.Width) \%>\% 
   e_lm(Sepal.Width ~ Sepal.Length) \%>\% 
   e_x_axis(min = 4)
   
@@ -54,8 +54,15 @@ mtcars \%>\%
 iris \%>\% 
   group_by(Species) \%>\% 
   e_charts(Sepal.Length, timeline = TRUE) \%>\% 
-  e_line(Sepal.Width) \%>\% 
+  e_scatter(Sepal.Width) \%>\% 
   e_lm(Sepal.Width ~ Sepal.Length) \%>\% 
-  e_x_axis(min = 4)
+  e_x_axis(min = 4, max = 8) \%>\% 
+  e_y_axis(max = 5)
+  
+mtcars \%>\% 
+  group_by(cyl) \%>\% 
+  e_charts(disp, timeline = TRUE) \%>\% 
+  e_scatter(mpg, qsec) \%>\% 
+  e_loess(mpg ~ disp, smooth = TRUE, showSymbol = FALSE)
 
 }

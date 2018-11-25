@@ -94,7 +94,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
   if(isTRUE(timeline)){
     
     if(!dplyr::is_grouped_df(data))
-      stop("must pass grouped data", call. = FALSE)
+      stop("must pass grouped data when timeline = TRUE", call. = FALSE)
     
     tl <- list(
       baseOption = list(

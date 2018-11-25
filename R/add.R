@@ -1829,6 +1829,12 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y_in
 #'   e_lm(Sepal.Width ~ Sepal.Length) %>% 
 #'   e_x_axis(min = 4, max = 8) %>% 
 #'   e_y_axis(max = 5)
+#'   
+#' mtcars %>% 
+#'   group_by(cyl) %>% 
+#'   e_charts(disp, timeline = TRUE) %>% 
+#'   e_scatter(mpg, qsec) %>% 
+#'   e_loess(mpg ~ disp, smooth = TRUE, showSymbol = FALSE)
 #' 
 #' @rdname smooth
 #' @export
@@ -1916,11 +1922,6 @@ e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smoot
     
     if(!inherits(model, "error")){
       
-      if(is.null(name)) 
-        nm <- paste0(names(e$x$data)[i],"-glm")
-      else
-        nm <- name
-      
       data <- broom::augment(model)
       data <- data %>% dplyr::select(-dplyr::one_of(names(model$model)))
       
@@ -1928,21 +1929,46 @@ e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smoot
       
       vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, ".fitted")
       
-      l <- list(
+      l_data <- list(data = vector)
+      
+      l_opts <- list(
         name = nm,
         type = "line",
-        data = vector,
         symbol = symbol,
         smooth = smooth,
         ...
       )
       
-      e$x$opts$series <- append(e$x$opts$series, list(l))
+      if(!e$x$tl){
+        
+        if(is.null(name)) 
+          nm <- paste0(names(e$x$data)[i],"-glm")
+        else
+          nm <- name
+        
+        l_opts$name <- nm
+        
+        l <- append(l, l_opts)
+        
+        e$x$opts$series <- append(e$x$opts$series, list(l))
+        
+        if(isTRUE(legend))
+          e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+        
+      } else {
+        e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(l_data))
+      }
       
-      if(isTRUE(legend))
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
     }
     
+  }
+  
+  if(isTRUE(e$x$tl) && !inherits(model, "error")){
+    
+    if(isTRUE(legend) && !is.null(name))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+    
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(l))
   }
   
   e 
@@ -1954,6 +1980,7 @@ e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smo
                     x_index = 0, y_index = 0, ...){
 
   for(i in 1:length(e$x$data)){
+    
     mod <- tryCatch(
       eval(
         loess(as.formula(formula), data = e$x$data[[i]])
@@ -1963,26 +1990,22 @@ e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smo
     
     if(!inherits(mod, "error")){
       
-      if(is.null(name))
-        nm <- paste0(names(e$x$data)[i],"-loess")
-      else
-        nm <- name
+      ser <- "ECHARTS4RLOESS"
       
-      if(is.null(name))
-        name <- "ECHARTS4RLOESS"
+      e$x$data[[i]][, ser] <- predict(mod)
       
-      e$x$data[[i]][,name] <- predict(mod)
-      
-      vector <- .build_data(
-        e, 
+      vector <- .build_data2(
+        e$x$data[[i]], 
         e$x$mapping$x,
-        name
+        ser
       )
       
-      l <- list(
-        name = nm,
+      l_data <- list(data = vector)
+      
+      l_opts <- list(
         type = "line",
-        data = vector,
+        yAxisIndex = y_index,
+        xAxisIndex = x_index,
         ...
       )
       
@@ -1992,14 +2015,35 @@ e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smo
       if(x_index != 0)
         e <- .set_x_axis(e, x_index)
       
-      l$yAxisIndex <- y_index
-      l$xAxisIndex <- x_index
+      if(!e$x$tl){
+        
+        if(is.null(name))
+          nm <- paste0(names(e$x$data)[i],"-loess")
+        else
+          nm <- name
+        
+        l_opts$name <- nm
+        
+        l_data <- append(l_data, l_opts)
+        
+        if(isTRUE(legend) && !is.null(nm))
+          e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+        
+        e$x$opts$series <- append(e$x$opts$series, list(l_data))
+      } else {
+        e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(l_data))
+      }
       
-      if(isTRUE(legend) && !is.null(nm))
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
-      
-      e$x$opts$series <- append(e$x$opts$series, list(l))
     }
+    
+  }
+  
+  if(isTRUE(e$x$tl) && !inherits(mod, "error")){
+    
+    if(isTRUE(legend) && !is.null(name))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+    
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(l_opts))
   }
   
   e
@@ -2012,6 +2056,7 @@ e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smo
 #' @inheritParams e_bar
 #' @param bar.width Width of bars.
 #' @param breaks Passed to \code{\link{hist}}.
+#' @param smooth Wether to use smoothed lines, passed to \code{\link{e_line}}.
 #' 
 #' @examples 
 #' mtcars %>% 
@@ -2019,6 +2064,13 @@ e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smo
 #'   e_histogram(mpg, name = "histogram") %>% 
 #'   e_density(mpg, areaStyle = list(opacity = .4), smooth = TRUE, name = "density", y_index = 1) %>% 
 #'   e_tooltip(trigger = "axis")
+#'   
+#' # timeline
+#' mtcars %>%
+#'   group_by(cyl) %>%  
+#'   e_charts(timeline = TRUE) %>% 
+#'   e_histogram(mpg, name = "histogram") %>% 
+#'   e_density(mpg, name = "density", y_index = 1)
 #' 
 #' @rdname histogram
 #' @export
@@ -2037,7 +2089,7 @@ e_histogram <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE
 #' @rdname histogram
 #' @export
 e_density <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE, 
-                      x_index = 0, y_index = 0, ...){
+                      x_index = 0, y_index = 0, smooth = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   

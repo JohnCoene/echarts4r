@@ -1737,8 +1737,6 @@ e_histogram_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRU
   
   for(i in 1:length(e$x$data)){
     
-    nm <- .name_it(e, NULL, name, i)
-    
     data <- .get_data(e, serie, i)
     histogram <- hist(data, plot = FALSE, breaks)
     
@@ -1755,17 +1753,11 @@ e_histogram_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRU
     if(x_index != 0)
       e <- .set_x_axis(e, x_index)
     
-    if(!length(e$x$opts$xAxis))
-      e$x$opts$xAxis <- list(
-        list(
-          type = "value", scale = TRUE
-        )
-      )
+    serie_data <- list(data = hist)
     
-    e.serie <- list(
-      name = nm,
+    serie_opts <- list(
+      name = name,
       type = "bar",
-      data = hist,
       barWidth = bar.width,
       yAxisIndex = y_index,
       xAxisIndex = x_index,
@@ -1773,10 +1765,45 @@ e_histogram_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRU
       ...
     )
     
-    if(isTRUE(legend))
-      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+    if(!e$x$tl){
+      
+      nm <- .name_it(e, NULL, name, i)
+      
+      serie_opts$name <- nm
+      
+      if(!length(e$x$opts$xAxis))
+        e$x$opts$xAxis <- list(
+          list(
+            type = "value", scale = TRUE
+          )
+        )
+      
+      e.serie <- append(serie_data, serie_opts)
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+      
+      e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+      
+    } else {
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie_data))
+    }
     
-    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+  }
+  
+  if(isTRUE(e$x$tl)){
+    
+    if(!length(e$x$opts$baseOption$xAxis))
+      e$x$opts$baseOption$xAxis <- list(
+        list(
+          type = "value", scale = TRUE
+        )
+      )
+    
+    if(isTRUE(legend))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+    
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
   }
   
   e
@@ -1785,51 +1812,85 @@ e_histogram_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRU
 #' @rdname histogram
 #' @export
 e_density_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE, 
-                      x_index = 0, y_index = 0, ...){
+                      x_index = 0, y_index = 0, smooth = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
-  
-  data <- .get_data(e, serie)
-  histogram <- hist(data, plot = FALSE, breaks)
-  
-  hist <- data.frame(
-    histogram$mids,
-    histogram$density
-  )
-  
-  hist <- apply(unname(hist), 1, as.list)
-  
-  if(y_index != 0)
-    e <- .set_y_axis(e, serie, y_index)
-  
-  if(x_index != 0)
-    e <- .set_x_axis(e, x_index)
-  
-  if(!length(e$x$opts$xAxis))
-    e$x$opts$xAxis <- list(
-      list(
-        type = "value", scale = TRUE
-      )
+  for(i in 1:length(e$x$data)){
+    
+    data <- .get_data(e, serie, i = i)
+    histogram <- hist(data, plot = FALSE, breaks)
+    
+    hist <- data.frame(
+      histogram$mids,
+      histogram$density
     )
+    
+    hist <- apply(unname(hist), 1, as.list)
+    
+    if(y_index != 0)
+      e <- .set_y_axis(e, serie, y_index)
+    
+    if(x_index != 0)
+      e <- .set_x_axis(e, x_index)
+    
+    serie_data <- list(data = hist)
+    
+    serie_opts <- list(
+      name = name,
+      type = "line",
+      areaStyle = list(),
+      yAxisIndex = y_index,
+      xAxisIndex = x_index,
+      smooth = smooth,
+      ...
+    )
+    
+    if(!e$x$tl){
+      
+      if(is.null(name)) # defaults to column name
+        name <- serie
+      
+      serie_opts$name <- name
+      
+      if(!length(e$x$opts$xAxis))
+        e$x$opts$xAxis <- list(
+          list(
+            type = "value", scale = TRUE
+          )
+        )
+      
+      serie <- append(serie_opts, serie_data)
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+      
+      e$x$opts$series <- append(e$x$opts$series, list(serie))
+      
+    } else {
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie_data))
+      
+    }
+    
+  }
   
-  serie <- list(
-    name = name,
-    type = "line",
-    data = hist,
-    yAxisIndex = y_index,
-    xAxisIndex = x_index,
-    ...
-  )
+  if(isTRUE(e$x$tl)){
+    
+    if(!length(e$x$opts$baseOption$xAxis))
+      e$x$opts$baseOption$xAxis <- list(
+        list(
+          type = "value", scale = TRUE
+        )
+      )
+    
+    if(isTRUE(legend))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+    
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
+  }
   
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }

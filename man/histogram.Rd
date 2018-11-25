@@ -11,13 +11,13 @@ e_histogram(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
   bar.width = "99\%", x_index = 0, y_index = 0, ...)
 
 e_density(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
-  x_index = 0, y_index = 0, ...)
+  x_index = 0, y_index = 0, smooth = TRUE, ...)
 
 e_histogram_(e, serie, breaks = "Sturges", name = NULL,
   legend = TRUE, bar.width = "99\%", x_index = 0, y_index = 0, ...)
 
 e_density_(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
-  x_index = 0, y_index = 0, ...)
+  x_index = 0, y_index = 0, smooth = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -37,6 +37,8 @@ e_density_(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
 \item{y_index}{Indexes of x and y axis.}
 
 \item{...}{Any other option to pass, check See Also section.}
+
+\item{smooth}{Wether to use smoothed lines, passed to \code{\link{e_line}}.}
 }
 \description{
 Add a histogram or density plots.
@@ -47,5 +49,12 @@ mtcars \%>\%
   e_histogram(mpg, name = "histogram") \%>\% 
   e_density(mpg, areaStyle = list(opacity = .4), smooth = TRUE, name = "density", y_index = 1) \%>\% 
   e_tooltip(trigger = "axis")
+  
+# timeline
+mtcars \%>\%
+  group_by(cyl) \%>\%  
+  e_charts(timeline = TRUE) \%>\% 
+  e_histogram(mpg, name = "histogram") \%>\% 
+  e_density(mpg, name = "density", y_index = 1)
 
 }
