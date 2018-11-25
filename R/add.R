@@ -1497,6 +1497,16 @@ e_lines <- function(e, source_lon, source_lat, target_lon, target_lat, source_na
 #'   ) %>% 
 #'   e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = 'lighter') %>% 
 #'   e_visual_map(inRange = list(symbolSize = c(1, 10)))
+#'   
+#' # timeline
+#' airports %>% 
+#'   group_by(state) %>% 
+#'   e_charts(long, timeline = TRUE) %>% 
+#'   e_globe(
+#'     globeOuterRadius = 100
+#'   ) %>% 
+#'   e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = 'lighter') %>% 
+#'   e_visual_map(inRange = list(symbolSize = c(1, 10)))
 #' 
 #' @seealso \href{http://echarts.baidu.com/option-gl.html#series-scatter3D}{Additional arguments}
 #' 

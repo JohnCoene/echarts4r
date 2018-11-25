@@ -64,6 +64,22 @@ flights \%>\%
       }
    ")
   )
+  
+# timeline
+flights$grp <- rep(LETTERS[1:2], 89)
+
+flights \%>\% 
+  group_by(grp) \%>\% 
+  e_charts(timeline = TRUE) \%>\% 
+  e_geo() \%>\% 
+  e_lines(
+    start_lon, 
+    start_lat, 
+    end_lon, 
+    end_lat,
+    cnt,
+    coord_system = "geo"
+  )
 
 }
 \seealso{

@@ -1480,6 +1480,7 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
   e <- .rm_axis(e, rm_y, "y")
   
   for(i in 1:length(e$x$data)){
+    
     # globe
     if(coord_system != "cartesian3D"){
       
@@ -1491,11 +1492,19 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
       
     } else { # cartesian
       
-      if(!length(e$x$opts$zAxis3D))
-        e$x$opts$zAxis3D <- list(list(show = TRUE))
-      
-      if(!length(e$x$opts$grid3D))
-        e$x$opts$grid3D <- list(list(show = TRUE))
+      if(!e$x$tl){
+        if(!length(e$x$opts$zAxis3D))
+          e$x$opts$zAxis3D <- list(list(show = TRUE))
+        
+        if(!length(e$x$opts$grid3D))
+          e$x$opts$grid3D <- list(list(show = TRUE))
+      } else {
+        if(!length(e$x$opts$zAxis3D))
+          e$x$opts$baseOption$zAxis3D <- list(list(show = TRUE))
+        
+        if(!length(e$x$opts$grid3D))
+          e$x$opts$baseOption$grid3D <- list(list(show = TRUE))
+      }
       
       e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
       e <- .set_axis_3D(e, "y", y, 0)
@@ -1510,21 +1519,35 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
       
     }
     
-    nm <- .name_it(e, NULL, name, i)
+    e_data <- list(data = data)
     
-    e.serie <- list(
-      name = nm,
+    e_serie <- list(
+      name = name,
       type = "scatter3D",
       coordinateSystem = coord_system,
-      data = data,
       ...
     )
     
-    if(isTRUE(legend))
-      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+    if(!e$x$tl){
+      
+      nm <- .name_it(e, NULL, name, i)
+      e_serie$name <- nm
+      
+      e_serie <- append(e_serie, e_data)
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+      
+      e$x$opts$series <- append(e$x$opts$series, list(e_serie))
+      
+    } else {
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(e_data))
+    }
     
-    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
   }
+  
+  if(e$x$tl)
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(e_serie))
   
   e
 }

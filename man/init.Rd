@@ -58,6 +58,8 @@ The timeline feature currently supports the following chart types.
   \item{\code{\link{e_heatmap}}}
   \item{\code{\link{e_pie}}}
   \item{\code{\link{e_line_3d}}}
+  \item{\code{\link{e_bar_3d}}}
+  \item{\code{\link{e_lines}}}
 }
 }
 

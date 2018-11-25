@@ -93,7 +93,8 @@ matrix \%>\%
 matrix \%>\% 
   group_by(x) \%>\% 
   e_charts(y, timeline = TRUE) \%>\% 
-  e_bar_3d(z1, z2)
+  e_bar_3d(z1, z2) \%>\% 
+  e_visual_map(z2)
 
 }
 \seealso{

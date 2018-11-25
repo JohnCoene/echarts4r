@@ -37,6 +37,10 @@ e_globe <- function(e, environment = NULL, base_texture = NULL, height_texture =
     ...
   )
   
-  e$x$opts$globe <- ls
+  if(!e$x$tl)
+    e$x$opts$globe <- ls
+  else
+    e$x$opts$baseOption$globe <- ls
+  
   e
 }
