@@ -1754,6 +1754,25 @@ e_scatter_gl <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRUE
 #'   e_charts(x) %>% 
 #'   e_pictorial(value, symbol) %>% 
 #'   e_legend(FALSE) 
+#'  
+#' # timeline
+#' df <- data.frame(
+#'   x = rep(1:5, 2),
+#'   y = runif(10, 1, 10),
+#'   year = c(
+#'     rep(2017, 5),
+#'     rep(2018, 5)
+#'   )
+#' )
+#' 
+#' df %>% 
+#'   group_by(year) %>% 
+#'   e_charts(x, timeline = TRUE) %>% 
+#'   e_pictorial(
+#'     y, symbol = "rect", 
+#'     symbolRepeat = TRUE, z = -1,
+#'     symbolSize = c(10, 4)
+#'   )
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pictorialBar}{Additional arguments}
 #' 

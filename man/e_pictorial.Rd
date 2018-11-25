@@ -97,6 +97,8 @@ data \%>\%
   e_charts(x) \%>\% 
   e_pictorial(value, symbol) \%>\% 
   e_legend(FALSE) 
+ 
+# timeline
 
 }
 \seealso{

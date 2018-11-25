@@ -1662,40 +1662,65 @@ e_pictorial_ <- function(e, serie, symbol, bind = NULL, name = NULL, legend = TR
   if(missing(serie) || missing(symbol))
     stop("must pass serie and symbol", call. = FALSE)
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
-  
   if(y_index != 0)
     e <- .set_y_axis(e, serie, y_index)
   
   if(x_index != 0)
     e <- .set_x_axis(e, x_index)
   
-  # build JSON data
-  .build_data(e, e$x$mapping$x, serie) -> vector
+  for(i in 1:length(e$x$data)){
+    
+    if(is.null(name)) # defaults to column name
+      name <- serie
+    
+    # build JSON data
+    vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie)
+    
+    if(!is.null(bind))
+      vector <- .add_bind2(e, vector, bind, i = i)
+    
+    if(symbol %in% colnames(e$x$data[[1]]))
+      vector <- .add_bind2(e, vector, symbol, col = "symbol", i = i)
+    
+    serie_data <- list(data = vector)
+    
+    serie_opts <- list(
+      name = name,
+      type = "pictorialBar",
+      yAxisIndex = y_index,
+      xAxisIndex = x_index,
+      ...
+    )
+    
+    if(!e$x$tl){
+      
+      serie_opts <- append(serie_data, serie_opts)
+      
+      if(!symbol %in% colnames(e$x$data[[i]]))
+        serie_opts$symbol <- symbol
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+      
+      e$x$opts$series <- append(e$x$opts$series, list(serie_opts))
+      
+    } else {
+      
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie_data))
+      
+    }
+    
+  }
   
-  if(!is.null(bind))
-    vector <- .add_bind(e, vector, bind)
+  if(isTRUE(e$x$tl)){
+    
+    if(isTRUE(legend))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+    
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
+  }
+    
   
-  if(symbol %in% colnames(e$x$data[[1]]))
-    vector <- .add_bind(e, vector, symbol, "symbol")
-  
-  serie <- list(
-    name = name,
-    type = "pictorialBar",
-    data = vector,
-    yAxisIndex = y_index,
-    xAxisIndex = x_index,
-    ...
-  )
-  
-  if(!symbol %in% colnames(e$x$data[[1]]))
-    serie$symbol <- symbol
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }
 
