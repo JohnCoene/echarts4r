@@ -52,17 +52,26 @@ e_axis <- function(e, axis = c("x", "y", "z"), index = 0, ...){
     r.index <- 1
   }
   
-  dp <- .list_depth(e$x$opts[[axis]])
+  if(!e$x$tl)
+    dp <- .list_depth(e$x$opts[[axis]])
+  else
+    dp <- .list_depth(e$x$opts$baseOption[[axis]])
   
   if(dp >= 2){
     for(i in 1:length(attrs)){
       arg <- names(attrs)[i]
-      e$x$opts[[axis]][[r.index]][[arg]] <- attrs[[i]]
+      if(!e$x$tl)
+        e$x$opts[[axis]][[r.index]][[arg]] <- attrs[[i]]
+      else
+        e$x$opts$baseOption[[axis]][[r.index]][[arg]] <- attrs[[i]]
     }
   } else {
     for(i in 1:length(attrs)){
       arg <- names(attrs)[i]
-      e$x$opts[[axis]][[arg]] <- attrs[[i]]
+      if(!e$x$tl)
+        e$x$opts[[axis]][[arg]] <- attrs[[i]]
+      else
+        e$x$opts$baseOption[[axis]][[arg]] <- attrs[[i]]
     }
   }
   

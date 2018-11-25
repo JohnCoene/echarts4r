@@ -1812,7 +1812,7 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y_in
 #' iris %>% 
 #'   group_by(Species) %>% 
 #'   e_charts(Sepal.Length) %>% 
-#'   e_line(Sepal.Width) %>% 
+#'   e_scatter(Sepal.Width) %>% 
 #'   e_lm(Sepal.Width ~ Sepal.Length) %>% 
 #'   e_x_axis(min = 4)
 #'   
@@ -1820,11 +1820,15 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y_in
 #'   e_charts(disp) %>% 
 #'   e_scatter(mpg, qsec) %>% 
 #'   e_loess(mpg ~ disp, smooth = TRUE, showSymbol = FALSE)
-#'   
-#' CO2 %>% 
-#'   e_charts(conc) %>% 
-#'   e_scatter(uptake, symbol_size = 10) %>% 
-#'   e_glm(uptake ~ conc, name = "GLM")
+#'
+#' # timeline   
+#' iris %>% 
+#'   group_by(Species) %>% 
+#'   e_charts(Sepal.Length, timeline = TRUE) %>% 
+#'   e_scatter(Sepal.Width) %>% 
+#'   e_lm(Sepal.Width ~ Sepal.Length) %>% 
+#'   e_x_axis(min = 4, max = 8) %>% 
+#'   e_y_axis(max = 5)
 #' 
 #' @rdname smooth
 #' @export
@@ -1843,11 +1847,6 @@ e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth
     
     if(!inherits(model, "error")){
       
-      if(is.null(name)) 
-        nm <- paste0(names(e$x$data)[i],"-lm")
-      else
-        nm <- name
-      
       data <- broom::augment(model)
       data <- data %>% dplyr::select(-dplyr::one_of(names(model$model)))
       
@@ -1855,22 +1854,46 @@ e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth
       
       vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, ".fitted")
       
+      l_data <- list(data = vector)
+      
       l <- list(
-        name = nm,
+        name = name,
         type = "line",
-        data = vector,
         symbol = symbol,
         smooth = smooth,
         ...
       )
       
-      e$x$opts$series <- append(e$x$opts$series, list(l))
-      
-      if(isTRUE(legend))
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+      if(!e$x$tl){
+        
+        if(is.null(name)) 
+          nm <- paste0(names(e$x$data)[i],"-lm")
+        else
+          nm <- name
+        
+        l$name <- nm
+        
+        l <- append(l, l_data)
+        
+        e$x$opts$series <- append(e$x$opts$series, list(l))
+        
+        if(isTRUE(legend))
+          e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+        
+      } else {
+        e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(l_data))
+      }
       
     }
     
+  }
+  
+  if(isTRUE(e$x$tl) && !inherits(model, "error")){
+    
+    if(isTRUE(legend) && !is.null(name))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+    
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(l))
   }
   
   e 

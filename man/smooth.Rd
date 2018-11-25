@@ -49,10 +49,13 @@ mtcars \%>\%
   e_charts(disp) \%>\% 
   e_scatter(mpg, qsec) \%>\% 
   e_loess(mpg ~ disp, smooth = TRUE, showSymbol = FALSE)
-  
-CO2 \%>\% 
-  e_charts(conc) \%>\% 
-  e_scatter(uptake, symbol_size = 10) \%>\% 
-  e_glm(uptake ~ conc, name = "GLM")
+
+# timeline   
+iris \%>\% 
+  group_by(Species) \%>\% 
+  e_charts(Sepal.Length, timeline = TRUE) \%>\% 
+  e_line(Sepal.Width) \%>\% 
+  e_lm(Sepal.Width ~ Sepal.Length) \%>\% 
+  e_x_axis(min = 4)
 
 }

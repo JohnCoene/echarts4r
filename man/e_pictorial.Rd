@@ -99,6 +99,23 @@ data \%>\%
   e_legend(FALSE) 
  
 # timeline
+df <- data.frame(
+  x = rep(1:5, 2),
+  y = runif(10, 1, 10),
+  year = c(
+    rep(2017, 5),
+    rep(2018, 5)
+  )
+)
+
+df \%>\% 
+  group_by(year) \%>\% 
+  e_charts(x, timeline = TRUE) \%>\% 
+  e_pictorial(
+    y, symbol = "rect", 
+    symbolRepeat = TRUE, z = -1,
+    symbolSize = c(10, 4)
+  )
 
 }
 \seealso{
