@@ -1655,6 +1655,21 @@ e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord_system = NULL, rm_
 #'      )
 #'   ) %>% 
 #'   e_scatter_gl(lat, depth)
+#'   
+#' # timeline
+#' quakes$year <- rep(c("2017", "2018"), 500)
+#' 
+#' quakes %>%
+#'   group_by(year) %>%  
+#'   e_charts(long, timeline = TRUE) %>% 
+#'   e_geo(
+#'     roam = TRUE,
+#'     boundingCoords = list(
+#'       c(185, - 10),
+#'       c(165, -40)
+#'      )
+#'   ) %>% 
+#'   e_scatter_gl(lat, depth)
 #' 
 #' @seealso \href{http://echarts.baidu.com/option-gl.html#series-scatterGL}{Additional arguments}
 #' 

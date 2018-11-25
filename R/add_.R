@@ -1604,37 +1604,58 @@ e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRU
   
   for(i in 1:length(e$x$data)){
     
-    nm <- .name_it(e, z, name, i)
-    
     # remove axis
     e <- .rm_axis(e, rm_x, "x")
     e <- .rm_axis(e, rm_y, "y")
     
     data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
     
+    serie <- list(data = data)
+    
+    serie_opts <- list(
+      name = name,
+      type = "scatterGL",
+      coordinateSystem = coord_system,
+      ...
+    )
+    
     # globe
     if(coord_system == "cartesian3D"){
-      if(!length(e$x$opts$zAxis3D))
-        e$x$opts$zAxis3D <- list(list(show = TRUE))
       
-      if(!length(e$x$opts$grid3D))
-        e$x$opts$grid3D <- list(list(show = TRUE))
+      if(!e$x$tl){
+        if(!length(e$x$opts$zAxis3D))
+          e$x$opts$zAxis3D <- list(list(show = TRUE))
+        
+        if(!length(e$x$opts$grid3D))
+          e$x$opts$grid3D <- list(list(show = TRUE))
+      } else {
+        if(!length(e$x$opts$zAxis3D))
+          e$x$opts$baseOption$zAxis3D <- list(list(show = TRUE))
+        
+        if(!length(e$x$opts$grid3D))
+          e$x$opts$baseOption$grid3D <- list(list(show = TRUE))
+      }
       
       e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
       e <- .set_axis_3D(e, "y", y, 0)
       e <- .set_axis_3D(e, "z", z, 0)
     } 
     
-    serie <- list(
-      name = nm,
-      type = "scatterGL",
-      coordinateSystem = coord_system,
-      data = data,
-      ...
-    )
-    
-    e$x$opts$series <- append(e$x$opts$series, list(serie))
+    if(!e$x$tl){
+      
+      serie_opts$name <- .name_it(e, z, name, i)
+      
+      serie <- append(serie, serie_opts)
+      
+      e$x$opts$series <- append(e$x$opts$series, list(serie))
+      
+    } else {
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie))
+    }
   }
+  
+  if(e$x$tl)
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
   
   e
 }
