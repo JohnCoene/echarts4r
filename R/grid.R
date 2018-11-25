@@ -143,12 +143,20 @@ e_grid <- function(e, index = NULL, ...){
   if(is.null(index))
     index <- length(e$x$opts[["grid"]]) + 1
   
-  # initialise of not existing
-  if(!length(e$x$opts[["grid"]]))
-    e$x$opts$grid  <- list()
-  
   attrs <- list(...)
-  e$x$opts$grid <- append(e$x$opts$grid, list(attrs))
+  
+  # initialise of not existing
+  if(!e$x$tl){
+    if(!length(e$x$opts[["grid"]]))
+      e$x$opts$grid  <- list()
+    
+    e$x$opts$grid <- append(e$x$opts$grid, list(attrs))
+  } else {
+    if(!length(e$x$opts$baseOption[["grid"]]))
+      e$x$opts$baseOption$grid  <- list()
+    
+    e$x$opts$baseOption$grid <- append(e$x$opts$baseOption$grid, list(attrs))
+  }
   
   e
 }
@@ -188,7 +196,10 @@ e_radius_axis <- function(e, serie, show = TRUE, ...){
   if(!missing(serie))
     opts$data <- e$x$data %>% purrr::map(sr) %>% unlist %>% unname %>% unique %>% as.list
   
-  e$x$opts$radiusAxis <- opts
+  if(!e$x$tl)
+    e$x$opts$radiusAxis <- opts
+  else
+    e$x$opts$baseOption$radiusAxis <- opts
   
   e
 }
@@ -205,7 +216,10 @@ e_radius_axis_ <- function(e, serie = NULL, show = TRUE, ...){
   if(!is.null(serie))
     opts$data <- e$x$data %>% purrr::map(serie) %>% unlist %>% unname %>% unique %>%  as.list
   
-  e$x$opts$radiusAxis <- opts
+  if(e$x$tl)
+    e$x$opts$radiusAxis <- opts
+  else
+    e$x$opts$baseOption$radiusAxis <- opts
   
   e
 }
@@ -255,7 +269,10 @@ e_angle_axis <- function(e, serie, show = TRUE, ...){
   if(!missing(serie))
     opts$data <- e$x$data %>% purrr::map(sr) %>% unlist %>% unname %>% unique %>% as.list
   
-  e$x$opts$angleAxis <- opts
+  if(!e$x$tl)
+    e$x$opts$angleAxis <- opts
+  else
+    e$x$opts$baseOption$angleAxis <- opts
   
   e
 }
@@ -272,7 +289,10 @@ e_angle_axis_ <- function(e, serie = NULL, show = TRUE, ...){
   if(!is.null(serie))
     opts$data <- e$x$data %>% purrr::map(serie) %>% unlist %>% unname %>% unique %>%  as.list
   
-  e$x$opts$angleAxis <- opts
+  if(!e$x$tl)
+    e$x$opts$angleAxis <- opts
+  else
+    e$x$opts$baseOption$angleAxis <- opts
   
   e
 }
@@ -301,12 +321,18 @@ e_radar_opts <- function(e, index = 0, ...){
   # initiatlise if wrong index
   if(r.index > max){
     r.index <- 1
-    e$x$opts$radar <- list(list())
+    if(!e$xtl)
+      e$x$opts$radar <- list(list())
+    else
+      e$x$opts$baseOption$radar <- list(list())
   }
   
   for(i in 1:length(attrs)){
     arg <- names(attrs)[i]
-    e$x$opts$radar[[r.index]][[arg]] <- attrs[[i]]
+    if(!e$x$tl)
+      e$x$opts$radar[[r.index]][[arg]] <- attrs[[i]]
+    else
+      e$x$opts$baseOption$radar[[r.index]][[arg]] <- attrs[[i]]
   }
   
   e
@@ -347,16 +373,26 @@ e_single_axis <- function(e, index = 0, ...){
   e$x$opts$xAxis <- NULL
   e$x$opts$yAxis <- NULL
   
-  if(!length(e$x$opts$singleAxis))
-    e$x$opts$singleAxis <- list(...)
-  else
-    e$x$opts$singleAxis <- append(e$x$opts$singleAxis, list(...))
+  if(!e$x$tl){
+    if(!length(e$x$opts$singleAxis))
+      e$x$opts$singleAxis <- list(...)
+    else
+      e$x$opts$singleAxis <- append(e$x$opts$singleAxis, list(...))
+  } else {
+    if(!length(e$x$opts$baseOption$singleAxis))
+      e$x$opts$baseOption$singleAxis <- list(...)
+    else
+      e$x$opts$baseOption$singleAxis <- append(e$x$opts$baseOption$singleAxis, list(...))
+  }
   
   if(!is.null(e$x$mapping$x)){
     
     type <- .get_type(e, e$x$mapping$x)
     
-    e$x$opts$singleAxis$type <- type
+    if(!e$x$tl)
+      e$x$opts$singleAxis$type <- type
+    else
+      e$x$opts$baseOption$singleAxis$type <- type
     
     if(type == "category" || type == "time"){
       
@@ -370,7 +406,12 @@ e_single_axis <- function(e, index = 0, ...){
       }
       
       vect <- unique(vect)
-      e$x$opts$singleAxis$data <- vect
+      
+      if(!e$x$tl)
+        e$x$opts$singleAxis$data <- vect
+      else
+        e$x$opts$baseOption$singleAxis$data <- vect
+      
     }
   } else {
     warning("x not pass to e_charts", call. = FALSE)

@@ -562,7 +562,12 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     e$x$opts$graphic <- list(...)
   
   opts <- list(type = elem, ...)
-  e$x$opts$graphic <- append(e$x$opts$graphic, opts)
+  
+  if(!e$x$tl)
+    e$x$opts$graphic <- append(e$x$opts$graphic, opts)
+  else 
+    e$x$opts$baseOption$graphic <- append(e$x$opts$baseOption$graphic, opts)
+  
   e
 }
 

@@ -1,5 +1,7 @@
 # echarts4r 0.2.1.9000
 
+__Support for timeline added__
+
 - `e_clean` removed as it was not of use anymore.
 - `e_list` added to pas raw list of options.
 - Improved `e_color_range` helper.
@@ -11,7 +13,6 @@
 - Can now register multiple maps with `e_map_regiter`.
 - Error handling in `e_loess` and `e_lm` to better work with groups.
 - `e_capture` to capture events not implemented.
-- `e_timeline` basic family
 
 # echarts4r 0.2.0
 

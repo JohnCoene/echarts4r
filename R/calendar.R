@@ -33,6 +33,10 @@ e_calendar <- function(e, range, ...){
   
   cal <- list(range = range, ...)
   
-  e$x$opts$calendar <- append(e$x$opts$calendar, list(cal))
+  if(!e$x$tl)
+    e$x$opts$calendar <- append(e$x$opts$calendar, list(cal))
+  else
+    e$x$opts$baseOption$calendar <- append(e$x$opts$baseOption$calendar, list(cal))
+  
   e
 }

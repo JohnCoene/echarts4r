@@ -22,7 +22,14 @@
 #' 
 #' @export
 e_color <- function(e, color = NULL, background = NULL){
-  if(!is.null(color)) e$x$opts$color <- color
-  if(!is.null(color)) e$x$opts$backgroundColor <- background
+  
+  if(!e$x$tl){
+    if(!is.null(color)) e$x$opts$color <- color
+    if(!is.null(color)) e$x$opts$backgroundColor <- background
+  } else {
+    if(!is.null(color)) e$x$opts$baseOption$color <- color
+    if(!is.null(color)) e$x$opts$baseOption$backgroundColor <- background
+  }
+  
   e
 }

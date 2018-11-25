@@ -191,6 +191,19 @@ e_format_y_axis <- function(e, suffix = NULL, prefix = NULL, ...){
 #'   e_chart(wt) %>% 
 #'   e_scatter(qsec, cyl) %>% 
 #'   e_labels(fontSize = 9)
+#'   
+#' mtcars %>% 
+#'   group_by(cyl) %>% 
+#'   e_chart(wt) %>% 
+#'   e_scatter(qsec, mpg) %>% 
+#'   e_labels(fontSize = 9)
+#' 
+#' # timeline  
+#' mtcars %>% 
+#'   group_by(cyl) %>% 
+#'   e_chart(wt) %>% 
+#'   e_scatter(qsec, mpg) %>% 
+#'   e_labels(fontSize = 9)
 #' 
 #' @export
 e_labels <- function(e, show = TRUE, position = "top", ...){
@@ -204,8 +217,14 @@ e_labels <- function(e, show = TRUE, position = "top", ...){
     ...
   )
   
-  for(i in 1:length(e$x$opts$series)){
-    e$x$opts$series[[i]]$label <- opts
+  if(!e$x$tl){
+    for(i in 1:length(e$x$opts$series)){
+      e$x$opts$series[[i]]$label <- opts
+    }
+  } else {
+    for(i in 1:length(e$x$opts$baseOption$series)){
+      e$x$opts$baseOption$series[[i]]$label <- opts
+    }
   }
   
   return(e)

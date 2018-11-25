@@ -58,7 +58,11 @@ e_axis_3d <- function(e, axis = c("x", "y", "z"), index = 0, ...){
   
   for(i in 1:length(attrs)){
     arg <- names(attrs)[i]
-    e$x$opts[[axis]][[r.index]][[arg]] <- attrs[[i]]
+    
+    if(!e$x$tl)
+      e$x$opts[[axis]][[r.index]][[arg]] <- attrs[[i]]
+    else
+      e$x$opts$baseOption[[axis]][[r.index]][[arg]] <- attrs[[i]]
   }
   
   e
@@ -135,8 +139,13 @@ e_grid_3d <- function(e, index = 0, ...){
   r.index <- index + 1
   
   # initialise of not existing
-  if(!length(e$x$opts[["grid3D"]]))
-    e$x$opts$grid3D  <- list()
+  if(!e$x$tl){
+    if(!length(e$x$opts[["grid3D"]]))
+      e$x$opts$grid3D  <- list()
+  } else {
+    if(!length(e$x$opts$baseOption[["grid3D"]]))
+      e$x$opts$baseOption$grid3D  <- list()
+  }
   
   attrs <- list(...)
   
@@ -145,7 +154,11 @@ e_grid_3d <- function(e, index = 0, ...){
   
   for(i in 1:length(attrs)){
     arg <- names(attrs)[i]
-    e$x$opts$grid3D[[r.index]][[arg]] <- attrs[[i]]
+    
+    if(!e$x$tl)
+      e$x$opts$grid3D[[r.index]][[arg]] <- attrs[[i]]
+    else
+      e$x$opts$baseOption$grid3D[[r.index]][[arg]] <- attrs[[i]]
   }
   
   e
