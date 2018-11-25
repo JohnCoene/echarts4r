@@ -102,7 +102,11 @@ e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuo
     vm$max <- rng[2]
   }
   
-  e$x$opts$visualMap <- append(e$x$opts$visualMap, list(vm))
+  if(!e$x$tl)
+    e$x$opts$visualMap <- append(e$x$opts$visualMap, list(vm))
+  else
+    e$x$opts$baseOption$visualMap <- append(e$x$opts$visualMap, list(vm))
+  
   e
 }
 

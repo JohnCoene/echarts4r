@@ -257,6 +257,13 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #'   e_scatter(lat, mag, coord_system = "geo") %>% 
 #'   e_visual_map(min = 4, max = 6.5)
 #'   
+#' # timeline  
+#' iris %>% 
+#'   group_by(Species) %>% 
+#'   e_charts(Petal.Width, timeline = TRUE) %>% 
+#'   e_scatter(Sepal.Width, Sepal.Length) %>% 
+#'   e_tooltip(trigger = "axis")
+#'   
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter}{Additional arguments scatter},
 #'  \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-effectScatter}{Additional arguments for effect scatter}
 #' 
@@ -701,6 +708,25 @@ e_graph_edges <- function(e, edges, source, target){
 #'   e_calendar(range = "2018", top = 260) %>% 
 #'   e_heatmap(values, coord_system = "calendar") %>% 
 #'   e_visual_map(max = 30)
+#' 
+#' # timline
+#' library(dplyr)
+#' 
+#' axis <- LETTERS[1:10]
+#' df <- expand.grid(axis, axis)
+#' 
+#' bind_rows(df, df) %>% 
+#'   mutate(
+#'     values = runif(n(), 1, 10),
+#'     grp = c(
+#'       rep("A", 100),
+#'       rep("B", 100)
+#'     )
+#'   ) %>% 
+#'   group_by(grp) %>% 
+#'   e_charts(Var1, timeline = TRUE) %>% 
+#'   e_heatmap(Var2, values) %>% 
+#'   e_visual_map(values)
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-heatmap}{Additional arguments}
 #' 

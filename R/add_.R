@@ -767,19 +767,20 @@ e_heatmap_ <- function(e, y, z = NULL, name = NULL, coord_system = "cartesian2d"
     else 
       xyz <- .build_data2(e$x$data[[i]], e$x$mapping$x, y)
     
-    serie <- list(
+    serie <- list(data = xyz)
+    
+    series_opts <- list(
       name = name,
       type = "heatmap",
-      data = xyz,
       coordinateSystem = coord_system,
       ...
     )
     
     if(coord_system == "calendar"){
       if(!is.null(calendar)){
-        serie$calendarIndex <- calendar[i]
+        series_opts$calendarIndex <- calendar[i]
       } else if(length(e$x$opts$calendar) == length(e$x$data)) {
-        serie$calendarIndex <- i - 1
+        series_opts$calendarIndex <- i - 1
       } 
     }
     
@@ -793,26 +794,38 @@ e_heatmap_ <- function(e, y, z = NULL, name = NULL, coord_system = "cartesian2d"
       if(length(xdata) == 1)
         xdata <- list(xdata)
       
-      e$x$opts$xAxis <- list(
-        list(
-          data = xdata
-        )
-      )
+      if(!e$x$tl)
+        e$x$opts$xAxis <- list(list(data = xdata))
+      else
+        e$x$opts$baseOption$xAxis <- list(list(data = xdata))
       
       ydata <- unique(.get_data(e, y, i))
       
       if(length(ydata) == 1)
         ydata <- list(ydata)
       
-      e$x$opts$yAxis <- list(
-        list(
-          data = ydata
-        )
-      )
+      if(!e$x$tl)
+        e$x$opts$yAxis <- list(list(data = ydata))
+      else
+        e$x$opts$baseOption$yAxis <- list(list(data = ydata))
     }
     
-    e$x$opts$series <- append(e$x$opts$series, list(serie))
+    if(!e$x$tl){
+      
+      serie <- append(serie, series_opts)
+      
+      e$x$opts$series <- append(e$x$opts$series, list(serie))
+    
+    } else { # timeline
+      
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie))
+      
+    }
+    
   }
+  
+  if(isTRUE(e$x$tl))
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(series_opts))
   
   e
 }

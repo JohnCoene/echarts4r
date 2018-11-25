@@ -70,6 +70,24 @@ year \%>\%
   e_heatmap(values, coord_system = "calendar") \%>\% 
   e_visual_map(max = 30)
 
+# timline
+library(dplyr)
+
+axis <- LETTERS[1:10]
+df <- expand.grid(axis, axis)
+
+bind_rows(df, df) \%>\% 
+  mutate(
+    values = runif(n(), 1, 10),
+    grp = c(
+      rep("A", 100),
+      rep("B", 100)
+    )
+  ) \%>\% 
+  group_by(grp) \%>\% 
+  e_charts(Var1, timeline = TRUE) \%>\% 
+  e_heatmap(Var2, values)
+
 }
 \seealso{
 \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-heatmap}{Additional arguments}

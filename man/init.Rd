@@ -35,7 +35,7 @@ string and have \code{'px'} appended.}
 
 \item{renderer}{Renderer, takes \code{canvas} (default) or \code{svg}.}
 
-\item{timeline}{Set to \code{TRUE} to build a timeline.}
+\item{timeline}{Set to \code{TRUE} to build a timeline, see timeline section.}
 
 \item{...}{Any other argument.}
 
@@ -44,6 +44,20 @@ string and have \code{'px'} appended.}
 \description{
 Initialise a chart.
 }
+\section{Timeline}{
+
+The timeline feature currently supports the following chart types.
+\itemize{
+  \item{\code{\link{e_bar}}}
+  \item{\code{\link{e_line}}}
+  \item{\code{\link{e_step}}}
+  \item{\code{\link{e_area}}}
+  \item{\code{\link{e_scatter}}}
+  \item{\code{\link{e_effect_scatter}}}
+  \item{\code{\link{e_candle}}}
+}
+}
+
 \examples{
 mtcars \%>\% 
   e_charts(qsec) \%>\%

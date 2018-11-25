@@ -132,6 +132,13 @@ quakes \%>\%
   e_scatter(lat, mag, coord_system = "geo") \%>\% 
   e_visual_map(min = 4, max = 6.5)
   
+# timeline  
+iris \%>\% 
+  group_by(Species) \%>\% 
+  e_charts(Petal.Width, timeline = TRUE) \%>\% 
+  e_scatter(Sepal.Width, Sepal.Length) \%>\% 
+  e_tooltip(trigger = "axis")
+  
 }
 \seealso{
 \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter}{Additional arguments scatter},

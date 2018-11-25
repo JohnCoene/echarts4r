@@ -17,8 +17,20 @@ echarts_build <- function(e) {
 #' @param elementId Id of element.
 #' @param dispose Set to \code{TRUE} to force redraw of chart, set to \code{FALSE} to update.
 #' @param renderer Renderer, takes \code{canvas} (default) or \code{svg}.
-#' @param timeline Set to \code{TRUE} to build a timeline.
+#' @param timeline Set to \code{TRUE} to build a timeline, see timeline section.
 #' @param ... Any other argument.
+#' 
+#' @section Timeline:
+#' The timeline feature currently supports the following chart types.
+#' \itemize{
+#'   \item{\code{\link{e_bar}}}
+#'   \item{\code{\link{e_line}}}
+#'   \item{\code{\link{e_step}}}
+#'   \item{\code{\link{e_area}}}
+#'   \item{\code{\link{e_scatter}}}
+#'   \item{\code{\link{e_effect_scatter}}}
+#'   \item{\code{\link{e_candle}}}
+#' }
 #' 
 #' @examples 
 #' mtcars %>% 
