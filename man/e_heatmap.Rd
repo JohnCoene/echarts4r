@@ -86,7 +86,8 @@ bind_rows(df, df) \%>\%
   ) \%>\% 
   group_by(grp) \%>\% 
   e_charts(Var1, timeline = TRUE) \%>\% 
-  e_heatmap(Var2, values)
+  e_heatmap(Var2, values) \%>\% 
+  e_visual_map(values)
 
 }
 \seealso{

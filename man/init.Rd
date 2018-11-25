@@ -55,6 +55,8 @@ The timeline feature currently supports the following chart types.
   \item{\code{\link{e_scatter}}}
   \item{\code{\link{e_effect_scatter}}}
   \item{\code{\link{e_candle}}}
+  \item{\code{\link{e_heatmap}}}
+  \item{\code{\link{e_pie}}}
 }
 }
 

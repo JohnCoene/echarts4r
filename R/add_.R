@@ -887,24 +887,45 @@ e_pie_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRU
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
+  for(i in 1:length(e$x$data)){
+    
+    # build JSON data
+    data <- .build_data2(e$x$data[[i]], serie)
+    data <- .add_bind2(e, data, e$x$mapping$x, i = i)
+    
+    serie_data <- list(data = data)
+    
+    serie_opts <- list(
+      name = name,
+      type = "pie",
+      ...
+    )
+    
+    if(!e$x$tl){
+      
+      if(is.null(name)) # defaults to column name
+        name <- serie
+      
+      serie_opts$name <- name
+      
+      serie_opts <- append(serie_opts, serie_data)
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, e$x$data[[e$x$mapping$x]])
+      
+      e$x$opts$series <- append(e$x$opts$series, list(serie_opts))
+      
+    } else {
+      
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie_data))
+      
+    }
+    
+  }
   
-  # build JSON data
-  data <- .build_data(e, serie)
-  data <- .add_bind(e, data, e$x$mapping$x)
+  if(isTRUE(e$x$tl))
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
   
-  serie <- list(
-    name = name,
-    type = "pie",
-    data = data,
-    ...
-  )
-  
-  if(isTRUE(legend))
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, e$x$data[[e$x$mapping$x]])
-  
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }
 
@@ -1005,35 +1026,54 @@ e_boxplot_ <- function(e, serie, name = NULL, outliers = TRUE, ...){
     stop("must pass serie", call. = FALSE)
   
   for(i in 1:length(e$x$data)){
-    nm <- .name_it(e, serie, NULL, i)
     
     # build JSON data
     vector <- .build_boxplot(e, serie, i)
     
-    if(length(e$x$opts$series) >= 1){
-      e$x$opts$series[[1]]$data <- append(
-        e$x$opts$series[[1]]$data, 
-        list(vector)
-      )
+    if(!e$x$tl){
+      
+      nm <- .name_it(e, serie, NULL, i)
+      
+      if(length(e$x$opts$series) >= 1){
+        e$x$opts$series[[1]]$data <- append(
+          e$x$opts$series[[1]]$data, 
+          list(vector)
+        )
+      } else {
+        # boxplot + opts
+        box <- list(
+          name = nm,
+          type = "boxplot",
+          data = list(vector),
+          ...
+        )
+        e$x$opts$series <- append(e$x$opts$series, list(box))
+      }
+      
+      # data/outliers
+      if(isTRUE(outliers)){
+        e <- .add_outliers(e, serie, i)
+      }
+      
+      # xaxis
+      e$x$opts$xAxis$data <- append(e$x$opts$xAxis$data, list(nm))
+      e$x$opts$xAxis$type <- "category"
+      
     } else {
-      # boxplot + opts
-      box <- list(
-        name = nm,
-        type = "boxplot",
-        data = list(vector),
-        ...
-      )
-      e$x$opts$series <- append(e$x$opts$series, list(box))
+      
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(list(data = vector)))
+      
     }
     
-    # data/outliers
-    if(isTRUE(outliers)){
-      e <- .add_outliers(e, serie, i)
-    }
+  }
+  
+  if(isTRUE(e$x$tl)){
+    serie_opts <- list(
+      type = "boxplot",
+      ...
+    )
     
-    # xaxis
-    e$x$opts$xAxis$data <- append(e$x$opts$xAxis$data, list(nm))
-    e$x$opts$xAxis$type <- "category"
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
   }
   
   e
@@ -1091,24 +1131,48 @@ e_lines_3d_ <- function(e, source_lon, source_lat, target_lon, target_lat, sourc
   
   for(i in 1:length(e$x$data)){
     
-    data <- .map_lines(e, source_lon, source_lat, target_lon, target_lat, source_name, target_name, value, i=i)
+    data <- .map_lines(
+      e, 
+      source_lon, source_lat, 
+      target_lon, target_lat, 
+      source_name, target_name, 
+      value, i = i
+    )
     
-    serie <- list(
+    serie_data <- list(data = data)
+    
+    serie_opts <- list(
       type = "lines3D",
       coordinateSystem = coord_system,
-      data = data,
       ...
     )
     
-    nm <- .name_it(e, NULL, name, i)
-    
-    if(!is.null(nm)){
-      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
-      serie$name <- nm
+    if(!e$x$tl){
+      
+      serie <- append(serie_data, serie_opts)
+      
+      nm <- .name_it(e, NULL, name, i)
+      
+      if(!is.null(nm)){
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+        serie$name <- nm
+      }
+      
+      e$x$opts$series <- append(e$x$opts$series, list(serie))
+    } else {
+      
+      if(!is.null(name)){
+        e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+        serie_opts$name <- name
+      }
+      
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie_data))
     }
     
-    e$x$opts$series <- append(e$x$opts$series, list(serie))
   }
+  
+  if(isTRUE(e$x$tl))
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
   
   e
 }
@@ -1128,35 +1192,70 @@ e_line_3d_ <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, r
 
   for(i in 1:length(e$x$data)){
     
-    nm <- .name_it(e, NULL, name, i)
-    
-    if(!is.null(nm))
-      e$x$opts$legend$data <- append(e$x$opts$legend$data, nm)
-    
-    if(!length(e$x$opts$zAxis3D))
-      e$x$opts$zAxis3D <- list(list(show = TRUE))
-    
-    if(!length(e$x$opts$grid3D))
-      e$x$opts$grid3D <- list(list(show = TRUE))
+    # build JSON data
+    data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
     
     e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
     e <- .set_axis_3D(e, "y", y, 0)
     e <- .set_axis_3D(e, "z", z, 0)
     
-    # build JSON data
-    data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
+    if(!e$x$tl){
+      
+      nm <- .name_it(e, NULL, name, i)
+      
+      if(!is.null(nm))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, nm)
+      
+      if(!length(e$x$opts$zAxis3D))
+        e$x$opts$zAxis3D <- list(list(show = TRUE))
+      
+      if(!length(e$x$opts$grid3D))
+        e$x$opts$grid3D <- list(list(show = TRUE))
+      
+      e.serie <- list(
+        type = "line3D",
+        data = data,
+        name = nm,
+        ...
+      )
+      
+      if(!is.null(coord_system))
+        e.serie$coordinateSystem <- coord_system
+      
+      e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+      
+    } else {
+      
+      if(!is.null(name))
+        e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, name)
+      
+      if(!length(e$x$opts$zAxis3D))
+        e$x$opts$baseOption$zAxis3D <- list(list(show = TRUE))
+      
+      if(!length(e$x$opts$grid3D))
+        e$x$opts$baseOption$grid3D <- list(list(show = TRUE))
+      
+      e_serie <- list(data = data)
+      
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(e_serie))
+      
+    }
     
-    e.serie <- list(
+  }
+  
+  if(e$x$tl){
+    
+    serie_opts <- list(
       type = "line3D",
-      data = data,
-      name = nm,
+      name = name,
       ...
     )
     
     if(!is.null(coord_system))
       e.serie$coordinateSystem <- coord_system
     
-    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
+    
   }
   
   e

@@ -822,6 +822,18 @@ e_parallel <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE){
 #'   e_charts(model) %>% 
 #'   e_pie(carb)
 #'   
+#' # timeline
+#' df <- data.frame(
+#'   grp = c("A", "A", "A", "B", "B", "B"),
+#'   labels = rep(LETTERS[1:3], 2),
+#'   values = runif(6, 1, 5)
+#' )
+#' 
+#' df %>% 
+#'   group_by(grp) %>% 
+#'   e_charts(labels, timeline = TRUE) %>% 
+#'   e_pie(values)
+#'   
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie}{Additional arguments}
 #' 
 #' @rdname e_pie
@@ -1095,9 +1107,10 @@ e_gauge_ <- e_gauge
 #' 
 #' # Lines 3D
 #' # Globe
+#' # get tetures: echarts4r-assets.john-coene.com
 #' flights %>% 
 #'   e_charts() %>% 
-#'   e_globe(
+#'   e_globe( 
 #'     displacementScale = 0.05
 #'   ) %>% 
 #'   e_lines_3d(
@@ -1121,6 +1134,34 @@ e_gauge_ <- e_gauge
 #'     end_lat,
 #'     coord_system = "geo3D"
 #'   )
+#'   
+#' # groups
+#' flights$grp <- rep(LETTERS[1:2], 89)
+#' 
+#' flights %>% 
+#'   group_by(grp) %>% 
+#'   e_charts() %>% 
+#'   e_geo_3d() %>% 
+#'   e_lines_3d(
+#'     start_lon, 
+#'     start_lat, 
+#'     end_lon, 
+#'     end_lat,
+#'     coord_system = "geo3D"
+#'   )
+#' 
+#' # timeline
+#' flights %>% 
+#'   group_by(grp) %>% 
+#'   e_charts(timeline = TRUE) %>% 
+#'   e_geo_3d() %>% 
+#'   e_lines_3d(
+#'     start_lon, 
+#'     start_lat, 
+#'     end_lon, 
+#'     end_lat,
+#'     coord_system = "geo3D"
+#'   ) 
 #'  
 #' # line 3D 
 #' df <- data.frame(
@@ -1134,9 +1175,21 @@ e_gauge_ <- e_gauge
 #'   e_line_3d(y, z) %>% 
 #'   e_visual_map() %>% 
 #'   e_title("nonsense")
+#'   
+#' # timeline
+#' df$grp <- rep(LETTERS[1:5], 20)
+#' 
+#' df %>% 
+#'   group_by(grp) %>% 
+#'   e_charts(x) %>% 
+#'   e_line_3d(y, z) %>% 
+#'   e_visual_map() %>% 
+#'   e_title("nonsense")
 #' 
 #' @seealso \href{http://echarts.baidu.com/option-gl.html#series-lines3D}{Additional arguments for lines 3D},
 #'  \href{http://echarts.baidu.com/option-gl.html#series-line3D}{Additional arguments for line 3D}
+#' 
+#' @seealso \url{https//echarts4r-assets.john-coene.com}
 #' 
 #' @rdname line3D
 #' @export

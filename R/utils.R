@@ -41,7 +41,11 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
 .rm_axis <- function(e, rm_x, axis){
   if(isTRUE(rm_x)){
     axis <- .r2axis(axis)
-    e$x$opts[[axis]] <- NULL
+    
+    if(!e$x$tl)
+      e$x$opts[[axis]] <- NULL
+    else
+      e$x$opts$baseOption[[axis]] <- NULL
   }
   e
 }
@@ -408,7 +412,10 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     if(type != "value")
       axis$data <- unique(.get_data(e, serie))
     
-    e$x$opts[[ax]][[index + 1]] <- axis
+    if(!e$x$tl)
+      e$x$opts[[ax]][[index + 1]] <- axis
+    else
+      e$x$opts$baseOption[[ax]][[index + 1]] <- axis
   }
   e
 }

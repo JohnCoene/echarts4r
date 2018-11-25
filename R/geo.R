@@ -61,7 +61,10 @@ e_geo_3d_ <- function(e, serie = NULL, color = NULL, type = "world", rm_x = TRUE
   else if(is.null(color) && !is.null(serie))
     series$regions <- .build_height(e, serie)
   
-  e$x$opts$geo3D <- series
+  if(!e$x$tl)
+    e$x$opts$geo3D <- series
+  else
+    e$x$opts$baseOption$geo3D <- series
   
   e
 }

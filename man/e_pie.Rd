@@ -34,6 +34,18 @@ mtcars \%>\%
   e_charts(model) \%>\% 
   e_pie(carb)
   
+# timeline
+df <- data.frame(
+  grp = c("A", "A", "A", "B", "B", "B"),
+  labels = rep(LETTERS[1:3], 2),
+  values = runif(6, 1, 5)
+)
+
+df \%>\% 
+  group_by(grp) \%>\% 
+  e_charts(labels, timeline = TRUE) \%>\% 
+  e_pie(values)
+  
 }
 \seealso{
 \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie}{Additional arguments}
