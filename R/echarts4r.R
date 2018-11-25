@@ -32,6 +32,9 @@ echarts_build <- function(e) {
 #'   \item{\code{\link{e_candle}}}
 #'   \item{\code{\link{e_heatmap}}}
 #'   \item{\code{\link{e_pie}}}
+#'   \item{\code{\link{e_line_3d}}}
+#'   \item{\code{\link{e_bar_3d}}}
+#'   \item{\code{\link{e_lines}}}
 #' }
 #' 
 #' @examples 

@@ -89,6 +89,12 @@ matrix \%>\%
   e_legend()
 }
 
+# timeline
+matrix \%>\% 
+  group_by(x) \%>\% 
+  e_charts(y, timeline = TRUE) \%>\% 
+  e_bar_3d(z1, z2)
+
 }
 \seealso{
 \href{http://echarts.baidu.com/option-gl.html#series-bar3D}{Additional arguments}

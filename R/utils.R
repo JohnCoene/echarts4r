@@ -410,7 +410,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
     axis <- list(type = type)
     
     if(type != "value")
-      axis$data <- unique(.get_data(e, serie))
+      axis$data <- purrr::map(e$x$data, serie) %>% unlist() %>% unique()
     
     if(!e$x$tl)
       e$x$opts[[ax]][[index + 1]] <- axis

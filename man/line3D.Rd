@@ -121,6 +121,16 @@ df \%>\%
   e_line_3d(y, z) \%>\% 
   e_visual_map() \%>\% 
   e_title("nonsense")
+  
+# timeline
+df$grp <- rep(LETTERS[1:5], 20)
+
+df \%>\% 
+  group_by(grp) \%>\% 
+  e_charts(x) \%>\% 
+  e_line_3d(y, z) \%>\% 
+  e_visual_map() \%>\% 
+  e_title("nonsense")
 
 }
 \seealso{

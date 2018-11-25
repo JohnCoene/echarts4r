@@ -1149,19 +1149,6 @@ e_gauge_ <- e_gauge
 #'     end_lat,
 #'     coord_system = "geo3D"
 #'   )
-#' 
-#' # timeline
-#' flights %>% 
-#'   group_by(grp) %>% 
-#'   e_charts(timeline = TRUE) %>% 
-#'   e_geo_3d() %>% 
-#'   e_lines_3d(
-#'     start_lon, 
-#'     start_lat, 
-#'     end_lon, 
-#'     end_lat,
-#'     coord_system = "geo3D"
-#'   ) 
 #'  
 #' # line 3D 
 #' df <- data.frame(
@@ -1299,6 +1286,13 @@ e_line_3d <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, rm
 #'   e_legend()
 #' }
 #' 
+#' # timeline
+#' matrix %>% 
+#'   group_by(x) %>% 
+#'   e_charts(y, timeline = TRUE) %>% 
+#'   e_bar_3d(z1, z2) %>% 
+#'   e_visual_map(z2)
+#' 
 #' @seealso \href{http://echarts.baidu.com/option-gl.html#series-bar3D}{Additional arguments}
 #' 
 #' @rdname e_bar_3d
@@ -1401,6 +1395,22 @@ e_surface <- function(e, y, z, bind, name = NULL,
 #'         )
 #'       }
 #'    ")
+#'   )
+#'   
+#' # timeline
+#' flights$grp <- rep(LETTERS[1:2], 89)
+#' 
+#' flights %>% 
+#'   group_by(grp) %>% 
+#'   e_charts(timeline = TRUE) %>% 
+#'   e_geo() %>% 
+#'   e_lines(
+#'     start_lon, 
+#'     start_lat, 
+#'     end_lon, 
+#'     end_lat,
+#'     cnt,
+#'     coord_system = "geo"
 #'   )
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-lines}{Additional arguments}

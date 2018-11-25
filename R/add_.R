@@ -1274,46 +1274,81 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
   # remove axis
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
+  e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
+  e <- .set_axis_3D(e, "y", y, 0)
+  e <- .set_axis_3D(e, "z", z, 0)
   
   for(i in 1:length(e$x$data)){
     
-    # globe
     if(coord_system != "cartesian3D"){
-      
       data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
       
       if(!is.null(bind))
         data <- .add_bind2(e, data, bind, i = i)
-      
-    } else { # cartesian
-      
-      if(!length(e$x$opts$zAxis3D))
-        e$x$opts$zAxis3D <- list(list(show = TRUE))
-      
-      if(!length(e$x$opts$grid3D))
-        e$x$opts$grid3D <- list(list(show = TRUE))
-      
-      e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
-      e <- .set_axis_3D(e, "y", y, 0)
-      e <- .set_axis_3D(e, "z", z, 0)
-      
+    } else {
       data <- .build_cartesian3D(e, e$x$mapping$x, y, z, i = i)
     }
     
-    nm <- .name_it(e, NULL, name, i)
+    if(!e$x$tl){
+      
+      # globe
+      if(coord_system == "cartesian3D"){ # cartesian
+        
+        if(!length(e$x$opts$zAxis3D))
+          e$x$opts$zAxis3D <- list(list(show = TRUE))
+        
+        if(!length(e$x$opts$grid3D))
+          e$x$opts$grid3D <- list(list(show = TRUE))
+      }
+      
+      nm <- .name_it(e, NULL, name, i)
+      
+      if(!is.null(nm))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, nm)
+      
+      e.serie <- list(
+        name = nm,
+        type = "bar3D",
+        coordinateSystem = coord_system,
+        data = data,
+        ...
+      )
+      
+      e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+      
+    } else {
+      
+      # globe
+      if(coord_system == "cartesian3D"){ # cartesian
+        
+        if(!length(e$x$opts$zAxis3D))
+          e$x$opts$baseOption$zAxis3D <- list(list(show = TRUE))
+        
+        if(!length(e$x$opts$grid3D))
+          e$x$opts$baseOption$grid3D <- list(list(show = TRUE))
+      }
+      
+      if(!is.null(name))
+        e$x$opts$baseOption$legend$data <- append(e$x$opts$legend$data, name)
+      
+      e_serie <- list(data = data)
+      
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(e_serie))
+      
+    }
     
-    if(!is.null(nm))
-      e$x$opts$legend$data <- append(e$x$opts$legend$data, nm)
+  }
+  
+  if(e$x$tl){
     
-    e.serie <- list(
-      name = nm,
+    serie_opts <- list(
+      name = name,
       type = "bar3D",
       coordinateSystem = coord_system,
-      data = data,
       ...
     )
     
-    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
     
   }
   
@@ -1397,20 +1432,32 @@ e_lines_ <- function(e, source_lon, source_lat, target_lon, target_lat, source_n
   
   for(i in 1:length(e$x$data)){
     
-    nm <- .name_it(e, NULL, name, i)
-    
     data <- .map_lines(e, source_lon, source_lat, target_lon, target_lat, source_name, target_name, value, i)
     
-    e.serie <- list(
-      name = nm,
+    e.serie <- list(data = data)
+    
+    e.opts <- list(
       type = "lines",
       coordinateSystem = coord_system,
-      data = data,
       ...
     )
     
-    e$x$opts$series <- append(e$x$opts$series, list(e.serie))
+    if(!e$x$tl){
+      
+      e.opts <- .name_it(e, NULL, name, i)
+      
+      e_serie <- append(e.serie, e.opts)
+      
+      e$x$opts$series <- append(e$x$opts$series, list(e_serie))
+      
+    } else {
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(e.serie))
+    }
+    
   }
+  
+  if(e$x$tl)
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(e.opts))
   
   e
 }

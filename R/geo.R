@@ -104,6 +104,9 @@ e_geo <- function(e, map = "world", ...){
     ...
   )
   
-  e$x$opts$geo <- opts
+  if(!e$x$tl)
+    e$x$opts$geo <- opts
+  else
+    e$x$opts$baseOption$geo <- opts
   e
 }
