@@ -87,14 +87,14 @@ matrix \%>\%
   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) \%>\%
   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) \%>\% 
   e_legend()
-}
-
+  
 # timeline
 matrix \%>\% 
   group_by(x) \%>\% 
   e_charts(y, timeline = TRUE) \%>\% 
   e_bar_3d(z1, z2) \%>\% 
   e_visual_map(z2)
+}
 
 }
 \seealso{

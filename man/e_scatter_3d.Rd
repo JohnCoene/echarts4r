@@ -79,6 +79,16 @@ airports \%>\%
   ) \%>\% 
   e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = 'lighter') \%>\% 
   e_visual_map(inRange = list(symbolSize = c(1, 10)))
+  
+# timeline
+airports \%>\% 
+  group_by(state) \%>\% 
+  e_charts(long, timeline = TRUE) \%>\% 
+  e_globe(
+    globeOuterRadius = 100
+  ) \%>\% 
+  e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = 'lighter') \%>\% 
+  e_visual_map(inRange = list(symbolSize = c(1, 10)))
 
 }
 \seealso{

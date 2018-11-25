@@ -60,6 +60,8 @@ The timeline feature currently supports the following chart types.
   \item{\code{\link{e_line_3d}}}
   \item{\code{\link{e_bar_3d}}}
   \item{\code{\link{e_lines}}}
+  \item{\code{\link{e_scatter_3d}}}
+  \item{\code{\link{e_scatter_gl}}}
 }
 }
 

@@ -1416,14 +1416,6 @@ e_lines_ <- function(e, source_lon, source_lat, target_lon, target_lat, source_n
   
   if(missing(source_lat) || missing(source_lon) || missing(target_lat) || missing(target_lon))
     stop("missing coordinates", call. = FALSE)
-  if(missing(source_name))
-    source_name <- NULL
-  
-  if(missing(target_name))
-    target_name <- NULL
-  
-  if(missing(value))
-    value <- NULL
   
   # remove axis
   e <- .rm_axis(e, rm_x, "x")
@@ -1444,7 +1436,7 @@ e_lines_ <- function(e, source_lon, source_lat, target_lon, target_lat, source_n
     
     if(!e$x$tl){
       
-      e.opts <- .name_it(e, NULL, name, i)
+      e.opts$name <- .name_it(e, NULL, name, i)
       
       e_serie <- append(e.serie, e.opts)
       

@@ -36,6 +36,7 @@ echarts_build <- function(e) {
 #'   \item{\code{\link{e_bar_3d}}}
 #'   \item{\code{\link{e_lines}}}
 #'   \item{\code{\link{e_scatter_3d}}}
+#'   \item{\code{\link{e_scatter_gl}}}
 #' }
 #' 
 #' @examples 
