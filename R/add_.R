@@ -1893,3 +1893,46 @@ e_density_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
   
   e
 }
+
+#' @rdname band
+#' @export
+e_band_ <- function(e, serie, min, max, stack = "confidence-band", ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie) || missing(min) || missing(max))
+    stop("must pass serie, min and max", call. = FALSE)
+  
+  args <- list(...)
+  
+  spl <- function(x, index){
+    x[[index]]
+  }
+  
+  min_opts <- purrr::map(args, spl, 1)
+  max_opts <- purrr::map(args, spl, 2)
+  
+  for(i in 1:length(e$x$data)){
+    
+    # min
+    e$x$data[[i]][, min] <- e$x$data[[i]][[serie]] - e$x$data[[i]][[min]]
+    min_opts_index <- min_opts
+    min_opts_index$e <- e
+    min_opts_index$stack <- stack
+    min_opts_index$serie <- min
+    
+    e <- do.call(e_area_, min_opts_index)
+    
+    # max
+    e$x$data[[i]][, max] <- e$x$data[[i]][[serie]] - e$x$data[[i]][[max]]
+    max_opts_index <- max_opts
+    max_opts_index$e <- e
+    max_opts_index$stack <- stack
+    max_opts_index$serie <- max
+    
+    e <- do.call(e_area_, max_opts_index)
+  }
+  
+  e
+}

@@ -2125,3 +2125,50 @@ e_lines_gl <- function(e, data, coord_system = "geo", ...){
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }
+
+#' Confidence bands
+#' 
+#' Add confidence bands
+#' 
+#' @inheritParams e_bar
+#' @param serie,min,max series.
+#' @param stack Name of stack.
+#' @param ... All options must be of vectors or lists of length 2 where the first argument is 
+#' for the lower bound and the second for the upper bound, see examples.
+#' 
+#' @examples 
+#' df <- data.frame(
+#'   x = as.character(1:20),
+#'   y = runif(20, -120, 40),
+#'   lwr = runif(20, -316, -39),
+#'   upr = runif(20, 77, 258)
+#' )
+#' 
+#' df %>% 
+#'   e_charts(x) %>% 
+#'   e_line(y) %>% 
+#'   e_band(
+#'     y, lwr, upr, 
+#'     color = list("grey", "grey")
+#'   )
+#' 
+#' @name band
+#' @export
+e_band <- function(e, serie, min, max, stack = "confidence-band", ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(serie) || missing(min) || missing(max))
+    stop("must pass serie, min and max", call. = FALSE)
+  
+  e_band_(
+    e, 
+    deparse(substitute(serie)), 
+    deparse(substitute(min)), 
+    deparse(substitute(max)), 
+    stack = "confidence-band", 
+    ...
+  )
+  
+}
