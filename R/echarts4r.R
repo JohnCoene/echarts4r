@@ -119,7 +119,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
     x$opts <- tl
     
     x$opts$baseOption$timeline <- list(
-      data = names(x$data),
+      data = as.list(names(x$data)),
       axisType = "category",
       ...
     )

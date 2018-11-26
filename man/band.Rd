@@ -25,15 +25,18 @@ Add confidence bands
 }
 \examples{
 df <- data.frame(
-  x = 1:20,
-  y = runif(20, 10 , 30),
-  lwr = runif(20, 5, 10),
-  upr = runif(20, 30, 40)
+  x = as.character(1:20),
+  y = runif(20, -120, 40),
+  lwr = runif(20, -316, -39),
+  upr = runif(20, 77, 258)
 )
 
 df \%>\% 
   e_charts(x) \%>\% 
   e_line(y) \%>\% 
-  e_band(y, lwr, upr)
+  e_band(
+    y, lwr, upr, 
+    color = list("grey", "grey")
+  )
 
 }

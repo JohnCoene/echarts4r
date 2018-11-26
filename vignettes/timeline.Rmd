@@ -29,7 +29,7 @@ df <- data.frame(
     rep(2019, 25)
   ),
   x = runif(100, 1, 10),
-  y = runif(100, 2, 35),
+  y = runif(100, 5, 35),
   grp = c(
     rep("A", 50),
     rep("B", 50)
@@ -64,15 +64,24 @@ library(echarts4r.maps)
 
 df <- USArrests
 
+# scale 0 to 1
+.scl <- function(x){
+    (x - min(x)) / (max(x) - min(x))
+}
+
 df %>% 
   mutate(
-    state = row.names(.),
-    bins = ntile(UrbanPop, 3)
+      State = row.names(.),
+      Rape = .scl(Rape),
+      Murder = .scl(Murder)
   ) %>% 
-  group_by(bins) %>% 
-  e_charts(state, timeline = TRUE) %>% 
+  select(State, Rape, Murder) %>% 
+  group_by(State) %>% 
+  tidyr::gather("Key",  "Value", Murder, Rape) %>% 
+  group_by(Key) %>% 
+  e_charts(State, timeline = TRUE) %>% 
   em_map("USA") %>% 
-  e_map(Murder, map = "USA") %>% 
-  e_visual_map(Murder) %>% 
+  e_map(Value, map = "USA") %>% 
+  e_visual_map(min = 0, max = 1) %>% 
   e_timeline_opts(autoPlay = TRUE)
 ```
