@@ -113,7 +113,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
           list(show = TRUE)
         )
       ),
-      options = lapply(1:dplyr::n_groups(data), function(x) list())      
+      options = purrr::map(1:dplyr::n_groups(data), function(x) list())      
     )
     
     x$opts <- tl

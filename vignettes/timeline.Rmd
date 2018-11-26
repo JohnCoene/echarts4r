@@ -32,19 +32,19 @@ df <- data.frame(
     rep(2018, 25),
     rep(2019, 25)
   ),
-  x = runif(100, 1, 10),
-  y = runif(100, 5, 35),
+  x = rnorm(100),
+  y = rnorm(100),
   grp = c(
     rep("A", 50),
     rep("B", 50)
   )
-)
+) 
 ```
 
 With the phoney data:
 
 ```{r}
-df %>% 
+df %>%
   group_by(year) %>% 
   e_charts(x, timeline = TRUE) %>% 
   e_scatter(y)
@@ -118,7 +118,7 @@ data %>%
   e_candle(Open, Close, Low, High, legend = FALSE) %>% 
   e_y_axis(max = 1500) %>% 
   e_tooltip(trigger = "axis") %>% 
-  e_timeline_opts(playInterval = 1000) %>% 
+  e_timeline_opts(playInterval = 1500) %>% 
   e_timeline_serie(
     title = list(
       list(text = "Goldman Sachs"),
