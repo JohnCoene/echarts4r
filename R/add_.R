@@ -599,14 +599,12 @@ e_candle_ <- function(e, opening, closing, low, high, bind = NULL, name = NULL, 
   if(isTRUE(e$x$tl)){
     
     add_opts <- list(
-      name = nm,
+      name = name,
       type = "candlestick",
       ...
     )
     
-    series_opts <- append(opts, add_opts)
-    
-    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(series_opts))
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(add_opts))
   }
   
   e

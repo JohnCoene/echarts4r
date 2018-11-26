@@ -14,6 +14,10 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(dplyr)
+library(quantmod)
+options("getSymbols.warning4.0"=FALSE)
+options("getSymbols.yahoo.warning"=FALSE)
 library(echarts4r)
 ```
 
@@ -73,15 +77,52 @@ df %>%
   mutate(
       State = row.names(.),
       Rape = .scl(Rape),
-      Murder = .scl(Murder)
+      Murder = .scl(Murder),
+      Assault = .scl(Assault)
   ) %>% 
-  select(State, Rape, Murder) %>% 
+  select(State, Rape, Murder, Assault) %>% 
   group_by(State) %>% 
-  tidyr::gather("Key",  "Value", Murder, Rape) %>% 
+  tidyr::gather("Key",  "Value", Murder, Rape, Assault) %>% 
   group_by(Key) %>% 
   e_charts(State, timeline = TRUE) %>% 
   em_map("USA") %>% 
   e_map(Value, map = "USA") %>% 
   e_visual_map(min = 0, max = 1) %>% 
   e_timeline_opts(autoPlay = TRUE)
+```
+
+The function `e_timeline_opts` is used to set general options on the timeline, i.e.: auto-play like above. The full list of options is on the [official website](https://ecomfe.github.io/echarts-doc/public/en/option.html#timeline).
+
+However, we can also set options specific to each timestep with `e_timeline_serie`. The arguments to this function differ quite a bit from the rest of the package. As we have to assign options to multiple timesteps at once we need to pass vectors or lists of options, the length of the timesteps.
+
+```{r}
+library(quantmod)
+
+getSymbols(c("GS", "GOOG")) # Goldman Sachs & Google
+GS <- as.data.frame(GS)
+GOOG <- as.data.frame(GOOG)
+
+colnames <- c("Open", "High", "Low", "Close", "Volume", "Adjusted")
+names(GS) <- colnames
+names(GOOG) <- colnames
+
+GS$sym <- "GS"
+GOOG$sym <- "GOOG"
+
+data <- bind_rows(GS, GOOG)
+data$date <- rep(row.names(GS), 2)
+
+data %>% 
+  group_by(sym) %>% 
+  e_charts(date, timeline = TRUE) %>% 
+  e_candle(Open, Close, Low, High, legend = FALSE) %>% 
+  e_y_axis(max = 1500) %>% 
+  e_tooltip(trigger = "axis") %>% 
+  e_timeline_opts(playInterval = 1000) %>% 
+  e_timeline_serie(
+    title = list(
+      list(text = "Goldman Sachs"),
+      list(text = "Google")
+    )
+  )
 ```
