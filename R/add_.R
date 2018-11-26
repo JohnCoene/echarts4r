@@ -25,7 +25,7 @@ e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 
       e <- .set_x_axis(e, x_index, i)
     
     if(coord_system == "polar"){
-      e.serie$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
+      e_serie$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
     }
     
     
@@ -284,7 +284,6 @@ e_step_ <- function(e, serie, bind = NULL, step = c("start", "middle", "end"), f
         name = nm,
         type = "line",
         coordinateSystem = coord_system,
-        areaStyle = list(),
         step = step[1],
         ...
       )

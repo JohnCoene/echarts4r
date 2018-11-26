@@ -32,7 +32,7 @@ iris %>%
   e_title("Grouped data")
 ```
 
-The above plot one line (`e_line`) for each group (`group_by`). _At one exception_, when `timeline` is set to `TRUE` when the chart is initialised with `e_charts`. In the latter case each group is used as a step of the timeline.
+The above plot one line (`e_line`) for each group (`group_by`). _At one exception_, since `0.2.1`, when `timeline` is set to `TRUE` when the chart is initialised with `e_charts`. In the latter case each group is used as a step of the timeline.
 
 ```{r}
 iris %>% 

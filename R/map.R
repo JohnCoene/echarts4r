@@ -125,10 +125,10 @@ e_map_ <- function(e, serie = NULL, map = "world", name = NULL, rm_x = TRUE, rm_
     if(!is.null(serie)){
       data <- .build_data2(e$x$data[[i]], serie)
       data <- .add_bind2(e, data, e$x$mapping$x, i = i)
-      dat <- data
+      app_data <- list(data = data)
+    } else {
+      app_data <- list()
     }
-    
-    app_data <- list(data = dat)
     
     if(!e$x$tl){
       

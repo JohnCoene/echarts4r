@@ -1,0 +1,78 @@
+---
+title: "Timeline"
+author: "John Coen"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(echarts4r)
+```
+
+`echarts4r` version `0.2.1` supports the timeline component!
+
+```{r}
+# fake data
+df <- data.frame(
+  year = c(
+    rep(2016, 25),
+    rep(2017, 25),
+    rep(2018, 25),
+    rep(2019, 25)
+  ),
+  x = runif(100, 1, 10),
+  y = runif(100, 2, 35),
+  grp = c(
+    rep("A", 50),
+    rep("B", 50)
+  )
+)
+```
+
+With the phoney data:
+
+```{r}
+df %>% 
+  group_by(year) %>% 
+  e_charts(x, timeline = TRUE) %>% 
+  e_scatter(y)
+```
+
+It works with most chart types.
+
+```{r}
+df %>% 
+  group_by(year) %>% 
+  e_charts(x, timeline = TRUE) %>% 
+  e_scatter(y) %>% 
+  e_loess(y ~ x)
+```
+
+You can pass options to the timeline with `e_timeline_opts`.
+
+```{r}
+library(dplyr)
+library(echarts4r.maps)
+
+df <- USArrests
+
+df %>% 
+  mutate(
+    state = row.names(.),
+    bins = ntile(UrbanPop, 3)
+  ) %>% 
+  group_by(bins) %>% 
+  e_charts(state, timeline = TRUE) %>% 
+  em_map("USA") %>% 
+  e_map(Murder, map = "USA") %>% 
+  e_visual_map(Murder) %>% 
+  e_timeline_opts(autoPlay = TRUE)
+```

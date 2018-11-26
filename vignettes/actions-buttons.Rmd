@@ -17,8 +17,6 @@ knitr::opts_chunk$set(
 library(echarts4r)
 ```
 
-<span class="label label-warning"><i class="fa fa-warning"></i></span> Still under development, please report issues.
-
 Since version `1.2.0` one can add actions and optionally tie them to buttons.
 
 ## Actions

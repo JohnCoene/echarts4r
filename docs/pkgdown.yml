@@ -1,6 +1,6 @@
-pandoc: 2.2.1
-pkgdown: 1.1.0
-pkgdown_sha: ~
+pandoc: 2.3.1
+pkgdown: 1.2.0.9000
+pkgdown_sha: c980e84a573614087c6e151d5e6e19a22748b761
 articles:
   actions-buttons: actions-buttons.html
   advanced: advanced.html
@@ -18,7 +18,6 @@ articles:
   grid: grid.html
   leaflet-mapbox: leaflet-mapbox.html
   make-geo-json: make-geo-json.html
-  make_geo_json: make_geo_json.html
   map: map.html
   map3d: map3d.html
   mark: mark.html
@@ -27,6 +26,7 @@ articles:
   stats: stats.html
   themes: themes.html
   threeD: threeD.html
+  timeline: timeline.html
   toolbox: toolbox.html
   tooltip: tooltip.html
 urls:

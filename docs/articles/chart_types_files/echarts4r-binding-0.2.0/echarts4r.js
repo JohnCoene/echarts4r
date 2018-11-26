@@ -26,8 +26,10 @@ HTMLWidgets.widget({
             echarts.registerTheme(x.theme, th);
           }
           
-          if(x.registerMap === true){
-            echarts.registerMap(x.mapName, x.geoJSON);
+          if(x.hasOwnProperty('registerMap')){
+            for( var map = 0; map < x.registerMap.length; map++){
+              echarts.registerMap(x.registerMap[map].mapName, x.registerMap[map].geoJSON);
+            }
           }
         }
         
@@ -41,13 +43,20 @@ HTMLWidgets.widget({
         
         // shiny callbacks
         if (HTMLWidgets.shinyMode) {
+          
           chart.on("brushselected", function(e){
-            Shiny.onInputChange(el.id + '_brush' + ":echarts4rParse", e.batch[0].selected);
+            Shiny.onInputChange(el.id + '_brush' + ":echarts4rParse", e);
           });
           
           chart.on("legendselectchanged", function(e){
             Shiny.onInputChange(el.id + '_legend_change' + ":echarts4rParse", e.name);
           });
+          
+          if(x.hasOwnProperty('capture')){
+            chart.on(x.capture, function(e){
+              Shiny.onInputChange(el.id + '_' + x.capture + ":echarts4rParse", e);
+            });
+          }
           
           chart.on("click", function(e){
             Shiny.onInputChange(el.id + '_clicked_data' + ":echarts4rParse", e.data);
@@ -110,9 +119,7 @@ HTMLWidgets.widget({
         
         // buttons
         var buttons = x.buttons;
-        console.log(buttons);
         Object.keys(buttons).map( function(buttonId){
-          console.log(buttonId);
           document.getElementById(buttonId).addEventListener('click', 
             (function(id) {
               const scoped_id = id;
@@ -133,8 +140,8 @@ HTMLWidgets.widget({
         }
         
         if(x.hasOwnProperty('off')){
-          for(var e = 0; e < x.off.length; e++){
-            chart.off(x.off[e].event, x.off[e].query, x.off[e].handler);
+          for(var ev = 0; ev < x.off.length; ev++){
+            chart.off(x.off[ev].event, x.off[ev].query, x.off[ev].handler);
           }
         }
         
@@ -213,7 +220,6 @@ if (HTMLWidgets.shinyMode) {
   
   Shiny.addCustomMessageHandler('e_showtip_p',
     function(data) {
-      console.log(data);
       var chart = get_e_charts(data.id);
       if (typeof chart != 'undefined') {
         chart.dispatchAction(data.opts);

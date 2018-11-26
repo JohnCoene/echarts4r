@@ -43,13 +43,20 @@ HTMLWidgets.widget({
         
         // shiny callbacks
         if (HTMLWidgets.shinyMode) {
+          
           chart.on("brushselected", function(e){
-            Shiny.onInputChange(el.id + '_brush' + ":echarts4rParse", e.batch[0].selected);
+            Shiny.onInputChange(el.id + '_brush' + ":echarts4rParse", e);
           });
           
           chart.on("legendselectchanged", function(e){
             Shiny.onInputChange(el.id + '_legend_change' + ":echarts4rParse", e.name);
           });
+          
+          if(x.hasOwnProperty('capture')){
+            chart.on(x.capture, function(e){
+              Shiny.onInputChange(el.id + '_' + x.capture + ":echarts4rParse", e);
+            });
+          }
           
           chart.on("click", function(e){
             Shiny.onInputChange(el.id + '_clicked_data' + ":echarts4rParse", e.data);
