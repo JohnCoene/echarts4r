@@ -79,7 +79,11 @@ remotes::install_github("JohnCoene/echarts4r") # github
 
 ## Companions
 
-Companion packages to make `echarts4r` even better.
+Companion packages to make `echarts4r` even better. You can install and load the whole suite with:
+
+```{r, eval = FALSE}
+remotes::install_github("JohnCoene/echarts4r.suite")
+```
 
 ```{r, echo=FALSE}
 div(
