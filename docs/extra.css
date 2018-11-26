@@ -90,3 +90,7 @@ pre {
   color: #d8d8d8;
   background-color: #293c55;
 }
+
+a:hover, a:focus {
+  color: #293c55;
+}

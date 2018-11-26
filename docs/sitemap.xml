@@ -16,6 +16,9 @@
     <loc>http://echarts4r.john-coene.com/reference/axis3d.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/band.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/callbacks.html</loc>
   </url>
   <url>
@@ -187,9 +190,6 @@
     <loc>http://echarts4r.john-coene.com/reference/e_text_style.html</loc>
   </url>
   <url>
-    <loc>http://echarts4r.john-coene.com/reference/e_timeline_opts.html</loc>
-  </url>
-  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_title.html</loc>
   </url>
   <url>
@@ -284,6 +284,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/theme.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/timeline-opts.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/toolbox.html</loc>
