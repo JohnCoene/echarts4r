@@ -90,7 +90,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
     
     row.names(data) <- NULL
     
-    if(!is.null(xmap))
+    if(!is.null(xmap) && !isTRUE(timeline))
       data <- .arrange_data_x(data, xmap)
     
     x$data <- map_grps_(data)
