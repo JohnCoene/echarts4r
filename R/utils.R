@@ -13,6 +13,18 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   return(data)
 }
 
+.arrange_data_by_group <- function(data, x){
+  
+  vect <- data[[1]][[x]]
+  
+  for(i in 1:length(data)){
+    if(inherits(vect, "numeric") || inherits(vect, "integer"))
+      data[[i]] <- data[[i]] %>% dplyr::arrange_(x)
+  }
+  
+  return(data)
+}
+
 .assign_axis <- function(x, data){
   x$mapping$include_x <- FALSE
   cl <- x$mapping$x_class

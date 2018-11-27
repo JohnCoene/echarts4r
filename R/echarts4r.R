@@ -67,6 +67,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
                      renderer = "canvas", timeline = FALSE, ...) {
 
   xmap <- NULL
+  
   if(!missing(x))
     xmap <- deparse(substitute(x))
 
@@ -104,8 +105,14 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
   
   if(isTRUE(timeline)){
     
+    if(missing(data))
+      stop("timeline expects data", call. = FALSE)
+    
     if(!dplyr::is_grouped_df(data))
       stop("must pass grouped data when timeline = TRUE", call. = FALSE)
+    
+    if(!is.null(xmap))
+      x$data <- .arrange_data_by_group(x$data, xmap)
     
     tl <- list(
       baseOption = list(
