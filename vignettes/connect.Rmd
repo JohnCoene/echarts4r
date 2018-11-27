@@ -66,17 +66,16 @@ create_chart <- function(data, var){
   data %>% 
     e_charts_(
         "mpg",
-        height = 200,
-        elementId = var # specify id
+        height = 200
     ) %>% 
     e_scatter_(var, name = "Click me!") %>% 
-    e_group("4charts")
+    e_group("4charts") # all charts in the same group
 }
 e4 <- create_chart(mtcars, "hp")
 e5 <- create_chart(mtcars, "wt")
 e6 <- create_chart(mtcars, "drat")
 e7 <- create_chart(mtcars, "qsec") %>% 
-  e_connect_group("4charts")
+  e_connect_group("4charts") # connect charts
 
 e_arrange(e4, e5, e6, e7, rows = 2, cols = 2)
 ```
@@ -100,14 +99,14 @@ UK <- data.frame(
   murder = c(.8, 5, 13.2, 17.4)
 )
 
-e8 <- UK %>% 
+e9 <- UK %>% 
   e_charts(kingdoms) %>%
   em_map("United_Kingdom") %>% 
   e_map_3d(murder, map = "United_Kingdom", name = "Murder", boxWidth = 50) %>% 
   e_visual_map(murder, show = FALSE) %>% 
   e_connect("US")
 
-e_arrange(e6, e7, cols = 2, rows = 1)
+e_arrange(e8, e9, cols = 2, rows = 1)
 ```
 
 On the geo-spatial visualisations above you can slide the visual map to filter states/kingdoms (because `e_visual_map` defaults to `calculable = TRUE`).
