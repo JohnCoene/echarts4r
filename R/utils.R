@@ -570,8 +570,13 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
 }
 
 .e_graphic_elem <- function(e, elem, ...){
-  if(length(e$x$opts$graphic) == 0)
-    e$x$opts$graphic <- list(...)
+  
+  if(!e$x$tl){
+    if(length(e$x$opts$graphic) == 0)
+      e$x$opts$graphic <- list(...)
+  } else 
+    if(length(e$x$opts$baseOption$graphic) == 0)
+      e$x$opts$baseOption$graphic <- list(...)
   
   opts <- list(type = elem, ...)
   

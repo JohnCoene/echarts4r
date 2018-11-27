@@ -50,7 +50,10 @@ e_graphic_g <- function(e, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  e$x$opts$graphic <- list(...)
+  if(!e$x$tl)
+    e$x$opts$graphic <- list(...)
+  else
+    e$x$opts$baseOption$graphic <- list(...)
   e
 }
 
