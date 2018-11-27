@@ -62,25 +62,23 @@ e_arrange(e1, e2, e3)
 The package natively links interactions, therefore, in the following the legend is acutally unique, one legend will trigger on both charts because they bear the same name.
 
 ```{r}
-e4 <- mtcars %>% 
-    e_charts(
-        mpg,
+create_chart <- function(data, var){
+  data %>% 
+    e_charts_(
+        "mpg",
         height = 200,
-        elementId = "chart" # specify id
+        elementId = var # specify id
     ) %>% 
-    e_scatter(wt, name = "Click me!")
+    e_scatter_(var, name = "Click me!") %>% 
+    e_group("4charts")
+}
+e4 <- create_chart(mtcars, "hp")
+e5 <- create_chart(mtcars, "wt")
+e6 <- create_chart(mtcars, "drat")
+e7 <- create_chart(mtcars, "qsec") %>% 
+  e_connect_group("4charts")
 
-e5 <- mtcars %>% 
-    e_charts(
-        wt,
-        height = 200
-    ) %>% 
-    e_scatter(qsec, name = "Click me!") %>% 
-    e_connect("chart") # connect
-```
-
-```{r, eval = TRUE}
-e_arrange(e4, e5)
+e_arrange(e4, e5, e6, e7, rows = 2, cols = 2)
 ```
 
 You can connect pretty much anything, including geospatial visualisations, it'll work as long as they share one or more thing in common (i.e.: serie `name`).
@@ -90,7 +88,7 @@ library(echarts4r.maps)
 
 USArrests$state <- row.names(USArrests)
 
-e6 <- USArrests %>% 
+e8 <- USArrests %>% 
   e_charts(state, elementId = "US") %>%
   em_map("USA") %>% 
   e_map_3d(Murder, map = "USA", name = "Murder", boxWidth = 70) %>% 
@@ -102,7 +100,7 @@ UK <- data.frame(
   murder = c(.8, 5, 13.2, 17.4)
 )
 
-e7 <- UK %>% 
+e8 <- UK %>% 
   e_charts(kingdoms) %>%
   em_map("United_Kingdom") %>% 
   e_map_3d(murder, map = "United_Kingdom", name = "Murder", boxWidth = 50) %>% 
