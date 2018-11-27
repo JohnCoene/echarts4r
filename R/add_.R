@@ -73,6 +73,9 @@ e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 
       ...
     )
     
+    if(isTRUE(legend))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+    
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(series_opts))
   }
   
@@ -152,6 +155,9 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
       ...
     )
     
+    if(isTRUE(legend))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+    
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(series_opts))
   }
   
@@ -212,9 +218,6 @@ e_area_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
       e$x$opts$series <- append(e$x$opts$series, list(l))
     } else {
       
-      if(isTRUE(legend))
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-      
       e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(l))
       
     }
@@ -232,6 +235,9 @@ e_area_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
       areaStyle = list(),
       ...
     )
+    
+    if(isTRUE(legend))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
     
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(series_opts))
   }
@@ -296,9 +302,6 @@ e_step_ <- function(e, serie, bind = NULL, step = c("start", "middle", "end"), f
       e$x$opts$series <- append(e$x$opts$series, list(l))
     } else {
       
-      if(isTRUE(legend))
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-      
       e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(l))
       
     }
@@ -317,6 +320,9 @@ e_step_ <- function(e, serie, bind = NULL, step = c("start", "middle", "end"), f
       step = step[1],
       ...
     )
+    
+    if(isTRUE(legend))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
     
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(series_opts))
   }
@@ -417,9 +423,6 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
       
     } else {
       
-      if(isTRUE(legend))
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-      
       e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(e.serie))
       
     }
@@ -433,6 +436,9 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
       type = "scatter",
       ...
     )
+    
+    if(isTRUE(legend))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
     
     series_opts <- append(opts, add_opts)
     
@@ -525,9 +531,6 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 
       
     } else {
       
-      if(isTRUE(legend))
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-      
       e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(e.serie))
       
     }
@@ -541,6 +544,9 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 
       type = "effectScatter",
       ...
     )
+    
+    if(isTRUE(legend))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
     
     series_opts <- append(opts, add_opts)
     
@@ -586,9 +592,6 @@ e_candle_ <- function(e, opening, closing, low, high, bind = NULL, name = NULL, 
       e$x$opts$series <- append(e$x$opts$series, list(e.serie))
     } else {
       
-      if(isTRUE(legend))
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-      
       e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(e.serie))
       
     }
@@ -603,6 +606,9 @@ e_candle_ <- function(e, opening, closing, low, high, bind = NULL, name = NULL, 
       type = "candlestick",
       ...
     )
+    
+    if(isTRUE(legend))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
     
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(add_opts))
   }
@@ -702,11 +708,6 @@ e_funnel_ <- function(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE
       e$x$opts$series <- append(e$x$opts$series, list(serie))
     } else {
       
-      if(isTRUE(legend)){
-        legend <- .get_data(e, labels) %>% as.character() %>% unique
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, legend)
-      }
-      
       e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie))
 
     }
@@ -714,6 +715,11 @@ e_funnel_ <- function(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE
   }
   
   if(isTRUE(e$x$tl)){
+    
+    if(isTRUE(legend)){
+      legend <- .get_data(e, labels) %>% as.character() %>% unique
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, legend)
+    }
     
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(opts))
   }
@@ -908,7 +914,7 @@ e_pie_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRU
       serie_opts <- append(serie_opts, serie_data)
       
       if(isTRUE(legend))
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, e$x$data[[e$x$mapping$x]])
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, e$x$data[[i]][[e$x$mapping$x]])
       
       e$x$opts$series <- append(e$x$opts$series, list(serie_opts))
       
@@ -920,8 +926,16 @@ e_pie_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRU
     
   }
   
-  if(isTRUE(e$x$tl))
+  if(isTRUE(e$x$tl)){
+    
+    if(isTRUE(legend))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, 
+                                                purrr::map(e$x$data, "model") %>% 
+                                                  unlist() %>% 
+                                                  unique)
+    
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
+  }
   
   e
 }
@@ -1158,18 +1172,18 @@ e_lines_3d_ <- function(e, source_lon, source_lat, target_lon, target_lat, sourc
       e$x$opts$series <- append(e$x$opts$series, list(serie))
     } else {
       
-      if(!is.null(name)){
-        e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+      if(!is.null(name))
         serie_opts$name <- name
-      }
       
       e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie_data))
     }
     
   }
   
-  if(isTRUE(e$x$tl))
+  if(isTRUE(e$x$tl)){
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
+    e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+  }
   
   e
 }
@@ -1223,9 +1237,6 @@ e_line_3d_ <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, r
       
     } else {
       
-      if(!is.null(name))
-        e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, name)
-      
       if(!length(e$x$opts$zAxis3D))
         e$x$opts$baseOption$zAxis3D <- list(list(show = TRUE))
       
@@ -1249,7 +1260,10 @@ e_line_3d_ <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, r
     )
     
     if(!is.null(coord_system))
-      e.serie$coordinateSystem <- coord_system
+      serie_opts$coordinateSystem <- coord_system
+    
+    if(!is.null(name))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, name)
     
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
     
@@ -1325,9 +1339,6 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
           e$x$opts$baseOption$grid3D <- list(list(show = TRUE))
       }
       
-      if(!is.null(name))
-        e$x$opts$baseOption$legend$data <- append(e$x$opts$legend$data, name)
-      
       e_serie <- list(data = data)
       
       e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(e_serie))
@@ -1344,6 +1355,9 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
       coordinateSystem = coord_system,
       ...
     )
+    
+    if(!is.null(name))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$legend$data, name)
     
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
     
@@ -1524,9 +1538,6 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
       
       e_serie <- append(e_serie, e_data)
       
-      if(isTRUE(legend))
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
-      
       e$x$opts$series <- append(e$x$opts$series, list(e_serie))
       
     } else {
@@ -1535,8 +1546,13 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
     
   }
   
-  if(e$x$tl)
+  if(e$x$tl){
+    if(isTRUE(legend))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(nm))
+    
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(e_serie))
+  }
+    
   
   e
 }

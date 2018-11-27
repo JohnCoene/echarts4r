@@ -1932,7 +1932,7 @@ e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smoot
       l_data <- list(data = vector)
       
       l_opts <- list(
-        name = nm,
+        name = name,
         type = "line",
         symbol = symbol,
         smooth = smooth,
@@ -2006,6 +2006,7 @@ e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smo
         type = "line",
         yAxisIndex = y_index,
         xAxisIndex = x_index,
+        name = name,
         ...
       )
       
