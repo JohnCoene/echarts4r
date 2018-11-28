@@ -1,37 +1,13 @@
 url: http://echarts4r.john-coene.com
 
 template:
+  path: pkgdown/templates
   params:
     bootswatch: lumen
     ganalytics: UA-74544116-1
     docsearch:
       api_key: f67fcda57c44388a248e49a457aa4fe7
       index_name: echarts4r
-
-articles:
-  - title: "Usage"
-    desc: >
-      Get Familiar with echarts4r.
-    contents:
-    - get_started
-    - advanced
-    - chart_types
-    - map
-    - geo
-    - map3d
-    - geo3d
-    - globe
-    - threeD
-    - gl
-    - graph
-    - pictorial
-    - grid
-    - brush
-    - stats
-    - toolbox
-    - tooltip
-    - shiny
-    - themes
 
 development:
   mode: release
@@ -69,7 +45,7 @@ navbar:
           href: articles/pictorial.html
         - text: "3D"
           href: articles/threeD.html
-    - text: "Geospatial"
+    - text: "Geo"
       menu:
         - text: "Map"
           href: articles/map.html
