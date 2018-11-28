@@ -94,11 +94,3 @@ pre {
 a:hover, a:focus {
   color: #293c55;
 }
-
-.navbar-brand {
-  padding: 15px 0 0 54px;
-  background-image: url(logo.png);
-  background-size: 32px auto;
-  background-repeat: no-repeat;
-  background-position: 15px center; 
-}

@@ -49,7 +49,7 @@ navbar:
       menu:
         - text: "Map"
           href: articles/map.html
-        - text: "Geo"
+        - text: "Geospatial"
           href: articles/geo.html
         - text: "Map 3D"
           href: articles/map3d.html
