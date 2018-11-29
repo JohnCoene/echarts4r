@@ -645,6 +645,7 @@ e_text_style <- function(e, ...){
 #' @param ids Scalar, vector or list of ids of chart to connect with.
 #' @param rows,cols Number of rows and columns.
 #' @param ... Any \code{echarts} objects.
+#' @param width Wdith of columns, one of \code{xs}, \code{md}, \code{lg}.
 #' @param group Group name.
 #' @param title Title of charts.
 #' 
@@ -732,7 +733,7 @@ e_disconnect_group <- function(e, group = NULL){
 
 #' @rdname connections
 #' @export
-e_arrange <- function(..., rows = NULL, cols = NULL, title = NULL){
+e_arrange <- function(..., rows = NULL, cols = NULL, width = "xs", title = NULL){
   
   plots <- list(...)
   

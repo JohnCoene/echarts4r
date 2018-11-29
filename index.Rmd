@@ -6,6 +6,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(dplyr)
 library(htmltools)
 library(echarts4r)
 ```
@@ -154,6 +155,7 @@ div(
 Create multiple charts, arrange them in a grid and connect their interactions.
 
 ```{r}
+library(dplyr)
 library(echarts4r)
 
 e1 <- iris %>% 
@@ -193,12 +195,12 @@ e1 <- iris %>%
   )
 
 e2 <- iris %>% 
-  group_by(Species) %>% 
-  e_charts(Sepal.Length) %>% 
-  e_line(Petal.Length) %>% 
+  group_by(Species) %>%
+  e_charts(Petal.Length) %>% 
+  e_line(Sepal.Length) %>% 
   e_connect("chart") %>% 
   e_datazoom(y_index = 0) %>% 
-  e_x_axis(min = 4) %>% 
+  e_x_axis(min = 0) %>% 
   e_legend(bottom = 5) %>% 
   e_tooltip(
     trigger = "item",

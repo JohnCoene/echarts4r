@@ -1,6 +1,6 @@
 ---
 title: "Timeline"
-author: "John Coene"
+futhor: "John Coene"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -22,6 +22,8 @@ library(echarts4r)
 ```
 
 `echarts4r` version `0.2.1` supports the timeline component!
+
+Let's create some phoney data to demonstrate.
 
 ```{r}
 # fake data
@@ -88,7 +90,8 @@ df %>%
   em_map("USA") %>% 
   e_map(Value, map = "USA") %>% 
   e_visual_map(min = 0, max = 1) %>% 
-  e_timeline_opts(autoPlay = TRUE)
+  e_timeline_opts(autoPlay = TRUE) %>% 
+  e_datazoom()
 ```
 
 The function `e_timeline_opts` is used to set general options on the timeline, i.e.: auto-play like above. The full list of options is on the [official website](https://ecomfe.github.io/echarts-doc/public/en/option.html#timeline).
@@ -126,3 +129,35 @@ data %>%
     )
   )
 ```
+
+## Connect
+
+You can also connect timelines as shown in the [connect](articles/connect.html) documentation. All principles shown there still hold for timelines. _However_, some things might not work properly; this is not on `echarts4r` but the original library.
+
+```{r}
+# timeline
+e1 <- iris %>%
+  group_by(Species) %>%
+  e_charts(Sepal.Length, timeline = TRUE, height = 250) %>%
+  e_line(Sepal.Width) %>%
+  e_datazoom(show = FALSE) %>%
+  e_timeline_opts(
+    orient = "vertical",
+    right = 0,
+    top = 0,
+    bottom = 0
+  ) %>%
+  e_group("connected")
+
+e2 <- iris %>%
+  group_by(Species) %>%
+  e_charts(Sepal.Length, height = 250) %>%
+  e_line(Sepal.Width) %>%
+  e_group("connected") %>%
+  e_datazoom() %>%
+  e_connect_group("connected")
+
+e_arrange(e1, e2, rows = 2)
+```
+
+Hopefully this will be fixed soon!

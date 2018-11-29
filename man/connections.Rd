@@ -17,7 +17,8 @@ e_connect_group(e, group)
 
 e_disconnect_group(e, group = NULL)
 
-e_arrange(..., rows = NULL, cols = NULL, title = NULL)
+e_arrange(..., rows = NULL, cols = NULL, width = "xs",
+  title = NULL)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -29,6 +30,8 @@ e_arrange(..., rows = NULL, cols = NULL, title = NULL)
 \item{...}{Any \code{echarts} objects.}
 
 \item{rows, cols}{Number of rows and columns.}
+
+\item{width}{Wdith of columns, one of \code{xs}, \code{md}, \code{lg}.}
 
 \item{title}{Title of charts.}
 }
