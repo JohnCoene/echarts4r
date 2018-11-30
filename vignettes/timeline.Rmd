@@ -90,8 +90,7 @@ df %>%
   em_map("USA") %>% 
   e_map(Value, map = "USA") %>% 
   e_visual_map(min = 0, max = 1) %>% 
-  e_timeline_opts(autoPlay = TRUE) %>% 
-  e_datazoom()
+  e_timeline_opts(autoPlay = TRUE) 
 ```
 
 The function `e_timeline_opts` is used to set general options on the timeline, i.e.: auto-play like above. The full list of options is on the [official website](https://ecomfe.github.io/echarts-doc/public/en/option.html#timeline).
@@ -127,7 +126,7 @@ data %>%
       list(text = "Goldman Sachs"),
       list(text = "Google")
     )
-  )
+  ) 
 ```
 
 ## Connect
