@@ -18,19 +18,48 @@ knitr::opts_chunk$set(
 library(echarts4r)
 ```
 
-### Boxplot
+
+## Confidence Bands
+
+```{r}
+data <- jsonlite::fromJSON(
+  paste0(
+    "https://ecomfe.github.io/echarts-examples/public/",
+    "data/asset/data/confidence-band.json"
+  )
+)
+
+data %>% 
+  dplyr::mutate(
+    date = as.Date(date, "%Y-%m-%d"),
+    l = l + value,
+    u = u - value
+  ) %>% 
+  e_charts(date) %>% 
+  e_line(value) %>% 
+  e_band(
+    value, l, u, 
+    color = list("grey", "grey"),
+    showSymbol = c(FALSE, FALSE)
+  )
+```
+
+## Boxplot
 
 ```{r}
 df <- data.frame(
-  x = c(1:10, 25, 30),
-  y = c(1:10, -6, 15)
+    x = rep(rnorm(100), 3),
+    grp = c(
+        rep(LETTERS[1], 100),
+        rep(LETTERS[2], 100),
+        rep(LETTERS[3], 100)
+    )
 )
 
 df %>% 
-  e_charts() %>% 
-  e_boxplot(y, outliers = TRUE) %>% 
-  e_boxplot(x, outliers = TRUE) %>% 
-  e_title("Boxplot")
+    group_by(grp) %>% 
+    e_charts() %>% 
+    e_boxplot(x)
 ```
 
 ## Histogram

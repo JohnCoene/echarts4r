@@ -13,6 +13,9 @@ __Support for timeline added__
 - Can now register multiple maps with `e_map_regiter`.
 - Error handling in `e_loess` and `e_lm` to better work with groups.
 - `e_capture` to capture events not implemented.
+- `e_bands` to add confidence bands.
+- Added example of heatmap with geo.
+- Fixed bug where the background color was not applied with `e_color`.
 
 # echarts4r 0.2.0
 
