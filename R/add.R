@@ -699,7 +699,7 @@ e_graph_edges <- function(e, edges, source, target){
 #'   e_heatmap(values, coord_system = "calendar") %>% 
 #'   e_visual_map(max = 30)
 #'   
-#' # multiple years
+#' # calendar multiple years
 #' year %>% 
 #'   dplyr::mutate(year = format(date, "%Y")) %>% 
 #'   group_by(year) %>% 
@@ -708,8 +708,26 @@ e_graph_edges <- function(e, edges, source, target){
 #'   e_calendar(range = "2018", top = 260) %>% 
 #'   e_heatmap(values, coord_system = "calendar") %>% 
 #'   e_visual_map(max = 30)
+#'   
+#' # map
+#' quakes %>%
+#'   e_charts(long) %>% 
+#'   e_geo(
+#'     boundingCoords = list(
+#'       c(190, -10),
+#'       c(180, -40)
+#'    )
+#'   ) %>% 
+#'   e_heatmap(
+#'     lat, 
+#'     mag, 
+#'     coord_system = "geo", 
+#'     blurSize = 5, 
+#'     pointSize = 3
+#'   ) %>% 
+#'   e_visual_map(mag)
 #' 
-#' # timline
+#' # timeline
 #' library(dplyr)
 #' 
 #' axis <- LETTERS[1:10]
@@ -2138,19 +2156,25 @@ e_lines_gl <- function(e, data, coord_system = "geo", ...){
 #' for the lower bound and the second for the upper bound, see examples.
 #' 
 #' @examples 
-#' df <- data.frame(
-#'   x = as.character(1:20),
-#'   y = runif(20, -120, 40),
-#'   lwr = runif(20, -316, -39),
-#'   upr = runif(20, 77, 258)
+#' data <- jsonlite::fromJSON(
+#'   paste0(
+#'     "https://ecomfe.github.io/echarts-examples/public/",
+#'     "data/asset/data/confidence-band.json"
+#'   )
 #' )
 #' 
-#' df %>% 
-#'   e_charts(x) %>% 
-#'   e_line(y) %>% 
+#' data %>% 
+#'   dplyr::mutate(
+#'     date = as.Date(date, "%Y-%m-%d"),
+#'     l = l + value,
+#'     u = u - value
+#'   ) %>% 
+#'   e_charts(date) %>% 
+#'   e_line(value) %>% # line
 #'   e_band(
-#'     y, lwr, upr, 
-#'     color = list("grey", "grey")
+#'     value, l, u, 
+#'     color = list("grey", "grey"),
+#'     showSymbol = c(FALSE, FALSE)
 #'   )
 #' 
 #' @name band

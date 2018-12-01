@@ -1930,7 +1930,7 @@ e_band_ <- function(e, serie, min, max, stack = "confidence-band", ...){
   for(i in 1:length(e$x$data)){
     
     # min
-    e$x$data[[i]][, min] <- e$x$data[[i]][[serie]] - e$x$data[[i]][[min]]
+    # e$x$data[[i]][, min] <- e$x$data[[i]][[serie]] - e$x$data[[i]][[min]]
     min_opts_index <- min_opts
     min_opts_index$e <- e
     min_opts_index$stack <- stack
@@ -1939,7 +1939,7 @@ e_band_ <- function(e, serie, min, max, stack = "confidence-band", ...){
     e <- do.call(e_area_, min_opts_index)
     
     # max
-    e$x$data[[i]][, max] <- e$x$data[[i]][[serie]] - e$x$data[[i]][[max]]
+    # e$x$data[[i]][, max] <- e$x$data[[i]][[serie]] - e$x$data[[i]][[max]]
     max_opts_index <- max_opts
     max_opts_index$e <- e
     max_opts_index$stack <- stack
