@@ -137,7 +137,7 @@ server <- function(input, output, session) {
         speed,
         height = 200
       ) %>% 
-      e_scatter(dist) %>% 
+      e_scatter(dist, name = "legend") %>% 
       e_datazoom(show = FALSE, y_index = 0) %>% 
       e_group("grp")
   })
@@ -148,7 +148,7 @@ server <- function(input, output, session) {
         dist,
         height = 200
       ) %>% 
-      e_scatter(speed) %>% 
+      e_scatter(speed, name = "legend") %>% 
       e_datazoom(y_index = 0) %>% 
       e_group("grp") %>%  # assign group
       e_connect_group("grp")
