@@ -2150,49 +2150,49 @@ e_lines_gl <- function(e, data, coord_system = "geo", ...){
 #' Add confidence bands
 #' 
 #' @inheritParams e_bar
-#' @param serie,min,max series.
+#' @param min,max series.
 #' @param stack Name of stack.
+#' @param symbol Whether to show symbols on lower and upper band lines.
+#' @param areaStyle The style of lower and upper bands, i.e.: color.
+#' @param legend Whether to show \code{min} and \code{max} in legend. 
 #' @param ... All options must be of vectors or lists of length 2 where the first argument is 
 #' for the lower bound and the second for the upper bound, see examples.
 #' 
 #' @examples 
-#' data <- jsonlite::fromJSON(
-#'   paste0(
-#'     "https://ecomfe.github.io/echarts-examples/public/",
-#'     "data/asset/data/confidence-band.json"
-#'   )
-#' )
-#' 
-#' data %>% 
+#' df <- data.frame(
+#'   x = 1:10,
+#'   y = runif(10, 5, 10)
+#' ) %>% 
 #'   dplyr::mutate(
-#'     date = as.Date(date, "%Y-%m-%d"),
-#'     l = l + value,
-#'     u = u - value
-#'   ) %>% 
-#'   e_charts(date) %>% 
-#'   e_line(value) %>% # line
-#'   e_band(
-#'     value, l, u, 
-#'     color = list("grey", "grey"),
-#'     showSymbol = c(FALSE, FALSE)
+#'     lwr = y - runif(10, 1, 3),
+#'     upr = y + runif(10, 2, 4)
 #'   )
+#' 
+#' df %>% 
+#'   e_charts(x) %>% 
+#'   e_line(y) %>% 
+#'   e_band(lwr, upr)
 #' 
 #' @name band
 #' @export
-e_band <- function(e, serie, min, max, stack = "confidence-band", ...){
+e_band <- function(e, min, max, stack = "confidence-band", symbol = c("none", "none"),
+                   areaStyle = list(list(color = "rgba(0,0,0,0)"), list()), 
+                   legend = list(FALSE, FALSE), ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  if(missing(serie) || missing(min) || missing(max))
-    stop("must pass serie, min and max", call. = FALSE)
+  if(missing(min) || missing(max))
+    stop("must pass min and max", call. = FALSE)
   
   e_band_(
-    e, 
-    deparse(substitute(serie)), 
+    e,  
     deparse(substitute(min)), 
     deparse(substitute(max)), 
     stack = "confidence-band", 
+    symbol = symbol,
+    areaStyle = areaStyle,
+    legend = legend,
     ...
   )
   

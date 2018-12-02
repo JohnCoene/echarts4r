@@ -1910,15 +1910,25 @@ e_density_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
 
 #' @rdname band
 #' @export
-e_band_ <- function(e, serie, min, max, stack = "confidence-band", ...){
+e_band_ <- function(e, min, max, stack = "confidence-band", symbol = c("none", "none"),
+                    areaStyle = list(list(color = "rgba(0,0,0,0)"), list()), 
+                    legend = list(FALSE, FALSE), ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
-  if(missing(serie) || missing(min) || missing(max))
-    stop("must pass serie, min and max", call. = FALSE)
+  if(missing(min) || missing(max))
+    stop("must pass min and max", call. = FALSE)
   
   args <- list(...)
+  
+  args$lineStyle <- list(
+    list(normal = list(opacity = 0)),
+    list(normal = list(opacity = 0))
+  )
+  args$symbol <- symbol
+  args$areaStyle <- areaStyle
+  args$legend <- legend
   
   spl <- function(x, index){
     x[[index]]
@@ -1930,13 +1940,13 @@ e_band_ <- function(e, serie, min, max, stack = "confidence-band", ...){
   for(i in 1:length(e$x$data)){
     
     # min
-    # e$x$data[[i]][, min] <- e$x$data[[i]][[serie]] - e$x$data[[i]][[min]]
     min_opts_index <- min_opts
+    
     min_opts_index$e <- e
     min_opts_index$stack <- stack
     min_opts_index$serie <- min
     
-    e <- do.call(e_area_, min_opts_index)
+    e <- do.call(e_line_, min_opts_index)
     
     # max
     # e$x$data[[i]][, max] <- e$x$data[[i]][[serie]] - e$x$data[[i]][[max]]
@@ -1945,8 +1955,9 @@ e_band_ <- function(e, serie, min, max, stack = "confidence-band", ...){
     max_opts_index$stack <- stack
     max_opts_index$serie <- max
     
-    e <- do.call(e_area_, max_opts_index)
+    e <- do.call(e_line_, max_opts_index)
   }
   
-  e
+  e %>% 
+    e_x_axis(type = "category")
 }

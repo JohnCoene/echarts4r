@@ -23,24 +23,23 @@ library(echarts4r)
 
 ```{r}
 data <- jsonlite::fromJSON(
-  paste0(
-    "https://ecomfe.github.io/echarts-examples/public/",
-    "data/asset/data/confidence-band.json"
-  )
+    paste0(
+        "https://ecomfe.github.io/echarts-examples/public/",
+        "data/asset/data/confidence-band.json"
+    )
 )
 
 data %>% 
   dplyr::mutate(
-    date = as.Date(date, "%Y-%m-%d"),
-    l = l + value,
-    u = u - value
+      date = as.Date(date, "%Y-%m-%d"),
+      l = l + value,
+      u = u - value
   ) %>% 
   e_charts(date) %>% 
-  e_line(value) %>% 
+  e_line(value, symbol = "none") %>% 
   e_band(
-    value, l, u, 
-    color = list("grey", "grey"),
-    showSymbol = c(FALSE, FALSE)
+      l, u, 
+      areaStyle = list(list(color = "grey"), list(color = "grey"))
   )
 ```
 
@@ -48,18 +47,22 @@ data %>%
 
 ```{r}
 df <- data.frame(
-    x = rep(rnorm(100), 3),
-    grp = c(
-        rep(LETTERS[1], 100),
-        rep(LETTERS[2], 100),
-        rep(LETTERS[3], 100)
-    )
+  x = c(
+    rnorm(100),
+    runif(100, -5, 10),
+    rnorm(100, 10, 3)
+  ),
+  grp = c(
+      rep(LETTERS[1], 100),
+      rep(LETTERS[2], 100),
+      rep(LETTERS[3], 100)
+  )
 )
 
 df %>% 
-    group_by(grp) %>% 
-    e_charts() %>% 
-    e_boxplot(x)
+  group_by(grp) %>% 
+  e_charts() %>% 
+  e_boxplot(x)
 ```
 
 ## Histogram

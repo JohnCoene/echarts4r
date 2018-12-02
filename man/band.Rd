@@ -6,16 +6,26 @@
 \alias{e_band_}
 \title{Confidence bands}
 \usage{
-e_band(e, serie, min, max, stack = "confidence-band", ...)
+e_band(e, min, max, stack = "confidence-band", symbol = c("none",
+  "none"), areaStyle = list(list(color = "rgba(0,0,0,0)"), list()),
+  legend = list(FALSE, FALSE), ...)
 
-e_band_(e, serie, min, max, stack = "confidence-band", ...)
+e_band_(e, min, max, stack = "confidence-band", symbol = c("none",
+  "none"), areaStyle = list(list(color = "rgba(0,0,0,0)"), list()),
+  legend = list(FALSE, FALSE), ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{serie, min, max}{series.}
+\item{min, max}{series.}
 
 \item{stack}{Name of stack.}
+
+\item{symbol}{Whether to show symbols on lower and upper band lines.}
+
+\item{areaStyle}{The style of lower and upper bands, i.e.: color.}
+
+\item{legend}{Whether to show \code{min} and \code{max} in legend.}
 
 \item{...}{All options must be of vectors or lists of length 2 where the first argument is 
 for the lower bound and the second for the upper bound, see examples.}
@@ -25,18 +35,17 @@ Add confidence bands
 }
 \examples{
 df <- data.frame(
-  x = as.character(1:20),
-  y = runif(20, -120, 40),
-  lwr = runif(20, -316, -39),
-  upr = runif(20, 77, 258)
-)
+  x = 1:10,
+  y = runif(10, 5, 10)
+) \%>\% 
+  dplyr::mutate(
+    lwr = y - runif(10, 1, 3),
+    upr = y + runif(10, 2, 4)
+  )
 
 df \%>\% 
   e_charts(x) \%>\% 
   e_line(y) \%>\% 
-  e_band(
-    y, lwr, upr, 
-    color = list("grey", "grey")
-  )
+  e_band(lwr, upr)
 
 }
