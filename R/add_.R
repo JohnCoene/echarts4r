@@ -28,7 +28,6 @@ e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 
       e_serie$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
     }
     
-    
     # timeline
     if(!e$x$tl){
       nm <- .name_it(e, serie, name, i)
