@@ -2197,3 +2197,38 @@ e_band <- function(e, min, max, stack = "confidence-band", symbol = c("none", "n
   )
   
 }
+
+#' Correlation
+#' 
+#' @inheritParams e_bar
+#' @param order Ordering method, passed to \link[corrplot]{corrMatOrder}.
+#' @param ... Any argument to pass to \code{\link{e_heatmap}} and \code{\link{e_visual_map}}.
+#' 
+#' @examples 
+#' cor(mtcars) %>% 
+#'   e_charts() %>% 
+#'   e_correlations(order = "hclust")
+#'
+#' @export
+e_correlations <- function(e, order = NULL, ...){
+  
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  mat <- e$x$data[[1]]
+  
+  if(!is.null(order)){
+    order <- corrplot::corrMatOrder(mat, order = order)
+    mat <- mat[order, order]
+  }
+  
+  row.names(mat) <- colnames(mat)
+  mat <- as.data.frame(as.table(mat))
+  names(mat) <- c("x", "y", "correlation")
+  
+  e %>% 
+    e_data(mat, x) %>% 
+    e_heatmap_("y", "correlation", ...) %>% 
+    e_visual_map_("correlation", ...)
+  
+}
