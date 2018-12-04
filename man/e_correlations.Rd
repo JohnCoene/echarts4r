@@ -4,12 +4,14 @@
 \alias{e_correlations}
 \title{Correlation}
 \usage{
-e_correlations(e, order = NULL, ...)
+e_correlations(e, order = NULL, visual_map = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
 \item{order}{Ordering method, passed to \link[corrplot]{corrMatOrder}.}
+
+\item{visual_map}{Whether to add the visual map.}
 
 \item{...}{Any argument to pass to \code{\link{e_heatmap}} and \code{\link{e_visual_map}}.}
 }
@@ -19,6 +21,13 @@ Correlation
 \examples{
 cor(mtcars) \%>\% 
   e_charts() \%>\% 
-  e_correlations(order = "hclust")
+  e_correlations(
+    order = "hclust",
+    visual_map = FALSE
+  ) \%>\% 
+  e_visual_map(
+   min = -1, 
+   max = 1
+  )
 
 }
