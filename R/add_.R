@@ -90,6 +90,12 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
+  
+  if(length(e$x$facets)){
+    x_index <- e$x$facets$current
+    y_index <- e$x$facets$current
+    e$x$facets$current <- e$x$facets$current + 1
+  }
 
   for(i in 1:length(e$x$data)){
     

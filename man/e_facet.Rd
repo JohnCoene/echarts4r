@@ -17,13 +17,3 @@ Create facets for multiple plots.
 \details{
 Each serie, i.e.:\code{\link{e_bar}} will be plotted against a facet.
 }
-\examples{
-mtcars \%>\% 
-  e_charts(mpg) \%>\% 
-  e_facet(cols = 2) \%>\% 
-  e_bar(qsec) \%>\% 
-  e_bar(drat) \%>\% 
-  e_bar(wt)
-
-}
-\keyword{internal}

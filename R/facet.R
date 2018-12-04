@@ -6,16 +6,6 @@
 #' @param rows,cols Number of rows and columns.
 #' 
 #' @details Each serie, i.e.:\code{\link{e_bar}} will be plotted against a facet.
-#' 
-#' @examples 
-#' mtcars %>% 
-#'   e_charts(mpg) %>% 
-#'   e_facet(cols = 2) %>% 
-#'   e_bar(qsec) %>% 
-#'   e_bar(drat) %>% 
-#'   e_bar(wt)
-#'
-#' @keywords internal
 e_facet <- function(e, rows = 1, cols = 1){
   
   # number of series
@@ -46,13 +36,13 @@ e_facet <- function(e, rows = 1, cols = 1){
   
   for(i in 1:g){
     
-    if(i %% 2 == 0 && cols > 1)
-      top <- paste0(ttop, "%")
+    if(cols > 1)
+      top <- paste0(ttop * (i - 1), "%")
     else
       top <- "5%"
     
-    if(i %% 2 == 0 && rows > 1)
-      left <- paste0(lleft, "%")
+    if(rows > 1)
+      left <- paste0(lleft * (i - 1), "%")
     else
       left <- "5%"
     
@@ -63,8 +53,8 @@ e_facet <- function(e, rows = 1, cols = 1){
         top = top,
         left = left
       ) %>% 
-      e_y_axis(gridIndex = i - 1, index = i - 1) %>%
-      e_x_axis(gridIndex = i - 1, index = i - 1) 
+      e_y_axis(gridIndex = i - 1, index = i) %>%
+      e_x_axis(gridIndex = i - 1, index = i) 
   }
   
   e$x$facets <- list(
