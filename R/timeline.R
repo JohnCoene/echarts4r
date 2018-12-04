@@ -3,6 +3,7 @@
 #' Set timeline options
 #' 
 #' @inheritParams e_bar
+#' @param axis_type Type of axis, \code{time}, \code{value}, or \code{category}
 #' @param ... Named options.
 #' 
 #' @section Functions:
@@ -37,13 +38,15 @@
 #' 
 #' @name timeline-opts
 #' @export
-e_timeline_opts <- function(e, ...){
+e_timeline_opts <- function(e, axis_type = "category", ...){
   
   if(missing(e))
     stop("missing e", call. = FALSE)
   
   if(!e$x$tl)
     warning("timeline not enabled in e_chart", call. = FALSE)
+  
+  e$x$opts$baseOption$timeline$axisType <- axis_type
   
   e$x$opts$baseOption$timeline <- append(e$x$opts$baseOption$timeline, list(...))
   
