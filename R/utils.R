@@ -76,7 +76,7 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
 .build_data_size <- function(data, x, y, size, scale, symbol_size){
   row.names(data) <- NULL
   
-  data[["sizeECHARTS"]] <- data[[size]]
+  data[["sizeECHARTS"]] <- as.numeric(data[[size]])
   
   if(!is.null(scale))
     data[["sizeECHARTS"]] <- scale(data[["sizeECHARTS"]]) * symbol_size
