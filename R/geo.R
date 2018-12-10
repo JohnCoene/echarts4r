@@ -45,6 +45,7 @@ e_geo_3d <- function(e, serie, color, type = "world", rm_x = TRUE, rm_y = TRUE, 
 #' @rdname e_geo_3d
 #' @export
 e_geo_3d_ <- function(e, serie = NULL, color = NULL, type = "world", rm_x = TRUE, rm_y = TRUE, ...){
+  
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -57,9 +58,9 @@ e_geo_3d_ <- function(e, serie = NULL, color = NULL, type = "world", rm_x = TRUE
   )
   
   if(!is.null(color) && !is.null(serie))
-    series$regions <- .build_height(e, serie, color)
+    series$regions <- .build_height(e, serie, color, j = 1)
   else if(is.null(color) && !is.null(serie))
-    series$regions <- .build_height(e, serie)
+    series$regions <- .build_height(e, serie, j = 1)
   
   if(!e$x$tl)
     e$x$opts$geo3D <- series
