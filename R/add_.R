@@ -1565,8 +1565,11 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
 #' @rdname e_flow_gl
 #' @export
 e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...){
+  
   if(missing(e))
     stop("must pass e", call. = FALSE)
+  
+  e$x$renderer <- "webgl"
   
   if(missing(y) || missing(sx) || missing(sy))
     stop("must pass y and z", call. = FALSE)
@@ -1608,6 +1611,8 @@ e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRU
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
+  
+  e$x$renderer <- "webgl"
   
   if(missing(y) || missing(z))
     stop("must pass y and z", call. = FALSE)

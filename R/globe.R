@@ -29,6 +29,11 @@
 #' @export
 e_globe <- function(e, environment = NULL, base_texture = NULL, height_texture = NULL, ...){
   
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  e$x$renderer <- "webgl"
+  
   ls <- list(
     environment = environment,
     heightTexture = height_texture,

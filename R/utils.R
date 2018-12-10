@@ -1,4 +1,4 @@
-globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss"))
+globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss"))
 
 `%||%` <- function(x, y) {
   if (!is.null(x)) x else y
@@ -80,8 +80,6 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
   
   if(!is.null(scale))
     data[["sizeECHARTS"]] <- scale(data[["sizeECHARTS"]]) * symbol_size
-  else 
-    data[["sizeECHARTS"]] <- data[[size]]
   
   data %>% 
     dplyr::select_(x, y, size, "sizeECHARTS") %>% 
@@ -480,10 +478,10 @@ globalVariables(c("e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss
 }
 
 
-.build_height <- function(e, serie, color){
+.build_height <- function(e, serie, color, j){
   
   #data <- .build_data(e, e$x$mapping$x, serie, names = c("name", "height"))
-  e$x$data[[1]] %>%
+  e$x$data[[j]] %>%
     dplyr::select_(
       name = e$x$mapping$x,
       height = serie
