@@ -23,6 +23,9 @@ map_grps_ <- function(data){
     data <- Map(filter_grp, grps)
     names(data) <- grps
     
+    # order groups for timeline consistency using timeline
+    data <- data[order(names(data))] 
+    
   } else {
     row.names(data) <- NULL
     data <- list(data)
