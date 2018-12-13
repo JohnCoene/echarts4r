@@ -116,8 +116,11 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
       if(x_index != 0)
         e <- .set_x_axis(e, x_index, i)
       
-      l$yAxisIndex <- y_index
-      l$xAxisIndex <- x_index
+      if(!e$x$tl){
+        l$yAxisIndex <- y_index
+        l$xAxisIndex <- x_index
+      }
+      
     } else if(coord_system == "polar") {
       l$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
     }

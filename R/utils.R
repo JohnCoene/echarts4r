@@ -375,10 +375,12 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   
   raxis <- .r2axis(axis)
   
-  if(length(e$x$opts[[raxis]]) - 1 < index){
+  update <- length(e$x$opts[[raxis]]) - 1 < index || length(e$x$opts$baseOption[[raxis]]) - 1 < index
+  
+  if(update){
     type <- .get_type(e, serie)
     
-    axis <- list(type = type)
+    ax <- list(type = type)
     
     if(type != "value"){
       axis_data <- .get_data(e, serie, i)
@@ -386,14 +388,14 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
       if(length(axis_data) == 1)
         axis_data <- list(axis_data)
       
-      axis$data <- axis_data
+      ax$data <- axis_data
     }
+    
+    if(!e$x$tl)
+      e$x$opts[[raxis]][[index + 1]] <- ax
+    else
+      e$x$opts$baseOption[[raxis]][[index + 1]] <- ax
   }
-  
-  if(!e$x$tl)
-    e$x$opts[[raxis]][[index + 1]] <- axis
-  else
-    e$x$opts$baseOption[[raxis]][[index + 1]] <- axis
   
   e
 }
