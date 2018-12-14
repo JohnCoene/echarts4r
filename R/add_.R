@@ -49,9 +49,6 @@ e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 
       e$x$opts$series <- append(e$x$opts$series, list(e_serie))  
     } else {
       
-      opts <- list(...)
-      e_serie <- append(e_serie, opts)
-      
       if(isTRUE(legend))
         e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
       

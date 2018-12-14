@@ -1090,13 +1090,25 @@ e_gauge <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...){
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
   
-  e$x$opts$series <- list(
-    list(
+  for(i in 1:length(value)){
+    
+    serie <- list(
+      data = list(list(value = value[i], name = name[i]))
+    )
+    
+    opts <- list(
       type = "gauge",
-      data = list(list(value = value, name = name)),
       ...
     )
-  )
+    
+    if(!e$x$tl){
+      lst <- append(serie, opts)
+      e$x$opts$series <- append(e$x$opts$series, list(lst))
+    } else {
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie))
+      e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(opts))
+    }
+  }
   e
 }
 
