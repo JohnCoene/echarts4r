@@ -42,7 +42,7 @@ e_theme <- function(e, theme){
     stop("must pass theme", call. = FALSE)
   
   themes <- c("dark", "vintage", "westeros", "essos", "wonderland", 
-              "walden", "chalk", "infographic", "macarons", "roma",
+              "walden", "chalk", "infographic", "macarons", "roma", "theme",
               "shine", "purple-passion", "halloween", "wef", "weforum")
   
   if(!tolower(theme) %in% themes)
