@@ -20,6 +20,7 @@ Add a theme.
 \section{Themes}{
  
 \itemize{
+   \item{\code{default}}
   \item{\code{dark}}
   \item{\code{vintage}}
   \item{\code{westeros}}
