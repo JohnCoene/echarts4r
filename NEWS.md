@@ -20,6 +20,7 @@ __Support for timeline added__
 - Forces `webgl` rendering for `e_globe`, `e_scatter_gl` and `e_flow_gl`.
 - Groups are now ordered in order to ensure match across series when using `timeline = TRUE`.
 - `e_theme` now also accepts `default`.
+- `auritus` theme added.
 
 # echarts4r 0.2.0
 
