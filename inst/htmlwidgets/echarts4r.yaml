@@ -28,6 +28,7 @@ dependencies:
       - themes/halloween.js
       - themes/wef.js
       - themes/weforum.js
+      - theme/auritus.js
    stylesheet: 
       - plugins/leaflet/leaflet.css
  - name: mapbox
