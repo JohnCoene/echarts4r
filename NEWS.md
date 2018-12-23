@@ -21,6 +21,8 @@ __Support for timeline added__
 - Groups are now ordered in order to ensure match across series when using `timeline = TRUE`.
 - `e_theme` now also accepts `default`.
 - `auritus` theme added.
+- `bar.width` argument renamed to `bar_width` in `e_histogram`.
+- `e_map_3d` correctly assign ` name`
 
 # echarts4r 0.2.0
 

@@ -186,6 +186,7 @@ e_map_3d_ <- function(e, serie = NULL, map = "world", name = NULL, coord_system 
       type = "map3D",
       map = map,
       coordinateSystem = coord_system,
+      name = name,
       ...
     )
     
