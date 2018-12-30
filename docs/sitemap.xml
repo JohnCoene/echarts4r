@@ -25,6 +25,9 @@
     <loc>http://echarts4r.john-coene.com/reference/connections.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/e-tooltip.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_add.html</loc>
   </url>
   <url>
@@ -197,9 +200,6 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_title.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/reference/e_tooltip.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_tree.html</loc>

@@ -1,4 +1,4 @@
-# echarts4r 0.2.1.9000
+# echarts4r 0.2.1
 
 __Support for timeline added__
 
@@ -95,7 +95,7 @@ First iteration of the graphic low-level API:
 
 * `e_clean` to remove original data from visualisation and lighten up end product.
 
-# echarts4r 0.0.2.9000
+# echarts4r 0.0.2
 
 * `e_keras_history` added - plot `keras` history (loss & acc).
 * `e_format_axis`, `e_format_x_axis`, `e_format_y_axis` added - format axis labels & pointers.

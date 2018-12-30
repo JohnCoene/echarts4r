@@ -84,7 +84,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -245,7 +245,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -272,15 +272,18 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_axis</span>(<span class='no'>e</span>, <span class='kw'>axis</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>, <span class='st'>"z"</span>), <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>e_axis</span>(<span class='no'>e</span>, <span class='kw'>axis</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>, <span class='st'>"z"</span>), <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_x_axis</span>(<span class='no'>e</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
+<span class='fu'>e_x_axis</span>(<span class='no'>e</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_y_axis</span>(<span class='no'>e</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
+<span class='fu'>e_y_axis</span>(<span class='no'>e</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_z_axis</span>(<span class='no'>e</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_rm_axis</span>(<span class='no'>e</span>, <span class='kw'>axis</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>, <span class='st'>"z"</span>))</pre>
+<span class='fu'>e_rm_axis</span>(<span class='no'>e</span>, <span class='kw'>axis</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>, <span class='st'>"z"</span>))
+
+<span class='fu'>e_axis_formatter</span>(<span class='kw'>style</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"decimal"</span>, <span class='st'>"percent"</span>, <span class='st'>"currency"</span>),
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>locale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>currency</span> <span class='kw'>=</span> <span class='st'>"USD"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -298,8 +301,28 @@
       <td><p>Index of axis to customise.</p></td>
     </tr>
     <tr>
+      <th>formatter</th>
+      <td><p>An axis formatter as returned by <code>e_axis_formatter</code>.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Any other option to pass, check See Also section.</p></td>
+    </tr>
+    <tr>
+      <th>style</th>
+      <td><p>Formatter style, one of <code>decimal</code>, <code>percent</code>, or <code>currency</code>.</p></td>
+    </tr>
+    <tr>
+      <th>digits</th>
+      <td><p>Number of decimals.</p></td>
+    </tr>
+    <tr>
+      <th>locale</th>
+      <td><p>Locale, if <code>NULL</code> then it is inferred from <code>Sys.getlocale</code>.</p></td>
+    </tr>
+    <tr>
+      <th>currency</th>
+      <td><p>Currency to to display.</p></td>
     </tr>
     </table>
     
@@ -318,11 +341,26 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
+    <pre class="examples"><div class='input'><span class='co'># hide axis</span>
+<span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Assault</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Murder</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Rape</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span> <span class='co'># add secondary axis</span>
   <span class='fu'>e_y_axis</span>(<span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='co'># hide secondary axis</span>
+
+<span class='co'># use formatter</span>
+<span class='no'>cars</span> <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(
+    <span class='kw'>speed</span> <span class='kw'>=</span> <span class='no'>speed</span> / <span class='fl'>25</span>
+  ) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>speed</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>dist</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_y_axis</span>(
+    <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='fu'>e_axis_formatter</span>(<span class='st'>"currency"</span>)
+  ) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_x_axis</span>(
+    <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='fu'>e_axis_formatter</span>(<span class='st'>"percent"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>0</span>)
+  )
 
 <span class='co'># plot all labels &amp; rotate</span>
 <span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
@@ -355,7 +393,7 @@
 <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/JohnCoene"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
 </div>
       </footer>
    </div>

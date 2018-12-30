@@ -65,10 +65,16 @@ div(
 
 ## Installation
 
-The package is available on [CRAN](https://CRAN.R-project.org/package=echarts4r):
+The package is available on [CRAN](https://CRAN.R-project.org/package=echarts4r). The full installation can be obtained with:
 
 ```{r, eval=FALSE}
 install.packages("echarts4r")
+```
+
+However, if you only want a _lite_ version you can simply do, this is useful for a lighter version that installs faster if you do not want to use any of the geospatial features of the package:
+
+```{r, eval=FALSE}
+install.packages("echarts4r", dependencies = c("Depends", "Imports"))
 ```
 
 You can also install the _unstable_ development version of echarts4r with `remotes` from Github, see [changes](news/index.html).
