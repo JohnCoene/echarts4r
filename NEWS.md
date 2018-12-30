@@ -22,7 +22,7 @@ __Support for timeline added__
 - `e_theme` now also accepts `default`.
 - `auritus` theme added.
 - `bar.width` argument renamed to `bar_width` in `e_histogram`.
-- `e_map_3d` correctly assign ` name`
+- `e_map_3d` and `e_map` correctly assign `name` argument.
 
 # echarts4r 0.2.0
 
