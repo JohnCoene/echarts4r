@@ -150,12 +150,12 @@ e_format_axis <- function(e, axis = "y", suffix = NULL, prefix = NULL, ...){
   if(is.null(suffix) && is.null(prefix))
     stop("missing formatting")
   
-  label <- paste(prefix, "{value}", suffix)
+  fmt <- paste(prefix, "{value}", suffix)
   
   e <- e %>% 
     e_axis(
       axis = axis, 
-      axisLabel = list(formatter = label),
+      axisLabel = list(formatter = fmt),
       ...
     )
   

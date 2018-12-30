@@ -5,6 +5,11 @@
 #' @inheritParams e_bar
 #' @param axis Axis to customise.
 #' @param index Index of axis to customise.
+#' @param formatter An axis formatter as returned by \code{\link{e_axis_formatter}}.
+#' @param style Formatter style, one of \code{decimal}, \code{percent}, or \code{currency}.
+#' @param currency Currency to to display.
+#' @param digits Number of decimals.
+#' @param locale Locale, if \code{NULL} then it is inferred from \code{Sys.getlocale}.
 #' 
 #' @section Functions:
 #' \itemize{
@@ -13,11 +18,26 @@
 #' }
 #' 
 #' @examples 
+#' # hide axis
 #' USArrests %>% 
 #'   e_charts(Assault) %>% 
 #'   e_line(Murder, smooth = TRUE) %>% 
 #'   e_line(Rape, y.index = 1) %>% # add secondary axis
 #'   e_y_axis(index = 1, show = FALSE) # hide secondary axis
+#'   
+#' # use formatter
+#' cars %>% 
+#'   dplyr::mutate(
+#'     speed = speed / 25
+#'   ) %>% 
+#'   e_charts(speed) %>% 
+#'   e_scatter(dist) %>% 
+#'   e_y_axis(
+#'     formatter = e_axis_formatter("currency")
+#'   ) %>% 
+#'   e_x_axis(
+#'     formatter = e_axis_formatter("percent", digits = 0)
+#'   )
 #' 
 #' # plot all labels & rotate
 #' USArrests %>% 
@@ -27,12 +47,13 @@
 #'   e_area(Murder) %>% 
 #'   e_x_axis(axisLabel = list(interval = 0, rotate = 45)) # rotate
 #'   
+#'   
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#xAxis}{Additional x arguments}, 
 #' \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#yAxis}{Additional y arguments}
 #' 
 #' @rdname axis
 #' @export
-e_axis <- function(e, axis = c("x", "y", "z"), index = 0, ...){
+e_axis <- function(e, axis = c("x", "y", "z"), index = 0, formatter = NULL, ...){
   
   if(missing(e))
     stop("missing e", call. = FALSE)
@@ -43,6 +64,9 @@ e_axis <- function(e, axis = c("x", "y", "z"), index = 0, ...){
   max <- length(e$x$opts[[axis]])
   
   attrs <- list(...)
+  
+  if(!is.null(formatter))
+    attrs$axisLabel$formatter <- formatter
   
   if(!length(attrs))
     stop("no attribute", call. = FALSE)
@@ -80,19 +104,19 @@ e_axis <- function(e, axis = c("x", "y", "z"), index = 0, ...){
 
 #' @rdname axis
 #' @export
-e_x_axis <- function(e, index = 0, ...){
+e_x_axis <- function(e, index = 0, formatter = NULL, ...){
   if(missing(e))
     stop("missing e", call. = FALSE)
-  e <- e_axis(e, "x", index, ...)
+  e <- e_axis(e, "x", index, formatter, ...)
   e
 }
 
 #' @rdname axis
 #' @export
-e_y_axis<- function(e, index = 0, ...){
+e_y_axis<- function(e, index = 0, formatter = NULL, ...){
   if(missing(e))
     stop("missing e", call. = FALSE)
-  e <- e_axis(e = e, axis = "y",index =  index, ...)
+  e <- e_axis(e = e, axis = "y",index =  index, formatter,...)
   e
 }
 
@@ -113,6 +137,27 @@ e_rm_axis <- function(e, axis = c("x", "y", "z")){
   e$x$opts[[axis]] <- NULL
   
   return(e)
+}
+
+#' @rdname axis
+#' @export
+e_axis_formatter <- function(style = c("decimal", "percent", "currency"), digits = 0, 
+                             locale = NULL, currency = "USD") {
+  
+  if(is.null(locale))
+    locale <- .get_locale()
+  
+  style <- match.arg(style)
+  opts <- list(
+    style = style,
+    minimumFractionDigits = digits,
+    maximumFractionDigits = digits,
+    currency = currency
+  )
+  htmlwidgets::JS(sprintf("function(value, index) {
+        var fmt = new Intl.NumberFormat('%s', %s);
+        return fmt.format(value);
+    }", locale, jsonlite::toJSON(opts, auto_unbox = TRUE)))
 }
 
 #' Grid

@@ -6,17 +6,21 @@
 \alias{e_y_axis}
 \alias{e_z_axis}
 \alias{e_rm_axis}
+\alias{e_axis_formatter}
 \title{Axis}
 \usage{
-e_axis(e, axis = c("x", "y", "z"), index = 0, ...)
+e_axis(e, axis = c("x", "y", "z"), index = 0, formatter = NULL, ...)
 
-e_x_axis(e, index = 0, ...)
+e_x_axis(e, index = 0, formatter = NULL, ...)
 
-e_y_axis(e, index = 0, ...)
+e_y_axis(e, index = 0, formatter = NULL, ...)
 
 e_z_axis(e, index = 0, ...)
 
 e_rm_axis(e, axis = c("x", "y", "z"))
+
+e_axis_formatter(style = c("decimal", "percent", "currency"),
+  digits = 0, locale = NULL, currency = "USD")
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -25,7 +29,17 @@ e_rm_axis(e, axis = c("x", "y", "z"))
 
 \item{index}{Index of axis to customise.}
 
+\item{formatter}{An axis formatter as returned by \code{\link{e_axis_formatter}}.}
+
 \item{...}{Any other option to pass, check See Also section.}
+
+\item{style}{Formatter style, one of \code{decimal}, \code{percent}, or \code{currency}.}
+
+\item{digits}{Number of decimals.}
+
+\item{locale}{Locale, if \code{NULL} then it is inferred from \code{Sys.getlocale}.}
+
+\item{currency}{Currency to to display.}
 }
 \description{
 Customise axis.
@@ -39,11 +53,26 @@ Customise axis.
 }
 
 \examples{
+# hide axis
 USArrests \%>\% 
   e_charts(Assault) \%>\% 
   e_line(Murder, smooth = TRUE) \%>\% 
   e_line(Rape, y.index = 1) \%>\% # add secondary axis
   e_y_axis(index = 1, show = FALSE) # hide secondary axis
+  
+# use formatter
+cars \%>\% 
+  dplyr::mutate(
+    speed = speed / 25
+  ) \%>\% 
+  e_charts(speed) \%>\% 
+  e_scatter(dist) \%>\% 
+  e_y_axis(
+    formatter = e_axis_formatter("currency")
+  ) \%>\% 
+  e_x_axis(
+    formatter = e_axis_formatter("percent", digits = 0)
+  )
 
 # plot all labels & rotate
 USArrests \%>\% 
@@ -52,6 +81,7 @@ USArrests \%>\%
   e_charts(State) \%>\% 
   e_area(Murder) \%>\% 
   e_x_axis(axisLabel = list(interval = 0, rotate = 45)) # rotate
+  
   
 }
 \seealso{

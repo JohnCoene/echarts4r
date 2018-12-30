@@ -1750,7 +1750,7 @@ e_pictorial_ <- function(e, serie, symbol, bind = NULL, name = NULL, legend = TR
 #' @rdname histogram
 #' @export
 e_histogram_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
-                        bar.width = "90%", x_index = 0, y_index = 0, ...){
+                        bar_width = "90%", x_index = 0, y_index = 0, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -1781,7 +1781,7 @@ e_histogram_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRU
     serie_opts <- list(
       name = name,
       type = "bar",
-      barWidth = bar.width,
+      barWidth = bar_width,
       yAxisIndex = y_index,
       xAxisIndex = x_index,
       stack = "stackedHistogram",

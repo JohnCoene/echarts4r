@@ -116,22 +116,47 @@ e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuo
 #' 
 #' @inheritParams e_bar
 #' @param trigger What triggers the tooltip, one of \code{item} or \code{item}.
+#' @param item_formatter,pointer_formatter Item and Pointer formatter as returned 
+#' by \code{\link{e_tooltip_item_formatter}}, \code{\link{e_tooltip_pointer_formatter}}.
+#' @param style Formatter style, one of \code{decimal}, \code{percent}, or \code{currency}.
+#' @param currency Currency to to display.
+#' @param digits Number of decimals.
+#' @param locale Locale, if \code{NULL} then it is inferred from \code{Sys.getlocale}.
 #' 
 #' @examples 
 #' USArrests %>% 
 #'   e_charts(Assault) %>% 
 #'   e_scatter(Murder) %>% 
 #'   e_tooltip()
+#'   
+#' # formatter
+#' cars %>% 
+#'   dplyr::mutate(
+#'     dist = dist / 25
+#'   ) %>% 
+#'   e_charts(speed) %>% 
+#'   e_scatter(dist) %>% 
+#'   e_tooltip(
+#'     item_formatter = e_tooltip_item_formatter("percent")
+#'   )
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip}{Additional arguments}
 #' 
+#' @rdname e-tooltip
 #' @export
-e_tooltip <- function(e, trigger = c("item", "axis"), ...){
+e_tooltip <- function(e, trigger = c("item", "axis"), item_formatter = NULL, 
+                      pointer_formatter = NULL, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   tooltip <- list(trigger = trigger[1], ...)
+  
+  if(!is.null(item_formatter))
+    tooltip$formatter <- item_formatter
+  
+  if(!is.null(pointer_formatter))
+    tooltip$axisPointer$label$formatter <- pointer_formatter
   
   if(!e$x$tl)
     e$x$opts$tooltip <- tooltip
@@ -139,6 +164,57 @@ e_tooltip <- function(e, trigger = c("item", "axis"), ...){
     e$x$opts$baseOption$tooltip <- tooltip
   
   e
+}
+
+#' @rdname e-tooltip
+#' @export
+e_tooltip_item_formatter <- function(style = c("decimal", "percent", "currency"), digits = 0, 
+                                     locale = NULL, currency = "USD") {
+  
+  if(is.null(locale))
+    locale <- .get_locale()
+  
+  style <- match.arg(style)
+  opts <- list(
+    style = style,
+    minimumFractionDigits = digits,
+    maximumFractionDigits = digits,
+    currency = currency
+  )
+  htmlwidgets::JS(sprintf("function(params, ticket, callback) {
+        var fmt = new Intl.NumberFormat('%s', %s);
+        return params.value[0] + '<br>' +
+               params.marker + ' ' +
+               params.seriesName + ': ' + fmt.format(parseFloat(params.value[1]));
+    }", locale, opts))
+}
+
+#' @rdname e-tooltip
+#' @export
+e_tooltip_pointer_formatter <- function(style = c("decimal", "percent", "currency"), digits = 0, 
+                                        locale = NULL, currency = "USD") {
+  
+  if(is.null(locale))
+    locale <- .get_locale()
+  
+  style <- match.arg(style)
+  opts <- list(
+    style = style,
+    minimumFractionDigits = digits,
+    maximumFractionDigits = digits,
+    currency = currency
+  )
+  htmlwidgets::JS(sprintf("function(params, ticket, callback) {
+        var fmt = new Intl.NumberFormat('%s', %s);
+        var res = params[0].value[0];
+        for (i = 0; i < params.length; i++) {
+            res += '<br />' +
+                   params[i].marker + ' ' +
+                   params[i].seriesName + ': ' +
+                   fmt.format(parseFloat(params[i].value[1]));
+        }
+        return res;
+    }", locale, jsonlite::toJSON(opts, auto_unbox = TRUE)))
 }
 
 #' Legend

@@ -20,6 +20,10 @@ __Support for timeline added__
 - Forces `webgl` rendering for `e_globe`, `e_scatter_gl` and `e_flow_gl`.
 - Groups are now ordered in order to ensure match across series when using `timeline = TRUE`.
 - `e_theme` now also accepts `default`.
+- `auritus` theme added.
+- `bar.width` argument renamed to `bar_width` in `e_histogram`.
+- `e_map_3d` and `e_map` correctly assign `name` argument.
+- Axis and tooltip formatters helpers added `e_tooltip_item_formatter` & `e_axis_formatter`, thanks to [Artem Klevtsov](https://github.com/artemklevtsov)
 
 # echarts4r 0.2.0
 

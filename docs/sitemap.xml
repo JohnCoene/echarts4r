@@ -70,6 +70,9 @@
     <loc>http://echarts4r.john-coene.com/reference/e_color_range.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_correlations.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_country_names.html</loc>
   </url>
   <url>
@@ -80,6 +83,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_draft.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_facet.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_flip_coords.html</loc>

@@ -2085,7 +2085,7 @@ e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smo
 #' Add a histogram or density plots.
 #' 
 #' @inheritParams e_bar
-#' @param bar.width Width of bars.
+#' @param bar_width Width of bars.
 #' @param breaks Passed to \code{\link{hist}}.
 #' @param smooth Wether to use smoothed lines, passed to \code{\link{e_line}}.
 #' 
@@ -2106,7 +2106,7 @@ e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smo
 #' @rdname histogram
 #' @export
 e_histogram <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
-                        bar.width = "99%", x_index = 0, y_index = 0, ...){
+                        bar_width = "99%", x_index = 0, y_index = 0, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -2114,7 +2114,7 @@ e_histogram <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
   
-  e_histogram_(e, deparse(substitute(serie)), breaks, name, legend, bar.width, x_index, y_index, ...)
+  e_histogram_(e, deparse(substitute(serie)), breaks, name, legend, bar_width, x_index, y_index, ...)
 }
 
 #' @rdname histogram

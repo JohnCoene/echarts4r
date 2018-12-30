@@ -34,6 +34,8 @@ Add a theme.
   \item{\code{shine}}
   \item{\code{purple-passion}}
   \item{\code{halloween}}
+  \item{\code{auritus}}
+  
 }
 }
 
