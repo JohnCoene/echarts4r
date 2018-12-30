@@ -144,10 +144,8 @@ e_rm_axis <- function(e, axis = c("x", "y", "z")){
 e_axis_formatter <- function(style = c("decimal", "percent", "currency"), digits = 0, 
                              locale = NULL, currency = "USD") {
   
-  if(is.null(locale)){
-    locale <- Sys.getlocale()
-    locale <- substr(locale, 1, 2)
-  }
+  if(is.null(locale))
+    locale <- .get_locale()
   
   style <- match.arg(style)
   opts <- list(

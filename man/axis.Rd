@@ -37,6 +37,8 @@ e_axis_formatter(style = c("decimal", "percent", "currency"),
 
 \item{digits}{Number of decimals.}
 
+\item{locale}{Locale, if \code{NULL} then it is inferred from \code{Sys.getlocale}.}
+
 \item{currency}{Currency to to display.}
 }
 \description{
@@ -60,10 +62,16 @@ USArrests \%>\%
   
 # use formatter
 cars \%>\% 
+  dplyr::mutate(
+    speed = speed / 25
+  ) \%>\% 
   e_charts(speed) \%>\% 
-  e_line(scatter) \%>\% 
+  e_scatter(dist) \%>\% 
   e_y_axis(
     formatter = e_axis_formatter("currency")
+  ) \%>\% 
+  e_x_axis(
+    formatter = e_axis_formatter("percent", digits = 0)
   )
 
 # plot all labels & rotate
