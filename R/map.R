@@ -119,6 +119,7 @@ e_map_ <- function(e, serie = NULL, map = "world", name = NULL, rm_x = TRUE, rm_
     app <- list(
       type = "map",
       map = map,
+      name = name,
       ...
     )
     

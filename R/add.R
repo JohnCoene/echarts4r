@@ -1090,13 +1090,25 @@ e_gauge <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...){
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
   
-  e$x$opts$series <- list(
-    list(
+  for(i in 1:length(value)){
+    
+    serie <- list(
+      data = list(list(value = value[i], name = name[i]))
+    )
+    
+    opts <- list(
       type = "gauge",
-      data = list(list(value = value, name = name)),
       ...
     )
-  )
+    
+    if(!e$x$tl){
+      lst <- append(serie, opts)
+      e$x$opts$series <- append(e$x$opts$series, list(lst))
+    } else {
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie))
+      e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(opts))
+    }
+  }
   e
 }
 
@@ -2196,4 +2208,51 @@ e_band <- function(e, min, max, stack = "confidence-band", symbol = c("none", "n
     ...
   )
   
+}
+
+#' Correlation
+#' 
+#' @inheritParams e_bar
+#' @param visual_map Whether to add the visual map.
+#' @param order Ordering method, passed to \link[corrplot]{corrMatOrder}.
+#' 
+#' @param ... Any argument to pass to \code{\link{e_heatmap}} and \code{\link{e_visual_map}}.
+#' 
+#' @examples 
+#' cor(mtcars) %>% 
+#'   e_charts() %>% 
+#'   e_correlations(
+#'     order = "hclust",
+#'     visual_map = FALSE
+#'   ) %>% 
+#'   e_visual_map(
+#'    min = -1, 
+#'    max = 1
+#'   )
+#'
+#' @export
+e_correlations <- function(e, order = NULL, visual_map = TRUE, ...){
+  
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  mat <- e$x$data[[1]]
+  
+  if(!is.null(order)){
+    order <- corrplot::corrMatOrder(mat, order = order)
+    mat <- mat[order, order]
+  }
+  
+  row.names(mat) <- colnames(mat)
+  mat <- as.data.frame(as.table(mat))
+  names(mat) <- c("x", "y", "correlation")
+  
+  e <- e %>% 
+    e_data(mat, x) %>% 
+    e_heatmap_("y", "correlation", ...) 
+  
+  if(isTRUE(visual_map))
+    e <- e %>% e_visual_map_(min = -1, max = 1, ...)
+    
+  return(e)
 }

@@ -28,7 +28,6 @@ e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 
       e_serie$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
     }
     
-    
     # timeline
     if(!e$x$tl){
       nm <- .name_it(e, serie, name, i)
@@ -49,9 +48,6 @@ e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 
       
       e$x$opts$series <- append(e$x$opts$series, list(e_serie))  
     } else {
-      
-      opts <- list(...)
-      e_serie <- append(e_serie, opts)
       
       if(isTRUE(legend))
         e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
@@ -91,6 +87,12 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
   
   if(missing(serie))
     stop("must pass serie", call. = FALSE)
+  
+  if(length(e$x$facets)){
+    x_index <- e$x$facets$current
+    y_index <- e$x$facets$current
+    e$x$facets$current <- e$x$facets$current + 1
+  }
 
   for(i in 1:length(e$x$data)){
     
@@ -111,8 +113,11 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
       if(x_index != 0)
         e <- .set_x_axis(e, x_index, i)
       
-      l$yAxisIndex <- y_index
-      l$xAxisIndex <- x_index
+      if(!e$x$tl){
+        l$yAxisIndex <- y_index
+        l$xAxisIndex <- x_index
+      }
+      
     } else if(coord_system == "polar") {
       l$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
     }
@@ -1560,8 +1565,11 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
 #' @rdname e_flow_gl
 #' @export
 e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...){
+  
   if(missing(e))
     stop("must pass e", call. = FALSE)
+  
+  e$x$renderer <- "webgl"
   
   if(missing(y) || missing(sx) || missing(sy))
     stop("must pass y and z", call. = FALSE)
@@ -1603,6 +1611,8 @@ e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRU
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
+  
+  e$x$renderer <- "webgl"
   
   if(missing(y) || missing(z))
     stop("must pass y and z", call. = FALSE)

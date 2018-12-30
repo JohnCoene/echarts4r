@@ -743,6 +743,10 @@ e_arrange <- function(..., rows = NULL, cols = NULL, width = "xs", title = NULL)
   if(is.null(cols))
     cols <- 1
   
+  w <- "-xs"
+  if(!isTRUE(getOption('knitr.in.progress')))
+    w <- ""
+  
   x <- 0
   tg <- htmltools::tagList()
   for(i in 1:rows){
@@ -750,7 +754,7 @@ e_arrange <- function(..., rows = NULL, cols = NULL, width = "xs", title = NULL)
     
     for(j in 1:cols){
       x <- x + 1
-      cl <- paste0("col-xs-", 12 / cols)
+      cl <- paste0("col", w, "-", 12 / cols)
       if(x <= length(plots))
         c <- htmltools::div(class = cl, plots[[x]])
       else 

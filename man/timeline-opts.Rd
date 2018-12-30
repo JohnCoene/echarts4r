@@ -6,12 +6,14 @@
 \alias{e_timeline_serie}
 \title{Timeline}
 \usage{
-e_timeline_opts(e, ...)
+e_timeline_opts(e, axis_type = "category", ...)
 
 e_timeline_serie(e, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+
+\item{axis_type}{Type of axis, \code{time}, \code{value}, or \code{category}}
 
 \item{...}{Named options.}
 }

@@ -48,6 +48,7 @@ echarts_build <- function(e) {
 #'   \item{\code{\link{e_map}}}
 #'   \item{\code{\link{e_map_3d}}}
 #'   \item{\code{\link{e_line_3d}}}
+#'   \item{\code{\link{e_gauge}}}
 #' }
 #' 
 #' @examples 

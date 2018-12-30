@@ -7,6 +7,7 @@
 #' 
 #' @section Themes: 
 #' \itemize{
+#'    \item{\code{default}}
 #'   \item{\code{dark}}
 #'   \item{\code{vintage}}
 #'   \item{\code{westeros}}
@@ -42,8 +43,9 @@ e_theme <- function(e, theme){
     stop("must pass theme", call. = FALSE)
   
   themes <- c("dark", "vintage", "westeros", "essos", "wonderland", 
-              "walden", "chalk", "infographic", "macarons", "roma", "theme",
-              "shine", "purple-passion", "halloween", "wef", "weforum")
+              "walden", "chalk", "infographic", "macarons", "roma",
+              "shine", "purple-passion", "halloween", "wef", "weforum",
+              "default")
   
   if(!tolower(theme) %in% themes)
     stop("Incorrect theme", call. = FALSE)

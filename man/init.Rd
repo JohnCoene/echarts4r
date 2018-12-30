@@ -73,6 +73,7 @@ The timeline feature currently supports the following chart types.
   \item{\code{\link{e_map}}}
   \item{\code{\link{e_map_3d}}}
   \item{\code{\link{e_line_3d}}}
+  \item{\code{\link{e_gauge}}}
 }
 }
 
