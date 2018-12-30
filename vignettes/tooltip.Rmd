@@ -1,6 +1,6 @@
 ---
 title: "Tooltip"
-author: "Sharon Machlis"
+author: "John Coene & Sharon Machlis"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -17,6 +17,24 @@ knitr::opts_chunk$set(
 
 library(echarts4r)
 ```
+
+## Helper
+
+Since version `0.2.1` you can also easily format the axis to decimal, percentages or currencies thanks to contribution from [Artem Klevtsov](https://github.com/artemklevtsov).
+
+```{r}
+cars %>% 
+  dplyr::mutate(
+    dist = dist / 25
+  ) %>% 
+  e_charts(speed) %>% 
+  e_scatter(dist) %>% 
+  e_tooltip(
+    item_formatter = e_tooltip_item_formatter("percent")
+  )
+```
+
+## JavaScript
 
 *Thanks to [Sharon Machlis](https://github.com/smach) for helping put this document together.*
 
