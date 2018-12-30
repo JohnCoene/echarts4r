@@ -186,7 +186,7 @@ e_tooltip_item_formatter <- function(style = c("decimal", "percent", "currency")
         return params.value[0] + '<br>' +
                params.marker + ' ' +
                params.seriesName + ': ' + fmt.format(parseFloat(params.value[1]));
-    }", locale, opts))
+    }", locale, jsonlite::toJSON(opts, auto_unbox = TRUE)))
 }
 
 #' @rdname e-tooltip
