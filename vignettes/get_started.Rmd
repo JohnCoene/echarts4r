@@ -24,7 +24,7 @@ Welcome to `echarts4r`, let's explore the package together.
 4. All functions are `%>%` friendly.
 5. Most functions have escape hatches ending in `_`.
 
-### Your first plots
+## Your first plot
 
 Let's build a line chart, load the library and pipe your data to `e_charts`. If you are not at ease with the `%>%` you can use `e_charts(mtcars, wt)`.
 
@@ -53,6 +53,8 @@ mtcars %>%
   e_area(mpg) %>% # add area
   e_x_axis(min = 1) # change x axis minimum
 ```
+
+## Options
 
 We could also change the lines to make them `smooth`.
 
@@ -113,7 +115,22 @@ mtcars %>%
   e_tooltip(trigger = "axis") # tooltip
 ```
 
-You can also customise the axis with `e_axis` or its sister functions, `e_x_axis` and `e_y_axis`. There are also helper functions like `e_format_axis` to easily add suffixes or prefixes to your axis labels.
+## Navigate options
+
+`echarts4r` is highly customisable, there are too many options to have them all hard-coded in the package but rest assured; they are available, and can be passe to `...`. You will find all these options in the [official documentation](https://ecomfe.github.io/echarts-doc/public/en/option.html).
+
+<a href="https://ecomfe.github.io/echarts-doc/public/en/option.html" class="btn btn-default" target="_blank">
+  <i class="fa fa-book"></i>
+  Official Documentation
+</a>
+
+For instance the documentation for the tooltip looks like this:
+
+<a href="https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip" target="_blank">
+  <img src="docs.png" />
+</a>
+
+Therefore if we want to change our tooltip to an [axisPointer](https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip.axisPointer) we can do so by passing a list to `axisPointer`.
 
 ```{r}
 mtcars %>% 
@@ -123,9 +140,14 @@ mtcars %>%
   e_x_axis(min = 1, name = "weight") %>%  # change x axis minimum
   e_title("Ol' mtcars example") %>%  # Add title
   e_theme("infographic") %>% # theme
-  e_legend(bottom = 0) %>%  # move legend to the bottom
-  e_tooltip(trigger = "axis") %>%  # tooltip
-  e_format_y_axis(suffix = "mpg")
+  e_legend(bottom = 0) %>% # move legend to the bottom
+  e_tooltip(
+    axisPointer = list(
+      type = "cross"
+    )
+  ) 
 ```
+
+Once you come to the realisation that JSON ~= `list` in R, it's pretty easy.
 
 You're in on the basics, go to the [advanced](articles/advanced.html) section or navigate the site to discover how add multiple linked graphs, draw on globes, use the package in shiny, and more.
