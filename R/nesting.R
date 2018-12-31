@@ -40,7 +40,7 @@
 #'   dplyr::ungroup() %>% 
 #'   dplyr::mutate(
 #'     show = TRUE,
-#'     fontStyle = round(runif(n(), 5, 12))
+#'     fontStyle = round(runif(dplyr::n(), 5, 12))
 #'   )
 #' 
 #' matrix %>% 
