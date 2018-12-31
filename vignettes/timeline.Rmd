@@ -21,6 +21,8 @@ options("getSymbols.yahoo.warning"=FALSE)
 library(echarts4r)
 ```
 
+## Introduction
+
 `echarts4r` version `0.2.1` supports the timeline component!
 
 Let's create some phoney data to demonstrate.
@@ -43,7 +45,18 @@ df <- data.frame(
 ) 
 ```
 
-With the phoney data:
+While on a "standard" chart you group data to distinguish between categories, to take advantage of the timeline component, you group them by _time steps_ then set `timeline` to `TRUE`when initialise the chart.
+
+By changing a single argument (`timeline`) you go from:
+
+```{r}
+df %>%
+  group_by(year) %>% 
+  e_charts(x) %>% 
+  e_scatter(y)
+```
+
+To an acutal timeline:
 
 ```{r}
 df %>%
@@ -52,7 +65,38 @@ df %>%
   e_scatter(y)
 ```
 
-It works with most chart types.
+## Supported types
+
+It works with the vast majority chart types, they are listed below and in the man page of `e_charts`.
+
+- `e_bar`
+- `e_line`
+- `e_step`
+- `e_area`
+- `e_scatter`
+- `e_effect_scatter`
+- `e_candle`
+- `e_heatmap`
+- `e_pie`
+- `e_line_3d`
+- `e_lines_3d`
+- `e_bar_3d`
+- `e_lines`
+- `e_scatter_3d`
+- `e_scatter_gl`
+- `e_histogram`
+- `e_lm`
+- `e_loess`
+- `e_glm`
+- `e_density`
+- `e_pictorial`
+- `e_boxplot`
+- `e_map`
+- `e_map_3d`
+- `e_line_3d`
+- `e_gauge`
+
+All options, i.e.: `e_tooltip` or `e_globe`, work with the timeline component.
 
 ```{r}
 df %>% 
@@ -61,6 +105,8 @@ df %>%
   e_scatter(y) %>% 
   e_loess(y ~ x)
 ```
+
+## General Options
 
 You can pass options to the timeline with `e_timeline_opts`.
 
@@ -99,6 +145,8 @@ df %>%
     )
   )
 ```
+
+## Time step options
 
 The function `e_timeline_opts` is used to set general options on the timeline, i.e.: auto-play like above. The full list of options is on the [official website](https://ecomfe.github.io/echarts-doc/public/en/option.html#timeline).
 
@@ -142,35 +190,3 @@ data %>%
     )
   ) 
 ```
-
-## Connect
-
-You can also connect timelines as shown in the [connect](articles/connect.html) documentation. All principles shown there still hold for timelines. _However_, some things might not work properly; this is not on `echarts4r` but the original library.
-
-```{r}
-# timeline
-e1 <- iris %>%
-  group_by(Species) %>%
-  e_charts(Sepal.Length, timeline = TRUE, height = 250) %>%
-  e_line(Sepal.Width) %>%
-  e_datazoom(show = FALSE) %>%
-  e_timeline_opts(
-    orient = "vertical",
-    right = 0,
-    top = 0,
-    bottom = 0
-  ) %>%
-  e_group("connected")
-
-e2 <- iris %>%
-  group_by(Species) %>%
-  e_charts(Sepal.Length, height = 250) %>%
-  e_line(Sepal.Width) %>%
-  e_group("connected") %>%
-  e_datazoom() %>%
-  e_connect_group("connected")
-
-e_arrange(e1, e2, rows = 2)
-```
-
-Hopefully this will be fixed soon!
