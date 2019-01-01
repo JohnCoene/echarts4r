@@ -15,6 +15,10 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 library(echarts4r)
+
+e_common(
+    font_family = "Raleway"
+)
 ```
 
 With `echarts4r` comes a small but powerful low level API to graphic elements.

@@ -15,6 +15,9 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 library(echarts4r)
+e_common(
+    font_family = "Raleway"
+)
 ```
 
 Since version `1.2.0` one can add actions and optionally tie them to buttons.

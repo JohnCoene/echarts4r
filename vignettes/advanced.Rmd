@@ -20,6 +20,22 @@ library(echarts4r)
 
 This document details some more advanced usage of the `echarts4r` package.
 
+## Common options
+
+You can set two common options with `e_common`:
+
+- Font family
+- [Theme](articles/themes.html)
+
+```{r}
+e_common(
+  font_family = "Ubuntu Mono",
+  theme = NULL
+)
+```
+
+All charts on this page will use the `Ubuntu Mono` font (sourced in CSS).
+
 ## Grouping
 
 The package also understands `dplyr::group_by` in order to avoid having to add many layers manually one by one. `echarts4r` essentially will plot one serie for each group.
@@ -356,3 +372,9 @@ e_charts() %>%
 ```
 
 `e_list` can also be used to append options.
+
+```{r, echo=FALSE}
+e_common(
+  font_family = "Raleway"
+)
+```

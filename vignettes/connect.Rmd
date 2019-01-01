@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 )
 library(htmltools)
 library(echarts4r)
+
+e_common(
+    font_family = "Raleway"
+)
 ```
 
 ## Basics

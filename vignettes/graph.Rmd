@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 )
 
 library(echarts4r)
+
+e_common(
+    font_family = "Raleway"
+)
 ```
 
 There are two core functions that let you build graphs in `echarts4r`; `e_graph` and `e_graph_gl`. The latter is the webGL "version."

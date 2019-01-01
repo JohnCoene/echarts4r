@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 )
 
 library(echarts4r)
+
+e_common(
+    font_family = "Raleway"
+)
 ```
 
 This document details webGL visualisations; webGL is ideal when you have large datasets to plot.

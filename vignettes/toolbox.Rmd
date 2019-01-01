@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 )
 
 library(echarts4r)
+
+e_common(
+    font_family = "Raleway"
+)
 ```
 
 The toolbox allows you to add neat little interactive functions to your plots.

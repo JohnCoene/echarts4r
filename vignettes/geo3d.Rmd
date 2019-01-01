@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 )
 
 library(echarts4r)
+
+e_common(
+    font_family = "Raleway"
+)
 ```
 
 `e_geo_3d` family is similar to `e_geo_3d` `e_map`, `e_map_3d` or `e_globe`.

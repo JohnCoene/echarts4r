@@ -19,6 +19,10 @@ library(quantmod)
 options("getSymbols.warning4.0"=FALSE)
 options("getSymbols.yahoo.warning"=FALSE)
 library(echarts4r)
+
+e_common(
+    font_family = "Raleway"
+)
 ```
 
 ## Introduction

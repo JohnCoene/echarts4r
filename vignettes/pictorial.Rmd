@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 )
 
 library(echarts4r)
+
+e_common(
+    font_family = "Raleway"
+)
 ```
 
 Pictorial bar chart is a type of bar chart that custimzed glyph (like images, SVG PathData) can be used instead of rectangular bar. This kind of chart is usually used in infographic.

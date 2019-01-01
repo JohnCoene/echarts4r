@@ -73,6 +73,9 @@
     <loc>http://echarts4r.john-coene.com/reference/e_color_range.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_common.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_correlations.html</loc>
   </url>
   <url>
@@ -221,6 +224,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/echarts4r-shiny.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/errorbar.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/formatters.html</loc>

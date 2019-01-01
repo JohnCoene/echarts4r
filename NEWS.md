@@ -58,6 +58,7 @@ Retired `e_keras_history` due to its uselessness.
 * `e_text_style` added, to customise global fonts.
 * `e_angle_axis` now takes `serie` argument, see example.
 * Improved documentation of many functions.
+* `e_common` to pass options that will apply to all subsequent charts.
 
 First iteration of the graphic low-level API:
 

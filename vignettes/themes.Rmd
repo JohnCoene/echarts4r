@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 )
 
 library(echarts4r)
+
+e_common(
+    font_family = "Raleway"
+)
 ```
 
 You can easily customise the appearance of your chart using one of the 13 themes provided, or even build you own theme: use the online [theme builder](http://echarts.baidu.com/download-theme.html) to create your own.

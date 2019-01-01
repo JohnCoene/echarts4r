@@ -18,6 +18,10 @@ knitr::opts_chunk$set(
 library(echarts4r)
 library(quantmod)
 
+e_common(
+    font_family = "Raleway"
+)
+
 getSymbols("GS") #Goldman Sachs
 GS <- as.data.frame(GS)
 GS$date <- row.names(GS)

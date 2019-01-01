@@ -1,6 +1,16 @@
 echarts_build <- function(e) {
   e$x$data <- NULL
   e$x$mapping <- NULL
+  
+  ff <- getOption("ECHARTS4R_FONT_FAMILY")
+  theme <- getOption("ECHARTS4R_THEME")
+  
+  if(!is.null(theme))
+    e <- e_theme(e, theme)
+  
+  if(!is.null(ff))
+    e <- e_text_style(e, fontFamily = ff)
+  
   e
 } 
 
