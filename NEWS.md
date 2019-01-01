@@ -26,6 +26,7 @@ __Support for timeline added__
 - `e_map_3d` and `e_map` correctly assign `name` argument.
 - Axis and tooltip formatters helpers added `e_tooltip_item_formatter` & `e_axis_formatter`, thanks to [Artem Klevtsov](https://github.com/artemklevtsov).
 - `e_error_bar` added to plot error bars.
+- Ability to specify `icons` in `e_legend`
 
 # echarts4r 0.2.0
 

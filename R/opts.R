@@ -226,20 +226,54 @@ e_tooltip_pointer_formatter <- function(style = c("decimal", "percent", "currenc
 #' @param type Type of legend, \code{plain} or \code{scroll}.
 #' 
 #' @examples 
-#' mtcars %>% 
-#'   head() %>% 
-#'   dplyr::mutate(model = row.names(.)) %>% 
-#'   e_charts(model) %>% 
-#'   e_pie(carb) %>% 
-#'   e_legend(FALSE)
+#' e <- cars %>% 
+#'   e_charts(speed) %>% 
+#'   e_scatter(dist, symbol_size = 5)
+#' 
+#' # with legend  
+#' e
+#' 
+#' # without legend
+#' e %>% 
+#'   e_legend(show = FALSE)
+#'   
+#' # with icon
+#' # path is taken from http://svgicons.sparkk.fr/
+#' path <- paste0(
+#'   "path://M11.344,5.71c0-0.73,0.074-1.122,1.199-1.122",
+#'   "h1.502V1.871h-2.404c-2.886,0-3.903,1.36-3.903,3.646",
+#'   "v1.765h-1.8V10h1.8v8.128h3.601V10h2.403l0.32-2.718h",
+#'   "-2.724L11.344,5.71z"
+#' )
+#' 
+#' e %>% 
+#'   e_legend(
+#'     icons = list(path)
+#'   )
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#legend}{Additional arguments}
 #' 
 #' @export
-e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), ...){
+e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), icons = NULL, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
+  
+  if(!is.null(icons)){
+    
+    if(length(icons) < length(e$x$opts$legend$data))
+      stop(
+        "invalid number of icons; ",
+        length(icons), " icons passed but ",
+        length(e$x$opts$legend$data), " legend items."
+      )
+    
+    for(i in 1:length(e$x$opts$legend$data)){
+      e$x$opts$legend$data[[i]] <- list(name = e$x$opts$legend$data[[i]])
+      e$x$opts$legend$data[[i]]$icon <- icons[[i]]
+    }
+    
+  }
   
   legend <- list(
     show = show,
