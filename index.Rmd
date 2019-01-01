@@ -185,7 +185,7 @@ e1 <- iris %>%
   ) %>% 
   e_scatter(Petal.Length, Sepal.Width) %>% 
   e_datazoom(show = FALSE, y_index = 0) %>% 
-  e_x_axis(min = 4) %>% 
+  e_x_axis(min = 4) %>%  
   e_highlight(
     series_name = list("setosa", "versicolor", "virginica"), 
     btn = "high"
@@ -210,6 +210,17 @@ e1 <- iris %>%
     trigger = "item",
     axisPointer = list(
       type = "cross"
+    )
+  ) %>% 
+  e_image_g(
+    left = 50,
+    top = 30,
+    z = 999,
+    style = list(
+      image = "reference/figures/logo.png",
+      width = 70,
+      height = 75,
+      opacity = .95
     )
   )
 
