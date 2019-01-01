@@ -193,6 +193,7 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' @param rm_x,rm_y Whether to remove x and y axis, only applies if \code{coord_system} is not 
 #' set to \code{cartesian2d}.
 #' @param x A vector of integers or numeric.
+#' @param jitter_factor,jitter_amount Jitter points, passed to \code{jitter}.
 #' @param scale_js the JavaScript scaling function.
 #' 
 #' @section Scaling function: defaults to \code{e_scale} which is a basic function that rescales \code{size}
@@ -227,8 +228,14 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' mtcars %>% 
 #'   e_charts(qsec) %>% 
 #'   e_scatter(wt, mpg, scale = NULL)
+#'   
+#' # jitter point
+#' mtcars %>% 
+#'   e_charts(cyl) %>% 
+#'   e_scatter(wt, symbol_size = 5) %>% 
+#'   e_scatter(wt, jitter_factor = 2, legend = FALSE)
 #' 
-#' # applications
+#' # examples
 #' USArrests %>% 
 #'   e_charts(Assault) %>% 
 #'   e_scatter(Murder, Rape) %>% 
@@ -271,7 +278,8 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' @export
 e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, 
                       scale_js = "function(data){ return data[3];}", name = NULL, 
-                      coord_system = "cartesian2d", legend = TRUE, y_index = 0, 
+                      coord_system = "cartesian2d", jitter_factor = 0,
+                      jitter_amount = NULL, legend = TRUE, y_index = 0, 
                       x_index = 0, rm_x = TRUE, rm_y = TRUE, ...){
   
   if(missing(serie))
@@ -290,7 +298,8 @@ e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale,
     bd <- deparse(substitute(bind))
   
   e_scatter_(e = e, serie = serie, size = size, bind = bd, symbol_size = symbol_size, 
-             scale = scale, scale_js = scale_js, name = name, coord_system = coord_system, 
+             scale = scale, scale_js = scale_js, name = name, coord_system = coord_system,
+             jitter_factor = jitter_factor, jitter_amount = jitter_amount,
              legend = legend, y_index = y_index, x_index = x_index, rm_x = rm_x, 
              rm_y = rm_y, ...)
  
@@ -2255,4 +2264,40 @@ e_correlations <- function(e, order = NULL, visual_map = TRUE, ...){
     e <- e %>% e_visual_map_(min = -1, max = 1, ...)
     
   return(e)
+}
+
+#' Error bar
+#' 
+#' Add error bars.
+#' 
+#' @inheritParams e_bar
+#' @param lower,upper Lower and upper error bands.
+#' 
+#' @examples 
+#' df <- data.frame(
+#'   x = factor(c(1, 2)),
+#'   y = c(1, 5),
+#'   upper = c(1.1, 5.3),
+#'   lower = c(0.8, 4.6)
+#' )
+#' 
+#' df %>% 
+#'   e_charts(x) %>% 
+#'   e_bar(y) %>% 
+#'   e_error_bar(lower, upper)
+#' 
+#' @rdname errorbar
+#' @export
+e_error_bar <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 0, x_index = 0, 
+                        coord_system = "cartesian2d", ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(lower) || missing(upper))
+    stop("must pass lower, or upper", call. = FALSE)
+  
+  e_error_bar_(e, deparse(substitute(lower)), deparse(substitute(upper)), name = name, 
+               legend = legend, y_index = y_index, x_index = x_index, 
+               coord_system = coord_system, ...)
 }

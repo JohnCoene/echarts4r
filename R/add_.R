@@ -349,8 +349,8 @@ e_scale <- function(x){
 #' @export
 e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1, 
                        scale = e_scale, scale_js = "function(data){ return data[3];}", 
-                       name = NULL, coord_system = "cartesian2d", 
-                       legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE, 
+                       name = NULL, coord_system = "cartesian2d", jitter_factor = 0,
+                       jitter_amount = NULL, legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE, 
                        rm_y = TRUE, ...){
   
   if(missing(serie))
@@ -365,9 +365,11 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
       e <- .set_x_axis(e, x_index, i)
     
     if(!is.null(size))
-      xy <- .build_data_size(e$x$data[[i]], e$x$mapping$x, serie, size, scale, symbol_size)
+      xy <- .build_data_size(
+        e$x$data[[i]], e$x$mapping$x, serie, size, scale, symbol_size, jitter_factor, jitter_amount
+      )
     else
-      xy <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie)
+      xy <- .build_data_jitter(e$x$data[[i]], e$x$mapping$x, serie, jitter_factor, jitter_amount)
     
     if(!is.null(bind))
       xy <- .add_bind2(e, xy, bind, i = i)
@@ -398,7 +400,7 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
       size_total <- sum(symbol_size)
       
       if(size_total == 1)
-        symbol_size <- 10
+        symbol_size <- 3
       
       opts$symbolSize <- symbol_size
     }
@@ -406,6 +408,9 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
     if(!e$x$tl){
       
       nm <- .name_it(e, serie, name, i)
+      
+      if(is.null(name) && jitter_factor != 0)
+        nm <- paste0(nm, " jitter")
       
       add_opts <- list(
         name = nm,
@@ -1970,4 +1975,110 @@ e_band_ <- function(e, min, max, stack = "confidence-band", symbol = c("none", "
   
   e %>% 
     e_x_axis(type = "category")
+}
+
+#' @rdname errorbar
+#' @export
+e_error_bar_ <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 0, x_index = 0, 
+                         coord_system = "cartesian2d", ...){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(missing(lower) || missing(upper))
+    stop("must pass lower, or upper", call. = FALSE)
+  
+  for(i in 1:length(e$x$data)){
+    
+    .build_data2(e$x$data[[i]], e$x$mapping$x, lower, upper) -> vector
+    
+    e_serie <- list(data = vector)
+    
+    if(y_index != 0)
+      e <- .set_y_axis(e, upper, y_index, i)
+    
+    if(x_index != 0)
+      e <- .set_x_axis(e, x_index, i)
+    
+    if(coord_system == "polar"){
+      e_serie$data <- e$x$data[[i]] %>% 
+        dplyr::select_(lower, upper) %>% 
+        unlist %>% unname %>% as.list
+    }
+    
+    # timeline
+    if(!e$x$tl){
+      if(!is.null(name))
+        nm <- name
+      else{
+        nm <- .name_it(e, NULL, name, i)
+        nm <- paste(nm, "error")
+        nm <- trimws(nm)
+      }
+      
+      opts <- list(
+        name = nm,
+        type = "custom",
+        yAxisIndex = y_index,
+        xAxisIndex = x_index,
+        coordinateSystem = coord_system,
+        itemStyle = list(
+          normal = list(
+            borderWidth = 1.5
+          )
+        ),
+        renderItem = htmlwidgets::JS("renderErrorBar"),
+        encode = list(
+          x = 0,
+          y = list(1, 2)
+        ),
+        ...
+      )
+      
+      e_serie <- append(e_serie, opts)
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+      
+      e$x$opts$series <- append(e$x$opts$series, list(e_serie))  
+    } else {
+      
+      if(isTRUE(legend))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+      
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(e_serie))
+      
+    }
+    
+  }
+  
+  if(isTRUE(e$x$tl)){
+    
+    series_opts <- list(
+      name = name,
+      type = "custom",
+      yAxisIndex = y_index,
+      xAxisIndex = x_index,
+      coordinateSystem = coord_system,
+      itemStyle = list(
+        normal = list(
+          borderWidth = 1.5
+        )
+      ),
+      renderItem = htmlwidgets::JS("renderErrorBar"),
+      encode = list(
+        x = 0,
+        y = list(1, 2)
+      ),
+      ...
+    )
+    
+    if(isTRUE(legend))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+    
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(series_opts))
+  }
+  
+  e
+  
 }

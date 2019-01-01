@@ -29,6 +29,7 @@ dependencies:
       - themes/wef.js
       - themes/weforum.js
       - themes/auritus.js
+      - custom/renderers.js
    stylesheet: 
       - plugins/leaflet/leaflet.css
  - name: mapbox

@@ -81,7 +81,7 @@ When `size` is passed `symbol_size` becomes a multiplier executed after the scal
 iris %>% 
     group_by(Species) %>% 
     e_charts(Sepal.Length) %>% 
-    e_scatter(Petal.Length, Sepal.Width, scale = log1p, symbol_size = 5)
+    e_scatter(Petal.Length, Sepal.Width, scale = log1p, symbol_size = 10)
 ```
 
 This behaviour was added as it is important to be able to scale points within a reasonable range, ideally points are between 1 and 30~40 in size.
@@ -113,6 +113,20 @@ mtcars %>%
 ```
 
 This way the bubbles are of an appropriate size but the the range of the visual map remains true.
+
+## Jitter
+
+Since version `0.2.1` you can jitter points with `e_scatter`.
+
+```{r}
+mtcars %>% 
+  e_charts(cyl) %>% 
+  e_scatter(drat, symbol_size = 4) %>% 
+  e_scatter(
+    drat, jitter_factor = 2, symbol_size = 6,
+    name = "noisy"
+  )
+```
 
 ## coord_system
 

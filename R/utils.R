@@ -73,7 +73,19 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   
 }
 
-.build_data_size <- function(data, x, y, size, scale, symbol_size){
+.jitter <- function(x, factor = 0, amount = NULL){
+  jit <- tryCatch(
+    jitter(x, factor, amount),
+    error = function(e) e
+  )
+  
+  if(inherits(jit, "error"))
+    x
+  else
+    jit
+}
+
+.build_data_size <- function(data, x, y, size, scale, symbol_size, factor = 0, amount = NULL){
   row.names(data) <- NULL
   
   data[["sizeECHARTS"]] <- as.numeric(data[[size]])
@@ -82,7 +94,27 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
     data[["sizeECHARTS"]] <- scale(data[["sizeECHARTS"]]) * symbol_size
   
   data %>% 
-    dplyr::select_(x, y, size, "sizeECHARTS") %>% 
+    dplyr::select_(x = x, y = y, size, "sizeECHARTS") %>% 
+    dplyr::mutate(
+      x = .jitter(x, factor, amount),
+      y = .jitter(y, factor, amount)
+    ) %>% 
+    unname(.) -> data
+  
+  apply(data, 1, function(x){
+    list(value = unlist(x, use.names = FALSE))
+  }) 
+  
+}
+
+.build_data_jitter <- function(data, x, y, factor = 0, amount = NULL){
+  row.names(data) <- NULL
+  data %>% 
+    dplyr::select_(x = x, y = y) %>% 
+    dplyr::mutate(
+      x = .jitter(x, factor, amount),
+      y = .jitter(y, factor, amount)
+    ) %>% 
     unname(.) -> data
   
   apply(data, 1, function(x){

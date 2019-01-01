@@ -79,9 +79,12 @@ e_append1_p_ <- function(proxy, series_index = NULL, data, x, y){
   if (!"echarts4rProxy" %in% class(proxy)) 
     stop("must pass echarts4rProxy object", call. = FALSE)
   
-  data <- .build_data_p(data, x, y)
+  dlist <- data %>% 
+    dplyr::select_(x, y) %>% 
+    unname() %>% 
+    apply(1, as.list)
   
-  opts <- list(id = proxy$id, seriesIndex = series_index, data = data)
+  opts <- list(id = proxy$id, seriesIndex = series_index, data = dlist)
   
   proxy$session$sendCustomMessage("e_append_p", opts)
   

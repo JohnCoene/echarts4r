@@ -7,6 +7,7 @@ __Support for timeline added__
 - Improved `e_color_range` helper.
 - `e_lm` & `e_loess` now support `group_by`.
 - `e_scattter` scaling much more robust with new arguments.
+- Jitter points with `e_scatter`
 - `e_append` adapated to work with new scatter-family of function (scaling).
 - `e_lines_gl` added.
 - Improved examples.
@@ -24,6 +25,7 @@ __Support for timeline added__
 - `bar.width` argument renamed to `bar_width` in `e_histogram`.
 - `e_map_3d` and `e_map` correctly assign `name` argument.
 - Axis and tooltip formatters helpers added `e_tooltip_item_formatter` & `e_axis_formatter`, thanks to [Artem Klevtsov](https://github.com/artemklevtsov).
+- `e_error_bar` added to plot error bars.
 
 # echarts4r 0.2.0
 
