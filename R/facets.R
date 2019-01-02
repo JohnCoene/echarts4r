@@ -7,13 +7,6 @@
 #' 
 #' @details Each serie, i.e.:\code{\link{e_bar}} will be plotted against a facet.
 #' 
-#' @examples 
-#' mtcars %>% 
-#'   e_charts(mpg) %>% 
-#'   e_scatter(qsec, mpg) %>% 
-#'   e_line(wt, gridIndex = 1) %>% 
-#'   e_facet(2)
-#' 
 #' @keywords interval
 e_facet <- function(e, rows = 1, cols = 1){
   
