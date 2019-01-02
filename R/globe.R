@@ -32,6 +32,9 @@ e_globe <- function(e, environment = NULL, base_texture = NULL, height_texture =
   if(missing(e))
     stop("missing e", call. = FALSE)
   
+  if(is.null(base_texture))
+    message("`base_texture` is `NULL`, see echarts4r-assets.john-coene.com")
+  
   e$x$renderer <- "webgl"
   
   ls <- list(
