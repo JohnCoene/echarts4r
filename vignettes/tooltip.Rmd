@@ -29,12 +29,12 @@ Since version `0.2.1` you can also easily format the axis to decimal, percentage
 ```{r}
 cars %>% 
   dplyr::mutate(
-    dist = dist / 25
+    dist = dist / 120
   ) %>% 
   e_charts(speed) %>% 
-  e_scatter(dist) %>% 
+  e_scatter(dist, symbol_size = 10) %>% 
   e_tooltip(
-    item_formatter = e_tooltip_item_formatter("percent")
+    formatter = e_tooltip_item_formatter("percent")
   )
 ```
 

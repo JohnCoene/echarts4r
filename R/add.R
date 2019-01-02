@@ -1868,12 +1868,6 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y_in
 #'   e_lm(Sepal.Width ~ Sepal.Length) %>% 
 #'   e_x_axis(min = 4, max = 8) %>% 
 #'   e_y_axis(max = 5)
-#'   
-#' mtcars %>% 
-#'   group_by(cyl) %>% 
-#'   e_charts(disp, timeline = TRUE) %>% 
-#'   e_scatter(mpg, qsec) %>% 
-#'   e_loess(mpg ~ disp, smooth = TRUE, showSymbol = FALSE)
 #' 
 #' @rdname smooth
 #' @export

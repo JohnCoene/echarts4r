@@ -116,14 +116,24 @@ e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuo
 #' 
 #' @inheritParams e_bar
 #' @param trigger What triggers the tooltip, one of \code{item} or \code{item}.
-#' @param item_formatter,pointer_formatter Item and Pointer formatter as returned 
-#' by \code{\link{e_tooltip_item_formatter}}, \code{\link{e_tooltip_pointer_formatter}}.
+#' @param formatter Item and Pointer formatter as returned 
+#' by \code{\link{e_tooltip_item_formatter}}, \code{\link{e_tooltip_pointer_formatter}}, 
+#' \code{\link{e_tooltip_pie_formatter}}.
 #' @param style Formatter style, one of \code{decimal}, \code{percent}, or \code{currency}.
 #' @param currency Currency to to display.
 #' @param digits Number of decimals.
 #' @param locale Locale, if \code{NULL} then it is inferred from \code{Sys.getlocale}.
 #' 
+#' @section Formatters:
+#' \itemize{
+#'   \item{\code{\link{e_tooltip_pie_formatter}}: special helper for \code{\link{e_pie}}.}
+#'   \item{\code{\link{e_tooltip_item_formatter}}: general helper, this is passed to the \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip.formatter}{tooltip \code{formatter}}.}
+#'   \item{\code{\link{e_tooltip_pointer_formatter}}: helper for pointer, this is passed to the
+#'   \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip.axisPointer.label}{\code{label} parameter under \code{axisPointer}}.}
+#' }
+#' 
 #' @examples 
+#' # basic
 #' USArrests %>% 
 #'   e_charts(Assault) %>% 
 #'   e_scatter(Murder) %>% 
@@ -132,31 +142,46 @@ e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuo
 #' # formatter
 #' cars %>% 
 #'   dplyr::mutate(
-#'     dist = dist / 25
+#'     dist = dist / 120
 #'   ) %>% 
 #'   e_charts(speed) %>% 
-#'   e_scatter(dist) %>% 
+#'   e_scatter(dist, symbol_size = 5) %>% 
 #'   e_tooltip(
-#'     item_formatter = e_tooltip_item_formatter("percent")
+#'     formatter = e_tooltip_item_formatter("percent")
+#'   )
+#' 
+#' # axis pointer
+#' cars %>% 
+#'   e_charts(speed) %>% 
+#'   e_scatter(dist, symbol_size = 5) %>% 
+#'   e_tooltip(
+#'     formatter = e_tooltip_pointer_formatter("currency"), 
+#'     axisPointer = list(
+#'       type = "cross"
+#'     )
 #'   )
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip}{Additional arguments}
 #' 
 #' @rdname e-tooltip
 #' @export
-e_tooltip <- function(e, trigger = c("item", "axis"), item_formatter = NULL, 
-                      pointer_formatter = NULL, ...){
+e_tooltip <- function(e, trigger = c("item", "axis"), formatter = NULL, ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
   tooltip <- list(trigger = trigger[1], ...)
   
-  if(!is.null(item_formatter))
-    tooltip$formatter <- item_formatter
-  
-  if(!is.null(pointer_formatter))
-    tooltip$axisPointer$label$formatter <- pointer_formatter
+  if(!is.null(formatter)){
+    
+    if(inherits(formatter, "item_formatter") || inherits(formatter, "pie_formatter"))
+      tooltip$formatter <- formatter
+   
+    if(inherits(formatter, "pointer_formatter")){
+      tooltip$axisPointer$label <- formatter
+    }
+     
+  }
   
   if(!e$x$tl)
     e$x$opts$tooltip <- tooltip
@@ -181,12 +206,50 @@ e_tooltip_item_formatter <- function(style = c("decimal", "percent", "currency")
     maximumFractionDigits = digits,
     currency = currency
   )
-  htmlwidgets::JS(sprintf("function(params, ticket, callback) {
+  
+  tip <- htmlwidgets::JS(sprintf("function(params, ticket, callback) {
         var fmt = new Intl.NumberFormat('%s', %s);
         return params.value[0] + '<br>' +
                params.marker + ' ' +
                params.seriesName + ': ' + fmt.format(parseFloat(params.value[1]));
     }", locale, jsonlite::toJSON(opts, auto_unbox = TRUE)))
+  
+  tip <- structure(tip, class = c("JS_EVAL", "item_formatter"))
+  return(tip)
+}
+
+#' @rdname e-tooltip
+#' @export
+e_tooltip_pie_formatter <- function(style = c("decimal", "percent", "currency"), digits = 0, 
+                                     locale = NULL, currency = "USD", ...) {
+  
+  if(is.null(locale))
+    locale <- .get_locale()
+  
+  style <- match.arg(style)
+  
+  opts <- list(
+    style = style,
+    minimumFractionDigits = digits,
+    maximumFractionDigits = digits,
+    currency = currency
+  )
+  
+  fmt <- htmlwidgets::JS(sprintf("function(params, ticket, callback) {
+    var fmt = new Intl.NumberFormat('ru', {style:'percent', maximumFractionDigits: 1});
+    return params.marker + ' ' +
+           params.name + ': ' +
+           fmt.format(params.value);
+    }", locale, jsonlite::toJSON(opts, auto_unbox = TRUE)))
+  
+  tip <- list(
+    formatter = fmt,
+    ...
+  )
+  
+  tip <- structure(tip, class = "pie_formatter")
+  
+  return(tip)
 }
 
 #' @rdname e-tooltip
@@ -204,7 +267,8 @@ e_tooltip_pointer_formatter <- function(style = c("decimal", "percent", "currenc
     maximumFractionDigits = digits,
     currency = currency
   )
-  htmlwidgets::JS(sprintf("function(params, ticket, callback) {
+  
+  tip <- htmlwidgets::JS(sprintf("function(params, ticket, callback) {
         var fmt = new Intl.NumberFormat('%s', %s);
         var res = params[0].value[0];
         for (i = 0; i < params.length; i++) {
@@ -215,6 +279,8 @@ e_tooltip_pointer_formatter <- function(style = c("decimal", "percent", "currenc
         }
         return res;
     }", locale, jsonlite::toJSON(opts, auto_unbox = TRUE)))
+  tip <- structure(tip, class = c("JS_EVAL", "pointer_formatter"))
+  return(tip)
 }
 
 #' Legend
@@ -224,6 +290,7 @@ e_tooltip_pointer_formatter <- function(style = c("decimal", "percent", "currenc
 #' @inheritParams e_bar
 #' @param show Set to \code{FALSE} to hide the legend.
 #' @param type Type of legend, \code{plain} or \code{scroll}.
+#' @param icons A optional list of icons the same length as there are series, see example.
 #' 
 #' @examples 
 #' e <- cars %>% 

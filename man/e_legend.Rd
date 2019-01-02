@@ -14,6 +14,8 @@ e_legend(e, show = TRUE, type = c("plain", "scroll"), icons = NULL,
 
 \item{type}{Type of legend, \code{plain} or \code{scroll}.}
 
+\item{icons}{A optional list of icons the same length as there are series, see example.}
+
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{

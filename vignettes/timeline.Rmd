@@ -57,7 +57,7 @@ By changing a single argument (`timeline`) you go from:
 df %>%
   group_by(year) %>% 
   e_charts(x) %>% 
-  e_scatter(y)
+  e_scatter(y, symbol_size = 5)
 ```
 
 To an acutal timeline:
@@ -66,7 +66,7 @@ To an acutal timeline:
 df %>%
   group_by(year) %>% 
   e_charts(x, timeline = TRUE) %>% 
-  e_scatter(y)
+  e_scatter(y, symbol_size = 5)
 ```
 
 ## Supported types

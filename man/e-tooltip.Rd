@@ -3,14 +3,17 @@
 \name{e_tooltip}
 \alias{e_tooltip}
 \alias{e_tooltip_item_formatter}
+\alias{e_tooltip_pie_formatter}
 \alias{e_tooltip_pointer_formatter}
 \title{Tooltip}
 \usage{
-e_tooltip(e, trigger = c("item", "axis"), item_formatter = NULL,
-  pointer_formatter = NULL, ...)
+e_tooltip(e, trigger = c("item", "axis"), formatter = NULL, ...)
 
 e_tooltip_item_formatter(style = c("decimal", "percent", "currency"),
   digits = 0, locale = NULL, currency = "USD")
+
+e_tooltip_pie_formatter(style = c("decimal", "percent", "currency"),
+  digits = 0, locale = NULL, currency = "USD", ...)
 
 e_tooltip_pointer_formatter(style = c("decimal", "percent", "currency"),
   digits = 0, locale = NULL, currency = "USD")
@@ -20,8 +23,9 @@ e_tooltip_pointer_formatter(style = c("decimal", "percent", "currency"),
 
 \item{trigger}{What triggers the tooltip, one of \code{item} or \code{item}.}
 
-\item{item_formatter, pointer_formatter}{Item and Pointer formatter as returned 
-by \code{\link{e_tooltip_item_formatter}}, \code{\link{e_tooltip_pointer_formatter}}.}
+\item{formatter}{Item and Pointer formatter as returned 
+by \code{\link{e_tooltip_item_formatter}}, \code{\link{e_tooltip_pointer_formatter}}, 
+\code{\link{e_tooltip_pie_formatter}}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 
@@ -36,7 +40,18 @@ by \code{\link{e_tooltip_item_formatter}}, \code{\link{e_tooltip_pointer_formatt
 \description{
 Customise tooltip
 }
+\section{Formatters}{
+
+\itemize{
+  \item{\code{\link{e_tooltip_pie_formatter}}: special helper for \code{\link{e_pie}}.}
+  \item{\code{\link{e_tooltip_item_formatter}}: general helper, this is passed to the \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip.formatter}{tooltip \code{formatter}}.}
+  \item{\code{\link{e_tooltip_pointer_formatter}}: helper for pointer, this is passed to the
+  \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip.axisPointer.label}{\code{label} parameter under \code{axisPointer}}.}
+}
+}
+
 \examples{
+# basic
 USArrests \%>\% 
   e_charts(Assault) \%>\% 
   e_scatter(Murder) \%>\% 
@@ -45,12 +60,23 @@ USArrests \%>\%
 # formatter
 cars \%>\% 
   dplyr::mutate(
-    dist = dist / 25
+    dist = dist / 120
   ) \%>\% 
   e_charts(speed) \%>\% 
-  e_scatter(dist) \%>\% 
+  e_scatter(dist, symbol_size = 5) \%>\% 
   e_tooltip(
-    item_formatter = e_tooltip_item_formatter("percent")
+    formatter = e_tooltip_item_formatter("percent")
+  )
+
+# axis pointer
+cars \%>\% 
+  e_charts(speed) \%>\% 
+  e_scatter(dist, symbol_size = 5) \%>\% 
+  e_tooltip(
+    formatter = e_tooltip_pointer_formatter("currency"), 
+    axisPointer = list(
+      type = "cross"
+    )
   )
 
 }
