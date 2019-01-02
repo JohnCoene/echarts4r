@@ -236,7 +236,7 @@ e_tooltip_pie_formatter <- function(style = c("decimal", "percent", "currency"),
   )
   
   fmt <- htmlwidgets::JS(sprintf("function(params, ticket, callback) {
-    var fmt = new Intl.NumberFormat('ru', {style:'percent', maximumFractionDigits: 1});
+    var fmt = new Intl.NumberFormat('%s', %s);
     return params.marker + ' ' +
            params.name + ': ' +
            fmt.format(params.value);

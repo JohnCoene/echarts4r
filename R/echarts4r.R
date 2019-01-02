@@ -184,7 +184,8 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
     sizingPolicy = htmlwidgets::sizingPolicy(
       defaultWidth = "100%",
       knitr.figure = FALSE,
-      browser.fill = TRUE
+      browser.fill = TRUE,
+      padding = 0
     )
   )
 }
