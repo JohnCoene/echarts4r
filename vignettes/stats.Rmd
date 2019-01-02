@@ -51,7 +51,24 @@ data %>%
 ```{r}
 cor(mtcars) %>% 
   e_charts() %>% 
-  e_correlations(order = "hclust")
+  e_correlations(order = "hclust") %>% 
+  e_tooltip()
+```
+
+## Error bars
+
+```{r}
+df <- data.frame(
+  x = factor(c(1, 2)),
+  y = c(1, 5),
+  upper = c(1.1, 5.3),
+  lower = c(0.8, 4.3)
+)
+
+df %>% 
+  e_charts(x) %>% 
+  e_bar(y) %>% 
+  e_error_bar(lower, upper)
 ```
 
 ## Boxplot

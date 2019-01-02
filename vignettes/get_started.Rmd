@@ -35,29 +35,35 @@ Welcome to `echarts4r`, let's explore the package together.
 Let's build a line chart, load the library and pipe your data to `e_charts`. If you are not at ease with the `%>%` you can use `e_charts(mtcars, wt)`.
 
 ```{r}
+# prepare data
+df <- state.x77 %>% 
+  as.data.frame() %>% 
+  tibble::rownames_to_column("State")
+```
+
+```{r}
 library(echarts4r) # load echarts4r
 
-mtcars %>% 
-  e_charts(x = wt) %>% # initialise and set x
-  e_line(serie = mpg) # add a line
+df %>% 
+  e_charts(x = State) %>% # initialise and set x
+  e_line(serie = Population) # add a line
 ```
 
 If you are not at ease with bare column names you can use the escape hatches ending in `_`.
 
 ```{r, eval = FALSE}
-mtcars %>% 
-  e_charts_("wt") %>% 
-  e_line_("mpg")
+df %>% 
+  e_charts_("State") %>% 
+  e_line_("Population")
 ```
 
-The easiest way is to use the `%>%` operator to add plots and options, we'll change the minimum of our x axis.
+The easiest way is to use the `%>%` operator to add plots and options.
 
 ```{r}
-mtcars %>% 
-  e_charts(wt) %>% # initialise
-  e_line(qsec) %>% # add line
-  e_area(mpg) %>% # add area
-  e_x_axis(min = 1) # change x axis minimum
+df %>% 
+  e_charts(State) %>% # initialise and set x
+  e_line(Population) %>%  # add a line
+  e_area(Income) # add area
 ```
 
 ## Options
@@ -65,59 +71,72 @@ mtcars %>%
 We could also change the lines to make them `smooth`.
 
 ```{r}
-mtcars %>% 
-  e_charts(wt) %>% # initialise
-  e_line(qsec, smooth = TRUE) %>% # add smooth line
-  e_area(mpg, smooth = TRUE) %>% # add area
-  e_x_axis(min = 1) # change x axis minimum
+df %>% 
+  e_charts(State) %>% # initialise and set x
+  e_line(Population, smooth = TRUE) %>%  # add a line
+  e_area(Income, smooth = TRUE) # add area
 ```
 
 `qsec` and `mpg` isn't clear to reader, rename them, lets also label the x axis while we're at it.
 
 ```{r}
-mtcars %>% 
-  e_charts(wt) %>% # initialise
-  e_line(qsec, smooth = TRUE, name = "1/4 mile time") %>% # add smooth line
-  e_area(mpg, smooth = TRUE, name = "Miles/gallon") %>% # add area
-  e_x_axis(min = 1, name = "weight") # change x axis minimum
+df %>% 
+  e_charts(State) %>% # initialise and set x
+  e_line(Population, smooth = TRUE) %>%  # add a line
+  e_area(Income, smooth = TRUE) %>%  # add area
+  e_x_axis(name = "States") # add x axis name
 ```
 
 We can use one of the 13 built-in themes, see `?e_theme` for a complete list, we'll also add a title with `e_title`.
 
 ```{r}
-mtcars %>% 
-  e_charts(wt) %>% # initialise
-  e_line(qsec, smooth = TRUE, name = "1/4 mile time") %>% # add smooth line
-  e_area(mpg, smooth = TRUE, name = "Miles/gallon") %>% # add area
-  e_x_axis(min = 1, name = "weight") %>%  # change x axis minimum
-  e_title("Ol' mtcars example") %>%  # Add title
+df %>% 
+  e_charts(State) %>% # initialise and set x
+  e_line(Population, smooth = TRUE) %>%  # add a line
+  e_area(Income, smooth = TRUE) %>%  # add area
+  e_x_axis(name = "States") %>%  # add x axis name
+  e_title("US States", "Population & Income") %>%  # Add title & subtitle
   e_theme("infographic") # theme
 ```
 
 The legend and title are a bit close, let's move the legend to another part the canvas.
 
 ```{r}
-mtcars %>% 
-  e_charts(wt) %>% # initialise
-  e_line(qsec, smooth = TRUE, name = "1/4 mile time") %>% # add smooth line
-  e_area(mpg, smooth = TRUE, name = "Miles/gallon") %>% # add area
-  e_x_axis(min = 1, name = "weight") %>%  # change x axis minimum
-  e_title("Ol' mtcars example") %>%  # Add title
+df %>% 
+  e_charts(State) %>% # initialise and set x
+  e_line(Population, smooth = TRUE) %>%  # add a line
+  e_area(Income, smooth = TRUE) %>%  # add area
+  e_x_axis(name = "States") %>%  # add x axis name
+  e_title("US States", "Population & Income") %>%  # Add title & subtitle
   e_theme("infographic") %>%  # theme
-  e_legend(bottom = 0) # move legend to the bottom
+  e_legend(right = 0) # move legend to the bottom
 ```
 
 Add a tooltip, of which there are numerous [options](https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip), here we use `trigger = "axis"` to trigger the tooltip by the axis rather than a single data point.
 
 ```{r}
-mtcars %>% 
-  e_charts(wt) %>% # initialise
-  e_line(qsec, smooth = TRUE, name = "1/4 mile time") %>% # add smooth line
-  e_area(mpg, smooth = TRUE, name = "Miles/gallon") %>% # add area
-  e_x_axis(min = 1, name = "weight") %>%  # change x axis minimum
-  e_title("Ol' mtcars example") %>%  # Add title
-  e_theme("infographic") %>% # theme
-  e_legend(bottom = 0) %>% # move legend to the bottom
+df %>% 
+  e_charts(State) %>% # initialise and set x
+  e_line(Population, smooth = TRUE) %>%  # add a line
+  e_area(Income, smooth = TRUE) %>%  # add area
+  e_x_axis(name = "States") %>%  # add x axis name
+  e_title("US States", "Population & Income") %>%  # Add title & subtitle
+  e_theme("infographic") %>%  # theme
+  e_legend(right = 0) %>%  # move legend to the bottom
+  e_tooltip(trigger = "axis") # tooltip
+```
+
+Finally, we are currently plotting population and income on the same axis, let's put them each on their respective y axis by specifying an extra axis for Income.
+
+```{r}
+df %>% 
+  e_charts(State) %>% # initialise and set x
+  e_line(Population, smooth = TRUE) %>%  # add a line
+  e_area(Income, smooth = TRUE, y_index = 1) %>%  # add area
+  e_x_axis(name = "States") %>%  # add x axis name
+  e_title("US States", "Population & Income") %>%  # Add title & subtitle
+  e_theme("infographic") %>%  # theme
+  e_legend(right = 0) %>%  # move legend to the bottom
   e_tooltip(trigger = "axis") # tooltip
 ```
 
@@ -133,20 +152,20 @@ mtcars %>%
 For instance the documentation for the tooltip looks like this:
 
 <a href="https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip" target="_blank">
-  <img src="docs.png" />
+  <img src="docs.png" class="img-responsive responsive-img" />
 </a>
 
 Therefore if we want to change our tooltip to an [axisPointer](https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip.axisPointer) we can do so by passing a list to `axisPointer`.
 
 ```{r}
-mtcars %>% 
-  e_charts(wt) %>% # initialise
-  e_line(qsec, smooth = TRUE, name = "1/4 mile time") %>% # add smooth line
-  e_area(mpg, smooth = TRUE, name = "Miles/gallon") %>% # add area
-  e_x_axis(min = 1, name = "weight") %>%  # change x axis minimum
-  e_title("Ol' mtcars example") %>%  # Add title
-  e_theme("infographic") %>% # theme
-  e_legend(bottom = 0) %>% # move legend to the bottom
+df %>% 
+  e_charts(State) %>% # initialise and set x
+  e_line(Population, smooth = TRUE) %>%  # add a line
+  e_area(Income, smooth = TRUE) %>%  # add area
+  e_x_axis(name = "States") %>%  # add x axis name
+  e_title("US States", "Population & Income") %>%  # Add title & subtitle
+  e_theme("infographic") %>%  # theme
+  e_legend(right = 0) %>% # move legend to the bottom
   e_tooltip(
     axisPointer = list(
       type = "cross"

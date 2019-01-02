@@ -50,9 +50,9 @@ div(
       tags$a(
         tags$i(class = "fa fa-play"),
         class = "btn btn-info",
-        href = "articles/actions-buttons",
+        href = "articles/timeline",
         style = "margin-bottom: 5px;",
-        "Buttons"
+        "Timeline"
       ),
       tags$a(
         tags$i(class = "fa fa-desktop"),
