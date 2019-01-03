@@ -108,7 +108,7 @@ div(
         tags$i(class = "fa fa-globe fa-5x", style = "color:#293c55;"),
         class = "caption",
         h4(code("echarts4r.assets")),
-        p("Assets for globes, add visually interesting globe overlays and background."),
+        p("Icons, and assets for globes, add visually interesting globe overlays and background."),
         pre(class = "sourceCode r", code(class = "sourceCode r", "remotes::install_github('JohnCoene/echarts4r.assets')")),
         br(),
         p(
@@ -164,22 +164,10 @@ div(
 
 Create multiple charts, arrange them in a grid and connect their interactions; _this is nonsensical chart for demonstration purposes_.
 
-<details>
-<summary>Icons SVG paths.</summary>
-The SVG paths are taken from [svgicons.sparkk.fr](http://svgicons.sparkk.fr/).
-
-```{r}
-icon1 <- "path://M10,1.375c-3.17,0-5.75,2.548-5.75,5.682c0,6.685,5.259,11.276,5.483,11.469c0.152,0.132,0.382,0.132,0.534,0c0.224-0.193,5.481-4.784,5.483-11.469C15.75,3.923,13.171,1.375,10,1.375 M10,17.653c-1.064-1.024-4.929-5.127-4.929-10.596c0-2.68,2.212-4.861,4.929-4.861s4.929,2.181,4.929,4.861C14.927,12.518,11.063,16.627,10,17.653 M10,3.839c-1.815,0-3.286,1.47-3.286,3.286s1.47,3.286,3.286,3.286s3.286-1.47,3.286-3.286S11.815,3.839,10,3.839 M10,9.589c-1.359,0-2.464-1.105-2.464-2.464S8.641,4.661,10,4.661s2.464,1.105,2.464,2.464S11.359,9.589,10,9.589"
-
-icon2 <- "path://M17.218,2.268L2.477,8.388C2.13,8.535,2.164,9.05,2.542,9.134L9.33,10.67l1.535,6.787c0.083,0.377,0.602,0.415,0.745,0.065l6.123-14.74C17.866,2.46,17.539,2.134,17.218,2.268 M3.92,8.641l11.772-4.89L9.535,9.909L3.92,8.641z M11.358,16.078l-1.268-5.613l6.157-6.157L11.358,16.078z"
-
-icon3 <- "path://M18.092,5.137l-3.977-1.466h-0.006c0.084,0.042-0.123-0.08-0.283,0H13.82L10,5.079L6.178,3.671H6.172c0.076,0.038-0.114-0.076-0.285,0H5.884L1.908,5.137c-0.151,0.062-0.25,0.207-0.25,0.369v10.451c0,0.691,0.879,0.244,0.545,0.369l3.829-1.406l3.821,1.406c0.186,0.062,0.385-0.029,0.294,0l3.822-1.406l3.83,1.406c0.26,0.1,0.543-0.08,0.543-0.369V5.506C18.342,5.344,18.242,5.199,18.092,5.137 M5.633,14.221l-3.181,1.15V5.776l3.181-1.15V14.221z M9.602,15.371l-3.173-1.15V4.626l3.173,1.15V15.371z M13.57,14.221l-3.173,1.15V5.776l3.173-1.15V14.221z M17.547,15.371l-3.182-1.15V4.626l3.182,1.15V15.371z"
-```
-</details>
-
 ```{r}
 library(dplyr)
 library(echarts4r)
+library(echarts4r.assets)
 
 e1 <- iris %>% 
   group_by(Species) %>% 
@@ -238,7 +226,9 @@ e2 <- iris %>%
   e_x_axis(min = 0) %>% 
   e_legend(
     bottom = 5,
-    icons = list(icon1, icon2, icon3)
+    icons = ea_icons(
+      c("warning", "signal", "photo")
+    )
   ) %>% 
   e_tooltip(
     trigger = "item",
