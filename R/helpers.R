@@ -276,3 +276,28 @@ e_list <- function(e, list, append = FALSE){
   e
   
 }
+
+#' Aria
+#' 
+#' W3C defined the Accessible Rich Internet Applications Suite (WAI-ARIA) 
+#' to make Web content and Web applications more accessible to the disabled. 
+#' From ECharts 4.0, echarts4r supports ARIA by generating description for 
+#' charts automatically.
+#' 
+#' @details There should be an aria-label attribute on the chart DOM, which 
+#' can help the disabled understand the content of charts with the help of certain devices.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#aria}{official documentation}
+#' 
+#' @export
+e_aria <- function(e, show = TRUE, ...){
+  
+  e$x$aria <- list(
+    show = show,
+    ...
+  )
+  
+  return(e)
+}

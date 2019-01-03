@@ -27,6 +27,7 @@ __Support for timeline added__
 - Axis and tooltip formatters helpers added `e_tooltip_item_formatter` & `e_axis_formatter`, thanks to [Artem Klevtsov](https://github.com/artemklevtsov).
 - `e_error_bar` added to plot error bars.
 - Ability to specify `icons` in `e_legend`.
+- `e_aria` added to enable generating Accessible Rich Internet Applications.
 
 # echarts4r 0.2.0
 
