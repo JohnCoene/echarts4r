@@ -347,7 +347,7 @@ e_scale <- function(x){
 
 #' @rdname scatter
 #' @export
-e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1, 
+e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol = NULL, symbol_size = 1, 
                        scale = e_scale, scale_js = "function(data){ return data[3];}", 
                        name = NULL, coord_system = "cartesian2d", jitter_factor = 0,
                        jitter_amount = NULL, legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE, 
@@ -415,6 +415,7 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
       add_opts <- list(
         name = nm,
         type = "scatter",
+        symbol = symbol,
         ...
       )
       
@@ -444,6 +445,7 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
     add_opts <- list(
       name = name,
       type = "scatter",
+      symbol = symbol,
       ...
     )
     
@@ -460,7 +462,7 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1,
 
 #' @rdname scatter
 #' @export
-e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 1, 
+e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol = NULL, symbol_size = 1, 
                               scale = e_scale, scale_js = "function(data){ return data[3];}", 
                               name = NULL, coord_system = "cartesian2d", 
                               legend = TRUE, y_index = 0, x_index = 0, rm_x = TRUE, 
@@ -523,6 +525,7 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 
       add_opts <- list(
         name = nm,
         type = "effectScatter",
+        symbol = symbol,
         ...
       )
       
@@ -552,6 +555,7 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol_size = 
     add_opts <- list(
       name = name,
       type = "effectScatter",
+      symbol = symbol,
       ...
     )
     

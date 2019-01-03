@@ -8,26 +8,27 @@
 \alias{e_effect_scatter_}
 \title{Scatter}
 \usage{
-e_scatter(e, serie, size, bind, symbol_size = 1, scale = e_scale,
-  scale_js = "function(data){ return data[3];}", name = NULL,
-  coord_system = "cartesian2d", jitter_factor = 0,
+e_scatter(e, serie, size, bind, symbol = NULL, symbol_size = 1,
+  scale = e_scale, scale_js = "function(data){ return data[3];}",
+  name = NULL, coord_system = "cartesian2d", jitter_factor = 0,
   jitter_amount = NULL, legend = TRUE, y_index = 0, x_index = 0,
   rm_x = TRUE, rm_y = TRUE, ...)
 
-e_effect_scatter(e, serie, size, bind, symbol_size = 1,
+e_effect_scatter(e, serie, size, bind, symbol = NULL, symbol_size = 1,
   scale = e_scale, scale_js = "function(data){ return data[3];}",
   name = NULL, coord_system = "cartesian2d", legend = TRUE,
   y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE, ...)
 
 e_scale(x)
 
-e_scatter_(e, serie, size = NULL, bind = NULL, symbol_size = 1,
-  scale = e_scale, scale_js = "function(data){ return data[3];}",
-  name = NULL, coord_system = "cartesian2d", jitter_factor = 0,
+e_scatter_(e, serie, size = NULL, bind = NULL, symbol = NULL,
+  symbol_size = 1, scale = e_scale,
+  scale_js = "function(data){ return data[3];}", name = NULL,
+  coord_system = "cartesian2d", jitter_factor = 0,
   jitter_amount = NULL, legend = TRUE, y_index = 0, x_index = 0,
   rm_x = TRUE, rm_y = TRUE, ...)
 
-e_effect_scatter_(e, serie, size = NULL, bind = NULL,
+e_effect_scatter_(e, serie, size = NULL, bind = NULL, symbol = NULL,
   symbol_size = 1, scale = e_scale,
   scale_js = "function(data){ return data[3];}", name = NULL,
   coord_system = "cartesian2d", legend = TRUE, y_index = 0,
@@ -41,6 +42,9 @@ e_effect_scatter_(e, serie, size = NULL, bind = NULL,
 \item{size}{Column name containing size of points.}
 
 \item{bind}{Binding between datasets, namely for use of \code{\link{e_brush}}.}
+
+\item{symbol}{The symbol to use, default to \code{NULL}, can also be \code{circle}, \code{rect},
+\code{roundRect}, \code{triangle}, \code{diamond}, \code{pin}, \code{arrow}, or \code{none}.}
 
 \item{symbol_size}{Size of points, either an integer or a vector of length 2, 
 if \code{size} is \emph{not} \code{NULL} or missing it is applied as a multiplier to \code{scale}.}

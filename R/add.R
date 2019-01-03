@@ -185,6 +185,8 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' 
 #' @inheritParams e_bar
 #' @param size Column name containing size of points.
+#' @param symbol The symbol to use, default to \code{NULL}, can also be \code{circle}, \code{rect},
+#' \code{roundRect}, \code{triangle}, \code{diamond}, \code{pin}, \code{arrow}, or \code{none}.
 #' @param symbol_size Size of points, either an integer or a vector of length 2, 
 #' if \code{size} is \emph{not} \code{NULL} or missing it is applied as a multiplier to \code{scale}. 
 #' @param scale A function that takes a vector of \code{numeric} and returns a vector of \code{numeric}
@@ -276,7 +278,7 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #' 
 #' @rdname scatter
 #' @export
-e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, 
+e_scatter <- function(e, serie, size, bind, symbol = NULL, symbol_size = 1, scale = e_scale, 
                       scale_js = "function(data){ return data[3];}", name = NULL, 
                       coord_system = "cartesian2d", jitter_factor = 0,
                       jitter_amount = NULL, legend = TRUE, y_index = 0, 
@@ -297,7 +299,7 @@ e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale,
   else
     bd <- deparse(substitute(bind))
   
-  e_scatter_(e = e, serie = serie, size = size, bind = bd, symbol_size = symbol_size, 
+  e_scatter_(e = e, serie = serie, size = size, bind = bd, symbol = symbol, symbol_size = symbol_size, 
              scale = scale, scale_js = scale_js, name = name, coord_system = coord_system,
              jitter_factor = jitter_factor, jitter_amount = jitter_amount,
              legend = legend, y_index = y_index, x_index = x_index, rm_x = rm_x, 
@@ -307,7 +309,7 @@ e_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale,
 
 #' @rdname scatter
 #' @export
-e_effect_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_scale, 
+e_effect_scatter <- function(e, serie, size, bind, symbol = NULL, symbol_size = 1, scale = e_scale, 
                              scale_js = "function(data){ return data[3];}", name = NULL, 
                              coord_system = "cartesian2d", legend = TRUE, 
                              y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE, ...){
@@ -327,7 +329,7 @@ e_effect_scatter <- function(e, serie, size, bind, symbol_size = 1, scale = e_sc
   else
     bd <- deparse(substitute(bind))
   
-  e_effect_scatter_(e, serie = serie, size = size, bind = bd, 
+  e_effect_scatter_(e, serie = serie, size = size, bind = bd, symbol = symbol, 
                     symbol_size = symbol_size, scale = scale, scale_js = scale_js,
                     name = name, coord_system, legend, 
                     y_index, x_index, rm_x, rm_y, ...)

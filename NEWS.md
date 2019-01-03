@@ -6,7 +6,7 @@ __Support for timeline added__
 - `e_list` added to pas raw list of options.
 - Improved `e_color_range` helper.
 - `e_lm` & `e_loess` now support `group_by`.
-- `e_scattter` scaling much more robust with new arguments.
+- `e_scattter` scaling much more robust with new arguments. Also not takes an optional `symbol` argument.
 - Jitter points with `e_scatter`
 - `e_append` adapated to work with new scatter-family of function (scaling).
 - `e_lines_gl` added.
