@@ -9,6 +9,8 @@ e_aria(e, show = TRUE, ...)
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
+\item{show}{Whether to show aria helper text.}
+
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{

@@ -288,6 +288,7 @@ e_list <- function(e, list, append = FALSE){
 #' can help the disabled understand the content of charts with the help of certain devices.
 #' 
 #' @inheritParams e_bar
+#' @param show Whether to show aria helper text.
 #' 
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#aria}{official documentation}
 #' 

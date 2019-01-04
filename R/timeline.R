@@ -4,12 +4,15 @@
 #' 
 #' @inheritParams e_bar
 #' @param axis_type Type of axis, \code{time}, \code{value}, or \code{category}
+#' @param col Column name.
+#' @param parent,child Parent and child name where to insert \code{col}.
 #' @param ... Named options.
 #' 
 #' @section Functions:
 #' \itemize{
 #'   \item{\code{e_timeline_opts}: Pass general timeline options, see \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#timeline}{official documentation}.}
 #'   \item{\code{e_timeline_serie}: Pass options to each serie, each options \emph{must}  be a vector or list the same length as their are steps, see examples.}
+#'   \item{\code{e_timeline_make}: Helper function that wraps your data and \code{e_timeline_serie} to dynamically add options to series.}
 #' }
 #' 
 #' @examples 
@@ -28,13 +31,20 @@
 #'   group_by(Species) %>% 
 #'   e_charts(Sepal.Length, timeline = TRUE) %>% 
 #'   e_line(Sepal.Width) %>% 
-#'   e_timeline_serie(
-#'     title = list(
-#'       list(text = "setosa"),
-#'       list(text = "versicolor"),
-#'       list(text = "virginica")
+#'     e_timeline_serie(
+#'       title = list(
+#'         list(text = "setosa"),
+#'         list(text = "versicolor"),
+#'         list(text = "virginica")
+#'       )
 #'     )
-#'   )
+#' 
+#' # same as above but with helper
+#' iris %>% 
+#'   group_by(Species) %>% 
+#'   e_charts(Sepal.Length, timeline = TRUE) %>% 
+#'   e_line(Sepal.Width) %>% 
+#'   e_timeline_make(Species, "title", "text")
 #' 
 #' @name timeline-opts
 #' @export
@@ -74,4 +84,39 @@ e_timeline_serie <- function(e, ...){
   }
   
   e
+}
+
+#' @name timeline-opts
+#' @export
+e_timeline_make_ <- function(e, col = NULL, parent = NULL, child = NULL){
+  
+  if(missing(e))
+    stop("must pass e", call. = FALSE)
+  
+  if(is.null(parent) || is.null(child) || is.null(col))
+    stop("must pass param and col", call. = FALSE)
+  
+  as_list <- function(x, y){
+    lst <- list(
+      x
+    )
+    names(lst) <- y
+    return(lst)
+  }
+  
+  e$x$data %>%
+    purrr::map_df(dplyr::bind_rows) %>%
+    dplyr::select_(col) %>% 
+    dplyr::distinct() %>% 
+    dplyr::pull(col) %>% 
+    as.character() %>% 
+    as.list() %>% 
+    purrr::map(as_list, child) %>% 
+    e_timeline_opts(e, parent = .)
+}
+
+#' @name timeline-opts
+#' @export
+e_timeline_make <- function(e, col = NULL, parent = NULL, child = NULL){
+  e_timeline_make_(e, deparse(substitute(col)), parent, child)
 }
