@@ -43,6 +43,24 @@ df %>%
   e_title("Built-in symbols")
 ```
 
+## Icons
+
+[echarts4r.assets](https://echarts4r-assets.john-coene.com) now includes icons you can easily include in your plots.
+
+```{r}
+library(echarts4r.assets)
+
+mtcars %>% 
+  e_charts(mpg) %>% 
+  e_scatter(
+    wt, 
+    qsec,
+    symbol = ea_icons("trash"),
+    name = "Trash"
+  ) %>% 
+  e_legend(icons = ea_icons("trash"))
+```
+
 ## SVG path
 
 ```{r}
