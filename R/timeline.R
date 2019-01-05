@@ -4,8 +4,6 @@
 #' 
 #' @inheritParams e_bar
 #' @param axis_type Type of axis, \code{time}, \code{value}, or \code{category}
-#' @param col Column name.
-#' @param parent,child Parent and child name where to insert \code{col}.
 #' @param ... Named options.
 #' 
 #' @section Functions:
@@ -38,13 +36,6 @@
 #'         list(text = "virginica")
 #'       )
 #'     )
-#' 
-#' # same as above but with helper
-#' iris %>% 
-#'   group_by(Species) %>% 
-#'   e_charts(Sepal.Length, timeline = TRUE) %>% 
-#'   e_line(Sepal.Width) %>% 
-#'   e_timeline_make(Species, "title", "text")
 #' 
 #' @name timeline-opts
 #' @export
@@ -84,39 +75,4 @@ e_timeline_serie <- function(e, ...){
   }
   
   e
-}
-
-#' @name timeline-opts
-#' @export
-e_timeline_make_ <- function(e, col = NULL, parent = NULL, child = NULL){
-  
-  if(missing(e))
-    stop("must pass e", call. = FALSE)
-  
-  if(is.null(parent) || is.null(child) || is.null(col))
-    stop("must pass param and col", call. = FALSE)
-  
-  as_list <- function(x, y){
-    lst <- list(
-      x
-    )
-    names(lst) <- y
-    return(lst)
-  }
-  
-  e$x$data %>%
-    purrr::map_df(dplyr::bind_rows) %>%
-    dplyr::select_(col) %>% 
-    dplyr::distinct() %>% 
-    dplyr::pull(col) %>% 
-    as.character() %>% 
-    as.list() %>% 
-    purrr::map(as_list, child) %>% 
-    e_timeline_opts(e, parent = .)
-}
-
-#' @name timeline-opts
-#' @export
-e_timeline_make <- function(e, col = NULL, parent = NULL, child = NULL){
-  e_timeline_make_(e, deparse(substitute(col)), parent, child)
 }

@@ -4,17 +4,11 @@
 \alias{timeline-opts}
 \alias{e_timeline_opts}
 \alias{e_timeline_serie}
-\alias{e_timeline_make_}
-\alias{e_timeline_make}
 \title{Timeline}
 \usage{
 e_timeline_opts(e, axis_type = "category", ...)
 
 e_timeline_serie(e, ...)
-
-e_timeline_make_(e, col = NULL, parent = NULL, child = NULL)
-
-e_timeline_make(e, col = NULL, parent = NULL, child = NULL)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -22,10 +16,6 @@ e_timeline_make(e, col = NULL, parent = NULL, child = NULL)
 \item{axis_type}{Type of axis, \code{time}, \code{value}, or \code{category}}
 
 \item{...}{Named options.}
-
-\item{col}{Column name.}
-
-\item{parent, child}{Parent and child name where to insert \code{col}.}
 }
 \description{
 Set timeline options
@@ -62,12 +52,5 @@ iris \%>\%
         list(text = "virginica")
       )
     )
-
-# same as above but with helper
-iris \%>\% 
-  group_by(Species) \%>\% 
-  e_charts(Sepal.Length, timeline = TRUE) \%>\% 
-  e_line(Sepal.Width) \%>\% 
-  e_timeline_make(Species, "title", "text")
 
 }
