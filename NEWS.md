@@ -1,3 +1,7 @@
+# echarts4r 0.2.2
+
+- Ability to add multiple `e_title`.
+
 # echarts4r 0.2.1
 
 __Support for timeline added__

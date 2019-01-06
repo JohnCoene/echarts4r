@@ -15,18 +15,17 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 library(dplyr)
-library(echarts4r)
+library(echarts4r.suite)
 
 e_common(
     font_family = "Raleway"
 )
 ```
 
-## Lines
+## Flights
 
 ```{r}
 library(dplyr)
-library(echarts4r.assets)
 
 # download
 flights <- jsonlite::fromJSON("https://ecomfe.github.io/echarts-examples/public/data-gl/asset/data/flights.json")
@@ -111,7 +110,7 @@ data %>%
   )
 ```
 
-## Scatter 3D
+## Population
 
 ```{r}
 data <- jsonlite::fromJSON("http://gallery.echartsjs.com/asset/get/s/data-1491887968120-rJODPy9ae.json")
@@ -151,29 +150,48 @@ data %>%
   )
 ```
 
-## Timeline
-
-This is a temporary implementation of the timeline component, it will, eventually, be properly incorporated into the package.
+## Gapminder
 
 ```{r}
-aggregate <- OrchardSprays %>% 
-    group_by(treatment, colpos) %>% 
-    summarise(
-        decrease = sum(decrease)
-    ) %>% 
-    group_by(treatment)
+library(purrr)
 
-OrchardSprays %>% 
-    group_by(treatment) %>% 
-    e_charts(rowpos, timeline = TRUE) %>% 
-    e_line(decrease) %>% 
-    e_data(aggregate, colpos) %>% 
-    e_pie(
-      decrease, 
-      center = list("75%", "35%"),
-      radius = "20%",
-      rm_x = FALSE, 
-      rm_y = FALSE
-    ) %>% 
-  e_timeline_opts(autoPlay = TRUE)
+data("gapminder", package = "gapminder")
+
+titles <- map(unique(gapminder$year), function(x){
+  list(
+    text = "Gapminder",
+    subtext = x,
+    left = "center"
+  )
+})
+
+gapminder %>% 
+  group_by(year) %>% 
+  e_charts(gdpPercap, timeline = TRUE) %>% 
+  e_scatter(lifeExp, pop, country) %>% 
+  e_y_axis(min = 20, max = 85) %>% 
+  e_x_axis(type = "log", min = 100, max = 100000) %>% 
+  e_timeline_serie(title = titles) %>% 
+  e_tooltip() %>% 
+  e_timeline_opts(
+    show = TRUE,
+    orient = "vertical",
+    symbol = "none",
+    right = 0,
+    top = 20,
+    bottom = 20,
+    height = NULL,
+    width = 45,
+    inverse = TRUE,
+    playInterval = 1000,
+    autoPlay  = TRUE,
+    controlStyle = list(
+      showNextBtn = FALSE,
+      showPrevBtn = FALSE
+    ),
+    label = list(
+      fontSize = 8
+    )
+  ) %>% 
+  e_theme("dark")
 ```

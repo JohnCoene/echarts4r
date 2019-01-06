@@ -4,7 +4,8 @@
 \alias{e_title}
 \title{Title}
 \usage{
-e_title(e, text, subtext = NULL, link = NULL, sublink = NULL, ...)
+e_title(e, text = NULL, subtext = NULL, link = NULL,
+  sublink = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

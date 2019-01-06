@@ -592,10 +592,10 @@ e_brush <- function(e, x_index = NULL, y_index = NULL, ...){
 #' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#title}{Additional arguments}
 #' 
 #' @export
-e_title <- function(e, text, subtext = NULL, link = NULL, sublink = NULL, ...){
+e_title <- function(e, text = NULL, subtext = NULL, link = NULL, sublink = NULL, ...){
   
-  if(missing(e) || missing(text))
-    stop("missing e or text", call. = FALSE)
+  if(missing(e))
+    stop("missing e", call. = FALSE)
   
   title <- list(...)
   title$text <- text
@@ -604,9 +604,9 @@ e_title <- function(e, text, subtext = NULL, link = NULL, sublink = NULL, ...){
   title$sublink <- sublink
   
   if(!e$x$tl)
-    e$x$opts$title <- title
+    e$x$opts$title <- append(e$x$opts$title, title)
   else
-    e$x$opts$baseOption$title <- title
+    e$x$opts$baseOption$title <- append(e$x$opts$baseOption$title, title)
   
   e
   
