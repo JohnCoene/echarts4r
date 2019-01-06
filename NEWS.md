@@ -1,6 +1,8 @@
 # echarts4r 0.2.2
 
 - Ability to add multiple `e_title`.
+- `draw` argument added to `e_charts`, to set whether to draw the chart, see bullet below.
+- `e_draw_p` added to choose draw chart.
 
 # echarts4r 0.2.1
 

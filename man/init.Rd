@@ -9,14 +9,16 @@
 \title{Initialise}
 \usage{
 e_charts(data, x, width = NULL, height = NULL, elementId = NULL,
-  dispose = TRUE, renderer = "canvas", timeline = FALSE, ...)
-
-e_charts_(data, x = NULL, width = NULL, height = NULL,
-  elementId = NULL, dispose = TRUE, renderer = "canvas",
+  dispose = TRUE, draw = TRUE, renderer = "canvas",
   timeline = FALSE, ...)
 
+e_charts_(data, x = NULL, width = NULL, height = NULL,
+  elementId = NULL, dispose = TRUE, draw = TRUE,
+  renderer = "canvas", timeline = FALSE, ...)
+
 e_chart(data, x, width = NULL, height = NULL, elementId = NULL,
-  dispose = TRUE, renderer = "canvas", timeline = FALSE, ...)
+  dispose = TRUE, draw = TRUE, renderer = "canvas",
+  timeline = FALSE, ...)
 
 e_data(e, data, x)
 }
@@ -32,6 +34,8 @@ string and have \code{'px'} appended.}
 \item{elementId}{Id of element.}
 
 \item{dispose}{Set to \code{TRUE} to force redraw of chart, set to \code{FALSE} to update.}
+
+\item{draw}{Whether to draw the chart.}
 
 \item{renderer}{Renderer, takes \code{canvas} (default) or \code{svg}.}
 

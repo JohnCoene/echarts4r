@@ -52,6 +52,7 @@ Interact with the charts without redrawing (proxies):
 * `e_append1_p` and `e_append2_p` - to add data to your chart.
 * `e_highlight_p` and `e_downplay_p` - to highlight or downplay a serie.
 * `e_showtip_p` and `e_hidetip_p` - to Show or hide the tooltip.
+* `e_draw_p` to draw the chart, see function documentation for examples.
 * `e_focus_adjacency` and `e_unfocus_adjacency` - to focus or unfocus on adjacent nodes (networks).
 
 See the example below and the various proxies documentation.

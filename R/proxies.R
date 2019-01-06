@@ -439,3 +439,49 @@ e_capture <- function(e, event){
   e$x$capture <- event
   e
 }
+
+#' Draw
+#' 
+#' Draw the chart.
+#' 
+#' @examples 
+#' \dontrun{
+#' library(shiny)
+#' 
+#' ui <- fluidPage(
+#'   echarts4rOutput("chart"),
+#'   actionButton("draw", "draw")
+#' )
+#' 
+#' server <- function(input, output){
+#'   output$chart <- renderEcharts4r({
+#'     mtcars %>% 
+#'       e_charts(mpg, draw = FALSE) %>% 
+#'       e_scatter(qsec) %>% 
+#'       e_datazoom() 
+#'   })
+#'   
+#'   observeEvent(input$draw, {
+#'     echarts4rProxy("chart") %>% 
+#'       e_draw_p()
+#'   })
+#' }
+#' 
+#' shinyApp(ui, server)
+#' }
+#' 
+#' @details Useful if you set \code{draw} to \code{FALSE} in \code{\link{e_charts}}.
+#' 
+#' @export
+e_draw_p <- function(proxy){
+  
+  if(missing(proxy))
+    stop("must pass proxy and type", call. = FALSE)
+  
+  if (!"echarts4rProxy" %in% class(proxy)) 
+    stop("must pass echarts4rProxy object", call. = FALSE)
+  
+  data <- list(id = proxy$id)
+  
+  proxy$session$sendCustomMessage("e_draw_p", data)
+}

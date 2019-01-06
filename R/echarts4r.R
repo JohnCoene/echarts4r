@@ -21,6 +21,7 @@ echarts_build <- function(e) {
 #' @param data A \code{data.frame}.
 #' @param e An object of class \code{echarts4r} as returned by \code{e_charts}.
 #' @param x Column name containing x axis.
+#' @param draw Whether to draw the chart, intended to be used with \code{\link{e_draw_p}}.
 #' @param width,height Must be a valid CSS unit (like \code{'100\%'},
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
 #'   string and have \code{'px'} appended.
@@ -75,7 +76,7 @@ echarts_build <- function(e) {
 #' @name init
 #' @export
 e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dispose = TRUE, 
-                     renderer = "canvas", timeline = FALSE, ...) {
+                     draw = TRUE, renderer = "canvas", timeline = FALSE, ...) {
 
   xmap <- NULL
   
@@ -86,6 +87,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
   x = list(
     theme = "",
     tl = timeline,
+    draw = draw, 
     renderer = tolower(renderer),
     mapping = list(),
     events = list(),
@@ -193,7 +195,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
 #' @rdname init
 #' @export
 e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = NULL, dispose = TRUE, 
-                      renderer = "canvas", timeline = FALSE, ...) {
+                      draw = TRUE, renderer = "canvas", timeline = FALSE, ...) {
   
   xmap <- x
   
@@ -202,6 +204,7 @@ e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = N
     theme = "",
     tl = timeline,
     renderer = tolower(renderer),
+    draw = draw,
     mapping = list(),
     events = list(),
     buttons = list(),
