@@ -302,3 +302,34 @@ e_aria <- function(e, show = TRUE, ...){
   
   return(e)
 }
+
+#' Inspect
+#' 
+#' Inspect JSON options built by the package.
+#' 
+#' @inheritParams e_bar
+#' @param json Whether to return the JSON, otherwise returns a \code{list}.
+#' @param ... Additional options to pass to \link[jsonlite]{toJSON}.
+#' 
+#' @examples 
+#' mtcars %>% 
+#'   e_charts(mpg) %>% 
+#'   e_scatter(wt, qsec) %>% 
+#'   e_inspect(
+#'     json = TRUE,
+#'     pretty = TRUE
+#'   )
+#' 
+#' @return Returns a \code{list} if \code{json} is \code{FALSE}. 
+#' 
+#' @note Must be passed as last option.
+#' 
+#' @export
+e_inspect <- function(e, json = FALSE, ...){
+  opts <- e$x$opts
+  
+  if(isTRUE(json))
+    opts <- jsonlite::toJSON(opts, force = TRUE, auto_unbox = TRUE, ...)
+  
+  return(opts)
+}

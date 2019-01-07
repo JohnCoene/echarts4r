@@ -35,7 +35,7 @@ string and have \code{'px'} appended.}
 
 \item{dispose}{Set to \code{TRUE} to force redraw of chart, set to \code{FALSE} to update.}
 
-\item{draw}{Whether to draw the chart.}
+\item{draw}{Whether to draw the chart, intended to be used with \code{\link{e_draw_p}}.}
 
 \item{renderer}{Renderer, takes \code{canvas} (default) or \code{svg}.}
 

@@ -444,6 +444,8 @@ e_capture <- function(e, event){
 #' 
 #' Draw the chart.
 #' 
+#' @inheritParams e_highlight_p
+#' 
 #' @examples 
 #' \dontrun{
 #' library(shiny)
