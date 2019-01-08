@@ -25,6 +25,10 @@ JSON string otherwise. \code{echarts_from_json} returns an object of class \code
 \description{
 Get JSON options from an echarts4r object and build one from JSON.
 }
+\details{
+\code{txt} should contain the full list of options required to build a chart.
+This is subsequently passed to the \code{setOption} ECharts (JavaScript) function.
+}
 \note{
 Must be passed as last option.
 }
