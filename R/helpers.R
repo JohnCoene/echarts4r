@@ -303,27 +303,41 @@ e_aria <- function(e, show = TRUE, ...){
   return(e)
 }
 
-#' Inspect
+#' To & From JSON
 #' 
-#' Inspect JSON options built by the package.
+#' Get JSON options from an echarts4r object and build one from JSON.
 #' 
 #' @inheritParams e_bar
 #' @param json Whether to return the JSON, otherwise returns a \code{list}.
+#' @param txt JSON character string, url, or file.
 #' @param ... Additional options to pass to \link[jsonlite]{toJSON}.
 #' 
 #' @examples 
-#' mtcars %>% 
-#'   e_charts(mpg) %>% 
-#'   e_scatter(wt, qsec) %>% 
+#' p <- cars %>% 
+#'   e_charts(dist) %>% 
+#'   e_scatter(speed, symbol_size = 10) 
+#'  
+#' p # plot
+#' 
+#' # extract the JSON 
+#' json <- p %>% 
 #'   e_inspect(
 #'     json = TRUE,
 #'     pretty = TRUE
 #'   )
+#'   
+#' # print json
+#' json
+#'   
+#' # rebuild plot
+#' echarts_from_json(json) 
 #' 
-#' @return Returns a \code{list} if \code{json} is \code{FALSE}. 
+#' @return \code{e_inspect} Returns a \code{list} if \code{json} is \code{FALSE} and a 
+#' JSON string otherwise. \code{echarts_from_json} returns an object of class \code{echarts4r}.
 #' 
 #' @note Must be passed as last option.
 #' 
+#' @rdname echartsNJSON
 #' @export
 e_inspect <- function(e, json = FALSE, ...){
   opts <- e$x$opts
@@ -332,4 +346,16 @@ e_inspect <- function(e, json = FALSE, ...){
     opts <- jsonlite::toJSON(opts, force = TRUE, auto_unbox = TRUE, null = "null", ...)
   
   return(opts)
+}
+
+#' @rdname echartsNJSON
+#' @export
+echarts_from_json <- function(txt){
+  
+  json <- jsonlite::fromJSON(txt, simplifyVector = FALSE)
+  
+  e_charts() -> e
+  e$x$opts <- json
+  e
+  
 }
