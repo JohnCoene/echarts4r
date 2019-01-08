@@ -50,6 +50,7 @@ json <- p \%>\%
 json
   
 # rebuild plot
-echarts_from_json(json) 
+echarts_from_json(json) \%>\% 
+  e_theme("dark") # modify
 
 }

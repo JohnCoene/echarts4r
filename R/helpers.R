@@ -333,7 +333,8 @@ e_aria <- function(e, show = TRUE, ...){
 #' json
 #'   
 #' # rebuild plot
-#' echarts_from_json(json) 
+#' echarts_from_json(json) %>% 
+#'   e_theme("dark") # modify
 #' 
 #' @return \code{e_inspect} Returns a \code{list} if \code{json} is \code{FALSE} and a 
 #' JSON string otherwise. \code{echarts_from_json} returns an object of class \code{echarts4r}.
