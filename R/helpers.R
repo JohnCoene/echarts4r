@@ -329,7 +329,7 @@ e_inspect <- function(e, json = FALSE, ...){
   opts <- e$x$opts
   
   if(isTRUE(json))
-    opts <- jsonlite::toJSON(opts, force = TRUE, auto_unbox = TRUE, ...)
+    opts <- jsonlite::toJSON(opts, force = TRUE, auto_unbox = TRUE, null = "null", ...)
   
   return(opts)
 }
