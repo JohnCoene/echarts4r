@@ -84,7 +84,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -273,14 +273,16 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_charts</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dispose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>renderer</span> <span class='kw'>=</span> <span class='st'>"canvas"</span>, <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
-
-<span class='fu'>e_charts_</span>(<span class='no'>data</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dispose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>renderer</span> <span class='kw'>=</span> <span class='st'>"canvas"</span>,
+  <span class='kw'>dispose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>draw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>renderer</span> <span class='kw'>=</span> <span class='st'>"canvas"</span>,
   <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
 
+<span class='fu'>e_charts_</span>(<span class='no'>data</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dispose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>draw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>renderer</span> <span class='kw'>=</span> <span class='st'>"canvas"</span>, <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
+
 <span class='fu'>e_chart</span>(<span class='no'>data</span>, <span class='no'>x</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dispose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>renderer</span> <span class='kw'>=</span> <span class='st'>"canvas"</span>, <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
+  <span class='kw'>dispose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>draw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>renderer</span> <span class='kw'>=</span> <span class='st'>"canvas"</span>,
+  <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_data</span>(<span class='no'>e</span>, <span class='no'>data</span>, <span class='no'>x</span>)</pre>
     
@@ -308,6 +310,10 @@ string and have <code>'px'</code> appended.</p></td>
     <tr>
       <th>dispose</th>
       <td><p>Set to <code>TRUE</code> to force redraw of chart, set to <code>FALSE</code> to update.</p></td>
+    </tr>
+    <tr>
+      <th>draw</th>
+      <td><p>Whether to draw the chart, intended to be used with <code><a href='e_draw_p.html'>e_draw_p</a></code>.</p></td>
     </tr>
     <tr>
       <th>renderer</th>

@@ -404,7 +404,7 @@ e_radar_opts <- function(e, index = 0, ...){
 #'   e_scatter(
 #'     value,
 #'     size, 
-#'     coord.system = "singleAxis"
+#'     coord_system = "singleAxis"
 #'   ) 
 #' 
 #' @export

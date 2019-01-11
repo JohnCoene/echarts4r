@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Single Axis — e_single_axis • echarts4r</title>
+<title>To &amp; From JSON — e_inspect • echarts4r</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,9 +38,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Single Axis — e_single_axis" />
+<meta property="og:title" content="To &amp; From JSON — e_inspect" />
 
-<meta property="og:description" content="Setup single axis." />
+<meta property="og:description" content="Get JSON options from an echarts4r object and build one from JSON." />
 
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -261,18 +261,20 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Single Axis</h1>
+    <h1>To &amp; From JSON</h1>
     
-    <div class="hidden name"><code>e_single_axis.Rd</code></div>
+    <div class="hidden name"><code>echartsNJSON.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Setup single axis.</p>
+    <p>Get JSON options from an echarts4r object and build one from JSON.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_single_axis</span>(<span class='no'>e</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_inspect</span>(<span class='no'>e</span>, <span class='kw'>json</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
+
+<span class='fu'>echarts_from_json</span>(<span class='no'>txt</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -282,37 +284,244 @@
       <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code>.</p></td>
     </tr>
     <tr>
-      <th>index</th>
-      <td><p>Index of axis to customise.</p></td>
+      <th>json</th>
+      <td><p>Whether to return the JSON, otherwise returns a <code>list</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Any other option to pass, check See Also section.</p></td>
+      <td><p>Additional options to pass to <a href='https://www.rdocumentation.org/packages/jsonlite/topics/fromJSON'>toJSON</a>.</p></td>
+    </tr>
+    <tr>
+      <th>txt</th>
+      <td><p>JSON character string, url, or file.</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>e_inspect</code> Returns a <code>list</code> if <code>json</code> is <code>FALSE</code> and a 
+JSON string otherwise. <code>echarts_from_json</code> returns an object of class <code>echarts4r</code>.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>txt</code> should contain the full list of options required to build a chart.
+This is subsequently passed to the <code>setOption</code> ECharts (JavaScript) function.</p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Must be passed as last option.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
-  <span class='kw'>axis</span> <span class='kw'>=</span> <span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>10</span>],
-  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span>(<span class='fl'>10</span>, <span class='fl'>3</span>, <span class='fl'>20</span>),
-  <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span>(<span class='fl'>10</span>, <span class='fl'>3</span>, <span class='fl'>20</span>)
-)
+    <pre class="examples"><div class='input'><span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='no'>cars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>dist</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>speed</span>, <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 
-<span class='no'>df</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>axis</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_single_axis</span>() <span class='kw'>%&gt;%</span> <span class='co'># add the single axis</span>
-  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(
-    <span class='no'>value</span>,
-    <span class='no'>size</span>,
-    <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"singleAxis"</span>
-  )</div></pre>
+<span class='no'>p</span> <span class='co'># plot</span>
+
+<span class='co'># extract the JSON </span>
+<span class='no'>json</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_inspect</span>(
+    <span class='kw'>json</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+    <span class='kw'>pretty</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  )
+
+<span class='co'># print json</span>
+<span class='no'>json</span></div><div class='output co'>#&gt; {
+#&gt;   "yAxis": [
+#&gt;     {
+#&gt;       "show": true
+#&gt;     }
+#&gt;   ],
+#&gt;   "xAxis": [
+#&gt;     {
+#&gt;       "type": "value"
+#&gt;     }
+#&gt;   ],
+#&gt;   "legend": {
+#&gt;     "data": [
+#&gt;       "speed"
+#&gt;     ]
+#&gt;   },
+#&gt;   "series": [
+#&gt;     {
+#&gt;       "data": [
+#&gt;         {
+#&gt;           "value": [2, 4]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [4, 7]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [10, 4]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [10, 9]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [14, 12]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [16, 8]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [17, 11]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [18, 10]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [20, 12]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [20, 15]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [22, 7]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [24, 12]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [26, 10]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [26, 13]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [26, 14]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [26, 15]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [28, 11]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [28, 12]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [32, 16]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [32, 17]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [32, 20]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [34, 10]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [34, 13]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [34, 13]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [36, 14]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [36, 19]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [40, 16]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [40, 17]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [42, 18]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [46, 13]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [46, 19]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [48, 20]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [50, 17]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [52, 20]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [54, 15]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [54, 23]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [56, 18]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [56, 20]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [60, 14]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [64, 20]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [66, 22]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [68, 19]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [70, 24]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [76, 18]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [80, 14]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [84, 18]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [85, 25]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [92, 24]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [93, 24]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [120, 24]
+#&gt;         }
+#&gt;       ],
+#&gt;       "name": "speed",
+#&gt;       "type": "scatter",
+#&gt;       "symbol": null,
+#&gt;       "coordinateSystem": "cartesian2d",
+#&gt;       "yAxisIndex": 0,
+#&gt;       "xAxisIndex": 0,
+#&gt;       "symbolSize": 10
+#&gt;     }
+#&gt;   ]
+#&gt; } </div><div class='input'>
+<span class='co'># rebuild plot</span>
+<span class='fu'>echarts_from_json</span>(<span class='no'>json</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='theme.html'>e_theme</a></span>(<span class='st'>"dark"</span>) <span class='co'># modify</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#note">Note</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

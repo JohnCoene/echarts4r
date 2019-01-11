@@ -29,7 +29,7 @@ df \%>\%
   e_scatter(
     value,
     size, 
-    coord.system = "singleAxis"
+    coord_system = "singleAxis"
   ) 
 
 }
