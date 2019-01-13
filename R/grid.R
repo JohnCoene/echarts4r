@@ -4,6 +4,10 @@
 #' 
 #' @inheritParams e_bar
 #' @param axis Axis to customise.
+#' @param serie Column name of serie to range the axis. If used the range of the serie is used as,
+#' \code{min} an \code{max}.
+#' @param margin Margin to apply to \code{serie}: \eqn{min = serie - margin} and 
+#' \eqn{max = serie + margin}
 #' @param index Index of axis to customise.
 #' @param formatter An axis formatter as returned by \code{\link{e_axis_formatter}}.
 #' @param style Formatter style, one of \code{decimal}, \code{percent}, or \code{currency}.
@@ -18,12 +22,12 @@
 #' }
 #' 
 #' @examples 
-#' # hide axis
-#' USArrests %>% 
-#'   e_charts(Assault) %>% 
-#'   e_line(Murder, smooth = TRUE) %>% 
-#'   e_line(Rape, y.index = 1) %>% # add secondary axis
-#'   e_y_axis(index = 1, show = FALSE) # hide secondary axis
+#' # range axis based on serie
+#' cars %>% 
+#'   e_charts(speed) %>% 
+#'   e_line(dist) %>% 
+#'   e_x_axis(speed) %>% 
+#'   e_y_axis(dist)
 #'   
 #' # use formatter
 #' cars %>% 
@@ -53,7 +57,19 @@
 #' 
 #' @rdname axis
 #' @export
-e_axis <- function(e, axis = c("x", "y", "z"), index = 0, formatter = NULL, ...){
+e_axis <- function(e, serie, axis = c("x", "y", "z"), index = 0, formatter = NULL, margin = 0, ...){
+  
+  if(missing(serie))
+    serie <- NULL
+  else
+    serie <- deparse(substitute(serie))
+  
+  e_axis_(e, serie = serie, axis = axis, index = index, formatter = formatter, margin = margin, ...)
+}
+
+#' @rdname axis
+#' @export
+e_axis_ <- function(e, serie = NULL, axis = c("x", "y", "z"), index = 0, formatter = NULL, margin = 0, ...){
   
   if(missing(e))
     stop("missing e", call. = FALSE)
@@ -64,6 +80,13 @@ e_axis <- function(e, axis = c("x", "y", "z"), index = 0, formatter = NULL, ...)
   max <- length(e$x$opts[[axis]])
   
   attrs <- list(...)
+  
+  if(!is.null(serie)){
+    dat <- .get_data(e, serie)
+    rng <- range(dat)
+    attrs$min <- rng[1] - margin
+    attrs$max <- rng[2] + margin
+  }
   
   if(!is.null(formatter))
     attrs$axisLabel$formatter <- formatter
@@ -104,29 +127,69 @@ e_axis <- function(e, axis = c("x", "y", "z"), index = 0, formatter = NULL, ...)
 
 #' @rdname axis
 #' @export
-e_x_axis <- function(e, index = 0, formatter = NULL, ...){
+e_x_axis_ <- function(e, serie = NULL, index = 0, formatter = NULL, margin = 0, ...){
   if(missing(e))
     stop("missing e", call. = FALSE)
-  e <- e_axis(e, "x", index, formatter, ...)
-  e
+  e_axis_(e, serie, "x", index, formatter, margin = margin, ...)
 }
 
 #' @rdname axis
 #' @export
-e_y_axis<- function(e, index = 0, formatter = NULL, ...){
+e_y_axis_ <- function(e, serie = NULL, index = 0, formatter = NULL, margin = 0, ...){
   if(missing(e))
     stop("missing e", call. = FALSE)
-  e <- e_axis(e = e, axis = "y",index =  index, formatter,...)
-  e
+  e_axis_(e = e, serie = serie, axis = "y", index =  index, formatter, margin = margin,...)
 }
 
 #' @rdname axis
 #' @export
-e_z_axis <- function(e, index = 0, ...){
+e_z_axis_ <- function(e, serie = NULL, index = 0, margin = 0, ...){
   if(missing(e))
     stop("missing e", call. = FALSE)
-  e <- e_axis(e = e, axis = "z",index =  index, ...)
-  e
+  e_axis_(e = e, serie = serie, axis = "z", index =  index, margin = margin, ...)
+}
+
+
+#' @rdname axis
+#' @export
+e_x_axis <- function(e, serie, index = 0, formatter = NULL, margin = 0, ...){
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  if(missing(serie))
+    serie <- NULL
+  else
+    serie <- deparse(substitute(serie))
+  
+  e_axis_(e, serie, "x", index, formatter, margin = margin, ...)
+}
+
+#' @rdname axis
+#' @export
+e_y_axis <- function(e, serie, index = 0, formatter = NULL, margin = 0, ...){
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  if(missing(serie))
+    serie <- NULL
+  else
+    serie <- deparse(substitute(serie))
+  
+  e_axis_(e = e, serie = serie, axis = "y", index =  index, formatter, margin = margin,...)
+}
+
+#' @rdname axis
+#' @export
+e_z_axis <- function(e, serie, index = 0, margin = 0, ...){
+  if(missing(e))
+    stop("missing e", call. = FALSE)
+  
+  if(missing(serie))
+    serie <- NULL
+  else
+    serie <- deparse(substitute(serie))
+  
+  e_axis(e = e, serie = serie, axis = "z", index =  index, margin = margin, ...)
 }
 
 #' @rdname axis

@@ -5,6 +5,7 @@
 - `e_draw_p` added to choose draw chart.
 - `e_inspect` to inspect the output of echarts4r.
 - `echarts_from_json` to create an echarts4r object from JSON options.
+- `e_axis` family of functions (e.g.: `e_x_axis`) now accepts a column name as first argument to easily adapt the range of the axes, in a similar fashion as with `e_visual_map`.
 
 # echarts4r 0.2.1
 

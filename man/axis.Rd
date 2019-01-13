@@ -2,6 +2,10 @@
 % Please edit documentation in R/grid.R
 \name{e_axis}
 \alias{e_axis}
+\alias{e_axis_}
+\alias{e_x_axis_}
+\alias{e_y_axis_}
+\alias{e_z_axis_}
 \alias{e_x_axis}
 \alias{e_y_axis}
 \alias{e_z_axis}
@@ -9,13 +13,25 @@
 \alias{e_axis_formatter}
 \title{Axis}
 \usage{
-e_axis(e, axis = c("x", "y", "z"), index = 0, formatter = NULL, ...)
+e_axis(e, serie, axis = c("x", "y", "z"), index = 0,
+  formatter = NULL, margin = 0, ...)
 
-e_x_axis(e, index = 0, formatter = NULL, ...)
+e_axis_(e, serie = NULL, axis = c("x", "y", "z"), index = 0,
+  formatter = NULL, margin = 0, ...)
 
-e_y_axis(e, index = 0, formatter = NULL, ...)
+e_x_axis_(e, serie = NULL, index = 0, formatter = NULL, margin = 0,
+  ...)
 
-e_z_axis(e, index = 0, ...)
+e_y_axis_(e, serie = NULL, index = 0, formatter = NULL, margin = 0,
+  ...)
+
+e_z_axis_(e, serie = NULL, index = 0, margin = 0, ...)
+
+e_x_axis(e, serie, index = 0, formatter = NULL, margin = 0, ...)
+
+e_y_axis(e, serie, index = 0, formatter = NULL, margin = 0, ...)
+
+e_z_axis(e, serie, index = 0, margin = 0, ...)
 
 e_rm_axis(e, axis = c("x", "y", "z"))
 
@@ -25,11 +41,17 @@ e_axis_formatter(style = c("decimal", "percent", "currency"),
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
+\item{serie}{Column name of serie to range the axis. If used the range of the serie is used as,
+\code{min} an \code{max}.}
+
 \item{axis}{Axis to customise.}
 
 \item{index}{Index of axis to customise.}
 
 \item{formatter}{An axis formatter as returned by \code{\link{e_axis_formatter}}.}
+
+\item{margin}{Margin to apply to \code{serie}: \eqn{min = serie - margin} and 
+\eqn{max = serie + margin}}
 
 \item{...}{Any other option to pass, check See Also section.}
 
@@ -53,12 +75,12 @@ Customise axis.
 }
 
 \examples{
-# hide axis
-USArrests \%>\% 
-  e_charts(Assault) \%>\% 
-  e_line(Murder, smooth = TRUE) \%>\% 
-  e_line(Rape, y.index = 1) \%>\% # add secondary axis
-  e_y_axis(index = 1, show = FALSE) # hide secondary axis
+# range axis based on serie
+cars \%>\% 
+  e_charts(speed) \%>\% 
+  e_line(dist) \%>\% 
+  e_x_axis(speed) \%>\% 
+  e_y_axis(dist)
   
 # use formatter
 cars \%>\% 
