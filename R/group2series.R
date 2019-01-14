@@ -27,7 +27,7 @@ map_grps_ <- function(data){
     data <- data[order(names(data))] 
     
   } else {
-    row.names(data) <- NULL
+    data <- as.data.frame(data) # force data frame
     data <- list(data)
   }
   

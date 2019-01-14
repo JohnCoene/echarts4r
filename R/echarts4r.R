@@ -102,8 +102,6 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
   
   if(!missing(data)){
     
-    data <- as.data.frame(data) # force data frame
-    
     row.names(data) <- NULL
     
     if(!is.null(xmap) && !isTRUE(timeline))
@@ -219,8 +217,6 @@ e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = N
   )
   
   if(!missing(data)){
-    
-    data <- as.data.frame(data) # force data frame
     
     row.names(data) <- NULL
     
