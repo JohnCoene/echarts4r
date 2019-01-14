@@ -27,7 +27,10 @@ map_grps_ <- function(data){
     data <- data[order(names(data))] 
     
   } else {
-    data <- as.data.frame(data) # force data frame
+    
+    if(inherits(data, "data.frame"))
+      data <- as.data.frame(data) # force data frame
+    
     data <- list(data)
   }
   
