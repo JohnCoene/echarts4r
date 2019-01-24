@@ -174,7 +174,7 @@ e_tooltip <- function(e, trigger = c("item", "axis"), formatter = NULL, ...){
   
   if(!is.null(formatter)){
     
-    if(inherits(formatter, "item_formatter") || inherits(formatter, "pie_formatter"))
+    if(inherits(formatter, "item_formatter") || inherits(formatter, "pie_formatter") || inherits(formatter, "JS_EVAL"))
       tooltip$formatter <- formatter
    
     if(inherits(formatter, "pointer_formatter")){

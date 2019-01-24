@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -263,9 +263,30 @@
       
     </div>
 
+    <div id="echarts4r-0-2-2" class="section level1">
+<h1 class="page-header">
+<a href="#echarts4r-0-2-2" class="anchor"></a>echarts4r 0.2.2<small> Unreleased </small>
+</h1>
+<ul>
+<li>Ability to add multiple <code>e_title</code>.</li>
+<li>
+<code>draw</code> argument added to <code>e_charts</code>, to set whether to draw the chart, see bullet below.</li>
+<li>
+<code>e_draw_p</code> added to choose draw chart.</li>
+<li>
+<code>e_inspect</code> to inspect the output of echarts4r.</li>
+<li>
+<code>echarts_from_json</code> to create an echarts4r object from JSON options.</li>
+<li>
+<code>e_axis</code> family of functions (e.g.: <code>e_x_axis</code>) now accepts a column name as first argument to easily adapt the range of the axes, in a similar fashion as with <code>e_visual_map</code>.</li>
+<li>
+<code>e_charts</code> family forces data.frame conversion to avoid jsonlite bug.</li>
+<li>Fixed bug in the <code>formatter</code> argument of <code>e_tooltip</code> where passing custom function was not working.</li>
+</ul>
+</div>
     <div id="echarts4r-0-2-1" class="section level1">
 <h1 class="page-header">
-<a href="#echarts4r-0-2-1" class="anchor"></a>echarts4r 0.2.1<small> Unreleased </small>
+<a href="#echarts4r-0-2-1" class="anchor"></a>echarts4r 0.2.1<small> 2019-01-05 </small>
 </h1>
 <p><strong>Support for timeline added</strong></p>
 <ul>
@@ -399,7 +420,7 @@
 <h1 class="page-header">
 <a href="#echarts4r-0-1-0" class="anchor"></a>echarts4r 0.1.0<small> Unreleased </small>
 </h1>
-<p><code>echarts4r</code> now understands <code><a href="http://dplyr.tidyverse.org/reference/group_by.html">dplyr::group_by</a></code></p>
+<p><code>echarts4r</code> now understands <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">dplyr::group_by</a></code></p>
 <ul>
 <li>
 <code>e_clean</code> to remove original data from visualisation and lighten up end product.</li>
@@ -483,6 +504,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#echarts4r-0-2-2">0.2.2</a></li>
         <li><a href="#echarts4r-0-2-1">0.2.1</a></li>
         <li><a href="#echarts4r-0-2-0">0.2.0</a></li>
         <li><a href="#echarts4r-0-1-2">0.1.2</a></li>
