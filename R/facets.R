@@ -5,7 +5,7 @@
 #' @inheritParams e_bar
 #' @param rows,cols Number of rows and columns.
 #' 
-#' @details Each serie, i.e.:\code{\link{e_bar}} will be plotted against a facet.
+#' @details Each serie, i.e.: \code{\link{e_bar}} will be plotted against a facet.
 #' 
 #' @keywords interval
 e_facet <- function(e, rows = 1, cols = 1){

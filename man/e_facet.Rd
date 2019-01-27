@@ -15,6 +15,6 @@ e_facet(e, rows = 1, cols = 1)
 Create facets for multiple plots.
 }
 \details{
-Each serie, i.e.:\code{\link{e_bar}} will be plotted against a facet.
+Each serie, i.e.: \code{\link{e_bar}} will be plotted against a facet.
 }
 \keyword{interval}

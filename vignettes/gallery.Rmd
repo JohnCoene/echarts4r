@@ -22,6 +22,19 @@ e_common(
 )
 ```
 
+## npm dependencies
+
+```{r}
+graph <- jsonlite::fromJSON("https://ecomfe.github.io/echarts-examples/public/data/asset/data/npmdepgraph.min10.json")
+
+graph$nodes$size <- scales::rescale(graph$nodes$size, to = c(1,20))
+
+e_charts() %>% 
+  e_graph_gl() %>% 
+  e_graph_nodes(graph$nodes, label, x, size) %>% 
+  e_graph_edges(graph$edges, sourceID, targetID)
+```
+
 ## Flights
 
 ```{r}
