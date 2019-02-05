@@ -54,7 +54,7 @@ india_sp %>%
   knitr::kable()
 ```
 
-Note that you can then combine maps with `raster::union(map1, map2)` or with the `em_maps` function from the [echarts4r.maps](https://echarts4r-maps.john-coene.com) package. Then the `SpatialPolygonsDataFrame` into `GeoJSON` with `geojsonio`: _this will take a long time as the map is very detailed_.
+Note that you can then combine maps with `raster::union(map1, map2)` or with the `em_maps` function from the [echarts4r.maps](https://echarts4r-maps.john-coene.com) package. Then convert the `SpatialPolygonsDataFrame` into `GeoJSON` with `geojsonio`: _this will take a long time as the map is very detailed_.
 
 ```{r, cache=TRUE}
 india_json <- geojsonio::geojson_list(india_sp)
