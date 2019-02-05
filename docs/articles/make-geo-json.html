@@ -384,7 +384,7 @@
 </tr>
 </tbody>
 </table>
-<p>Note that you can then combine maps with <code><a href="https://www.rdocumentation.org/packages/raster/topics/union">raster::union(map1, map2)</a></code>. Then the <code>SpatialPolygonsDataFrame</code> into <code>GeoJSON</code> with <code>geojsonio</code>: <em>this will take a long time as the map is very detailed</em>.</p>
+<p>Note that you can then combine maps with <code><a href="https://www.rdocumentation.org/packages/raster/topics/union">raster::union(map1, map2)</a></code> or with the <code>em_maps</code> function from the <a href="https://echarts4r-maps.john-coene.com">echarts4r.maps</a> package. Then the <code>SpatialPolygonsDataFrame</code> into <code>GeoJSON</code> with <code>geojsonio</code>: <em>this will take a long time as the map is very detailed</em>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">india_json &lt;-<span class="st"> </span>geojsonio<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/geojsonio/topics/geojson_list">geojson_list</a></span>(india_sp)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/object.size">object.size</a></span>(india_json), <span class="dt">units =</span> <span class="st">"Mb"</span>)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; 59.7 Mb</span></a></code></pre></div>
