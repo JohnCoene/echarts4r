@@ -69,6 +69,16 @@ india_json_small <- geojsonio::geojson_list(india_small)
 print(object.size(india_json_small), units = "Mb") 
 ```
 
+Before we use the `GeoJSON` there is a tiny adjustement to make; ECharts (JavaScript side) expects each property to have a `name` attribute which it currently does not have. The map will display without it but the tooltip will not work properly without.
+
+```{r}
+india_json_small$features <- india_json_small$features %>% 
+  purrr::map(function(x){ 
+    x$properties$name <- x$properties$NAME_2 # copy NAME_2 to name for tooltip
+    return(x)
+  })
+```
+
 Now we can use the `GeoJSON` with `e_map_register`.
 
 ```{r, cache=TRUE}
