@@ -56,6 +56,10 @@ HTMLWidgets.widget({
             Shiny.onInputChange(el.id + '_legend_change' + ":echarts4rParse", e.name);
           });
           
+          chart.on("globalout", function(e){
+            Shiny.onInputChange(el.id + '_global_out' + ":echarts4rParse", e);
+          });
+          
           if(x.hasOwnProperty('capture')){
             chart.on(x.capture, function(e){
               Shiny.onInputChange(el.id + '_' + x.capture + ":echarts4rParse", e);

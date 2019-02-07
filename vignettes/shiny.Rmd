@@ -28,6 +28,24 @@ e_common(
   Shiny Demo
 </a>
 
+## shinapps.io
+
+A note if you are publishing on [shinyapps.io](https://www.shinyapps.io/), if you have _locally_ installed the development version of the package from [Github](https://github.com/JohnCoene/echarts4r) with `remotes` as indicated on the [homepage](/) of the website please reinstall it `devtools`. Otherwise shinyapps.io will intall the CRAN version which might lead to issues.
+
+```r
+# install.packages("devtools")
+devtools::install_github("JohnCoene/echarts4r")
+```
+
+If you are using the [Shiny Server](), remember to install the package on the respective server with the following command:
+
+```
+# stable version
+sudo su - -c "R -e \"install.packages('echarts4r', repos = 'https://cran.rstudio.com')\""
+# dev version
+sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""
+```
+
 ## Callbacks
 
 Get data from shiny with the following:
