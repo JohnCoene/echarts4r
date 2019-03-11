@@ -318,7 +318,7 @@ iris_dat <- iris %>%
   dplyr::mutate(
     show = TRUE, # to show the labels
     fontSize = exp(Sepal.Length) / 10, # font size will correspond to Sepal.Length
-    color = sample(c("red", "black", "blue"), n(), replace = TRUE) # assign a random color to the label
+    color = sample(c("red", "black", "blue"), dplyr::n(), replace = TRUE) # assign a random color to the label
   )
 
 iris_dat %>% 

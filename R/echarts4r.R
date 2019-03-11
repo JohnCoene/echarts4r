@@ -107,7 +107,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
     if(!is.null(xmap) && !isTRUE(timeline))
       data <- .arrange_data_x(data, xmap)
     
-    x$data <- map_grps_(data)
+    x$data <- map_grps_(data, timeline)
   }
   
   if(!is.null(xmap)){
@@ -223,7 +223,7 @@ e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = N
     if(!is.null(xmap))
       data <- .arrange_data_x(data, xmap)
     
-    x$data <- map_grps_(data)
+    x$data <- map_grps_(data, timeline)
   }
   
   if(!is.null(xmap)){
@@ -287,7 +287,7 @@ e_data <- function(e, data, x){
   if(!missing(x))
     data <- .arrange_data_x(data, xmap)
   
-  data <- map_grps_(data)
+  data <- map_grps_(data, FALSE)
   e$x$data <- data
   
   e
