@@ -82,7 +82,7 @@ iris %>%
     e_scatter(Petal.Length, Sepal.Width, scale = my_scale)
 ```
 
-When `size` is not passed the size of the poitns are defined by `symbol_size`.
+When `size` is not passed the size of the points are defined by `symbol_size`.
 
 ```{r}
 iris %>% 
@@ -213,7 +213,7 @@ USArrests %>%
   e_charts(Assault) %>% 
   e_line(Murder, smooth = TRUE) %>% 
   e_line(Rape, y_index = 1) %>%  # add secondary axis
-  e_y_axis(spliLine = list(show = FALSE)) # hide split lines on first Y axis
+  e_y_axis(splitLine = list(show = FALSE)) # hide split lines on first Y axis
 ```
 
 ## Flip coordinates
