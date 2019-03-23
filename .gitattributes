@@ -1,2 +1,2 @@
-inst/htmlwidgets/lib* linguist-vendored
+inst/htmlwidgets/lib/* linguist-vendored
 
