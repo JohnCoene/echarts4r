@@ -52,6 +52,7 @@ Get data from shiny with the following:
 
 * `elementId` + `_brush` - returns data on brushed data points.
 * `elementId` + `_legend_change` - returns series name of legend selected/unselected.
+* `elementId` + `_legend_selected` - returns list of selected status for each series.
 * `elementId` + `_clicked_data` - returns data of clicked data point.
 * `elementId` + `_clicked_data_value` - returns value of clicked data point.
 * `elementId` + `_clicked_row` - returns row number of clicked data point.
