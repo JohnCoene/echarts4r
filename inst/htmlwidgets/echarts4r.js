@@ -54,6 +54,7 @@ HTMLWidgets.widget({
           
           chart.on("legendselectchanged", function(e){
             Shiny.onInputChange(el.id + '_legend_change' + ":echarts4rParse", e.name);
+            Shiny.onInputChange(el.id + '_legend_selected' + ":echarts4rParse", e.selected);
           });
           
           chart.on("globalout", function(e){
