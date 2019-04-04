@@ -219,7 +219,7 @@
       <h1>Shiny</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2019-02-08</h4>
+            <h4 class="date">2019-04-04</h4>
       
       
       <div class="hidden name"><code>shiny.Rmd</code></div>
@@ -234,8 +234,8 @@
 <h2 class="hasAnchor">
 <a href="#shinapps-io" class="anchor"></a>shinapps.io</h2>
 <p>A note if you are publishing on <a href="https://www.shinyapps.io/">shinyapps.io</a>, if you have <em>locally</em> installed the development version of the package from <a href="https://github.com/JohnCoene/echarts4r">Github</a> with <code>remotes</code> as indicated on the <a href="/">homepage</a> of the website please reinstall it <code>devtools</code>. Otherwise shinyapps.io will intall the CRAN version which might lead to issues.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"JohnCoene/echarts4r"</span>)</a></code></pre></div>
+<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"JohnCoene/echarts4r"</span>)</a></code></pre>
 <p>If you are using the <a href="">Shiny Server</a>, remember to install the package on the respective server with the following command:</p>
 <pre><code># stable version
 sudo su - -c "R -e \"install.packages('echarts4r', repos = 'https://cran.rstudio.com')\""
@@ -251,6 +251,8 @@ sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""</code></p
 <code>elementId</code> + <code>_brush</code> - returns data on brushed data points.</li>
 <li>
 <code>elementId</code> + <code>_legend_change</code> - returns series name of legend selected/unselected.</li>
+<li>
+<code>elementId</code> + <code>_legend_selected</code> - returns list of selected status for each series.</li>
 <li>
 <code>elementId</code> + <code>_clicked_data</code> - returns data of clicked data point.</li>
 <li>
@@ -287,7 +289,7 @@ sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""</code></p
 <code>e_focus_adjacency</code> and <code>e_unfocus_adjacency</code> - to focus or unfocus on adjacent nodes (networks).</li>
 </ul>
 <p>See the example below and the various proxies documentation.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(shiny)</a>
+<pre class="sourceCode r" id="cb3"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(shiny)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(echarts4r)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">ui &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/fluidPage">fluidPage</a></span>(</a>
@@ -324,14 +326,14 @@ sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""</code></p
 <a class="sourceLine" id="cb3-35" data-line-number="35">  </a>
 <a class="sourceLine" id="cb3-36" data-line-number="36">}</a>
 <a class="sourceLine" id="cb3-37" data-line-number="37"></a>
-<a class="sourceLine" id="cb3-38" data-line-number="38"><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</a></code></pre></div>
+<a class="sourceLine" id="cb3-38" data-line-number="38"><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</a></code></pre>
 </div>
 <div id="loading" class="section level2">
 <h2 class="hasAnchor">
 <a href="#loading" class="anchor"></a>Loading</h2>
 <p>You can also show a spinner while shiny recalculates.</p>
 <p>Without loading, chart redraws with neat animation.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># no redraw</span></a>
+<pre class="sourceCode r" id="cb4"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># no redraw</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co"># no loading</span></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(shiny)</a>
 <a class="sourceLine" id="cb4-4" data-line-number="4">ui &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/fluidPage">fluidPage</a></span>(</a>
@@ -358,9 +360,9 @@ sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""</code></p
 <a class="sourceLine" id="cb4-25" data-line-number="25">  })</a>
 <a class="sourceLine" id="cb4-26" data-line-number="26">}</a>
 <a class="sourceLine" id="cb4-27" data-line-number="27"></a>
-<a class="sourceLine" id="cb4-28" data-line-number="28"><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</a></code></pre></div>
+<a class="sourceLine" id="cb4-28" data-line-number="28"><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</a></code></pre>
 <p>With loading.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># keep UI</span></a>
+<pre class="sourceCode r" id="cb5"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># keep UI</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co"># add loading</span></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output){</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">  data &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/observeEvent">eventReactive</a></span>(input<span class="op">$</span>update, {</a>
@@ -379,7 +381,7 @@ sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""</code></p
 <a class="sourceLine" id="cb5-17" data-line-number="17">  })</a>
 <a class="sourceLine" id="cb5-18" data-line-number="18">}</a>
 <a class="sourceLine" id="cb5-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</a></code></pre></div>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</a></code></pre>
 </div>
   </div>
 
