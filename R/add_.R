@@ -14,7 +14,7 @@ e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 
     .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
     
     if(!is.null(bind))
-      vector <- .add_bind2(e$x$data[[i]], vector, bind, i = i)
+      vector <- .add_bind2(e, vector, bind, i = i)
     
     e_serie <- list(data = vector)
     

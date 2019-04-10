@@ -397,3 +397,15 @@ e_common(
   font_family = "Raleway"
 )
 ```
+
+```r
+data.frame(
+  assessment_name = c(1,2,3,4,5), 
+  number_of_submissions= c(1,2,3,4,5), 
+  label = c("a","b","c","d","e")
+) %>%
+  e_charts(assessment_name) %>%
+  e_bar(number_of_submissions, label, stack= 'asdf',name="Submitted",label= list(show=TRUE, formatter = "{@[2]}",position='top'),color= "rgb(43,193,217)")  %>%
+  e_x_axis(axisLabel = list(interval = 0, rotate = -14, fontSize= 8.0, fontWeight="bold" ) )  %>%
+  e_title("Submission details", "") 
+```
