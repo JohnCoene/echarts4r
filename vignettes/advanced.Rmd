@@ -58,6 +58,25 @@ iris %>%
   e_title("Timeline")
 ```
 
+## Stacked 
+
+```{r}
+df <- data.frame(
+  x = LETTERS[1:10],
+  a = runif(10),
+  b = runif(10),
+  c = runif(10),
+  d = runif(10)
+)
+
+df %>% 
+  e_charts(x) %>% 
+  e_bar(a, stack = "grp") %>% 
+  e_bar(b, stack = "grp") %>% 
+  e_bar(c, stack = "grp2") %>% 
+  e_bar(d, stack = "grp2") 
+```
+
 ## Scatter
 
 Since `0.2.0` the `e_scatter` and `e_effect_scatter` functions take a different, much improved `scale` argument which is a scaling function.
