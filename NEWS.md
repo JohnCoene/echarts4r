@@ -1,6 +1,7 @@
 # echarts4r 0.2.2
 
 - Bar chart's `bind` argument has been fixed.
+- `e_tooltip_choro_formatter` tooltip formatter for choropleth maps added.
 
 # echarts4r 0.2.2
 

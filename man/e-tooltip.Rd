@@ -3,6 +3,7 @@
 \name{e_tooltip}
 \alias{e_tooltip}
 \alias{e_tooltip_item_formatter}
+\alias{e_tooltip_choro_formatter}
 \alias{e_tooltip_pie_formatter}
 \alias{e_tooltip_pointer_formatter}
 \title{Tooltip}
@@ -10,6 +11,9 @@
 e_tooltip(e, trigger = c("item", "axis"), formatter = NULL, ...)
 
 e_tooltip_item_formatter(style = c("decimal", "percent", "currency"),
+  digits = 0, locale = NULL, currency = "USD")
+
+e_tooltip_choro_formatter(style = c("decimal", "percent", "currency"),
   digits = 0, locale = NULL, currency = "USD")
 
 e_tooltip_pie_formatter(style = c("decimal", "percent", "currency"),

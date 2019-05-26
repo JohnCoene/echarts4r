@@ -220,6 +220,33 @@ e_tooltip_item_formatter <- function(style = c("decimal", "percent", "currency")
 
 #' @rdname e-tooltip
 #' @export
+e_tooltip_choro_formatter <- function(style = c("decimal", "percent", "currency"), digits = 0, 
+                                      locale = NULL, currency = "USD") {
+  
+  if(is.null(locale))
+    locale <- .get_locale()
+  
+  style <- match.arg(style)
+  opts <- list(
+    style = style,
+    minimumFractionDigits = digits,
+    maximumFractionDigits = digits,
+    currency = currency
+  )
+  
+  tip <- htmlwidgets::JS(sprintf("function(params, ticket, callback) {
+        var fmt = new Intl.NumberFormat('%s', %s);
+        var value = parseFloat(params.value) || 0;
+        return params.marker + ' ' +
+               params.name + ': ' + fmt.format(value);
+    }", locale, jsonlite::toJSON(opts, auto_unbox = TRUE)))
+  
+  tip <- structure(tip, class = c("JS_EVAL", "item_formatter"))
+  return(tip)
+}
+
+#' @rdname e-tooltip
+#' @export
 e_tooltip_pie_formatter <- function(style = c("decimal", "percent", "currency"), digits = 0, 
                                      locale = NULL, currency = "USD", ...) {
   
