@@ -621,6 +621,5 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 }
 
 .get_locale <- function(){
-  locale <- Sys.getlocale()
-  substr(locale, 1, 2)
+  stringi::stri_locale_info()$Language
 }
