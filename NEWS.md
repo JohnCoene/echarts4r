@@ -3,6 +3,7 @@
 - Bar chart's `bind` argument has been fixed.
 - `e_tooltip_choro_formatter` tooltip formatter for choropleth maps added, thanks to [Artem](https://github.com/artemklevtsov).
 - Tooltip formatters correctly identify locale on UNIX systems, thanks to [Artem](https://github.com/artemklevtsov).
+- `e_mark_point()`, `e_mark_line()` and `e_mark_area()` no longer use `grep()`, which means the serie will only be matched with the exact same name. Thanks @shrektan for the reporting and PR (#80, #81).
 
 # echarts4r 0.2.2
 
