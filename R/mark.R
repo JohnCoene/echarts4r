@@ -3,7 +3,7 @@
 #' Mark points and lines.
 #' 
 #' @inheritParams e_bar
-#' @param serie Serie or vector of series to mark on passed to \code{\link{grep}}, defaults to all series.
+#' @param serie Serie or vector of series to mark on, defaults to all series.
 #' @param data Placement.
 #' 
 #' @examples 
