@@ -631,7 +631,7 @@ e_title <- function(e, text = NULL, subtext = NULL, link = NULL, sublink = NULL,
   title$sublink <- sublink
   
   if(!e$x$tl)
-    e$x$opts$title <- append(e$x$opts$title, title)
+    e$x$opts$title <- append(e$x$opts$title, list(title))
   else
     e$x$opts$baseOption$title <- append(e$x$opts$baseOption$title, title)
   
