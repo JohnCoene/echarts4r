@@ -17,28 +17,14 @@ Imports:
   d3r,
   broom,
   shiny,
-  scales
-RoxygenNote: 6.1.1
-Suggests: 
-  echarts4r.assets,
-  echarts4r.maps,
-  data.tree,
-  jsonlite,
-  knitr,
-  rmarkdown,
-  quantmod,
-  tibble,
-  htmltools,
-  tidyr,
-  sp,
-  raster,
-  geojsonio,
-  rmapshaper,
+  scales,
   corrplot,
+  data.tree,
+  htmltools,
+  jsonlite,
   stringi
+Suggests:
+  tidyr
+RoxygenNote: 6.1.1
 URL: http://echarts4r.john-coene.com/
 BugReports: https://github.com/JohnCoene/echarts4r/issues
-VignetteBuilder: knitr
-Remotes:
-  JohnCoene/echarts4r.assets,
-  JohnCoene/echarts4r.maps
