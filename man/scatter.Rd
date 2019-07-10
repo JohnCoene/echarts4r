@@ -155,6 +155,6 @@ iris \%>\%
   
 }
 \seealso{
-\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter}{Additional arguments scatter},
- \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-effectScatter}{Additional arguments for effect scatter}
+\href{https://echarts.apache.org/en/en/option.html#series-scatter}{Additional arguments scatter},
+ \href{https://echarts.apache.org/en/en/option.html#series-effectScatter}{Additional arguments for effect scatter}
 }

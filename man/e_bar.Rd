@@ -46,5 +46,5 @@ mtcars \%>\%
 
 }
 \seealso{
-\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar}{Additional arguments}
+\href{https://echarts.apache.org/en/en/option.html#series-bar}{Additional arguments}
 }

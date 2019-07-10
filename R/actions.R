@@ -74,7 +74,7 @@ e_downplay <- function(e, series_index = NULL, series_name = NULL, btn = NULL){
 #' 
 #' @inheritParams e_bar
 #' @param btn A \code{\link{e_button}} id.
-#' @param ... Any options, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.tooltip}{official documentation}
+#' @param ... Any options, see \href{https://echarts.apache.org/en/en/api.html#action.tooltip}{official documentation}
 #' 
 #' @note The tooltip must be initialised with \code{\link{e_tooltip}} for this to work.
 #' 
@@ -134,7 +134,7 @@ e_hidetip <- function(e, ..., btn = NULL){
 #' 
 #' @inheritParams e_bar
 #' @param btn A \code{\link{e_button}} id.
-#' @param ... Any options, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.dataZoom.dataZoom}{official documentation}
+#' @param ... Any options, see \href{https://echarts.apache.org/en/en/api.html#action.dataZoom.dataZoom}{official documentation}
 #' 
 #' @examples 
 #' cars %>% 
@@ -174,7 +174,7 @@ e_zoom <- function(e, ..., btn = NULL){
 #' 
 #' @inheritParams e_bar
 #' @param btn A \code{\link{e_button}} id.
-#' @param ... Any options, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.visualMap}{official documentation}
+#' @param ... Any options, see \href{https://echarts.apache.org/en/en/api.html#action.visualMap}{official documentation}
 #' 
 #' @examples 
 #' data("state")
@@ -213,7 +213,7 @@ e_visual_map_range <- function(e, ..., btn = NULL){
 #' 
 #' @inheritParams e_bar
 #' @param btn A \code{\link{e_button}} id.
-#' @param ... Any options, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.pie}{official documentation}
+#' @param ... Any options, see \href{https://echarts.apache.org/en/en/api.html#action.pie}{official documentation}
 #' 
 #' @examples 
 #' mtcars %>% 
@@ -269,7 +269,7 @@ e_pie_unselect <- function(e, ..., btn = NULL){
 #' 
 #' @inheritParams e_bar
 #' @param btn A \code{\link{e_button}} id.
-#' @param ... Any options, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.graph}{official documentation}
+#' @param ... Any options, see \href{https://echarts.apache.org/en/en/api.html#action.graph}{official documentation}
 #' 
 #' @examples 
 #' value <- rnorm(10, 10, 2)
@@ -506,7 +506,7 @@ e_restore <- function(e, btn = NULL){
 #' 
 #' @inheritParams e_bar
 #' @param btn A \code{\link{e_button}} id.
-#' @param ... Any options, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.map}{official documentation}
+#' @param ... Any options, see \href{https://echarts.apache.org/en/en/api.html#action.map}{official documentation}
 #' 
 #' @examples 
 #' choropleth <- data.frame(

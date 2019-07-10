@@ -41,5 +41,5 @@ sankey \%>\%
 
 }
 \seealso{
-\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-sankey}{Additional arguments}
+\href{https://echarts.apache.org/en/en/option.html#series-sankey}{Additional arguments}
 }

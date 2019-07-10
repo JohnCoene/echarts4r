@@ -29,5 +29,5 @@ e_charts() \%>\%
 
 }
 \seealso{
-\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-gauge}{Additional arguments}
+\href{https://echarts.apache.org/en/en/option.html#series-gauge}{Additional arguments}
 }

@@ -16,7 +16,7 @@ e_map_toggle_select(e, ..., btn = NULL)
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{...}{Any options, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.map}{official documentation}}
+\item{...}{Any options, see \href{https://echarts.apache.org/en/en/api.html#action.map}{official documentation}}
 
 \item{btn}{A \code{\link{e_button}} id.}
 }
