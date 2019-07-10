@@ -24,7 +24,7 @@
 #'   e_bar(mpg, stack = "grp") %>% 
 #'   e_bar(qsec, stack = "grp")
 #' 
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-bar}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-bar}{Additional arguments}
 #' 
 #' @rdname e_bar
 #' @export
@@ -67,7 +67,7 @@ e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_ind
 #'   e_line(Sepal.Width) %>% 
 #'   e_tooltip(trigger = "axis")
 #' 
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-line}{Additional arguments}  
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-line}{Additional arguments}  
 #' 
 #' @rdname e_line
 #' @export
@@ -109,7 +109,7 @@ e_line <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_in
 #'   e_area(Sepal.Width) %>% 
 #'   e_tooltip(trigger = "axis")
 #' 
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-line}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-line}{Additional arguments}
 #' 
 #' @rdname e_area
 #' @export
@@ -156,7 +156,7 @@ e_area <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_in
 #'   e_step(Sepal.Width) %>% 
 #'   e_tooltip(trigger = "axis")
 #' 
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-line}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-line}{Additional arguments}
 #' 
 #' @rdname e_step
 #' @export
@@ -273,8 +273,8 @@ e_step <- function(e, serie, bind, step = c("start", "middle", "end"), fill = FA
 #'   e_scatter(Sepal.Width, Sepal.Length) %>% 
 #'   e_tooltip(trigger = "axis")
 #'   
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-scatter}{Additional arguments scatter},
-#'  \href{https://echarts.apache.org/en/en/option.html#series-effectScatter}{Additional arguments for effect scatter}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-scatter}{Additional arguments scatter},
+#'  \href{https://echarts.apache.org/en/option.html#series-effectScatter}{Additional arguments for effect scatter}
 #' 
 #' @rdname scatter
 #' @export
@@ -359,7 +359,7 @@ e_effect_scatter <- function(e, serie, size, bind, symbol = NULL, symbol_size = 
 #'   e_candle(opening, closing, low, high) %>% 
 #'   e_y_axis(min = 190, max = 220)
 #'   
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-candlestick}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-candlestick}{Additional arguments}
 #' 
 #' @rdname e_candle
 #' @export
@@ -442,7 +442,7 @@ e_radar <- function(e, serie, max = 100, name = NULL, legend = TRUE,
 #'   e_charts() %>% 
 #'   e_funnel(value, stage)
 #' 
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-funnel}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-funnel}{Additional arguments}
 #' 
 #' @rdname e_funnel
 #' @export
@@ -484,7 +484,7 @@ e_funnel <- function(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE,
 #'   e_charts() %>% 
 #'   e_sankey(source, target, value) 
 #' 
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-sankey}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-sankey}{Additional arguments}
 #' 
 #' @rdname e_sankey
 #' @export
@@ -560,7 +560,7 @@ e_sankey <- function(e, source, target, value, layout = "none", rm_x = TRUE, rm_
 #'   e_graph_nodes(nodes, name, value, size, grp) %>% 
 #'   e_graph_edges(edges, source, target)
 #' 
-#' @seealso \href{Additional arguments}{https://echarts.apache.org/en/en/option.html#series-graph},
+#' @seealso \href{Additional arguments}{https://echarts.apache.org/en/option.html#series-graph},
 #'  \code{\link{e_modularity}}
 #' 
 #' @rdname graph
@@ -757,7 +757,7 @@ e_graph_edges <- function(e, edges, source, target){
 #'   e_heatmap(Var2, values) %>% 
 #'   e_visual_map(values)
 #' 
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-heatmap}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-heatmap}{Additional arguments}
 #' 
 #' @rdname e_heatmap
 #' @export
@@ -792,7 +792,7 @@ e_heatmap <- function(e, y, z, name = NULL, coord_system = "cartesian2d", rm_x =
 #'   e_charts() %>% 
 #'   e_parallel(price, amount, letter) 
 #'   
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-parallel}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-parallel}{Additional arguments}
 #' 
 #' @rdname e_parallel
 #' @export
@@ -863,7 +863,7 @@ e_parallel <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE){
 #'   e_charts(labels, timeline = TRUE) %>% 
 #'   e_pie(values)
 #'   
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-pie}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-pie}{Additional arguments}
 #' 
 #' @rdname e_pie
 #' @export
@@ -890,7 +890,7 @@ e_pie <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE
 #' 
 #' @details The \code{itemStyle} argument essentially is a nested data.frame with column names such as
 #' \code{color}, or \code{borderColor} as specified in the 
-#' \href{https://echarts.apache.org/en/en/option.html#series-sunburst.data.itemStyle}{official documentation}.
+#' \href{https://echarts.apache.org/en/option.html#series-sunburst.data.itemStyle}{official documentation}.
 #' 
 #' @examples 
 #' df <- data.frame(
@@ -915,7 +915,7 @@ e_pie <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE
 #'   e_charts() %>% 
 #'   e_sunburst(parent, child, value, style) 
 #' 
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-sunburst}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-sunburst}{Additional arguments}
 #' 
 #' @rdname e_sunburst
 #' @export
@@ -953,7 +953,7 @@ e_sunburst <- function(e, parent, child, value, itemStyle, rm_x = TRUE, rm_y = T
 #'   e_charts() %>% 
 #'   e_treemap(parent, child, value)
 #'   
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-treemap}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-treemap}{Additional arguments}
 #' 
 #' @rdname e_treemap
 #' @export
@@ -992,7 +992,7 @@ e_treemap <- function(e, parent, child, value, rm_x = TRUE, rm_y = TRUE, ...){
 #'   e_river(values) %>%  
 #'   e_tooltip(trigger = "axis")
 #' 
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-themeRiver}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-themeRiver}{Additional arguments}
 #' 
 #' @rdname e_river
 #' @export
@@ -1025,7 +1025,7 @@ e_river <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TR
 #'   e_boxplot(y, outliers = TRUE) %>% 
 #'   e_boxplot(x, outliers = TRUE)
 #' 
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-boxplot}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-boxplot}{Additional arguments}
 #' 
 #' @rdname e_boxplot
 #' @export
@@ -1058,7 +1058,7 @@ e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...){
 #'   e_charts() %>% 
 #'   e_tree(parent, child)
 #' 
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-tree}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-tree}{Additional arguments}
 #' 
 #' @rdname e_tree
 #' @export
@@ -1085,7 +1085,7 @@ e_tree <- function(e, parent, child, rm_x = TRUE, rm_y = TRUE, ...){
 #' e_charts() %>% 
 #'   e_gauge(57, "PERCENT")
 #' 
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-gauge}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-gauge}{Additional arguments}
 #' 
 #' @rdname e_gauge
 #' @export
@@ -1454,7 +1454,7 @@ e_surface <- function(e, y, z, bind, name = NULL,
 #'     coord_system = "geo"
 #'   )
 #' 
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-lines}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-lines}{Additional arguments}
 #' 
 #' @rdname e_lines
 #' @export
@@ -1815,7 +1815,7 @@ e_scatter_gl <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRUE
 #'     symbolSize = c(10, 4)
 #'   )
 #' 
-#' @seealso \href{https://echarts.apache.org/en/en/option.html#series-pictorialBar}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-pictorialBar}{Additional arguments}
 #' 
 #' @rdname e_pictorial
 #' @export

@@ -31,7 +31,7 @@ Build a sunburst.
 \details{
 The \code{itemStyle} argument essentially is a nested data.frame with column names such as
 \code{color}, or \code{borderColor} as specified in the 
-\href{https://echarts.apache.org/en/en/option.html#series-sunburst.data.itemStyle}{official documentation}.
+\href{https://echarts.apache.org/en/option.html#series-sunburst.data.itemStyle}{official documentation}.
 }
 \examples{
 df <- data.frame(
@@ -58,5 +58,5 @@ df \%>\%
 
 }
 \seealso{
-\href{https://echarts.apache.org/en/en/option.html#series-sunburst}{Additional arguments}
+\href{https://echarts.apache.org/en/option.html#series-sunburst}{Additional arguments}
 }

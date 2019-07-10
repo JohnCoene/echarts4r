@@ -36,5 +36,5 @@ df \%>\%
 
 }
 \seealso{
-\href{https://echarts.apache.org/en/en/option.html#series-boxplot}{Additional arguments}
+\href{https://echarts.apache.org/en/option.html#series-boxplot}{Additional arguments}
 }

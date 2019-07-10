@@ -48,5 +48,5 @@ df \%>\%
   
 }
 \seealso{
-\href{https://echarts.apache.org/en/en/option.html#series-pie}{Additional arguments}
+\href{https://echarts.apache.org/en/option.html#series-pie}{Additional arguments}
 }

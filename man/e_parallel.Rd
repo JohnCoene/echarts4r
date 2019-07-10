@@ -34,5 +34,5 @@ df \%>\%
   
 }
 \seealso{
-\href{https://echarts.apache.org/en/en/option.html#series-parallel}{Additional arguments}
+\href{https://echarts.apache.org/en/option.html#series-parallel}{Additional arguments}
 }
