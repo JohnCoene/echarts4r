@@ -760,7 +760,7 @@ e_sankey_ <- function(e, source, target, value, layout = "none", rm_x = TRUE, rm
   serie <- list(
     type = "sankey",
     layout = layout,
-    nodes = nodes,
+    data = nodes,
     links = edges,
     ...
   )
