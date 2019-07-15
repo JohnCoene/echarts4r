@@ -6,7 +6,8 @@
 - `e_mark_point()`, `e_mark_line()` and `e_mark_area()` no longer use `grep()`, which means the serie will only be matched with the exact same name. Thanks @shrektan for the reporting and PR (#80, #81).
 - Multiple `e_title` now allowed.
 - Multiple `e_visual_map` in [timelines](https://echarts4r.john-coene.com/articles/timeline.html) is now fixed.
-- Corrected all links (or so I think)
+- Corrected all links (or so I think).
+- `e_sankey` fix thanks to [Artem Klevtsov](https://github.com/artemklevtsov).
 
 # echarts4r 0.2.2
 
