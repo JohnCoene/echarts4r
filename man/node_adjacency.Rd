@@ -15,7 +15,7 @@ e_unfocus_adjacency_p(proxy, ...)
 \item{index}{Index of node to focus on.}
 
 \item{...}{Any other options, see 
-\href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.graph}{official documentation} and details.}
+\href{https://echarts.apache.org/en/api.html#action.graph}{official documentation} and details.}
 }
 \description{
 Focus or unfocus on node adjacency.

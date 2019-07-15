@@ -9,7 +9,7 @@ e_capture(e, event)
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
 
-\item{event}{An event name from the \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#events}{event documentation}.}
+\item{event}{An event name from the \href{https://echarts.apache.org/en/api.html#events}{event documentation}.}
 }
 \description{
 Add an event capture.

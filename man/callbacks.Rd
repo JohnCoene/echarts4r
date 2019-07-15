@@ -33,5 +33,5 @@ cars \%>\%
 
 }
 \seealso{
-\href{https://ecomfe.github.io/echarts-doc/public/en/api.html#echartsInstance.on}{official documentation}
+\href{https://echarts.apache.org/en/api.html#echartsInstance.on}{official documentation}
 }

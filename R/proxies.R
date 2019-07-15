@@ -107,7 +107,7 @@ e_downplay_p <- function(proxy, series_index = NULL, series_name = NULL){
 #' Proxies to show or hide tooltip.
 #' 
 #' @inheritParams e_highlight_p
-#' @param ... Any other option, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.tooltip}{showTip}.
+#' @param ... Any other option, see \href{https://echarts.apache.org/en/api.html#action.tooltip}{showTip}.
 #' 
 #' @examples 
 #' \dontrun{
@@ -211,7 +211,7 @@ e_hidetip_p <- function(proxy){
 #' @inheritParams e_highlight_p
 #' @param index Index of node to focus on.
 #' @param ... Any other options, see 
-#' \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.graph}{official documentation} and details.
+#' \href{https://echarts.apache.org/en/api.html#action.graph}{official documentation} and details.
 #' 
 #' @details Must pass \code{seriesId}, \code{seriesIndex}, or \code{seriesName}, generally \code{seriesIndex = 0} will work.
 #' 
@@ -343,7 +343,7 @@ e_unfocus_adjacency_p <- function(proxy, ...){
 #' Dispatch Action
 #' 
 #' Create your own proxies, essentially a wrapper around the 
-#' \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action}{action API}.
+#' \href{https://echarts.apache.org/en/api.html#action}{action API}.
 #' 
 #' @inheritParams e_highlight_p
 #' @param type Type of action to dispatch, i.e.: \code{highlight}.
@@ -403,7 +403,7 @@ e_dispatch_action_p <- function(proxy, type, ...){
 #' Add an event capture.
 #' 
 #' @inheritParams e_bar
-#' @param event An event name from the \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#events}{event documentation}.
+#' @param event An event name from the \href{https://echarts.apache.org/en/api.html#events}{event documentation}.
 #' 
 #' @details Many events can be capture, however not all are integrated, you can pass one that is not implemented with this function.
 #' 

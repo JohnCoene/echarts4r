@@ -7,14 +7,14 @@
 #' 
 #' @details For instance, \code{\link{e_funnel}} lets you pass \code{values} and \code{labels} 
 #' (from your initial data.frame) which corresponds to \code{name} and \code{value} in the 
-#' \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-heatmap.data}{original library}. 
+#' \href{https://echarts.apache.org/en/option.html#series-heatmap.data}{original library}. 
 #' However the latter also takes, \code{label}, \code{itemStyle}, and \code{emphasis} but being JSON arrays 
 #' they translate to lists in R and dealing with nested data.frames is not ideal. \code{e_add} remedies to that. 
 #' It allows adding those nested data points, see the examples below.
 #' 
 #' @examples 
 #' # funnel can take nested itemStyle
-#' # https://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel.data
+#' # https://echarts.apache.org/en/option.html#series-funnel.data
 #' funnel <- data.frame(
 #'   stage = c("View", "Click", "Purchase"), 
 #'   value = c(80, 30, 20),
@@ -27,7 +27,7 @@
 #'   e_add("itemStyle", color)
 #' 
 #' # Heatmap can take nested label
-#' # https://ecomfe.github.io/echarts-doc/public/en/option.html#series-heatmap.data
+#' # https://echarts.apache.org/en/option.html#series-heatmap.data
 #' v <- LETTERS[1:10]
 #' matrix <- data.frame(
 #'   x = sample(v, 300, replace = TRUE), 

@@ -8,7 +8,7 @@
 #' 
 #' @section Functions:
 #' \itemize{
-#'   \item{\code{e_timeline_opts}: Pass general timeline options, see \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#timeline}{official documentation}.}
+#'   \item{\code{e_timeline_opts}: Pass general timeline options, see \href{https://echarts.apache.org/en/option.html#timeline}{official documentation}.}
 #'   \item{\code{e_timeline_serie}: Pass options to each serie, each options \emph{must}  be a vector or list the same length as their are steps, see examples.}
 #'   \item{\code{e_timeline_make}: Helper function that wraps your data and \code{e_timeline_serie} to dynamically add options to series.}
 #' }

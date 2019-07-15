@@ -95,7 +95,7 @@ e_geo_3d_ <- function(e, serie = NULL, color = NULL, type = "world", rm_x = TRUE
 #'     lineStyle = list(normal = list(curveness = 0.3))
 #'    )
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#geo}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#geo}{Additional arguments}
 #' 
 #' @export
 e_geo <- function(e, map = "world", ...){

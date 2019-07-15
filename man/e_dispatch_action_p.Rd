@@ -15,7 +15,7 @@ e_dispatch_action_p(proxy, type, ...)
 }
 \description{
 Create your own proxies, essentially a wrapper around the 
-\href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action}{action API}.
+\href{https://echarts.apache.org/en/api.html#action}{action API}.
 }
 \examples{
 \dontrun{

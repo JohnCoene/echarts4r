@@ -12,7 +12,7 @@ e_hidetip_p(proxy)
 \arguments{
 \item{proxy}{An echarts4r proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{...}{Any other option, see \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#action.tooltip}{showTip}.}
+\item{...}{Any other option, see \href{https://echarts.apache.org/en/api.html#action.tooltip}{showTip}.}
 }
 \description{
 Proxies to show or hide tooltip.

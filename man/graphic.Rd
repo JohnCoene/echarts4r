@@ -92,5 +92,5 @@ cars \%>\%
 
 }
 \seealso{
-\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#graphic}{official documentation}
+\href{https://echarts.apache.org/en/option.html#graphic}{official documentation}
 }

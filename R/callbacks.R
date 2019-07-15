@@ -16,7 +16,7 @@
 #'     "function(){alert('Serie clicked')}"
 #'   )
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/api.html#echartsInstance.on}{official documentation}
+#' @seealso \href{https://echarts.apache.org/en/api.html#echartsInstance.on}{official documentation}
 #' 
 #' @name callbacks
 #' @export

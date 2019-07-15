@@ -41,7 +41,7 @@
 #'     )
 #'   )
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#graphic}{official documentation}
+#' @seealso \href{https://echarts.apache.org/en/option.html#graphic}{official documentation}
 #' 
 #' @rdname graphic
 #' @export
