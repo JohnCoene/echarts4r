@@ -87,5 +87,5 @@ matrix \%>\%
 
 }
 \seealso{
-\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#visualMap}{Additional arguments}
+\href{https://echarts.apache.org/en/option.html#visualMap}{Additional arguments}
 }

@@ -107,6 +107,6 @@ USArrests \%>\%
   
 }
 \seealso{
-\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#xAxis}{Additional x arguments}, 
-\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#yAxis}{Additional y arguments}
+\href{https://echarts.apache.org/en/option.html#xAxis}{Additional x arguments}, 
+\href{https://echarts.apache.org/en/option.html#yAxis}{Additional y arguments}
 }

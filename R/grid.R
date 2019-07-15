@@ -52,8 +52,8 @@
 #'   e_x_axis(axisLabel = list(interval = 0, rotate = 45)) # rotate
 #'   
 #'   
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#xAxis}{Additional x arguments}, 
-#' \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#yAxis}{Additional y arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#xAxis}{Additional x arguments}, 
+#' \href{https://echarts.apache.org/en/option.html#yAxis}{Additional y arguments}
 #' 
 #' @rdname axis
 #' @export
@@ -240,7 +240,7 @@ e_axis_formatter <- function(style = c("decimal", "percent", "currency"), digits
 #'   e_grid(height = "40%") %>% 
 #'   e_grid(height = "40%", top = "55%")
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#grid}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#grid}{Additional arguments}
 #' 
 #' @export
 e_grid <- function(e, index = NULL, ...){
@@ -287,7 +287,7 @@ e_grid <- function(e, index = NULL, ...){
 #'   e_radius_axis(x) %>% 
 #'   e_bar(y, coord.system = "polar") 
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#radiusAxis}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#radiusAxis}{Additional arguments}
 #' 
 #' @export
 #' @name radius_axis
@@ -360,7 +360,7 @@ e_radius_axis_ <- function(e, serie = NULL, show = TRUE, ...){
 #'   e_radius_axis() %>% 
 #'   e_line(y, coord.system = "polar", smooth = TRUE)
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#angleAxis}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#angleAxis}{Additional arguments}
 #' 
 #' @name angle_axis
 #' @export

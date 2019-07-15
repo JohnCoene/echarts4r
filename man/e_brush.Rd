@@ -37,5 +37,5 @@ quakes \%>\%
 
 }
 \seealso{
-\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#brush}{Additional arguments}
+\href{https://echarts.apache.org/en/option.html#brush}{Additional arguments}
 }

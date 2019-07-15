@@ -62,7 +62,7 @@
 #'     bottom = 300 # padding to avoid visual maps overlap
 #'   )
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#visualMap}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#visualMap}{Additional arguments}
 #' 
 #' @rdname e_visual_map
 #' @export
@@ -127,9 +127,9 @@ e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuo
 #' @section Formatters:
 #' \itemize{
 #'   \item{\code{\link{e_tooltip_pie_formatter}}: special helper for \code{\link{e_pie}}.}
-#'   \item{\code{\link{e_tooltip_item_formatter}}: general helper, this is passed to the \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip.formatter}{tooltip \code{formatter}}.}
+#'   \item{\code{\link{e_tooltip_item_formatter}}: general helper, this is passed to the \href{https://echarts.apache.org/en/option.html#tooltip.formatter}{tooltip \code{formatter}}.}
 #'   \item{\code{\link{e_tooltip_pointer_formatter}}: helper for pointer, this is passed to the
-#'   \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip.axisPointer.label}{\code{label} parameter under \code{axisPointer}}.}
+#'   \href{https://echarts.apache.org/en/option.html#tooltip.axisPointer.label}{\code{label} parameter under \code{axisPointer}}.}
 #' }
 #' 
 #' @examples 
@@ -161,7 +161,7 @@ e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuo
 #'     )
 #'   )
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#tooltip}{Additional arguments}
 #' 
 #' @rdname e-tooltip
 #' @export
@@ -345,7 +345,7 @@ e_tooltip_pointer_formatter <- function(style = c("decimal", "percent", "currenc
 #'     icons = list(path)
 #'   )
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#legend}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#legend}{Additional arguments}
 #' 
 #' @export
 e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), icons = NULL, ...){
@@ -418,7 +418,7 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), icons = NULL, 
 #'     type = list("line", "bar")
 #'   ) 
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#toolbox}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#toolbox}{Additional arguments}
 #' 
 #' @rdname toolbox
 #' @export
@@ -496,7 +496,7 @@ e_toolbox <- function(e, ...){
 #'   e_toolbox_feature("dataZoom", title = list(zoom = "zoom", back = "back")) %>% 
 #'   e_datazoom(x_index = c(0, 1))
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#dataZoom}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#dataZoom}{Additional arguments}
 #' 
 #' @export
 e_datazoom <- function(e, x_index = NULL, y_index = NULL, toolbox = TRUE, ...){
@@ -558,7 +558,7 @@ e_datazoom <- function(e, x_index = NULL, y_index = NULL, toolbox = TRUE, ...){
 #'   e_brush() %>% 
 #'   e_theme("dark")
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#brush}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#brush}{Additional arguments}
 #' 
 #' @export
 e_brush <- function(e, x_index = NULL, y_index = NULL, ...){
@@ -616,7 +616,7 @@ e_brush <- function(e, x_index = NULL, y_index = NULL, ...){
 #'   e_visual_map(min = 3, max = 7) %>% 
 #'   e_title("Quakes", "Stations and Magnitude")
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#title}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#title}{Additional arguments}
 #' 
 #' @export
 e_title <- function(e, text = NULL, subtext = NULL, link = NULL, sublink = NULL, ...){
@@ -656,7 +656,7 @@ e_title <- function(e, text = NULL, subtext = NULL, link = NULL, sublink = NULL,
 #'   e_radius_axis() %>% 
 #'   e_line(y, coord.system = "polar", smooth = TRUE) 
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#polar}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#polar}{Additional arguments}
 #' 
 #' @export
 e_polar <- function(e, show = TRUE, ...){
@@ -685,7 +685,7 @@ e_polar <- function(e, show = TRUE, ...){
 #' 
 #' @inheritParams e_bar
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#axisPointer}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#axisPointer}{Additional arguments}
 #' 
 #' @export
 e_axis_pointer <- function(e, ...){
@@ -723,7 +723,7 @@ e_axis_pointer <- function(e, ...){
 #'   e_area(drat) %>% 
 #'   e_animation(duration = 10000)
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#animation}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option.html#animation}{Additional arguments}
 #' 
 #' @export
 e_animation <- function(e, show = TRUE, threshold = NULL, duration = NULL, easing = NULL, delay = NULL,
@@ -818,7 +818,7 @@ e_flip_coords <- function(e){
 #' 
 #' @note Do not use \code{e_arrange} in R markdown or Shiny.
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#textStyle}{official documentation}
+#' @seealso \href{https://echarts.apache.org/en/option.html#textStyle}{official documentation}
 #' 
 #' @examples 
 #' cars %>% 

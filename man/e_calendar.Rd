@@ -34,5 +34,5 @@ mtcars \%>\%
 
 }
 \seealso{
-\href{Additional arguments}{https://ecomfe.github.io/echarts-doc/public/en/option.html#calendar}
+\href{Additional arguments}{https://echarts.apache.org/en/option.html#calendar}
 }

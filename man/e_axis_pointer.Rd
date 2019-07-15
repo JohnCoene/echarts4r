@@ -15,5 +15,5 @@ e_axis_pointer(e, ...)
 Customise axis pointer.
 }
 \seealso{
-\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#axisPointer}{Additional arguments}
+\href{https://echarts.apache.org/en/option.html#axisPointer}{Additional arguments}
 }

@@ -181,10 +181,10 @@ e_format_y_axis <- function(e, suffix = NULL, prefix = NULL, ...){
 #' @inheritParams e_bar
 #' @param show Set to \code{TRUE} to show the labels.
 #' @param position Position of labels, see 
-#' \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label.position}{official documentation}
+#' \href{https://echarts.apache.org/en/option.html#series-line.label.position}{official documentation}
 #'  for the full list of options.
 #' @param ... Any other options see 
-#' \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label}{documentation} for other options.
+#' \href{https://echarts.apache.org/en/option.html#series-line.label}{documentation} for other options.
 #' 
 #' @examples 
 #' mtcars %>% 
@@ -290,7 +290,7 @@ e_list <- function(e, list, append = FALSE){
 #' @inheritParams e_bar
 #' @param show Whether to show aria helper text.
 #' 
-#' @seealso \href{https://ecomfe.github.io/echarts-doc/public/en/option.html#aria}{official documentation}
+#' @seealso \href{https://echarts.apache.org/en/option.html#aria}{official documentation}
 #' 
 #' @export
 e_aria <- function(e, show = TRUE, ...){

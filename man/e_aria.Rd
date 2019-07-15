@@ -24,5 +24,5 @@ There should be an aria-label attribute on the chart DOM, which
 can help the disabled understand the content of charts with the help of certain devices.
 }
 \seealso{
-\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#aria}{official documentation}
+\href{https://echarts.apache.org/en/option.html#aria}{official documentation}
 }

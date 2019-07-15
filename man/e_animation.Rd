@@ -39,5 +39,5 @@ mtcars \%>\%
 
 }
 \seealso{
-\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#animation}{Additional arguments}
+\href{https://echarts.apache.org/en/option.html#animation}{Additional arguments}
 }

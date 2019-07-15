@@ -44,5 +44,5 @@ df \%>\%
 
 }
 \seealso{
-\href{https://ecomfe.github.io/echarts-doc/public/en/option.html#angleAxis}{Additional arguments}
+\href{https://echarts.apache.org/en/option.html#angleAxis}{Additional arguments}
 }
