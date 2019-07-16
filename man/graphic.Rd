@@ -56,19 +56,19 @@ Some elements, i.e.: \code{e_image_g} may not display in the RStudio browwser bu
 \section{Functions}{
 
 \itemize{
-  \item{\code{g_graphic_g} to initialise graphics, entirely optional.}
-  \item{\code{g_group_g} to create group, the children of which will share attributes.}
-  \item{\code{g_image_g} to a png or jpg image.}
-  \item{\code{g_text_g} to add text.}
-  \item{\code{g_rect_g} to add a rectangle.}
-  \item{\code{g_circle_g} to add a circle.}
-  \item{\code{g_ring_g} to add a ring.}
-  \item{\code{g_sector_g}}
-  \item{\code{g_arc_g} to create an arc.}
-  \item{\code{g_polygon_g} to create a polygon.}
-  \item{\code{g_polyline_g} to create a polyline.}
-  \item{\code{g_line_g} to draw a line.}
-  \item{\code{g_bezier_curve_g} to draw a quadratic bezier curve or cubic bezier curve.}
+  \item{\code{e_graphic_g} to initialise graphics, entirely optional.}
+  \item{\code{e_group_g} to create group, the children of which will share attributes.}
+  \item{\code{e_image_g} to a png or jpg image.}
+  \item{\code{e_text_g} to add text.}
+  \item{\code{e_rect_g} to add a rectangle.}
+  \item{\code{e_circle_g} to add a circle.}
+  \item{\code{e_ring_g} to add a ring.}
+  \item{\code{e_sector_g}}
+  \item{\code{e_arc_g} to create an arc.}
+  \item{\code{e_polygon_g} to create a polygon.}
+  \item{\code{e_polyline_g} to create a polyline.}
+  \item{\code{e_line_g} to draw a line.}
+  \item{\code{e_bezier_curve_g} to draw a quadratic bezier curve or cubic bezier curve.}
 }
 }
 
