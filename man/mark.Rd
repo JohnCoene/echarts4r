@@ -55,6 +55,6 @@ mtcars \%>\%
 
 }
 \seealso{
-\href{Additional point arguments}{https://echarts.apache.org/en/option.html#series-line.markPoint},
-\href{Additional line arguments}{https://echarts.apache.org/en/option.html#series-line.markLine}
+\href{https://echarts.apache.org/en/option.html#series-line.markPoint}{Additional point arguments},
+\href{https://echarts.apache.org/en/option.html#series-line.markLine}{Additional line arguments}
 }

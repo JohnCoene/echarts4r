@@ -86,8 +86,8 @@
 #' }
 #' 
 #' @seealso \code{\link{e_country_names}}, 
-#' \href{Additional map arguments}{https://echarts.apache.org/en/option.html#series-map}, 
-#' \href{Additional map 3D arguments}{http://echarts.baidu.com/option-gl.html#series-map3D}
+#' \href{https://echarts.apache.org/en/option.html#series-map}{Additional map arguments}, 
+#' \href{http://echarts.baidu.com/option-gl.html#series-map3D}{Additional map 3D arguments}
 #' 
 #' @rdname map
 #' @export
@@ -263,11 +263,11 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
 
 #' Register map
 #' 
-#' Register a \href{geojson}{http://geojson.org/} map.
+#' Register a \href{http://geojson.org/}{geojson} map.
 #' 
 #' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
 #' @param name Name of map, to use in \code{\link{e_map}}.
-#' @param json \href{Geojson}{http://geojson.org/}.
+#' @param json \href{http://geojson.org/}{Geojson}.
 #' 
 #' @examples 
 #' \dontrun{

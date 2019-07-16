@@ -40,5 +40,5 @@ tf \%>\%
 
 }
 \seealso{
-\href{official documentation}{https://github.com/ecomfe/echarts-wordcloud}
+\href{https://github.com/ecomfe/echarts-wordcloud}{official documentation}
 }

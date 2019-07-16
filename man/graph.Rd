@@ -91,6 +91,6 @@ e_charts() \%>\%
 
 }
 \seealso{
-\href{Additional arguments}{https://echarts.apache.org/en/option.html#series-graph},
+\href{https://echarts.apache.org/en/option.html#series-graph}{Additional arguments},
  \code{\link{e_modularity}}
 }

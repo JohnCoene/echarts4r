@@ -8,6 +8,7 @@
 - Multiple `e_visual_map` in [timelines](https://echarts4r.john-coene.com/articles/timeline.html) is now fixed.
 - Corrected all links (or so I think).
 - `e_sankey` fix thanks to [Artem Klevtsov](https://github.com/artemklevtsov).
+- Many dependencies removed, it is now much easier to install.
 
 # echarts4r 0.2.2
 

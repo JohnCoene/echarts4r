@@ -19,7 +19,7 @@
 #'   e_charts() %>% 
 #'   e_calendar(range = c("2018-01", "2018-07"))
 #' 
-#' @seealso \href{Additional arguments}{https://echarts.apache.org/en/option.html#calendar}
+#' @seealso \href{https://echarts.apache.org/en/option.html#calendar}{Additional arguments}
 #' 
 #' @export
 e_calendar <- function(e, range, ...){

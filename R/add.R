@@ -560,7 +560,7 @@ e_sankey <- function(e, source, target, value, layout = "none", rm_x = TRUE, rm_
 #'   e_graph_nodes(nodes, name, value, size, grp) %>% 
 #'   e_graph_edges(edges, source, target)
 #' 
-#' @seealso \href{Additional arguments}{https://echarts.apache.org/en/option.html#series-graph},
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-graph}{Additional arguments},
 #'  \code{\link{e_modularity}}
 #' 
 #' @rdname graph
@@ -1217,7 +1217,7 @@ e_gauge_ <- e_gauge
 #' @seealso \href{http://echarts.baidu.com/option-gl.html#series-lines3D}{Additional arguments for lines 3D},
 #'  \href{http://echarts.baidu.com/option-gl.html#series-line3D}{Additional arguments for line 3D}
 #' 
-#' @seealso \url{https//echarts4r-assets.john-coene.com}
+#' @seealso \url{https://echarts4r-assets.john-coene.com}
 #' 
 #' @rdname line3D
 #' @export

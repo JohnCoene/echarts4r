@@ -11,10 +11,10 @@ e_map_register(e, name, json)
 
 \item{name}{Name of map, to use in \code{\link{e_map}}.}
 
-\item{json}{\href{Geojson}{http://geojson.org/}.}
+\item{json}{\href{http://geojson.org/}{Geojson}.}
 }
 \description{
-Register a \href{geojson}{http://geojson.org/} map.
+Register a \href{http://geojson.org/}{geojson} map.
 }
 \examples{
 \dontrun{

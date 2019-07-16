@@ -165,14 +165,12 @@ e_format_axis <- function(e, axis = "y", suffix = NULL, prefix = NULL, ...){
 #' @rdname formatters
 #' @export
 e_format_x_axis <- function(e, suffix = NULL, prefix = NULL, ...){
-  
   e_format_axis(e, "x", suffix, prefix, ...)
 }
 
 #' @rdname formatters
 #' @export
 e_format_y_axis <- function(e, suffix = NULL, prefix = NULL, ...){
-  
   e_format_axis(e, "y", suffix, prefix, ...)
 }
 

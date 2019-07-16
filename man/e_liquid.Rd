@@ -33,5 +33,5 @@ df \%>\%
 
 }
 \seealso{
-\href{official documentation}{https://github.com/ecomfe/echarts-liquidfill}
+\href{https://github.com/ecomfe/echarts-liquidfill}{official documentation}
 }

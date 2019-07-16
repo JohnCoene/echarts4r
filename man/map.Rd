@@ -122,6 +122,6 @@ choropleth \%>\%
 }
 \seealso{
 \code{\link{e_country_names}}, 
-\href{Additional map arguments}{https://echarts.apache.org/en/option.html#series-map}, 
-\href{Additional map 3D arguments}{http://echarts.baidu.com/option-gl.html#series-map3D}
+\href{https://echarts.apache.org/en/option.html#series-map}{Additional map arguments}, 
+\href{http://echarts.baidu.com/option-gl.html#series-map3D}{Additional map 3D arguments}
 }

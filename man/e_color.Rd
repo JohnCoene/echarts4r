@@ -29,6 +29,6 @@ mtcars \%>\%
 }
 \seealso{
 \code{\link{e_theme}}, 
-\href{Official color documentation}{https://echarts.apache.org/en/option.html#color}, 
-\href{Official background documentation}{https://echarts.apache.org/en/option.html#backgroundColor}
+\href{https://echarts.apache.org/en/option.html#color}{Official color documentation}, 
+\href{https://echarts.apache.org/en/option.html#backgroundColor}{Official background documentation}
 }

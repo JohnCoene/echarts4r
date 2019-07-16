@@ -22,7 +22,7 @@
 #'   e_charts() %>% 
 #'   e_cloud(terms, freq, color, shape = "circle", sizeRange = c(3, 15))
 #' 
-#' @seealso \href{official documentation}{https://github.com/ecomfe/echarts-wordcloud}
+#' @seealso \href{https://github.com/ecomfe/echarts-wordcloud}{official documentation}
 #' 
 #' @rdname e_cloud
 #' @export
@@ -93,7 +93,7 @@ e_cloud_ <- function(e, word, freq, color = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 #'   e_liquid(val) %>% 
 #'   e_theme("dark")
 #' 
-#' @seealso \href{official documentation}{https://github.com/ecomfe/echarts-liquidfill}
+#' @seealso \href{https://github.com/ecomfe/echarts-liquidfill}{official documentation}
 #' 
 #' @rdname e_liquid
 #' @export
