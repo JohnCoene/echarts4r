@@ -540,6 +540,14 @@ e_datazoom <- function(e, x_index = NULL, y_index = NULL, toolbox = TRUE, ...){
 #' Add a brush.
 #' 
 #' @inheritParams e_bar
+#' @param brush_link Links interaction between selected items in different series.
+#' 
+#' @section \code{brush_link}:$
+#' \itemize{
+#'   \item{\code{c(3, 4, 5)}, for interacting series with seriesIndex as 3, 4, or 5.}
+#'   \item{\code{all}, for interacting all series.}
+#'   \item{\code{none} for disabling.}  
+#' }
 #' 
 #' @examples 
 #' quakes %>% 
@@ -561,7 +569,7 @@ e_datazoom <- function(e, x_index = NULL, y_index = NULL, toolbox = TRUE, ...){
 #' @seealso \href{https://echarts.apache.org/en/option.html#brush}{Additional arguments}
 #' 
 #' @export
-e_brush <- function(e, x_index = NULL, y_index = NULL, ...){
+e_brush <- function(e, x_index = NULL, y_index = NULL, brush_link = "all", ...){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -585,10 +593,7 @@ e_brush <- function(e, x_index = NULL, y_index = NULL, ...){
       e <- e_toolbox_feature(e, "brush")
   }
   
-  opts <- list(
-    brushLink = "all",
-    ...
-  )
+  opts <- list(brushLink = brush_link, ...)
   opts$xAxisIndex <- x_index
   opts$yAxisIndex <- y_index
   

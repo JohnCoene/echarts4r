@@ -51,6 +51,10 @@ HTMLWidgets.widget({
           chart.on("brushselected", function(e){
             Shiny.onInputChange(el.id + '_brush' + ":echarts4rParse", e);
           });
+
+          chart.on("brush", function(e){
+            Shiny.onInputChange(el.id + '_brush_released' + ":echarts4rParse", e);
+          });
           
           chart.on("legendselectchanged", function(e){
             Shiny.onInputChange(el.id + '_legend_change' + ":echarts4rParse", e.name);
