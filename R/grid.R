@@ -21,6 +21,10 @@
 #'   \item{\code{e_rm_axis} to remove axis}
 #' }
 #' 
+#' @details The \code{e_axis_formatter} may not work in RStudio, 
+#' open the plot in your browser. It will display just fine in 
+#' Rmarkdown and Shiny. 
+#' 
 #' @examples 
 #' # range axis based on serie
 #' cars %>% 
@@ -206,6 +210,9 @@ e_rm_axis <- function(e, axis = c("x", "y", "z")){
 #' @export
 e_axis_formatter <- function(style = c("decimal", "percent", "currency"), digits = 0, 
                              locale = NULL, currency = "USD") {
+
+  if(rstudioapi::isAvailable())
+    warning("`e_axis_formatter` breaks the plot in RStudio, open it in your browser.", call. = FALSE)
   
   if(is.null(locale))
     locale <- .get_locale()

@@ -66,6 +66,11 @@ e_axis_formatter(style = c("decimal", "percent", "currency"),
 \description{
 Customise axis.
 }
+\details{
+The \code{e_axis_formatter} may not work in RStudio, 
+open the plot in your browser. It will display just fine in 
+Rmarkdown and Shiny.
+}
 \section{Functions}{
 
 \itemize{

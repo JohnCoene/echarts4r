@@ -22,7 +22,8 @@ Imports:
   data.tree,
   htmltools,
   jsonlite,
-  stringi
+  stringi,
+  rstudioapi
 Suggests:
   tidyr
 RoxygenNote: 6.1.1
