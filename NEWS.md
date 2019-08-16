@@ -1,3 +1,7 @@
+# echarts4r 0.2.4
+
+- Warning in `e_axis_fomatter` if user uses RStudio, relates to [#100](https://github.com/JohnCoene/echarts4r/issues/100)
+
 # echarts4r 0.2.3
 
 - Bar chart's `bind` argument has been fixed.
