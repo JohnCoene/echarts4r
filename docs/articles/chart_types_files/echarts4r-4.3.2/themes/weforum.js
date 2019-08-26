@@ -21,12 +21,13 @@
   }
   echarts.registerTheme('weforum', {
     "color": [
-      "#ca9573",
-      "#df6c7d",
-      "#6eb2d7",
-      "#ff9265",
-      "#f8c873",
-      "#6ca886"
+      "#183C6C",
+      "#55A1C6",
+      "#F38133",
+      "#FDCF35",
+      "#663989",
+      "#A81F62",
+      "#40B068"
       ],
     "backgroundColor": "rgba(0, 0, 0, 0)",
     "textStyle": {},
@@ -479,9 +480,16 @@
     },
     "visualMap": {
       "color": [
-        "#1c62b7",
-        "#287ecb",
-        "#73c0ec"
+        "#2A4A7A",
+        "#4063AA",
+        "#608AC4",
+        "#ADC1E6",
+        "#D1DAEB",
+        "#FCFAE1",
+        "#F8F1AC",
+        "#F8DCC6",
+        "#F9C49C",
+        "#CF6B37"
         ]
     },
     "dataZoom": {

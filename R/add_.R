@@ -1488,7 +1488,7 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
   
   if(missing(y) || missing(z))
     stop("must pass y and z", call. = FALSE)
-  
+
   if(is.null(name)) # defaults to column name
     name <- z
   

@@ -68,6 +68,14 @@
   gtag('config', 'UA-74544116-1');
 </script>
 
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-7425245790017381",
+          enable_page_level_ads: true
+     });
+</script>
   </head>
 
   <body>
@@ -84,7 +92,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -272,7 +280,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>e_brush</span>(<span class='no'>e</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_brush</span>(<span class='no'>e</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>brush_link</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -290,10 +298,22 @@
       <td><p>Indexes of x and y axis.</p></td>
     </tr>
     <tr>
+      <th>brush_link</th>
+      <td><p>Links interaction between selected items in different series.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Any other option to pass, check See Also section.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="brush-link"><a class="anchor" href="#brush-link"></a><code>brush_link</code></h2>
+
+    <p>$</p><ul>
+<li><p><code><a href='https://www.rdocumentation.org/packages/base/topics/c'>c(3, 4, 5)</a></code>, for interacting series with seriesIndex as 3, 4, or 5.</p></li>
+<li><p><code>all</code>, for interacting all series.</p></li>
+<li><p><code>none</code> for disabling.</p></li>
+</ul>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -322,6 +342,8 @@
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#brush-link"><code>brush_link</code></a></li>
+
       <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
