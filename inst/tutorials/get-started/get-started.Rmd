@@ -8,8 +8,16 @@ runtime: shiny_prerendered
 
 ## Introduction 
 
-This tutorial will teach you how to build your first echarts4r graph! The package is ideally designed for this type of tutorials
+This tutorial will teach you how to build your first echarts4r graph! The package is ideally designed for this type of tutorials as we build plots by piping elements one after the other. 
+
+Run the snippet below to load the library and we'll get started.
 
 ```{r load, exercise=TRUE}
 library(echarts4r)
+```
+
+In echarts4r, every single chart is initialised with the `e_charts` function.
+
+```{r load, exercise=TRUE}
+e_charts()
 ```
