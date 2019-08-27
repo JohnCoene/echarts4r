@@ -6,10 +6,10 @@
 \title{Radar}
 \usage{
 e_radar(e, serie, max = 100, name = NULL, legend = TRUE,
-  rm_x = TRUE, rm_y = TRUE, ...)
+  rm_x = TRUE, rm_y = TRUE, ..., radar = list())
 
 e_radar_(e, serie, max = 100, name = NULL, legend = TRUE,
-  rm_x = TRUE, rm_y = TRUE, ...)
+  rm_x = TRUE, rm_y = TRUE, ..., radar = list())
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -25,6 +25,9 @@ e_radar_(e, serie, max = 100, name = NULL, legend = TRUE,
 \item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other option to pass, check See Also section.}
+
+\item{radar}{A \code{list} of options to pass to the \code{radar} 
+rather than the serie, see \href{https://echarts.apache.org/en/option.html#radar}{official documentation}.}
 }
 \description{
 Add a radar chart

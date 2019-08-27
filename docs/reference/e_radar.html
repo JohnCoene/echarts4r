@@ -281,10 +281,10 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_radar</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>, <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>())
 
 <span class='fu'>e_radar_</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>, <span class='kw'>radar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -316,6 +316,11 @@
     <tr>
       <th>...</th>
       <td><p>Any other option to pass, check See Also section.</p></td>
+    </tr>
+    <tr>
+      <th>radar</th>
+      <td><p>A <code>list</code> of options to pass to the <code>radar</code> 
+rather than the serie, see <a href='https://echarts.apache.org/en/option.html#radar'>official documentation</a>.</p></td>
     </tr>
     </table>
     

@@ -552,7 +552,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   purrr::map(serie, ~which(series == .)) %>% unlist() %>% unique()
 }
 
-.add_indicators <- function(e, r.index, max){
+.add_indicators <- function(e, r.index, max, radar = list()){
   
   if(!length(e$x$opts$radar))
     e$x$opts$radar <- list(list())
@@ -566,6 +566,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   
   indicators <- apply(indicators, 1, as.list)
   
+  e$x$opts$radar[[r.index + 1]] <- radar
   e$x$opts$radar[[r.index + 1]]$indicator <- indicators
   e
 }

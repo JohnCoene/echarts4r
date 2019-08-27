@@ -16,3 +16,18 @@ e_radar_opts(e, index = 0, ...)
 \description{
 Radar axis setup and options.
 }
+\examples{
+df <- data.frame(
+  x = LETTERS[1:5],
+  y = runif(5, 1, 5),
+  z = runif(5, 3, 7)
+)
+
+df \%>\%
+  e_charts(x) \%>\%
+  e_radar(y, max = 7) \%>\%
+  e_radar(z) \%>\%
+  e_radar_opts(center = c("25\%", "25\%")) \%>\% 
+  e_tooltip(trigger = "item")
+
+}

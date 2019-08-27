@@ -36,6 +36,17 @@ li>a {
   color: #191919;
 }
 
+.btn-copy-ex{
+  background-color: #B03A5B;
+  border-color: #293c55;
+}
+
+.btn-copy-ex:hover{
+  background-color: #293c55;
+  border-color: #B03A5B;
+}
+
+
 pre {
   box-shadow:
     rgba(0, 0, 0, 0.1) 0 2px 3px 1px,

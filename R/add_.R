@@ -633,7 +633,7 @@ e_candle_ <- function(e, opening, closing, low, high, bind = NULL, name = NULL, 
 #' @rdname e_radar
 #' @export
 e_radar_ <- function(e, serie, max = 100, name = NULL, legend = TRUE, 
-                    rm_x = TRUE, rm_y = TRUE, ...){
+                    rm_x = TRUE, rm_y = TRUE, ..., radar = list()){
   
   r.index = 0
   
@@ -666,7 +666,7 @@ e_radar_ <- function(e, serie, max = 100, name = NULL, legend = TRUE,
     )
     
     # add indicators
-    e <- .add_indicators(e, r.index, max) 
+    e <- .add_indicators(e, r.index, max, radar = radar) 
     
     # add serie
     e$x$opts$series <- append(e$x$opts$series, list(serie))

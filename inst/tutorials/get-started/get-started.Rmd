@@ -1,0 +1,15 @@
+---
+title: "Get Started with echarts4r"
+output: 
+  learnr::tutorial:
+    progressive: true
+runtime: shiny_prerendered
+---
+
+## Introduction 
+
+This tutorial will teach you how to build your first echarts4r graph! The package is ideally designed for this type of tutorials
+
+```{r load, exercise=TRUE}
+library(echarts4r)
+```

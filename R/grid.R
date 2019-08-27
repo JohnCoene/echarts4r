@@ -419,6 +419,20 @@ e_angle_axis_ <- function(e, serie = NULL, show = TRUE, ...){
 #' @inheritParams e_bar
 #' @param index Index of axis to customise.
 #' 
+#' @examples
+#' df <- data.frame(
+#'   x = LETTERS[1:5],
+#'   y = runif(5, 1, 5),
+#'   z = runif(5, 3, 7)
+#' )
+#' 
+#' df %>%
+#'   e_charts(x) %>%
+#'   e_radar(y, max = 7) %>%
+#'   e_radar(z) %>%
+#'   e_radar_opts(center = c("25%", "25%")) %>% 
+#'   e_tooltip(trigger = "item")
+#' 
 #' @export
 e_radar_opts <- function(e, index = 0, ...){
   
@@ -436,7 +450,7 @@ e_radar_opts <- function(e, index = 0, ...){
   # initiatlise if wrong index
   if(r.index > max){
     r.index <- 1
-    if(!e$xtl)
+    if(!e$x$tl)
       e$x$opts$radar <- list(list())
     else
       e$x$opts$baseOption$radar <- list(list())

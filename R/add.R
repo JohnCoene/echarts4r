@@ -387,6 +387,9 @@ e_candle <- function(e, opening, closing, low, high, bind, name = NULL, legend =
 #' @inheritParams e_bar
 #' @param max Maximum value.
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
+#' @param radar A \code{list} of options to pass to the \code{radar} 
+#' rather than the serie, see \href{https://echarts.apache.org/en/option.html#radar}{official documentation}
+#' alternatively, use the \code{\link{e_radar_opts}}.
 #' 
 #' @examples
 #' df <- data.frame(
@@ -404,7 +407,7 @@ e_candle <- function(e, opening, closing, low, high, bind, name = NULL, legend =
 #' @rdname e_radar
 #' @export
 e_radar <- function(e, serie, max = 100, name = NULL, legend = TRUE, 
-                    rm_x = TRUE, rm_y = TRUE, ...){
+                    rm_x = TRUE, rm_y = TRUE, ..., radar = list()){
   
   r.index = 0
   
@@ -416,7 +419,7 @@ e_radar <- function(e, serie, max = 100, name = NULL, legend = TRUE,
   
   serie <- deparse(substitute(serie))
   
-  e_radar_(e, serie, max, name, legend, rm_x, rm_y, ...)
+  e_radar_(e, serie, max, name, legend, rm_x, rm_y, ..., radar = radar)
 }
 
 #' Funnel
