@@ -27,7 +27,8 @@ e_radar_(e, serie, max = 100, name = NULL, legend = TRUE,
 \item{...}{Any other option to pass, check See Also section.}
 
 \item{radar}{A \code{list} of options to pass to the \code{radar} 
-rather than the serie, see \href{https://echarts.apache.org/en/option.html#radar}{official documentation}.}
+rather than the serie, see \href{https://echarts.apache.org/en/option.html#radar}{official documentation}
+alternatively, use the \code{\link{e_radar_opts}}.}
 }
 \description{
 Add a radar chart
