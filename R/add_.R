@@ -771,7 +771,7 @@ e_sankey_ <- function(e, source, target, value, layout = "none", rm_x = TRUE, rm
 
 #' @rdname e_heatmap
 #' @export
-e_heatmap_ <- function(e, y, z = NULL, name = NULL, coord_system = "cartesian2d", 
+e_heatmap_ <- function(e, y, z = NULL, bind = NULL, name = NULL, coord_system = "cartesian2d", 
                        rm_x = TRUE, rm_y = TRUE, calendar = NULL, ...){
   
   if(missing(y))
@@ -783,6 +783,8 @@ e_heatmap_ <- function(e, y, z = NULL, name = NULL, coord_system = "cartesian2d"
       xyz <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
     else 
       xyz <- .build_data2(e$x$data[[i]], e$x$mapping$x, y)
+
+    data <- .add_bind2(e, xyz, bind, i = i)
     
     serie <- list(data = xyz)
     

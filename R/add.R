@@ -764,8 +764,8 @@ e_graph_edges <- function(e, edges, source, target){
 #' 
 #' @rdname e_heatmap
 #' @export
-e_heatmap <- function(e, y, z, name = NULL, coord_system = "cartesian2d", rm_x = TRUE, rm_y = TRUE, 
-                      calendar = NULL, ...){
+e_heatmap <- function(e, y, z, bind, name = NULL, coord_system = "cartesian2d", 
+  rm_x = TRUE, rm_y = TRUE, calendar = NULL, ...){
   if(missing(y))
     stop("must pass y", call. = FALSE)
   
@@ -773,8 +773,13 @@ e_heatmap <- function(e, y, z, name = NULL, coord_system = "cartesian2d", rm_x =
     z <- deparse(substitute(z))
   else
     z <- NULL
+
+  if(!missing(bind))
+    bind <- deparse(substitute(bind))
+  else
+    bind <- NULL
   
-  e_heatmap_(e, deparse(substitute(y)), z, name, coord_system, rm_x, rm_y, calendar, ...)
+  e_heatmap_(e, deparse(substitute(y)), z, bind, name, coord_system, rm_x, rm_y, calendar, ...)
 }
 
 #' Parallel
