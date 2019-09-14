@@ -784,7 +784,8 @@ e_heatmap_ <- function(e, y, z = NULL, bind = NULL, name = NULL, coord_system = 
     else 
       xyz <- .build_data2(e$x$data[[i]], e$x$mapping$x, y)
 
-    data <- .add_bind2(e, xyz, bind, i = i)
+    if(!is.null(bind))
+      xyz <- .add_bind2(e, xyz, bind, i = i)
     
     serie <- list(data = xyz)
     

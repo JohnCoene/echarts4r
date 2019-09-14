@@ -919,7 +919,7 @@ e_pie <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE
 #' df$borderColor <- sample(colors, 5, replace = TRUE)
 #' 
 #' df %>% 
-#'   tidyr::nest(color, borderColor, .key = "style") %>% # nest
+#'   tidyr::nest(c(color, borderColor), .key = "style") %>% # nest
 #'   e_charts() %>% 
 #'   e_sunburst(parent, child, value, style) 
 #' 
