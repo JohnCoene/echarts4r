@@ -3,6 +3,7 @@
 - Warning in `e_axis_fomatter` if user uses RStudio, relates to [#100](https://github.com/JohnCoene/echarts4r/issues/100)
 - Fixed [#98](https://github.com/JohnCoene/echarts4r/issues/98) where a bug was introduced in `e_radar_opts` when the timeline component was added.
 - `bind` argument added to `e_heatmap`
+- `e_scatter_3d` correctly takes `bind` argument when `coords` is set to `cartesian3D` (previously incorrect).
 
 # echarts4r 0.2.3
 

@@ -1537,6 +1537,8 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
       else if(!is.null(color) && !is.null(size))
         data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z, color, size)
       
+      if(!is.null(bind))
+        data <- .add_bind2(e, data, bind, i = i)
     }
     
     e_data <- list(data = data)
