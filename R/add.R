@@ -948,6 +948,7 @@ e_sunburst <- function(e, parent, child, value, itemStyle, rm_x = TRUE, rm_y = T
 #' @inheritParams e_bar
 #' @param parent,child Edges.
 #' @param value Value of edges.
+#' @param itemStyle Name of column containing styles to pass to \code{child}, 
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
@@ -965,16 +966,21 @@ e_sunburst <- function(e, parent, child, value, itemStyle, rm_x = TRUE, rm_y = T
 #' 
 #' @rdname e_treemap
 #' @export
-e_treemap <- function(e, parent, child, value, rm_x = TRUE, rm_y = TRUE, ...){
+e_treemap <- function(e, parent, child, value, itemStyle, rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
+  
+  if(!missing(itemStyle))
+    style <- deparse(substitute(itemStyle))
+  else
+    style <- NULL
   
   if(missing(parent) || missing(child) || missing(value))
     stop("must pass parent, child and value", call. = FALSE)
   
   e_treemap_(e, deparse(substitute(parent)), 
-              deparse(substitute(child)), deparse(substitute(value)), 
-              rm_x, rm_y, ...)
+             deparse(substitute(child)), deparse(substitute(value)),
+             style, rm_x, rm_y, ...)
 }
 
 #' River

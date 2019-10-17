@@ -981,7 +981,7 @@ e_sunburst_ <- function(e, parent, child, value, itemStyle = NULL, rm_x = TRUE, 
 
 #' @rdname e_treemap
 #' @export
-e_treemap_ <- function(e, parent, child, value, rm_x = TRUE, rm_y = TRUE, ...){
+e_treemap_ <- function(e, parent, child, value, itemStyle = NULL, rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -992,7 +992,7 @@ e_treemap_ <- function(e, parent, child, value, rm_x = TRUE, rm_y = TRUE, ...){
   e <- .rm_axis(e, rm_y, "y")
   
   # build JSON data
-  data <- .build_sun(e, parent, child, value)
+  data <- .build_sun(e, parent, child, value, itemStyle)
   
   serie <- list(
     type = "treemap",
