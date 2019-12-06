@@ -8,31 +8,87 @@
 \alias{e_effect_scatter_}
 \title{Scatter}
 \usage{
-e_scatter(e, serie, size, bind, symbol = NULL, symbol_size = 1,
-  scale = e_scale, scale_js = "function(data){ return data[3];}",
-  name = NULL, coord_system = "cartesian2d", jitter_factor = 0,
-  jitter_amount = NULL, legend = TRUE, y_index = 0, x_index = 0,
-  rm_x = TRUE, rm_y = TRUE, ...)
+e_scatter(
+  e,
+  serie,
+  size,
+  bind,
+  symbol = NULL,
+  symbol_size = 1,
+  scale = e_scale,
+  scale_js = "function(data){ return data[3];}",
+  name = NULL,
+  coord_system = "cartesian2d",
+  jitter_factor = 0,
+  jitter_amount = NULL,
+  legend = TRUE,
+  y_index = 0,
+  x_index = 0,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 
-e_effect_scatter(e, serie, size, bind, symbol = NULL, symbol_size = 1,
-  scale = e_scale, scale_js = "function(data){ return data[3];}",
-  name = NULL, coord_system = "cartesian2d", legend = TRUE,
-  y_index = 0, x_index = 0, rm_x = TRUE, rm_y = TRUE, ...)
+e_effect_scatter(
+  e,
+  serie,
+  size,
+  bind,
+  symbol = NULL,
+  symbol_size = 1,
+  scale = e_scale,
+  scale_js = "function(data){ return data[3];}",
+  name = NULL,
+  coord_system = "cartesian2d",
+  legend = TRUE,
+  y_index = 0,
+  x_index = 0,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 
 e_scale(x)
 
-e_scatter_(e, serie, size = NULL, bind = NULL, symbol = NULL,
-  symbol_size = 1, scale = e_scale,
-  scale_js = "function(data){ return data[3];}", name = NULL,
-  coord_system = "cartesian2d", jitter_factor = 0,
-  jitter_amount = NULL, legend = TRUE, y_index = 0, x_index = 0,
-  rm_x = TRUE, rm_y = TRUE, ...)
+e_scatter_(
+  e,
+  serie,
+  size = NULL,
+  bind = NULL,
+  symbol = NULL,
+  symbol_size = 1,
+  scale = e_scale,
+  scale_js = "function(data){ return data[3];}",
+  name = NULL,
+  coord_system = "cartesian2d",
+  jitter_factor = 0,
+  jitter_amount = NULL,
+  legend = TRUE,
+  y_index = 0,
+  x_index = 0,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 
-e_effect_scatter_(e, serie, size = NULL, bind = NULL, symbol = NULL,
-  symbol_size = 1, scale = e_scale,
-  scale_js = "function(data){ return data[3];}", name = NULL,
-  coord_system = "cartesian2d", legend = TRUE, y_index = 0,
-  x_index = 0, rm_x = TRUE, rm_y = TRUE, ...)
+e_effect_scatter_(
+  e,
+  serie,
+  size = NULL,
+  bind = NULL,
+  symbol = NULL,
+  symbol_size = 1,
+  scale = e_scale,
+  scale_js = "function(data){ return data[3];}",
+  name = NULL,
+  coord_system = "cartesian2d",
+  legend = TRUE,
+  y_index = 0,
+  x_index = 0,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

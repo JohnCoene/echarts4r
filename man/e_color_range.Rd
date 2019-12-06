@@ -5,11 +5,21 @@
 \alias{e_color_range_}
 \title{Color range}
 \usage{
-e_color_range(data, input, output, colors = c("#bf444c", "#d88273",
-  "#f6efa6"), ...)
+e_color_range(
+  data,
+  input,
+  output,
+  colors = c("#bf444c", "#d88273", "#f6efa6"),
+  ...
+)
 
-e_color_range_(data, input, output, colors = c("#bf444c", "#d88273",
-  "#f6efa6"), ...)
+e_color_range_(
+  data,
+  input,
+  output,
+  colors = c("#bf444c", "#d88273", "#f6efa6"),
+  ...
+)
 }
 \arguments{
 \item{data}{Data.frame in which to find column names.}

@@ -4,8 +4,7 @@
 \alias{e_draft}
 \title{Draft}
 \usage{
-e_draft(e, text = "DRAFT", size = "120px", opacity = 0.4,
-  color = "#d3d3d3")
+e_draft(e, text = "DRAFT", size = "120px", opacity = 0.4, color = "#d3d3d3")
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

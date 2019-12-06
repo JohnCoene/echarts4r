@@ -20,11 +20,11 @@ Register a \href{http://geojson.org/}{geojson} map.
 \dontrun{
 json <- jsonlite::read_json("http://www.echartsjs.com/gallery/data/asset/geo/USA.json")
 
-USArrests \%>\%
-  dplyr::mutate(states = row.names(.)) \%>\%
-  e_charts(states) \%>\%
-  e_map_register("USA", json) \%>\%
-  e_map(Murder, map = "USA") \%>\% 
+USArrests %>%
+  dplyr::mutate(states = row.names(.)) %>%
+  e_charts(states) %>%
+  e_map_register("USA", json) %>%
+  e_map(Murder, map = "USA") %>% 
   e_visual_map(Murder)
 }
 

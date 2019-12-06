@@ -8,17 +8,44 @@
 \alias{e_data}
 \title{Initialise}
 \usage{
-e_charts(data, x, width = NULL, height = NULL, elementId = NULL,
-  dispose = TRUE, draw = TRUE, renderer = "canvas",
-  timeline = FALSE, ...)
+e_charts(
+  data,
+  x,
+  width = NULL,
+  height = NULL,
+  elementId = NULL,
+  dispose = TRUE,
+  draw = TRUE,
+  renderer = "canvas",
+  timeline = FALSE,
+  ...
+)
 
-e_charts_(data, x = NULL, width = NULL, height = NULL,
-  elementId = NULL, dispose = TRUE, draw = TRUE,
-  renderer = "canvas", timeline = FALSE, ...)
+e_charts_(
+  data,
+  x = NULL,
+  width = NULL,
+  height = NULL,
+  elementId = NULL,
+  dispose = TRUE,
+  draw = TRUE,
+  renderer = "canvas",
+  timeline = FALSE,
+  ...
+)
 
-e_chart(data, x, width = NULL, height = NULL, elementId = NULL,
-  dispose = TRUE, draw = TRUE, renderer = "canvas",
-  timeline = FALSE, ...)
+e_chart(
+  data,
+  x,
+  width = NULL,
+  height = NULL,
+  elementId = NULL,
+  dispose = TRUE,
+  draw = TRUE,
+  renderer = "canvas",
+  timeline = FALSE,
+  ...
+)
 
 e_data(e, data, x)
 }

@@ -5,11 +5,27 @@
 \alias{e_funnel_}
 \title{Funnel}
 \usage{
-e_funnel(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE,
-  rm_y = TRUE, ...)
+e_funnel(
+  e,
+  values,
+  labels,
+  name = NULL,
+  legend = TRUE,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 
-e_funnel_(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE,
-  rm_y = TRUE, ...)
+e_funnel_(
+  e,
+  values,
+  labels,
+  name = NULL,
+  legend = TRUE,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

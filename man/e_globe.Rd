@@ -4,8 +4,7 @@
 \alias{e_globe}
 \title{Globe}
 \usage{
-e_globe(e, environment = NULL, base_texture = NULL,
-  height_texture = NULL, ...)
+e_globe(e, environment = NULL, base_texture = NULL, height_texture = NULL, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -29,12 +28,12 @@ data <- jsonlite::fromJSON(url)
 data <- as.data.frame(data)
 names(data) <- c("lon", "lat", "value")
 
-data \%>\% 
-  e_charts(lon) \%>\% 
+data %>% 
+  e_charts(lon) %>% 
   e_globe(
     displacementScale = 0.04
-  ) \%>\% 
-  e_bar_3d(lat, value, "globe") \%>\% 
+  ) %>% 
+  e_bar_3d(lat, value, "globe") %>% 
   e_visual_map(show = FALSE)
 }
 

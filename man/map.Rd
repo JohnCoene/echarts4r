@@ -8,20 +8,51 @@
 \alias{e_map_3d_custom}
 \title{Choropleth}
 \usage{
-e_map(e, serie, map = "world", name = NULL, rm_x = TRUE,
-  rm_y = TRUE, ...)
+e_map(e, serie, map = "world", name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 
-e_map_(e, serie = NULL, map = "world", name = NULL, rm_x = TRUE,
-  rm_y = TRUE, ...)
+e_map_(
+  e,
+  serie = NULL,
+  map = "world",
+  name = NULL,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 
-e_map_3d(e, serie, map = "world", name = NULL, coord_system = NULL,
-  rm_x = TRUE, rm_y = TRUE, ...)
+e_map_3d(
+  e,
+  serie,
+  map = "world",
+  name = NULL,
+  coord_system = NULL,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 
-e_map_3d_(e, serie = NULL, map = "world", name = NULL,
-  coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...)
+e_map_3d_(
+  e,
+  serie = NULL,
+  map = "world",
+  name = NULL,
+  coord_system = NULL,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 
-e_map_3d_custom(e, id, value, height, map = NULL, name = NULL,
-  rm_x = TRUE, rm_y = TRUE, ...)
+e_map_3d_custom(
+  e,
+  id,
+  value,
+  height,
+  map = NULL,
+  name = NULL,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -51,14 +82,14 @@ choropleth <- data.frame(
   values = round(runif(9, 10, 25))
 )
 
-choropleth \%>\% 
-  e_charts(countries) \%>\% 
-  e_map(values) \%>\% 
+choropleth %>% 
+  e_charts(countries) %>% 
+  e_map(values) %>% 
   e_visual_map(min = 10, max = 25)
 
-choropleth \%>\% 
-  e_charts(countries) \%>\% 
-  e_map_3d(values, shading = "lambert") \%>\% 
+choropleth %>% 
+  e_charts(countries) %>% 
+  e_map_3d(values, shading = "lambert") %>% 
   e_visual_map(min = 10, max = 30)
         
 # custom
@@ -69,12 +100,12 @@ buildings <- jsonlite::read_json(
   )
 )
 
-heights <- purrr::map(buildings$features, "properties") \%>\% 
-  purrr::map("height") \%>\% 
+heights <- purrr::map(buildings$features, "properties") %>% 
+  purrr::map("height") %>% 
   unlist()
   
-names <- purrr::map(buildings$features, "properties") \%>\% 
-  purrr::map("name") \%>\% 
+names <- purrr::map(buildings$features, "properties") %>% 
+  purrr::map("name") %>% 
   unlist()
   
 data <- dplyr::tibble(
@@ -83,10 +114,10 @@ data <- dplyr::tibble(
   height = heights / 10
 )
 
-data \%>\% 
-  e_charts() \%>\% 
-  e_map_register("buildings", buildings) \%>\%
-  e_map_3d_custom(name, value, height) \%>\% 
+data %>% 
+  e_charts() %>% 
+  e_map_register("buildings", buildings) %>%
+  e_map_3d_custom(name, value, height) %>% 
   e_visual_map(
     show = FALSE,
     min = 0.4,
@@ -96,7 +127,7 @@ data \%>\%
 # timeline
 choropleth <- data.frame(
     countries = rep(choropleth$countries, 3)
-  ) \%>\% 
+  ) %>% 
   dplyr::mutate(
     grp = c(
       rep(2016, nrow(choropleth)),
@@ -106,16 +137,16 @@ choropleth <- data.frame(
     values = runif(27, 1, 10)
   )
   
-choropleth \%>\% 
-  group_by(grp) \%>\% 
-  e_charts(countries, timeline = TRUE) \%>\% 
-  e_map(values) \%>\% 
+choropleth %>% 
+  group_by(grp) %>% 
+  e_charts(countries, timeline = TRUE) %>% 
+  e_map(values) %>% 
   e_visual_map(min = 1, max = 10)
   
-choropleth \%>\% 
-  group_by(grp) \%>\% 
-  e_charts(countries, timeline = TRUE) \%>\% 
-  e_map_3d(values) \%>\% 
+choropleth %>% 
+  group_by(grp) %>% 
+  e_charts(countries, timeline = TRUE) %>% 
+  e_map_3d(values) %>% 
   e_visual_map(min = 1, max = 10)
 }
 

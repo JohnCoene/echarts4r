@@ -5,11 +5,27 @@
 \alias{e_sankey_}
 \title{Sankey}
 \usage{
-e_sankey(e, source, target, value, layout = "none", rm_x = TRUE,
-  rm_y = TRUE, ...)
+e_sankey(
+  e,
+  source,
+  target,
+  value,
+  layout = "none",
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 
-e_sankey_(e, source, target, value, layout = "none", rm_x = TRUE,
-  rm_y = TRUE, ...)
+e_sankey_(
+  e,
+  source,
+  target,
+  value,
+  layout = "none",
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

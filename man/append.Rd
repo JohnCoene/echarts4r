@@ -11,11 +11,27 @@ e_append1_p(proxy, series_index = NULL, data, x, y)
 
 e_append1_p_(proxy, series_index = NULL, data, x, y)
 
-e_append2_p(proxy, series_index = NULL, data, x, y, z, scale = NULL,
-  symbol_size = 1)
+e_append2_p(
+  proxy,
+  series_index = NULL,
+  data,
+  x,
+  y,
+  z,
+  scale = NULL,
+  symbol_size = 1
+)
 
-e_append2_p_(proxy, series_index = NULL, data, x, y, z, scale = NULL,
-  symbol_size = 1)
+e_append2_p_(
+  proxy,
+  series_index = NULL,
+  data,
+  x,
+  y,
+  z,
+  scale = NULL,
+  symbol_size = 1
+)
 }
 \arguments{
 \item{proxy}{An echarts4r proxy as returned by \code{\link{echarts4rProxy}}.}
@@ -61,15 +77,15 @@ Only these types of series support it: \code{\link{e_scatter}} and \code{\link{e
     })
     
     output$plot <- renderEcharts4r({
-      data \%>\% 
-       e_charts(x) \%>\% 
-       e_scatter(y, z, scale = NULL) \%>\%
-       e_scatter(z) \%>\% 
+      data %>% 
+       e_charts(x) %>% 
+       e_scatter(y, z, scale = NULL) %>%
+       e_scatter(z) %>% 
        e_brush()
     })
     
     observeEvent(input$add, {
-      echarts4rProxy("plot") \%>\% 
+      echarts4rProxy("plot") %>% 
         e_append2_p(0, react(), x, y, z)
     })
     

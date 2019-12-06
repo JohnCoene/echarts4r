@@ -4,9 +4,17 @@
 \alias{e_animation}
 \title{Animation}
 \usage{
-e_animation(e, show = TRUE, threshold = NULL, duration = NULL,
-  easing = NULL, delay = NULL, duration.update = NULL,
-  easing.update = NULL, delay.update = NULL)
+e_animation(
+  e,
+  show = TRUE,
+  threshold = NULL,
+  duration = NULL,
+  easing = NULL,
+  delay = NULL,
+  duration.update = NULL,
+  easing.update = NULL,
+  delay.update = NULL
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

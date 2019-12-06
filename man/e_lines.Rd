@@ -5,13 +5,37 @@
 \alias{e_lines_}
 \title{Lines}
 \usage{
-e_lines(e, source_lon, source_lat, target_lon, target_lat, source_name,
-  target_name, value, coord_system = "geo", name = NULL, rm_x = TRUE,
-  rm_y = TRUE, ...)
+e_lines(
+  e,
+  source_lon,
+  source_lat,
+  target_lon,
+  target_lat,
+  source_name,
+  target_name,
+  value,
+  coord_system = "geo",
+  name = NULL,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 
-e_lines_(e, source_lon, source_lat, target_lon, target_lat,
-  source_name = NULL, target_name = NULL, value = NULL,
-  coord_system = "geo", name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
+e_lines_(
+  e,
+  source_lon,
+  source_lat,
+  target_lon,
+  target_lat,
+  source_name = NULL,
+  target_name = NULL,
+  value = NULL,
+  coord_system = "geo",
+  name = NULL,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

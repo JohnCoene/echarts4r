@@ -5,9 +5,15 @@
 \alias{e_hide_loading}
 \title{Loading}
 \usage{
-e_show_loading(e, hide_overlay = TRUE, text = "loading",
-  color = "#c23531", text_color = "#000",
-  mask_color = "rgba(255, 255, 255, 0.8)", zlevel = 0)
+e_show_loading(
+  e,
+  hide_overlay = TRUE,
+  text = "loading",
+  color = "#c23531",
+  text_color = "#000",
+  mask_color = "rgba(255, 255, 255, 0.8)",
+  zlevel = 0
+)
 
 e_hide_loading(e)
 }
@@ -56,8 +62,8 @@ server <- function(input, output){
   })
   
   output$plot <- renderEcharts4r({
-    data() \%>\% 
-      e_charts(x) \%>\% 
+    data() %>% 
+      e_charts(x) %>% 
       e_bar(y)
   })
 }
@@ -75,9 +81,9 @@ server <- function(input, output){
   })
   
   output$plot <- renderEcharts4r({
-    data() \%>\% 
-      e_charts(x) \%>\% 
-      e_bar(y) \%>\% 
+    data() %>% 
+      e_charts(x) %>% 
+      e_bar(y) %>% 
       e_show_loading()
   })
 }

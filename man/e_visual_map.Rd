@@ -5,11 +5,23 @@
 \alias{e_visual_map_}
 \title{Visual Map}
 \usage{
-e_visual_map(e, serie, calculable = TRUE, type = c("continuous",
-  "piecewise"), scale = NULL, ...)
+e_visual_map(
+  e,
+  serie,
+  calculable = TRUE,
+  type = c("continuous", "piecewise"),
+  scale = NULL,
+  ...
+)
 
-e_visual_map_(e, serie = NULL, calculable = TRUE,
-  type = c("continuous", "piecewise"), scale = NULL, ...)
+e_visual_map_(
+  e,
+  serie = NULL,
+  calculable = TRUE,
+  type = c("continuous", "piecewise"),
+  scale = NULL,
+  ...
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

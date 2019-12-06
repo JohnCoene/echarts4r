@@ -7,9 +7,12 @@
 \usage{
 e_leaflet(e, roam = TRUE, ...)
 
-e_leaflet_tile(e,
+e_leaflet_tile(
+  e,
   template = "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
-  options = NULL, ...)
+  options = NULL,
+  ...
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -37,10 +40,10 @@ data <- as.data.frame(data)
 names(data) <- c("lon", "lat", "value")
 data$value <- log(data$value)
 
-data \%>\% 
-  e_charts(lon) \%>\% 
-  e_leaflet() \%>\%
-  e_leaflet_tile() \%>\%  
+data %>% 
+  e_charts(lon) %>% 
+  e_leaflet() %>%
+  e_leaflet_tile() %>%  
   e_scatter(lat, size = value, coord.system = "leaflet") 
 }
 

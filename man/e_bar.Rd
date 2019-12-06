@@ -5,11 +5,29 @@
 \alias{e_bar_}
 \title{Bar and Line chart}
 \usage{
-e_bar(e, serie, bind, name = NULL, legend = TRUE, y_index = 0,
-  x_index = 0, coord_system = "cartesian2d", ...)
+e_bar(
+  e,
+  serie,
+  bind,
+  name = NULL,
+  legend = TRUE,
+  y_index = 0,
+  x_index = 0,
+  coord_system = "cartesian2d",
+  ...
+)
 
-e_bar_(e, serie, bind = NULL, name = NULL, legend = TRUE,
-  y_index = 0, x_index = 0, coord_system = "cartesian2d", ...)
+e_bar_(
+  e,
+  serie,
+  bind = NULL,
+  name = NULL,
+  legend = TRUE,
+  y_index = 0,
+  x_index = 0,
+  coord_system = "cartesian2d",
+  ...
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

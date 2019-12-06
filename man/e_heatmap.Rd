@@ -5,12 +5,31 @@
 \alias{e_heatmap_}
 \title{Heatmap}
 \usage{
-e_heatmap(e, y, z, bind, name = NULL, coord_system = "cartesian2d",
-  rm_x = TRUE, rm_y = TRUE, calendar = NULL, ...)
+e_heatmap(
+  e,
+  y,
+  z,
+  bind,
+  name = NULL,
+  coord_system = "cartesian2d",
+  rm_x = TRUE,
+  rm_y = TRUE,
+  calendar = NULL,
+  ...
+)
 
-e_heatmap_(e, y, z = NULL, bind = NULL, name = NULL,
-  coord_system = "cartesian2d", rm_x = TRUE, rm_y = TRUE,
-  calendar = NULL, ...)
+e_heatmap_(
+  e,
+  y,
+  z = NULL,
+  bind = NULL,
+  name = NULL,
+  coord_system = "cartesian2d",
+  rm_x = TRUE,
+  rm_y = TRUE,
+  calendar = NULL,
+  ...
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

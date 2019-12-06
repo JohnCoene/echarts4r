@@ -10,17 +10,34 @@
 \usage{
 e_tooltip(e, trigger = c("item", "axis"), formatter = NULL, ...)
 
-e_tooltip_item_formatter(style = c("decimal", "percent", "currency"),
-  digits = 0, locale = NULL, currency = "USD")
+e_tooltip_item_formatter(
+  style = c("decimal", "percent", "currency"),
+  digits = 0,
+  locale = NULL,
+  currency = "USD"
+)
 
-e_tooltip_choro_formatter(style = c("decimal", "percent", "currency"),
-  digits = 0, locale = NULL, currency = "USD")
+e_tooltip_choro_formatter(
+  style = c("decimal", "percent", "currency"),
+  digits = 0,
+  locale = NULL,
+  currency = "USD"
+)
 
-e_tooltip_pie_formatter(style = c("decimal", "percent", "currency"),
-  digits = 0, locale = NULL, currency = "USD", ...)
+e_tooltip_pie_formatter(
+  style = c("decimal", "percent", "currency"),
+  digits = 0,
+  locale = NULL,
+  currency = "USD",
+  ...
+)
 
-e_tooltip_pointer_formatter(style = c("decimal", "percent", "currency"),
-  digits = 0, locale = NULL, currency = "USD")
+e_tooltip_pointer_formatter(
+  style = c("decimal", "percent", "currency"),
+  digits = 0,
+  locale = NULL,
+  currency = "USD"
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

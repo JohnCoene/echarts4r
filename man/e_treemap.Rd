@@ -5,11 +5,18 @@
 \alias{e_treemap_}
 \title{Treemap}
 \usage{
-e_treemap(e, parent, child, value, itemStyle, rm_x = TRUE, rm_y = TRUE,
-  ...)
+e_treemap(e, parent, child, value, itemStyle, rm_x = TRUE, rm_y = TRUE, ...)
 
-e_treemap_(e, parent, child, value, itemStyle = NULL, rm_x = TRUE,
-  rm_y = TRUE, ...)
+e_treemap_(
+  e,
+  parent,
+  child,
+  value,
+  itemStyle = NULL,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

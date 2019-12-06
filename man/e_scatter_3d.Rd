@@ -5,12 +5,35 @@
 \alias{e_scatter_3d_}
 \title{Scatter 3D}
 \usage{
-e_scatter_3d(e, y, z, color, size, bind, coord_system = "cartesian3D",
-  name = NULL, rm_x = TRUE, rm_y = TRUE, legend = FALSE, ...)
+e_scatter_3d(
+  e,
+  y,
+  z,
+  color,
+  size,
+  bind,
+  coord_system = "cartesian3D",
+  name = NULL,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  legend = FALSE,
+  ...
+)
 
-e_scatter_3d_(e, y, z, color = NULL, size = NULL, bind = NULL,
-  coord_system = "cartesian3D", name = NULL, rm_x = TRUE,
-  rm_y = TRUE, legend = FALSE, ...)
+e_scatter_3d_(
+  e,
+  y,
+  z,
+  color = NULL,
+  size = NULL,
+  bind = NULL,
+  coord_system = "cartesian3D",
+  name = NULL,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  legend = FALSE,
+  ...
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

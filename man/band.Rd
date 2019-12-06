@@ -6,13 +6,27 @@
 \alias{e_band_}
 \title{Confidence bands}
 \usage{
-e_band(e, min, max, stack = "confidence-band", symbol = c("none",
-  "none"), areaStyle = list(list(color = "rgba(0,0,0,0)"), list()),
-  legend = list(FALSE, FALSE), ...)
+e_band(
+  e,
+  min,
+  max,
+  stack = "confidence-band",
+  symbol = c("none", "none"),
+  areaStyle = list(list(color = "rgba(0,0,0,0)"), list()),
+  legend = list(FALSE, FALSE),
+  ...
+)
 
-e_band_(e, min, max, stack = "confidence-band", symbol = c("none",
-  "none"), areaStyle = list(list(color = "rgba(0,0,0,0)"), list()),
-  legend = list(FALSE, FALSE), ...)
+e_band_(
+  e,
+  min,
+  max,
+  stack = "confidence-band",
+  symbol = c("none", "none"),
+  areaStyle = list(list(color = "rgba(0,0,0,0)"), list()),
+  legend = list(FALSE, FALSE),
+  ...
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

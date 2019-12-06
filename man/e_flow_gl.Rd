@@ -5,11 +5,31 @@
 \alias{e_flow_gl_}
 \title{Flow GL}
 \usage{
-e_flow_gl(e, y, sx, sy, color, name = NULL, coord_system = NULL,
-  rm_x = TRUE, rm_y = TRUE, ...)
+e_flow_gl(
+  e,
+  y,
+  sx,
+  sy,
+  color,
+  name = NULL,
+  coord_system = NULL,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 
-e_flow_gl_(e, y, sx, sy, color = NULL, name = NULL,
-  coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...)
+e_flow_gl_(
+  e,
+  y,
+  sx,
+  sy,
+  color = NULL,
+  name = NULL,
+  coord_system = NULL,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

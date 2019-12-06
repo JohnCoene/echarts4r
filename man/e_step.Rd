@@ -5,13 +5,33 @@
 \alias{e_step_}
 \title{Step}
 \usage{
-e_step(e, serie, bind, step = c("start", "middle", "end"),
-  fill = FALSE, name = NULL, legend = TRUE, y_index = 0,
-  x_index = 0, coord_system = "cartesian2d", ...)
+e_step(
+  e,
+  serie,
+  bind,
+  step = c("start", "middle", "end"),
+  fill = FALSE,
+  name = NULL,
+  legend = TRUE,
+  y_index = 0,
+  x_index = 0,
+  coord_system = "cartesian2d",
+  ...
+)
 
-e_step_(e, serie, bind = NULL, step = c("start", "middle", "end"),
-  fill = FALSE, name = NULL, legend = TRUE, y_index = 0,
-  x_index = 0, coord_system = "cartesian2d", ...)
+e_step_(
+  e,
+  serie,
+  bind = NULL,
+  step = c("start", "middle", "end"),
+  fill = FALSE,
+  name = NULL,
+  legend = TRUE,
+  y_index = 0,
+  x_index = 0,
+  coord_system = "cartesian2d",
+  ...
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}

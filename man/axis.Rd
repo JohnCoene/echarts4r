@@ -13,17 +13,29 @@
 \alias{e_axis_formatter}
 \title{Axis}
 \usage{
-e_axis(e, serie, axis = c("x", "y", "z"), index = 0,
-  formatter = NULL, margin = 0, ...)
+e_axis(
+  e,
+  serie,
+  axis = c("x", "y", "z"),
+  index = 0,
+  formatter = NULL,
+  margin = 0,
+  ...
+)
 
-e_axis_(e, serie = NULL, axis = c("x", "y", "z"), index = 0,
-  formatter = NULL, margin = 0, ...)
+e_axis_(
+  e,
+  serie = NULL,
+  axis = c("x", "y", "z"),
+  index = 0,
+  formatter = NULL,
+  margin = 0,
+  ...
+)
 
-e_x_axis_(e, serie = NULL, index = 0, formatter = NULL, margin = 0,
-  ...)
+e_x_axis_(e, serie = NULL, index = 0, formatter = NULL, margin = 0, ...)
 
-e_y_axis_(e, serie = NULL, index = 0, formatter = NULL, margin = 0,
-  ...)
+e_y_axis_(e, serie = NULL, index = 0, formatter = NULL, margin = 0, ...)
 
 e_z_axis_(e, serie = NULL, index = 0, margin = 0, ...)
 
@@ -35,8 +47,12 @@ e_z_axis(e, serie, index = 0, margin = 0, ...)
 
 e_rm_axis(e, axis = c("x", "y", "z"))
 
-e_axis_formatter(style = c("decimal", "percent", "currency"),
-  digits = 0, locale = NULL, currency = "USD")
+e_axis_formatter(
+  style = c("decimal", "percent", "currency"),
+  digits = 0,
+  locale = NULL,
+  currency = "USD"
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
