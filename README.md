@@ -6,3 +6,10 @@
 ![sticker](https://raw.githubusercontent.com/JohnCoene/echarts4r/master/docs/logo.png)
 
 ECharts 4 for R, see the [website](http://echarts4r.john-coene.com) for examples and documentation.
+
+```r
+library(echarts4r)
+
+e_charts(cars, dist) %>%
+  e_scatter(speed)
+```
