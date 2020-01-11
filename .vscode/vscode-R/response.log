@@ -19,3 +19,11 @@
 {"time":"2020-01-11 20:01:48","pid":5539,"command":"attach"} 
 {"time":"2020-01-11 20:07:34","pid":5539,"command":"webview","file":"/tmp/Rtmp7ZOBjq/viewhtml15a3413ed738/index.html"} 
 {"time":"2020-01-11 20:29:06","pid":13425,"command":"attach"} 
+{"time":"2020-01-11 21:11:53","pid":20954,"command":"attach"} 
+{"time":"2020-01-11 21:25:52","pid":20954,"command":"browser","url":"/home/jp/Packages/echarts4r/docs/./index.html"} 
+{"time":"2020-01-11 21:26:02","pid":20954,"command":"browser","url":"/home/jp/Packages/echarts4r/docs/./index.html"} 
+{"time":"2020-01-11 21:34:01","pid":28418,"command":"attach"} 
+{"time":"2020-01-11 21:42:28","pid":32412,"command":"attach"} 
+{"time":"2020-01-11 21:42:57","pid":32412,"command":"webview","file":"/tmp/Rtmp0Ynj4V/viewhtml7e9c4f8bfd1d/index.html"} 
+{"time":"2020-01-11 21:46:45","pid":32412,"command":"webview","file":"/tmp/Rtmp0Ynj4V/viewhtml7e9cb79f72e/index.html"} 
+{"time":"2020-01-11 21:50:34","pid":32412,"command":"browser","url":"/home/jp/Packages/echarts4r/docs/./index.html"} 

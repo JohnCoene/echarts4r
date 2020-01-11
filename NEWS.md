@@ -6,6 +6,7 @@ Bumped echarts JavaScript library to `4.6.0`, [PR #121](https://github.com/JohnC
 - Fixed [#98](https://github.com/JohnCoene/echarts4r/issues/98) where a bug was introduced in `e_radar_opts` when the timeline component was added.
 - `bind` argument added to `e_heatmap`
 - `e_scatter_3d` correctly takes `bind` argument when `coords` is set to `cartesian3D` (previously incorrect).
+- Bumped number of built-in themes to 40+
 
 # echarts4r 0.2.3
 

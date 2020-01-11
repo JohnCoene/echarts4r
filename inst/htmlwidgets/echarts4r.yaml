@@ -29,6 +29,35 @@ dependencies:
       - themes/wef.js
       - themes/weforum.js
       - themes/auritus.js
+      - themes/azul.js
+      - themes/bee-inspired.js
+      - themes/blue.js
+      - themes/caravan.js
+      - themes/carp.js
+      - themes/cool.js
+      - themes/dark-blue.js
+      - themes/dark-bold.js
+      - themes/dark-digerati.js
+      - themes/dark-fresh-cut.js
+      - themes/dark-mushroom.js
+      - themes/eduardo.js
+      - themes/forest.js
+      - themes/fresh-cut.js
+      - themes/fruit.js
+      - themes/gray.js
+      - themes/green.js
+      - themes/helianthus.js
+      - themes/inspired.js
+      - themes/jazz.js
+      - themes/london.js
+      - themes/macarons.js
+      - themes/macarons2.js
+      - themes/mint.js
+      - themes/red.js
+      - themes/red-velvet.js
+      - themes/royal.js
+      - themes/sakura.js
+      - themes/tech-blue.js
       - custom/renderers.js
    stylesheet: 
       - plugins/leaflet/leaflet.css

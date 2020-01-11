@@ -1,0 +1,14 @@
+{
+  "cns": {
+    "class": "data.frame",
+    "type": "list",
+    "length": 2,
+    "str": "'data.frame':\t280 obs. of  2 variables:"
+  },
+  "json": {
+    "class": "list",
+    "type": "list",
+    "length": 2,
+    "str": "List of 2"
+  }
+}

@@ -15,12 +15,12 @@ e_theme_custom(e, theme)
 \item{theme}{Theme, see below.}
 }
 \description{
-Add a theme.
+Add a custom theme or apply a pre-built one.
 }
 \section{Themes}{
  
 \itemize{
-   \item{\code{default}}
+  \item{\code{default}}
   \item{\code{dark}}
   \item{\code{vintage}}
   \item{\code{westeros}}
@@ -35,7 +35,35 @@ Add a theme.
   \item{\code{purple-passion}}
   \item{\code{halloween}}
   \item{\code{auritus}}
-  
+  \item{\code{azul}}
+  \item{\code{bee-insipired}}
+  \item{\code{blue}}
+  \item{\code{caravan}}
+  \item{\code{carp}}
+  \item{\code{cool}}
+  \item{\code{dark-blue}}
+  \item{\code{dark-bold}}
+  \item{\code{dark-digerati}}
+  \item{\code{dark-fresh-cut}}
+  \item{\code{dark-mushroom}}
+  \item{\code{eduardo}}
+  \item{\code{forest}}
+  \item{\code{fresh-cut}}
+  \item{\code{fruit}}
+  \item{\code{gray}}
+  \item{\code{green}}
+  \item{\code{helianthus}}
+  \item{\code{inspired}}
+  \item{\code{jazz}}
+  \item{\code{london}}
+  \item{\code{macarons}}
+  \item{\code{macarons2}}
+  \item{\code{mint}}
+  \item{\code{red}}
+  \item{\code{red-velvet}}
+  \item{\code{royal}}
+  \item{\code{sakura}}
+  \item{\code{tech-blue}}
 }
 }
 

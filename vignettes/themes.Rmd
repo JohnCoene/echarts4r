@@ -119,6 +119,167 @@ p %>% e_theme("purple-passion")
 p %>% e_theme("halloween")
 ```
 
+## azul
+
+```{r}
+p %>% e_theme("azul")
+```
+
+## bee-insipired
+
+```{r}
+p %>% e_theme("bee-insipired")
+```
+
+## blue
+
+```{r}
+p %>% e_theme("blue")
+```
+## caravan
+
+```{r}
+p %>% e_theme("caravan")
+```
+
+## carp
+
+```{r}
+p %>% e_theme("carp")
+```
+
+## cool
+
+```{r}
+p %>% e_theme("cool")
+```
+
+## dark-blue
+
+```{r}
+p %>% e_theme("dark-blue")
+```
+
+## dark-bold
+
+```{r}
+p %>% e_theme("dark-bold")
+```
+
+## dark-digerati
+
+```{r}
+p %>% e_theme("dark-digerati")
+```
+
+## dark-fresh-cut
+
+```{r}
+p %>% e_theme("dark-fresh-cut")
+```
+
+## dark-mushroom
+
+```{r}
+p %>% e_theme("dark-mushroom")
+```
+
+## forest
+
+```{r}
+p %>% e_theme("forest")
+```
+
+## fresh-cut
+
+```{r}
+p %>% e_theme("fresh-cut")
+```
+
+## fruit
+
+```{r}
+p %>% e_theme("fruit")
+```
+
+## gray
+
+```{r}
+p %>% e_theme("gray")
+```
+
+## green
+
+```{r}
+p %>% e_theme("green")
+```
+
+## helianthus
+
+```{r}
+p %>% e_theme("helianthus")
+```
+
+## inspired
+
+```{r}
+p %>% e_theme("inspired")
+```
+
+## london
+
+```{r}
+p %>% e_theme("london")
+```
+
+## macarons
+
+```{r}
+p %>% e_theme("macarons")
+```
+
+## macarons2
+
+```{r}
+p %>% e_theme("macarons2")
+```
+
+## mint
+
+```{r}
+p %>% e_theme("mint")
+```
+
+## red
+
+```{r}
+p %>% e_theme("red")
+```
+
+## red-velvet
+
+```{r}
+p %>% e_theme("red-velvet")
+```
+
+## royal
+
+```{r}
+p %>% e_theme("royal")
+```
+
+## sakura
+
+```{r}
+p %>% e_theme("sakura")
+```
+
+## tech-blue
+
+```{r}
+p %>% e_theme("tech-blue")
+```
+
 ## custom
 
 ```{r}

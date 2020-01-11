@@ -29,16 +29,16 @@ This document describes the maps.
 Pass countries as `x` argument.
 
 ```{r}
-sessions <- read.csv(
-  paste0("https://raw.githubusercontent.com/JohnCoene/projects/",
-         "master/htmlwidgets/echarts/data/sessions.csv")
+cns <- countrycode::codelist$country.name.en
+cns <- data.frame(
+  country = cns,
+  value = runif(length(cns), 1, 100)
 )
 
-sessions %>% 
-  e_country_names(Country, Country, type = "country.name") %>% # helper
-  e_charts(Country) %>% 
-  e_map(Sessions) %>% 
-  e_visual_map(Sessions)
+cns %>% 
+  e_charts(country) %>% 
+  e_map(value) %>% 
+  e_visual_map(value)
 ```
 
 ## Lines
@@ -98,7 +98,7 @@ df %>%
 Use a custom [geojson](http://geojson.org/) map; 1) read the json and register it with `e_register_map`.
 
 ```{r}
-json <- jsonlite::read_json("http://www.echartsjs.com/gallery/data/asset/geo/USA.json")
+json <- jsonlite::read_json("https://raw.githubusercontent.com/shawnbot/topogram/master/data/us-states.geojson")
 
 USArrests %>%
   dplyr::mutate(states = row.names(.)) %>%
