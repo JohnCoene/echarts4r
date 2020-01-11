@@ -8,10 +8,12 @@
 
 <title>To &amp; From JSON — e_inspect • echarts4r</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -38,12 +40,12 @@
 
   <link href="../extra.css" rel="stylesheet">
   
+
 <meta property="og:title" content="To &amp; From JSON — e_inspect" />
-
 <meta property="og:description" content="Get JSON options from an echarts4r object and build one from JSON." />
-
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 <meta name="theme-color" content="#293c55">
 
 
@@ -243,7 +245,6 @@
   <a href="../articles/timeline.html">Timeline</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/JohnCoene/echarts4r">
@@ -275,15 +276,13 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Get JSON options from an echarts4r object and build one from JSON.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>e_inspect</span>(<span class='no'>e</span>, <span class='kw'>json</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
 
 <span class='fu'>echarts_from_json</span>(<span class='no'>txt</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -304,21 +303,18 @@
       <td><p>JSON character string, url, or file.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>e_inspect</code> Returns a <code>list</code> if <code>json</code> is <code>FALSE</code> and a 
 JSON string otherwise. <code>echarts_from_json</code> returns an object of class <code>echarts4r</code>.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>txt</code> should contain the full list of options required to build a chart.
 This is subsequently passed to the <code>setOption</code> ECharts (JavaScript) function.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Must be passed as last option.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='no'>cars</span> <span class='kw'>%&gt;%</span>
@@ -523,13 +519,9 @@ This is subsequently passed to the <code>setOption</code> ECharts (JavaScript) f
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#note">Note</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

@@ -152,7 +152,7 @@ df %>%
 For instance the documentation for the tooltip looks like this:
 
 <a href="https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip" target="_blank">
-  <img src="docs.png" class="img-responsive responsive-img" />
+  <img src="https://echarts4r.john-coene.com/articles/docs.png" class="img-responsive responsive-img" />
 </a>
 
 Therefore if we want to change our tooltip to an [axisPointer](https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip.axisPointer) we can do so by passing a list to `axisPointer`.

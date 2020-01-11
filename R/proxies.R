@@ -2,7 +2,6 @@
 #' 
 #' Proxies to highlight and downplay series.
 #' 
-#' @inheritParams e_bar
 #' @param proxy An echarts4r proxy as returned by \code{\link{echarts4rProxy}}.
 #' @param series_index Series index, can be a vector.
 #' @param series_name Series Name, can be vector.

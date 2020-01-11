@@ -1,6 +1,6 @@
-pandoc: 2.0.4
+pandoc: 2.3.1
 pkgdown: 1.3.0
-pkgdown_sha: ~
+pkgdown_sha: 42971af1df065ab4e804ce3ee741192468c8bbd4
 articles:
   actions-buttons: actions-buttons.html
   advanced: advanced.html

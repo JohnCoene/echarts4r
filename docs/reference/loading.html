@@ -8,10 +8,12 @@
 
 <title>Loading — e_show_loading • echarts4r</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -38,12 +40,12 @@
 
   <link href="../extra.css" rel="stylesheet">
   
+
 <meta property="og:title" content="Loading — e_show_loading" />
-
 <meta property="og:description" content="Show or hide loading." />
-
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 <meta name="theme-color" content="#293c55">
 
 
@@ -243,7 +245,6 @@
   <a href="../articles/timeline.html">Timeline</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/JohnCoene/echarts4r">
@@ -275,17 +276,21 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Show or hide loading.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>e_show_loading</span>(<span class='no'>e</span>, <span class='kw'>hide_overlay</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"loading"</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"#c23531"</span>, <span class='kw'>text_color</span> <span class='kw'>=</span> <span class='st'>"#000"</span>,
-  <span class='kw'>mask_color</span> <span class='kw'>=</span> <span class='st'>"rgba(255, 255, 255, 0.8)"</span>, <span class='kw'>zlevel</span> <span class='kw'>=</span> <span class='fl'>0</span>)
+    <pre class="usage"><span class='fu'>e_show_loading</span>(
+  <span class='no'>e</span>,
+  <span class='kw'>hide_overlay</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"loading"</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"#c23531"</span>,
+  <span class='kw'>text_color</span> <span class='kw'>=</span> <span class='st'>"#000"</span>,
+  <span class='kw'>mask_color</span> <span class='kw'>=</span> <span class='st'>"rgba(255, 255, 255, 0.8)"</span>,
+  <span class='kw'>zlevel</span> <span class='kw'>=</span> <span class='fl'>0</span>
+)
 
 <span class='fu'>e_hide_loading</span>(<span class='no'>e</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -318,11 +323,10 @@
       <td><p>Z level.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This only applies to Shiny.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
@@ -381,9 +385,7 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#details">Details</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
