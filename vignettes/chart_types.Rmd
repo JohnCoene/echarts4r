@@ -337,7 +337,7 @@ df %>%
   e_tooltip(trigger = "item")
 ```
 
-### Wordcloud
+## Wordcloud
 
 ```{r}
 words <- function(n = 5000) {
