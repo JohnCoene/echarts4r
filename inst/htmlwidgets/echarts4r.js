@@ -310,5 +310,29 @@ if (HTMLWidgets.shinyMode) {
         chart.dispatchAction(data.opts);
       }
   });
+
+  Shiny.addCustomMessageHandler('e_remove_serie_p',
+    function(data) {
+      var chart = get_e_charts(data.id);
+      if (typeof chart != 'undefined') {
+        let opts = chart.getOption();
+
+        if(data.serie_name){
+          let series = opts.series;
+          series.forEach(function(s, index){
+            if(s.name == data.serie_name){
+              this.splice(index, 1);
+            }
+          }, series)
+          opts.series = series;
+        }
+
+        console.log(opts);
+        if(data.serie_index)
+          opts.series = opts.series.splice(data.index, 1);
+
+        chart.setOption(opts, true);
+      }
+  });
   
 }

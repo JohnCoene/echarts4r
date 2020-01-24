@@ -404,7 +404,7 @@ e_dispatch_action_p <- function(proxy, type, ...){
 #' @inheritParams e_bar
 #' @param event An event name from the \href{https://echarts.apache.org/en/api.html#events}{event documentation}.
 #' 
-#' @details Many events can be capture, however not all are integrated, you can pass one that is not implemented with this function.
+#' @details Many events can be captured, however not all are integrated, you can pass one that is not implemented with this function.
 #' 
 #' @examples 
 #' \dontrun{

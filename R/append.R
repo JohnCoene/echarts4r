@@ -135,3 +135,56 @@ e_append2_p_ <- function(proxy, series_index = NULL, data, x, y, z, scale = NULL
   
   return(proxy)
 }
+
+#' Remove Serie
+#' 
+#' Remove a serie by name or precising its index.
+#' 
+#' @inheritParams e_highlight_p
+#' @param serie_index Index of serie to append to (starts from 0).
+#' @param serie_name Name of serie to remove.
+#' 
+#' @examples 
+#' library(shiny)
+#' 
+#' ui <- fluidPage(
+#'   actionButton("rm", "Remove z serie"),
+#'   echarts4rOutput("plot")
+#' )
+#' 
+#' server <- function(input, output, session){
+#' 
+#'   data <- data.frame(
+#'     x = rnorm(10, 5, 3), 
+#'     y = rnorm(10, 50, 12), 
+#'     z = rnorm(10, 50, 5)
+#'   )
+#' 
+#'   output$plot <- renderEcharts4r({
+#'     data %>% 
+#'      e_charts(x) %>% 
+#'      e_scatter(y) %>%
+#'      e_scatter(z)
+#'   })
+#' 
+#'   observeEvent(input$rm, {
+#'     echarts4rProxy("plot") %>% 
+#'       e_remove_serie_p(serie_name = "z")
+#'   })
+#'  
+#' }
+#' 
+#' \dontrun{shinyApp(ui, server)}
+#' 
+#' @export
+e_remove_serie_p <- function(proxy, serie_index = NULL, serie_name = NULL){
+
+  if(is.null(serie_index) && is.null(serie_name))
+    stop("Must define `serie_index` or `serie_name`")
+
+  opts <- list(id = proxy$id, serie_index = serie_index, serie_name = serie_name)
+
+  proxy$session$sendCustomMessage("e_remove_serie_p", opts)
+  
+  return(proxy)
+}

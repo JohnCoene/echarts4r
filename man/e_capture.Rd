@@ -15,7 +15,7 @@ e_capture(e, event)
 Add an event capture.
 }
 \details{
-Many events can be capture, however not all are integrated, you can pass one that is not implemented with this function.
+Many events can be captured, however not all are integrated, you can pass one that is not implemented with this function.
 }
 \examples{
 \dontrun{

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Capture event — e_capture • echarts4r</title>
+<title>Remove Serie — e_remove_serie_p • echarts4r</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Capture event — e_capture" />
-<meta property="og:description" content="Add an event capture." />
+<meta property="og:title" content="Remove Serie — e_remove_serie_p" />
+<meta property="og:description" content="Remove a serie by name or precising its index." />
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -270,58 +270,64 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Capture event</h1>
+    <h1>Remove Serie</h1>
     
-    <div class="hidden name"><code>e_capture.Rd</code></div>
+    <div class="hidden name"><code>e_remove_serie_p.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Add an event capture.</p>
+    <p>Remove a serie by name or precising its index.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_capture</span>(<span class='no'>e</span>, <span class='no'>event</span>)</pre>
+    <pre class="usage"><span class='fu'>e_remove_serie_p</span>(<span class='no'>proxy</span>, <span class='kw'>serie_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>serie_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code>.</p></td>
+      <th>proxy</th>
+      <td><p>An echarts4r proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
-      <th>event</th>
-      <td><p>An event name from the <a href='https://echarts.apache.org/en/api.html#events'>event documentation</a>.</p></td>
+      <th>serie_index</th>
+      <td><p>Index of serie to append to (starts from 0).</p></td>
+    </tr>
+    <tr>
+      <th>serie_name</th>
+      <td><p>Name of serie to remove.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Many events can be captured, however not all are integrated, you can pass one that is not implemented with this function.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># add datazoom</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
 
 <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidPage</a></span>(
-  <span class='fu'><a href='echarts4r-shiny.html'>echarts4rOutput</a></span>(<span class='st'>"chart"</span>),
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='st'>"zoom"</span>)
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>"rm"</span>, <span class='st'>"Remove z serie"</span>),
+  <span class='fu'><a href='echarts4r-shiny.html'>echarts4rOutput</a></span>(<span class='st'>"plot"</span>)
 )
 
-<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>){
-  <span class='no'>output</span>$<span class='no'>chart</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span>({
-    <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>qsec</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='e_datazoom.html'>e_datazoom</a></span>() <span class='kw'>%&gt;%</span>
-      <span class='fu'>e_capture</span>(<span class='st'>"datazoom"</span>)
+<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>){
+
+  <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
+    <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>5</span>, <span class='fl'>3</span>),
+    <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>12</span>),
+    <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>5</span>)
+  )
+
+  <span class='no'>output</span>$<span class='no'>plot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span>({
+    <span class='no'>data</span> <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>y</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>z</span>)
   })
 
-  <span class='no'>output</span>$<span class='no'>zoom</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>({
-    <span class='no'>input</span>$<span class='no'>chart_datazoom</span>
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>rm</span>, {
+    <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"plot"</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'>e_remove_serie_p</span>(<span class='kw'>serie_name</span> <span class='kw'>=</span> <span class='st'>"z"</span>)
   })
-}
 
+}</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
@@ -330,7 +336,6 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#details">Details</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

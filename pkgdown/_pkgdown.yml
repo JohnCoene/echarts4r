@@ -37,6 +37,138 @@ articles:
 development:
   mode: release
 
+reference:
+  - title: "Initialisation & Shiny"
+    desc: "Initialise echarts and use in Shiny."
+    contents: 
+      - e_charts
+      - e_chart
+      - echarts4rOutput
+      - renderEcharts4r
+      - echarts4rProxy
+  - title: "Chart Types"
+    desc: "Chart types available in echarts4r"
+    contents:
+      - starts_with("e_band")
+      - starts_with("e_area")
+      - starts_with("e_bar")
+      - starts_with("e_cloud")
+      - starts_with("e_correlations")
+      - starts_with("e_line")
+      - starts_with("e_scatter")
+      - starts_with("e_pie")
+      - starts_with("e_radar")
+      - starts_with("e_sankey")
+      - starts_with("e_step")
+      - starts_with("e_sunburst")
+      - starts_with("e_lm")
+      - starts_with("e_glm")
+      - starts_with("e_loess")
+      - starts_with("e_candle")
+      - starts_with("e_river")
+      - starts_with("e_boxplot")
+      - starts_with("e_error_bar")
+      - starts_with("e_density")
+      - starts_with("e_histogram")
+      - starts_with("e_liquid")
+      - starts_with("e_tree")
+      - starts_with("e_gauge")
+      - starts_with("e_parallel")
+      - starts_with("e_surface")
+      - ends_with("_gl")
+      - starts_with("e_funnel")
+      - starts_with("e_heatmap")
+      - starts_with("e_pictorial")
+  - title: "Geo"
+    desc: "Geographical chart types"
+    contents:
+      - starts_with("e_map")
+      - starts_with("e_geo")
+      - starts_with("e_globe")
+      - starts_with("e_leaflet")
+      - starts_with("e_mapbox")
+      - ends_with("_gl")
+  - title: "Tooltip"
+    desc: "Customise the tooltip"
+    contents:
+      - starts_with("e_tooltip")
+      - e_axis_pointer
+      - tooltip_action
+  - title: "Aesthetics"
+    desc: "Customise the aestethics of the chart"
+    contents:
+      - starts_with("e_theme")
+      - e_common
+      - e_color
+      - e_text_style
+      - e_visual_map
+      - e_visual_map_range
+      - e_legend
+      - e_labels
+      - e_animation
+      - e_modularity
+  - title: "Toolbox"
+    desc: "Provide a toolbox for your chart"
+    contents:
+      - matches("toolbox")
+      - e_zoom
+      - e_datazoom
+      - e_brush
+  - title: "Grid and Axis"
+    desc: "Customise the grid and axis"
+    contents:
+      - matches("grid")
+      - matches("axis")
+      - e_flip_coords
+      - e_facet
+      - e_color_range
+      - e_polar
+      - e_calendar
+  - title: "Highlight and Downplay"
+    desc: "Highlight and downplay series or data points on the chart"
+    contents:
+      - matches("highlight")
+      - matches("downplay")
+      - starts_with("e_mark")
+      - starts_with("e_focus")
+      - starts_with("e_unfocus")
+      - starts_with("e_pie_select")
+      - starts_with("e_pie_unselect")
+      - legend_action
+  - title: "Shiny"
+    desc: "Functions relevant to using echarts4r with Shiny."
+    contents: 
+      - ends_with("_p")
+      - callbacks
+      - e_button
+      - e_restore
+      - e_capture
+      - e_show_loading
+  - title: "Graphics"
+    desc: "Add graphics to charts."
+    contents: 
+      - ends_with("_g")
+      - e_draft
+  - title: "Connect"
+    desc: "Connect charts and their interactions."
+    contents: 
+      - connections
+  - title: "Timeline"
+    desc: "Function to customise the chart timeline."
+    contents: 
+      - matches("timeline")
+  - title: "Misc"
+    desc: "Other functions to improve your charts."
+    contents: 
+      - e_utc
+      - e_aria
+      - e_get_data
+      - e_country_names
+      - e_title
+      - e_add
+      - e_list
+      - e_inspect
+
 navbar:
   title: "echarts4r"
   left:
