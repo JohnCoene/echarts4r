@@ -183,13 +183,11 @@ div(
     p(
       htmltools::tags$a(
         href = "articles/development",
-        target = "_blank",
         class = "btn btn-warning",
         "Browse"
       ),
       htmltools::tags$a(
         href = "news",
-        target = "_blank",
         class = "btn btn-default",
         "Changelog"
       )
