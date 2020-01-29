@@ -1,0 +1,94 @@
+---
+title: "Development"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Development}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(echarts4r)
+
+e_common(
+    font_family = "Raleway"
+)
+```
+
+## Introduction
+
+This showcases some features that are yet to be available on CRAN and currently being tested: feedback in the form of github issues and pull requests is more than welcome!
+
+This essentially covers a consequential new feature of echarts4r that allows using any function that adds a serie to a chart (e.g.: `e_bar`) as a proxy. This, combined with a new `e_remove_serie_p` lets one seamlessly add and remove series from a chart without having to redraw it in its entirety, making for much slicker Shiny charts.
+
+## Examples
+
+Below is a basic Shiny application that uses echarts4r. We'll afterwards add to the app the ability to add and remove a serie.
+
+```r
+library(shiny)
+library(echarts4r)
+
+# phoney data
+df <- data.frame(
+  x = 1:100,
+  y = runif(100),
+  z = runif(100)
+)
+
+ui <- fluidPage(
+  echarts4rOutput("chart")
+)
+
+server <- function(input, output){
+
+  output$chart <- renderEcharts4r({
+    e_charts(df, x) %>% 
+      e_line(y)
+  })
+
+}
+
+shinyApp(ui, server)
+```
+
+We add a button to enable adding a serie on the chart. We capture that event, create a proxy of our chart then add a bar.
+
+```r
+library(shiny)
+library(echarts4r)
+
+# phoney data
+df <- data.frame(
+  x = 1:100,
+  y = runif(100),
+  z = runif(100)
+)
+
+ui <- fluidPage(
+  actionButton("add", "Add z serie"), # button
+  echarts4rOutput("chart")
+)
+
+server <- function(input, output){
+
+  output$chart <- renderEcharts4r({
+    e_charts(df, x) %>% 
+      e_line(y)
+  })
+
+  observeEvent(input$add, {
+    echarts4rProxy("chart", data = df, x = x) %>%  # create a proxy
+      e_scatter(z) %>% 
+      e_send_p()
+  })
+
+}
+
+shinyApp(ui, server)
+```

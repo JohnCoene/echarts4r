@@ -167,11 +167,116 @@ div(
 )
 ```
 
+## Development 
+
+```{r, echo=FALSE}
+div(
+  class = "thumbnail",
+  style = "text-align:center;",
+  div(
+    tags$i(class = "fa fa-flask fa-5x", style = "color:#293c55;"),
+    class = "caption",
+    h4(code("In development")),
+    p("On Github but yet on CRAN; use any chart serie as chart proxy!"),
+    pre(class = "sourceCode r", code(class = "sourceCode r", "remotes::install_github('JohnCoene/echarts4r')")),
+    br(),
+    p(
+      htmltools::tags$a(
+        href = "articles/development",
+        target = "_blank",
+        class = "btn btn-warning",
+        "Browse"
+      )
+    )
+  )
+)
+```
+
 ## Example
 
 Create multiple charts, arrange them in a grid and connect their interactions; _this is nonsensical chart for demonstration purposes_.
 
-```{r}
+<details>
+
+```{r, eval=FALSE}
+library(dplyr)
+library(echarts4r)
+library(echarts4r.assets)
+
+e1 <- iris %>% 
+  group_by(Species) %>% 
+  e_charts(
+    Sepal.Length,
+    elementId = "chart"
+  ) %>% 
+  e_scatter(Petal.Length, Sepal.Width) %>% 
+  e_datazoom(show = FALSE, y_index = 0) %>% 
+  e_x_axis(min = 4) %>%  
+  e_highlight(
+    series_name = list("setosa", "versicolor", "virginica"), 
+    btn = "high"
+  ) %>% 
+  e_downplay(
+    series_name = list("setosa", "versicolor", "virginica"), 
+    btn = "down"
+  ) %>% 
+  e_button(
+    "high", "Highlight", 
+    class = "btn btn-primary", 
+    position = "bottom"
+  ) %>% 
+  e_button(
+    "down", "Downplay", 
+    class = "btn btn-default", 
+    position = "bottom"
+  ) %>% 
+  e_legend(FALSE) %>% 
+  e_title("Connect charts") %>% 
+  e_tooltip(
+    trigger = "item",
+    axisPointer = list(
+      type = "cross"
+    )
+  ) %>% 
+  e_image_g(
+    left = 50,
+    top = 30,
+    z = 999,
+    style = list(
+      image = "reference/figures/logo.png",
+      width = 70,
+      height = 75,
+      opacity = .95
+    )
+  ) %>% 
+  e_text_style(fontFamily = "Raleway")
+
+e2 <- iris %>% 
+  group_by(Species) %>%
+  e_charts(Petal.Length) %>% 
+  e_line(Sepal.Length) %>% 
+  e_connect("chart") %>% 
+  e_datazoom(y_index = 0) %>% 
+  e_x_axis(min = 0) %>% 
+  e_legend(
+    bottom = 5,
+    icons = ea_icons(
+      c("warning", "signal", "photo")
+    )
+  ) %>% 
+  e_tooltip(
+    trigger = "item",
+    axisPointer = list(
+      type = "cross"
+    )
+  ) %>% 
+  e_text_style(fontFamily = "Raleway")
+
+e_arrange(e1, e2, rows = 1, cols = 2)
+```
+</details>
+
+```{r, echo = FALSE}
 library(dplyr)
 library(echarts4r)
 library(echarts4r.assets)

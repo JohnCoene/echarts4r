@@ -2,6 +2,8 @@
 
 Bumped echarts JavaScript library to `4.6.0`, [PR #121](https://github.com/JohnCoene/echarts4r/pull/121), also bumped echarts gl to `1.2.1`.
 
+Every function that adds a serie to chart (e.g.: `e_bar`) have been turned into methods that now can be applied to proxies (`echarts4rProxy`), see the [development vignette](https://echarts4r.john-coene.com/articles/development.html) for more. This implies some minute changes to the `echarts4rProxy`: nothing broken though.
+
 - Warning in `e_axis_fomatter` if user uses RStudio, relates to [#100](https://github.com/JohnCoene/echarts4r/issues/100)
 - Fixed [#98](https://github.com/JohnCoene/echarts4r/issues/98) where a bug was introduced in `e_radar_opts` when the timeline component was added.
 - `bind` argument added to `e_heatmap`

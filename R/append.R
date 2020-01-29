@@ -188,3 +188,22 @@ e_remove_serie_p <- function(proxy, serie_index = NULL, serie_name = NULL){
   
   return(proxy)
 }
+
+#' Send
+#' 
+#' Send new series to chart.
+#' 
+#' @inheritParams e_highlight_p
+#' 
+#' @export
+e_send_p <- function(proxy){
+
+  if(missing(proxy))
+    stop("missing proxy", call. = FALSE)
+
+  proxy$session$sendCustomMessage(
+    "e_send_p", 
+    list(id = proxy$id, opts = proxy$chart$x$opts)
+  )
+  return(proxy)
+}

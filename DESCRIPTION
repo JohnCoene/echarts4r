@@ -25,7 +25,10 @@ Imports:
   stringi,
   rstudioapi
 Suggests:
-  tidyr
+    tidyr,
+    knitr,
+    rmarkdown
 RoxygenNote: 7.0.2
 URL: http://echarts4r.john-coene.com/
 BugReports: https://github.com/JohnCoene/echarts4r/issues
+VignetteBuilder: knitr
