@@ -28,7 +28,7 @@ e_common(
 If you want to further extend echarts4r with Shiny check out what's in the development; a lot of exciting new features to improve your Shiny apps.
 </div>
 <div class="panel-footer">
-<a href="articles/development" class="btn btn-warning">
+<a href="development" class="btn btn-warning">
 features
 </a>
 </div>
