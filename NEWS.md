@@ -1,4 +1,4 @@
-# echarts4r 0.2.4
+# echarts4r 0.3.0
 
 Bumped echarts JavaScript library to `4.6.0`, [PR #121](https://github.com/JohnCoene/echarts4r/pull/121), also bumped echarts gl to `1.2.1`.
 

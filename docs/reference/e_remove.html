@@ -94,7 +94,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -279,7 +279,7 @@
     <p>Remove a serie by name or precising its index.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='e_remove_serie_p.html'>e_remove_serie_p</a></span>(<span class='no'>proxy</span>, <span class='kw'>serie_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>serie_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>e_remove_serie_p</span>(<span class='no'>proxy</span>, <span class='kw'>serie_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>serie_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='fu'>e_remove_serie</span>(<span class='no'>proxy</span>, <span class='kw'>serie_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>serie_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
@@ -326,7 +326,7 @@
 
   <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>rm</span>, {
     <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"plot"</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='e_remove_serie_p.html'>e_remove_serie_p</a></span>(<span class='kw'>serie_name</span> <span class='kw'>=</span> <span class='st'>"z"</span>)
+      <span class='fu'>e_remove_serie_p</span>(<span class='kw'>serie_name</span> <span class='kw'>=</span> <span class='st'>"z"</span>)
   })
 
 }</div><span class='co'># NOT RUN {</span>

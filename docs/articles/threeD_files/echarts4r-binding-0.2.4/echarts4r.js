@@ -218,6 +218,10 @@ function get_e_charts_opts(id){
   return(echarts);
 }
 
+function distinct(value, index, self) { 
+  return self.indexOf(value) === index;
+}
+
 if (HTMLWidgets.shinyMode) {
   
   // DRAW
@@ -308,6 +312,75 @@ if (HTMLWidgets.shinyMode) {
       var chart = get_e_charts(data.id);
       if (typeof chart != 'undefined') {
         chart.dispatchAction(data.opts);
+      }
+  });
+
+  Shiny.addCustomMessageHandler('e_send_p',
+    function(data) {
+      var chart = get_e_charts(data.id);
+      if (typeof chart != 'undefined') {
+        let opts = chart.getOption();
+
+        console.log(opts);
+
+        // add series
+        if(!opts.series)
+          opts.series = [];
+
+        data.opts.series.forEach(function(serie){
+          opts.series.push(serie);
+        })
+
+        // legend
+        if(opts.legend.length > 0)
+          if(data.opts.legend.data)
+            opts.legend[0].data = opts.legend[0].data.concat(data.opts.legend.data);
+
+        // x Axis
+        if(opts.xAxis){
+          if(opts.xAxis[0].data){
+            let xaxis = opts.xAxis[0].data.concat(data.opts.xAxis[0].data);
+            xaxis = xaxis.filter(distinct);
+            opts.xAxis[0].data = xaxis;
+          }
+        }
+
+        // y Axis
+        if(opts.yAxis){
+          if(opts.yAxis[0].data){
+            let yaxis = opts.yAxis[0].data.concat(data.opts.yAxis[0].data);
+            yaxis = yaxis.filter(distinct);
+            opts.yAxis[0].data = yaxis;
+          }
+        }
+
+        console.log(opts);
+
+        chart.setOption(opts, true);
+      }
+  });
+
+  Shiny.addCustomMessageHandler('e_remove_serie_p',
+    function(data) {
+      var chart = get_e_charts(data.id);
+      if (typeof chart != 'undefined') {
+        let opts = chart.getOption();
+
+        if(data.serie_name){
+          let series = opts.series;
+          series.forEach(function(s, index){
+            if(s.name == data.serie_name){
+              this.splice(index, 1);
+            }
+          }, series)
+          opts.series = series;
+        }
+
+        console.log(opts);
+        if(data.serie_index)
+          opts.series = opts.series.splice(data.index, 1);
+
+        chart.setOption(opts, true);
       }
   });
   

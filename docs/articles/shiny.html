@@ -45,7 +45,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -224,7 +224,7 @@
       <h1>Shiny</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2020-01-11</h4>
+            <h4 class="date">2020-01-29</h4>
       
       
       <div class="hidden name"><code>shiny.Rmd</code></div>
@@ -233,11 +233,22 @@
 
     
     
+<div class="panel panel-default">
+<div class="panel-heading">
+In development
+</div>
+<div class="panel-body">
+<p>If you want to further extend echarts4r with Shiny check out what’s in the development; a lot of exciting new features to improve your Shiny apps.</p>
+</div>
+<div class="panel-footer">
+<p><a href="articles/development" class="btn btn-warning"> features </a></p>
+</div>
+</div>
 <p><code>echarts4r</code> comes with proxies (functions ending in <code>_p</code>) as well as the ability access selected data. You will find a demo of shiny working with <code>echarts4r</code> <a href="http://shiny.john-coene.com/echarts4rShiny/">here</a>.</p>
 <p><a href="http://shiny.john-coene.com/echarts4rShiny/" target="_blank" class="btn btn-default"> Shiny Demo </a></p>
-<div id="shinapps-io" class="section level2">
+<div id="deploy" class="section level2">
 <h2 class="hasAnchor">
-<a href="#shinapps-io" class="anchor"></a>shinapps.io</h2>
+<a href="#deploy" class="anchor"></a>Deploy</h2>
 <p>A note if you are publishing on <a href="https://www.shinyapps.io/">shinyapps.io</a>, if you have <em>locally</em> installed the development version of the package from <a href="https://github.com/JohnCoene/echarts4r">Github</a> with <code>remotes</code> as indicated on the <a href="/">homepage</a> of the website please reinstall it <code>devtools</code>. Otherwise shinyapps.io will intall the CRAN version which might lead to issues.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
 devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/remote-reexports">install_github</a></span>(<span class="st">"JohnCoene/echarts4r"</span>)</code></pre></div>
@@ -396,7 +407,7 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#shinapps-io">shinapps.io</a></li>
+<li><a href="#deploy">Deploy</a></li>
       <li><a href="#callbacks">Callbacks</a></li>
       <li><a href="#proxies">Proxies</a></li>
       <li><a href="#loading">Loading</a></li>
