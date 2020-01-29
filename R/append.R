@@ -176,6 +176,7 @@ e_append2_p_ <- function(proxy, series_index = NULL, data, x, y, z, scale = NULL
 #' 
 #' \dontrun{shinyApp(ui, server)}
 #' 
+#' @name e_remove
 #' @export
 e_remove_serie_p <- function(proxy, serie_index = NULL, serie_name = NULL){
 
@@ -189,14 +190,19 @@ e_remove_serie_p <- function(proxy, serie_index = NULL, serie_name = NULL){
   return(proxy)
 }
 
+#' @rdname e_remove
+#' @export
+e_remove_serie <- e_remove_serie_p 
+
 #' Send
 #' 
 #' Send new series to chart.
 #' 
 #' @inheritParams e_highlight_p
 #' 
+#' @name e_execute
 #' @export
-e_send_p <- function(proxy){
+e_execute <- function(proxy){
 
   if(missing(proxy))
     stop("missing proxy", call. = FALSE)
@@ -207,3 +213,7 @@ e_send_p <- function(proxy){
   )
   return(proxy)
 }
+
+#' @rdname e_execute
+#' @export
+e_execute_p <- e_execute

@@ -49,7 +49,7 @@ server <- function(input, output){
 
   output$chart <- renderEcharts4r({
     e_charts(df, x) %>% 
-      e_line(y)
+      e_scatter(y, z)
   })
 
 }
@@ -57,7 +57,13 @@ server <- function(input, output){
 shinyApp(ui, server)
 ```
 
-We add a button to enable adding a serie on the chart. We capture that event, create a proxy of our chart then add a bar.
+We add a button to enable adding a serie on the chart. 
+
+1. Create a proxy with `echarts4rProxy`.
+2. We use `e_line` to add a scatter plot.
+3. Actually update the chart with `e_execute`.
+
+First, this means we can now use `echarts4rProxy` just like our nearly chart initialisation function `e_charts`. Then we used `e_line` but you are free to use any other functions that adds a serie to a chart. The `e_execute` function is used to actually send the the updates to the front end and have the chart updated, this allows batching updates, e.g.: add a scatter plot and a line at once.
 
 ```r
 library(shiny)
@@ -79,16 +85,62 @@ server <- function(input, output){
 
   output$chart <- renderEcharts4r({
     e_charts(df, x) %>% 
-      e_line(y)
+      e_scatter(y, z)
   })
 
   observeEvent(input$add, {
     echarts4rProxy("chart", data = df, x = x) %>%  # create a proxy
-      e_scatter(z) %>% 
-      e_send_p()
+      e_line(z) %>% 
+      e_execute()
   })
 
 }
 
 shinyApp(ui, server)
 ```
+
+<img src="https://echarts4r.john-coene.com/articles/echarts-add1.gif" class="img-responsive responsive-img" />
+
+We can then add another button to remove the serie with `e_remove_serie` which does not require the use of `e_execute`.
+
+```r
+library(shiny)
+library(echarts4r)
+
+# phoney data
+df <- data.frame(
+  x = 1:100,
+  y = runif(100),
+  z = runif(100)
+)
+
+ui <- fluidPage(
+  actionButton("add", "Add z serie"), 
+  actionButton("rm", "Remove z serie"), 
+  echarts4rOutput("chart")
+)
+
+server <- function(input, output){
+
+  output$chart <- renderEcharts4r({
+    e_charts(df, x) %>% 
+      e_scatter(y, z)
+  })
+
+  observeEvent(input$add, {
+    echarts4rProxy("chart", data = df, x = x) %>%  # create a proxy
+      e_line(z) %>% 
+      e_execute()
+  })
+
+  observeEvent(input$rm, {
+    echarts4rProxy("chart") %>%  # create a proxy
+      e_remove_serie("z")
+  })
+
+}
+
+shinyApp(ui, server)
+```
+
+<img src="https://echarts4r.john-coene.com/articles/echarts-add2.gif" class="img-responsive responsive-img" />

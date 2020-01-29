@@ -285,7 +285,13 @@ applications and interactive Rmd documents.</p>
 
 <span class='fu'>renderEcharts4r</span>(<span class='no'>expr</span>, <span class='kw'>env</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(), <span class='kw'>quoted</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
-<span class='fu'>echarts4rProxy</span>(<span class='no'>id</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/domains'>getDefaultReactiveDomain</a></span>())</pre>
+<span class='fu'>echarts4rProxy</span>(
+  <span class='no'>id</span>,
+  <span class='no'>data</span>,
+  <span class='no'>x</span>,
+  <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/domains'>getDefaultReactiveDomain</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -318,6 +324,18 @@ is useful if you want to save an expression in a variable.</p></td>
       <td><p>Target chart id.</p></td>
     </tr>
     <tr>
+      <th>data</th>
+      <td><p>A <code>data.frame</code>.</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>Column name containing x axis.</p></td>
+    </tr>
+    <tr>
+      <th>timeline</th>
+      <td><p>Set to <code>TRUE</code> to build a timeline, see timeline section.</p></td>
+    </tr>
+    <tr>
       <th>session</th>
       <td><p>Shiny session.</p></td>
     </tr>
@@ -341,12 +359,17 @@ is useful if you want to save an expression in a variable.</p></td>
     <h2 class="hasAnchor" id="proxies"><a class="anchor" href="#proxies"></a>Proxies</h2>
 
     
-    <ul>
+    <p>The <code>echarts4rProxy</code> function returns a proxy for chart which allows 
+manipulating a drawn chart, adding data, adding or removing series, etc. without
+redrawing the entire chart.</p>
+<ul>
 <li><p><code><a href='append.html'>e_append1_p</a></code> &amp; <code><a href='append.html'>e_append2_p</a></code></p></li>
 <li><p><code><a href='tooltip_proxy.html'>e_showtip_p</a></code> &amp; <code><a href='tooltip_proxy.html'>e_hidetip_p</a></code></p></li>
 <li><p><code><a href='highlight_proxy.html'>e_highlight_p</a></code> &amp; <code><a href='highlight_proxy.html'>e_downplay_p</a></code></p></li>
 <li><p><code><a href='graph_action.html'>e_focus_adjacency</a></code> &amp; <code><a href='graph_action.html'>e_unfocus_adjacency</a></code></p></li>
 <li><p><code><a href='e_dispatch_action_p.html'>e_dispatch_action_p</a></code></p></li>
+<li><p><code>e_send_p</code></p></li>
+<li><p><code><a href='e_remove_serie_p.html'>e_remove_serie_p</a></code></p></li>
 </ul>
 
   </div>

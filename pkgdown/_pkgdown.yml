@@ -47,7 +47,7 @@ reference:
       - renderEcharts4r
       - echarts4rProxy
   - title: "Chart Types"
-    desc: "Chart types available in echarts4r"
+    desc: "Chart types available in echarts4r these can work for static plots or Shiny proxies"
     contents:
       - starts_with("e_band")
       - starts_with("e_area")
@@ -144,6 +144,8 @@ reference:
       - e_restore
       - e_capture
       - e_show_loading
+      - echarts4rProxy
+      - e_execute
   - title: "Graphics"
     desc: "Add graphics to charts."
     contents: 

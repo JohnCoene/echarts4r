@@ -97,6 +97,9 @@
     <loc>http://echarts4r.john-coene.com/reference/e_draw_p.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_execute.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_facet.html</loc>
   </url>
   <url>
@@ -176,6 +179,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_radar_opts.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_remove_serie_p.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_restore.html</loc>
@@ -332,6 +338,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/articles/connect.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/development.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/articles/gallery.html</loc>

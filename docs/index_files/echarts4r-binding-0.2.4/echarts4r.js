@@ -324,7 +324,7 @@ if (HTMLWidgets.shinyMode) {
         console.log(opts);
 
         // add series
-        if(opts.series)
+        if(!opts.series)
           opts.series = [];
 
         data.opts.series.forEach(function(serie){
@@ -338,9 +338,11 @@ if (HTMLWidgets.shinyMode) {
 
         // x Axis
         if(opts.xAxis){
-          let xaxis = opts.xAxis[0].data.concat(data.opts.xAxis[0].data);
-          xaxis = xaxis.filter(distinct);
-          opts.xAxis[0].data = xaxis;
+          if(opts.xAxis[0].data){
+            let xaxis = opts.xAxis[0].data.concat(data.opts.xAxis[0].data);
+            xaxis = xaxis.filter(distinct);
+            opts.xAxis[0].data = xaxis;
+          }
         }
 
         // y Axis
