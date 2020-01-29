@@ -99,7 +99,7 @@ server <- function(input, output){
 shinyApp(ui, server)
 ```
 
-<img src="https://echarts4r.john-coene.com/articles/echarts-add1.gif" class="img-responsive responsive-img" />
+<img src="https://echarts4r.john-coene.com/articles/echarts4r-add1.gif" class="img-responsive responsive-img" />
 
 We can then add another button to remove the serie with `e_remove_serie` which does not require the use of `e_execute`.
 
@@ -143,4 +143,4 @@ server <- function(input, output){
 shinyApp(ui, server)
 ```
 
-<img src="https://echarts4r.john-coene.com/articles/echarts-add2.gif" class="img-responsive responsive-img" />
+<img src="https://echarts4r.john-coene.com/articles/echarts4r-add2.gif" class="img-responsive responsive-img" />
