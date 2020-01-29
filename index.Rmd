@@ -176,8 +176,8 @@ div(
   div(
     tags$i(class = "fa fa-flask fa-5x", style = "color:#293c55;"),
     class = "caption",
-    h4(code("In development")),
-    p("On Github but yet on CRAN; use any chart serie as chart proxy!"),
+    h4("Features development"),
+    p("On Github but not yet on CRAN; use any chart serie as chart proxy!"),
     pre(class = "sourceCode r", code(class = "sourceCode r", "remotes::install_github('JohnCoene/echarts4r')")),
     br(),
     p(
@@ -186,6 +186,12 @@ div(
         target = "_blank",
         class = "btn btn-warning",
         "Browse"
+      ),
+      htmltools::tags$a(
+        href = "news",
+        target = "_blank",
+        class = "btn btn-default",
+        "Changelog"
       )
     )
   )

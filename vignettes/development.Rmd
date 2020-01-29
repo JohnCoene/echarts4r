@@ -24,7 +24,7 @@ e_common(
 
 This showcases some features that are yet to be available on CRAN and currently being tested: feedback in the form of github issues and pull requests is more than welcome!
 
-This essentially covers a consequential new feature of echarts4r that allows using any function that adds a serie to a chart (e.g.: `e_bar`) as a proxy. This, combined with a new `e_remove_serie_p` lets one seamlessly add and remove series from a chart without having to redraw it in its entirety, making for much slicker Shiny charts.
+This essentially covers a consequential new feature of echarts4r that allows using any function that adds a serie to a chart (e.g.: `e_bar`) as a proxy. This, combined with a new `e_remove_serie` lets one seamlessly add and remove series from a chart without having to redraw it in its entirety, making for much slicker Shiny charts.
 
 ## Examples
 

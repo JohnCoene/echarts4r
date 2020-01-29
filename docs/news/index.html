@@ -273,11 +273,12 @@
       
     </div>
 
-    <div id="echarts4r-024" class="section level1">
+    <div id="echarts4r-0-2-4" class="section level1">
 <h1 class="page-header">
-<a href="#echarts4r-024" class="anchor"></a>echarts4r 0.2.4<small> Unreleased </small>
+<a href="#echarts4r-0-2-4" class="anchor"></a>echarts4r 0.2.4<small> Unreleased </small>
 </h1>
 <p>Bumped echarts JavaScript library to <code>4.6.0</code>, <a href="https://github.com/JohnCoene/echarts4r/pull/121">PR #121</a>, also bumped echarts gl to <code>1.2.1</code>.</p>
+<p>Every function that adds a serie to chart (e.g.: <code>e_bar</code>) have been turned into methods that now can be applied to proxies (<code>echarts4rProxy</code>), see the <a href="https://echarts4r.john-coene.com/articles/development.html">development vignette</a> for more. This implies some minute changes to the <code>echarts4rProxy</code>: nothing broken though.</p>
 <ul>
 <li>Warning in <code>e_axis_fomatter</code> if user uses RStudio, relates to <a href="https://github.com/JohnCoene/echarts4r/issues/100">#100</a>
 </li>
@@ -291,9 +292,9 @@
 <li>Add <code>e_remove_serie_p</code> to remove series from the graph.</li>
 </ul>
 </div>
-    <div id="echarts4r-023" class="section level1">
+    <div id="echarts4r-0-2-3" class="section level1">
 <h1 class="page-header">
-<a href="#echarts4r-023" class="anchor"></a>echarts4r 0.2.3<small> 2019-07-18 </small>
+<a href="#echarts4r-0-2-3" class="anchor"></a>echarts4r 0.2.3<small> 2019-07-18 </small>
 </h1>
 <ul>
 <li>Bar chart’s <code>bind</code> argument has been fixed.</li>
@@ -310,9 +311,9 @@
 <li>Many dependencies removed, it is now much easier to install.</li>
 </ul>
 </div>
-    <div id="echarts4r-022" class="section level1">
+    <div id="echarts4r-0-2-2" class="section level1">
 <h1 class="page-header">
-<a href="#echarts4r-022" class="anchor"></a>echarts4r 0.2.2<small> 2019-04-09 </small>
+<a href="#echarts4r-0-2-2" class="anchor"></a>echarts4r 0.2.2<small> 2019-04-09 </small>
 </h1>
 <ul>
 <li>
@@ -330,9 +331,9 @@
 <li>Fixed bug in the <code>formatter</code> argument of <code>e_tooltip</code> where passing custom function was not working.</li>
 </ul>
 </div>
-    <div id="echarts4r-021" class="section level1">
+    <div id="echarts4r-0-2-1" class="section level1">
 <h1 class="page-header">
-<a href="#echarts4r-021" class="anchor"></a>echarts4r 0.2.1<small> 2019-01-05 </small>
+<a href="#echarts4r-0-2-1" class="anchor"></a>echarts4r 0.2.1<small> 2019-01-05 </small>
 </h1>
 <p><strong>Support for timeline added</strong></p>
 <ul>
@@ -380,9 +381,9 @@
 <code>e_aria</code> added to enable generating Accessible Rich Internet Applications.</li>
 </ul>
 </div>
-    <div id="echarts4r-020" class="section level1">
+    <div id="echarts4r-0-2-0" class="section level1">
 <h1 class="page-header">
-<a href="#echarts4r-020" class="anchor"></a>echarts4r 0.2.0<small> 2018-11-14 </small>
+<a href="#echarts4r-0-2-0" class="anchor"></a>echarts4r 0.2.0<small> 2018-11-14 </small>
 </h1>
 <p>Arguments containing <code>.</code> have been replaced by <code>_</code> for clarity. I.e.: <code>coord.system</code> =&gt; <code>coord_system</code>.</p>
 <p>Deprecated functions from <code>0.1.2</code> have been removed, they can be found in the <a href="http://echarts4r-assets.john-coene.com/">echarts4r.assets</a> package:</p>
@@ -395,9 +396,9 @@
 </ul>
 <p>The <code>scatter</code> family of function has been reworked: the <code>scale</code> argument now takes a scaling function. To accomodate to this, the <code>e_visual_map</code> function also takes, optionally, a <code>scaling</code> function. Retired <code>e_keras_history</code> due to its uselessness.</p>
 </div>
-    <div id="echarts4r-012" class="section level1">
+    <div id="echarts4r-0-1-2" class="section level1">
 <h1 class="page-header">
-<a href="#echarts4r-012" class="anchor"></a>echarts4r 0.1.2<small> Unreleased </small>
+<a href="#echarts4r-0-1-2" class="anchor"></a>echarts4r 0.1.2<small> Unreleased </small>
 </h1>
 <ul>
 <li>
@@ -425,43 +426,46 @@
 </ul>
 <p>First iteration of the graphic low-level API:</p>
 <ul>
-<li><p><code>g_graphic_g</code></p></li>
-<li><p><code>g_group_g</code></p></li>
-<li><p><code>g_image_g</code></p></li>
-<li><p><code>g_text_g</code></p></li>
-<li><p><code>g_rect_g</code></p></li>
-<li><p><code>g_circle_g</code></p></li>
-<li><p><code>g_ring_g</code></p></li>
-<li><p><code>g_sector_g</code></p></li>
-<li><p><code>g_arc_g</code></p></li>
-<li><p><code>g_polygon_g</code></p></li>
-<li><p><code>g_polyline_g</code></p></li>
-<li><p><code>g_line_g</code></p></li>
+<li><code>g_graphic_g</code></li>
+<li><code>g_group_g</code></li>
+<li><code>g_image_g</code></li>
+<li><code>g_text_g</code></li>
+<li><code>g_rect_g</code></li>
+<li><code>g_circle_g</code></li>
+<li><code>g_ring_g</code></li>
+<li><code>g_sector_g</code></li>
+<li><code>g_arc_g</code></li>
+<li><code>g_polygon_g</code></li>
+<li><code>g_polyline_g</code></li>
+<li><code>g_line_g</code></li>
 <li><p><code>g_bezier_curve_g</code></p></li>
-<li><p>Added actions that can be tied to buttons.</p></li>
-<li><p>Added the ability to add buttons.</p></li>
-<li><p>Added <code>e_arrange</code> &amp; <code>e_connect</code> to connect charts interactions and visualise them together.</p></li>
-<li><p>Better supprot for radial, angle, and polar charts.</p></li>
-<li><p>Callbacks added <code>e_on</code> and <code>e_off</code>.</p></li>
-<li><p><code>e_map_custom</code> added to work with custom registered maps.</p></li>
-<li><p><code>e_datazoom</code> takes a <code>toolbox</code> argument to optionally not the <code>dataZoom</code> toolbox element.</p></li>
-<li><p>Much improved documentation</p></li>
-<li><p><code>e_map</code> and <code>e_map_3d</code> no longer require the <code>serie</code> argument.</p></li>
+<li>Added actions that can be tied to buttons.</li>
+<li>Added the ability to add buttons.</li>
+<li>Added <code>e_arrange</code> &amp; <code>e_connect</code> to connect charts interactions and visualise them together.</li>
+<li>Better supprot for radial, angle, and polar charts.</li>
+<li>Callbacks added <code>e_on</code> and <code>e_off</code>.</li>
+<li>
+<code>e_map_custom</code> added to work with custom registered maps.</li>
+<li>
+<code>e_datazoom</code> takes a <code>toolbox</code> argument to optionally not the <code>dataZoom</code> toolbox element.</li>
+<li>Much improved documentation</li>
+<li>
+<code>e_map</code> and <code>e_map_3d</code> no longer require the <code>serie</code> argument.</li>
 <li><p><code>e_mark_*</code>: The <code>serie</code> argument of the mark family functions (i.e.: <code>e_mark_point</code>) can now take a vector <em>and</em> if left <code>NULL</code> the point is marked on all series.</p></li>
 </ul>
 </div>
-    <div id="echarts4r-011" class="section level1">
+    <div id="echarts4r-0-1-1" class="section level1">
 <h1 class="page-header">
-<a href="#echarts4r-011" class="anchor"></a>echarts4r 0.1.1<small> 2018-09-17 </small>
+<a href="#echarts4r-0-1-1" class="anchor"></a>echarts4r 0.1.1<small> 2018-09-17 </small>
 </h1>
 <p><em>Now available on CRAN</em></p>
 <ul>
 <li>No longer passes entirety of data.frame to the fron-end.</li>
 </ul>
 </div>
-    <div id="echarts4r-010" class="section level1">
+    <div id="echarts4r-0-1-0" class="section level1">
 <h1 class="page-header">
-<a href="#echarts4r-010" class="anchor"></a>echarts4r 0.1.0<small> Unreleased </small>
+<a href="#echarts4r-0-1-0" class="anchor"></a>echarts4r 0.1.0<small> Unreleased </small>
 </h1>
 <p><code>echarts4r</code> now understands <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">dplyr::group_by</a></code></p>
 <ul>
@@ -469,9 +473,9 @@
 <code>e_clean</code> to remove original data from visualisation and lighten up end product.</li>
 </ul>
 </div>
-    <div id="echarts4r-002" class="section level1">
+    <div id="echarts4r-0-0-2" class="section level1">
 <h1 class="page-header">
-<a href="#echarts4r-002" class="anchor"></a>echarts4r 0.0.2<small> Unreleased </small>
+<a href="#echarts4r-0-0-2" class="anchor"></a>echarts4r 0.0.2<small> Unreleased </small>
 </h1>
 <ul>
 <li>
@@ -489,9 +493,9 @@
 <code>renderer</code> argument added to <code>e_charts</code> to enable SVG renderer.</li>
 </ul>
 </div>
-    <div id="echarts4r-001" class="section level1">
+    <div id="echarts4r-0-0-1" class="section level1">
 <h1 class="page-header">
-<a href="#echarts4r-001" class="anchor"></a>echarts4r 0.0.1<small> Unreleased </small>
+<a href="#echarts4r-0-0-1" class="anchor"></a>echarts4r 0.0.1<small> Unreleased </small>
 </h1>
 <p>Added:</p>
 <ul>
@@ -499,9 +503,9 @@
 <code>e_lm</code>, <code>e_glm</code> and <code>e_loess</code>.</li>
 </ul>
 </div>
-    <div id="echarts4r-0019000" class="section level1">
+    <div id="echarts4r-0-0-1-9000" class="section level1">
 <h1 class="page-header">
-<a href="#echarts4r-0019000" class="anchor"></a>echarts4r 0.0.1.9000<small> Unreleased </small>
+<a href="#echarts4r-0-0-1-9000" class="anchor"></a>echarts4r 0.0.1.9000<small> Unreleased </small>
 </h1>
 <p>Initial version with chart types:</p>
 <ul>
@@ -547,17 +551,17 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#echarts4r-024">0.2.4</a></li>
-        <li><a href="#echarts4r-023">0.2.3</a></li>
-        <li><a href="#echarts4r-022">0.2.2</a></li>
-        <li><a href="#echarts4r-021">0.2.1</a></li>
-        <li><a href="#echarts4r-020">0.2.0</a></li>
-        <li><a href="#echarts4r-012">0.1.2</a></li>
-        <li><a href="#echarts4r-011">0.1.1</a></li>
-        <li><a href="#echarts4r-010">0.1.0</a></li>
-        <li><a href="#echarts4r-002">0.0.2</a></li>
-        <li><a href="#echarts4r-001">0.0.1</a></li>
-        <li><a href="#echarts4r-0019000">0.0.1.9000</a></li>
+        <li><a href="#echarts4r-0-2-4">0.2.4</a></li>
+        <li><a href="#echarts4r-0-2-3">0.2.3</a></li>
+        <li><a href="#echarts4r-0-2-2">0.2.2</a></li>
+        <li><a href="#echarts4r-0-2-1">0.2.1</a></li>
+        <li><a href="#echarts4r-0-2-0">0.2.0</a></li>
+        <li><a href="#echarts4r-0-1-2">0.1.2</a></li>
+        <li><a href="#echarts4r-0-1-1">0.1.1</a></li>
+        <li><a href="#echarts4r-0-1-0">0.1.0</a></li>
+        <li><a href="#echarts4r-0-0-2">0.0.2</a></li>
+        <li><a href="#echarts4r-0-0-1">0.0.1</a></li>
+        <li><a href="#echarts4r-0-0-1-9000">0.0.1.9000</a></li>
       </ul>
     </div>
   </div>
