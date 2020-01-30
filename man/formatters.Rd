@@ -13,7 +13,8 @@ e_format_x_axis(e, suffix = NULL, prefix = NULL, ...)
 e_format_y_axis(e, suffix = NULL, prefix = NULL, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{axis}{Axis to apply formatter to.}
 

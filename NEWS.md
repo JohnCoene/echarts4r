@@ -9,7 +9,8 @@ Every function that adds a serie to chart (e.g.: `e_bar`) have been turned into 
 - `bind` argument added to `e_heatmap`
 - `e_scatter_3d` correctly takes `bind` argument when `coords` is set to `cartesian3D` (previously incorrect).
 - Bumped number of built-in themes to 40+.
-- Add `e_remove_serie_p` to remove series from the graph.
+- Added `e_remove_serie_p` to remove series from the graph.
+- Added `e_axis_labels` to easily place axis labels.
 
 # echarts4r 0.2.3
 

@@ -7,7 +7,8 @@
 e_labels(e, show = TRUE, position = "top", ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{show}{Set to \code{TRUE} to show the labels.}
 

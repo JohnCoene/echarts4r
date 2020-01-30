@@ -124,6 +124,7 @@ reference:
       - e_color_range
       - e_polar
       - e_calendar
+      - e_axis_labels
   - title: "Highlight and Downplay"
     desc: "Highlight and downplay series or data points on the chart"
     contents:

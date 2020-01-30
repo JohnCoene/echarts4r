@@ -17,7 +17,8 @@ e_legend_toggle_select(e, name, btn = NULL)
 e_legend_scroll(e, scroll_index = NULL, legend_id = NULL, btn = NULL)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{name}{Legend name.}
 

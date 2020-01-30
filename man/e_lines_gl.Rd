@@ -7,7 +7,8 @@
 e_lines_gl(e, data, coord_system = "geo", ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{data}{A list.}
 

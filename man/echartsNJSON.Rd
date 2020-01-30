@@ -10,7 +10,8 @@ e_inspect(e, json = FALSE, ...)
 echarts_from_json(txt)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{json}{Whether to return the JSON, otherwise returns a \code{list}.}
 

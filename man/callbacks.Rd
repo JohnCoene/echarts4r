@@ -11,7 +11,8 @@ e_on(e, query, handler, event = "click")
 e_off(e, query, handler, event = "click")
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{query}{Condistion that triggers the handler}
 

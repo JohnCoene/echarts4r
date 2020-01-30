@@ -548,3 +548,26 @@ e_single_axis <- function(e, index = 0, ...){
   
   e
 }
+
+#' Axis Labels
+#' 
+#' Convenience function to add axis labels.
+#' 
+#' @inheritParams e_bar
+#' @param x,y Labels of axes.
+#' 
+#' @examples 
+#' cars %>% 
+#'  e_charts(speed) %>% 
+#'  e_scatter(dist) %>% 
+#'  e_axis_labels(
+#'    x = "speed",
+#'    y = "distance"
+#'  )
+#' 
+#' @export 
+e_axis_labels <- function(e, x = "", y = ""){
+  e %>% 
+    e_x_axis(name = x) %>% 
+    e_y_axis(name = y)
+}

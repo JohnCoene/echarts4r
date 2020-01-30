@@ -16,7 +16,8 @@ e_y_axis_3d(e, index = 0, ...)
 e_z_axis_3d(e, index = 0, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{axis}{Axis to customise.}
 

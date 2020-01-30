@@ -13,7 +13,8 @@ e_mark_line(e, serie = NULL, data = NULL, ...)
 e_mark_area(e, serie = NULL, data = NULL, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{serie}{Serie or vector of series to mark on, defaults to all series.}
 

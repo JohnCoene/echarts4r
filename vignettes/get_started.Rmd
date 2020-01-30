@@ -77,14 +77,14 @@ df %>%
   e_area(Income, smooth = TRUE) # add area
 ```
 
-`qsec` and `mpg` isn't clear to reader, rename them, lets also label the x axis while we're at it.
+Lets label the axes with the convenience function `e_axis_labels`.
 
 ```{r}
 df %>% 
   e_charts(State) %>% # initialise and set x
   e_line(Population, smooth = TRUE) %>%  # add a line
   e_area(Income, smooth = TRUE) %>%  # add area
-  e_x_axis(name = "States") # add x axis name
+  e_axis_labels(x = "State") # axis labels
 ```
 
 We can use one of the 13 built-in themes, see `?e_theme` for a complete list, we'll also add a title with `e_title`.
@@ -94,7 +94,7 @@ df %>%
   e_charts(State) %>% # initialise and set x
   e_line(Population, smooth = TRUE) %>%  # add a line
   e_area(Income, smooth = TRUE) %>%  # add area
-  e_x_axis(name = "States") %>%  # add x axis name
+  e_axis_labels(x = "State") %>% # axis labels
   e_title("US States", "Population & Income") %>%  # Add title & subtitle
   e_theme("infographic") # theme
 ```
@@ -106,7 +106,7 @@ df %>%
   e_charts(State) %>% # initialise and set x
   e_line(Population, smooth = TRUE) %>%  # add a line
   e_area(Income, smooth = TRUE) %>%  # add area
-  e_x_axis(name = "States") %>%  # add x axis name
+  e_axis_labels(x = "State") %>% # axis labels
   e_title("US States", "Population & Income") %>%  # Add title & subtitle
   e_theme("infographic") %>%  # theme
   e_legend(right = 0) # move legend to the bottom
@@ -119,7 +119,7 @@ df %>%
   e_charts(State) %>% # initialise and set x
   e_line(Population, smooth = TRUE) %>%  # add a line
   e_area(Income, smooth = TRUE) %>%  # add area
-  e_x_axis(name = "States") %>%  # add x axis name
+  e_axis_labels(x = "State") %>% # axis labels
   e_title("US States", "Population & Income") %>%  # Add title & subtitle
   e_theme("infographic") %>%  # theme
   e_legend(right = 0) %>%  # move legend to the bottom
@@ -128,12 +128,14 @@ df %>%
 
 Finally, we are currently plotting population and income on the same axis, let's put them each on their respective y axis by specifying an extra axis for Income.
 
+<span class="label label-warning"><i class="fa fa-warning"></i></span> Dual y axes is a terrible idea, it's only here for demonstration purposes.
+
 ```{r}
 df %>% 
   e_charts(State) %>% # initialise and set x
   e_line(Population, smooth = TRUE) %>%  # add a line
   e_area(Income, smooth = TRUE, y_index = 1) %>%  # add area
-  e_x_axis(name = "States") %>%  # add x axis name
+  e_axis_labels(x = "State") %>% # axis labels
   e_title("US States", "Population & Income") %>%  # Add title & subtitle
   e_theme("infographic") %>%  # theme
   e_legend(right = 0) %>%  # move legend to the bottom

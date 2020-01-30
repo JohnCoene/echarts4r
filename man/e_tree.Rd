@@ -10,7 +10,8 @@ e_tree(e, parent, child, rm_x = TRUE, rm_y = TRUE, ...)
 e_tree_(e, parent, child, rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{parent, child}{Edges.}
 

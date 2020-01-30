@@ -2,7 +2,8 @@
 #' 
 #' Add bar serie.
 #' 
-#' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
+#' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+#' a proxy as returned by \code{\link{echarts4rProxy}}.
 #' @param serie Column name of serie to plot.
 #' @param bind Binding between datasets, namely for use of \code{\link{e_brush}}.
 #' @param name name of the serie.

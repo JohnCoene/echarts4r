@@ -335,7 +335,7 @@ e_data <- function(e, data, x){
 #'   \item{\code{\link{e_highlight_p}} & \code{\link{e_downplay_p}}}
 #'   \item{\code{\link{e_focus_adjacency}} & \code{\link{e_unfocus_adjacency}}}
 #'   \item{\code{\link{e_dispatch_action_p}}}
-#'   \item{\code{\link{e_send_p}}}
+#'   \item{\code{\link{e_execute}}}
 #'   \item{\code{\link{e_remove_serie_p}}}
 #' }
 #' 
@@ -463,3 +463,7 @@ echarts4rProxy <- function(id, data, x, timeline = FALSE, session = shiny::getDe
   
   return(proxy)
 }
+
+#' @rdname echarts4r-shiny
+#' @export
+echarts4r_proxy <- echarts4rProxy

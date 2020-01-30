@@ -5,6 +5,7 @@
 \alias{echarts4rOutput}
 \alias{renderEcharts4r}
 \alias{echarts4rProxy}
+\alias{echarts4r_proxy}
 \title{Shiny bindings for echarts4r}
 \usage{
 echarts4rOutput(outputId, width = "100\%", height = "400px")
@@ -12,6 +13,14 @@ echarts4rOutput(outputId, width = "100\%", height = "400px")
 renderEcharts4r(expr, env = parent.frame(), quoted = FALSE)
 
 echarts4rProxy(
+  id,
+  data,
+  x,
+  timeline = FALSE,
+  session = shiny::getDefaultReactiveDomain()
+)
+
+echarts4r_proxy(
   id,
   data,
   x,
@@ -75,7 +84,7 @@ redrawing the entire chart.
   \item{\code{\link{e_highlight_p}} & \code{\link{e_downplay_p}}}
   \item{\code{\link{e_focus_adjacency}} & \code{\link{e_unfocus_adjacency}}}
   \item{\code{\link{e_dispatch_action_p}}}
-  \item{\code{\link{e_send_p}}}
+  \item{\code{\link{e_execute}}}
   \item{\code{\link{e_remove_serie_p}}}
 }
 }

@@ -7,7 +7,8 @@
 e_draft(e, text = "DRAFT", size = "120px", opacity = 0.4, color = "#d3d3d3")
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{text}{Text to display.}
 

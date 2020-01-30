@@ -7,7 +7,8 @@
 e_title(e, text = NULL, subtext = NULL, link = NULL, sublink = NULL, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{text, subtext}{Title and Subtitle.}
 

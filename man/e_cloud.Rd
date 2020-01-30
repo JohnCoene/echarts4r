@@ -10,7 +10,8 @@ e_cloud(e, word, freq, color, rm_x = TRUE, rm_y = TRUE, ...)
 e_cloud_(e, word, freq, color = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{word, freq}{Terms and their frequencies.}
 

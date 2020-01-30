@@ -11,7 +11,8 @@ e_timeline_opts(e, axis_type = "category", ...)
 e_timeline_serie(e, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{axis_type}{Type of axis, \code{time}, \code{value}, or \code{category}}
 
