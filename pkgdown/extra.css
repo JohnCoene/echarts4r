@@ -105,3 +105,7 @@ pre {
 a:hover, a:focus {
   color: #293c55;
 }
+
+.version{
+  font-size: 9px;
+}
