@@ -24,6 +24,21 @@ e_common(
 
 This document details webGL visualisations; webGL is ideal when you have large datasets to plot.
 
+## Surface
+
+```{r}
+data("volcano")
+
+surface <- as.data.frame(as.table(volcano))
+surface$Var1 <- as.numeric(surface$Var1)
+surface$Var2 <- as.numeric(surface$Var2)
+
+surface %>% 
+  e_charts(Var1) %>% 
+  e_surface(Var2, Freq, wireframe = list(show = FALSE)) %>% 
+  e_visual_map(Freq)
+```
+
 ## Scatter 
 
 ```{r}
