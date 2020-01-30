@@ -10,3 +10,4 @@ GADM_2.8_IND_adm2.rds
 make-geo-json_cache/
 test.R
 .vscode
+.DS_Store
