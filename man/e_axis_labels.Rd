@@ -15,3 +15,13 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \description{
 Convenience function to add axis labels.
 }
+\examples{
+cars \%>\% 
+ e_charts(speed) \%>\% 
+ e_scatter(dist) \%>\% 
+ e_axis_labels(
+   x = "speed",
+   y = "distance"
+ )
+
+}

@@ -1089,8 +1089,8 @@ e_boxplot_ <- function(e, serie, name = NULL, outliers = TRUE, ...){
       }
       
       # xaxis
-      e$x$opts$xAxis$data <- append(e$x$opts$xAxis$data, list(nm))
-      e$x$opts$xAxis$type <- "category"
+      e$x$opts$xAxis[[1]]$data <- append(e$x$opts$xAxis$data, list(nm))
+      e$x$opts$xAxis[[1]]$type <- "category"
       
     } else {
       
