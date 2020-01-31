@@ -144,3 +144,49 @@ shinyApp(ui, server)
 ```
 
 <img src="https://echarts4r.john-coene.com/articles/echarts4r-add2.gif" class="img-responsive responsive-img" />
+
+We can now demonstrate how to add multiple series, and the useful of `e_execute`.
+
+```r
+library(shiny)
+library(echarts4r)
+
+# phoney data
+df <- data.frame(
+  x = 1:100,
+  y = runif(100),
+  z = runif(100)
+)
+
+ui <- fluidPage(
+  actionButton("add", "Add series"), 
+  actionButton("rm", "Remove series"), 
+  echarts4rOutput("chart")
+)
+
+server <- function(input, output){
+
+  output$chart <- renderEcharts4r({
+    e_charts(df, x) %>% 
+      e_scatter(y, z)
+  })
+
+  observeEvent(input$add, {
+    echarts4rProxy("chart", data = df, x = x) %>%  # create a proxy
+      e_line(z) %>% 
+      e_loess(y ~ x) %>% 
+      e_execute()
+  })
+
+  observeEvent(input$rm, {
+    echarts4rProxy("chart") %>%  # create a proxy
+      e_remove_serie("z")
+  })
+
+}
+
+shinyApp(ui, server)
+```
+
+<img src="https://echarts4r.john-coene.com/articles/echarts4r-add3.gif" class="img-responsive responsive-img" />
+

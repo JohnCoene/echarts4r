@@ -88,7 +88,7 @@ You can also install the _unstable_ development version of echarts4r with `remot
 remotes::install_github("JohnCoene/echarts4r")
 ```
 
-<a href="https://gitee.com/JohnCoene/echarts4r"><img src="https://cdn.countryflags.com/thumbs/china/flag-800.png" height="15px"/></a> 如果您位于中国，请安装:
+如果您位于中国，请安装:
 
 ```r
 # install.packages("remotes")
@@ -176,7 +176,7 @@ div(
   div(
     tags$i(class = "fa fa-flask fa-5x", style = "color:#293c55;"),
     class = "caption",
-    h4("Features development"),
+    h4("New Features"),
     p("On Github but not yet on CRAN; use any chart serie as chart proxy!"),
     pre(class = "sourceCode r", code(class = "sourceCode r", "remotes::install_github('JohnCoene/echarts4r')")),
     br(),
