@@ -40,6 +40,9 @@
     <loc>http://echarts4r.john-coene.com/reference/e_aria.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_axis_labels.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_axis_pointer.html</loc>
   </url>
   <url>
@@ -182,6 +185,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_remove.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_resize.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_restore.html</loc>

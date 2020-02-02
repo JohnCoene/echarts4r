@@ -178,7 +178,7 @@ e_append2_p_ <- function(proxy, series_index = NULL, data, x, y, z, scale = NULL
 #' 
 #' @name e_remove
 #' @export
-e_remove_serie_p <- function(proxy, serie_index = NULL, serie_name = NULL){
+e_remove_serie_p <- function(proxy, serie_name = NULL, serie_index = NULL){
 
   if(is.null(serie_index) && is.null(serie_name))
     stop("Must define `serie_index` or `serie_name`")

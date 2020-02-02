@@ -11,6 +11,7 @@ Every function that adds a serie to chart (e.g.: `e_bar`) have been turned into 
 - Bumped number of built-in themes to 40+.
 - Added `e_remove_serie_p` to remove series from the graph.
 - Added `e_axis_labels` to easily place axis labels.
+- Added `e_resize` to dynamically resize the chart.
 
 # echarts4r 0.2.3
 

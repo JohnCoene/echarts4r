@@ -183,7 +183,7 @@ HTMLWidgets.widget({
       resize: function(width, height) {
 
         if(chart){
-          chart.resize();
+          chart.resize({width: width, height: height});
         }
 
       }
@@ -315,13 +315,19 @@ if (HTMLWidgets.shinyMode) {
       }
   });
 
+  Shiny.addCustomMessageHandler('e_resize',
+    function(data) {
+      var chart = get_e_charts(data.id);
+      if (typeof chart != 'undefined') {
+        chart.resize();
+      }
+  });
+
   Shiny.addCustomMessageHandler('e_send_p',
     function(data) {
       var chart = get_e_charts(data.id);
       if (typeof chart != 'undefined') {
         let opts = chart.getOption();
-
-        console.log(opts);
 
         // add series
         if(!opts.series)
@@ -354,8 +360,6 @@ if (HTMLWidgets.shinyMode) {
           }
         }
 
-        console.log(opts);
-
         chart.setOption(opts, true);
       }
   });
@@ -376,7 +380,6 @@ if (HTMLWidgets.shinyMode) {
           opts.series = series;
         }
 
-        console.log(opts);
         if(data.serie_index)
           opts.series = opts.series.splice(data.index, 1);
 

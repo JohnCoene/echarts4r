@@ -164,6 +164,7 @@ ui <- fluidPage(
   echarts4rOutput("chart")
 )
 
+
 server <- function(input, output){
 
   output$chart <- renderEcharts4r({
@@ -174,13 +175,14 @@ server <- function(input, output){
   observeEvent(input$add, {
     echarts4rProxy("chart", data = df, x = x) %>%  # create a proxy
       e_line(z) %>% 
-      e_loess(y ~ x) %>% 
+      e_loess(y ~ x, name = "fit") %>% 
       e_execute()
   })
 
   observeEvent(input$rm, {
     echarts4rProxy("chart") %>%  # create a proxy
-      e_remove_serie("z")
+      e_remove_serie("z") %>% 
+      e_remove_serie("fit")
   })
 
 }

@@ -6,16 +6,16 @@
 \alias{e_remove_serie}
 \title{Remove Serie}
 \usage{
-e_remove_serie_p(proxy, serie_index = NULL, serie_name = NULL)
+e_remove_serie_p(proxy, serie_name = NULL, serie_index = NULL)
 
-e_remove_serie(proxy, serie_index = NULL, serie_name = NULL)
+e_remove_serie(proxy, serie_name = NULL, serie_index = NULL)
 }
 \arguments{
 \item{proxy}{An echarts4r proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{serie_index}{Index of serie to append to (starts from 0).}
-
 \item{serie_name}{Name of serie to remove.}
+
+\item{serie_index}{Index of serie to append to (starts from 0).}
 }
 \description{
 Remove a serie by name or precising its index.

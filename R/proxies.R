@@ -486,3 +486,20 @@ e_draw_p <- function(proxy){
   
   proxy$session$sendCustomMessage("e_draw_p", data)
 }
+
+#' Resize
+#' 
+#' Force resize the chart.
+#' 
+#' @inheritParams e_highlight_p
+#' 
+#' @export 
+e_resize <- function(proxy) UseMethod("e_resize")
+
+#' @export 
+#' @method e_resize echarts4rProxy
+e_resize.echarts4rProxy <- function(proxy){
+  data <- list(id = proxy$id)
+  proxy$session$sendCustomMessage("e_resize", data)
+  return(proxy)
+}

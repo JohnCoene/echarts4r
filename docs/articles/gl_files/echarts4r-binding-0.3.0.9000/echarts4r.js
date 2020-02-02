@@ -183,7 +183,7 @@ HTMLWidgets.widget({
       resize: function(width, height) {
 
         if(chart){
-          chart.resize();
+          chart.resize({width: width, height: height});
         }
 
       }
@@ -312,6 +312,14 @@ if (HTMLWidgets.shinyMode) {
       var chart = get_e_charts(data.id);
       if (typeof chart != 'undefined') {
         chart.dispatchAction(data.opts);
+      }
+  });
+
+  Shiny.addCustomMessageHandler('e_resize',
+    function(data) {
+      var chart = get_e_charts(data.id);
+      if (typeof chart != 'undefined') {
+        chart.resize();
       }
   });
 
