@@ -315,7 +315,7 @@ e_map_register_p <- function(name, json, session = shiny::getDefaultReactiveDoma
   )
   
   session$sendCustomMessage("e_register_map", opts)
-  e
+  invisible()
 }
 
 #' Mapbox
