@@ -140,6 +140,7 @@ reference:
     desc: "Functions relevant to using echarts4r with Shiny."
     contents: 
       - ends_with("_p")
+      - e_resize
       - callbacks
       - e_button
       - e_restore

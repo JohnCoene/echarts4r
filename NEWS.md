@@ -12,6 +12,7 @@ Every function that adds a serie to chart (e.g.: `e_bar`) have been turned into 
 - Added `e_remove_serie_p` to remove series from the graph.
 - Added `e_axis_labels` to easily place axis labels.
 - Added `e_resize` to dynamically resize the chart.
+- Added `e_map_register_p` works like a proxy but does not require a chart.
 
 # echarts4r 0.2.3
 

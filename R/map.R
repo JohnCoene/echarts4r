@@ -268,6 +268,10 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
 #' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
 #' @param name Name of map, to use in \code{\link{e_map}}.
 #' @param json \href{http://geojson.org/}{Geojson}.
+#' @param session A valid Shiny session.
+#' 
+#' @details \code{e_map_register_p} is not truly a proxy as it does not require
+#' a chart to function. 
 #' 
 #' @examples 
 #' \dontrun{
@@ -281,8 +285,13 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
 #'   e_visual_map(Murder)
 #' }
 #' 
+#' @rdname e_map_register
 #' @export
-e_map_register <- function(e, name, json){
+e_map_register <- function(e, name, json) UseMethod("e_map_register")
+
+#' @export
+#' @method e_map_register echarts4r
+e_map_register.echarts4r <- function(e, name, json){
   
   if(!length(e$x$registerMap))
     e$x$registerMap <- list()
@@ -293,6 +302,19 @@ e_map_register <- function(e, name, json){
   )
   
   e$x$registerMap <- append(e$x$registerMap, list(opts))
+  e
+}
+
+#' @rdname e_map_register
+#' @export
+e_map_register_p <- function(name, json, session = shiny::getDefaultReactiveDomain()){
+  
+  opts <- list(
+    mapName = name,
+    geoJSON = json
+  )
+  
+  session$sendCustomMessage("e_register_map", opts)
   e
 }
 

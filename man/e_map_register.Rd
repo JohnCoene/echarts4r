@@ -2,9 +2,12 @@
 % Please edit documentation in R/map.R
 \name{e_map_register}
 \alias{e_map_register}
+\alias{e_map_register_p}
 \title{Register map}
 \usage{
 e_map_register(e, name, json)
+
+e_map_register_p(name, json, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -12,9 +15,15 @@ e_map_register(e, name, json)
 \item{name}{Name of map, to use in \code{\link{e_map}}.}
 
 \item{json}{\href{http://geojson.org/}{Geojson}.}
+
+\item{session}{A valid Shiny session.}
 }
 \description{
 Register a \href{http://geojson.org/}{geojson} map.
+}
+\details{
+\code{e_map_register_p} is not truly a proxy as it does not require
+a chart to function.
 }
 \examples{
 \dontrun{

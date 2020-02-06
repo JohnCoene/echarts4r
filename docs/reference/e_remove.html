@@ -271,9 +271,9 @@
     <p>Remove a serie by name or precising its index.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_remove_serie_p</span>(<span class='no'>proxy</span>, <span class='kw'>serie_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>serie_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>e_remove_serie_p</span>(<span class='no'>proxy</span>, <span class='kw'>serie_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>serie_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>e_remove_serie</span>(<span class='no'>proxy</span>, <span class='kw'>serie_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>serie_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>e_remove_serie</span>(<span class='no'>proxy</span>, <span class='kw'>serie_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>serie_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -283,12 +283,12 @@
       <td><p>An echarts4r proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
-      <th>serie_index</th>
-      <td><p>Index of serie to append to (starts from 0).</p></td>
-    </tr>
-    <tr>
       <th>serie_name</th>
       <td><p>Name of serie to remove.</p></td>
+    </tr>
+    <tr>
+      <th>serie_index</th>
+      <td><p>Index of serie to append to (starts from 0).</p></td>
     </tr>
     </table>
 

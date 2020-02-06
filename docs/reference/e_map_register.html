@@ -271,7 +271,9 @@
     <p>Register a <a href='http://geojson.org/'>geojson</a> map.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_map_register</span>(<span class='no'>e</span>, <span class='no'>name</span>, <span class='no'>json</span>)</pre>
+    <pre class="usage"><span class='fu'>e_map_register</span>(<span class='no'>e</span>, <span class='no'>name</span>, <span class='no'>json</span>)
+
+<span class='fu'>e_map_register_p</span>(<span class='no'>name</span>, <span class='no'>json</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/domains'>getDefaultReactiveDomain</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -288,8 +290,16 @@
       <th>json</th>
       <td><p><a href='http://geojson.org/'>Geojson</a>.</p></td>
     </tr>
+    <tr>
+      <th>session</th>
+      <td><p>A valid Shiny session.</p></td>
+    </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>e_map_register_p</code> is not truly a proxy as it does not require
+a chart to function.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
@@ -308,6 +318,7 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#details">Details</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
