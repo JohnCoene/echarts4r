@@ -6,6 +6,7 @@
 #' @param serie Serie or vector of series to mark on, defaults to all series.
 #' @param data Placement of point, line or area.
 #' @param title A convenience argument to easily set label, see details.
+#' @param title_position Position of title.
 #' 
 #' @details To set a label you need to either use the \code{title} 
 #' argument or pass a list specifying the label formatter.
@@ -46,7 +47,7 @@
 #' 
 #' @rdname mark
 #' @export
-e_mark_point <- function(e, serie = NULL, data = NULL, ..., title = NULL){
+e_mark_point <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_position = NULL){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -63,7 +64,7 @@ e_mark_point <- function(e, serie = NULL, data = NULL, ..., title = NULL){
       point$data <- list(data)
 
     if(!is.null(title) && !is.null(data)){
-      point$data[[1]]$label <- list(formatter = title)
+      point$data[[1]]$label <- list(formatter = title, position = title_position)
     }
     
     if(is.null(e$x$opts$series[[i]]$markPoint))
@@ -77,7 +78,7 @@ e_mark_point <- function(e, serie = NULL, data = NULL, ..., title = NULL){
 
 #' @rdname mark
 #' @export
-e_mark_line <- function(e, serie = NULL, data = NULL, ..., title = NULL){
+e_mark_line <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_position = NULL){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -94,7 +95,7 @@ e_mark_line <- function(e, serie = NULL, data = NULL, ..., title = NULL){
       point$data <- list(data)
 
     if(!is.null(title) && !is.null(data))
-      point$data[[1]]$label <- list(formatter = title)
+      point$data[[1]]$label <- list(formatter = title, position = title_position)
     
     if(is.null(e$x$opts$series[[i]]$markLine))
       e$x$opts$series[[i]]$markLine <- append(e$x$opts$series[[i]]$markLine, point)
@@ -107,7 +108,7 @@ e_mark_line <- function(e, serie = NULL, data = NULL, ..., title = NULL){
 
 #' @rdname mark
 #' @export
-e_mark_area <- function(e, serie = NULL, data = NULL, ..., title = NULL){
+e_mark_area <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_position = NULL){
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -124,7 +125,7 @@ e_mark_area <- function(e, serie = NULL, data = NULL, ..., title = NULL){
       point$data <- list(data)
 
     if(!is.null(title) && !is.null(data))
-      point$data[[1]]$label <- list(formatter = title)
+      point$data[[1]]$label <- list(formatter = title, position = title_position)
     
     if(is.null(e$x$opts$series[[i]]$markArea))
       e$x$opts$series[[i]]$markArea <- append(e$x$opts$series[[i]]$markArea, point)

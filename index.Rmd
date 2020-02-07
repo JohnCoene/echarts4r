@@ -211,7 +211,15 @@ e1 <- iris %>%
     Sepal.Length,
     elementId = "chart"
   ) %>% 
-  e_scatter(Petal.Length, Sepal.Width) %>% 
+  e_scatter(
+    Petal.Length, 
+    Sepal.Width,
+    itemStyle = list(
+      shadowColor = "rgba(0,0,0,0.4)",
+      shadowBlur = 3,
+      shadowOffsetY = 3
+    )
+  ) %>% 
   e_datazoom(show = FALSE, y_index = 0) %>% 
   e_x_axis(min = 4) %>%  
   e_highlight(

@@ -6,11 +6,32 @@
 \alias{e_mark_area}
 \title{Mark point}
 \usage{
-e_mark_point(e, serie = NULL, data = NULL, ..., title = NULL)
+e_mark_point(
+  e,
+  serie = NULL,
+  data = NULL,
+  ...,
+  title = NULL,
+  title_position = NULL
+)
 
-e_mark_line(e, serie = NULL, data = NULL, ..., title = NULL)
+e_mark_line(
+  e,
+  serie = NULL,
+  data = NULL,
+  ...,
+  title = NULL,
+  title_position = NULL
+)
 
-e_mark_area(e, serie = NULL, data = NULL, ..., title = NULL)
+e_mark_area(
+  e,
+  serie = NULL,
+  data = NULL,
+  ...,
+  title = NULL,
+  title_position = NULL
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
@@ -23,6 +44,8 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{...}{Any other option to pass, check See Also section.}
 
 \item{title}{A convenience argument to easily set label, see details.}
+
+\item{title_position}{Position of title.}
 }
 \description{
 Mark points and lines.
