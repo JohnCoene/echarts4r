@@ -26,10 +26,11 @@ HTMLWidgets.widget({
             echarts.registerTheme(x.theme, th);
           }
           
-          if(x.hasOwnProperty('registerMap')){
-            for( var map = 0; map < x.registerMap.length; map++){
-              echarts.registerMap(x.registerMap[map].mapName, x.registerMap[map].geoJSON);
-            }
+        }
+
+        if(x.hasOwnProperty('registerMap')){
+          for( var map = 0; map < x.registerMap.length; map++){
+            echarts.registerMap(x.registerMap[map].mapName, x.registerMap[map].geoJSON);
           }
         }
         
@@ -73,14 +74,12 @@ HTMLWidgets.widget({
           
           chart.on("click", function(e){
             Shiny.onInputChange(el.id + '_clicked_data' + ":echarts4rParse", e.data);
-            Shiny.onInputChange(el.id + '_clicked_data_value' + ":echarts4rParse", e.data.value);
             Shiny.onInputChange(el.id + '_clicked_row' + ":echarts4rParse", e.dataIndex + 1);
             Shiny.onInputChange(el.id + '_clicked_serie' + ":echarts4rParse", e.seriesName);
           });
           
           chart.on("mouseover", function(e){
             Shiny.onInputChange(el.id + '_mouseover_data' + ":echarts4rParse", e.data);
-            Shiny.onInputChange(el.id + '_mouseover_data_value' + ":echarts4rParse", e.data.value);
             Shiny.onInputChange(el.id + '_mouseover_row' + ":echarts4rParse", e.dataIndex + 1);
             Shiny.onInputChange(el.id + '_mouseover_serie' + ":echarts4rParse", e.seriesName);
           });
@@ -312,6 +311,13 @@ if (HTMLWidgets.shinyMode) {
       var chart = get_e_charts(data.id);
       if (typeof chart != 'undefined') {
         chart.dispatchAction(data.opts);
+      }
+  });
+
+  Shiny.addCustomMessageHandler('e_register_map',
+    function(data) {
+      if (typeof chart != 'undefined') {
+        echarts.registerMap(x.mapName, x.geoJSON);
       }
   });
 
