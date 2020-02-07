@@ -41,11 +41,11 @@ div(
         "Get Started"
       ),
       tags$a(
-        tags$i(class = "fa fa-paint-brush"),
+        tags$i(class = "fa fa-code"),
         class = "btn btn-primary",
-        href = "articles/themes.html",
+        href = "reference/",
         style = "margin-bottom: 5px;",
-        "Themes"
+        "Reference"
       ),
       tags$a(
         tags$i(class = "fa fa-play"),
@@ -200,7 +200,114 @@ div(
 
 Create multiple charts, arrange them in a grid and connect their interactions; _this is nonsensical chart for demonstration purposes_.
 
-```{r}
+Load necessary libraries.
+
+```r
+library(dplyr)
+library(echarts4r)
+library(echarts4r.assets)
+```
+
+<div class="row">
+
+<div class="col col-md-6">
+
+Left chart.
+
+```r
+e1 <- iris %>% 
+  group_by(Species) %>% 
+  e_charts(
+    Sepal.Length,
+    elementId = "chart"
+  ) %>% 
+  e_scatter(
+    Petal.Length, 
+    Sepal.Width,
+    itemStyle = list(
+      shadowColor = "rgba(0,0,0,0.4)",
+      shadowBlur = 3,
+      shadowOffsetY = 3
+    )
+  ) %>% 
+  e_datazoom(show = FALSE, y_index = 0) %>% 
+  e_x_axis(min = 4) %>%  
+  e_highlight(
+    series_name = list("setosa", "versicolor", "virginica"), 
+    btn = "high"
+  ) %>% 
+  e_downplay(
+    series_name = list("setosa", "versicolor", "virginica"), 
+    btn = "down"
+  ) %>% 
+  e_button(
+    "high", "Highlight", 
+    class = "btn btn-primary", 
+    position = "bottom"
+  ) %>% 
+  e_button(
+    "down", "Downplay", 
+    class = "btn btn-default", 
+    position = "bottom"
+  ) %>% 
+  e_legend(FALSE) %>% 
+  e_title("Connect charts") %>% 
+  e_tooltip(
+    trigger = "item",
+    axisPointer = list(
+      type = "cross"
+    )
+  ) %>% 
+  e_image_g(
+    left = 50,
+    top = 30,
+    z = 999,
+    style = list(
+      image = "reference/figures/logo.png",
+      width = 70,
+      height = 75,
+      opacity = .95
+    )
+  ) %>% 
+  e_text_style(fontFamily = "Raleway")
+```
+
+</div>
+
+<div class="col col-md-6">
+
+Right chart.
+
+```r
+e2 <- iris %>% 
+  group_by(Species) %>%
+  e_charts(Petal.Length) %>% 
+  e_line(Sepal.Length) %>% 
+  e_connect("chart") %>% 
+  e_datazoom(y_index = 0) %>% 
+  e_x_axis(min = 0) %>% 
+  e_legend(
+    bottom = 5,
+    icons = ea_icons(
+      c("warning", "signal", "photo")
+    )
+  ) %>% 
+  e_tooltip(
+    trigger = "item",
+    axisPointer = list(
+      type = "cross"
+    )
+  ) %>% 
+  e_text_style(fontFamily = "Raleway")
+```
+
+</div>
+
+</div>
+
+e_arrange(e1, e2, rows = 1, cols = 2)
+
+```{r, echo = FALSE}
 library(dplyr)
 library(echarts4r)
 library(echarts4r.assets)
