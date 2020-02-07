@@ -133,9 +133,10 @@ Vertically.
 cars %>% 
   e_charts(speed) %>% 
   e_scatter(dist, symbol_size = 5) %>% 
-  e_mark_line(data = list(xAxis = 7)) %>% 
-  e_mark_line(data = list(xAxis = 12)) %>% 
-  e_mark_line(data = list(xAxis = 22)) 
+  e_legend(FALSE) %>% 
+  e_mark_line(data = list(xAxis = 7), title = "Tortoise") %>% 
+  e_mark_line(data = list(xAxis = 12), title = "Speed Limit") %>% 
+  e_mark_line(data = list(xAxis = 22), title = "Need for Speed") 
 ```
 
 ## Area

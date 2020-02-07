@@ -45,7 +45,6 @@ HTMLWidgets.widget({
         if(x.draw === true)
           chart.setOption(opts);
         
-        
         // shiny callbacks
         if (HTMLWidgets.shinyMode) {
           

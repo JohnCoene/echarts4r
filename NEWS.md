@@ -13,6 +13,7 @@ Every function that adds a serie to chart (e.g.: `e_bar`) have been turned into 
 - Added `e_axis_labels` to easily place axis labels.
 - Added `e_resize` to dynamically resize the chart.
 - Added `e_map_register_p` works like a proxy but does not require a chart.
+- Fixed a few issues with `e_mark*` family, labels and multiple marks correctly work.
 
 # echarts4r 0.2.3
 

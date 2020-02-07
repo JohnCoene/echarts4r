@@ -6,11 +6,11 @@
 \alias{e_mark_area}
 \title{Mark point}
 \usage{
-e_mark_point(e, serie = NULL, data = NULL, ...)
+e_mark_point(e, serie = NULL, data = NULL, ..., title = NULL)
 
-e_mark_line(e, serie = NULL, data = NULL, ...)
+e_mark_line(e, serie = NULL, data = NULL, ..., title = NULL)
 
-e_mark_area(e, serie = NULL, data = NULL, ...)
+e_mark_area(e, serie = NULL, data = NULL, ..., title = NULL)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
@@ -18,12 +18,20 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{serie}{Serie or vector of series to mark on, defaults to all series.}
 
-\item{data}{Placement.}
+\item{data}{Placement of point, line or area.}
 
 \item{...}{Any other option to pass, check See Also section.}
+
+\item{title}{A convenience argument to easily set label, see details.}
 }
 \description{
 Mark points and lines.
+}
+\details{
+To set a label you need to either use the \code{title} 
+argument or pass a list specifying the label formatter.
+\code{label = list(formatter = "label")}. The former is more convenient
+but more limited, e.g.: you cannot specify the placement of the label.
 }
 \examples{
 max <- list(
