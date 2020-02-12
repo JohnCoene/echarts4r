@@ -17,7 +17,8 @@ echarts4rProxy(
   data,
   x,
   timeline = FALSE,
-  session = shiny::getDefaultReactiveDomain()
+  session = shiny::getDefaultReactiveDomain(),
+  reorder = TRUE
 )
 
 echarts4r_proxy(
@@ -25,7 +26,8 @@ echarts4r_proxy(
   data,
   x,
   timeline = FALSE,
-  session = shiny::getDefaultReactiveDomain()
+  session = shiny::getDefaultReactiveDomain(),
+  reorder = TRUE
 )
 }
 \arguments{
@@ -51,6 +53,8 @@ is useful if you want to save an expression in a variable.}
 \item{timeline}{Set to \code{TRUE} to build a timeline, see timeline section.}
 
 \item{session}{Shiny session.}
+
+\item{reorder}{Set the \code{FALSE} to not reorder numeric x axis values.}
 }
 \description{
 Output and render functions for using echarts4r within Shiny

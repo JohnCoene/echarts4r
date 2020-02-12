@@ -4,22 +4,24 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   if (!is.null(x)) x else y
 }
 
-.arrange_data_x <- function(data, x){
+.arrange_data_x <- function(data, x, reorder = TRUE){
   vect <- data[[x]]
   
-  if(inherits(vect, "numeric") || inherits(vect, "integer"))
-    data <- data %>% dplyr::arrange_(x)
+  if(reorder)
+    if(inherits(vect, "numeric") || inherits(vect, "integer"))
+      data <- data %>% dplyr::arrange_(x)
   
   return(data)
 }
 
-.arrange_data_by_group <- function(data, x){
+.arrange_data_by_group <- function(data, x, reorder = TRUE){
   
   vect <- data[[1]][[x]]
   
   for(i in 1:length(data)){
-    if(inherits(vect, "numeric") || inherits(vect, "integer"))
-      data[[i]] <- data[[i]] %>% dplyr::arrange_(x)
+    if(reorder)
+      if(inherits(vect, "numeric") || inherits(vect, "integer"))
+        data[[i]] <- data[[i]] %>% dplyr::arrange_(x)
   }
   
   return(data)

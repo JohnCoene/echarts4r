@@ -30,6 +30,7 @@ echarts_build <- function(e) {
 #' @param renderer Renderer, takes \code{canvas} (default) or \code{svg}.
 #' @param timeline Set to \code{TRUE} to build a timeline, see timeline section.
 #' @param ... Any other argument.
+#' @param reorder Set the \code{FALSE} to not reorder numeric x axis values.
 #' 
 #' @section Timeline:
 #' The timeline feature currently supports the following chart types.
@@ -76,7 +77,7 @@ echarts_build <- function(e) {
 #' @name init
 #' @export
 e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dispose = TRUE, 
-                     draw = TRUE, renderer = "canvas", timeline = FALSE, ...) {
+                     draw = TRUE, renderer = "canvas", timeline = FALSE, ..., reorder = TRUE) {
 
   xmap <- NULL
   
@@ -105,7 +106,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
     row.names(data) <- NULL
     
     if(!is.null(xmap) && !isTRUE(timeline))
-      data <- .arrange_data_x(data, xmap)
+      data <- .arrange_data_x(data, xmap, reorder = reorder)
     
     x$data <- map_grps_(data, timeline)
   }
@@ -125,7 +126,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
       stop("must pass grouped data when timeline = TRUE", call. = FALSE)
     
     if(!is.null(xmap))
-      x$data <- .arrange_data_by_group(x$data, xmap)
+      x$data <- .arrange_data_by_group(x$data, xmap, reorder = reorder)
     
     tl <- list(
       baseOption = list(
@@ -195,7 +196,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
 #' @rdname init
 #' @export
 e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = NULL, dispose = TRUE, 
-                      draw = TRUE, renderer = "canvas", timeline = FALSE, ...) {
+                      draw = TRUE, renderer = "canvas", timeline = FALSE, ..., reorder = TRUE) {
   
   xmap <- x
   
@@ -356,7 +357,7 @@ renderEcharts4r <- function(expr, env = parent.frame(), quoted = FALSE) {
 
 #' @rdname echarts4r-shiny
 #' @export
-echarts4rProxy <- function(id, data, x, timeline = FALSE, session = shiny::getDefaultReactiveDomain()){
+echarts4rProxy <- function(id, data, x, timeline = FALSE, session = shiny::getDefaultReactiveDomain(), reorder = TRUE){
 
   if(missing(data)){
     proxy <- list(id = id, session = session)
@@ -390,7 +391,7 @@ echarts4rProxy <- function(id, data, x, timeline = FALSE, session = shiny::getDe
     row.names(data) <- NULL
     
     if(!is.null(xmap))
-      data <- .arrange_data_x(data, xmap)
+      data <- .arrange_data_x(data, xmap, reorder = reorder)
     
     x$data <- map_grps_(data, timeline)
   }
@@ -410,7 +411,7 @@ echarts4rProxy <- function(id, data, x, timeline = FALSE, session = shiny::getDe
       stop("must pass grouped data when timeline = TRUE", call. = FALSE)
     
     if(!is.null(xmap))
-      x$data <- .arrange_data_by_group(x$data, xmap)
+      x$data <- .arrange_data_by_group(x$data, xmap, reorder = reorder)
     
     tl <- list(
       baseOption = list(

@@ -285,7 +285,8 @@ applications and interactive Rmd documents.</p>
   <span class='no'>data</span>,
   <span class='no'>x</span>,
   <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/domains'>getDefaultReactiveDomain</a></span>()
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/domains'>getDefaultReactiveDomain</a></span>(),
+  <span class='kw'>reorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )
 
 <span class='fu'>echarts4r_proxy</span>(
@@ -293,7 +294,8 @@ applications and interactive Rmd documents.</p>
   <span class='no'>data</span>,
   <span class='no'>x</span>,
   <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/domains'>getDefaultReactiveDomain</a></span>()
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/domains'>getDefaultReactiveDomain</a></span>(),
+  <span class='kw'>reorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -341,6 +343,10 @@ is useful if you want to save an expression in a variable.</p></td>
     <tr>
       <th>session</th>
       <td><p>Shiny session.</p></td>
+    </tr>
+    <tr>
+      <th>reorder</th>
+      <td><p>Set the <code>FALSE</code> to not reorder numeric x axis values.</p></td>
     </tr>
     </table>
 

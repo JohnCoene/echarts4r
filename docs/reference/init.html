@@ -284,7 +284,8 @@
   <span class='kw'>draw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>renderer</span> <span class='kw'>=</span> <span class='st'>"canvas"</span>,
   <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
+  <span class='no'>...</span>,
+  <span class='kw'>reorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )
 
 <span class='fu'>e_charts_</span>(
@@ -297,7 +298,8 @@
   <span class='kw'>draw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>renderer</span> <span class='kw'>=</span> <span class='st'>"canvas"</span>,
   <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
+  <span class='no'>...</span>,
+  <span class='kw'>reorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )
 
 <span class='fu'>e_chart</span>(
@@ -310,7 +312,8 @@
   <span class='kw'>draw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>renderer</span> <span class='kw'>=</span> <span class='st'>"canvas"</span>,
   <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
+  <span class='no'>...</span>,
+  <span class='kw'>reorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )
 
 <span class='fu'>e_data</span>(<span class='no'>e</span>, <span class='no'>data</span>, <span class='no'>x</span>)</pre>
@@ -355,6 +358,10 @@ string and have <code>'px'</code> appended.</p></td>
     <tr>
       <th>...</th>
       <td><p>Any other argument.</p></td>
+    </tr>
+    <tr>
+      <th>reorder</th>
+      <td><p>Set the <code>FALSE</code> to not reorder numeric x axis values.</p></td>
     </tr>
     <tr>
       <th>e</th>
