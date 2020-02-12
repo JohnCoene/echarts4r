@@ -305,7 +305,11 @@ e2 <- iris %>%
 
 </div>
 
+Arrange in grid and plot.
+
+```r
 e_arrange(e1, e2, rows = 1, cols = 2)
+```
 
 ```{r, echo = FALSE}
 library(dplyr)
