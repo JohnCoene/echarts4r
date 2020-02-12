@@ -14,7 +14,7 @@ Every function that adds a serie to chart (e.g.: `e_bar`) have been turned into 
 - Added `e_resize` to dynamically resize the chart.
 - Added `e_map_register_p` works like a proxy but does not require a chart.
 - Fixed a few issues with `e_mark*` family, labels and multiple marks correctly work.
-- Initialisation function now take `reorder` argument to specify whether to reorder numeric values.
+- Initialisation function now take `reorder` argument to specify whether to reorder numeric values. [#126](https://github.com/JohnCoene/echarts4r/issues/126)
 
 # echarts4r 0.2.3
 
