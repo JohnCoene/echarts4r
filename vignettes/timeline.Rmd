@@ -143,9 +143,9 @@ df %>%
   e_timeline_opts(autoPlay = TRUE) %>% 
   e_timeline_serie(
     title = list(
+      list(text = "Assault", subtext = "Percentage based on arrests"),
       list(text = "Murder", subtext = "Percentage based on arrests"),
-      list(text = "Rape", subtext = "Percentage based on arrests"),
-      list(text = "Assault", subtext = "Percentage based on arrests")
+      list(text = "Rape", subtext = "Percentage based on arrests")
     )
   )
 ```
