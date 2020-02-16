@@ -25,7 +25,7 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'UA-74544116-1');
-</script>
+</script><!-- Place this tag in your head or just before your close body tag. --><script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 <body>
     <div class="container template-article">
@@ -73,6 +73,12 @@
 <li>
   <a href="../articles/gallery.html">
     <span class="fa fa-paint-brush"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="../development.html">
+    <span class="fa fa-lightbulb-o"></span>
      
   </a>
 </li>
@@ -219,7 +225,7 @@
       <h1>Shiny</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2020-02-02</h4>
+            <h4 class="date">2020-02-16</h4>
       
       
       <div class="hidden name"><code>shiny.Rmd</code></div>
@@ -245,8 +251,8 @@ In development
 <h2 class="hasAnchor">
 <a href="#deploy" class="anchor"></a>Deploy</h2>
 <p>A note if you are publishing on <a href="https://www.shinyapps.io/">shinyapps.io</a>, if you have <em>locally</em> installed the development version of the package from <a href="https://github.com/JohnCoene/echarts4r">Github</a> with <code>remotes</code> as indicated on the <a href="/">homepage</a> of the website please reinstall it <code>devtools</code>. Otherwise shinyapps.io will intall the CRAN version which might lead to issues.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/remote-reexports">install_github</a></span>(<span class="st">"JohnCoene/echarts4r"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># install.packages("devtools")</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/remote-reexports">install_github</a></span>(<span class="st">"JohnCoene/echarts4r"</span>)</span></code></pre></div>
 <p>If you are using the <a href="">Shiny Server</a>, remember to install the package on the respective server with the following command:</p>
 <pre><code># stable version
 sudo su - -c "R -e \"install.packages('echarts4r', repos = 'https://cran.rstudio.com')\""
@@ -300,99 +306,99 @@ sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""</code></p
 <code>e_focus_adjacency</code> and <code>e_unfocus_adjacency</code> - to focus or unfocus on adjacent nodes (networks).</li>
 </ul>
 <p>See the example below and the various proxies documentation.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(shiny)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(echarts4r)
-
-ui &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/fluidPage">fluidPage</a></span>(
-  <span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/actionButton">actionButton</a></span>(<span class="st">"add"</span>, <span class="st">"Add Data to y"</span>),
-  <span class="kw"><a href="../reference/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"plot"</span>),
-  <span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput">verbatimTextOutput</a></span>(<span class="st">"selected"</span>)
-)
-
-server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session){
-
-  data &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">3</span>), <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">12</span>), <span class="dt">z =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">5</span>))
-  
-  react &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/observeEvent">eventReactive</a></span>(input<span class="op">$</span>add, {
-    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>, <span class="dv">1</span>))
-    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">2</span>), <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">10</span>))
-  })
-  
-  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw"><a href="../reference/echarts4r-shiny.html">renderEcharts4r</a></span>({
-    data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">     </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">     </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(y) <span class="op">%&gt;%</span>
-<span class="st">     </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(z) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">     </span><span class="kw"><a href="../reference/e_brush.html">e_brush</a></span>(<span class="dt">throttleDelay =</span> <span class="dv">1000</span>)
-  })
-  
-  <span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/observeEvent">observeEvent</a></span>(input<span class="op">$</span>add, {
-    <span class="kw"><a href="../reference/echarts4r-shiny.html">echarts4rProxy</a></span>(<span class="st">"plot"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">      </span><span class="kw"><a href="../reference/append.html">e_append1_p</a></span>(<span class="dv">0</span>, <span class="kw">react</span>(), x, y)
-  })
-  
-  output<span class="op">$</span>selected &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/renderPrint">renderPrint</a></span>({
-    input<span class="op">$</span>plot_brush
-  })
-  
-}
-
-<span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(shiny)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(echarts4r)</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a>ui &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/fluidPage">fluidPage</a></span>(</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/actionButton">actionButton</a></span>(<span class="st">"add"</span>, <span class="st">"Add Data to y"</span>),</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="kw"><a href="../reference/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"plot"</span>),</span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput">verbatimTextOutput</a></span>(<span class="st">"selected"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8"></a>)</span>
+<span id="cb3-9"><a href="#cb3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session){</span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a>  data &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">3</span>), <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">12</span>), <span class="dt">z =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">5</span>))</span>
+<span id="cb3-13"><a href="#cb3-13"></a>  </span>
+<span id="cb3-14"><a href="#cb3-14"></a>  react &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/observeEvent">eventReactive</a></span>(input<span class="op">$</span>add, {</span>
+<span id="cb3-15"><a href="#cb3-15"></a>    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>, <span class="dv">1</span>))</span>
+<span id="cb3-16"><a href="#cb3-16"></a>    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">2</span>), <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">10</span>))</span>
+<span id="cb3-17"><a href="#cb3-17"></a>  })</span>
+<span id="cb3-18"><a href="#cb3-18"></a>  </span>
+<span id="cb3-19"><a href="#cb3-19"></a>  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw"><a href="../reference/echarts4r-shiny.html">renderEcharts4r</a></span>({</span>
+<span id="cb3-20"><a href="#cb3-20"></a>    data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="st">     </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="st">     </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(y) <span class="op">%&gt;%</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="st">     </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(z) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-24"><a href="#cb3-24"></a><span class="st">     </span><span class="kw"><a href="../reference/e_brush.html">e_brush</a></span>(<span class="dt">throttleDelay =</span> <span class="dv">1000</span>)</span>
+<span id="cb3-25"><a href="#cb3-25"></a>  })</span>
+<span id="cb3-26"><a href="#cb3-26"></a>  </span>
+<span id="cb3-27"><a href="#cb3-27"></a>  <span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/observeEvent">observeEvent</a></span>(input<span class="op">$</span>add, {</span>
+<span id="cb3-28"><a href="#cb3-28"></a>    <span class="kw"><a href="../reference/echarts4r-shiny.html">echarts4rProxy</a></span>(<span class="st">"plot"</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-29"><a href="#cb3-29"></a><span class="st">      </span><span class="kw"><a href="../reference/append.html">e_append1_p</a></span>(<span class="dv">0</span>, <span class="kw">react</span>(), x, y)</span>
+<span id="cb3-30"><a href="#cb3-30"></a>  })</span>
+<span id="cb3-31"><a href="#cb3-31"></a>  </span>
+<span id="cb3-32"><a href="#cb3-32"></a>  output<span class="op">$</span>selected &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/renderPrint">renderPrint</a></span>({</span>
+<span id="cb3-33"><a href="#cb3-33"></a>    input<span class="op">$</span>plot_brush</span>
+<span id="cb3-34"><a href="#cb3-34"></a>  })</span>
+<span id="cb3-35"><a href="#cb3-35"></a>  </span>
+<span id="cb3-36"><a href="#cb3-36"></a>}</span>
+<span id="cb3-37"><a href="#cb3-37"></a></span>
+<span id="cb3-38"><a href="#cb3-38"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</span></code></pre></div>
 </div>
 <div id="loading" class="section level2">
 <h2 class="hasAnchor">
 <a href="#loading" class="anchor"></a>Loading</h2>
 <p>You can also show a spinner while shiny recalculates.</p>
 <p>Without loading, chart redraws with neat animation.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># no redraw</span>
-<span class="co"># no loading</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(shiny)
-ui &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/fluidPage">fluidPage</a></span>(
-  <span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/fluidPage">fluidRow</a></span>(
-    <span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/column">column</a></span>(<span class="dv">12</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/actionButton">actionButton</a></span>(<span class="st">"update"</span>, <span class="st">"Update"</span>))
-  ),
-  <span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/fluidPage">fluidRow</a></span>(
-    <span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/column">column</a></span>(<span class="dv">12</span>, <span class="kw"><a href="../reference/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"plot"</span>))
-  )
-)
-
-server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output){
-  data &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/observeEvent">eventReactive</a></span>(input<span class="op">$</span>update, {
-    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(
-      <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
-      <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>)
-    )
-  })
-  
-  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw"><a href="../reference/echarts4r-shiny.html">renderEcharts4r</a></span>({
-    <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">      </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">      </span><span class="kw"><a href="../reference/e_bar.html">e_bar</a></span>(y)
-  })
-}
-
-<span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># no redraw</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co"># no loading</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(shiny)</span>
+<span id="cb4-4"><a href="#cb4-4"></a>ui &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/fluidPage">fluidPage</a></span>(</span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/fluidPage">fluidRow</a></span>(</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/column">column</a></span>(<span class="dv">12</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/actionButton">actionButton</a></span>(<span class="st">"update"</span>, <span class="st">"Update"</span>))</span>
+<span id="cb4-7"><a href="#cb4-7"></a>  ),</span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/fluidPage">fluidRow</a></span>(</span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/column">column</a></span>(<span class="dv">12</span>, <span class="kw"><a href="../reference/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"plot"</span>))</span>
+<span id="cb4-10"><a href="#cb4-10"></a>  )</span>
+<span id="cb4-11"><a href="#cb4-11"></a>)</span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output){</span>
+<span id="cb4-14"><a href="#cb4-14"></a>  data &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/observeEvent">eventReactive</a></span>(input<span class="op">$</span>update, {</span>
+<span id="cb4-15"><a href="#cb4-15"></a>    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</span>
+<span id="cb4-16"><a href="#cb4-16"></a>      <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</span>
+<span id="cb4-17"><a href="#cb4-17"></a>      <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>)</span>
+<span id="cb4-18"><a href="#cb4-18"></a>    )</span>
+<span id="cb4-19"><a href="#cb4-19"></a>  })</span>
+<span id="cb4-20"><a href="#cb4-20"></a>  </span>
+<span id="cb4-21"><a href="#cb4-21"></a>  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw"><a href="../reference/echarts4r-shiny.html">renderEcharts4r</a></span>({</span>
+<span id="cb4-22"><a href="#cb4-22"></a>    <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-23"><a href="#cb4-23"></a><span class="st">      </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-24"><a href="#cb4-24"></a><span class="st">      </span><span class="kw"><a href="../reference/e_bar.html">e_bar</a></span>(y)</span>
+<span id="cb4-25"><a href="#cb4-25"></a>  })</span>
+<span id="cb4-26"><a href="#cb4-26"></a>}</span>
+<span id="cb4-27"><a href="#cb4-27"></a></span>
+<span id="cb4-28"><a href="#cb4-28"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</span></code></pre></div>
 <p>With loading.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># keep UI</span>
-<span class="co"># add loading</span>
-server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output){
-  data &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/observeEvent">eventReactive</a></span>(input<span class="op">$</span>update, {
-    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.sleep">Sys.sleep</a></span>(<span class="dv">1</span>) <span class="co"># sleep one second to show loading</span>
-    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(
-      <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
-      <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>)
-    )
-  })
-  
-  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw"><a href="../reference/echarts4r-shiny.html">renderEcharts4r</a></span>({
-    <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">      </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">      </span><span class="kw"><a href="../reference/e_bar.html">e_bar</a></span>(y) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">      </span><span class="kw"><a href="../reference/loading.html">e_show_loading</a></span>()
-  })
-}
-
-<span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># keep UI</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># add loading</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output){</span>
+<span id="cb5-4"><a href="#cb5-4"></a>  data &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/observeEvent">eventReactive</a></span>(input<span class="op">$</span>update, {</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.sleep">Sys.sleep</a></span>(<span class="dv">1</span>) <span class="co"># sleep one second to show loading</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</span>
+<span id="cb5-7"><a href="#cb5-7"></a>      <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</span>
+<span id="cb5-8"><a href="#cb5-8"></a>      <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>)</span>
+<span id="cb5-9"><a href="#cb5-9"></a>    )</span>
+<span id="cb5-10"><a href="#cb5-10"></a>  })</span>
+<span id="cb5-11"><a href="#cb5-11"></a>  </span>
+<span id="cb5-12"><a href="#cb5-12"></a>  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw"><a href="../reference/echarts4r-shiny.html">renderEcharts4r</a></span>({</span>
+<span id="cb5-13"><a href="#cb5-13"></a>    <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="st">      </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="st">      </span><span class="kw"><a href="../reference/e_bar.html">e_bar</a></span>(y) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="st">      </span><span class="kw"><a href="../reference/loading.html">e_show_loading</a></span>()</span>
+<span id="cb5-17"><a href="#cb5-17"></a>  })</span>
+<span id="cb5-18"><a href="#cb5-18"></a>}</span>
+<span id="cb5-19"><a href="#cb5-19"></a></span>
+<span id="cb5-20"><a href="#cb5-20"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyApp</a></span>(ui, server)</span></code></pre></div>
 </div>
   </div>
 
@@ -420,12 +426,13 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
   <p>Developed by <a href="http://john-coene.com">John Coene</a>.</p>
 </div>
 
-<style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style>
-<link href="https://fonts.googleapis.com/css?family=Lato&amp;subset=latin,latin-ext" rel="stylesheet">
-<a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/JohnCoene"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+<p style="text-align: center;">
+  <a class="github-button" href="https://github.com/sponsors/JohnCoene" data-icon="octicon-heart" aria-label="Sponsor @JohnCoene on GitHub">Sponsor</a>
+  <br><style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&amp;subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/JohnCoene"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+</p>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  Site built with pkgdown
 </div>
       </footer>
 </div>
