@@ -162,7 +162,7 @@ navbar:
     - icon: fa-paint-brush
       href: articles/gallery.html
     - icon: fa-lightbulb-o
-      href: development.html
+      href: articles/development.html
     - text: "Guide"
       menu: 
         - text: "Get Started"
