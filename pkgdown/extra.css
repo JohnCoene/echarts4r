@@ -109,3 +109,7 @@ a:hover, a:focus {
 .version{
   font-size: 9px;
 }
+
+.navbar-default{
+  font-size: 13px;
+}
