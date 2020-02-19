@@ -571,3 +571,36 @@ e_axis_labels <- function(e, x = "", y = ""){
     e_x_axis(name = x) %>% 
     e_y_axis(name = y)
 }
+
+#'' Hide Grid Lines
+#' 
+#' A convenience function to easily hide grid lines.
+#' 
+#' @inheritParams e_bar
+#' @param which Which axis grid lines to hide.
+#' 
+#' @examples 
+#' cars %>%
+#'  e_charts(speed) %>% 
+#'  e_scatter(dist) %>% 
+#'  e_hide_grid_lines()
+#'  
+#' @export
+e_hide_grid_lines <- function(e, which = c("x", "y")){
+
+  if("x" %in% which){
+    if(!e$x$tl)
+      e$x$opts[["xAxis"]][[1]]$splitLine$show <- FALSE
+    else
+      e$x$opts$baseOption[["xAxis"]][[1]]$splitLine$show <- FALSE
+  }
+
+  if("y" %in% which){
+    if(!e$x$tl)
+      e$x$opts[["yAxis"]][[1]]$splitLine$show <- FALSE
+    else
+      e$x$opts$baseOption[["yAxis"]][[1]]$splitLine$show <- FALSE
+  }
+
+  return(e)
+}

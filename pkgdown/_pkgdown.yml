@@ -125,6 +125,7 @@ reference:
       - e_polar
       - e_calendar
       - e_axis_labels
+      - e_hide_grid_lines
   - title: "Highlight and Downplay"
     desc: "Highlight and downplay series or data points on the chart"
     contents:
