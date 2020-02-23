@@ -302,6 +302,7 @@ The above is an admittedly small theme, if you want to create a large custom the
 
 <div class="col col-md-6">
 ```r
+# in R
 p %>% e_theme_custom("theme.json")
 ```
 </div>
