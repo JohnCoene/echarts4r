@@ -280,9 +280,11 @@
     <p>Add a custom theme or apply a pre-built one.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_theme</span>(<span class='no'>e</span>, <span class='no'>theme</span>)
+    <pre class="usage"><span class='fu'>e_theme</span>(<span class='no'>e</span>, <span class='no'>name</span>)
 
-<span class='fu'>e_theme_custom</span>(<span class='no'>e</span>, <span class='no'>theme</span>)</pre>
+<span class='fu'>e_theme_custom</span>(<span class='no'>e</span>, <span class='no'>theme</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"custom"</span>)
+
+<span class='fu'>e_theme_register</span>(<span class='no'>theme</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"custom"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -293,12 +295,29 @@
 a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
+      <th>name</th>
+      <td><p>Name of theme.</p></td>
+    </tr>
+    <tr>
       <th>theme</th>
-      <td><p>Theme, see below.</p></td>
+      <td><p>Theme, A json string or a see below.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="themes"><a class="anchor" href="#themes"></a>Themes</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The function <code>e_theme_register</code> can be used to register the theme globally
+in R markdown or shiny. This is useful because 1) the <code>e_theme_custom</code> registers the 
+theme every time and is more computationally expensive.</p>
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    
+    <ul>
+<li><p><code>e_theme</code> - Use a default theme by name.</p></li>
+<li><p><code>e_theme_custom</code> - Use a custom theme.</p></li>
+<li><p><code>e_theme_register</code> - Register a theme globally in shiny or R markdown.</p></li>
+</ul>
+    <h2 class="hasAnchor" id="theme-names"><a class="anchor" href="#theme-names"></a>Theme names</h2>
 
     
     <ul>
@@ -365,7 +384,9 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#themes">Themes</a></li>
+      <li><a href="#details">Details</a></li>
+      <li><a href="#functions">Functions</a></li>
+      <li><a href="#theme-names">Theme names</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>

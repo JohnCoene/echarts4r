@@ -286,14 +286,36 @@ p %>% e_theme("tech-blue")
 p %>% e_theme_custom('{"color":["#ff715e","#ffaf51"]}')
 ```
 
-The method above, however, registers the theme every time the chart is drawn, if displaying multiple charts this can leads to large html files or slower Shiny application. There is thus also the function `e_register_theme` to register the custom theme once, and subsequently use it.
+The above is an admittedly small theme, if you want to create a large custom theme, download the JSON from the [theme builder](http://echarts.baidu.com/download-theme.html) and use it, `e_theme_custom` and `e_register_theme` both detect the json file and read it in.
+
+<div class="row">
+
+<div class="col col-md-6">
+```json
+// theme.json
+{
+  "color":["#ff715e","#ffaf51"],
+  "backgroundColor": "black"
+}
+```
+</div>
+
+<div class="col col-md-6">
+```r
+p %>% e_theme_custom("theme.json")
+```
+</div>
+
+</div>
+
+The method above, however, registers the theme every time the chart is drawn, if displaying multiple charts this can leads to large html files or slower Shiny application. There is thus also the function `e_theme_register` to register the custom theme once, and subsequently use it.
 
 ```r
 library(shiny)
 library(echarts4r)
 
 ui <- fluidPage(
-  e_register_theme('{"color":["#ff715e","#ffaf51"]}', name = "myTheme"),
+  e_theme_register('{"color":["#ff715e","#ffaf51"]}', name = "myTheme"),
   echarts4rOutput("chart1"),
   echarts4rOutput("chart2")
 )
