@@ -4,6 +4,18 @@
 #' 
 #' @inheritParams e_bar
 #' @param theme Theme, see below.
+#' @param name Name of theme.
+#' 
+#' @section Functions:
+#' \itemize{
+#'  \item{\code{e_theme} - Use a default theme by name.}
+#'  \item{\code{e_theme_custom} - Use a custom theme.}
+#'  \item{\code{e_register_theme} - Register a theme globally in shiny or R markdown.}
+#' }
+#' 
+#' @details The function \code{e_register_theme} can be used to register the theme globally
+#' in R markdown or shiny. This is useful because 1) the \code{e_theme_custom} registers the 
+#' theme every time and is more computationally expensive.
 #' 
 #' @section Themes: 
 #' \itemize{
@@ -67,20 +79,39 @@
 #' 
 #' @rdname theme
 #' @export
-e_theme <- function(e, theme){
+e_theme <- function(e, name){
   
-  if(missing(theme))
-    stop("must pass theme", call. = FALSE)
+  if(missing(name))
+    stop("must pass name", call. = FALSE)
   
-  e$x$theme <- tolower(theme)
+  e$x$theme <- name
   e
 }
 
 #' @rdname theme
 #' @export
-e_theme_custom <- function(e, theme){
+e_theme_custom <- function(e, theme, name = "custom"){
+  if(missing(theme))
+    stop("must pass `theme`", call. = FALSE)
+
   e$x$theme2 <- TRUE
   e$x$customTheme <- theme
   e$x$theme <- "custom"
+  e$x$theme_name <- name
   e
+}
+
+#' @rdname theme
+#' @export
+e_register_theme <- function(theme, name = "custom"){
+  if(missing(theme))
+    stop("must pass `theme`", call. = FALSE)
+
+  shiny::singleton(
+    shiny::tags$head(
+      shiny::tags$script(
+        paste0("window.echarts.registerTheme('", name, "', ", theme,");")
+      )
+    )
+  )
 }

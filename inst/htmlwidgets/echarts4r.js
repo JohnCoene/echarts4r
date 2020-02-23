@@ -23,7 +23,7 @@ HTMLWidgets.widget({
           initialized = true;
           if(x.theme2 === true){
             var th = JSON.parse(x.customTheme);
-            echarts.registerTheme(x.theme, th);
+            echarts.registerTheme(x.theme_name, th);
           }
           
         }

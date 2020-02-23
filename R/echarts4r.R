@@ -3,9 +3,9 @@ echarts_build <- function(e) {
   e$x$mapping <- NULL
   
   ff <- getOption("ECHARTS4R_FONT_FAMILY")
-  theme <- getOption("ECHARTS4R_THEME")
+  theme <- getOption("ECHARTS4R_THEME", "default")
   
-  if(!is.null(theme))
+  if(e$x$theme == "")
     e <- e_theme(e, theme)
   
   if(!is.null(ff))

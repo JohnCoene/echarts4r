@@ -3,21 +3,40 @@
 \name{e_theme}
 \alias{e_theme}
 \alias{e_theme_custom}
+\alias{e_register_theme}
 \title{Themes}
 \usage{
-e_theme(e, theme)
+e_theme(e, name)
 
-e_theme_custom(e, theme)
+e_theme_custom(e, theme, name = "custom")
+
+e_register_theme(theme, name = "custom")
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
 a proxy as returned by \code{\link{echarts4rProxy}}.}
+
+\item{name}{Name of theme.}
 
 \item{theme}{Theme, see below.}
 }
 \description{
 Add a custom theme or apply a pre-built one.
 }
+\details{
+The function \code{e_register_theme} can be used to register the theme globally
+in R markdown or shiny. This is useful because 1) the \code{e_theme_custom} registers the 
+theme every time and is more computationally expensive.
+}
+\section{Functions}{
+
+\itemize{
+ \item{\code{e_theme} - Use a default theme by name.}
+ \item{\code{e_theme_custom} - Use a custom theme.}
+ \item{\code{e_register_theme} - Register a theme globally in shiny or R markdown.}
+}
+}
+
 \section{Themes}{
  
 \itemize{

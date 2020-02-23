@@ -285,3 +285,34 @@ p %>% e_theme("tech-blue")
 ```{r}
 p %>% e_theme_custom('{"color":["#ff715e","#ffaf51"]}')
 ```
+
+The method above, however, registers the theme every time the chart is drawn, if displaying multiple charts this can leads to large html files or slower Shiny application. There is thus also the function `e_register_theme` to register the custom theme once, and subsequently use it.
+
+```r
+library(shiny)
+library(echarts4r)
+
+ui <- fluidPage(
+  e_register_theme('{"color":["#ff715e","#ffaf51"]}', name = "myTheme"),
+  echarts4rOutput("chart1"),
+  echarts4rOutput("chart2")
+)
+
+server <- function(input, output){
+  e <- e_charts(cars, speed) %>% 
+      e_scatter(dist) 
+
+  output$chart1 <- renderEcharts4r({
+    e_theme(e, "myTheme")
+  })
+
+  output$chart2 <- renderEcharts4r({
+    e_theme(e, "myTheme")
+  })
+
+}
+
+shinyApp(ui, server)
+```
+
+Note that the custom theme registered as above works with `e_common`, e.g.: `e_common(theme = "myTheme")`.
