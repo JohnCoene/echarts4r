@@ -97,7 +97,7 @@ e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuo
     dat <- .get_data(e, serie)
     if(!is.null(scale))
       dat <- scale(dat)
-    rng <- range(dat)
+    rng <- range(dat, na.rm = TRUE)
     vm$min <- rng[1]
     vm$max <- rng[2]
   }
