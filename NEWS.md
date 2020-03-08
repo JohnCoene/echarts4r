@@ -18,7 +18,8 @@ Every function that adds a serie to chart (e.g.: `e_bar`) have been turned into 
 - Added convenience `e_hide_grid_lines` to easily hide grid lines.
 - Added `e_register_theme` to register a global theme, see [#127](https://github.com/JohnCoene/echarts4r/issues/127).
 - `e_theme_custom` now accepts path to a JSON file.
-- `e_visual_map` drops `NA`s
+- `e_visual_map` drops `NA`s.
+- Added `e_axis_stagger` function to stagger x axis labels.
 
 # echarts4r 0.2.3
 

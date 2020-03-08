@@ -604,3 +604,40 @@ e_hide_grid_lines <- function(e, which = c("x", "y")){
 
   return(e)
 }
+
+#' Stagger Axis Labels
+#' 
+#' Stagger axis labels.
+#' 
+#' @inheritParams e_bar
+#' 
+#' @examples
+#' df <- data.frame(
+#'  x = c("a very long label", "Another long label"),
+#'  y = 1:2
+#' )
+#' 
+#' df %>% 
+#'  e_charts(x, width = 150) %>% 
+#'  e_bar(y) %>% 
+#'  e_axis_stagger()
+#' 
+#' @export
+e_axis_stagger <- function(e){
+
+  form <- "function(value, index){
+    if(index % 2){
+      return('\\n' + value)
+    }
+
+    return(value)
+  }" %>% 
+    htmlwidgets::JS()
+
+  if(!e$x$tl)
+    e$x$opts[["xAxis"]][[1]]$axisLabel$formatter <- form
+  else
+    e$x$opts$baseOption[["xAxis"]][[1]]$axisLabel$formatter <- form
+
+  return(e)
+}
