@@ -3164,8 +3164,7 @@ e_density.echarts4rProxy <- function(e, serie, breaks = "Sturges", name = NULL, 
 #' 
 #' @inheritParams e_bar
 #' @param data A list.
-#' @param ... Any other options, see this \href{https://ecomfe.github.io/echarts-examples/public/editor.html?c=linesGL-ny&gl=1}{example}
-#' for possible options, as this series type is mostly undocumented.
+#' @param ... Any other options (this series type is mostly undocumented).
 #' 
 #' @export
 e_lines_gl <- function(e, data, coord_system = "geo", ...) UseMethod("e_lines_gl")

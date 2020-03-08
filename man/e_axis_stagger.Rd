@@ -20,7 +20,7 @@ df <- data.frame(
 )
 
 df \%>\% 
- e_charts(x) \%>\% 
+ e_charts(x, width = 150) \%>\% 
  e_bar(y) \%>\% 
  e_axis_stagger()
 

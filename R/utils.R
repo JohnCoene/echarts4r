@@ -622,5 +622,5 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 }
 
 .get_locale <- function(){
-  stringi::stri_locale_info()$Language
+  "en"
 }

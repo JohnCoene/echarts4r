@@ -22,7 +22,6 @@ Imports:
   data.tree,
   htmltools,
   jsonlite,
-  stringi,
   rstudioapi
 Suggests:
     tidyr,
