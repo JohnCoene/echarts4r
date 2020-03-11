@@ -11,8 +11,7 @@ dependencies:
       - plugins/echarts-wordcloud.min.js
       - plugins/echarts-liquidfill.min.js
       - plugins/echarts-graph-modularity.min.js
-      - plugins/leaflet/leaflet.js
-      - plugins/leaflet/echarts-leaflet.js
+      - plugins/echarts-leaflet.js
       - themes/dark.js
       - themes/vintage.js
       - themes/westeros.js
@@ -59,8 +58,6 @@ dependencies:
       - themes/sakura.js
       - themes/tech-blue.js
       - custom/renderers.js
-   stylesheet: 
-      - plugins/leaflet/leaflet.css
  - name: mapbox
    version: 0.38.0
    src: htmlwidgets/lib/mapbox

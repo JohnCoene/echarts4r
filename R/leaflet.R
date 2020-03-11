@@ -41,7 +41,11 @@ e_leaflet <- function(e, roam = TRUE, ...){
 #' @export
 e_leaflet_tile <- function(e, template = "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", 
                            options = NULL, ...){
-  
+
+  pkgs <- installed.packages() %>% rownames()
+  if(!"leaflet" %in% pkgs)
+    stop("Requires the `leaflet` package installed", call. = FALSE)
+
   if(!length(e$x$opts$leaflet$tiles))
     e <- e_leaflet(e)
   
@@ -53,5 +57,8 @@ e_leaflet_tile <- function(e, template = "https://{s}.tile.openstreetmap.fr/hot/
     
   e$x$opts$leaflet$tiles <- list(tile)
   
-  e
+  htmlwidgets::prependContent(
+    e,
+    htmlwidgets::getDependency("leaflet")
+  )
 }
