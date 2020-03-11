@@ -8,15 +8,17 @@
 \usage{
 e_timeline_opts(e, axis_type = "category", ...)
 
-e_timeline_serie(e, ...)
+e_timeline_serie(e, ..., index = 1)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{axis_type}{Type of axis, \code{time}, \code{value}, or \code{category}}
+\item{axis_type}{Type of axis, \code{time}, \code{value}, or \code{category}.}
 
 \item{...}{Named options.}
+
+\item{index}{The index of the element to apply options to, see examples.}
 }
 \description{
 Set timeline options

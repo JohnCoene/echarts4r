@@ -18,3 +18,5 @@ pkgdown
 vignettes
 FUNDING.yml
 test.R
+^\.github$
+^\.vscode$
