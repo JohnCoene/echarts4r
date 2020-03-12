@@ -42,7 +42,7 @@ e_leaflet <- function(e, roam = TRUE, ...){
 e_leaflet_tile <- function(e, template = "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", 
                            options = NULL, ...){
 
-  pkgs <- installed.packages() %>% rownames()
+  pkgs <- utils::installed.packages() %>% rownames()
   if(!"leaflet" %in% pkgs)
     stop("Requires the `leaflet` package installed", call. = FALSE)
 
