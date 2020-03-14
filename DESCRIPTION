@@ -30,4 +30,3 @@ Suggests:
 RoxygenNote: 7.1.0
 URL: http://echarts4r.john-coene.com/
 BugReports: https://github.com/JohnCoene/echarts4r/issues
-VignetteBuilder: knitr
