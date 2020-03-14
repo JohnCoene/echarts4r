@@ -1,4 +1,8 @@
-# echarts4r 0.3.0
+# echarts4r 0.3.1.9000
+
+- Added convenience `e_hide_grid_lines` to easily hide grid lines.
+
+# echarts4r 0.3.0.9000
 
 Bumped echarts JavaScript library to `4.6.0`, [PR #121](https://github.com/JohnCoene/echarts4r/pull/121), also bumped echarts gl to `1.2.1`.
 
@@ -15,7 +19,6 @@ Every function that adds a serie to chart (e.g.: `e_bar`) have been turned into 
 - Added `e_map_register_p` works like a proxy but does not require a chart.
 - Fixed a few issues with `e_mark*` family, labels and multiple marks correctly work.
 - Initialisation function now take `reorder` argument to specify whether to reorder numeric values. [#126](https://github.com/JohnCoene/echarts4r/issues/126)
-- Added convenience `e_hide_grid_lines` to easily hide grid lines.
 - Added `e_register_theme` to register a global theme, see [#127](https://github.com/JohnCoene/echarts4r/issues/127).
 - `e_theme_custom` now accepts path to a JSON file.
 - `e_visual_map` drops `NA`s.
