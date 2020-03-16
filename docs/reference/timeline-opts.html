@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
       </span>
     </div>
 
@@ -282,7 +282,9 @@
 
     <pre class="usage"><span class='fu'>e_timeline_opts</span>(<span class='no'>e</span>, <span class='kw'>axis_type</span> <span class='kw'>=</span> <span class='st'>"category"</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_timeline_serie</span>(<span class='no'>e</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>e_timeline_serie</span>(<span class='no'>e</span>, <span class='no'>...</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+
+<span class='fu'>e_timeline_on_serie</span>(<span class='no'>e</span>, <span class='no'>...</span>, <span class='no'>serie_index</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -294,11 +296,19 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     </tr>
     <tr>
       <th>axis_type</th>
-      <td><p>Type of axis, <code>time</code>, <code>value</code>, or <code>category</code></p></td>
+      <td><p>Type of axis, <code>time</code>, <code>value</code>, or <code>category</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>Named options.</p></td>
+    </tr>
+    <tr>
+      <th>index</th>
+      <td><p>The index of the element to apply options to, see examples.</p></td>
+    </tr>
+    <tr>
+      <th>serie_index</th>
+      <td><p>The index of the serie to add elements to.</p></td>
     </tr>
     </table>
 

@@ -1,6 +1,7 @@
 # echarts4r 0.3.1.9000
 
 - Added convenience `e_hide_grid_lines` to easily hide grid lines.
+- `e_map_register_ui` added to register a custom map in the Shiny UI, for faster serialisation.
 
 # echarts4r 0.3.0.9000
 

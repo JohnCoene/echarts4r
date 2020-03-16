@@ -271,7 +271,9 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
 #' @param session A valid Shiny session.
 #' 
 #' @details \code{e_map_register_p} is not truly a proxy as it does not require
-#' a chart to function. 
+#' a chart to function. While the function \code{e_map_register_ui} is meant to
+#' register the map globally in the Shiny UI, not that then \code{json} must be accessible
+#' from the UI (generally www folder).
 #' 
 #' @examples 
 #' \dontrun{
@@ -316,6 +318,14 @@ e_map_register_p <- function(name, json, session = shiny::getDefaultReactiveDoma
   
   session$sendCustomMessage("e_register_map", opts)
   invisible()
+}
+
+#' @rdname e_map_register
+#' @export
+e_map_register_ui <- function(name, json){  
+  tags$script(
+    paste0("echarts.registerMap('", name, "', '", json, "');")
+  )
 }
 
 #' Mapbox

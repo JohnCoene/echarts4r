@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
       </span>
     </div>
 
@@ -282,7 +282,9 @@
 
     <pre class="usage"><span class='fu'>e_map_register</span>(<span class='no'>e</span>, <span class='no'>name</span>, <span class='no'>json</span>)
 
-<span class='fu'>e_map_register_p</span>(<span class='no'>name</span>, <span class='no'>json</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/domains'>getDefaultReactiveDomain</a></span>())</pre>
+<span class='fu'>e_map_register_p</span>(<span class='no'>name</span>, <span class='no'>json</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/domains'>getDefaultReactiveDomain</a></span>())
+
+<span class='fu'>e_map_register_ui</span>(<span class='no'>name</span>, <span class='no'>json</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -308,7 +310,9 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>e_map_register_p</code> is not truly a proxy as it does not require
-a chart to function.</p>
+a chart to function. While the function <code>e_map_register_ui</code> is meant to
+register the map globally in the Shiny UI, not that then <code>json</code> must be accessible
+from the UI (generally www folder).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>

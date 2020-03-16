@@ -3,11 +3,14 @@
 \name{e_map_register}
 \alias{e_map_register}
 \alias{e_map_register_p}
+\alias{e_map_register_ui}
 \title{Register map}
 \usage{
 e_map_register(e, name, json)
 
 e_map_register_p(name, json, session = shiny::getDefaultReactiveDomain())
+
+e_map_register_ui(name, json)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -23,7 +26,9 @@ Register a \href{http://geojson.org/}{geojson} map.
 }
 \details{
 \code{e_map_register_p} is not truly a proxy as it does not require
-a chart to function.
+a chart to function. While the function \code{e_map_register_ui} is meant to
+register the map globally in the Shiny UI, not that then \code{json} must be accessible
+from the UI (generally www folder).
 }
 \examples{
 \dontrun{
