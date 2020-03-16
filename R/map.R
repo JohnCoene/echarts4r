@@ -333,7 +333,7 @@ e_map_register_ui <- function(name, json){
         } 
       });"
     )
-  tags$script(
+  shiny::tags$script(
     script
   )
 }
