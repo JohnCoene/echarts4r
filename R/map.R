@@ -322,9 +322,19 @@ e_map_register_p <- function(name, json, session = shiny::getDefaultReactiveDoma
 
 #' @rdname e_map_register
 #' @export
-e_map_register_ui <- function(name, json){  
+e_map_register_ui <- function(name, json){
+  script <- paste0("
+    $.ajax({ 
+        url: '", json, "', 
+        dataType: 'json', 
+        async: false,
+        success: function(map){ 
+          echarts.registerMap('", name, "', map);
+        } 
+      });"
+    )
   tags$script(
-    paste0("echarts.registerMap('", name, "', '", json, "');")
+    script
   )
 }
 

@@ -316,7 +316,15 @@ if (HTMLWidgets.shinyMode) {
   Shiny.addCustomMessageHandler('e_register_map',
     function(data) {
       if (typeof chart != 'undefined') {
-        echarts.registerMap(x.mapName, x.geoJSON);
+        $.ajax({ 
+          url: x.geoJSON, 
+          dataType: 'json', 
+          async: false,
+          success: function(json){ 
+            echarts.registerMap(x.mapName, json);
+          } 
+        });
+        
       }
   });
 
