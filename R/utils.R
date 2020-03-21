@@ -203,7 +203,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   apply(edges, 1, as.list)
 }
 
-.build_graph_nodes <- function(nodes, names, value, symbolSize, category){
+.build_graph_nodes <- function(nodes, names, value, symbolSize, category, symbol){
   
   row.names(nodes) <- NULL
   
@@ -212,30 +212,16 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
       !!names,
       !!value,
       !!symbolSize,
-      !!category
+      !!category,
+      !!symbol,
     ) -> data
   
-  names(data) <- c("name", "value", "symbolSize", "category")[1:ncol(data)]
+  names(data) <- c("name", "value", "symbolSize", "category", "symbol")[1:ncol(data)]
   
   apply(data, 1, as.list)
 }
 
-.build_graph_nodes_no_size <- function(nodes, names, value){
-  
-  row.names(nodes) <- NULL
-  
-  nodes %>%
-    dplyr::select(
-      !!names,
-      !!value
-    ) -> data
-  
-  names(data) <- c("name", "value")[1:ncol(data)]
-  
-  apply(data, 1, as.list)
-}
-
-.build_graph_nodes_no_cat <- function(nodes, names, value, symbolSize){
+.build_graph_nodes_no_size <- function(nodes, names, value, symbol){
   
   row.names(nodes) <- NULL
   
@@ -243,10 +229,27 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
     dplyr::select(
       !!names,
       !!value,
-      !!symbolSize
+      !!symbol,
     ) -> data
   
-  names(data) <- c("name", "value", "symbolSize")[1:ncol(data)]
+  names(data) <- c("name", "value", "symbol")[1:ncol(data)]
+  
+  apply(data, 1, as.list)
+}
+
+.build_graph_nodes_no_cat <- function(nodes, names, value, symbolSize, symbol){
+  
+  row.names(nodes) <- NULL
+  
+  nodes %>%
+    dplyr::select(
+      !!names,
+      !!value,
+      !!symbolSize,
+      !!symbol
+    ) -> data
+  
+  names(data) <- c("name", "value", "symbolSize", "symbol")[1:ncol(data)]
   
   apply(data, 1, as.list)
 }

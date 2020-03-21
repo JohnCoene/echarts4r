@@ -770,6 +770,7 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #' @param names Names of nodes, unique.
 #' @param value values of nodes.
 #' @param size Size of nodes.
+#' @param symbol Symbols of nodes.
 #' @param legend Whether to add serie to legend.
 #' @param category Group of nodes (i.e.: group membership).
 #' @param edges Data.frame of edges.
@@ -785,6 +786,7 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #'   name = sample(LETTERS, 10),
 #'   value = value,
 #'   size = value,
+#'   symbol = sample(c("circle", "rect", "triangle"), 10, replace = TRUE),
 #'   grp = rep(c("grp1", "grp2"), 5),
 #'   stringsAsFactors = FALSE
 #' )
@@ -797,7 +799,7 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #' 
 #' e_charts() %>% 
 #'   e_graph() %>% 
-#'   e_graph_nodes(nodes, name, value, size, grp) %>% 
+#'   e_graph_nodes(nodes, name, value, size, grp, symbol) %>% 
 #'   e_graph_edges(edges, source, target)
 #' 
 #' #Use graphGL for larger networks
@@ -886,17 +888,18 @@ e_graph_gl.echarts4rProxy <- function(e, layout = "force", name = NULL, rm_x = T
 
 #' @rdname graph
 #' @export
-e_graph_nodes <- function(e, nodes, names, value, size, category, legend = TRUE) UseMethod("e_graph_nodes")
+e_graph_nodes <- function(e, nodes, names, value, size, category, symbol = NULL, legend = TRUE) UseMethod("e_graph_nodes")
 
 #' @export 
 #' @method e_graph_nodes echarts4r
-e_graph_nodes.echarts4r <- function(e, nodes, names, value, size, category, legend = TRUE){
+e_graph_nodes.echarts4r <- function(e, nodes, names, value, size, category, symbol = NULL, legend = TRUE){
   
   if(missing(nodes) || missing(names) || missing(value))
     stop("missing arguments", call. = FALSE)
   
   value <- dplyr::enquo(value)
   symbolSize <- dplyr::enquo(size)
+  symbol <- dplyr::enquo(symbol)
   names <- dplyr::enquo(names)
   
   if(!missing(category) && !missing(size)){
@@ -911,20 +914,23 @@ e_graph_nodes.echarts4r <- function(e, nodes, names, value, size, category, lege
       names, 
       value,
       symbolSize,
-      dplyr::enquo(category)
+      dplyr::enquo(category),
+      symbol
     )
   } else if(missing(category) && !missing(size)) {
     nodes <- .build_graph_nodes_no_cat(
       nodes, 
       names, 
       value,
-      symbolSize
+      symbolSize,
+      symbol
     )
   } else if (missing(category) && missing(size)){
     nodes <- .build_graph_nodes_no_size(
       nodes, 
       names, 
-      value
+      value,
+      symbol
     )
   }
   
@@ -935,13 +941,14 @@ e_graph_nodes.echarts4r <- function(e, nodes, names, value, size, category, lege
 
 #' @export 
 #' @method e_graph_nodes echarts4rProxy
-e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category, legend = TRUE){
+e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category, symbol = NULL, legend = TRUE){
   
   if(missing(nodes) || missing(names) || missing(value))
     stop("missing arguments", call. = FALSE)
   
   value <- dplyr::enquo(value)
   symbolSize <- dplyr::enquo(size)
+  symbol <- dplyr::enquo(symbol)
   names <- dplyr::enquo(names)
   
   if(!missing(category) && !missing(size)){
@@ -956,6 +963,7 @@ e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category,
       names, 
       value,
       symbolSize,
+      symbol,
       dplyr::enquo(category)
     )
   } else if(missing(category) && !missing(size)) {
@@ -963,13 +971,15 @@ e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category,
       nodes, 
       names, 
       value,
-      symbolSize
+      symbolSize,
+      symbol
     )
   } else if (missing(category) && missing(size)){
     nodes <- .build_graph_nodes_no_size(
       nodes, 
       names, 
-      value
+      value,
+      symbol
     )
   }
   
