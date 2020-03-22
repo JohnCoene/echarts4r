@@ -79,6 +79,36 @@ e_charts() %>%
   e_tooltip()
 ```
 
+
+## Groups
+
+The same but with groups and symbols.
+
+```{r}
+value <- rnorm(10, 10, 2)
+
+nodes <- data.frame(
+  name = sample(LETTERS, 10),
+  value = value,
+  size = value,
+  grp = rep(c("grp1", "grp2"), 5),
+  symbol = sample(c("circle", "rect", "triangle"), 10, replace = TRUE),
+  stringsAsFactors = FALSE
+)
+
+edges <- data.frame(
+  source = sample(nodes$name, 20, replace = TRUE),
+  target = sample(nodes$name, 20, replace = TRUE),
+  stringsAsFactors = FALSE
+)
+
+e_charts() %>% 
+  e_graph() %>% 
+  e_graph_nodes(nodes, name, value, size, grp, symbol) %>% 
+  e_graph_edges(edges, source, target) %>% 
+  e_tooltip()
+```
+
 ## Graph GL
 
 Simply use `e_graph_gl` instead of `e_graph`.
