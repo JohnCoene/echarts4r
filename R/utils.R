@@ -191,7 +191,6 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   
   apply(nodes, 1, as.list)
   
-  
 }
 
 .build_sankey_edges <- function(data, source, target, values){
@@ -267,10 +266,6 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   names(data) <- c("source", "target")
   
   apply(data, 1, as.list) -> x
-  # for(i in 1:length(x)){
-  #   x[[i]]$source <- trimws(as.character(x[[i]]$source))
-  #   x[[i]]$target <- trimws(as.character(x[[i]]$target))
-  # }
   x
 }
 
