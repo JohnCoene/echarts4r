@@ -327,7 +327,7 @@ e_map_register_ui <- function(name, json){
     $.ajax({ 
         url: '", json, "', 
         dataType: 'json', 
-        async: false,
+        async: true,
         success: function(map){ 
           echarts.registerMap('", name, "', map);
         } 
