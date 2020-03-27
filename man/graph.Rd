@@ -11,7 +11,16 @@ e_graph(e, layout = "force", name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 
 e_graph_gl(e, layout = "force", name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 
-e_graph_nodes(e, nodes, names, value, size, category, legend = TRUE)
+e_graph_nodes(
+  e,
+  nodes,
+  names,
+  value,
+  size,
+  category,
+  symbol = NULL,
+  legend = TRUE
+)
 
 e_graph_edges(e, edges, source, target)
 }
@@ -36,6 +45,8 @@ e_graph_edges(e, edges, source, target)
 
 \item{category}{Group of nodes (i.e.: group membership).}
 
+\item{symbol}{Symbols of nodes.}
+
 \item{legend}{Whether to add serie to legend.}
 
 \item{edges}{Data.frame of edges.}
@@ -52,6 +63,7 @@ nodes <- data.frame(
   name = sample(LETTERS, 10),
   value = value,
   size = value,
+  symbol = sample(c("circle", "rect", "triangle"), 10, replace = TRUE),
   grp = rep(c("grp1", "grp2"), 5),
   stringsAsFactors = FALSE
 )
@@ -64,7 +76,7 @@ edges <- data.frame(
 
 e_charts() \%>\% 
   e_graph() \%>\% 
-  e_graph_nodes(nodes, name, value, size, grp) \%>\% 
+  e_graph_nodes(nodes, name, value, size, grp, symbol) \%>\% 
   e_graph_edges(edges, source, target)
 
 #Use graphGL for larger networks
