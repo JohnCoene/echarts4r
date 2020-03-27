@@ -268,6 +268,7 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
 #' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
 #' @param name Name of map, to use in \code{\link{e_map}}.
 #' @param json \href{http://geojson.org/}{Geojson}.
+#' @param async Whether to read the file asynchronously.
 #' @param session A valid Shiny session.
 #' 
 #' @details \code{e_map_register_p} is not truly a proxy as it does not require
@@ -322,12 +323,13 @@ e_map_register_p <- function(name, json, session = shiny::getDefaultReactiveDoma
 
 #' @rdname e_map_register
 #' @export
-e_map_register_ui <- function(name, json){
+e_map_register_ui <- function(name, json, async = FALSE){
+  async <- paste0(tolower(async))
   script <- paste0("
     $.ajax({ 
         url: '", json, "', 
         dataType: 'json', 
-        async: true,
+        async: ", async, ",
         success: function(map){ 
           echarts.registerMap('", name, "', map);
         } 
