@@ -8,7 +8,12 @@
 \usage{
 e_map_register(e, name, json)
 
-e_map_register_p(name, json, session = shiny::getDefaultReactiveDomain())
+e_map_register_p(
+  name,
+  json,
+  async = FALSE,
+  session = shiny::getDefaultReactiveDomain()
+)
 
 e_map_register_ui(name, json, async = FALSE)
 }
@@ -19,9 +24,9 @@ e_map_register_ui(name, json, async = FALSE)
 
 \item{json}{\href{http://geojson.org/}{Geojson}.}
 
-\item{session}{A valid Shiny session.}
-
 \item{async}{Whether to read the file asynchronously.}
+
+\item{session}{A valid Shiny session.}
 }
 \description{
 Register a \href{http://geojson.org/}{geojson} map.

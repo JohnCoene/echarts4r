@@ -310,9 +310,10 @@ e_map_register.echarts4r <- function(e, name, json){
 
 #' @rdname e_map_register
 #' @export
-e_map_register_p <- function(name, json, session = shiny::getDefaultReactiveDomain()){
+e_map_register_p <- function(name, json, async = FALSE, session = shiny::getDefaultReactiveDomain()){
   
   opts <- list(
+    mapAsync = async,
     mapName = name,
     geoJSON = json
   )

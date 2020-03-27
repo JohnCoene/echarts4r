@@ -319,7 +319,7 @@ if (HTMLWidgets.shinyMode) {
         $.ajax({ 
           url: x.geoJSON, 
           dataType: 'json', 
-          async: false,
+          async: x.mapAsync,
           success: function(json){ 
             echarts.registerMap(x.mapName, json);
           } 
