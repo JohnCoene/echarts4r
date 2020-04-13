@@ -282,9 +282,14 @@
 
     <pre class="usage"><span class='fu'>e_map_register</span>(<span class='no'>e</span>, <span class='no'>name</span>, <span class='no'>json</span>)
 
-<span class='fu'>e_map_register_p</span>(<span class='no'>name</span>, <span class='no'>json</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/domains'>getDefaultReactiveDomain</a></span>())
+<span class='fu'>e_map_register_p</span>(
+  <span class='no'>name</span>,
+  <span class='no'>json</span>,
+  <span class='kw'>async</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/domains'>getDefaultReactiveDomain</a></span>()
+)
 
-<span class='fu'>e_map_register_ui</span>(<span class='no'>name</span>, <span class='no'>json</span>)</pre>
+<span class='fu'>e_map_register_ui</span>(<span class='no'>name</span>, <span class='no'>json</span>, <span class='kw'>async</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -300,6 +305,10 @@
     <tr>
       <th>json</th>
       <td><p><a href='http://geojson.org/'>Geojson</a>.</p></td>
+    </tr>
+    <tr>
+      <th>async</th>
+      <td><p>Whether to read the file asynchronously.</p></td>
     </tr>
     <tr>
       <th>session</th>

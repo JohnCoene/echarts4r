@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
       </span>
     </div>
 
@@ -284,7 +284,16 @@
 
 <span class='fu'>e_graph_gl</span>(<span class='no'>e</span>, <span class='kw'>layout</span> <span class='kw'>=</span> <span class='st'>"force"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_graph_nodes</span>(<span class='no'>e</span>, <span class='no'>nodes</span>, <span class='no'>names</span>, <span class='no'>value</span>, <span class='no'>size</span>, <span class='no'>category</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>e_graph_nodes</span>(
+  <span class='no'>e</span>,
+  <span class='no'>nodes</span>,
+  <span class='no'>names</span>,
+  <span class='no'>value</span>,
+  <span class='no'>size</span>,
+  <span class='no'>category</span>,
+  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)
 
 <span class='fu'>e_graph_edges</span>(<span class='no'>e</span>, <span class='no'>edges</span>, <span class='no'>source</span>, <span class='no'>target</span>)</pre>
 
@@ -332,6 +341,10 @@
       <td><p>Group of nodes (i.e.: group membership).</p></td>
     </tr>
     <tr>
+      <th>symbol</th>
+      <td><p>Symbols of nodes.</p></td>
+    </tr>
+    <tr>
       <th>legend</th>
       <td><p>Whether to add serie to legend.</p></td>
     </tr>
@@ -357,6 +370,7 @@
   <span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>LETTERS</span>, <span class='fl'>10</span>),
   <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>value</span>,
   <span class='kw'>size</span> <span class='kw'>=</span> <span class='no'>value</span>,
+  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"circle"</span>, <span class='st'>"rect"</span>, <span class='st'>"triangle"</span>), <span class='fl'>10</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
   <span class='kw'>grp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"grp1"</span>, <span class='st'>"grp2"</span>), <span class='fl'>5</span>),
   <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
@@ -369,9 +383,8 @@
 
 <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>e_graph</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_graph_nodes</span>(<span class='no'>nodes</span>, <span class='no'>name</span>, <span class='no'>value</span>, <span class='no'>size</span>, <span class='no'>grp</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_graph_edges</span>(<span class='no'>edges</span>, <span class='no'>source</span>, <span class='no'>target</span>)
-
+  <span class='fu'>e_graph_nodes</span>(<span class='no'>nodes</span>, <span class='no'>name</span>, <span class='no'>value</span>, <span class='no'>size</span>, <span class='no'>grp</span>, <span class='no'>symbol</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_graph_edges</span>(<span class='no'>edges</span>, <span class='no'>source</span>, <span class='no'>target</span>)</div><div class='output co'>#&gt; <span class='error'>Error in select_impl(.data, vars): SET_VECTOR_ELT() can only be applied to a 'list', not a 'symbol'</span></div><div class='input'>
 <span class='co'>#Use graphGL for larger networks</span>
 <span class='no'>nodes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
   <span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='no'>LETTERS</span>, <span class='fl'>1</span>:<span class='fl'>1000</span>),
@@ -390,7 +403,8 @@
 <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>e_graph_gl</span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>e_graph_nodes</span>(<span class='no'>nodes</span>, <span class='no'>name</span>, <span class='no'>value</span>, <span class='no'>size</span>, <span class='no'>grp</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_graph_edges</span>(<span class='no'>edges</span>, <span class='no'>source</span>, <span class='no'>target</span>)</div></pre>
+  <span class='fu'>e_graph_edges</span>(<span class='no'>edges</span>, <span class='no'>source</span>, <span class='no'>target</span>)</div><div class='output co'>#&gt; <span class='error'>Error in select_impl(.data, vars): SET_VECTOR_ELT() can only be applied to a 'list', not a 'symbol'</span></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

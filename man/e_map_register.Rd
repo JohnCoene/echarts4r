@@ -8,9 +8,14 @@
 \usage{
 e_map_register(e, name, json)
 
-e_map_register_p(name, json, session = shiny::getDefaultReactiveDomain())
+e_map_register_p(
+  name,
+  json,
+  async = FALSE,
+  session = shiny::getDefaultReactiveDomain()
+)
 
-e_map_register_ui(name, json)
+e_map_register_ui(name, json, async = FALSE)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}}.}
@@ -18,6 +23,8 @@ e_map_register_ui(name, json)
 \item{name}{Name of map, to use in \code{\link{e_map}}.}
 
 \item{json}{\href{http://geojson.org/}{Geojson}.}
+
+\item{async}{Whether to read the file asynchronously.}
 
 \item{session}{A valid Shiny session.}
 }
