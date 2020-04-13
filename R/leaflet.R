@@ -32,6 +32,10 @@ e_leaflet <- function(e, roam = TRUE, ...){
   leaf <- list(...)
   leaf$roam <- roam
   leaf$tiles <- list()
+
+  # remove axis
+  e <- .rm_axis(e, TRUE, "x")
+  e <- .rm_axis(e, TRUE, "y")
   
   e$x$opts$leaflet <- leaf
   e
@@ -46,7 +50,7 @@ e_leaflet_tile <- function(e, template = "https://{s}.tile.openstreetmap.fr/hot/
   if(!"leaflet" %in% pkgs)
     stop("Requires the `leaflet` package installed", call. = FALSE)
 
-  if(!length(e$x$opts$leaflet$tiles))
+  if(!length(e$x$opts$leaflet$roam))
     e <- e_leaflet(e)
   
   tile <- list(...)
