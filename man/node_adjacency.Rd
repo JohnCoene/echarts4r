@@ -12,7 +12,7 @@ e_unfocus_adjacency_p(proxy, ...)
 \arguments{
 \item{proxy}{An echarts4r proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{index}{Index of node to focus on.}
+\item{index}{One or more node index to focus on.}
 
 \item{...}{Any other options, see 
 \href{https://echarts.apache.org/en/api.html#action.graph}{official documentation} and details.}
@@ -73,7 +73,7 @@ edges <- data.frame(
     observeEvent(input$focus, {
     
       echarts4rProxy("graph") \%>\% 
-        e_focus_adjacency(
+        e_focus_adjacency_p(
           seriesIndex = 0,
           index = input$index
         )
@@ -83,7 +83,7 @@ edges <- data.frame(
     observeEvent(input$unfocus, {
       
       echarts4rProxy("graph") \%>\% 
-        e_unfocus_adjacency(seriesIndex = 0)
+        e_unfocus_adjacency_p(seriesIndex = 0)
       
     })
   

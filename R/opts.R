@@ -931,9 +931,6 @@ e_connect_group <- function(e, group){
 #' @export
 e_disconnect_group <- function(e, group = NULL){
   
-  if(missing(group))
-    stop("missing group", call. = FALSE)
-  
   e$x$groupDisconnect <- group
   
   e

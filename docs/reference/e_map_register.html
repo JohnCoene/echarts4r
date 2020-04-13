@@ -73,6 +73,7 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </head>
 
   <body>
@@ -255,7 +256,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -266,6 +267,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -286,7 +288,7 @@
   <span class='no'>name</span>,
   <span class='no'>json</span>,
   <span class='kw'>async</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/domains'>getDefaultReactiveDomain</a></span>()
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>()
 )
 
 <span class='fu'>e_map_register_ui</span>(<span class='no'>name</span>, <span class='no'>json</span>, <span class='kw'>async</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
@@ -324,17 +326,16 @@ register the map globally in the Shiny UI, not that then <code>json</code> must 
 from the UI (generally www folder).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='no'>json</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>jsonlite</span><span class='kw ns'>::</span><span class='fu'><a href='https://jeroen.cran.dev/jsonlite/reference/read_json.html'>read_json</a></span>(<span class='st'>"http://www.echartsjs.com/gallery/data/asset/geo/USA.json"</span>)
 
 <span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>states</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/row.names'>row.names</a></span>(<span class='no'>.</span>)) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>states</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/row.names.html'>row.names</a></span>(<span class='no'>.</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>states</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_map_register</span>(<span class='st'>"USA"</span>, <span class='no'>json</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='map.html'>e_map</a></span>(<span class='no'>Murder</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='st'>"USA"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='no'>Murder</span>)
-<span class='co'># }</span><div class='input'>
-</div></pre>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -346,6 +347,7 @@ from the UI (generally www folder).</p>
 
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -361,6 +363,7 @@ from the UI (generally www folder).</p>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
    </div>
 
@@ -383,6 +386,8 @@ from the UI (generally www folder).</p>
 </script>
 
 
+
   </body>
 </html>
+
 

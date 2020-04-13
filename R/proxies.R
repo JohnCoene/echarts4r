@@ -208,7 +208,7 @@ e_hidetip_p <- function(proxy){
 #' Focus or unfocus on node adjacency.
 #' 
 #' @inheritParams e_highlight_p
-#' @param index Index of node to focus on.
+#' @param index One or more node index to focus on.
 #' @param ... Any other options, see 
 #' \href{https://echarts.apache.org/en/api.html#action.graph}{official documentation} and details.
 #' 
@@ -264,7 +264,7 @@ e_hidetip_p <- function(proxy){
 #'     observeEvent(input$focus, {
 #'     
 #'       echarts4rProxy("graph") %>% 
-#'         e_focus_adjacency(
+#'         e_focus_adjacency_p(
 #'           seriesIndex = 0,
 #'           index = input$index
 #'         )
@@ -274,7 +274,7 @@ e_hidetip_p <- function(proxy){
 #'     observeEvent(input$unfocus, {
 #'       
 #'       echarts4rProxy("graph") %>% 
-#'         e_unfocus_adjacency(seriesIndex = 0)
+#'         e_unfocus_adjacency_p(seriesIndex = 0)
 #'       
 #'     })
 #'   
@@ -298,14 +298,16 @@ e_focus_adjacency_p <- function(proxy, index, ...){
   if(sum(hasArgs) != 1)
     stop("Must pass one of seriesId, seriesIndex, or seriesName", call. = FALSE)
   
-  data <- list(
-    id = proxy$id,
-    opts = list(
-      type = "focusNodeAdjacency",
-      dataIndex = index,
-      ...
+  data <- purrr::map(index, function(i, id){
+    list(
+      id = id,
+      opts = list(
+        type = "focusNodeAdjacency",
+        dataIndex = i,
+        ...
+      )
     )
-  )
+  }, id = proxy$id)
   
   proxy$session$sendCustomMessage("e_focus_node_adjacency_p", data)
   
