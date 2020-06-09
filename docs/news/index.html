@@ -72,7 +72,6 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
   <body>
@@ -255,7 +254,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -266,7 +265,6 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
@@ -287,6 +285,7 @@
 <li>
 <code>e_leaflet*</code> functions now correctly apply the <code>roam</code> argument <a href="https://github.com/JohnCoene/echarts4r/issues/147">#147</a>
 </li>
+<li>Internals changes for dplyr &gt;= 0.7.0</li>
 </ul>
 </div>
     <div id="echarts4r-0309000" class="section level1">
@@ -330,7 +329,7 @@
 <code>e_tooltip_choro_formatter</code> tooltip formatter for choropleth maps added, thanks to <a href="https://github.com/artemklevtsov">Artem</a>.</li>
 <li>Tooltip formatters correctly identify locale on UNIX systems, thanks to <a href="https://github.com/artemklevtsov">Artem</a>.</li>
 <li>
-<code><a href="../reference/mark.html">e_mark_point()</a></code>, <code><a href="../reference/mark.html">e_mark_line()</a></code> and <code><a href="../reference/mark.html">e_mark_area()</a></code> no longer use <code><a href="https://rdrr.io/r/base/grep.html">grep()</a></code>, which means the serie will only be matched with the exact same name. Thanks <a href='https://github.com/shrektan'>@shrektan</a> for the reporting and PR (#80, #81).</li>
+<code><a href="../reference/mark.html">e_mark_point()</a></code>, <code><a href="../reference/mark.html">e_mark_line()</a></code> and <code><a href="../reference/mark.html">e_mark_area()</a></code> no longer use <code><a href="https://www.rdocumentation.org/packages/base/topics/grep">grep()</a></code>, which means the serie will only be matched with the exact same name. Thanks <a href='https://github.com/shrektan'>@shrektan</a> for the reporting and PR (#80, #81).</li>
 <li>Multiple <code>e_title</code> now allowed.</li>
 <li>Multiple <code>e_visual_map</code> in <a href="https://echarts4r.john-coene.com/articles/timeline.html">timelines</a> is now fixed.</li>
 <li>Corrected all links (or so I think).</li>
@@ -594,7 +593,6 @@
 
 </div>
 
-
       <footer>
       <div class="copyright">
   <p>Developed by <a href='http://john-coene.com'>John Coene</a>.</p>
@@ -609,7 +607,6 @@
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -632,8 +629,6 @@
 </script>
 
 
-
   </body>
 </html>
-
 

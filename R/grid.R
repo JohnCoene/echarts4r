@@ -527,7 +527,7 @@ e_single_axis <- function(e, index = 0, ...){
       
       vect <- c()
       for(i in 1:length(e$x$data)){
-        dat <- e$x$data[[i]] %>% dplyr::select_(e$x$mapping$x) %>% unlist()
+        dat <- e$x$data[[i]] %>% dplyr::select(e$x$mapping$x) %>% unlist()
         dat <- unname(dat)
         dat <- as.character(dat)
         

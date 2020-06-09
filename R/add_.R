@@ -25,7 +25,7 @@ e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 
       e <- .set_x_axis(e, x_index, i)
     
     if(coord_system == "polar"){
-      e_serie$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
+      e_serie$data <- e$x$data[[i]] %>% dplyr::select(serie) %>% unlist %>% unname %>% as.list
     }
     
     # timeline
@@ -119,7 +119,7 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
       }
       
     } else if(coord_system == "polar") {
-      l$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
+      l$data <- e$x$data[[i]] %>% dplyr::select(serie) %>% unlist %>% unname %>% as.list
     }
     
     if(!e$x$tl){
@@ -201,7 +201,7 @@ e_area_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
       l$yAxisIndex <- y_index
       l$xAxisIndex <- x_index
     } else if(coord_system == "polar") {
-      l$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
+      l$data <- e$x$data[[i]] %>% dplyr::select(serie) %>% unlist %>% unname %>% as.list
     }
     
     if(!e$x$tl){
@@ -285,7 +285,7 @@ e_step_ <- function(e, serie, bind = NULL, step = c("start", "middle", "end"), f
       l$yAxisIndex <- y_index
       l$xAxisIndex <- x_index
     } else if(coord_system == "polar") {
-      l$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
+      l$data <- e$x$data[[i]] %>% dplyr::select(serie) %>% unlist %>% unname %>% as.list
     }
     
     if(!e$x$tl){
@@ -377,7 +377,7 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol = NULL, symbol
     e.serie <- list(data = xy)
     
     if(coord_system == "polar"){
-      e.serie$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
+      e.serie$data <- e$x$data[[i]] %>% dplyr::select(serie) %>% unlist %>% unname %>% as.list
     }
     
     opts <- list(
@@ -490,7 +490,7 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol = NULL,
     e.serie <- list(data = xy)
     
     if(coord_system == "polar"){
-      e.serie$data <- e$x$data[[i]] %>% dplyr::select_(serie) %>% unlist %>% unname %>% as.list
+      e.serie$data <- e$x$data[[i]] %>% dplyr::select(serie) %>% unlist %>% unname %>% as.list
     }
     
     opts <- list(
@@ -861,7 +861,7 @@ e_parallel_ <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE){
   e <- .rm_axis(e, rm_y, "y")
   
   e$x$data[[1]] %>% 
-    dplyr::select_(...) -> df
+    dplyr::select(...) -> df
   
   # remove names
   data <- df
@@ -1414,7 +1414,7 @@ e_surface_ <- function(e, y, z, bind = NULL, name = NULL, rm_x = TRUE, rm_y = TR
     row.names(e$x$data[[i]]) <- NULL
     
     data <- e$x$data[[i]] %>% 
-      dplyr::select_(e$x$mapping$x, y, z) %>% 
+      dplyr::select(e$x$mapping$x, y, z) %>% 
       unname(.) -> data
     
     data <- apply(data, 1, as.list) 
@@ -2011,7 +2011,7 @@ e_error_bar_ <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 
     
     if(coord_system == "polar"){
       e_serie$data <- e$x$data[[i]] %>% 
-        dplyr::select_(lower, upper) %>% 
+        dplyr::select(lower, upper) %>% 
         unlist %>% unname %>% as.list
     }
     

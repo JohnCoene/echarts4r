@@ -80,7 +80,7 @@ e_append1_p_ <- function(proxy, series_index = NULL, data, x, y){
     stop("must pass echarts4rProxy object", call. = FALSE)
   
   dlist <- data %>% 
-    dplyr::select_(x, y) %>% 
+    dplyr::select(x, y) %>% 
     unname() %>% 
     apply(1, as.list)
   
@@ -118,7 +118,7 @@ e_append2_p_ <- function(proxy, series_index = NULL, data, x, y, z, scale = NULL
     stop("must pass echarts4rProxy object", call. = FALSE)
   
   data %>% 
-    dplyr::select_(x, y, z) -> data
+    dplyr::select(x, y, z) -> data
   
   if(!is.null(scale))
     data[[4]] <- scale(data[[3]]) * symbol_size

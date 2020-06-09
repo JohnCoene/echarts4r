@@ -11,7 +11,7 @@ LazyData: true
 Imports:
   htmlwidgets,
   magrittr,
-  dplyr,
+  dplyr (>= 0.7.0),
   purrr,
   countrycode,
   d3r,

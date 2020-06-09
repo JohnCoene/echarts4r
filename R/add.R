@@ -1752,20 +1752,26 @@ e_lines_3d.echarts4r <- function(e, source_lon, source_lat, target_lon, target_l
   
   if(missing(source_lat) || missing(source_lon) || missing(target_lat) || missing(target_lon))
     stop("missing coordinates", call. = FALSE)
+  
   if(missing(source_name))
     source_name <- NULL
+  else
+    source_name <- deparse(substitute(source_name))
   
   if(missing(target_name))
     target_name <- NULL
+  else 
+    target_name <- deparse(substitute(target_name))
   
   if(missing(value))
     value <- NULL
+  else 
+    value <- deparse(substitute(value))
   
   e_lines_3d_(
     e, deparse(substitute(source_lon)), deparse(substitute(source_lat)), 
     deparse(substitute(target_lon)), deparse(substitute(target_lat)), 
-    deparse(substitute(source_name)), deparse(substitute(target_name)),
-    deparse(substitute(value)),
+    source_name, target_name, value,
     name, coord_system, rm_x, rm_y, 
     ...
   )
@@ -2076,7 +2082,7 @@ e_surface.echarts4rProxy <- function(e, y, z, bind, name = NULL,
 #' 
 #' @rdname e_lines
 #' @export
-e_lines <- function(e, source_lon, source_lat, target_lon, target_lat, source_name, target_name ,value, coord_system = "geo", name = NULL, 
+e_lines <- function(e, source_lon, source_lat, target_lon, target_lat, source_name, target_name, value, coord_system = "geo", name = NULL, 
                     rm_x = TRUE, rm_y = TRUE, ...) UseMethod("e_lines")
 
 #' @export 
@@ -2091,17 +2097,23 @@ e_lines.echarts4r <- function(e, source_lon, source_lat, target_lon, target_lat,
   
   if(missing(source_name))
     source_name <- NULL
+  else
+    source_name <- deparse(substitute(source_name))
   
   if(missing(target_name))
     target_name <- NULL
+  else
+    target_name <- deparse(substitute(target_name))
   
   if(missing(value))
     value <- NULL
+  else
+    value <- deparse(substitute(value))
   
   e_lines_(e, deparse(substitute(source_lon)), deparse(substitute(source_lat)), 
            deparse(substitute(target_lon)), deparse(substitute(target_lat)),
-           deparse(substitute(source_name)), deparse(substitute(target_name)),
-           deparse(substitute(value)),
+           source_name, target_name,
+           value,
            coord_system, name, rm_x, rm_y, ...)
 }
 
