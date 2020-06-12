@@ -36,8 +36,8 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{title}{Title of charts.}
 }
 \value{
-\code{e_arrange}: in an interactive session, returns a \link[htmltools]{browsable}, in \code{rmarkdown} returns a 
-container (\link[htmltools]{div}).
+\code{e_arrange}: in an interactive session, returns a \code{htmltools::browsable}, in \code{rmarkdown} returns a 
+container (\code{htmltools::div}).
 }
 \description{
 Connect charts together.

@@ -16,7 +16,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{position}{Position of button, \code{top} or \code{bottom}.}
 
-\item{tag}{A Valid \link[htmltools]{tags} function.}
+\item{tag}{A Valid \code{htmltools::tags} function.}
 }
 \description{
 Add a button to your visualisation.

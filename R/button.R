@@ -4,7 +4,7 @@
 #' 
 #' @inheritParams e_bar
 #' @param position Position of button, \code{top} or \code{bottom}.
-#' @param tag A Valid \link[htmltools]{tags} function.
+#' @param tag A Valid \code{htmltools::tags} function.
 #' @param id A valid CSS id.
 #' @param ... Content of the button, complient with \code{htmltools}.
 #' 

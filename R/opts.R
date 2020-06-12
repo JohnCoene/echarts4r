@@ -867,8 +867,8 @@ e_text_style <- function(e, ...){
 #'   \item{\code{e_arrange}: arrange charts.}
 #' }
 #' 
-#' @return \code{e_arrange}: in an interactive session, returns a \link[htmltools]{browsable}, in \code{rmarkdown} returns a 
-#' container (\link[htmltools]{div}).
+#' @return \code{e_arrange}: in an interactive session, returns a \code{htmltools::browsable}, in \code{rmarkdown} returns a 
+#' container (\code{htmltools::div}).
 #' 
 #' @examples
 #' # linked datazoom

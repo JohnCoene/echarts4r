@@ -15,7 +15,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{json}{Whether to return the JSON, otherwise returns a \code{list}.}
 
-\item{...}{Additional options to pass to \link[jsonlite]{toJSON}.}
+\item{...}{Additional options to pass to \link[=jsonlite]{toJSON}.}
 
 \item{txt}{JSON character string, url, or file.}
 }
