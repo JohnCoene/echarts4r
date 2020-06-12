@@ -12,6 +12,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{dplyr}{\code{\link[dplyr]{group_by}}, \code{\link[dplyr]{group_by_}}}
+  \item{dplyr}{\code{\link[dplyr]{group_by}}, \code{dplyr::group_by_}}
 }}
 
