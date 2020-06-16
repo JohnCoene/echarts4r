@@ -4,6 +4,7 @@
 - `e_map_register_ui` added to register a custom map in the Shiny UI, for faster serialisation.
 - `e_leaflet*` functions now correctly apply the `roam` argument [#147](https://github.com/JohnCoene/echarts4r/issues/147)
 - Internals changes for dplyr >= 0.7.0 
+- Correct bug in [boxplot](file:///home/jp/Packages/echarts4r/docs/articles/stats.html#boxplot) thanks to [Matthias](https://github.com/matthias-a) in [issue #163](https://github.com/JohnCoene/echarts4r/issues/163) for the fix.
 
 # echarts4r 0.3.0.9000
 
