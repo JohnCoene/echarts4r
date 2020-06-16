@@ -58,6 +58,7 @@ dependencies:
       - themes/sakura.js
       - themes/tech-blue.js
       - custom/renderers.js
+   stylesheet: custom/style.css
  - name: mapbox
    version: 0.38.0
    src: htmlwidgets/lib/mapbox
