@@ -1,3 +1,7 @@
+# echarts4r 0.3.2
+
+- Bump echarts.js to 4.8.0 and echarts-gl to 1.1.2
+
 # echarts4r 0.3.1.9000
 
 - Added convenience `e_hide_grid_lines` to easily hide grid lines.

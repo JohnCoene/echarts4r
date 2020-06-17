@@ -1,9 +1,9 @@
 dependencies:
  - name: echarts4r
-   version: 4.6.0
-   src: htmlwidgets/lib/echarts-4.6.0
+   version: 4.8.0
+   src: htmlwidgets/lib/echarts-4.8.0
    script: 
-      - echarts.min.js
+      - echarts-en.min.js
       - echarts-gl.min.js
       - ecStat.min.js
       - dataTool.min.js
