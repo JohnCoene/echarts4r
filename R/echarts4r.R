@@ -105,9 +105,9 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
     
     row.names(data) <- NULL
     
-    if(!is.null(xmap) && !isTRUE(timeline))
+    if(!is.null(xmap) && timeline == FALSE)
       data <- .arrange_data_x(data, xmap, reorder = reorder)
-    
+
     x$data <- map_grps_(data, timeline)
   }
   

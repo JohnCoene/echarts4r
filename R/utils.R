@@ -7,9 +7,11 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 .arrange_data_x <- function(data, x, reorder = TRUE){
   vect <- data[[x]]
   
-  if(reorder)
-    if(inherits(vect, "numeric") || inherits(vect, "integer"))
-      data <- data %>% dplyr::arrange(x)
+  if(reorder){
+    if(inherits(vect, "numeric") || inherits(vect, "integer")){
+      data <- data[order(data[[x]]), ]
+    }
+  }
   
   return(data)
 }
@@ -21,7 +23,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   for(i in 1:length(data)){
     if(reorder)
       if(inherits(vect, "numeric") || inherits(vect, "integer"))
-        data[[i]] <- data[[i]] %>% dplyr::arrange(x)
+        data[[i]] <- data[[i]][order(data[[i]][[x]]), ]
   }
   
   return(data)
