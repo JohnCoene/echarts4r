@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Button — e_button • echarts4r</title>
+<title>Pipe operator — %&gt;% • echarts4r</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Button — e_button" />
-<meta property="og:description" content="Add a button to your visualisation." />
+<meta property="og:title" content="Pipe operator — %&gt;%" />
+<meta property="og:description" content="See %&amp;gt;% for details." />
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -273,52 +273,19 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Button</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/button.R'><code>R/button.R</code></a></small>
-    <div class="hidden name"><code>e_button.Rd</code></div>
+    <h1>Pipe operator</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/utils-pipe.R'><code>R/utils-pipe.R</code></a></small>
+    <div class="hidden name"><code>pipe.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Add a button to your visualisation.</p>
+    <p>See %&gt;% for details.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_button</span>(<span class='no'>e</span>, <span class='no'>id</span>, <span class='no'>...</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"top"</span>, <span class='kw'>tag</span> <span class='kw'>=</span> <span class='kw pkg'>htmltools</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>tags</a></span>$<span class='no'>button</span>)</pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
-a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>id</th>
-      <td><p>A valid CSS id.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Content of the button, complient with <code>htmltools</code>.</p></td>
-    </tr>
-    <tr>
-      <th>position</th>
-      <td><p>Position of button, <code>top</code> or <code>bottom</code>.</p></td>
-    </tr>
-    <tr>
-      <th>tag</th>
-      <td><p>A Valid <code><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>htmltools::tags</a></code> function.</p></td>
-    </tr>
-    </table>
+    <pre class="usage"><span class='no'>lhs</span> <span class='kw'>%&gt;%</span> <span class='no'>rhs</span></pre>
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Sepal.Length</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Sepal.Width</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Petal.Length</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='highlight_action.html'>e_highlight</a></span>(<span class='kw'>series_name</span> <span class='kw'>=</span> <span class='st'>"setosa"</span>, <span class='kw'>btn</span> <span class='kw'>=</span> <span class='st'>"myBtn"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_button</span>(<span class='st'>"myBtn"</span>, <span class='st'>"highlight stuff"</span>)</div></pre>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
