@@ -46,6 +46,9 @@
     <loc>http://echarts4r.john-coene.com/reference/e_axis_pointer.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_axis_stagger.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_bar.html</loc>
   </url>
   <url>
@@ -137,6 +140,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_heatmap.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_hide_grid_lines.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_labels.html</loc>
@@ -302,6 +308,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/pie_action.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/pipe.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/radius_axis.html</loc>

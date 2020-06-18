@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -219,13 +219,13 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+      </header><script src="shiny_files/header-attrs-2.2/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Shiny</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2020-02-16</h4>
+            <h4 class="date">2020-06-18</h4>
       
       
       <div class="hidden name"><code>shiny.Rmd</code></div>
@@ -252,7 +252,7 @@ In development
 <a href="#deploy" class="anchor"></a>Deploy</h2>
 <p>A note if you are publishing on <a href="https://www.shinyapps.io/">shinyapps.io</a>, if you have <em>locally</em> installed the development version of the package from <a href="https://github.com/JohnCoene/echarts4r">Github</a> with <code>remotes</code> as indicated on the <a href="/">homepage</a> of the website please reinstall it <code>devtools</code>. Otherwise shinyapps.io will intall the CRAN version which might lead to issues.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># install.packages("devtools")</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/remote-reexports">install_github</a></span>(<span class="st">"JohnCoene/echarts4r"</span>)</span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2"></a>devtools<span class="op">::</span><span class="kw"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"JohnCoene/echarts4r"</span>)</span></code></pre></div>
 <p>If you are using the <a href="">Shiny Server</a>, remember to install the package on the respective server with the following command:</p>
 <pre><code># stable version
 sudo su - -c "R -e \"install.packages('echarts4r', repos = 'https://cran.rstudio.com')\""

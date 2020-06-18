@@ -36,7 +36,7 @@ p <- USArrests %>%
   e_line(Murder) %>% 
   e_area(Rape, name = "Sick basterd", x_index = 1) %>%  # second y axis
   e_title("Your plot", "Subtext", sublink = "https://john-coene.com") %>% 
-  e_x_axis(1, show = FALSE) # hide scond X Axis
+  e_x_axis(index = 1, show = FALSE) # hide second X Axis
 
 p # default plot
 ```

@@ -73,10 +73,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -256,7 +255,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -267,14 +266,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Connect charts</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/opts.R'><code>R/opts.R</code></a></small>
+    
     <div class="hidden name"><code>connections.Rd</code></div>
     </div>
 
@@ -328,23 +326,21 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>e_arrange</code>: in an interactive session, returns a <code><a href='https://rdrr.io/pkg/htmltools/man/browsable.html'>htmltools::browsable</a></code>, in <code>rmarkdown</code> returns a 
-container (<code><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>htmltools::div</a></code>).</p>
+    <p><code>e_arrange</code>: in an interactive session, returns a <code><a href='https://www.rdocumentation.org/packages/htmltools/topics/browsable'>htmltools::browsable</a></code>, in <code>rmarkdown</code> returns a 
+container (<code><a href='https://www.rdocumentation.org/packages/htmltools/topics/builder'>htmltools::div</a></code>).</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p><code>e_arrange</code> may not work properly in the RStudio viewer.</p>
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
     
-
-<ul>
+    <ul>
 <li><p><code>e_connect</code>: connects charts by <code>ids</code>, <em>cannot</em> be disconnected.</p></li>
 <li><p><code>e_group</code>: assigns a group to chart.</p></li>
 <li><p><code>e_connect_group</code>: connects chart with another group.</p></li>
 <li><p><code>e_disconnect_group</code>: diconnects chart from group.</p></li>
 <li><p><code>e_arrange</code>: arrange charts.</p></li>
 </ul>
-
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># linked datazoom</span>
@@ -369,13 +365,18 @@ container (<code><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>htmlto
 
 <span class='fu'>e_arrange</span>(<span class='no'>e1</span>, <span class='no'>e2</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Linked datazoom"</span>)</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <nav id="toc" data-toggle="toc" class="sticky-top">
-      <h2 data-toc-skip>Contents</h2>
-    </nav>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#note">Note</a></li>
+      <li><a href="#functions">Functions</a></li>
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -391,7 +392,6 @@ container (<code><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>htmlto
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -414,8 +414,6 @@ container (<code><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>htmlto
 </script>
 
 
-
   </body>
 </html>
-
 

@@ -1201,6 +1201,17 @@ e_lines_3d_ <- function(e, source_lon, source_lat, target_lon, target_lat, sourc
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
     e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
   }
+
+  # add dependency
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-gl",
+    version = "1.1.2",
+    src = c(file = path),
+    script = "echarts-gl.min.js"
+  )
+
+  e$dependencies <- append(e$dependencies, list(dep)) 
   
   e
 }
@@ -1285,6 +1296,17 @@ e_line_3d_ <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, r
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
     
   }
+
+  # add dependency
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-gl",
+    version = "1.1.2",
+    src = c(file = path),
+    script = "echarts-gl.min.js"
+  )
+
+  e$dependencies <- append(e$dependencies, list(dep)) 
   
   e
 }
@@ -1379,6 +1401,17 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
     
   }
+
+  # add dependency
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-gl",
+    version = "1.1.2",
+    src = c(file = path),
+    script = "echarts-gl.min.js"
+  )
+
+  e$dependencies <- append(e$dependencies, list(dep)) 
   
   e
 }
@@ -1430,6 +1463,17 @@ e_surface_ <- function(e, y, z, bind = NULL, name = NULL, rm_x = TRUE, rm_y = TR
     e$x$opts$series <- append(e$x$opts$series, list(e.serie))
     
   }
+
+  # add dependency
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-gl",
+    version = "1.1.2",
+    src = c(file = path),
+    script = "echarts-gl.min.js"
+  )
+
+  e$dependencies <- append(e$dependencies, list(dep)) 
   
   e
 }
@@ -1571,7 +1615,17 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
     
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(e_serie))
   }
-    
+
+  # add dependency
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-gl",
+    version = "1.1.2",
+    src = c(file = path),
+    script = "echarts-gl.min.js"
+  )
+
+  e$dependencies <- append(e$dependencies, list(dep)) 
   
   e
 }
@@ -1615,6 +1669,17 @@ e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = N
     serie$coordinateSystem <- coord_system
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
+
+  # add dependency
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-gl",
+    version = "1.1.2",
+    src = c(file = path),
+    script = "echarts-gl.min.js"
+  )
+
+  e$dependencies <- append(e$dependencies, list(dep)) 
   
   e
 }
@@ -1685,6 +1750,17 @@ e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRU
   
   if(e$x$tl)
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
+
+  # add dependency
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-gl",
+    version = "1.1.2",
+    src = c(file = path),
+    script = "echarts-gl.min.js"
+  )
+
+  e$dependencies <- append(e$dependencies, list(dep)) 
   
   e
 }

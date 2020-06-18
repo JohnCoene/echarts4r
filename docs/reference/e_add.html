@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -337,9 +337,8 @@ It allows adding those nested data points, see the examples below.</p>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span>() <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(
     <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>fontStyle</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Round'>round</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/n.html'>n</a></span>(), <span class='fl'>5</span>, <span class='fl'>12</span>))
-  )
-
+    <span class='kw'>fontStyle</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Round'>round</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span>(), <span class='fl'>5</span>, <span class='fl'>12</span>))
+  )</div><div class='output co'>#&gt; <span class='message'>`summarise()` regrouping output by 'x' (override with `.groups` argument)</span></div><div class='input'>
 <span class='no'>matrix</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_heatmap.html'>e_heatmap</a></span>(<span class='no'>y</span>, <span class='no'>z</span>) <span class='kw'>%&gt;%</span>

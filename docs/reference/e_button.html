@@ -73,10 +73,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -256,7 +255,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -267,14 +266,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Button</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/button.R'><code>R/button.R</code></a></small>
+    
     <div class="hidden name"><code>e_button.Rd</code></div>
     </div>
 
@@ -282,7 +280,7 @@
     <p>Add a button to your visualisation.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_button</span>(<span class='no'>e</span>, <span class='no'>id</span>, <span class='no'>...</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"top"</span>, <span class='kw'>tag</span> <span class='kw'>=</span> <span class='kw pkg'>htmltools</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>tags</a></span>$<span class='no'>button</span>)</pre>
+    <pre class="usage"><span class='fu'>e_button</span>(<span class='no'>e</span>, <span class='no'>id</span>, <span class='no'>...</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"top"</span>, <span class='kw'>tag</span> <span class='kw'>=</span> <span class='kw pkg'>htmltools</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/htmltools/topics/builder'>tags</a></span>$<span class='no'>button</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -306,7 +304,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     </tr>
     <tr>
       <th>tag</th>
-      <td><p>A Valid <code><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>htmltools::tags</a></code> function.</p></td>
+      <td><p>A Valid <code><a href='https://www.rdocumentation.org/packages/htmltools/topics/builder'>htmltools::tags</a></code> function.</p></td>
     </tr>
     </table>
 
@@ -320,13 +318,15 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   <span class='fu'><a href='highlight_action.html'>e_highlight</a></span>(<span class='kw'>series_name</span> <span class='kw'>=</span> <span class='st'>"setosa"</span>, <span class='kw'>btn</span> <span class='kw'>=</span> <span class='st'>"myBtn"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_button</span>(<span class='st'>"myBtn"</span>, <span class='st'>"highlight stuff"</span>)</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <nav id="toc" data-toggle="toc" class="sticky-top">
-      <h2 data-toc-skip>Contents</h2>
-    </nav>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -342,7 +342,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -365,8 +364,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 </script>
 
 
-
   </body>
 </html>
-
 

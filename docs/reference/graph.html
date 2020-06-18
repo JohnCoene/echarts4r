@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -384,7 +384,8 @@
 <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>e_graph</span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>e_graph_nodes</span>(<span class='no'>nodes</span>, <span class='no'>name</span>, <span class='no'>value</span>, <span class='no'>size</span>, <span class='no'>grp</span>, <span class='no'>symbol</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_graph_edges</span>(<span class='no'>edges</span>, <span class='no'>source</span>, <span class='no'>target</span>)</div><div class='output co'>#&gt; <span class='error'>Error in select_impl(.data, vars): SET_VECTOR_ELT() can only be applied to a 'list', not a 'symbol'</span></div><div class='input'>
+  <span class='fu'>e_graph_edges</span>(<span class='no'>edges</span>, <span class='no'>source</span>, <span class='no'>target</span>)
+
 <span class='co'>#Use graphGL for larger networks</span>
 <span class='no'>nodes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
   <span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='no'>LETTERS</span>, <span class='fl'>1</span>:<span class='fl'>1000</span>),
@@ -403,8 +404,7 @@
 <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>e_graph_gl</span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>e_graph_nodes</span>(<span class='no'>nodes</span>, <span class='no'>name</span>, <span class='no'>value</span>, <span class='no'>size</span>, <span class='no'>grp</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_graph_edges</span>(<span class='no'>edges</span>, <span class='no'>source</span>, <span class='no'>target</span>)</div><div class='output co'>#&gt; <span class='error'>Error in select_impl(.data, vars): SET_VECTOR_ELT() can only be applied to a 'list', not a 'symbol'</span></div><div class='input'>
-</div></pre>
+  <span class='fu'>e_graph_edges</span>(<span class='no'>edges</span>, <span class='no'>source</span>, <span class='no'>target</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

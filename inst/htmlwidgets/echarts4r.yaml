@@ -4,6 +4,5 @@ dependencies:
    src: htmlwidgets/lib/echarts-4.8.0
    script: 
       - echarts-en.min.js
-      - echarts-gl.min.js
       - ecStat.min.js
       - dataTool.min.js
