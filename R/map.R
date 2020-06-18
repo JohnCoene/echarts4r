@@ -385,6 +385,18 @@ e_mapbox <- function(e, token, ...){
     e$x$opts$mapbox <- list(...)
   else
     e$x$opts$baseOption$mapbox <- list(...)
+
+  # add dependency
+  path <- system.file("htmlwidgets/lib/mapbox", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-leaflet",
+    version = "0.38.0",
+    src = c(file = path),
+    script = "mapbox-gl.js",
+    stylesheet = "mapbox-gl.css"
+  )
+
+  e$dependencies <- append(e$dependencies, list(dep))
   
   e
 }

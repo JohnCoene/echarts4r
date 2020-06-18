@@ -1,7 +1,17 @@
 # echarts4r 0.3.2
 
 - Bump echarts.js to 4.8.0 and echarts-gl to 1.1.2
-- Fix `e_add` when used with timeline feature see [#165](https://github.com/JohnCoene/echarts4r/issues/165)
+- Fix `e_add` when used with timeline feature see [#165](https://github.com/JohnCoene/echarts4r/issues/165).
+
+Dynamic dependencies:
+
+- themes
+- leaflet
+- mapbox
+- wordcloud
+- liquidfill
+
+This greatly improves the performances of echarts4r which now loads much faster.
 
 # echarts4r 0.3.1.9000
 

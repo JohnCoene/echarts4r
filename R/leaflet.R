@@ -38,6 +38,19 @@ e_leaflet <- function(e, roam = TRUE, ...){
   e <- .rm_axis(e, TRUE, "y")
   
   e$x$opts$leaflet <- leaf
+
+  # add dependency
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0/plugins", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-leaflet",
+    version = "1.0.0",
+    src = c(file = path),
+    script = "echarts-leaflet.js"
+  )
+
+  e$dependencies <- append(e$dependencies, htmlwidgets::getDependency("leaflet"))
+  e$dependencies <- append(e$dependencies, list(dep))
+
   e
 }
 
@@ -61,8 +74,5 @@ e_leaflet_tile <- function(e, template = "https://{s}.tile.openstreetmap.fr/hot/
     
   e$x$opts$leaflet$tiles <- list(tile)
   
-  htmlwidgets::prependContent(
-    e,
-    htmlwidgets::getDependency("leaflet")
-  )
+  e
 }

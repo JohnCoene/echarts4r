@@ -14,7 +14,7 @@
 #' }
 #' 
 #' @details The function \code{e_theme_register} can be used to register the theme globally
-#' in R markdown or shiny. This is useful because 1) the \code{e_theme_custom} registers the 
+#' in R markdown or shiny (UI). This is useful because 1) the \code{e_theme_custom} registers the 
 #' theme every time and is more computationally expensive.
 #' 
 #' @section Theme names: 
@@ -84,7 +84,19 @@ e_theme <- function(e, name){
   if(missing(name))
     stop("must pass name", call. = FALSE)
   
+  # add name to register
   e$x$theme <- name
+
+  # add dependency
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0/themes", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = name,
+    version = "1.0.0",
+    src = c(file = path),
+    script = paste0(name, ".js")
+  )
+
+  e$dependencies <- append(e$dependencies, list(dep))
   e
 }
 

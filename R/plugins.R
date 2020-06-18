@@ -72,6 +72,17 @@ e_cloud_ <- function(e, word, freq, color = NULL, rm_x = TRUE, rm_y = TRUE, ...)
   )
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
+
+  # add dependency
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0/plugins", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-wordcloud",
+    version = "1.0.0",
+    src = c(file = path),
+    script = "echarts-wordcloud.min.js"
+  )
+
+  e$dependencies <- append(e$dependencies, list(dep))
   
   e
   
@@ -132,6 +143,17 @@ e_liquid_ <- function(e, serie, color = NULL, rm_x = TRUE, rm_y = TRUE, ...){
     unname()
   
   e$x$opts$series <- append(e$x$opts$series, list(serie))
+
+  # add dependency
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0/plugins", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-liquidfill",
+    version = "1.0.0",
+    src = c(file = path),
+    script = "echarts-liquidfill.min.js"
+  )
+
+  e$dependencies <- append(e$dependencies, list(dep))
   
   e
 }
@@ -186,5 +208,17 @@ e_modularity <- function(e, modularity = TRUE){
   )
   
   e$x$opts$series[[length(e$x$opts$series)]]$modularity <- clu
+
+  # add dependency
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0/plugins", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-modularity",
+    version = "1.0.0",
+    src = c(file = path),
+    script = "echarts-graph-modularity.min.js"
+  )
+
+  e$dependencies <- append(e$dependencies, list(dep))
+
   e
 }

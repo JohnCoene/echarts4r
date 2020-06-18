@@ -25,7 +25,7 @@ Add a custom theme or apply a pre-built one.
 }
 \details{
 The function \code{e_theme_register} can be used to register the theme globally
-in R markdown or shiny. This is useful because 1) the \code{e_theme_custom} registers the 
+in R markdown or shiny (UI). This is useful because 1) the \code{e_theme_custom} registers the 
 theme every time and is more computationally expensive.
 }
 \section{Functions}{
