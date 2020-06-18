@@ -47,7 +47,8 @@ Create your own proxies, essentially a wrapper around the
   
   }
   
-  shinyApp(ui, server)
+  if(interactive())
+   shinyApp(ui, server)
 
 }
 

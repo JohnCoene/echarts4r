@@ -78,7 +78,8 @@ Proxies to highlight and downplay series.
    })
  }
  
- shinyApp(ui, server)
+ if(interactive())
+   shinyApp(ui, server)
 
 }
 

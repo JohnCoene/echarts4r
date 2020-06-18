@@ -89,7 +89,8 @@ edges <- data.frame(
   
   }
   
-  shinyApp(ui, server)
+  if(interactive())
+   shinyApp(ui, server)
 
 }
 

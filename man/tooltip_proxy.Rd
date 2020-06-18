@@ -75,7 +75,8 @@ Proxies to show or hide tooltip.
      
    }
    
-   shinyApp(ui, server)
+   if(interactive())
+     shinyApp(ui, server)
 } 
 
 }

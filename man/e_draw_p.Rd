@@ -38,7 +38,8 @@ server <- function(input, output){
   })
 }
 
-shinyApp(ui, server)
+if(interactive())
+ shinyApp(ui, server)
 }
 
 }

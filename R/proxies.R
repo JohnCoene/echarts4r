@@ -65,7 +65,8 @@
 #'    })
 #'  }
 #'  
-#'  shinyApp(ui, server)
+#'  if(interactive())
+#'    shinyApp(ui, server)
 #'
 #' }
 #' 
@@ -166,7 +167,8 @@ e_downplay_p <- function(proxy, series_index = NULL, series_name = NULL){
 #'      
 #'    }
 #'    
-#'    shinyApp(ui, server)
+#'    if(interactive())
+#'      shinyApp(ui, server)
 #' } 
 #' 
 #' @rdname tooltip_proxy
@@ -280,7 +282,8 @@ e_hidetip_p <- function(proxy){
 #'   
 #'   }
 #'   
-#'   shinyApp(ui, server)
+#'   if(interactive())
+#'    shinyApp(ui, server)
 #' 
 #' }
 #' 
@@ -380,7 +383,8 @@ e_unfocus_adjacency_p <- function(proxy, ...){
 #'   
 #'   }
 #'   
-#'   shinyApp(ui, server)
+#'   if(interactive())
+#'    shinyApp(ui, server)
 #' 
 #' }
 #' 
@@ -432,7 +436,8 @@ e_dispatch_action_p <- function(proxy, type, ...){
 #'   })
 #' }
 #' 
-#' shinyApp(ui, server)
+#' if(interactive())
+#'  shinyApp(ui, server)
 #' }
 #' 
 #' @export
@@ -470,7 +475,8 @@ e_capture <- function(e, event){
 #'   })
 #' }
 #' 
-#' shinyApp(ui, server)
+#' if(interactive())
+#'  shinyApp(ui, server)
 #' }
 #' 
 #' @details Useful if you set \code{draw} to \code{FALSE} in \code{\link{e_charts}}.

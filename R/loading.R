@@ -42,7 +42,8 @@
 #'   })
 #' }
 #' 
-#' shinyApp(ui, server)
+#' if(interactive())
+#'  shinyApp(ui, server)
 #' 
 #' # add loading
 #' server <- function(input, output){
@@ -62,7 +63,8 @@
 #'   })
 #' }
 #' 
-#' shinyApp(ui, server)
+#' if(interactive())
+#'  shinyApp(ui, server)
 #' }
 #' 
 #' @rdname loading

@@ -891,7 +891,8 @@ e_text_style <- function(e, ...){
 #'   e_group("grp") %>%  # assign group
 #'   e_connect_group("grp") # connect
 #' 
-#' e_arrange(e1, e2, title = "Linked datazoom")
+#' if(interactive())
+#'  e_arrange(e1, e2, title = "Linked datazoom")
 #' 
 #' @note \code{e_arrange} may not work properly in the RStudio viewer.
 #' 
