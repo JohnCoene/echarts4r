@@ -7,4 +7,3 @@ dependencies:
       - echarts-gl.min.js
       - ecStat.min.js
       - dataTool.min.js
-      - custom/renderers.js

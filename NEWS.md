@@ -11,6 +11,7 @@ Dynamic dependencies:
 - wordcloud
 - liquidfill
 - world.js (underlying world map for e_geo and e_map)
+- error bars (custom renderer)
 
 This greatly improves the performances of echarts4r which now loads much faster.
 
