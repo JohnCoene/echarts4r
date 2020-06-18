@@ -27,16 +27,16 @@ This document details webGL visualisations; webGL is ideal when you have large d
 ## Surface
 
 ```{r}
-data("volcano")
+data("montereybay", package = "rayshader")
 
-surface <- as.data.frame(as.table(volcano))
-surface$Var1 <- as.numeric(surface$Var1)
-surface$Var2 <- as.numeric(surface$Var2)
+bay <- as.data.frame(as.table(montereybay))
+bay$Var1 <- as.numeric(bay$Var1)
+bay$Var2 <- as.numeric(bay$Var2)
 
-surface %>% 
+bay %>%  
   e_charts(Var1) %>% 
-  e_surface(Var2, Freq, wireframe = list(show = FALSE)) %>% 
-  e_visual_map(Freq)
+  e_surface(Var2, Freq) %>% 
+  e_visual_map(Freq) 
 ```
 
 ## Scatter 
