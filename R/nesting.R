@@ -71,7 +71,7 @@ e_add <- function(e, param, ...){
       if(!e$x$tl)
         e$x$opts$series[[i]]$data[[j]][[param]] <- data[[j]]
       else
-        e$x$opts$options$series[[i]]$data[[j]][[param]] <- data[[j]]
+        e$x$opts$options[[i]]$series[[1]]$data[[j]][[param]] <- data[[j]]
       
     }
   }

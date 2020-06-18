@@ -1,6 +1,7 @@
 # echarts4r 0.3.2
 
 - Bump echarts.js to 4.8.0 and echarts-gl to 1.1.2
+- Fix `e_add` when used with timeline feature see [#165](https://github.com/JohnCoene/echarts4r/issues/165)
 
 # echarts4r 0.3.1.9000
 
