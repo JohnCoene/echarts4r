@@ -67,6 +67,35 @@ div(
 )
 ```
 
+
+```{r, echo=FALSE}
+br()
+
+div(
+  class = "thumbnail",
+  style = "text-align:center;",
+  div(
+    tags$i(class = "fa fa-flask fa-5x", style = "color:#293c55;"),
+    class = "caption",
+    h4("New Features"),
+    p("Use (almost) any chart serie as chart proxy, now on CRAN!"),
+    br(),
+    p(
+      htmltools::tags$a(
+        href = "articles/development",
+        class = "btn btn-warning",
+        "Browse"
+      ),
+      htmltools::tags$a(
+        href = "news",
+        class = "btn btn-default",
+        "Changelog"
+      )
+    )
+  )
+)
+```
+
 ## Installation
 
 The package is available on [CRAN](https://CRAN.R-project.org/package=echarts4r). The full installation can be obtained with:
@@ -161,35 +190,6 @@ div(
             "Github"
           )
         )
-      )
-    )
-  )
-)
-```
-
-## Development 
-
-```{r, echo=FALSE}
-div(
-  class = "thumbnail",
-  style = "text-align:center;",
-  div(
-    tags$i(class = "fa fa-flask fa-5x", style = "color:#293c55;"),
-    class = "caption",
-    h4("New Features"),
-    p("On Github but not yet on CRAN; use any chart serie as chart proxy!"),
-    pre(class = "sourceCode r", code(class = "sourceCode r", "remotes::install_github('JohnCoene/echarts4r')")),
-    br(),
-    p(
-      htmltools::tags$a(
-        href = "articles/development",
-        class = "btn btn-warning",
-        "Browse"
-      ),
-      htmltools::tags$a(
-        href = "news",
-        class = "btn btn-default",
-        "Changelog"
       )
     )
   )

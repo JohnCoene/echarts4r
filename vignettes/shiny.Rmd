@@ -23,13 +23,13 @@ e_common(
 ```
 
 <div class="panel panel-default">
-<div class="panel-heading">In development</div>
+<div class="panel-heading">New Features</div>
 <div class="panel-body">
-If you want to further extend echarts4r with Shiny check out what's in the development; a lot of exciting new features to improve your Shiny apps.
+Use (almost) any function on a dynamic proxy!
 </div>
 <div class="panel-footer">
 <a href="development" class="btn btn-warning">
-features
+Documentation
 </a>
 </div>
 </div>
