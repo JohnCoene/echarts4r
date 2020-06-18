@@ -146,6 +146,20 @@ e_map_ <- function(e, serie = NULL, map = "world", name = NULL, rm_x = TRUE, rm_
   
   if(isTRUE(e$x$tl))
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(app))
+
+
+  if(map == "world"){
+    # add dependency
+    path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+    dep <- htmltools::htmlDependency(
+      name = "echarts-world",
+      version = "1.0.0",
+      src = c(file = path),
+      script = "world.js"
+    )
+
+    e$dependencies <- append(e$dependencies, list(dep))
+  }
   
   e
 }
@@ -209,6 +223,19 @@ e_map_3d_ <- function(e, serie = NULL, map = "world", name = NULL, coord_system 
   
   if(isTRUE(e$x$tl))
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(app))
+
+  if(map == "world"){
+    # add dependency
+    path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+    dep <- htmltools::htmlDependency(
+      name = "echarts-world",
+      version = "1.0.0",
+      src = c(file = path),
+      script = "world.js"
+    )
+
+    e$dependencies <- append(e$dependencies, list(dep))
+  }
   
   e
 }
@@ -389,7 +416,7 @@ e_mapbox <- function(e, token, ...){
   # add dependency
   path <- system.file("htmlwidgets/lib/mapbox", package = "echarts4r")
   dep <- htmltools::htmlDependency(
-    name = "echarts-leaflet",
+    name = "echarts-mapbox",
     version = "0.38.0",
     src = c(file = path),
     script = "mapbox-gl.js",
