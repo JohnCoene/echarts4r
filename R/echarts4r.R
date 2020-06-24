@@ -3,10 +3,6 @@ echarts_build <- function(e) {
   e$x$mapping <- NULL
   
   ff <- getOption("ECHARTS4R_FONT_FAMILY")
-  theme <- getOption("ECHARTS4R_THEME", "default")
-  
-  if(e$x$theme == "")
-    e <- e_theme(e, theme)
   
   if(!is.null(ff))
     e <- e_text_style(e, fontFamily = ff)
@@ -176,7 +172,7 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
   x$dispose <- dispose
   
   # create widget
-  htmlwidgets::createWidget(
+  widget <- htmlwidgets::createWidget(
     name = 'echarts4r',
     x,
     width = width,
@@ -191,6 +187,13 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
       padding = 0
     )
   )
+
+  # check for theme
+  theme <- getOption("ECHARTS4R_THEME") # default theme
+  if(!is.null(theme))
+    widget <- e_theme(widget, theme)
+
+  return(widget)
 }
 
 #' @rdname init

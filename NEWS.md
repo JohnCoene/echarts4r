@@ -1,3 +1,7 @@
+# echarts4r 0.3.3
+
+- Fix `e_common` theme, was no longer applied due to dynamic dependencies introduced in `0.3.2`
+
 # echarts4r 0.3.2
 
 - Bump echarts.js to 4.8.0 and echarts-gl to 1.1.2
