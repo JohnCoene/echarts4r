@@ -798,17 +798,36 @@ e_utc <- function(e){
 #' 
 #' @export
 e_flip_coords <- function(e){
-  n <- names(e$x$opts)
-  n <- gsub("xAxis", "RENAME", n)
-  n <- gsub("yAxis", "xAxis", n)
-  n <- gsub("RENAME", "yAxis", n)
-  
-  names(e$x$opts) <- n
-  
-  for(i in 1:length(e$x$opts$series)){
-    for(j in 1:length(e$x$opts$series[[i]]$data)){
-      vals <- e$x$opts$series[[i]]$data[[j]]$value
-      e$x$opts$series[[i]]$data[[j]]$value <- rev(vals)
+
+  if(!e$x$tl){
+    n <- names(e$x$opts)
+    n <- gsub("xAxis", "RENAME", n)
+    n <- gsub("yAxis", "xAxis", n)
+    n <- gsub("RENAME", "yAxis", n)
+    
+    names(e$x$opts) <- n
+    
+    for(i in 1:length(e$x$opts$series)){
+      for(j in 1:length(e$x$opts$series[[i]]$data)){
+        vals <- e$x$opts$series[[i]]$data[[j]]$value
+        e$x$opts$series[[i]]$data[[j]]$value <- rev(vals)
+      }
+    }
+  } else {
+    n <- names(e$x$opts$baseOption)
+    n <- gsub("xAxis", "RENAME", n)
+    n <- gsub("yAxis", "xAxis", n)
+    n <- gsub("RENAME", "yAxis", n)
+    
+    names(e$x$opts$baseOption) <- n
+    
+    for(i in 1:length(e$x$opts$options)){
+      for(j in 1:length(e$x$opts$options[[i]]$series)){
+        for(k in 1:length(e$x$opts$options[[i]]$series[[j]]$data)){
+          vals <- e$x$opts$options[[i]]$series[[j]]$data[[k]]$value
+          e$x$opts$options[[i]]$series[[j]]$data[[k]]$value <- rev(vals)
+        }
+      }
     }
   }
   
