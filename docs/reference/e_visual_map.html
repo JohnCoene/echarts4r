@@ -8,6 +8,13 @@
 
 <title>Visual Map — e_visual_map • echarts4r</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -73,9 +80,10 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -89,7 +97,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -255,7 +263,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -266,13 +274,14 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Visual Map</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/opts.R'><code>R/opts.R</code></a></small>
     <div class="hidden name"><code>e_visual_map.Rd</code></div>
     </div>
 
@@ -281,21 +290,21 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_visual_map</span>(
-  <span class='no'>e</span>,
-  <span class='no'>serie</span>,
-  <span class='kw'>calculable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"continuous"</span>, <span class='st'>"piecewise"</span>),
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>
+  <span class='kw'>e</span>,
+  <span class='kw'>serie</span>,
+  calculable = <span class='fl'>TRUE</span>,
+  type = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"continuous"</span>, <span class='st'>"piecewise"</span>),
+  scale = <span class='kw'>NULL</span>,
+  <span class='kw'>...</span>
 )
 
 <span class='fu'>e_visual_map_</span>(
-  <span class='no'>e</span>,
-  <span class='kw'>serie</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>calculable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"continuous"</span>, <span class='st'>"piecewise"</span>),
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>
+  <span class='kw'>e</span>,
+  serie = <span class='kw'>NULL</span>,
+  calculable = <span class='fl'>TRUE</span>,
+  type = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"continuous"</span>, <span class='st'>"piecewise"</span>),
+  scale = <span class='kw'>NULL</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -303,8 +312,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
-a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
+a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>serie</th>
@@ -339,66 +348,63 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># scaled data</span>
-<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>wt</span>, <span class='no'>qsec</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='no'>e_scale</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_visual_map</span>(<span class='no'>qsec</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='no'>e_scale</span>)
+<span class='kw'>mtcars</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_charts</span>(<span class='kw'>mpg</span>) <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_scatter</span>(<span class='kw'>wt</span>, <span class='kw'>qsec</span>, scale = <span class='kw'>e_scale</span>) <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_visual_map</span>(<span class='kw'>qsec</span>, scale = <span class='kw'>e_scale</span>)
 
 <span class='co'># dimension</span>
 <span class='co'># color according to y axis</span>
-<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>wt</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_visual_map</span>(<span class='no'>wt</span>, <span class='kw'>dimension</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-
+<span class='kw'>mtcars</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_charts</span>(<span class='kw'>mpg</span>) <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_scatter</span>(<span class='kw'>wt</span>) <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_visual_map</span>(<span class='kw'>wt</span>, dimension = <span class='fl'>1</span>)
+  
 <span class='co'># color according to x axis</span>
-<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>wt</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_visual_map</span>(<span class='no'>mpg</span>, <span class='kw'>dimension</span> <span class='kw'>=</span> <span class='fl'>0</span>)
+<span class='kw'>mtcars</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_charts</span>(<span class='kw'>mpg</span>) <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_scatter</span>(<span class='kw'>wt</span>) <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_visual_map</span>(<span class='kw'>mpg</span>, dimension = <span class='fl'>0</span>)
 
-<span class='no'>v</span> <span class='kw'>&lt;-</span> <span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>10</span>]
-<span class='no'>matrix</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>v</span>, <span class='fl'>300</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>v</span>, <span class='fl'>300</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span>),
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span>),
-  <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span>),
-  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>x</span>, <span class='no'>y</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span>(
-    <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>z</span>),
-    <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>color</span>),
-    <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>size</span>)
-  ) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span>()</div><div class='output co'>#&gt; <span class='message'>`summarise()` regrouping output by 'x' (override with `.groups` argument)</span></div><div class='input'>
-<span class='no'>matrix</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_scatter_3d.html'>e_scatter_3d</a></span>(<span class='no'>y</span>, <span class='no'>z</span>, <span class='no'>color</span>, <span class='no'>size</span>) <span class='kw'>%&gt;%</span>
+<span class='kw'>v</span> <span class='op'>&lt;-</span> <span class='kw'>LETTERS</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>]
+<span class='kw'>matrix</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  x = <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>v</span>, <span class='fl'>300</span>, replace = <span class='fl'>TRUE</span>), 
+  y = <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>v</span>, <span class='fl'>300</span>, replace = <span class='fl'>TRUE</span>), 
+  z = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span>),
+  color = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span>),
+  size = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span>),
+  stringsAsFactors = <span class='fl'>FALSE</span>
+) <span class='op'>%&gt;%</span> 
+  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>x</span>, <span class='kw'>y</span>) <span class='op'>%&gt;%</span> 
+  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span>(
+    z = <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='kw'>z</span>),
+    color = <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='kw'>color</span>),
+    size = <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='kw'>size</span>)
+  ) <span class='op'>%&gt;%</span> 
+  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span>() </div><div class='output co'>#&gt; <span class='message'>`summarise()` regrouping output by 'x' (override with `.groups` argument)</span></div><div class='input'>  
+<span class='kw'>matrix</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_charts</span>(<span class='kw'>x</span>) <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_scatter_3d</span>(<span class='kw'>y</span>, <span class='kw'>z</span>, <span class='kw'>color</span>, <span class='kw'>size</span>) <span class='op'>%&gt;%</span> 
   <span class='fu'>e_visual_map</span>(
-    <span class='no'>z</span>, <span class='co'># scale to z</span>
-    <span class='kw'>inRange</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>symbolSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>30</span>)), <span class='co'># scale size</span>
-    <span class='kw'>dimension</span> <span class='kw'>=</span> <span class='fl'>3</span> <span class='co'># third dimension 0 = x, y = 1, z = 2, size = 3</span>
-  ) <span class='kw'>%&gt;%</span>
+    <span class='kw'>z</span>, <span class='co'># scale to z</span>
+    inRange = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(symbolSize = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>30</span>)), <span class='co'># scale size</span>
+    dimension = <span class='fl'>3</span> <span class='co'># third dimension 0 = x, y = 1, z = 2, size = 3</span>
+  ) <span class='op'>%&gt;%</span> 
   <span class='fu'>e_visual_map</span>(
-    <span class='no'>z</span>, <span class='co'># scale to z</span>
-    <span class='kw'>inRange</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'#bf444c'</span>, <span class='st'>'#d88273'</span>, <span class='st'>'#f6efa6'</span>)), <span class='co'># scale colors</span>
-    <span class='kw'>dimension</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='co'># third dimension 0 = x, y = 1, z = 2, size = 3, color = 4</span>
-    <span class='kw'>bottom</span> <span class='kw'>=</span> <span class='fl'>300</span> <span class='co'># padding to avoid visual maps overlap</span>
-  )</div></pre>
+    <span class='kw'>z</span>, <span class='co'># scale to z</span>
+    inRange = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(color = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'#bf444c'</span>, <span class='st'>'#d88273'</span>, <span class='st'>'#f6efa6'</span>)), <span class='co'># scale colors</span>
+    dimension = <span class='fl'>4</span>, <span class='co'># third dimension 0 = x, y = 1, z = 2, size = 3, color = 4</span>
+    bottom = <span class='fl'>300</span> <span class='co'># padding to avoid visual maps overlap</span>
+  )
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#scaling-function">Scaling function</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -406,7 +412,6 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
 </div>
 
 <p style="text-align: center;">
-  <a class="github-button" href="https://github.com/sponsors/JohnCoene" data-icon="octicon-heart" aria-label="Sponsor @JohnCoene on GitHub">Sponsor</a>
   <br>
   <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/JohnCoene"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
 </p>
@@ -414,6 +419,7 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
    </div>
 
@@ -436,6 +442,8 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
 </script>
 
 
+
   </body>
 </html>
+
 

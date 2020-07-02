@@ -5,19 +5,25 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Create Interactive Graphs with 'Echarts JavaScript' Version 4 • echarts4r</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><!-- docsearch --><script src="docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
+<title>Create Interactive Graphs with Echarts JavaScript Version 4 • echarts4r</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script><!-- docsearch --><script src="docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <link href="docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="extra.css" rel="stylesheet">
-<meta property="og:title" content="Create Interactive Graphs with 'Echarts JavaScript' Version 4">
-<meta property="og:description" content="Easily create interactive charts by leveraging the 'Echarts Javascript' library which includes
-    36 chart types, themes, 'Shiny' proxies and animations.">
+<meta property="og:title" content="Create Interactive Graphs with Echarts JavaScript Version 4">
+<meta property="og:description" content="Easily create interactive charts by leveraging the Echarts Javascript library which includes
+    36 chart types, themes, Shiny proxies and animations.">
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png">
-<meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#293c55">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -25,11 +31,12 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+
   gtag('config', 'UA-74544116-1');
 </script><!-- Place this tag in your head or just before your close body tag. --><script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
-<body>
-    <div class="container template-article">
+<body data-spy="scroll" data-target="#toc">
+    <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -41,7 +48,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -206,7 +213,7 @@
   </a>
 </li>
       </ul>
-<form class="navbar-form navbar-right" role="search">
+<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
@@ -220,89 +227,84 @@
 <!--/.navbar -->
 
       
-      </header><script src="index_files/header-attrs-2.2/header-attrs.js"></script><script src="index_files/htmlwidgets-1.5.1/htmlwidgets.js"></script><script src="index_files/echarts4r-4.8.0/echarts-en.min.js"></script><script src="index_files/echarts4r-4.8.0/echarts-gl.min.js"></script><script src="index_files/echarts4r-4.8.0/ecStat.min.js"></script><script src="index_files/echarts4r-4.8.0/dataTool.min.js"></script><script src="index_files/echarts4r-binding-0.3.2/echarts4r.js"></script><div class="row">
-  <div class="col-md-9 contents">
-    
 
-    
-    
+      </header><div class="row">
+  <div class="contents col-md-9">
 <div id="echarts4r" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#echarts4r" class="anchor"></a>echarts4r</h1></div>
 
 <div class="row">
 <div class="col-md-4">
-<img src="reference/figures/logo.png" class="img-responsive responsive-img">
+<img class="img-responsive responsive-img" src="reference/figures/logo.png">
 </div>
 <div class="col-md-8">
-<p>Powerful interactive visualisations in R.</p>
 <p>
-<a class="btn btn-success" href="articles/get_started.html" style="margin-bottom: 5px;">
-<i class="fa fa-rocket"></i>
-Get Started
-</a>
-<a class="btn btn-primary" href="reference/" style="margin-bottom: 5px;">
-<i class="fa fa-code"></i>
-Reference
-</a>
-<a class="btn btn-info" href="articles/timeline" style="margin-bottom: 5px;">
-<i class="fa fa-play"></i>
-Timeline
-</a>
-<a target="_blank" class="btn btn-default" href="http://shiny.john-coene.com/echarts4rShiny" style="margin-bottom: 5px;">
-<i class="fa fa-desktop"></i>
-Shiny Demo
-</a>
+Interactive visualisations for R
 </p>
+<a class="btn btn-success" href="articles/get_started.html" style="margin-bottom: 5px;">Get Started</a> <a class="btn btn-primary" href="reference/" style="margin-bottom: 5px;">Reference</a> <a class="btn btn-info" href="articles/timeline" style="margin-bottom: 5px;">Timeline</a> <a class="btn btn-default" href="http://shiny.john-coene.com/echarts4rShiny" style="margin-bottom: 5px;">Shiny Demo</a>
 </div>
 </div>
-<p><br></p>
+<p><br><br></p>
 <div class="thumbnail" style="text-align:center;">
 <div class="caption">
-<i class="fa fa-flask fa-5x" style="color:#293c55;"></i>
-<h4>New Features</h4>
-<p>Use (almost) any chart serie as chart proxy, now on CRAN!</p>
-<br><p>
-<a href="articles/development" class="btn btn-warning">Browse</a>
-<a href="news" class="btn btn-default">Changelog</a>
+<i class="fa fa-flask fa-4x" style="color:#293c55;"></i>
+<h4>
+New Features
+</h4>
+<p>
+“Use (almost) any chart serie as chart proxy, now on CRAN!”
 </p>
+<br><a class="btn btn-warning" href="articles/development">Explore</a> <a class="btn btn-default" href="news/">Changelog</a>
 </div>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>The package is available on <a href="https://CRAN.R-project.org/package=echarts4r">CRAN</a>. The full installation can be obtained with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"echarts4r"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"echarts4r"</span>)
+</pre></div>
 <p>However, if you only want a <em>lite</em> version you can simply do, this is useful for a lighter version that installs faster if you do not want to use any of the geospatial features of the package:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"echarts4r"</span>, <span class="dt">dependencies =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Depends"</span>, <span class="st">"Imports"</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"echarts4r"</span>, dependencies = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Depends"</span>, <span class="st">"Imports"</span>))
+</pre></div>
 <p>You can also install the <em>unstable</em> development version of echarts4r with <code>remotes</code> from Github, see <a href="news/index.html">changes</a>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># install.packages("remotes")</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>remotes<span class="op">::</span><span class="kw"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"JohnCoene/echarts4r"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># install.packages("remotes")</span>
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"JohnCoene/echarts4r"</span>)
+</pre></div>
 <p>如果您位于中国，请安装:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># install.packages("remotes")</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>remotes<span class="op">::</span><span class="kw"><a href="https://remotes.r-lib.org/reference/install_git.html">install_git</a></span>(<span class="st">"https://gitee.com/JohnCoene/echarts4r"</span>) <span class="co"># gitee</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="co"># install.packages("remotes")</span>
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_git.html">install_git</a></span>(<span class="st">"https://gitee.com/JohnCoene/echarts4r"</span>)
+</pre></div>
 </div>
 <div id="companions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#companions" class="anchor"></a>Companions</h2>
 <p>Companion packages to make <code>echarts4r</code> even better. You can install and load the whole suite with:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>remotes<span class="op">::</span><span class="kw"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"JohnCoene/echarts4r.suite"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"JohnCoene/echarts4r.suite"</span>)
+</pre></div>
 <div class="row">
 <div class="col-md-6">
 <div class="thumbnail" style="text-align:center;">
 <div class="caption">
 <i class="fa fa-globe fa-5x" style="color:#293c55;"></i>
 <h4>
-<code>echarts4r.assets</code>
+echarts4r.assets
 </h4>
-<p>Icons, and assets for globes, add visually interesting globe overlays and background.</p>
-<pre class="sourceCode r">
-<code class="sourceCode r"><a href="https://remotes.r-lib.org/reference/install_github.html">remotes::install_github('JohnCoene/echarts4r.assets')</a></code>
-</pre>
-<br><p>
-<a href="https://echarts4r-assets.john-coene.com/" target="_blank" class="btn btn-default">Website</a>
-<a href="https://github.com/JohnCoene/echarts4r.assets" target="_blank" class="btn btn-default">Github</a>
+<p>
+Icons, and assets for globes, add visually interesting globe overlays and background.
 </p>
+<pre class="downlit">
+
+
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">'JohnCoene/echarts4r.assets'</span>)
+
+</pre>
+<a class="btn btn-default" href="https://echarts4r-assets.john-coene.com/">Website</a> <a class="btn btn-default" href="https://github.com/JohnCoene/echarts4r.assets">Github</a>
 </div>
 </div>
 </div>
@@ -311,124 +313,20 @@ Shiny Demo
 <div class="caption">
 <i class="fa fa-map-o fa-5x" style="color:#293c55;"></i>
 <h4>
-<code>echarts4r.maps</code>
+echarts4r.maps
 </h4>
-<p>A collection of 215 country maps to use with geo-spatial visualisations.</p>
-<pre class="sourceCode r">
-<code class="sourceCode r"><a href="https://remotes.r-lib.org/reference/install_github.html">remotes::install_github('JohnCoene/echarts4r.maps')</a></code>
-</pre>
-<br><p>
-<a href="https://echarts4r-maps.john-coene.com/" target="_blank" class="btn btn-default">Website</a>
-<a href="https://github.com/JohnCoene/echarts4r.maps" target="_blank" class="btn btn-default">Github</a>
+<p>
+A collection of 215 country maps to use with geo-spatial visualisations.
 </p>
+<pre class="downlit">
+
+
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">'JohnCoene/echarts4r.maps'</span>)
+
+</pre>
+<a class="btn btn-default" href="https://echarts4r-maps.john-coene.com/">Website</a> <a class="btn btn-default" href="https://github.com/JohnCoene/echarts4r.maps">Github</a>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div id="example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
-<p>Create multiple charts, arrange them in a grid and connect their interactions; <em>this is nonsensical chart for demonstration purposes</em>.</p>
-<p>Load necessary libraries.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(echarts4r)</span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(echarts4r.assets)</span></code></pre></div>
-<div class="row">
-<div class="col col-md-6">
-<p>Left chart.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>e1 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="st">  </span><span class="kw"><a href="reference/init.html">e_charts</a></span>(</span>
-<span id="cb7-4"><a href="#cb7-4"></a>    Sepal.Length,</span>
-<span id="cb7-5"><a href="#cb7-5"></a>    <span class="dt">elementId =</span> <span class="st">"chart"</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="st">  </span><span class="kw"><a href="reference/scatter.html">e_scatter</a></span>(</span>
-<span id="cb7-8"><a href="#cb7-8"></a>    Petal.Length, </span>
-<span id="cb7-9"><a href="#cb7-9"></a>    Sepal.Width,</span>
-<span id="cb7-10"><a href="#cb7-10"></a>    <span class="dt">itemStyle =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</span>
-<span id="cb7-11"><a href="#cb7-11"></a>      <span class="dt">shadowColor =</span> <span class="st">"rgba(0,0,0,0.4)"</span>,</span>
-<span id="cb7-12"><a href="#cb7-12"></a>      <span class="dt">shadowBlur =</span> <span class="dv">3</span>,</span>
-<span id="cb7-13"><a href="#cb7-13"></a>      <span class="dt">shadowOffsetY =</span> <span class="dv">3</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a>    )</span>
-<span id="cb7-15"><a href="#cb7-15"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="st">  </span><span class="kw"><a href="reference/e_datazoom.html">e_datazoom</a></span>(<span class="dt">show =</span> <span class="ot">FALSE</span>, <span class="dt">y_index =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="st">  </span><span class="kw"><a href="reference/axis.html">e_x_axis</a></span>(<span class="dt">min =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st">  </span></span>
-<span id="cb7-18"><a href="#cb7-18"></a><span class="st">  </span><span class="kw"><a href="reference/highlight_action.html">e_highlight</a></span>(</span>
-<span id="cb7-19"><a href="#cb7-19"></a>    <span class="dt">series_name =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"setosa"</span>, <span class="st">"versicolor"</span>, <span class="st">"virginica"</span>), </span>
-<span id="cb7-20"><a href="#cb7-20"></a>    <span class="dt">btn =</span> <span class="st">"high"</span></span>
-<span id="cb7-21"><a href="#cb7-21"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-22"><a href="#cb7-22"></a><span class="st">  </span><span class="kw"><a href="reference/highlight_action.html">e_downplay</a></span>(</span>
-<span id="cb7-23"><a href="#cb7-23"></a>    <span class="dt">series_name =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"setosa"</span>, <span class="st">"versicolor"</span>, <span class="st">"virginica"</span>), </span>
-<span id="cb7-24"><a href="#cb7-24"></a>    <span class="dt">btn =</span> <span class="st">"down"</span></span>
-<span id="cb7-25"><a href="#cb7-25"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-26"><a href="#cb7-26"></a><span class="st">  </span><span class="kw"><a href="reference/e_button.html">e_button</a></span>(</span>
-<span id="cb7-27"><a href="#cb7-27"></a>    <span class="st">"high"</span>, <span class="st">"Highlight"</span>, </span>
-<span id="cb7-28"><a href="#cb7-28"></a>    <span class="dt">class =</span> <span class="st">"btn btn-primary"</span>, </span>
-<span id="cb7-29"><a href="#cb7-29"></a>    <span class="dt">position =</span> <span class="st">"bottom"</span></span>
-<span id="cb7-30"><a href="#cb7-30"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-31"><a href="#cb7-31"></a><span class="st">  </span><span class="kw"><a href="reference/e_button.html">e_button</a></span>(</span>
-<span id="cb7-32"><a href="#cb7-32"></a>    <span class="st">"down"</span>, <span class="st">"Downplay"</span>, </span>
-<span id="cb7-33"><a href="#cb7-33"></a>    <span class="dt">class =</span> <span class="st">"btn btn-default"</span>, </span>
-<span id="cb7-34"><a href="#cb7-34"></a>    <span class="dt">position =</span> <span class="st">"bottom"</span></span>
-<span id="cb7-35"><a href="#cb7-35"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-36"><a href="#cb7-36"></a><span class="st">  </span><span class="kw"><a href="reference/e_legend.html">e_legend</a></span>(<span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-37"><a href="#cb7-37"></a><span class="st">  </span><span class="kw"><a href="reference/e_title.html">e_title</a></span>(<span class="st">"Connect charts"</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-38"><a href="#cb7-38"></a><span class="st">  </span><span class="kw"><a href="reference/e-tooltip.html">e_tooltip</a></span>(</span>
-<span id="cb7-39"><a href="#cb7-39"></a>    <span class="dt">trigger =</span> <span class="st">"item"</span>,</span>
-<span id="cb7-40"><a href="#cb7-40"></a>    <span class="dt">axisPointer =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</span>
-<span id="cb7-41"><a href="#cb7-41"></a>      <span class="dt">type =</span> <span class="st">"cross"</span></span>
-<span id="cb7-42"><a href="#cb7-42"></a>    )</span>
-<span id="cb7-43"><a href="#cb7-43"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-44"><a href="#cb7-44"></a><span class="st">  </span><span class="kw"><a href="reference/graphic.html">e_image_g</a></span>(</span>
-<span id="cb7-45"><a href="#cb7-45"></a>    <span class="dt">left =</span> <span class="dv">50</span>,</span>
-<span id="cb7-46"><a href="#cb7-46"></a>    <span class="dt">top =</span> <span class="dv">30</span>,</span>
-<span id="cb7-47"><a href="#cb7-47"></a>    <span class="dt">z =</span> <span class="dv">999</span>,</span>
-<span id="cb7-48"><a href="#cb7-48"></a>    <span class="dt">style =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</span>
-<span id="cb7-49"><a href="#cb7-49"></a>      <span class="dt">image =</span> <span class="st">"reference/figures/logo.png"</span>,</span>
-<span id="cb7-50"><a href="#cb7-50"></a>      <span class="dt">width =</span> <span class="dv">70</span>,</span>
-<span id="cb7-51"><a href="#cb7-51"></a>      <span class="dt">height =</span> <span class="dv">75</span>,</span>
-<span id="cb7-52"><a href="#cb7-52"></a>      <span class="dt">opacity =</span> <span class="fl">.95</span></span>
-<span id="cb7-53"><a href="#cb7-53"></a>    )</span>
-<span id="cb7-54"><a href="#cb7-54"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-55"><a href="#cb7-55"></a><span class="st">  </span><span class="kw"><a href="reference/e_text_style.html">e_text_style</a></span>(<span class="dt">fontFamily =</span> <span class="st">"Raleway"</span>)</span></code></pre></div>
-</div>
-<div class="col col-md-6">
-<p>Right chart.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>e2 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(Species) <span class="op">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="st">  </span><span class="kw"><a href="reference/init.html">e_charts</a></span>(Petal.Length) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="st">  </span><span class="kw"><a href="reference/e_line.html">e_line</a></span>(Sepal.Length) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="st">  </span><span class="kw"><a href="reference/connections.html">e_connect</a></span>(<span class="st">"chart"</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="st">  </span><span class="kw"><a href="reference/e_datazoom.html">e_datazoom</a></span>(<span class="dt">y_index =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="st">  </span><span class="kw"><a href="reference/axis.html">e_x_axis</a></span>(<span class="dt">min =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="st">  </span><span class="kw"><a href="reference/e_legend.html">e_legend</a></span>(</span>
-<span id="cb8-9"><a href="#cb8-9"></a>    <span class="dt">bottom =</span> <span class="dv">5</span>,</span>
-<span id="cb8-10"><a href="#cb8-10"></a>    <span class="dt">icons =</span> <span class="kw"><a href="http://echarts4r-assets.john-coene.com/reference/icons-func.html">ea_icons</a></span>(</span>
-<span id="cb8-11"><a href="#cb8-11"></a>      <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"warning"</span>, <span class="st">"signal"</span>, <span class="st">"photo"</span>)</span>
-<span id="cb8-12"><a href="#cb8-12"></a>    )</span>
-<span id="cb8-13"><a href="#cb8-13"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="st">  </span><span class="kw"><a href="reference/e-tooltip.html">e_tooltip</a></span>(</span>
-<span id="cb8-15"><a href="#cb8-15"></a>    <span class="dt">trigger =</span> <span class="st">"item"</span>,</span>
-<span id="cb8-16"><a href="#cb8-16"></a>    <span class="dt">axisPointer =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</span>
-<span id="cb8-17"><a href="#cb8-17"></a>      <span class="dt">type =</span> <span class="st">"cross"</span></span>
-<span id="cb8-18"><a href="#cb8-18"></a>    )</span>
-<span id="cb8-19"><a href="#cb8-19"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb8-20"><a href="#cb8-20"></a><span class="st">  </span><span class="kw"><a href="reference/e_text_style.html">e_text_style</a></span>(<span class="dt">fontFamily =</span> <span class="st">"Raleway"</span>)</span></code></pre></div>
-</div>
-</div>
-<p>Arrange in grid and plot.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw"><a href="reference/connections.html">e_arrange</a></span>(e1, e2, <span class="dt">rows =</span> <span class="dv">1</span>, <span class="dt">cols =</span> <span class="dv">2</span>)</span></code></pre></div>
-<div class="row">
-<div class="col-xs-6">
-<div id="chart" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<button id="high" class="btn btn-primary">Highlight</button>
-<button id="down" class="btn btn-default">Downplay</button>
-<script type="application/json" data-for="chart">{"x":{"theme":"default","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":{"high":[{"data":{"type":"highlight","seriesName":["setosa","versicolor","virginica"]}}],"down":[{"data":{"type":"downplay","seriesName":["setosa","versicolor","virginica"]}}]},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value","min":4}],"legend":{"data":["setosa","versicolor","virginica"],"show":false,"type":"plain"},"series":[{"data":[{"value":[4.3,1.1,3,7.33333333333333]},{"value":[4.4,1.4,2.9,6.42857142857143]},{"value":[4.4,1.3,3,7.33333333333333]},{"value":[4.4,1.3,3.2,9.14285714285714]},{"value":[4.5,1.3,2.3,1]},{"value":[4.6,1.5,3.1,8.23809523809524]},{"value":[4.6,1.4,3.4,10.952380952381]},{"value":[4.6,1,3.6,12.7619047619048]},{"value":[4.6,1.4,3.2,9.14285714285714]},{"value":[4.7,1.3,3.2,9.14285714285714]},{"value":[4.7,1.6,3.2,9.14285714285714]},{"value":[4.8,1.6,3.4,10.952380952381]},{"value":[4.8,1.4,3,7.33333333333333]},{"value":[4.8,1.9,3.4,10.952380952381]},{"value":[4.8,1.6,3.1,8.23809523809524]},{"value":[4.8,1.4,3,7.33333333333333]},{"value":[4.9,1.4,3,7.33333333333333]},{"value":[4.9,1.5,3.1,8.23809523809524]},{"value":[4.9,1.5,3.1,8.23809523809524]},{"value":[4.9,1.4,3.6,12.7619047619048]},{"value":[5,1.4,3.6,12.7619047619048]},{"value":[5,1.5,3.4,10.952380952381]},{"value":[5,1.6,3,7.33333333333333]},{"value":[5,1.6,3.4,10.952380952381]},{"value":[5,1.2,3.2,9.14285714285714]},{"value":[5,1.3,3.5,11.8571428571429]},{"value":[5,1.6,3.5,11.8571428571429]},{"value":[5,1.4,3.3,10.047619047619]},{"value":[5.1,1.4,3.5,11.8571428571429]},{"value":[5.1,1.4,3.5,11.8571428571429]},{"value":[5.1,1.5,3.8,14.5714285714286]},{"value":[5.1,1.5,3.7,13.6666666666667]},{"value":[5.1,1.7,3.3,10.047619047619]},{"value":[5.1,1.5,3.4,10.952380952381]},{"value":[5.1,1.9,3.8,14.5714285714286]},{"value":[5.1,1.6,3.8,14.5714285714286]},{"value":[5.2,1.5,3.5,11.8571428571429]},{"value":[5.2,1.4,3.4,10.952380952381]},{"value":[5.2,1.5,4.1,17.2857142857143]},{"value":[5.3,1.5,3.7,13.6666666666667]},{"value":[5.4,1.7,3.9,15.4761904761905]},{"value":[5.4,1.5,3.7,13.6666666666667]},{"value":[5.4,1.3,3.9,15.4761904761905]},{"value":[5.4,1.7,3.4,10.952380952381]},{"value":[5.4,1.5,3.4,10.952380952381]},{"value":[5.5,1.4,4.2,18.1904761904762]},{"value":[5.5,1.3,3.5,11.8571428571429]},{"value":[5.7,1.5,4.4,20]},{"value":[5.7,1.7,3.8,14.5714285714286]},{"value":[5.8,1.2,4,16.3809523809524]}],"name":"setosa","type":"scatter","symbol":null,"itemStyle":{"shadowColor":"rgba(0,0,0,0.4)","shadowBlur":3,"shadowOffsetY":3},"coordinateSystem":"cartesian2d","itemStyle.1":{"shadowColor":"rgba(0,0,0,0.4)","shadowBlur":3,"shadowOffsetY":3},"yAxisIndex":0,"xAxisIndex":0,"symbolSize":"function(data){ return data[3];}"},{"data":[{"value":[4.9,3.3,2.4,6.42857142857143]},{"value":[5,3.5,2,1]},{"value":[5,3.3,2.3,5.07142857142857]},{"value":[5.1,3,2.5,7.78571428571429]},{"value":[5.2,3.9,2.7,10.5]},{"value":[5.4,4.5,3,14.5714285714286]},{"value":[5.5,4,2.3,5.07142857142857]},{"value":[5.5,3.8,2.4,6.42857142857143]},{"value":[5.5,3.7,2.4,6.42857142857143]},{"value":[5.5,4,2.5,7.78571428571429]},{"value":[5.5,4.4,2.6,9.14285714285714]},{"value":[5.6,3.6,2.9,13.2142857142857]},{"value":[5.6,4.5,3,14.5714285714286]},{"value":[5.6,3.9,2.5,7.78571428571429]},{"value":[5.6,4.1,3,14.5714285714286]},{"value":[5.6,4.2,2.7,10.5]},{"value":[5.7,4.5,2.8,11.8571428571429]},{"value":[5.7,3.5,2.6,9.14285714285714]},{"value":[5.7,4.2,3,14.5714285714286]},{"value":[5.7,4.2,2.9,13.2142857142857]},{"value":[5.7,4.1,2.8,11.8571428571429]},{"value":[5.8,4.1,2.7,10.5]},{"value":[5.8,3.9,2.7,10.5]},{"value":[5.8,4,2.6,9.14285714285714]},{"value":[5.9,4.2,3,14.5714285714286]},{"value":[5.9,4.8,3.2,17.2857142857143]},{"value":[6,4,2.2,3.71428571428572]},{"value":[6,4.5,2.9,13.2142857142857]},{"value":[6,5.1,2.7,10.5]},{"value":[6,4.5,3.4,20]},{"value":[6.1,4.7,2.9,13.2142857142857]},{"value":[6.1,4,2.8,11.8571428571429]},{"value":[6.1,4.7,2.8,11.8571428571429]},{"value":[6.1,4.6,3,14.5714285714286]},{"value":[6.2,4.5,2.2,3.71428571428572]},{"value":[6.2,4.3,2.9,13.2142857142857]},{"value":[6.3,4.7,3.3,18.6428571428571]},{"value":[6.3,4.9,2.5,7.78571428571429]},{"value":[6.3,4.4,2.3,5.07142857142857]},{"value":[6.4,4.5,3.2,17.2857142857143]},{"value":[6.4,4.3,2.9,13.2142857142857]},{"value":[6.5,4.6,2.8,11.8571428571429]},{"value":[6.6,4.6,2.9,13.2142857142857]},{"value":[6.6,4.4,3,14.5714285714286]},{"value":[6.7,4.4,3.1,15.9285714285714]},{"value":[6.7,5,3,14.5714285714286]},{"value":[6.7,4.7,3.1,15.9285714285714]},{"value":[6.8,4.8,2.8,11.8571428571429]},{"value":[6.9,4.9,3.1,15.9285714285714]},{"value":[7,4.7,3.2,17.2857142857143]}],"name":"versicolor","type":"scatter","symbol":null,"itemStyle":{"shadowColor":"rgba(0,0,0,0.4)","shadowBlur":3,"shadowOffsetY":3},"coordinateSystem":"cartesian2d","itemStyle.1":{"shadowColor":"rgba(0,0,0,0.4)","shadowBlur":3,"shadowOffsetY":3},"yAxisIndex":0,"xAxisIndex":0,"symbolSize":"function(data){ return data[3];}"},{"data":[{"value":[4.9,4.5,2.5,4.5625]},{"value":[5.6,4.9,2.8,8.125]},{"value":[5.7,5,2.5,4.5625]},{"value":[5.8,5.1,2.7,6.9375]},{"value":[5.8,5.1,2.8,8.125]},{"value":[5.8,5.1,2.7,6.9375]},{"value":[5.9,5.1,3,10.5]},{"value":[6,5,2.2,1]},{"value":[6,4.8,3,10.5]},{"value":[6.1,4.9,3,10.5]},{"value":[6.1,5.6,2.6,5.75]},{"value":[6.2,4.8,2.8,8.125]},{"value":[6.2,5.4,3.4,15.25]},{"value":[6.3,6,3.3,14.0625]},{"value":[6.3,5.6,2.9,9.3125]},{"value":[6.3,4.9,2.7,6.9375]},{"value":[6.3,5.1,2.8,8.125]},{"value":[6.3,5.6,3.4,15.25]},{"value":[6.3,5,2.5,4.5625]},{"value":[6.4,5.3,2.7,6.9375]},{"value":[6.4,5.3,3.2,12.875]},{"value":[6.4,5.6,2.8,8.125]},{"value":[6.4,5.6,2.8,8.125]},{"value":[6.4,5.5,3.1,11.6875]},{"value":[6.5,5.8,3,10.5]},{"value":[6.5,5.1,3.2,12.875]},{"value":[6.5,5.5,3,10.5]},{"value":[6.5,5.2,3,10.5]},{"value":[6.7,5.8,2.5,4.5625]},{"value":[6.7,5.7,3.3,14.0625]},{"value":[6.7,5.6,3.1,11.6875]},{"value":[6.7,5.7,3.3,14.0625]},{"value":[6.7,5.2,3,10.5]},{"value":[6.8,5.5,3,10.5]},{"value":[6.8,5.9,3.2,12.875]},{"value":[6.9,5.7,3.2,12.875]},{"value":[6.9,5.4,3.1,11.6875]},{"value":[6.9,5.1,3.1,11.6875]},{"value":[7.1,5.9,3,10.5]},{"value":[7.2,6.1,3.6,17.625]},{"value":[7.2,6,3.2,12.875]},{"value":[7.2,5.8,3,10.5]},{"value":[7.3,6.3,2.9,9.3125]},{"value":[7.4,6.1,2.8,8.125]},{"value":[7.6,6.6,3,10.5]},{"value":[7.7,6.7,3.8,20]},{"value":[7.7,6.9,2.6,5.75]},{"value":[7.7,6.7,2.8,8.125]},{"value":[7.7,6.1,3,10.5]},{"value":[7.9,6.4,3.8,20]}],"name":"virginica","type":"scatter","symbol":null,"itemStyle":{"shadowColor":"rgba(0,0,0,0.4)","shadowBlur":3,"shadowOffsetY":3},"coordinateSystem":"cartesian2d","itemStyle.1":{"shadowColor":"rgba(0,0,0,0.4)","shadowBlur":3,"shadowOffsetY":3},"yAxisIndex":0,"xAxisIndex":0,"symbolSize":"function(data){ return data[3];}"}],"dataZoom":[{"show":false,"yAxisIndex":0}],"toolbox":{"feature":{"dataZoom":[]}},"title":[{"text":"Connect charts"}],"tooltip":{"trigger":"item","axisPointer":{"type":"cross"}},"graphic":{"left":50,"top":30,"z":999,"style":{"image":"reference/figures/logo.png","width":70,"height":75,"opacity":0.95},"type":"image","left.1":50,"top.1":30,"z.1":999,"style.1":{"image":"reference/figures/logo.png","width":70,"height":75,"opacity":0.95}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":["opts.series.0.symbolSize","opts.series.1.symbolSize","opts.series.2.symbolSize"],"jsHooks":[]}</script>
-</div>
-<div class="col-xs-6">
-<div id="htmlwidget-e0acf3307bac616151bd" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e0acf3307bac616151bd">{"x":{"theme":"default","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value","min":0}],"legend":{"data":[{"name":"setosa","icon":"path://M88,73.8V26c0-1.1-0.9-2-2-2H14c-1.1,0-2,0.9-2,2v48c0,2.5,3.3,2,2,2h72c0,0,0,0,0,0C89,76,87.6,71.4,88,73.8z\r\n\t\t M18,72L40,43.3l18.4,24.1c0,0,0,0,0,0l3.5,4.6H18z M67,72l-4.5-5.8l7.5-9.8L81.9,72H67z M84,68L71.6,51.8c-0.8-1.1-2.4-1.1-3.2,0\r\n\t\tL60,62.8L41.6,38.8c-0.8-1.1-2.4-1.1-3.2,0L16,68.1V28h68V68z M61,34c-3.9,0-7,3.1-7,7s3.1,7,7,7c3.9,0,7-3.1,7-7S64.8,34,61,34z\r\n\t\t M61,44c-1.6,0-3-1.3-3-3s1.3-3,3-3s3,1.3,3,3S62.6,44,61,44z"},{"name":"versicolor","icon":"path://M58,38H42c-1.1,0-2,0.9-2,2v40c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V40C60,38.9,59.1,38,58,38z M56,78H44V42h12\r\n\t\tV78z M32,58H16c-1.1,0-2,0.9-2,2v20c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V60C34,58.9,33.1,58,32,58z M30,78H18V62h12V78z M84,18H68\r\n\t\tc-1.1,0-2,0.9-2,2v60c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V20C86,18.9,85.1,18,84,18z M82,78H70V22h12V78z"},{"name":"virginica","icon":"path://M87.5,77.8L51.6,20c-0.8-1.3-2.6-1.3-3.4,0l-35.9,58c1.5-2.4-2.7,3,1.7,3.1H86C90,81,86.7,76.8,87.5,77.8z\r\n\t\t M17.6,77l32.3-52.1L82.4,77H17.6z M52,39v16c0,1.1-0.9,2-2,2c-1.1,0-2-0.9-2-2V39c0-1.1,0.9-2,2-2C51.1,37,52,37.9,52,39z\r\n\t\t M50.1,61c-3.3,0-6,2.7-6,6c0,3.3,2.7,6,6,6c3.3,0,6-2.7,6-6C56,63.7,53.3,61,50.1,61z M50.1,69c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2\r\n\t\tc1.1,0,2,0.9,2,2C52,68.1,51.1,69,50.1,69z"}],"show":true,"type":"plain","bottom":5},"series":[{"data":[{"value":[1,4.6]},{"value":[1.1,4.3]},{"value":[1.2,5.8]},{"value":[1.2,5]},{"value":[1.3,4.7]},{"value":[1.3,5.4]},{"value":[1.3,5.5]},{"value":[1.3,4.4]},{"value":[1.3,5]},{"value":[1.3,4.5]},{"value":[1.3,4.4]},{"value":[1.4,5.1]},{"value":[1.4,4.9]},{"value":[1.4,5]},{"value":[1.4,4.6]},{"value":[1.4,4.4]},{"value":[1.4,4.8]},{"value":[1.4,5.1]},{"value":[1.4,5.2]},{"value":[1.4,5.5]},{"value":[1.4,4.9]},{"value":[1.4,4.8]},{"value":[1.4,4.6]},{"value":[1.4,5]},{"value":[1.5,4.6]},{"value":[1.5,5]},{"value":[1.5,4.9]},{"value":[1.5,5.4]},{"value":[1.5,5.7]},{"value":[1.5,5.1]},{"value":[1.5,5.1]},{"value":[1.5,5.2]},{"value":[1.5,5.4]},{"value":[1.5,5.2]},{"value":[1.5,4.9]},{"value":[1.5,5.1]},{"value":[1.5,5.3]},{"value":[1.6,4.8]},{"value":[1.6,5]},{"value":[1.6,5]},{"value":[1.6,4.7]},{"value":[1.6,4.8]},{"value":[1.6,5]},{"value":[1.6,5.1]},{"value":[1.7,5.4]},{"value":[1.7,5.7]},{"value":[1.7,5.4]},{"value":[1.7,5.1]},{"value":[1.9,4.8]},{"value":[1.9,5.1]}],"yAxisIndex":0,"xAxisIndex":0,"name":"setosa","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[3,5.1]},{"value":[3.3,4.9]},{"value":[3.3,5]},{"value":[3.5,5]},{"value":[3.5,5.7]},{"value":[3.6,5.6]},{"value":[3.7,5.5]},{"value":[3.8,5.5]},{"value":[3.9,5.2]},{"value":[3.9,5.6]},{"value":[3.9,5.8]},{"value":[4,5.5]},{"value":[4,6]},{"value":[4,6.1]},{"value":[4,5.5]},{"value":[4,5.8]},{"value":[4.1,5.8]},{"value":[4.1,5.6]},{"value":[4.1,5.7]},{"value":[4.2,5.9]},{"value":[4.2,5.6]},{"value":[4.2,5.7]},{"value":[4.2,5.7]},{"value":[4.3,6.4]},{"value":[4.3,6.2]},{"value":[4.4,6.7]},{"value":[4.4,6.6]},{"value":[4.4,6.3]},{"value":[4.4,5.5]},{"value":[4.5,6.4]},{"value":[4.5,5.7]},{"value":[4.5,5.6]},{"value":[4.5,6.2]},{"value":[4.5,6]},{"value":[4.5,5.4]},{"value":[4.5,6]},{"value":[4.6,6.5]},{"value":[4.6,6.6]},{"value":[4.6,6.1]},{"value":[4.7,7]},{"value":[4.7,6.3]},{"value":[4.7,6.1]},{"value":[4.7,6.1]},{"value":[4.7,6.7]},{"value":[4.8,5.9]},{"value":[4.8,6.8]},{"value":[4.9,6.9]},{"value":[4.9,6.3]},{"value":[5,6.7]},{"value":[5.1,6]}],"yAxisIndex":0,"xAxisIndex":0,"name":"versicolor","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[4.5,4.9]},{"value":[4.8,6.2]},{"value":[4.8,6]},{"value":[4.9,5.6]},{"value":[4.9,6.3]},{"value":[4.9,6.1]},{"value":[5,5.7]},{"value":[5,6]},{"value":[5,6.3]},{"value":[5.1,5.8]},{"value":[5.1,6.5]},{"value":[5.1,5.8]},{"value":[5.1,6.3]},{"value":[5.1,6.9]},{"value":[5.1,5.8]},{"value":[5.1,5.9]},{"value":[5.2,6.7]},{"value":[5.2,6.5]},{"value":[5.3,6.4]},{"value":[5.3,6.4]},{"value":[5.4,6.9]},{"value":[5.4,6.2]},{"value":[5.5,6.8]},{"value":[5.5,6.5]},{"value":[5.5,6.4]},{"value":[5.6,6.3]},{"value":[5.6,6.4]},{"value":[5.6,6.4]},{"value":[5.6,6.1]},{"value":[5.6,6.3]},{"value":[5.6,6.7]},{"value":[5.7,6.9]},{"value":[5.7,6.7]},{"value":[5.7,6.7]},{"value":[5.8,6.5]},{"value":[5.8,6.7]},{"value":[5.8,7.2]},{"value":[5.9,7.1]},{"value":[5.9,6.8]},{"value":[6,6.3]},{"value":[6,7.2]},{"value":[6.1,7.2]},{"value":[6.1,7.4]},{"value":[6.1,7.7]},{"value":[6.3,7.3]},{"value":[6.4,7.9]},{"value":[6.6,7.6]},{"value":[6.7,7.7]},{"value":[6.7,7.7]},{"value":[6.9,7.7]}],"yAxisIndex":0,"xAxisIndex":0,"name":"virginica","type":"line","coordinateSystem":"cartesian2d"}],"dataZoom":[{"yAxisIndex":0}],"toolbox":{"feature":{"dataZoom":[]}},"tooltip":{"trigger":"item","axisPointer":{"type":"cross"}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true,"connect":["chart"]},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -436,10 +334,13 @@ Shiny Demo
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=echarts4r">https://​cloud.r-project.org/​package=echarts4r</a>
+</li>
+<li>Browse source code at <br><a href="https://github.com/JohnCoene/echarts4r/">https://​github.com/​JohnCoene/​echarts4r/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/JohnCoene/echarts4r/issues">https://​github.com/​JohnCoene/​echarts4r/​issues</a>
 </li>
@@ -461,21 +362,11 @@ Shiny Demo
 </div>
 
 
-      <!-- codefund -->
-  <div id="codefund"><!-- fallback content --></div>
-  <script src="https://codefund.app/properties/148/funder.js" async="async"></script><div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://travis-ci.org/JohnCoene/echarts4r"><img src="https://travis-ci.org/JohnCoene/echarts4r.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-<li><a href="https://ci.appveyor.com/project/JohnCoene/echarts4r"><img src="https://ci.appveyor.com/api/projects/status/github/JohnCoene/echarts4r?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
-<li><a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></li>
-<li><a href="https://github.com/JohnCoene/echarts4r/issues"><img src="https://img.shields.io/github/issues-closed/JohnCoene/echarts4r.svg" alt="GitHub closed issues"></a></li>
-<li><a href="https://github.com/JohnCoene/echarts4r"><img src="https://img.shields.io/github/languages/code-size/JohnCoene/echarts4r.svg" alt="code-size"></a></li>
-<li><a href="https://github.com/JohnCoene/echarts4r"><img src="https://img.shields.io/github/last-commit/JohnCoene/echarts4r.svg" alt="activity"></a></li>
-</ul>
+    <h2>Support</h2>
+    <p>Sponsor the project</p>
+    <a class="github-button" href="https://github.com/sponsors/JohnCoene" data-icon="octicon-heart" aria-label="Sponsor @JohnCoene on GitHub">Sponsor</a>
+    <br><br>
 </div>
-</div>
-
 </div>
 
 
@@ -484,13 +375,13 @@ Shiny Demo
 </div>
 
 <p style="text-align: center;">
-  <a class="github-button" href="https://github.com/sponsors/JohnCoene" data-icon="octicon-heart" aria-label="Sponsor @JohnCoene on GitHub">Sponsor</a>
   <br><style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&amp;subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/JohnCoene"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
 </p>
 
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
 </div>
 

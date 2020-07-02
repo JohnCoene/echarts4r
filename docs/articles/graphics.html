@@ -6,6 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Graphics • echarts4r</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
@@ -13,7 +19,7 @@
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Graphics">
-<meta property="og:description" content="">
+<meta property="og:description" content="echarts4r">
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#293c55">
@@ -27,7 +33,7 @@
   gtag('config', 'UA-74544116-1');
 </script><!-- Place this tag in your head or just before your close body tag. --><script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -40,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -205,7 +211,7 @@
   </a>
 </li>
       </ul>
-<form class="navbar-form navbar-right" role="search">
+<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
@@ -219,15 +225,16 @@
 <!--/.navbar -->
 
       
-      </header><script src="graphics_files/header-attrs-2.2/header-attrs.js"></script><script src="graphics_files/htmlwidgets-1.5.1/htmlwidgets.js"></script><script src="graphics_files/echarts4r-4.8.0/echarts-en.min.js"></script><script src="graphics_files/echarts4r-4.8.0/ecStat.min.js"></script><script src="graphics_files/echarts4r-4.8.0/dataTool.min.js"></script><script src="graphics_files/echarts4r-binding-0.3.2/echarts4r.js"></script><div class="row">
+
+      </header><script src="graphics_files/header-attrs-2.3.2/header-attrs.js"></script><script src="graphics_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="graphics_files/htmlwidgets-1.5.1/htmlwidgets.js"></script><script src="graphics_files/echarts4r-4.8.0/echarts-en.min.js"></script><script src="graphics_files/echarts4r-4.8.0/ecStat.min.js"></script><script src="graphics_files/echarts4r-4.8.0/dataTool.min.js"></script><script src="graphics_files/echarts4r-binding-0.3.3/echarts4r.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Graphics</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2020-06-18</h4>
+            <h4 class="date">2020-07-02</h4>
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/JohnCoene/echarts4r/blob/master/vignettes/graphics.Rmd"><code>vignettes/graphics.Rmd</code></a></small>
       <div class="hidden name"><code>graphics.Rmd</code></div>
 
     </div>
@@ -260,33 +267,37 @@
 <h2 class="hasAnchor">
 <a href="#draft" class="anchor"></a>Draft</h2>
 <p>The <code>e_draft</code> helper function is a very simple wrapper aroudn the graphics API and thus a good example of what can be achieved.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>cars <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(speed) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="st">  </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(dist) <span class="op">%&gt;%</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="st">  </span><span class="kw"><a href="../reference/e_draft.html">e_draft</a></span>()</span></code></pre></div>
-<div id="htmlwidget-b29c8b0b69b8aaed1079" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b29c8b0b69b8aaed1079">{"x":{"theme":"default","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["dist"]},"series":[{"data":[{"value":[4,2]},{"value":[4,10]},{"value":[7,4]},{"value":[7,22]},{"value":[8,16]},{"value":[9,10]},{"value":[10,18]},{"value":[10,26]},{"value":[10,34]},{"value":[11,17]},{"value":[11,28]},{"value":[12,14]},{"value":[12,20]},{"value":[12,24]},{"value":[12,28]},{"value":[13,26]},{"value":[13,34]},{"value":[13,34]},{"value":[13,46]},{"value":[14,26]},{"value":[14,36]},{"value":[14,60]},{"value":[14,80]},{"value":[15,20]},{"value":[15,26]},{"value":[15,54]},{"value":[16,32]},{"value":[16,40]},{"value":[17,32]},{"value":[17,40]},{"value":[17,50]},{"value":[18,42]},{"value":[18,56]},{"value":[18,76]},{"value":[18,84]},{"value":[19,36]},{"value":[19,46]},{"value":[19,68]},{"value":[20,32]},{"value":[20,48]},{"value":[20,52]},{"value":[20,56]},{"value":[20,64]},{"value":[22,66]},{"value":[23,54]},{"value":[24,70]},{"value":[24,92]},{"value":[24,93]},{"value":[24,120]},{"value":[25,85]}],"name":"dist","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3}],"graphic":{"left":"center","top":"center","z":-1000,"style":{"fill":"#d3d3d3","text":"DRAFT","font":"120px \"STHeiti\", sans-serif","opacity":0.4},"type":"text","left.1":"center","top.1":"center","z.1":-1000,"style.1":{"fill":"#d3d3d3","text":"DRAFT","font":"120px \"STHeiti\", sans-serif","opacity":0.4}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw">cars</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">speed</span>) <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span>(<span class="kw">dist</span>) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/e_draft.html">e_draft</a></span>()
+</pre></div>
+<div id="htmlwidget-4ba265563439ed8c4f29" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4ba265563439ed8c4f29">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["dist"]},"series":[{"data":[{"value":[4,2]},{"value":[4,10]},{"value":[7,4]},{"value":[7,22]},{"value":[8,16]},{"value":[9,10]},{"value":[10,18]},{"value":[10,26]},{"value":[10,34]},{"value":[11,17]},{"value":[11,28]},{"value":[12,14]},{"value":[12,20]},{"value":[12,24]},{"value":[12,28]},{"value":[13,26]},{"value":[13,34]},{"value":[13,34]},{"value":[13,46]},{"value":[14,26]},{"value":[14,36]},{"value":[14,60]},{"value":[14,80]},{"value":[15,20]},{"value":[15,26]},{"value":[15,54]},{"value":[16,32]},{"value":[16,40]},{"value":[17,32]},{"value":[17,40]},{"value":[17,50]},{"value":[18,42]},{"value":[18,56]},{"value":[18,76]},{"value":[18,84]},{"value":[19,36]},{"value":[19,46]},{"value":[19,68]},{"value":[20,32]},{"value":[20,48]},{"value":[20,52]},{"value":[20,56]},{"value":[20,64]},{"value":[22,66]},{"value":[23,54]},{"value":[24,70]},{"value":[24,92]},{"value":[24,93]},{"value":[24,120]},{"value":[25,85]}],"name":"dist","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3}],"graphic":{"left":"center","top":"center","z":-1000,"style":{"fill":"#d3d3d3","text":"DRAFT","font":"120px \"STHeiti\", sans-serif","opacity":0.4},"type":"text","left.1":"center","top.1":"center","z.1":-1000,"style.1":{"fill":"#d3d3d3","text":"DRAFT","font":"120px \"STHeiti\", sans-serif","opacity":0.4}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="image" class="section level2">
 <h2 class="hasAnchor">
 <a href="#image" class="anchor"></a>Image</h2>
 <p>You can add an image for instance.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>cars <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(speed) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="st">  </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(dist) <span class="op">%&gt;%</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="st">  </span><span class="kw"><a href="../reference/graphic.html">e_image_g</a></span>(</span>
-<span id="cb2-5"><a href="#cb2-5"></a>    <span class="dt">right =</span> <span class="dv">20</span>,</span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="dt">top =</span> <span class="dv">20</span>,</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="dt">z =</span> <span class="dv">-999</span>,</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="dt">style =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</span>
-<span id="cb2-9"><a href="#cb2-9"></a>      <span class="dt">image =</span> <span class="st">"https://www.r-project.org/logo/Rlogo.png"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10"></a>      <span class="dt">width =</span> <span class="dv">150</span>,</span>
-<span id="cb2-11"><a href="#cb2-11"></a>      <span class="dt">height =</span> <span class="dv">150</span>,</span>
-<span id="cb2-12"><a href="#cb2-12"></a>      <span class="dt">opacity =</span> <span class="fl">.6</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>    )</span>
-<span id="cb2-14"><a href="#cb2-14"></a>  )</span></code></pre></div>
-<div id="htmlwidget-7d506183cf7e286e6b88" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7d506183cf7e286e6b88">{"x":{"theme":"default","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["dist"]},"series":[{"data":[{"value":[4,2]},{"value":[4,10]},{"value":[7,4]},{"value":[7,22]},{"value":[8,16]},{"value":[9,10]},{"value":[10,18]},{"value":[10,26]},{"value":[10,34]},{"value":[11,17]},{"value":[11,28]},{"value":[12,14]},{"value":[12,20]},{"value":[12,24]},{"value":[12,28]},{"value":[13,26]},{"value":[13,34]},{"value":[13,34]},{"value":[13,46]},{"value":[14,26]},{"value":[14,36]},{"value":[14,60]},{"value":[14,80]},{"value":[15,20]},{"value":[15,26]},{"value":[15,54]},{"value":[16,32]},{"value":[16,40]},{"value":[17,32]},{"value":[17,40]},{"value":[17,50]},{"value":[18,42]},{"value":[18,56]},{"value":[18,76]},{"value":[18,84]},{"value":[19,36]},{"value":[19,46]},{"value":[19,68]},{"value":[20,32]},{"value":[20,48]},{"value":[20,52]},{"value":[20,56]},{"value":[20,64]},{"value":[22,66]},{"value":[23,54]},{"value":[24,70]},{"value":[24,92]},{"value":[24,93]},{"value":[24,120]},{"value":[25,85]}],"name":"dist","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3}],"graphic":{"right":20,"top":20,"z":-999,"style":{"image":"https://www.r-project.org/logo/Rlogo.png","width":150,"height":150,"opacity":0.6},"type":"image","right.1":20,"top.1":20,"z.1":-999,"style.1":{"image":"https://www.r-project.org/logo/Rlogo.png","width":150,"height":150,"opacity":0.6}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">cars</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">speed</span>) <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span>(<span class="kw">dist</span>) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/e_graphic_g.html">e_image_g</a></span>(
+    right = <span class="fl">20</span>,
+    top = <span class="fl">20</span>,
+    z = <span class="op">-</span><span class="fl">999</span>,
+    style = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      image = <span class="st">"https://www.r-project.org/logo/Rlogo.png"</span>,
+      width = <span class="fl">150</span>,
+      height = <span class="fl">150</span>,
+      opacity = <span class="fl">.6</span>
+    )
+  )
+</pre></div>
+<div id="htmlwidget-0cb9e96fcdb00cebcda9" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0cb9e96fcdb00cebcda9">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["dist"]},"series":[{"data":[{"value":[4,2]},{"value":[4,10]},{"value":[7,4]},{"value":[7,22]},{"value":[8,16]},{"value":[9,10]},{"value":[10,18]},{"value":[10,26]},{"value":[10,34]},{"value":[11,17]},{"value":[11,28]},{"value":[12,14]},{"value":[12,20]},{"value":[12,24]},{"value":[12,28]},{"value":[13,26]},{"value":[13,34]},{"value":[13,34]},{"value":[13,46]},{"value":[14,26]},{"value":[14,36]},{"value":[14,60]},{"value":[14,80]},{"value":[15,20]},{"value":[15,26]},{"value":[15,54]},{"value":[16,32]},{"value":[16,40]},{"value":[17,32]},{"value":[17,40]},{"value":[17,50]},{"value":[18,42]},{"value":[18,56]},{"value":[18,76]},{"value":[18,84]},{"value":[19,36]},{"value":[19,46]},{"value":[19,68]},{"value":[20,32]},{"value":[20,48]},{"value":[20,52]},{"value":[20,56]},{"value":[20,64]},{"value":[22,66]},{"value":[23,54]},{"value":[24,70]},{"value":[24,92]},{"value":[24,93]},{"value":[24,120]},{"value":[25,85]}],"name":"dist","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3}],"graphic":{"right":20,"top":20,"z":-999,"style":{"image":"https://www.r-project.org/logo/Rlogo.png","width":150,"height":150,"opacity":0.6},"type":"image","right.1":20,"top.1":20,"z.1":-999,"style.1":{"image":"https://www.r-project.org/logo/Rlogo.png","width":150,"height":150,"opacity":0.6}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
   </div>
 
@@ -301,12 +312,11 @@
       <li><a href="#image">Image</a></li>
       </ul>
 </div>
-      <!-- codefund -->
-  <div id="codefund"><!-- fallback content --></div>
-  <script src="https://codefund.app/properties/148/funder.js" async="async"></script>
-</div>
+    
+    <a class="github-button" href="https://github.com/sponsors/JohnCoene" data-icon="octicon-heart" aria-label="Sponsor @JohnCoene on GitHub">Sponsor</a>
 
 </div>
+
 
 
       <footer><div class="copyright">
@@ -314,13 +324,13 @@
 </div>
 
 <p style="text-align: center;">
-  <a class="github-button" href="https://github.com/sponsors/JohnCoene" data-icon="octicon-heart" aria-label="Sponsor @JohnCoene on GitHub">Sponsor</a>
   <br><style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&amp;subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/JohnCoene"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
 </p>
 
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
 </div>
 
@@ -340,5 +350,6 @@
     }
   });
 </script>
+</div>
 </body>
 </html>

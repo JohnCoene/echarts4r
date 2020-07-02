@@ -5,7 +5,7 @@ $endfor$
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>$title$</h1>
+      <h1 data-toc-skip>$title$</h1>
       $if(subtitle)$
       <h3 class="subtitle">$subtitle$</h3>
       $endif$
@@ -47,20 +47,17 @@ $endfor$
 $body$
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     {{#sidebar}}
     {{{.}}}
     {{/sidebar}}
 
     $if(toc)$
-    <div id="tocnav">
-      <h2>Contents</h2>
-      $toc$
-    </div>
+    <nav id="toc" data-toggle="toc">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
     $endif$
-  <!-- codefund -->
-  <div id="codefund"><!-- fallback content --></div>
-  <script src="https://codefund.app/properties/148/funder.js" async="async"></script>
+    <a class="github-button" href="https://github.com/sponsors/JohnCoene" data-icon="octicon-heart" aria-label="Sponsor @JohnCoene on GitHub">Sponsor</a>
   </div>
 
 </div>

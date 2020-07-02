@@ -8,6 +8,13 @@
 
 <title>Changelog • echarts4r</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -72,9 +79,10 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -88,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -254,7 +262,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -265,22 +273,34 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
-      
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="echarts4r-033" class="section level1">
+<h1 class="page-header" data-toc-text="0.3.3">
+<a href="#echarts4r-033" class="anchor"></a>echarts4r 0.3.3<small> Unreleased </small>
+</h1>
+<ul>
+<li>Fix <code>e_common</code> theme, was no longer applied due to dynamic dependencies introduced in <code>0.3.2</code>
+</li>
+<li>Fix <code>e_flip_coords</code> for timeline feature, see <a href="https://github.com/JohnCoene/echarts4r/issues/166"><a href='https://github.com/JohnCoene/echarts4r/issues/166'>#166</a></a>
+</li>
+</ul>
+</div>
     <div id="echarts4r-032" class="section level1">
-<h1 class="page-header">
-<a href="#echarts4r-032" class="anchor"></a>echarts4r 0.3.2<small> Unreleased </small>
+<h1 class="page-header" data-toc-text="0.3.2">
+<a href="#echarts4r-032" class="anchor"></a>echarts4r 0.3.2<small> 2020-06-18 </small>
 </h1>
 <ul>
 <li>Bump echarts.js to 4.8.0 and echarts-gl to 1.1.2</li>
-<li>Fix <code>e_add</code> when used with timeline feature see <a href="https://github.com/JohnCoene/echarts4r/issues/165">#165</a>.</li>
+<li>Fix <code>e_add</code> when used with timeline feature see <a href="https://github.com/JohnCoene/echarts4r/issues/165"><a href='https://github.com/JohnCoene/echarts4r/issues/165'>#165</a></a>.</li>
 <li>Bump echart.js to 4.8.0 now in english (no longer chinese.</li>
 </ul>
 <p>Dynamic dependencies:</p>
@@ -296,7 +316,7 @@
 <p>This greatly improves the performances of echarts4r which now loads much faster.</p>
 </div>
     <div id="echarts4r-0319000" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3.1.9000">
 <a href="#echarts4r-0319000" class="anchor"></a>echarts4r 0.3.1.9000<small> Unreleased </small>
 </h1>
 <ul>
@@ -304,23 +324,23 @@
 <li>
 <code>e_map_register_ui</code> added to register a custom map in the Shiny UI, for faster serialisation.</li>
 <li>
-<code>e_leaflet*</code> functions now correctly apply the <code>roam</code> argument <a href="https://github.com/JohnCoene/echarts4r/issues/147">#147</a>
+<code>e_leaflet*</code> functions now correctly apply the <code>roam</code> argument <a href="https://github.com/JohnCoene/echarts4r/issues/147"><a href='https://github.com/JohnCoene/echarts4r/issues/147'>#147</a></a>
 </li>
 <li>Internals changes for dplyr &gt;= 0.7.0</li>
-<li>Correct bug in <a href="https://echarts4r.john-coene.com/articles/stats.html#boxplot">boxplot</a> thanks to <a href="https://github.com/matthias-a">Matthias</a> in <a href="https://github.com/JohnCoene/echarts4r/issues/163">issue #163</a> for the fix.</li>
-<li>Avoid page breaks on PDF, see <a href="https://github.com/JohnCoene/echarts4r/issues/159">#159</a>, thanks <a href="https://github.com/sdmcallister">Steve</a>.</li>
+<li>Correct bug in <a href="https://echarts4r.john-coene.com/articles/stats.html#boxplot">boxplot</a> thanks to <a href="https://github.com/matthias-a">Matthias</a> in <a href="https://github.com/JohnCoene/echarts4r/issues/163">issue <a href='https://github.com/JohnCoene/echarts4r/issues/163'>#163</a></a> for the fix.</li>
+<li>Avoid page breaks on PDF, see <a href="https://github.com/JohnCoene/echarts4r/issues/159"><a href='https://github.com/JohnCoene/echarts4r/issues/159'>#159</a></a>, thanks <a href="https://github.com/sdmcallister">Steve</a>.</li>
 </ul>
 </div>
     <div id="echarts4r-0309000" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3.0.9000">
 <a href="#echarts4r-0309000" class="anchor"></a>echarts4r 0.3.0.9000<small> Unreleased </small>
 </h1>
-<p>Bumped echarts JavaScript library to <code>4.6.0</code>, <a href="https://github.com/JohnCoene/echarts4r/pull/121">PR #121</a>, also bumped echarts gl to <code>1.2.1</code>.</p>
+<p>Bumped echarts JavaScript library to <code>4.6.0</code>, <a href="https://github.com/JohnCoene/echarts4r/pull/121">PR <a href='https://github.com/JohnCoene/echarts4r/issues/121'>#121</a></a>, also bumped echarts gl to <code>1.2.1</code>.</p>
 <p>Every function that adds a serie to chart (e.g.: <code>e_bar</code>) have been turned into methods that now can be applied to proxies (<code>echarts4rProxy</code>), see the <a href="https://echarts4r.john-coene.com/articles/development.html">development vignette</a> for more. This implies some minute changes to the <code>echarts4rProxy</code>: nothing broken though.</p>
 <ul>
-<li>Warning in <code>e_axis_fomatter</code> if user uses RStudio, relates to <a href="https://github.com/JohnCoene/echarts4r/issues/100">#100</a>
+<li>Warning in <code>e_axis_fomatter</code> if user uses RStudio, relates to <a href="https://github.com/JohnCoene/echarts4r/issues/100"><a href='https://github.com/JohnCoene/echarts4r/issues/100'>#100</a></a>
 </li>
-<li>Fixed <a href="https://github.com/JohnCoene/echarts4r/issues/98">#98</a> where a bug was introduced in <code>e_radar_opts</code> when the timeline component was added.</li>
+<li>Fixed <a href="https://github.com/JohnCoene/echarts4r/issues/98"><a href='https://github.com/JohnCoene/echarts4r/issues/98'>#98</a></a> where a bug was introduced in <code>e_radar_opts</code> when the timeline component was added.</li>
 <li>
 <code>bind</code> argument added to <code>e_heatmap</code>
 </li>
@@ -332,9 +352,9 @@
 <li>Added <code>e_resize</code> to dynamically resize the chart.</li>
 <li>Added <code>e_map_register_p</code> works like a proxy but does not require a chart.</li>
 <li>Fixed a few issues with <code>e_mark*</code> family, labels and multiple marks correctly work.</li>
-<li>Initialisation function now take <code>reorder</code> argument to specify whether to reorder numeric values. <a href="https://github.com/JohnCoene/echarts4r/issues/126">#126</a>
+<li>Initialisation function now take <code>reorder</code> argument to specify whether to reorder numeric values. <a href="https://github.com/JohnCoene/echarts4r/issues/126"><a href='https://github.com/JohnCoene/echarts4r/issues/126'>#126</a></a>
 </li>
-<li>Added <code>e_register_theme</code> to register a global theme, see <a href="https://github.com/JohnCoene/echarts4r/issues/127">#127</a>.</li>
+<li>Added <code>e_register_theme</code> to register a global theme, see <a href="https://github.com/JohnCoene/echarts4r/issues/127"><a href='https://github.com/JohnCoene/echarts4r/issues/127'>#127</a></a>.</li>
 <li>
 <code>e_theme_custom</code> now accepts path to a JSON file.</li>
 <li>
@@ -343,7 +363,7 @@
 </ul>
 </div>
     <div id="echarts4r-023" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.2.3">
 <a href="#echarts4r-023" class="anchor"></a>echarts4r 0.2.3<small> 2019-07-18 </small>
 </h1>
 <ul>
@@ -352,7 +372,7 @@
 <code>e_tooltip_choro_formatter</code> tooltip formatter for choropleth maps added, thanks to <a href="https://github.com/artemklevtsov">Artem</a>.</li>
 <li>Tooltip formatters correctly identify locale on UNIX systems, thanks to <a href="https://github.com/artemklevtsov">Artem</a>.</li>
 <li>
-<code><a href="../reference/mark.html">e_mark_point()</a></code>, <code><a href="../reference/mark.html">e_mark_line()</a></code> and <code><a href="../reference/mark.html">e_mark_area()</a></code> no longer use <code><a href="https://www.rdocumentation.org/packages/base/topics/grep">grep()</a></code>, which means the serie will only be matched with the exact same name. Thanks <a href='https://github.com/shrektan'>@shrektan</a> for the reporting and PR (#80, #81).</li>
+<code><a href="http://echarts4r.john-coene.com/reference/mark.html">e_mark_point()</a></code>, <code><a href="http://echarts4r.john-coene.com/reference/mark.html">e_mark_line()</a></code> and <code><a href="http://echarts4r.john-coene.com/reference/mark.html">e_mark_area()</a></code> no longer use <code><a href="https://rdrr.io/r/base/grep.html">grep()</a></code>, which means the serie will only be matched with the exact same name. Thanks <a href='https://github.com/shrektan'>@shrektan</a> for the reporting and PR (<a href='https://github.com/JohnCoene/echarts4r/issues/80'>#80</a>, <a href='https://github.com/JohnCoene/echarts4r/issues/81'>#81</a>).</li>
 <li>Multiple <code>e_title</code> now allowed.</li>
 <li>Multiple <code>e_visual_map</code> in <a href="https://echarts4r.john-coene.com/articles/timeline.html">timelines</a> is now fixed.</li>
 <li>Corrected all links (or so I think).</li>
@@ -362,7 +382,7 @@
 </ul>
 </div>
     <div id="echarts4r-022" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.2.2">
 <a href="#echarts4r-022" class="anchor"></a>echarts4r 0.2.2<small> 2019-04-09 </small>
 </h1>
 <ul>
@@ -382,7 +402,7 @@
 </ul>
 </div>
     <div id="echarts4r-021" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.2.1">
 <a href="#echarts4r-021" class="anchor"></a>echarts4r 0.2.1<small> 2019-01-05 </small>
 </h1>
 <p><strong>Support for timeline added</strong></p>
@@ -432,7 +452,7 @@
 </ul>
 </div>
     <div id="echarts4r-020" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.2.0">
 <a href="#echarts4r-020" class="anchor"></a>echarts4r 0.2.0<small> 2018-11-14 </small>
 </h1>
 <p>Arguments containing <code>.</code> have been replaced by <code>_</code> for clarity. I.e.: <code>coord.system</code> =&gt; <code>coord_system</code>.</p>
@@ -447,7 +467,7 @@
 <p>The <code>scatter</code> family of function has been reworked: the <code>scale</code> argument now takes a scaling function. To accomodate to this, the <code>e_visual_map</code> function also takes, optionally, a <code>scaling</code> function. Retired <code>e_keras_history</code> due to its uselessness.</p>
 </div>
     <div id="echarts4r-012" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.2">
 <a href="#echarts4r-012" class="anchor"></a>echarts4r 0.1.2<small> Unreleased </small>
 </h1>
 <ul>
@@ -502,7 +522,7 @@
 </ul>
 </div>
     <div id="echarts4r-011" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.1">
 <a href="#echarts4r-011" class="anchor"></a>echarts4r 0.1.1<small> 2018-09-17 </small>
 </h1>
 <p><em>Now available on CRAN</em></p>
@@ -511,7 +531,7 @@
 </ul>
 </div>
     <div id="echarts4r-010" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.1.0">
 <a href="#echarts4r-010" class="anchor"></a>echarts4r 0.1.0<small> Unreleased </small>
 </h1>
 <p><code>echarts4r</code> now understands <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">dplyr::group_by</a></code></p>
@@ -521,7 +541,7 @@
 </ul>
 </div>
     <div id="echarts4r-002" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.2">
 <a href="#echarts4r-002" class="anchor"></a>echarts4r 0.0.2<small> Unreleased </small>
 </h1>
 <ul>
@@ -541,7 +561,7 @@
 </ul>
 </div>
     <div id="echarts4r-001" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.1">
 <a href="#echarts4r-001" class="anchor"></a>echarts4r 0.0.1<small> Unreleased </small>
 </h1>
 <p>Added:</p>
@@ -551,7 +571,7 @@
 </ul>
 </div>
     <div id="echarts4r-0019000" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.1.9000">
 <a href="#echarts4r-0019000" class="anchor"></a>echarts4r 0.0.1.9000<small> Unreleased </small>
 </h1>
 <p>Initial version with chart types:</p>
@@ -594,28 +614,14 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#echarts4r-032">0.3.2</a></li>
-        <li><a href="#echarts4r-0319000">0.3.1.9000</a></li>
-        <li><a href="#echarts4r-0309000">0.3.0.9000</a></li>
-        <li><a href="#echarts4r-023">0.2.3</a></li>
-        <li><a href="#echarts4r-022">0.2.2</a></li>
-        <li><a href="#echarts4r-021">0.2.1</a></li>
-        <li><a href="#echarts4r-020">0.2.0</a></li>
-        <li><a href="#echarts4r-012">0.1.2</a></li>
-        <li><a href="#echarts4r-011">0.1.1</a></li>
-        <li><a href="#echarts4r-010">0.1.0</a></li>
-        <li><a href="#echarts4r-002">0.0.2</a></li>
-        <li><a href="#echarts4r-001">0.0.1</a></li>
-        <li><a href="#echarts4r-0019000">0.0.1.9000</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -623,7 +629,6 @@
 </div>
 
 <p style="text-align: center;">
-  <a class="github-button" href="https://github.com/sponsors/JohnCoene" data-icon="octicon-heart" aria-label="Sponsor @JohnCoene on GitHub">Sponsor</a>
   <br>
   <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/JohnCoene"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
 </p>
@@ -631,6 +636,7 @@
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
    </div>
 
@@ -653,6 +659,8 @@
 </script>
 
 
+
   </body>
 </html>
+
 

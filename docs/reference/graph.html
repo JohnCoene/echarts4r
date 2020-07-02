@@ -8,6 +8,13 @@
 
 <title>Graph — e_graph • echarts4r</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -73,9 +80,10 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -89,7 +97,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -255,7 +263,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -266,13 +274,14 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Graph</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add.R'><code>R/add.R</code></a></small>
     <div class="hidden name"><code>graph.Rd</code></div>
     </div>
 
@@ -280,22 +289,22 @@
     <p>Create a graph.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_graph</span>(<span class='no'>e</span>, <span class='kw'>layout</span> <span class='kw'>=</span> <span class='st'>"force"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>e_graph</span>(<span class='kw'>e</span>, layout = <span class='st'>"force"</span>, name = <span class='kw'>NULL</span>, rm_x = <span class='fl'>TRUE</span>, rm_y = <span class='fl'>TRUE</span>, <span class='kw'>...</span>)
 
-<span class='fu'>e_graph_gl</span>(<span class='no'>e</span>, <span class='kw'>layout</span> <span class='kw'>=</span> <span class='st'>"force"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'>e_graph_gl</span>(<span class='kw'>e</span>, layout = <span class='st'>"force"</span>, name = <span class='kw'>NULL</span>, rm_x = <span class='fl'>TRUE</span>, rm_y = <span class='fl'>TRUE</span>, <span class='kw'>...</span>)
 
 <span class='fu'>e_graph_nodes</span>(
-  <span class='no'>e</span>,
-  <span class='no'>nodes</span>,
-  <span class='no'>names</span>,
-  <span class='no'>value</span>,
-  <span class='no'>size</span>,
-  <span class='no'>category</span>,
-  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>e</span>,
+  <span class='kw'>nodes</span>,
+  <span class='kw'>names</span>,
+  <span class='kw'>value</span>,
+  <span class='kw'>size</span>,
+  <span class='kw'>category</span>,
+  symbol = <span class='kw'>NULL</span>,
+  legend = <span class='fl'>TRUE</span>
 )
 
-<span class='fu'>e_graph_edges</span>(<span class='no'>e</span>, <span class='no'>edges</span>, <span class='no'>source</span>, <span class='no'>target</span>)</pre>
+<span class='fu'>e_graph_edges</span>(<span class='kw'>e</span>, <span class='kw'>edges</span>, <span class='kw'>source</span>, <span class='kw'>target</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -361,61 +370,59 @@
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#series-graph'>Additional arguments</a>,
- <code><a href='e_modularity.html'>e_modularity</a></code></p></div>
+ <code>e_modularity</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>value</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>10</span>, <span class='fl'>2</span>)
+    <pre class="examples"><div class='input'><span class='kw'>value</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>10</span>, <span class='fl'>2</span>)
 
-<span class='no'>nodes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>LETTERS</span>, <span class='fl'>10</span>),
-  <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>value</span>,
-  <span class='kw'>size</span> <span class='kw'>=</span> <span class='no'>value</span>,
-  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"circle"</span>, <span class='st'>"rect"</span>, <span class='st'>"triangle"</span>), <span class='fl'>10</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>grp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"grp1"</span>, <span class='st'>"grp2"</span>), <span class='fl'>5</span>),
-  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+<span class='kw'>nodes</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  name = <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>LETTERS</span>, <span class='fl'>10</span>),
+  value = <span class='kw'>value</span>,
+  size = <span class='kw'>value</span>,
+  symbol = <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"circle"</span>, <span class='st'>"rect"</span>, <span class='st'>"triangle"</span>), <span class='fl'>10</span>, replace = <span class='fl'>TRUE</span>),
+  grp = <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"grp1"</span>, <span class='st'>"grp2"</span>), <span class='fl'>5</span>),
+  stringsAsFactors = <span class='fl'>FALSE</span>
 )
 
-<span class='no'>edges</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
-  <span class='kw'>source</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>nodes</span>$<span class='no'>name</span>, <span class='fl'>20</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>target</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>nodes</span>$<span class='no'>name</span>, <span class='fl'>20</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+<span class='kw'>edges</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  source = <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>nodes</span><span class='op'>$</span><span class='kw'>name</span>, <span class='fl'>20</span>, replace = <span class='fl'>TRUE</span>),
+  target = <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>nodes</span><span class='op'>$</span><span class='kw'>name</span>, <span class='fl'>20</span>, replace = <span class='fl'>TRUE</span>),
+  stringsAsFactors = <span class='fl'>FALSE</span>
 )
 
-<span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_graph</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_graph_nodes</span>(<span class='no'>nodes</span>, <span class='no'>name</span>, <span class='no'>value</span>, <span class='no'>size</span>, <span class='no'>grp</span>, <span class='no'>symbol</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_graph_edges</span>(<span class='no'>edges</span>, <span class='no'>source</span>, <span class='no'>target</span>)
+<span class='fu'>e_charts</span>() <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_graph</span>() <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_graph_nodes</span>(<span class='kw'>nodes</span>, <span class='kw'>name</span>, <span class='kw'>value</span>, <span class='kw'>size</span>, <span class='kw'>grp</span>, <span class='kw'>symbol</span>) <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_graph_edges</span>(<span class='kw'>edges</span>, <span class='kw'>source</span>, <span class='kw'>target</span>)
 
 <span class='co'>#Use graphGL for larger networks</span>
-<span class='no'>nodes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='no'>LETTERS</span>, <span class='fl'>1</span>:<span class='fl'>1000</span>),
-  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>1000</span>, <span class='fl'>10</span>, <span class='fl'>2</span>),
-  <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>1000</span>, <span class='fl'>10</span>, <span class='fl'>2</span>),
-  <span class='kw'>grp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"grp1"</span>, <span class='st'>"grp2"</span>), <span class='fl'>500</span>),
-  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+<span class='kw'>nodes</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  name = <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='kw'>LETTERS</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>1000</span>),
+  value = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>1000</span>, <span class='fl'>10</span>, <span class='fl'>2</span>),
+  size = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>1000</span>, <span class='fl'>10</span>, <span class='fl'>2</span>),
+  grp = <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"grp1"</span>, <span class='st'>"grp2"</span>), <span class='fl'>500</span>),
+  stringsAsFactors = <span class='fl'>FALSE</span>
 )
 
-<span class='no'>edges</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
-  <span class='kw'>source</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>nodes</span>$<span class='no'>name</span>, <span class='fl'>2000</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>target</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>nodes</span>$<span class='no'>name</span>, <span class='fl'>2000</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+<span class='kw'>edges</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  source = <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>nodes</span><span class='op'>$</span><span class='kw'>name</span>, <span class='fl'>2000</span>, replace = <span class='fl'>TRUE</span>),
+  target = <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>nodes</span><span class='op'>$</span><span class='kw'>name</span>, <span class='fl'>2000</span>, replace = <span class='fl'>TRUE</span>),
+  stringsAsFactors = <span class='fl'>FALSE</span>
 )
 
-<span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_graph_gl</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_graph_nodes</span>(<span class='no'>nodes</span>, <span class='no'>name</span>, <span class='no'>value</span>, <span class='no'>size</span>, <span class='no'>grp</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_graph_edges</span>(<span class='no'>edges</span>, <span class='no'>source</span>, <span class='no'>target</span>)</div></pre>
+<span class='fu'>e_charts</span>() <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_graph_gl</span>() <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_graph_nodes</span>(<span class='kw'>nodes</span>, <span class='kw'>name</span>, <span class='kw'>value</span>, <span class='kw'>size</span>, <span class='kw'>grp</span>) <span class='op'>%&gt;%</span> 
+  <span class='fu'>e_graph_edges</span>(<span class='kw'>edges</span>, <span class='kw'>source</span>, <span class='kw'>target</span>)
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -423,7 +430,6 @@
 </div>
 
 <p style="text-align: center;">
-  <a class="github-button" href="https://github.com/sponsors/JohnCoene" data-icon="octicon-heart" aria-label="Sponsor @JohnCoene on GitHub">Sponsor</a>
   <br>
   <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/JohnCoene"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
 </p>
@@ -431,6 +437,7 @@
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
    </div>
 
@@ -453,6 +460,8 @@
 </script>
 
 
+
   </body>
 </html>
+
 

@@ -6,6 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pictorial • echarts4r</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
@@ -13,7 +19,7 @@
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Pictorial">
-<meta property="og:description" content="">
+<meta property="og:description" content="echarts4r">
 <meta property="og:image" content="http://echarts4r.john-coene.com/logo.png">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#293c55">
@@ -27,7 +33,7 @@
   gtag('config', 'UA-74544116-1');
 </script><!-- Place this tag in your head or just before your close body tag. --><script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -40,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -205,7 +211,7 @@
   </a>
 </li>
       </ul>
-<form class="navbar-form navbar-right" role="search">
+<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
@@ -219,15 +225,16 @@
 <!--/.navbar -->
 
       
-      </header><script src="pictorial_files/header-attrs-2.2/header-attrs.js"></script><script src="pictorial_files/htmlwidgets-1.5.1/htmlwidgets.js"></script><script src="pictorial_files/echarts4r-4.8.0/echarts-en.min.js"></script><script src="pictorial_files/echarts4r-4.8.0/ecStat.min.js"></script><script src="pictorial_files/echarts4r-4.8.0/dataTool.min.js"></script><script src="pictorial_files/echarts4r-binding-0.3.2/echarts4r.js"></script><script src="pictorial_files/westeros-1.0.0/westeros.js"></script><div class="row">
+
+      </header><script src="pictorial_files/header-attrs-2.3.2/header-attrs.js"></script><script src="pictorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="pictorial_files/htmlwidgets-1.5.1/htmlwidgets.js"></script><script src="pictorial_files/echarts4r-4.8.0/echarts-en.min.js"></script><script src="pictorial_files/echarts4r-4.8.0/ecStat.min.js"></script><script src="pictorial_files/echarts4r-4.8.0/dataTool.min.js"></script><script src="pictorial_files/echarts4r-binding-0.3.3/echarts4r.js"></script><script src="pictorial_files/westeros-1.0.0/westeros.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Pictorial</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2020-06-18</h4>
+            <h4 class="date">2020-07-02</h4>
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/JohnCoene/echarts4r/blob/master/vignettes/pictorial.Rmd"><code>vignettes/pictorial.Rmd</code></a></small>
       <div class="hidden name"><code>pictorial.Rmd</code></div>
 
     </div>
@@ -238,87 +245,95 @@
 <div id="built-in-symbols" class="section level2">
 <h2 class="hasAnchor">
 <a href="#built-in-symbols" class="anchor"></a>Built-in symbols</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>y &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</span>
-<span id="cb1-3"><a href="#cb1-3"></a>  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="dt">y =</span> y,</span>
-<span id="cb1-5"><a href="#cb1-5"></a>  <span class="dt">z =</span> y <span class="op">-</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">1</span>)</span>
-<span id="cb1-6"><a href="#cb1-6"></a>)</span>
-<span id="cb1-7"><a href="#cb1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="st">  </span><span class="kw"><a href="../reference/e_bar.html">e_bar</a></span>(z, <span class="dt">barWidth =</span> <span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="st">  </span><span class="kw"><a href="../reference/e_pictorial.html">e_pictorial</a></span>(y, <span class="dt">symbol =</span> <span class="st">"rect"</span>, <span class="dt">symbolRepeat =</span> <span class="ot">TRUE</span>, <span class="dt">z =</span> <span class="dv">-1</span>,</span>
-<span id="cb1-12"><a href="#cb1-12"></a>    <span class="dt">symbolSize =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">10</span>, <span class="dv">4</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="st">  </span><span class="kw"><a href="../reference/theme.html">e_theme</a></span>(<span class="st">"westeros"</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="st">  </span><span class="kw"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"Built-in symbols"</span>)</span></code></pre></div>
-<div id="htmlwidget-ce1f4e12ca1b84f06a73" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ce1f4e12ca1b84f06a73">{"x":{"theme":"westeros","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["z","y"]},"series":[{"data":[{"value":[1,5.295343507471]},{"value":[2,1.13589936315409]},{"value":[3,5.12307738255221]},{"value":[4,11.8205884392479]},{"value":[5,6.43468393438152]},{"value":[6,4.19482075607927]},{"value":[7,4.75376518720199]},{"value":[8,4.47959028751433]},{"value":[9,6.90404519228326]},{"value":[10,7.91132140557279]}],"name":"z","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","barWidth":10},{"data":[{"value":[1,10.3644831817865]},{"value":[2,6.84022916291498]},{"value":[3,10.0736534597498]},{"value":[4,16.5494213194268]},{"value":[5,11.2250541441211]},{"value":[6,10.5933748068948]},{"value":[7,8.72011987663062]},{"value":[8,10.4801807423424]},{"value":[9,10.914112055518]},{"value":[10,11.6336434435238]}],"name":"y","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0,"symbolRepeat":true,"z":-1,"symbolSize":[10,4],"symbol":"rect"}],"title":[{"text":"Built-in symbols"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">2</span>)
+<span class="kw">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
+  x = <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,
+  y = <span class="kw">y</span>,
+  z = <span class="kw">y</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>, <span class="fl">5</span>, <span class="fl">1</span>)
+)
+
+<span class="kw">df</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_bar.html">e_bar</a></span>(<span class="kw">z</span>, barWidth = <span class="fl">10</span>) <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_pictorial.html">e_pictorial</a></span>(<span class="kw">y</span>, symbol = <span class="st">"rect"</span>, symbolRepeat = <span class="fl">TRUE</span>, z = <span class="op">-</span><span class="fl">1</span>,
+    symbolSize = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">10</span>, <span class="fl">4</span>)) <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_theme.html">e_theme</a></span>(<span class="st">"westeros"</span>) <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"Built-in symbols"</span>)
+</pre></div>
+<div id="htmlwidget-d9c0ddddd707e1475fe3" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d9c0ddddd707e1475fe3">{"x":{"theme":"westeros","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["z","y"]},"series":[{"data":[{"value":[1,7.69204378841605]},{"value":[2,6.42781907050962]},{"value":[3,6.1881881236759]},{"value":[4,9.57902646836164]},{"value":[5,9.45424373007064]},{"value":[6,7.79483014991691]},{"value":[7,9.11500633972117]},{"value":[8,8.15679256646458]},{"value":[9,5.31504244108732]},{"value":[10,2.3470329784286]}],"name":"z","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","barWidth":10},{"data":[{"value":[1,11.3056048079227]},{"value":[2,11.8900241379976]},{"value":[3,11.0616218019287]},{"value":[4,13.8736350856388]},{"value":[5,14.276406291799]},{"value":[6,11.9778257154553]},{"value":[7,12.7277040420916]},{"value":[8,12.2641554871744]},{"value":[9,9.83390722031809]},{"value":[10,8.16924683978884]}],"name":"y","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0,"symbolRepeat":true,"z":-1,"symbolSize":[10,4],"symbol":"rect"}],"title":[{"text":"Built-in symbols"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="icons" class="section level2">
 <h2 class="hasAnchor">
 <a href="#icons" class="anchor"></a>Icons</h2>
 <p><a href="https://echarts4r-assets.john-coene.com">echarts4r.assets</a> now includes icons you can easily include in your plots.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(echarts4r.assets)</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(mpg) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="st">  </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(</span>
-<span id="cb2-6"><a href="#cb2-6"></a>    wt, </span>
-<span id="cb2-7"><a href="#cb2-7"></a>    qsec,</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="dt">symbol =</span> <span class="kw"><a href="http://echarts4r-assets.john-coene.com/reference/icons-func.html">ea_icons</a></span>(<span class="st">"trash"</span>),</span>
-<span id="cb2-9"><a href="#cb2-9"></a>    <span class="dt">name =</span> <span class="st">"Trash"</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="st">  </span><span class="kw"><a href="../reference/e_legend.html">e_legend</a></span>(<span class="dt">icons =</span> <span class="kw"><a href="http://echarts4r-assets.john-coene.com/reference/icons-func.html">ea_icons</a></span>(<span class="st">"trash"</span>))</span></code></pre></div>
-<div id="htmlwidget-73066076005986aefd9c" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-73066076005986aefd9c">{"x":{"theme":"default","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":[{"name":"Trash","icon":"path://M81,23.5H61V17c0-1.1-0.9-2-2-2H41c-1.1,0-2,0.9-2,2v6.5H19c-1.1,0-2,0.9-2,2c0,1.1,0.9,2,2,2h6.6V83\r\n\t\tc0,1.1,0.9,2,2,2h44.8c1.1,0,2-0.9,2-2V27.5H81c1.1,0,2-0.9,2-2C83,24.4,82.1,23.5,81,23.5z M43,19h14v4H43V19z M70.4,81H29.6V27.5\r\n\t\th40.8V81z M61,38.3v32c0,1.1-0.9,2-2,2s-2-0.9-2-2v-32c0-1.1,0.9-2,2-2S61,37.1,61,38.3z M43,38.3v32c0,1.1-0.9,2-2,2s-2-0.9-2-2\r\n\t\tv-32c0-1.1,0.9-2,2-2S43,37.1,43,38.3z"}],"show":true,"type":"plain"},"series":[{"data":[{"value":[10.4,5.25,17.98,8.87142857142857]},{"value":[10.4,5.424,17.82,8.50952380952381]},{"value":[13.3,3.84,15.41,3.05833333333333]},{"value":[14.3,3.57,15.84,4.03095238095238]},{"value":[14.7,5.345,17.42,7.60476190476191]},{"value":[15,3.57,14.6,1.22619047619048]},{"value":[15.2,3.78,18,8.91666666666667]},{"value":[15.2,3.435,17.3,7.33333333333334]},{"value":[15.5,3.52,16.87,6.36071428571429]},{"value":[15.8,3.17,14.5,1]},{"value":[16.4,4.07,17.4,7.55952380952381]},{"value":[17.3,3.73,17.6,8.01190476190477]},{"value":[17.8,3.44,18.9,10.952380952381]},{"value":[18.1,3.46,20.22,13.9380952380952]},{"value":[18.7,3.44,17.02,6.7]},{"value":[19.2,3.44,18.3,9.5952380952381]},{"value":[19.2,3.845,17.05,6.76785714285715]},{"value":[19.7,2.77,15.5,3.26190476190476]},{"value":[21,2.62,16.46,5.43333333333334]},{"value":[21,2.875,17.02,6.7]},{"value":[21.4,3.215,19.44,12.1738095238095]},{"value":[21.4,2.78,18.6,10.2738095238095]},{"value":[21.5,2.465,20.01,13.4630952380952]},{"value":[22.8,2.32,18.61,10.2964285714286]},{"value":[22.8,3.15,22.9,20]},{"value":[24.4,3.19,20,13.4404761904762]},{"value":[26,2.14,16.7,5.97619047619048]},{"value":[27.3,1.935,18.9,10.952380952381]},{"value":[30.4,1.615,18.52,10.0928571428571]},{"value":[30.4,1.513,16.9,6.42857142857143]},{"value":[32.4,2.2,19.47,12.2416666666667]},{"value":[33.9,1.835,19.9,13.2142857142857]}],"name":"Trash","type":"scatter","symbol":"path://M81,23.5H61V17c0-1.1-0.9-2-2-2H41c-1.1,0-2,0.9-2,2v6.5H19c-1.1,0-2,0.9-2,2c0,1.1,0.9,2,2,2h6.6V83\r\n\t\tc0,1.1,0.9,2,2,2h44.8c1.1,0,2-0.9,2-2V27.5H81c1.1,0,2-0.9,2-2C83,24.4,82.1,23.5,81,23.5z M43,19h14v4H43V19z M70.4,81H29.6V27.5\r\n\t\th40.8V81z M61,38.3v32c0,1.1-0.9,2-2,2s-2-0.9-2-2v-32c0-1.1,0.9-2,2-2S61,37.1,61,38.3z M43,38.3v32c0,1.1-0.9,2-2,2s-2-0.9-2-2\r\n\t\tv-32c0-1.1,0.9-2,2-2S43,37.1,43,38.3z","coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":"function(data){ return data[3];}"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":["opts.series.0.symbolSize"],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://echarts4r-assets.john-coene.com">echarts4r.assets</a></span>)
+
+<span class="kw">mtcars</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">mpg</span>) <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span>(
+    <span class="kw">wt</span>, 
+    <span class="kw">qsec</span>,
+    symbol = <span class="fu"><a href="http://echarts4r-assets.john-coene.com/reference/icons-func.html">ea_icons</a></span>(<span class="st">"trash"</span>),
+    name = <span class="st">"Trash"</span>
+  ) <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_legend.html">e_legend</a></span>(icons = <span class="fu"><a href="http://echarts4r-assets.john-coene.com/reference/icons-func.html">ea_icons</a></span>(<span class="st">"trash"</span>))
+</pre></div>
+<div id="htmlwidget-24bfd89b3f717df38014" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-24bfd89b3f717df38014">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":[{"name":"Trash","icon":"path://M81,23.5H61V17c0-1.1-0.9-2-2-2H41c-1.1,0-2,0.9-2,2v6.5H19c-1.1,0-2,0.9-2,2c0,1.1,0.9,2,2,2h6.6V83\r\n\t\tc0,1.1,0.9,2,2,2h44.8c1.1,0,2-0.9,2-2V27.5H81c1.1,0,2-0.9,2-2C83,24.4,82.1,23.5,81,23.5z M43,19h14v4H43V19z M70.4,81H29.6V27.5\r\n\t\th40.8V81z M61,38.3v32c0,1.1-0.9,2-2,2s-2-0.9-2-2v-32c0-1.1,0.9-2,2-2S61,37.1,61,38.3z M43,38.3v32c0,1.1-0.9,2-2,2s-2-0.9-2-2\r\n\t\tv-32c0-1.1,0.9-2,2-2S43,37.1,43,38.3z"}],"show":true,"type":"plain"},"series":[{"data":[{"value":[10.4,5.25,17.98,8.87142857142857]},{"value":[10.4,5.424,17.82,8.50952380952381]},{"value":[13.3,3.84,15.41,3.05833333333333]},{"value":[14.3,3.57,15.84,4.03095238095238]},{"value":[14.7,5.345,17.42,7.60476190476191]},{"value":[15,3.57,14.6,1.22619047619048]},{"value":[15.2,3.78,18,8.91666666666667]},{"value":[15.2,3.435,17.3,7.33333333333334]},{"value":[15.5,3.52,16.87,6.36071428571429]},{"value":[15.8,3.17,14.5,1]},{"value":[16.4,4.07,17.4,7.55952380952381]},{"value":[17.3,3.73,17.6,8.01190476190477]},{"value":[17.8,3.44,18.9,10.952380952381]},{"value":[18.1,3.46,20.22,13.9380952380952]},{"value":[18.7,3.44,17.02,6.7]},{"value":[19.2,3.44,18.3,9.5952380952381]},{"value":[19.2,3.845,17.05,6.76785714285715]},{"value":[19.7,2.77,15.5,3.26190476190476]},{"value":[21,2.62,16.46,5.43333333333334]},{"value":[21,2.875,17.02,6.7]},{"value":[21.4,3.215,19.44,12.1738095238095]},{"value":[21.4,2.78,18.6,10.2738095238095]},{"value":[21.5,2.465,20.01,13.4630952380952]},{"value":[22.8,2.32,18.61,10.2964285714286]},{"value":[22.8,3.15,22.9,20]},{"value":[24.4,3.19,20,13.4404761904762]},{"value":[26,2.14,16.7,5.97619047619048]},{"value":[27.3,1.935,18.9,10.952380952381]},{"value":[30.4,1.615,18.52,10.0928571428571]},{"value":[30.4,1.513,16.9,6.42857142857143]},{"value":[32.4,2.2,19.47,12.2416666666667]},{"value":[33.9,1.835,19.9,13.2142857142857]}],"name":"Trash","type":"scatter","symbol":"path://M81,23.5H61V17c0-1.1-0.9-2-2-2H41c-1.1,0-2,0.9-2,2v6.5H19c-1.1,0-2,0.9-2,2c0,1.1,0.9,2,2,2h6.6V83\r\n\t\tc0,1.1,0.9,2,2,2h44.8c1.1,0,2-0.9,2-2V27.5H81c1.1,0,2-0.9,2-2C83,24.4,82.1,23.5,81,23.5z M43,19h14v4H43V19z M70.4,81H29.6V27.5\r\n\t\th40.8V81z M61,38.3v32c0,1.1-0.9,2-2,2s-2-0.9-2-2v-32c0-1.1,0.9-2,2-2S61,37.1,61,38.3z M43,38.3v32c0,1.1-0.9,2-2,2s-2-0.9-2-2\r\n\t\tv-32c0-1.1,0.9-2,2-2S43,37.1,43,38.3z","coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":"function(data){ return data[3];}"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":["opts.series.0.symbolSize"],"jsHooks":[]}</script>
 </div>
 <div id="svg-path" class="section level2">
 <h2 class="hasAnchor">
 <a href="#svg-path" class="anchor"></a>SVG path</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>path &lt;-<span class="st"> "path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a>style &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">normal =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">opacity =</span> <span class="fl">0.5</span>), <span class="co"># normal</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>  <span class="dt">emphasis =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">opacity =</span> <span class="dv">1</span>) <span class="co"># on hover</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>)</span>
-<span id="cb3-7"><a href="#cb3-7"></a></span>
-<span id="cb3-8"><a href="#cb3-8"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="st">  </span><span class="kw"><a href="../reference/e_pictorial.html">e_pictorial</a></span>(y, <span class="dt">symbol =</span> path, </span>
-<span id="cb3-11"><a href="#cb3-11"></a>              <span class="dt">barCategoryGap =</span> <span class="st">"-130%"</span>, </span>
-<span id="cb3-12"><a href="#cb3-12"></a>              <span class="dt">itemStyle =</span> style) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="st">  </span><span class="kw"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"SVG path"</span>)</span></code></pre></div>
-<div id="htmlwidget-b6ffbcba2142709fc2d7" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b6ffbcba2142709fc2d7">{"x":{"theme":"default","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["y"]},"series":[{"data":[{"value":[1,10.3644831817865]},{"value":[2,6.84022916291498]},{"value":[3,10.0736534597498]},{"value":[4,16.5494213194268]},{"value":[5,11.2250541441211]},{"value":[6,10.5933748068948]},{"value":[7,8.72011987663062]},{"value":[8,10.4801807423424]},{"value":[9,10.914112055518]},{"value":[10,11.6336434435238]}],"name":"y","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0,"barCategoryGap":"-130%","itemStyle":{"normal":{"opacity":0.5},"emphasis":{"opacity":1}},"symbol":"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"}],"title":[{"text":"SVG path"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">path</span> <span class="op">&lt;-</span> <span class="st">"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"</span>
+
+<span class="kw">style</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+  normal = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(opacity = <span class="fl">0.5</span>), <span class="co"># normal</span>
+  emphasis = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(opacity = <span class="fl">1</span>) <span class="co"># on hover</span>
+)
+
+<span class="kw">df</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_pictorial.html">e_pictorial</a></span>(<span class="kw">y</span>, symbol = <span class="kw">path</span>, 
+              barCategoryGap = <span class="st">"-130%"</span>, 
+              itemStyle = <span class="kw">style</span>) <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"SVG path"</span>)
+</pre></div>
+<div id="htmlwidget-3a119d64ccf6c387db95" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3a119d64ccf6c387db95">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["y"]},"series":[{"data":[{"value":[1,11.3056048079227]},{"value":[2,11.8900241379976]},{"value":[3,11.0616218019287]},{"value":[4,13.8736350856388]},{"value":[5,14.276406291799]},{"value":[6,11.9778257154553]},{"value":[7,12.7277040420916]},{"value":[8,12.2641554871744]},{"value":[9,9.83390722031809]},{"value":[10,8.16924683978884]}],"name":"y","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0,"barCategoryGap":"-130%","itemStyle":{"normal":{"opacity":0.5},"emphasis":{"opacity":1}},"symbol":"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"}],"title":[{"text":"SVG path"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="images" class="section level2">
 <h2 class="hasAnchor">
 <a href="#images" class="anchor"></a>Images</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>qomo &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(</span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="st">"https://ecomfe.github.io/echarts-examples/public/"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="st">"data/asset/img/hill-Qomolangma.png"</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>)</span>
-<span id="cb4-5"><a href="#cb4-5"></a></span>
-<span id="cb4-6"><a href="#cb4-6"></a>kili &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(</span>
-<span id="cb4-7"><a href="#cb4-7"></a>  <span class="st">"https://ecomfe.github.io/echarts-examples/public/"</span>, </span>
-<span id="cb4-8"><a href="#cb4-8"></a>  <span class="st">"data/asset/img/hill-Kilimanjaro.png"</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a>)</span>
-<span id="cb4-10"><a href="#cb4-10"></a></span>
-<span id="cb4-11"><a href="#cb4-11"></a>data &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</span>
-<span id="cb4-12"><a href="#cb4-12"></a>  <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Qomolangma"</span>, <span class="st">"Kilimanjaro"</span>), </span>
-<span id="cb4-13"><a href="#cb4-13"></a>  <span class="dt">value =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">8844</span>, <span class="dv">5895</span>),</span>
-<span id="cb4-14"><a href="#cb4-14"></a>  <span class="dt">symbol =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"image://"</span>, qomo),</span>
-<span id="cb4-15"><a href="#cb4-15"></a>    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"image://"</span>, kili))</span>
-<span id="cb4-16"><a href="#cb4-16"></a>)</span>
-<span id="cb4-17"><a href="#cb4-17"></a></span>
-<span id="cb4-18"><a href="#cb4-18"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="st">  </span><span class="kw"><a href="../reference/e_pictorial.html">e_pictorial</a></span>(value, symbol) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="st">  </span><span class="kw"><a href="../reference/e_legend.html">e_legend</a></span>(<span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-22"><a href="#cb4-22"></a><span class="st">  </span><span class="kw"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"Images"</span>, <span class="st">"Mountains height"</span>)</span></code></pre></div>
-<div id="htmlwidget-a9e3ace121d611dd9bd2" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a9e3ace121d611dd9bd2">{"x":{"theme":"default","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["Qomolangma","Kilimanjaro"],"type":"category","boundaryGap":true}],"legend":{"data":["value"],"show":false,"type":"plain"},"series":[{"data":[{"value":["Qomolangma","8844"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Qomolangma.png"},{"value":["Kilimanjaro","5895"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Kilimanjaro.png"}],"name":"value","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0}],"title":[{"text":"Images","subtext":"Mountains height"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">qomo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(
+  <span class="st">"https://ecomfe.github.io/echarts-examples/public/"</span>,
+  <span class="st">"data/asset/img/hill-Qomolangma.png"</span>
+)
+
+<span class="kw">kili</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(
+  <span class="st">"https://ecomfe.github.io/echarts-examples/public/"</span>, 
+  <span class="st">"data/asset/img/hill-Kilimanjaro.png"</span>
+)
+
+<span class="kw">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
+  x = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Qomolangma"</span>, <span class="st">"Kilimanjaro"</span>), 
+  value = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">8844</span>, <span class="fl">5895</span>),
+  symbol = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"image://"</span>, <span class="kw">qomo</span>),
+    <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"image://"</span>, <span class="kw">kili</span>))
+)
+
+<span class="kw">data</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_pictorial.html">e_pictorial</a></span>(<span class="kw">value</span>, <span class="kw">symbol</span>) <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_legend.html">e_legend</a></span>(<span class="fl">FALSE</span>) <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_title.html">e_title</a></span>(<span class="st">"Images"</span>, <span class="st">"Mountains height"</span>)
+</pre></div>
+<div id="htmlwidget-e1bfde9977e211a60d08" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e1bfde9977e211a60d08">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["Qomolangma","Kilimanjaro"],"type":"category","boundaryGap":true}],"legend":{"data":["value"],"show":false,"type":"plain"},"series":[{"data":[{"value":["Qomolangma","8844"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Qomolangma.png"},{"value":["Kilimanjaro","5895"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Kilimanjaro.png"}],"name":"value","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0}],"title":[{"text":"Images","subtext":"Mountains height"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
   </div>
 
@@ -334,12 +349,11 @@
       <li><a href="#images">Images</a></li>
       </ul>
 </div>
-      <!-- codefund -->
-  <div id="codefund"><!-- fallback content --></div>
-  <script src="https://codefund.app/properties/148/funder.js" async="async"></script>
-</div>
+    
+    <a class="github-button" href="https://github.com/sponsors/JohnCoene" data-icon="octicon-heart" aria-label="Sponsor @JohnCoene on GitHub">Sponsor</a>
 
 </div>
+
 
 
       <footer><div class="copyright">
@@ -347,13 +361,13 @@
 </div>
 
 <p style="text-align: center;">
-  <a class="github-button" href="https://github.com/sponsors/JohnCoene" data-icon="octicon-heart" aria-label="Sponsor @JohnCoene on GitHub">Sponsor</a>
   <br><style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&amp;subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/JohnCoene"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
 </p>
 
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
 </div>
 
@@ -373,5 +387,6 @@
     }
   });
 </script>
+</div>
 </body>
 </html>
