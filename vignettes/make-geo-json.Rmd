@@ -76,8 +76,8 @@ Now we can use the `GeoJSON` with `e_map_register`.
 ```{r, cache=TRUE}
 # plot 
 e_charts() %>%
-  e_map_register("India_small", india_json_small) %>%
-  e_map(map = "India_small", nameProperty = "NAME_2")
+  e_map_register("India", india_json_small) %>%
+  e_map(map = "India", nameProperty = "NAME_2")
 ```
 
 
