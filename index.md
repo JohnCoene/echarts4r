@@ -76,11 +76,7 @@ remotes::install_github("JohnCoene/echarts4r.suite")
 <i class = "fa fa-globe fa-5x" style = "color:#293c55;"></i>
 <h4>echarts4r.assets</h4>
 <p>Icons, and assets for globes, add visually interesting globe overlays and background.</p>
-<pre class = "sourceCode r">
-<code class = "sourceCode r">
-remotes::install_github('JohnCoene/echarts4r.assets')
-</code>
-</pre>
+<pre class = "sourceCode r"><code class = "sourceCode r">remotes::install_github('JohnCoene/echarts4r.assets')</code></pre>
 <a class = "btn btn-default" href = "https://echarts4r-assets.john-coene.com/">Website</a>
 <a class = "btn btn-default" href = "https://github.com/JohnCoene/echarts4r.assets">Github</a>
 </div>
@@ -94,11 +90,7 @@ remotes::install_github('JohnCoene/echarts4r.assets')
 <i class = "fa fa-map-o fa-5x" style = "color:#293c55;"></i>
 <h4>echarts4r.maps</h4>
 <p>A collection of 215 country maps to use with geo-spatial visualisations.</p>
-<pre class = "sourceCode r">
-<code class = "sourceCode r">
-remotes::install_github('JohnCoene/echarts4r.maps')
-</code>
-</pre>
+<pre class = "sourceCode r"><code class = "sourceCode r">remotes::install_github('JohnCoene/echarts4r.maps')</code></pre>
 <a class = "btn btn-default" href = "https://echarts4r-maps.john-coene.com/">Website</a>
 <a class = "btn btn-default" href = "https://github.com/JohnCoene/echarts4r.maps">Github</a>
 </div>

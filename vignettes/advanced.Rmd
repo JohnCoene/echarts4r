@@ -29,12 +29,12 @@ You can set two common options with `e_common`:
 
 ```{r}
 e_common(
-  font_family = "Ubuntu Mono",
+  font_family = "Raleway",
   theme = NULL
 )
 ```
 
-All charts on this page will use the `Ubuntu Mono` font (sourced in CSS).
+All charts on this page will use the `Raleway` font (sourced in CSS from Google fonts).
 
 ## Grouping
 

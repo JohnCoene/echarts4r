@@ -177,4 +177,4 @@ df %>%
 
 Once you come to the realisation that JSON ~= `list` in R, it's pretty easy.
 
-You're in on the basics, go to the [advanced](articles/advanced.html) section or navigate the site to discover how add multiple linked graphs, draw on globes, use the package in shiny, and more.
+You're in on the basics, go to the [advanced](https://echarts4r.john-coene.com/articles/advanced.html) section or navigate the site to discover how add multiple linked graphs, draw on globes, use the package in shiny, and more.
