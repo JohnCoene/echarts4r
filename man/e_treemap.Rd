@@ -26,7 +26,8 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{value}{Value of edges.}
 
-\item{itemStyle}{Name of column containing styles to pass to \code{child},}
+\item{itemStyle}{Name of column containing styles to pass to \code{child},
+this must be a list column, see example below.}
 
 \item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
@@ -39,10 +40,12 @@ Build a treemap.
 df <- data.frame(
   parent = c("earth", "earth", "earth", "mars", "mars"), 
   child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
-  value = ceiling(rnorm(5, 10, 2))
+  value = ceiling(rnorm(5, 10, 2)),
+  borderWidth = 10
 )
 
 df \%>\% 
+  tidyr::nest(style = c(borderWidth)) \%>\% 
   e_charts() \%>\% 
   e_treemap(parent, child, value)
   

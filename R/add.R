@@ -1384,17 +1384,20 @@ e_sunburst.echarts4rProxy <- function(e, parent, child, value, itemStyle, rm_x =
 #' @inheritParams e_bar
 #' @param parent,child Edges.
 #' @param value Value of edges.
-#' @param itemStyle Name of column containing styles to pass to \code{child}, 
+#' @param itemStyle Name of column containing styles to pass to \code{child},
+#' this must be a list column, see example below.
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' df <- data.frame(
 #'   parent = c("earth", "earth", "earth", "mars", "mars"), 
 #'   child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
-#'   value = ceiling(rnorm(5, 10, 2))
+#'   value = ceiling(rnorm(5, 10, 2)),
+#'   borderWidth = 10
 #' )
 #' 
 #' df %>% 
+#'   tidyr::nest(style = c(borderWidth)) %>% 
 #'   e_charts() %>% 
 #'   e_treemap(parent, child, value)
 #'   
