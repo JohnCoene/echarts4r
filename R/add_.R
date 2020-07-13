@@ -1060,7 +1060,7 @@ e_boxplot_ <- function(e, serie, name = NULL, outliers = TRUE, ...){
     
     if(!e$x$tl){
       
-      nm <- .name_it(e, serie, NULL, i)
+      nm <- .name_it(e, serie, name, i)
       
       if(length(e$x$opts$series) >= 1){
         e$x$opts$series[[1]]$data <- append(
