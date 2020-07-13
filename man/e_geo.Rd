@@ -4,7 +4,7 @@
 \alias{e_geo}
 \title{Geo}
 \usage{
-e_geo(e, map = "world", ...)
+e_geo(e, map = "world", ..., rm_x = TRUE, rm_y = TRUE)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
@@ -13,6 +13,8 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{map}{Map type.}
 
 \item{...}{Any other option to pass, check See Also section.}
+
+\item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 }
 \description{
 Initialise geo.

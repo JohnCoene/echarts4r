@@ -1314,6 +1314,8 @@ e_line_3d_ <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, r
 #' @rdname e_bar_3d
 #' @export
 e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name = NULL, rm_x = TRUE, rm_y = TRUE, ...){
+
+  coord_system <- tolower(coord_system)
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -1330,7 +1332,7 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
   
   for(i in 1:length(e$x$data)){
     
-    if(coord_system != "cartesian3D"){
+    if(coord_system != "cartesian3d"){
       data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
       
       if(!is.null(bind))
@@ -1342,7 +1344,7 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
     if(!e$x$tl){
       
       # globe
-      if(coord_system == "cartesian3D"){ # cartesian
+      if(coord_system == "cartesian3d"){ # cartesian
         
         if(!length(e$x$opts$zAxis3D))
           e$x$opts$zAxis3D <- list(list(show = TRUE))
@@ -1369,7 +1371,7 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
     } else {
       
       # globe
-      if(coord_system == "cartesian3D"){ # cartesian
+      if(coord_system == "cartesian3d"){ # cartesian
         
         if(!length(e$x$opts$zAxis3D))
           e$x$opts$baseOption$zAxis3D <- list(list(show = TRUE))
@@ -1530,6 +1532,9 @@ e_lines_ <- function(e, source_lon, source_lat, target_lon, target_lat, source_n
 #' @export
 e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord_system = "cartesian3D", name = NULL, 
                          rm_x = TRUE, rm_y = TRUE, legend = FALSE, ...){
+
+  coord_system <- tolower(coord_system)
+
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1546,7 +1551,7 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
   for(i in 1:length(e$x$data)){
     
     # globe
-    if(coord_system != "cartesian3D"){
+    if(coord_system != "cartesian3d"){
       
       data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
       
@@ -1687,6 +1692,8 @@ e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = N
 #' @rdname e_scatter_gl
 #' @export
 e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRUE, rm_y = TRUE, ...){
+
+  coord_system <- tolower(coord_system)
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -1714,7 +1721,7 @@ e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRU
     )
     
     # globe
-    if(coord_system == "cartesian3D"){
+    if(coord_system == "cartesian3d"){
       
       if(!e$x$tl){
         if(!length(e$x$opts$zAxis3D))

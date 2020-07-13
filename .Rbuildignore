@@ -20,3 +20,4 @@ FUNDING.yml
 test.R
 ^\.github$
 ^\.vscode$
+index.md

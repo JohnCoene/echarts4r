@@ -89,6 +89,7 @@ e_geo_3d_ <- function(e, serie = NULL, color = NULL, type = "world", rm_x = TRUE
 #' 
 #' @inheritParams e_bar
 #' @param map Map type.
+#' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
 #' flights <- read.csv(
@@ -111,12 +112,15 @@ e_geo_3d_ <- function(e, serie = NULL, color = NULL, type = "world", rm_x = TRUE
 #' @seealso \href{https://echarts.apache.org/en/option.html#geo}{Additional arguments}
 #' 
 #' @export
-e_geo <- function(e, map = "world", ...){
+e_geo <- function(e, map = "world", ..., rm_x = TRUE, rm_y = TRUE){
   
   opts <- list(
     map = map,
     ...
   )
+
+  e <- .rm_axis(e, rm_x, "x")
+  e <- .rm_axis(e, rm_y, "y")
   
   if(!e$x$tl)
     e$x$opts$geo <- opts

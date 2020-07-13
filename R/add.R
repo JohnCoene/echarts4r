@@ -2461,11 +2461,15 @@ e_scatter_gl.echarts4r <- function(e, y, z, name = NULL, coord_system = "geo", r
 
   if(missing(y) || missing(z))
     stop("must pass y and z", call. = FALSE)
+
+  z_serie <- NULL
+  if(!missing(z))
+    z_serie <- deparse(substitute(z))
   
   e_scatter_gl_(
     e, 
     deparse(substitute(y)), 
-    deparse(substitute(z)), 
+    z_serie, 
     name, coord_system, rm_x, 
     rm_y, ...
   )
