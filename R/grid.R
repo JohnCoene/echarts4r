@@ -87,9 +87,11 @@ e_axis_ <- function(e, serie = NULL, axis = c("x", "y", "z"), index = 0, formatt
   
   if(!is.null(serie)){
     dat <- .get_data(e, serie)
-    rng <- range(dat)
-    attrs$min <- rng[1] - margin
-    attrs$max <- rng[2] + margin
+    if(inherits(dat, "numeric") || inherits(dat, "integer")){
+      rng <- range(dat)
+      attrs$min <- rng[1] - margin
+      attrs$max <- rng[2] + margin
+    }
   }
   
   if(!is.null(formatter))
