@@ -25,6 +25,6 @@ Imports:
   rstudioapi
 Suggests:
     tidyr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.1.9000
 URL: http://echarts4r.john-coene.com/
 BugReports: https://github.com/JohnCoene/echarts4r/issues

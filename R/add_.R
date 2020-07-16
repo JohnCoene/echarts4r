@@ -1962,12 +1962,14 @@ e_density_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
     serie_opts <- list(
       name = name,
       type = "line",
-      areaStyle = list(),
       yAxisIndex = y_index,
       xAxisIndex = x_index,
       smooth = smooth,
       ...
     )
+
+    if(!"areaStyle" %in% names(serie_opts))
+      serie_opts$areaStyle <- list()
     
     if(!e$x$tl){
       
