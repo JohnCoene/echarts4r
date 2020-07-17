@@ -93,5 +93,9 @@ mtcars \%>\%
   e_charts(timeline = TRUE) \%>\% 
   e_histogram(mpg, name = "histogram") \%>\% 
   e_density(mpg, name = "density", y_index = 1)
-
+  
+}
+\seealso{
+\href{https://echarts.apache.org/en/option.html#series-bar}{Additional arguments for histogram},
+ \href{https://echarts.apache.org/en/option.html#series-line}{Additional arguments for density}
 }
