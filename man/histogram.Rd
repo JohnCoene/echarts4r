@@ -75,7 +75,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 
-\item{smooth}{Wether to use smoothed lines, passed to \code{\link{e_line}}.}
+\item{smooth}{Whether to use smoothed lines, passed to \code{\link{e_line}}.}
 }
 \description{
 Add a histogram or density plots.

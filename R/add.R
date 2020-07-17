@@ -3116,7 +3116,7 @@ e_loess.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbo
 #' @inheritParams e_bar
 #' @param bar_width Width of bars.
 #' @param breaks Passed to \code{\link{hist}}.
-#' @param smooth Wether to use smoothed lines, passed to \code{\link{e_line}}.
+#' @param smooth Whether to use smoothed lines, passed to \code{\link{e_line}}.
 #' 
 #' @examples 
 #' mtcars %>% 
