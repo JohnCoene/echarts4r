@@ -75,7 +75,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 
-\item{smooth}{Wether to use smoothed lines, passed to \code{\link{e_line}}.}
+\item{smooth}{Whether to use smoothed lines, passed to \code{\link{e_line}}.}
 }
 \description{
 Add a histogram or density plots.
@@ -93,5 +93,9 @@ mtcars \%>\%
   e_charts(timeline = TRUE) \%>\% 
   e_histogram(mpg, name = "histogram") \%>\% 
   e_density(mpg, name = "density", y_index = 1)
-
+  
+}
+\seealso{
+\href{https://echarts.apache.org/en/option.html#series-bar}{Additional arguments for histogram},
+ \href{https://echarts.apache.org/en/option.html#series-line}{Additional arguments for density}
 }

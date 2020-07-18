@@ -3116,7 +3116,7 @@ e_loess.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbo
 #' @inheritParams e_bar
 #' @param bar_width Width of bars.
 #' @param breaks Passed to \code{\link{hist}}.
-#' @param smooth Wether to use smoothed lines, passed to \code{\link{e_line}}.
+#' @param smooth Whether to use smoothed lines, passed to \code{\link{e_line}}.
 #' 
 #' @examples 
 #' mtcars %>% 
@@ -3131,6 +3131,9 @@ e_loess.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbo
 #'   e_charts(timeline = TRUE) %>% 
 #'   e_histogram(mpg, name = "histogram") %>% 
 #'   e_density(mpg, name = "density", y_index = 1)
+#'   
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-bar}{Additional arguments for histogram},
+#'  \href{https://echarts.apache.org/en/option.html#series-line}{Additional arguments for density} 
 #' 
 #' @rdname histogram
 #' @export
