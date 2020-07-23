@@ -2674,11 +2674,14 @@ e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth
 
 #' @export
 #' @method e_lm echarts4r
+#' @importFrom stats complete.cases
 e_lm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, ...){
   
   form <- as.formula(formula)
   
   for(i in 1:length(e$x$data)){
+    
+    e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
     
     model <- tryCatch(
       eval(
@@ -2709,7 +2712,7 @@ e_lm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "non
       if(!e$x$tl){
         
         if(is.null(name)) 
-          nm <- paste0(names(e$x$data)[i],"-lm")
+          nm <- paste0(names(e$x$data[[i]])[i],"-lm")
         else
           nm <- name
         
@@ -2743,11 +2746,14 @@ e_lm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "non
 
 #' @export
 #' @method e_lm echarts4rProxy
+#' @importFrom stats complete.cases
 e_lm.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, ...){
   
   form <- as.formula(formula)
   
   for(i in 1:length(e$chart$x$data)){
+    
+    e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
     
     model <- tryCatch(
       eval(
@@ -2778,7 +2784,7 @@ e_lm.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol =
       if(!e$chart$x$tl){
         
         if(is.null(name)) 
-          nm <- paste0(names(e$chart$x$data)[i],"-lm")
+          nm <- paste0(names(e$chart$x$data[[i]])[i],"-lm")
         else
           nm <- name
         
@@ -2816,11 +2822,14 @@ e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smoot
 
 #' @export 
 #' @method e_glm echarts4r
+#' @importFrom stats complete.cases
 e_glm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, ...){
   
   form <- as.formula(formula)
   
   for(i in 1:length(e$x$data)){
+    
+    e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
     
     model <- tryCatch(
       eval(
@@ -2840,7 +2849,7 @@ e_glm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "no
       
       l_data <- list(data = vector)
       
-      l_opts <- list(
+      l <- list(
         name = name,
         type = "line",
         symbol = symbol,
@@ -2851,13 +2860,13 @@ e_glm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "no
       if(!e$x$tl){
         
         if(is.null(name)) 
-          nm <- paste0(names(e$x$data)[i],"-glm")
+          nm <- paste0(names(e$x$data[[i]])[i],"-glm")
         else
           nm <- name
         
-        l_opts$name <- nm
+        l$name <- nm
         
-        l <- append(l, l_opts)
+        l <- append(l, l_data)
         
         e$x$opts$series <- append(e$x$opts$series, list(l))
         
@@ -2885,11 +2894,14 @@ e_glm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "no
 
 #' @export 
 #' @method e_glm echarts4rProxy
+#' @importFrom stats complete.cases
 e_glm.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, ...){
   
   form <- as.formula(formula)
   
   for(i in 1:length(e$chart$x$data)){
+    
+    e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
     
     model <- tryCatch(
       eval(
@@ -2909,7 +2921,7 @@ e_glm.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol 
       
       l_data <- list(data = vector)
       
-      l_opts <- list(
+      l <- list(
         name = name,
         type = "line",
         symbol = symbol,
@@ -2920,13 +2932,13 @@ e_glm.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol 
       if(!e$chart$x$tl){
         
         if(is.null(name)) 
-          nm <- paste0(names(e$chart$x$data)[i],"-glm")
+          nm <- paste0(names(e$chart$x$data[[i]])[i],"-glm")
         else
           nm <- name
         
-        l_opts$name <- nm
+        l$name <- nm
         
-        l <- append(l, l_opts)
+        l <- append(l, l_data)
         
         e$chart$x$opts$series <- append(e$chart$x$opts$series, list(l))
         
@@ -2959,10 +2971,13 @@ e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smo
 
 #' @export 
 #' @method e_loess echarts4r
+#' @importFrom stats complete.cases
 e_loess.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, 
                     x_index = 0, y_index = 0, ...){
 
   for(i in 1:length(e$x$data)){
+    
+    e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
     
     mod <- tryCatch(
       eval(
@@ -3002,7 +3017,7 @@ e_loess.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "
       if(!e$x$tl){
         
         if(is.null(name))
-          nm <- paste0(names(e$x$data)[i],"-loess")
+          nm <- paste0(names(e$x$data[[i]])[i],"-loess")
         else
           nm <- name
         
@@ -3035,10 +3050,13 @@ e_loess.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "
 
 #' @export 
 #' @method e_loess echarts4rProxy
+#' @importFrom stats complete.cases
 e_loess.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, 
                     x_index = 0, y_index = 0, ...){
 
   for(i in 1:length(e$chart$x$data)){
+    
+    e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
     
     mod <- tryCatch(
       eval(
@@ -3078,7 +3096,7 @@ e_loess.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbo
       if(!e$chart$x$tl){
         
         if(is.null(name))
-          nm <- paste0(names(e$chart$x$data)[i],"-loess")
+          nm <- paste0(names(e$chart$x$data[[i]])[i],"-loess")
         else
           nm <- name
         
