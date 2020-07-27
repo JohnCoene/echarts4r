@@ -293,15 +293,15 @@
     <p>Correlation</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_correlations</span>(<span class='kw'>e</span>, order = <span class='kw'>NULL</span>, visual_map = <span class='fl'>TRUE</span>, <span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_correlations</span>(<span class='no'>e</span>, <span class='kw'>order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>visual_map</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>order</th>
@@ -313,23 +313,22 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Any argument to pass to <code>e_heatmap</code> and <code>e_visual_map</code>.</p></td>
+      <td><p>Any argument to pass to <code><a href='e_heatmap.html'>e_heatmap</a></code> and <code><a href='e_visual_map.html'>e_visual_map</a></code>.</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='kw'>mtcars</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>() <span class='op'>%&gt;%</span> 
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>mtcars</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>e_correlations</span>(
-    order = <span class='st'>"hclust"</span>,
-    visual_map = <span class='fl'>FALSE</span>
-  ) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_visual_map</span>(
-   min = <span class='op'>-</span><span class='fl'>1</span>, 
-   max = <span class='fl'>1</span>
-  )
-</div></pre>
+    <span class='kw'>order</span> <span class='kw'>=</span> <span class='st'>"hclust"</span>,
+    <span class='kw'>visual_map</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  ) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(
+   <span class='kw'>min</span> <span class='kw'>=</span> -<span class='fl'>1</span>,
+   <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1</span>
+  )</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

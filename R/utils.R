@@ -321,51 +321,56 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 }
 
 .build_tree <- function(e, ...){
-  e$x$data[[1]] %>%
-    dplyr::select(...
-    ) -> df
-  
-  .tree_that(df)
+
+  jsonl <- e$x$data[[1]]      # in case user's data is already in json-list format
+  if ("data.frame" %in% class(jsonl)) {
+    jsonl <- jsonlite::toJSON(jsonl, auto_unbox = TRUE, pretty = FALSE)    # convert nested tibble to JSON
+    jsonl <- jsonlite::fromJSON(jsonl, simplifyDataFrame = FALSE)          # JSON to json-list
+  }
+  if (!jsonlite::validate(jsonlite::toJSON(jsonl)))
+    stop("invalid input data", call. = FALSE)
+
+  jsonl
 }
 
-.tree_that <- function(df){
-  tree <- data.tree::FromDataFrameNetwork(df)
-  data.tree::ToListExplicit(tree, unname = TRUE)
-}
+#' Adding styles to hierarchical data by item names or levels
+#' @author helgasoft.com
+#' 
+#' @inheritParams e_bar
+#' @param styles Style lists, expects a \code{vector}, defaults to \code{NULL}.
+#' @param names Names of items to style, expects a \code{list}, defaults to \code{NULL}.
+#' @param levels Hierarchical levels to style, expects a \code{list}, defaults to \code{NULL}. 
+#' @return updated hierarchy in json list format
 
-.build_sun <- function(e, parent, child, value, itemStyle = NULL){
-  
-  cols <- c("value")
-  
-  e$x$data[[1]] %>%
-    dplyr::select(
-      parent,
-      name = child,
-      value = value
-    ) -> data
-  
-  if(!is.null(itemStyle)){
-    e$x$data[[1]] %>%
-      dplyr::select(
-        itemStyle = itemStyle
-      ) -> is
-    
-    data <- cbind.data.frame(data, is)
-    cols <- append(cols, "itemStyle")
+.build_sun <- function(e, styles=NULL, names=NULL, levels=NULL) {
+
+  #' recursive json-list traversal, append style on matching level and/or name 
+  recu <- function(chld, level) {
+    if (!is.null(levels))
+      idLevel <- unlist(lapply(seq_along(levels), 
+                               function(x, i) { if (level %in% x[[i]]) i}, x=levels ))
+    if (!is.null(names))
+      idName <- unlist(lapply(seq_along(names), 
+                              function(x, i) { if (chld$name %in% x[[i]]) i}, x=names ))
+    id <- if(length(idName)>0) idName else idLevel    # name supersedes level 
+    if (length(id)>0) 
+      chld$itemStyle <- styles[id]
+    if (!is.null(chld$children)) { 
+      chld$children <- lapply(chld$children, 
+                              function(x) recu(x, level+1)); level <- level-1 }
+    chld
   }
   
-  d3r::d3_nest(data, value_cols = cols, json = FALSE, root = NULL) -> x
-  x <- x[["children"]][[1]]
-  x$colname <- NULL
-  
-  if(!is.null(itemStyle)){
-    x$children <- lapply(x$children, function(y){
-      y$itemStyle <- lapply(y$itemStyle, as.list)
-      return(y)
-    })
+  jsonl <- e$x$data[[1]]      # in case user's data is already in json-list format
+  if ("data.frame" %in% class(jsonl)) {
+    jsonl <- jsonlite::toJSON(jsonl, auto_unbox = TRUE, pretty = FALSE)    # convert nested tibble to JSON
+    jsonl <- jsonlite::fromJSON(jsonl, simplifyDataFrame = FALSE)          # JSON to json-list
   }
-  
-  jsonlite::toJSON(x, auto_unbox = TRUE, pretty = FALSE)
+  if (!jsonlite::validate(jsonlite::toJSON(jsonl)))
+    stop("invalid input data", call. = FALSE)
+  if (!is.null(styles))
+    jsonl <- lapply(jsonl, function(x) recu(x, level=1))    # recursively add styles
+  jsonl
 }
 
 .build_river <- function(e, serie, label, i){

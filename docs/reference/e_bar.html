@@ -294,27 +294,27 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_bar</span>(
-  <span class='kw'>e</span>,
-  <span class='kw'>serie</span>,
-  <span class='kw'>bind</span>,
-  name = <span class='kw'>NULL</span>,
-  legend = <span class='fl'>TRUE</span>,
-  y_index = <span class='fl'>0</span>,
-  x_index = <span class='fl'>0</span>,
-  coord_system = <span class='st'>"cartesian2d"</span>,
-  <span class='kw'>...</span>
+  <span class='no'>e</span>,
+  <span class='no'>serie</span>,
+  <span class='no'>bind</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
+  <span class='no'>...</span>
 )
 
 <span class='fu'>e_bar_</span>(
-  <span class='kw'>e</span>,
-  <span class='kw'>serie</span>,
-  bind = <span class='kw'>NULL</span>,
-  name = <span class='kw'>NULL</span>,
-  legend = <span class='fl'>TRUE</span>,
-  y_index = <span class='fl'>0</span>,
-  x_index = <span class='fl'>0</span>,
-  coord_system = <span class='st'>"cartesian2d"</span>,
-  <span class='kw'>...</span>
+  <span class='no'>e</span>,
+  <span class='no'>serie</span>,
+  <span class='kw'>bind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
+  <span class='no'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -322,8 +322,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>serie</th>
@@ -331,7 +331,7 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>bind</th>
-      <td><p>Binding between datasets, namely for use of <code>e_brush</code>.</p></td>
+      <td><p>Binding between datasets, namely for use of <code><a href='e_brush.html'>e_brush</a></code>.</p></td>
     </tr>
     <tr>
       <th>name</th>
@@ -360,22 +360,21 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#series-bar'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://dplyr.tidyverse.org'>dplyr</a></span>)</div><div class='output co'>#&gt; <span class='message'></span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'>
-<span class='kw'>mtcars</span> <span class='op'>%&gt;%</span> 
+<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(
-    model = <span class='fu'><a href='https://rdrr.io/r/base/row.names.html'>row.names</a></span>(<span class='kw'>.</span>),
-    total = <span class='kw'>mpg</span> <span class='op'>+</span> <span class='kw'>qsec</span>
-  ) <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span>(<span class='fu'><a href='https://dplyr.tidyverse.org/reference/desc.html'>desc</a></span>(<span class='kw'>total</span>)) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>model</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_bar</span>(<span class='kw'>mpg</span>, stack = <span class='st'>"grp"</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_bar</span>(<span class='kw'>qsec</span>, stack = <span class='st'>"grp"</span>)
-</div></pre>
+    <span class='kw'>model</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/row.names.html'>row.names</a></span>(<span class='no'>.</span>),
+    <span class='kw'>total</span> <span class='kw'>=</span> <span class='no'>mpg</span> + <span class='no'>qsec</span>
+  ) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span>(<span class='fu'><a href='https://dplyr.tidyverse.org/reference/desc.html'>desc</a></span>(<span class='no'>total</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>model</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_bar</span>(<span class='no'>mpg</span>, <span class='kw'>stack</span> <span class='kw'>=</span> <span class='st'>"grp"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_bar</span>(<span class='no'>qsec</span>, <span class='kw'>stack</span> <span class='kw'>=</span> <span class='st'>"grp"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

@@ -5,14 +5,21 @@
 \alias{e_treemap_}
 \title{Treemap}
 \usage{
-e_treemap(e, parent, child, value, itemStyle, rm_x = TRUE, rm_y = TRUE, ...)
+e_treemap(
+  e,
+  styles = NULL,
+  names = NULL,
+  levels = NULL,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 
 e_treemap_(
   e,
-  parent,
-  child,
-  value,
-  itemStyle = NULL,
+  styles = NULL,
+  names = NULL,
+  levels = NULL,
   rm_x = TRUE,
   rm_y = TRUE,
   ...
@@ -22,12 +29,11 @@ e_treemap_(
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{parent, child}{Edges.}
+\item{styles}{Vector of style lists, defaults to \code{NULL}.}
 
-\item{value}{Value of edges.}
+\item{names}{Names of items to style, expects a \code{list}, defaults to \code{NULL}.}
 
-\item{itemStyle}{Name of column containing styles to pass to \code{child},
-this must be a list column, see example below.}
+\item{levels}{Hierarchical levels to style, expects a \code{list}, defaults to \code{NULL}.}
 
 \item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
@@ -37,17 +43,28 @@ this must be a list column, see example below.}
 Build a treemap.
 }
 \examples{
-df <- data.frame(
-  parent = c("earth", "earth", "earth", "mars", "mars"), 
-  child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
-  value = ceiling(rnorm(5, 10, 2)),
-  borderWidth = 10
+library(dplyr)
+df <- tibble(
+  name = c("earth", "mars", "venus"), value = c(30, 40, 30),        # 1st level
+  itemStyle = tibble(color = c(NA, 'red', 'blue')),     # embedded styles, optional
+  children = list(
+    tibble(name = c("land", "ocean"), value = c(10,20),             # 2nd level
+           children = list(
+             tibble(name = c("forest", "river"), value = c(3,7)),   # 3rd level 
+             tibble(name = c("fish", "kelp"), value = c(10,5),
+                    children = list(
+                      tibble(name = c("shark", "tuna"), value = c(2,6)),  # 4th level 
+                      NULL  # kelp
+                    ))
+           )),
+    tibble(name = c("crater", "valley"), value = c(20,20)),
+    NULL  # venus
+  )
 )
 
 df \%>\% 
-  tidyr::nest(style = c(borderWidth)) \%>\% 
   e_charts() \%>\% 
-  e_treemap(parent, child, value)
+  e_treemap() 
   
 }
 \seealso{

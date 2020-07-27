@@ -293,9 +293,9 @@
     <p>Convert country names to echarts format.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_country_names</span>(<span class='kw'>data</span>, <span class='kw'>input</span>, <span class='kw'>output</span>, type = <span class='st'>"iso2c"</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>e_country_names</span>(<span class='no'>data</span>, <span class='no'>input</span>, <span class='no'>output</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"iso2c"</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_country_names_</span>(<span class='kw'>data</span>, <span class='kw'>input</span>, output = <span class='kw'>NULL</span>, type = <span class='st'>"iso2c"</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'>e_country_names_</span>(<span class='no'>data</span>, <span class='no'>input</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"iso2c"</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -323,16 +323,17 @@
     <p>Taiwan and Hong Kong cannot be plotted.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>cns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(country = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"US"</span>, <span class='st'>"BE"</span>))
+    <pre class="examples"><div class='input'><span class='no'>cns</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>country</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"US"</span>, <span class='st'>"BE"</span>))
 
 <span class='co'># replace</span>
-<span class='fu'>e_country_names</span>(<span class='kw'>cns</span>, <span class='kw'>country</span>)</div><div class='output co'>#&gt;         country
+<span class='fu'>e_country_names</span>(<span class='no'>cns</span>, <span class='no'>country</span>)</div><div class='output co'>#&gt;         country
 #&gt; 1 United States
-#&gt; 2       Belgium</div><div class='input'>  
+#&gt; 2       Belgium</div><div class='input'>
 <span class='co'># specify output</span>
-<span class='fu'>e_country_names</span>(<span class='kw'>cns</span>, <span class='kw'>country</span>, <span class='kw'>country.name</span>)</div><div class='output co'>#&gt;   country  country.name
+<span class='fu'>e_country_names</span>(<span class='no'>cns</span>, <span class='no'>country</span>, <span class='no'>country.name</span>)</div><div class='output co'>#&gt;   country  country.name
 #&gt; 1      US United States
 #&gt; 2      BE       Belgium</div><div class='input'>  
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

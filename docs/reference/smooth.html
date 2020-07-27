@@ -294,35 +294,35 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_lm</span>(
-  <span class='kw'>e</span>,
-  <span class='kw'>formula</span>,
-  name = <span class='kw'>NULL</span>,
-  legend = <span class='fl'>TRUE</span>,
-  symbol = <span class='st'>"none"</span>,
-  smooth = <span class='fl'>TRUE</span>,
-  <span class='kw'>...</span>
+  <span class='no'>e</span>,
+  <span class='no'>formula</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
+  <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>
 )
 
 <span class='fu'>e_glm</span>(
-  <span class='kw'>e</span>,
-  <span class='kw'>formula</span>,
-  name = <span class='kw'>NULL</span>,
-  legend = <span class='fl'>TRUE</span>,
-  symbol = <span class='st'>"none"</span>,
-  smooth = <span class='fl'>TRUE</span>,
-  <span class='kw'>...</span>
+  <span class='no'>e</span>,
+  <span class='no'>formula</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
+  <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>
 )
 
 <span class='fu'>e_loess</span>(
-  <span class='kw'>e</span>,
-  <span class='kw'>formula</span>,
-  name = <span class='kw'>NULL</span>,
-  legend = <span class='fl'>TRUE</span>,
-  symbol = <span class='st'>"none"</span>,
-  smooth = <span class='fl'>TRUE</span>,
-  x_index = <span class='fl'>0</span>,
-  y_index = <span class='fl'>0</span>,
-  <span class='kw'>...</span>
+  <span class='no'>e</span>,
+  <span class='no'>formula</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
+  <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='no'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -330,8 +330,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>formula</th>
@@ -347,7 +347,7 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>symbol</th>
-      <td><p>Symbol to use in <code>e_line</code>.</p></td>
+      <td><p>Symbol to use in <code><a href='e_line.html'>e_line</a></code>.</p></td>
     </tr>
     <tr>
       <th>smooth</th>
@@ -355,7 +355,7 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional arguments to pass to <code>e_line</code>.</p></td>
+      <td><p>Additional arguments to pass to <code><a href='e_line.html'>e_line</a></code>.</p></td>
     </tr>
     <tr>
       <th>x_index</th>
@@ -369,27 +369,26 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>iris</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>Species</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>Sepal.Length</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_scatter</span>(<span class='kw'>Sepal.Width</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_lm</span>(<span class='kw'>Sepal.Width</span> <span class='op'>~</span> <span class='kw'>Sepal.Length</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_x_axis</span>(min = <span class='fl'>4</span>)
-  
-<span class='kw'>mtcars</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>disp</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_scatter</span>(<span class='kw'>mpg</span>, <span class='kw'>qsec</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_loess</span>(<span class='kw'>mpg</span> <span class='op'>~</span> <span class='kw'>disp</span>, smooth = <span class='fl'>TRUE</span>, showSymbol = <span class='fl'>FALSE</span>)
+    <pre class="examples"><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Sepal.Length</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>Sepal.Width</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_lm</span>(<span class='no'>Sepal.Width</span> ~ <span class='no'>Sepal.Length</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='axis.html'>e_x_axis</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+
+<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>disp</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>mpg</span>, <span class='no'>qsec</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_loess</span>(<span class='no'>mpg</span> ~ <span class='no'>disp</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>showSymbol</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># timeline   </span>
-<span class='kw'>iris</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>Species</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>Sepal.Length</span>, timeline = <span class='fl'>TRUE</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_scatter</span>(<span class='kw'>Sepal.Width</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_lm</span>(<span class='kw'>Sepal.Width</span> <span class='op'>~</span> <span class='kw'>Sepal.Length</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_x_axis</span>(min = <span class='fl'>4</span>, max = <span class='fl'>8</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_y_axis</span>(max = <span class='fl'>5</span>)
-</div></pre>
+<span class='no'>iris</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Sepal.Length</span>, <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>Sepal.Width</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_lm</span>(<span class='no'>Sepal.Width</span> ~ <span class='no'>Sepal.Length</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='axis.html'>e_x_axis</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>8</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='axis.html'>e_y_axis</a></span>(<span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

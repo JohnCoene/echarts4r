@@ -295,26 +295,26 @@ applications and interactive Rmd documents." />
 applications and interactive Rmd documents.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>echarts4rOutput</span>(<span class='kw'>outputId</span>, width = <span class='st'>"100%"</span>, height = <span class='st'>"400px"</span>)
+    <pre class="usage"><span class='fu'>echarts4rOutput</span>(<span class='no'>outputId</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"100%"</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"400px"</span>)
 
-<span class='fu'>renderEcharts4r</span>(<span class='kw'>expr</span>, env = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(), quoted = <span class='fl'>FALSE</span>)
+<span class='fu'>renderEcharts4r</span>(<span class='no'>expr</span>, <span class='kw'>env</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(), <span class='kw'>quoted</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='fu'>echarts4rProxy</span>(
-  <span class='kw'>id</span>,
-  <span class='kw'>data</span>,
-  <span class='kw'>x</span>,
-  timeline = <span class='fl'>FALSE</span>,
-  session = <span class='kw'>shiny</span>::<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>(),
-  reorder = <span class='fl'>TRUE</span>
+  <span class='no'>id</span>,
+  <span class='no'>data</span>,
+  <span class='no'>x</span>,
+  <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>(),
+  <span class='kw'>reorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )
 
 <span class='fu'>echarts4r_proxy</span>(
-  <span class='kw'>id</span>,
-  <span class='kw'>data</span>,
-  <span class='kw'>x</span>,
-  timeline = <span class='fl'>FALSE</span>,
-  session = <span class='kw'>shiny</span>::<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>(),
-  reorder = <span class='fl'>TRUE</span>
+  <span class='no'>id</span>,
+  <span class='no'>data</span>,
+  <span class='no'>x</span>,
+  <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>(),
+  <span class='kw'>reorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -394,13 +394,13 @@ is useful if you want to save an expression in a variable.</p></td>
 manipulating a drawn chart, adding data, adding or removing series, etc. without
 redrawing the entire chart.</p>
 <ul>
-<li><p><code>e_append1_p</code> &amp; <code>e_append2_p</code></p></li>
-<li><p><code>e_showtip_p</code> &amp; <code>e_hidetip_p</code></p></li>
-<li><p><code>e_highlight_p</code> &amp; <code>e_downplay_p</code></p></li>
-<li><p><code>e_focus_adjacency</code> &amp; <code>e_unfocus_adjacency</code></p></li>
-<li><p><code>e_dispatch_action_p</code></p></li>
-<li><p><code>e_execute</code></p></li>
-<li><p><code>e_remove_serie_p</code></p></li>
+<li><p><code><a href='append.html'>e_append1_p</a></code> &amp; <code><a href='append.html'>e_append2_p</a></code></p></li>
+<li><p><code><a href='tooltip_proxy.html'>e_showtip_p</a></code> &amp; <code><a href='tooltip_proxy.html'>e_hidetip_p</a></code></p></li>
+<li><p><code><a href='highlight_proxy.html'>e_highlight_p</a></code> &amp; <code><a href='highlight_proxy.html'>e_downplay_p</a></code></p></li>
+<li><p><code><a href='graph_action.html'>e_focus_adjacency</a></code> &amp; <code><a href='graph_action.html'>e_unfocus_adjacency</a></code></p></li>
+<li><p><code><a href='e_dispatch_action_p.html'>e_dispatch_action_p</a></code></p></li>
+<li><p><code><a href='e_execute.html'>e_execute</a></code></p></li>
+<li><p><code><a href='e_remove.html'>e_remove_serie_p</a></code></p></li>
 </ul>
 
 
