@@ -271,17 +271,25 @@ USArrests %>%
 Look for more arguments, with `echarts4r` you are often only one argument away from from what you want.
 
 ```{r}
-df <- data.frame(
-  parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
-  child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster")
+df <- tibble(
+  name = "earth",        # 1st level
+  children = list(
+    tibble(name = c("land", "ocean"),             # 2nd level
+       children = list(
+         tibble(name = c("forest", "river")),   # 3rd level 
+         tibble(name = c("fish", "kelp"),
+            children = list(
+               tibble(name = c("shark", "tuna"),  # 4th level 
+               NULL  # kelp
+            ))
+         )
+       ))
+  )
 )
 
 df %>% 
   e_charts() %>% 
-  e_tree(
-    parent, 
-    child
-  )
+  e_tree()
 ```
 
 to radial:
@@ -289,11 +297,7 @@ to radial:
 ```{r}
 df %>% 
   e_charts() %>% 
-  e_tree(
-    parent, 
-    child,
-    layout = "radial" # radial
-  )
+  e_tree(layout = "radial")
 ```
 
 ## Show labels

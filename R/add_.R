@@ -959,7 +959,7 @@ e_pie_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRU
 
 #' @rdname e_sunburst
 #' @export
-e_sunburst_ <- function(e, parent, child, value, itemStyle = NULL, rm_x = TRUE, rm_y = TRUE, ...){
+e_sunburst_ <- function(e, styles=NULL, names=NULL, levels=NULL, rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -967,7 +967,7 @@ e_sunburst_ <- function(e, parent, child, value, itemStyle = NULL, rm_x = TRUE, 
   e <- .rm_axis(e, rm_y, "y")
   
   # build JSON data
-  data <- .build_sun(e, parent, child, value, itemStyle)
+  data <- .build_sun(e, styles, names, levels)
   
   serie <- list(
     type = "sunburst",
@@ -981,18 +981,15 @@ e_sunburst_ <- function(e, parent, child, value, itemStyle = NULL, rm_x = TRUE, 
 
 #' @rdname e_treemap
 #' @export
-e_treemap_ <- function(e, parent, child, value, itemStyle = NULL, rm_x = TRUE, rm_y = TRUE, ...){
+e_treemap_ <- function(e, styles=NULL, names=NULL, levels=NULL, rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
-  
-  if(missing(parent) || missing(child) || missing(value))
-    stop("must pass parent, child and value", call. = FALSE)
-  
+   
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
   
   # build JSON data
-  data <- .build_sun(e, parent, child, value, itemStyle)
+  data <- .build_sun(e, styles, names, levels)
   
   serie <- list(
     type = "treemap",
@@ -1109,23 +1106,20 @@ e_boxplot_ <- function(e, serie, name = NULL, outliers = TRUE, ...){
 
 #' @rdname e_tree
 #' @export
-e_tree_ <- function(e, parent, child, rm_x = TRUE, rm_y = TRUE, ...){
+e_tree_ <- function(e, rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
-  
-  if(missing(parent) || missing(child))
-    stop("must pass parent and child", call. = FALSE)
   
   # remove axis
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
   
   # build JSON data
-  data <- .build_tree(e, parent, child)
+  data <- .build_tree(e)
   
   serie <- list(
     type = "tree",
-    data = list(data),
+    data = data,
     ...
   )
   

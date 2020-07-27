@@ -19,7 +19,6 @@ Imports:
   shiny,
   scales,
   corrplot,
-  data.tree,
   htmltools,
   jsonlite,
   rstudioapi

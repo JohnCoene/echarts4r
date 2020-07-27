@@ -1307,73 +1307,108 @@ e_pie.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, rm_x = TR
 #' Build a sunburst.
 #' 
 #' @inheritParams e_bar
-#' @param parent,child Edges.
-#' @param value Name of column containing values.
-#' @param itemStyle Name of column containing styles to pass to \code{child}, 
-#' expects a \code{data.frame} or a \code{list}, see details.
+#' @param styles  Vector of style lists, defaults to \code{NULL}.
+#' @param names Names of columns to style, expects a \code{list}, defaults to \code{NULL}.
+#' @param levels Hierarchical levels to style, expects a \code{list}, defaults to \code{NULL}. 
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
-#' @details The \code{itemStyle} argument essentially is a nested data.frame with column names such as
-#' \code{color}, or \code{borderColor} as specified in the 
+#' @details 
+#' Charts e_sunburst, e_treemap and e_tree require hierarchical input data.
+#' Such structure could be represented thru json lists or nested tibbles (data.frame).
+#' Input data may contain styles, see \code{itemStyle} in examples \code{jsonl} and \code{df} below.
+#' The number of lists in the \code{styles} parameter should match the number of elements
+#' in \code{names} and/or \code{levels}. If both \code{names} and \code{levels} are present,
+#' name styles will take precedence over level styles.  
+#' Multiple names may have the same style, see \code{c('land','river')} below.
+#' Multiple levels may have the same style, see \code{c(3,4)} below.
+#' \code{styles} lists contain items such as \code{color}, or \code{borderColor} as specified in the 
 #' \href{https://echarts.apache.org/en/option.html#series-sunburst.data.itemStyle}{official documentation}.
 #' 
 #' @examples 
-#' df <- data.frame(
-#'   parent = c("earth", "earth", "earth", "mars", "mars"), 
-#'   child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
-#'   value = ceiling(rnorm(5, 10, 2))
-#' )
 #' 
+#'    # json list hierarchical data representation
+#' jsonl <- jsonlite::fromJSON('[
+#'   {"name": "earth", "value": 30,
+#'     "children": [
+#'       {"name": "land", "value":10, 
+#'         "children": [
+#'                 {"name": "forest", "value": 3}, 
+#'                 {"name": "river", "value": 7}
+#'         ]},
+#'       {"name": "ocean", "value":20,
+#'         "children": [
+#'           {"name": "fish", "value": 10,
+#'             "children": [
+#'               {"name": "shark", "value":2}, 
+#'               {"name": "tuna", "value":6}
+#'             ]},
+#'           {"name": "kelp", "value": 5}
+#'         ]}
+#'     ]
+#'   },
+#'   {"name": "mars", "value": 30,
+#'     "children": [
+#'       {"name": "crater", "value": 20}, 
+#'       {"name": "valley", "value": 20}
+#'     ]},
+#'   {"name": "venus", "value": 40, "itemStyle": {"color": "blue"} }
+#' ]', simplifyDataFrame = FALSE)
+#' 
+#' jsonl %>% e_charts() %>% e_sunburst()     # demo
+#' 
+#' 
+#'    # tibble hierarchical data representation
+#' df <- tibble(
+#'   name = c("earth", "mars", "venus"), value = c(30, 40, 30),        # 1st level
+#'   itemStyle = tibble(color = c(NA, 'red', 'blue')),     # embedded styles, optional
+#'   children = list(
+#'     tibble(name = c("land", "ocean"), value = c(10,20),             # 2nd level
+#'            children = list(
+#'              tibble(name = c("forest", "river"), value = c(3,7)),   # 3rd level 
+#'              tibble(name = c("fish", "kelp"), value = c(10,5),
+#'                     children = list(
+#'                       tibble(name = c("shark", "tuna"), value = c(2,6)),  # 4th level 
+#'                       NULL  # kelp
+#'                     ))
+#'            )),
+#'     tibble(name = c("crater", "valley"), value = c(20,20)),
+#'     NULL  # venus
+#'   )
+#' )
+#'  
 #' df %>% 
 #'   e_charts() %>% 
-#'   e_sunburst(parent, child, value) %>% 
+#'   e_sunburst() %>% 
 #'   e_theme("westeros")
 #'   
-#' # with itemStyle
-#' colors <- c("red", "black", "blue")
-#' 
-#' df$color <- sample(colors, 5, replace = TRUE)
-#' df$borderColor <- sample(colors, 5, replace = TRUE)
+#' # with styles
+#' myStyles <- c(list(color='green'), list(color='magenta'))   # custom styles defined
+#' myNames  <- list(c('land','river'), 'crater')    # names to style
+#' myLevels <- list(2, c(3,4))                      # hierarchical levels to style
 #' 
 #' df %>% 
-#'   tidyr::nest(c(color, borderColor), .key = "style") %>% # nest
 #'   e_charts() %>% 
-#'   e_sunburst(parent, child, value, style) 
+#'   e_sunburst(myStyles, myNames, myLevels) 
 #' 
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-sunburst}{Additional arguments}
 #' 
 #' @rdname e_sunburst
 #' @export
-e_sunburst <- function(e, parent, child, value, itemStyle, rm_x = TRUE, rm_y = TRUE, ...) UseMethod("e_sunburst")
+e_sunburst <- function(e, styles=NULL, names=NULL, levels=NULL, rm_x = TRUE, rm_y = TRUE, ...) UseMethod("e_sunburst")
 
 #' @export
 #' @method e_sunburst echarts4r
-e_sunburst.echarts4r <- function(e, parent, child, value, itemStyle, rm_x = TRUE, rm_y = TRUE, ...){
-  
-  if(!missing(itemStyle))
-    style <- deparse(substitute(itemStyle))
-  else
-    style <- NULL
-  
-  e_sunburst_(e, deparse(substitute(parent)), 
-              deparse(substitute(child)), deparse(substitute(value)), 
-              style, rm_x, rm_y, ...)
+e_sunburst.echarts4r <- function(e, styles=NULL, names=NULL, levels=NULL, rm_x = TRUE, rm_y = TRUE, ...){
+ 
+  e_sunburst_(e, styles, names, levels, rm_x, rm_y, ...)
 }
 
 #' @export
 #' @method e_sunburst echarts4rProxy
-e_sunburst.echarts4rProxy <- function(e, parent, child, value, itemStyle, rm_x = TRUE, rm_y = TRUE, ...){
-
-  if(!missing(itemStyle))
-    style <- deparse(substitute(itemStyle))
-  else
-    style <- NULL
+e_sunburst.echarts4rProxy <- function(e, styles=NULL, names=NULL, levels=NULL, rm_x = TRUE, rm_y = TRUE, ...){
   
-  e$chart <- e_sunburst_(
-    e$chart, deparse(substitute(parent)), 
-    deparse(substitute(child)), deparse(substitute(value)), 
-    style, rm_x, rm_y, ...
-  )
+  e$chart <- e_sunburst_(e, styles, names, levels, rm_x, rm_y, ...)
+
   return(e)
 }
 
@@ -1382,67 +1417,38 @@ e_sunburst.echarts4rProxy <- function(e, parent, child, value, itemStyle, rm_x =
 #' Build a treemap.
 #' 
 #' @inheritParams e_bar
-#' @param parent,child Edges.
-#' @param value Value of edges.
-#' @param itemStyle Name of column containing styles to pass to \code{child},
-#' this must be a list column, see example below.
+#' @param styles  Vector of style lists, defaults to \code{NULL}.
+#' @param names Names of columns to style, expects a \code{list}, defaults to \code{NULL}.
+#' @param levels Hierarchical levels to style, expects a \code{list}, defaults to \code{NULL}. 
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
-#' df <- data.frame(
-#'   parent = c("earth", "earth", "earth", "mars", "mars"), 
-#'   child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
-#'   value = ceiling(rnorm(5, 10, 2)),
-#'   borderWidth = 10
-#' )
+#' see data structures \code{jsonl} and \code{df} in e_sunburst examples above
+#' 
+#' jsonl %>% e_charts() %>% e_treemap()     # demo
 #' 
 #' df %>% 
-#'   tidyr::nest(style = c(borderWidth)) %>% 
 #'   e_charts() %>% 
-#'   e_treemap(parent, child, value)
+#'   e_treemap(myStyles, myNames, myLevels) 
 #'   
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-treemap}{Additional arguments}
 #' 
 #' @rdname e_treemap
 #' @export
-e_treemap <- function(e, parent, child, value, itemStyle, rm_x = TRUE, rm_y = TRUE, ...) UseMethod("e_treemap")
+e_treemap <- function(e, styles=NULL, names=NULL, levels=NULL, rm_x = TRUE, rm_y = TRUE, ...) UseMethod("e_treemap")
 
 #' @export
 #' @method e_treemap echarts4r
-e_treemap.echarts4r <- function(e, parent, child, value, itemStyle, rm_x = TRUE, rm_y = TRUE, ...){
+e_treemap.echarts4r <- function(e, styles=NULL, names=NULL, levels=NULL, rm_x = TRUE, rm_y = TRUE, ...){
 
-  if(!missing(itemStyle))
-    style <- deparse(substitute(itemStyle))
-  else
-    style <- NULL
-  
-  if(missing(parent) || missing(child) || missing(value))
-    stop("must pass parent, child and value", call. = FALSE)
-  
-  e_treemap_(
-    e, deparse(substitute(parent)), 
-    deparse(substitute(child)), deparse(substitute(value)),
-    style, rm_x, rm_y, ...
-  )
+  e_treemap_(e, styles, names, levels, rm_x, rm_y, ...)
 }
 
 #' @export
 #' @method e_treemap echarts4rProxy
-e_treemap.echarts4rProxy <- function(e, parent, child, value, itemStyle, rm_x = TRUE, rm_y = TRUE, ...){
+e_treemap.echarts4rProxy <- function(e, styles=NULL, names=NULL, levels=NULL, rm_x = TRUE, rm_y = TRUE, ...){
 
-  if(!missing(itemStyle))
-    style <- deparse(substitute(itemStyle))
-  else
-    style <- NULL
-  
-  if(missing(parent) || missing(child) || missing(value))
-    stop("must pass parent, child and value", call. = FALSE)
-  
-  e$chart <- e_treemap_(
-    e$chart, deparse(substitute(parent)), 
-    deparse(substitute(child)), deparse(substitute(value)),
-    style, rm_x, rm_y, ...
-  )
+  e$chart <- e_treemap_(e, styles, names, levels, rm_x, rm_y, ...)
 
   return(e)
 }
@@ -1554,43 +1560,33 @@ e_boxplot.echarts4rProxy <- function(e, serie, name = NULL, outliers = TRUE, ...
 #' Build a tree.
 #' 
 #' @inheritParams e_bar
-#' @param parent,child Edges.
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
-#' df <- data.frame(
-#'   parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
-#'   child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster")
-#' )
+#' see data structures \code{jsonl} and \code{df} in e_sunburst examples above
 #' 
 #' df %>% 
 #'   e_charts() %>% 
-#'   e_tree(parent, child)
+#'   e_tree(initialTreeDepth=3, label=list(offset=c(0,-11)))
 #' 
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-tree}{Additional arguments}
 #' 
 #' @rdname e_tree
 #' @export
-e_tree <- function(e, parent, child, rm_x = TRUE, rm_y = TRUE, ...) UseMethod("e_tree")
+e_tree <- function(e, rm_x = TRUE, rm_y = TRUE, ...) UseMethod("e_tree")
 
 #' @export
 #' @method e_tree echarts4r
-e_tree.echarts4r <- function(e, parent, child, rm_x = TRUE, rm_y = TRUE, ...){
-
-  if(missing(parent) || missing(child))
-    stop("must pass parent and child", call. = FALSE)
+e_tree.echarts4r <- function(e, rm_x = TRUE, rm_y = TRUE, ...){
   
-  e_tree_(e, deparse(substitute(parent)), deparse(substitute(child)), rm_x, rm_y, ...)
+  e_tree_(e, rm_x, rm_y, ...)
 }
 
 #' @export
 #' @method e_tree echarts4rProxy
-e_tree.echarts4rProxy <- function(e, parent, child, rm_x = TRUE, rm_y = TRUE, ...){
-
-  if(missing(parent) || missing(child))
-    stop("must pass parent and child", call. = FALSE)
+e_tree.echarts4rProxy <- function(e, rm_x = TRUE, rm_y = TRUE, ...){
   
-  e$chart <- e_tree_(e$chart, deparse(substitute(parent)), deparse(substitute(child)), rm_x, rm_y, ...)
+  e$chart <- e_tree_(e$chart, rm_x, rm_y, ...)
   return(e)
 }
 

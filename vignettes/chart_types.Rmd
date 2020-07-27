@@ -220,45 +220,80 @@ mtcars %>%
 ## Sunburst
 
 ```{r}
-df <- data.frame(
-  parent = c("earth", "earth", "earth", "mars", "mars"), 
-  child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
-  value = ceiling(rnorm(5, 10, 2))
+df <- tibble(
+  name = c("earth", "mars", "venus"), value = c(30, 40, 30),        # 1st level
+  itemStyle = tibble(color = c(NA, 'red', 'blue')),
+  children = list(
+    tibble(name = c("land", "ocean"), value = c(10,20),             # 2nd level
+           children = list(
+             tibble(name = c("forest", "river"), value = c(3,7)),   # 3rd level 
+             tibble(name = c("fish", "kelp"), value = c(10,5),
+                    children = list(
+                      tibble(name = c("shark", "tuna"), value = c(2,6)),  # 4th level 
+                      NULL  # kelp
+                    ))
+           )),
+    tibble(name = c("crater", "valley"), value = c(20,20)),
+    NULL  # venus
+  )
 )
 
 df %>% 
   e_charts() %>% 
-  e_sunburst(parent, child, value) %>% 
+  e_sunburst() %>% 
   e_title("Sunburst")
 ```
 
 ## Tree
 
 ```{r}
-tree <- data.frame(
-  parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
-  child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster")
+tree <- tibble(
+  name = "earth",        # 1st level
+  children = list(
+    tibble(name = c("land", "ocean"),             # 2nd level
+       children = list(
+         tibble(name = c("forest", "river")),   # 3rd level 
+         tibble(name = c("fish", "kelp"),
+            children = list(
+               tibble(name = c("shark", "tuna"),  # 4th level 
+               NULL  # kelp
+            ))
+         )
+       ))
+  )
 )
 
 tree %>% 
   e_charts() %>% 
-  e_tree(parent, child) %>% 
+  e_tree() %>% 
   e_title("Tree graph")
 ```
 
 ## Treemap
 
 ```{r}
-tm <- data.frame(
-  parent = c("earth", "earth", "earth", "mars", "mars"), 
-  child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
-  value = ceiling(rnorm(5, 10, 2))
+df <- tibble(
+  name = c("earth", "mars", "venus"), value = c(30, 40, 30),        # 1st level
+  itemStyle = tibble(color = c(NA, 'red', 'blue')),
+  children = list(
+    tibble(name = c("land", "ocean"), value = c(10,20),             # 2nd level
+           children = list(
+             tibble(name = c("forest", "river"), value = c(3,7)),   # 3rd level 
+             tibble(name = c("fish", "kelp"), value = c(10,5),
+                    children = list(
+                      tibble(name = c("shark", "tuna"), value = c(2,6)),  # 4th level 
+                      NULL  # kelp
+                    ))
+           )),
+    tibble(name = c("crater", "valley"), value = c(20,20)),
+    NULL  # venus
+  )
 )
 
-tm %>% 
+df %>% 
   e_charts() %>% 
-  e_treemap(parent, child, value) %>% 
-  e_title("Treemap charts")
+  e_treemap() %>% 
+  e_title("Treemap chart")
 ```
 
 ## River
