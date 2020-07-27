@@ -240,7 +240,7 @@
 </div>
 <div class="col-md-8">
 <p>
-Interactive visualisations for R
+Interactive visualisations for R via <a href="https://echarts.apache.org/">echarts.js</a>
 </p>
 <a class="btn btn-success" href="articles/get_started.html" style="margin-bottom: 5px;">Get Started</a> <a class="btn btn-primary" href="reference/" style="margin-bottom: 5px;">Reference</a> <a class="btn btn-info" href="articles/timeline" style="margin-bottom: 5px;">Timeline</a> <a class="btn btn-default" href="http://shiny.john-coene.com/echarts4rShiny" style="margin-bottom: 5px;">Shiny Demo</a>
 </div>
@@ -262,31 +262,21 @@ New Features
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>The package is available on <a href="https://CRAN.R-project.org/package=echarts4r">CRAN</a>. The full installation can be obtained with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"echarts4r"</span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"echarts4r"</span>)</pre></div>
 <p>However, if you only want a <em>lite</em> version you can simply do, this is useful for a lighter version that installs faster if you do not want to use any of the geospatial features of the package:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"echarts4r"</span>, dependencies = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Depends"</span>, <span class="st">"Imports"</span>))
-</pre></div>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"echarts4r"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Depends"</span>, <span class="st">"Imports"</span>))</pre></div>
 <p>You can also install the <em>unstable</em> development version of echarts4r with <code>remotes</code> from Github, see <a href="news/index.html">changes</a>.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="co"># install.packages("remotes")</span>
-<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"JohnCoene/echarts4r"</span>)
-</pre></div>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="co"># install.packages("remotes")</span>
+<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"JohnCoene/echarts4r"</span>)</pre></div>
 <p>如果您位于中国，请安装:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="co"># install.packages("remotes")</span>
-<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_git.html">install_git</a></span>(<span class="st">"https://gitee.com/JohnCoene/echarts4r"</span>)
-</pre></div>
+<div class="sourceCode" id="cb4"><pre class="r"><span class="co"># install.packages("remotes")</span>
+<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_git.html">install_git</a></span>(<span class="st">"https://gitee.com/JohnCoene/echarts4r"</span>)</pre></div>
 </div>
 <div id="companions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#companions" class="anchor"></a>Companions</h2>
 <p>Companion packages to make <code>echarts4r</code> even better. You can install and load the whole suite with:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"JohnCoene/echarts4r.suite"</span>)
-</pre></div>
+<div class="sourceCode" id="cb5"><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"JohnCoene/echarts4r.suite"</span>)</pre></div>
 <div class="row">
 <div class="col-md-6">
 <div class="thumbnail" style="text-align:center;">
@@ -298,9 +288,7 @@ echarts4r.assets
 <p>
 Icons, and assets for globes, add visually interesting globe overlays and background.
 </p>
-<pre class="downlit">
-<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">'JohnCoene/echarts4r.assets'</span>)
-</pre>
+<pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">'JohnCoene/echarts4r.assets'</span>)</pre>
 <a class="btn btn-default" href="https://echarts4r-assets.john-coene.com/">Website</a> <a class="btn btn-default" href="https://github.com/JohnCoene/echarts4r.assets">Github</a>
 </div>
 </div>
@@ -315,9 +303,7 @@ echarts4r.maps
 <p>
 A collection of 215 country maps to use with geo-spatial visualisations.
 </p>
-<pre class="downlit">
-<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">'JohnCoene/echarts4r.maps'</span>)
-</pre>
+<pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">'JohnCoene/echarts4r.maps'</span>)</pre>
 <a class="btn btn-default" href="https://echarts4r-maps.john-coene.com/">Website</a> <a class="btn btn-default" href="https://github.com/JohnCoene/echarts4r.maps">Github</a>
 </div>
 </div>
@@ -337,6 +323,8 @@ A collection of 215 country maps to use with geo-spatial visualisations.
 <li>Browse source code at <br><a href="https://github.com/JohnCoene/echarts4r/">https://​github.com/​JohnCoene/​echarts4r/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/JohnCoene/echarts4r/issues">https://​github.com/​JohnCoene/​echarts4r/​issues</a>
+</li>
+<li>Original library at <br><a href="https://echarts.apache.org/">https://​echarts.apache.org/​</a>
 </li>
 </ul>
 </div>

@@ -12,6 +12,11 @@ template:
 development:
   mode: release
 
+home:
+  links:
+  - text: Original library
+    href: https://echarts.apache.org/
+
 reference:
   - title: "Initialisation & Shiny"
     desc: "Initialise echarts and use in Shiny."
