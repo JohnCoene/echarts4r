@@ -293,21 +293,17 @@
     <p>Build a tree.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_tree</span>(<span class='kw'>e</span>, <span class='kw'>parent</span>, <span class='kw'>child</span>, rm_x = <span class='fl'>TRUE</span>, rm_y = <span class='fl'>TRUE</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>e_tree</span>(<span class='no'>e</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_tree_</span>(<span class='kw'>e</span>, <span class='kw'>parent</span>, <span class='kw'>child</span>, rm_x = <span class='fl'>TRUE</span>, rm_y = <span class='fl'>TRUE</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'>e_tree_</span>(<span class='no'>e</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
-    </tr>
-    <tr>
-      <th>parent, child</th>
-      <td><p>Edges.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>rm_x, rm_y</th>
@@ -324,15 +320,7 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#series-tree'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  parent = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"earth"</span>,<span class='st'>"earth"</span>,<span class='st'>"forest"</span>,<span class='st'>"forest"</span>,<span class='st'>"ocean"</span>,<span class='st'>"ocean"</span>,<span class='st'>"ocean"</span>,<span class='st'>"ocean"</span>), 
-  child = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ocean"</span>,<span class='st'>"forest"</span>,<span class='st'>"tree"</span>,<span class='st'>"sasquatch"</span>,<span class='st'>"fish"</span>,<span class='st'>"seaweed"</span>,<span class='st'>"mantis shrimp"</span>,<span class='st'>"sea monster"</span>)
-)
-
-<span class='kw'>df</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>() <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_tree</span>(<span class='kw'>parent</span>, <span class='kw'>child</span>)
-</div></pre>
+    <pre class="examples"></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

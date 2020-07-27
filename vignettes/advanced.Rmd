@@ -271,6 +271,7 @@ USArrests %>%
 Look for more arguments, with `echarts4r` you are often only one argument away from from what you want.
 
 ```{r}
+library(dplyr)
 df <- tibble(
   name = "earth",        # 1st level
   children = list(

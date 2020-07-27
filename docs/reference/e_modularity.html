@@ -295,15 +295,15 @@ Each subset will be assigned a different color." />
 Each subset will be assigned a different color.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_modularity</span>(<span class='kw'>e</span>, modularity = <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>e_modularity</span>(<span class='no'>e</span>, <span class='kw'>modularity</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>modularity</th>
@@ -328,29 +328,28 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     <div class='dont-index'><p><a href='https://github.com/ecomfe/echarts-graph-modularity'>Official documentation</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>nodes</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  name = <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='kw'>LETTERS</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span>),
-  value = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>100</span>, <span class='fl'>10</span>, <span class='fl'>2</span>),
-  stringsAsFactors = <span class='fl'>FALSE</span>
+    <pre class="examples"><div class='input'><span class='no'>nodes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='no'>LETTERS</span>, <span class='fl'>1</span>:<span class='fl'>100</span>),
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>100</span>, <span class='fl'>10</span>, <span class='fl'>2</span>),
+  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
 
-<span class='kw'>edges</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  source = <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>nodes</span><span class='op'>$</span><span class='kw'>name</span>, <span class='fl'>200</span>, replace = <span class='fl'>TRUE</span>),
-  target = <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>nodes</span><span class='op'>$</span><span class='kw'>name</span>, <span class='fl'>200</span>, replace = <span class='fl'>TRUE</span>),
-  stringsAsFactors = <span class='fl'>FALSE</span>
+<span class='no'>edges</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  <span class='kw'>source</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='no'>nodes</span>$<span class='no'>name</span>, <span class='fl'>200</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
+  <span class='kw'>target</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='no'>nodes</span>$<span class='no'>name</span>, <span class='fl'>200</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
+  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
 
-<span class='fu'>e_charts</span>() <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_graph</span>() <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_graph_nodes</span>(<span class='kw'>nodes</span>, <span class='kw'>name</span>, <span class='kw'>value</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_graph_edges</span>(<span class='kw'>edges</span>, <span class='kw'>source</span>, <span class='kw'>target</span>) <span class='op'>%&gt;%</span> 
+<span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='graph.html'>e_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='graph.html'>e_graph_nodes</a></span>(<span class='no'>nodes</span>, <span class='no'>name</span>, <span class='no'>value</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='graph.html'>e_graph_edges</a></span>(<span class='no'>edges</span>, <span class='no'>source</span>, <span class='no'>target</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_modularity</span>(
     <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-      resolution = <span class='fl'>5</span>,
-      sort = <span class='fl'>TRUE</span>
+      <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+      <span class='kw'>sort</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
     )
-  )
-  </div></pre>
+  )</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

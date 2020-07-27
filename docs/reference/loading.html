@@ -294,24 +294,24 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_show_loading</span>(
-  <span class='kw'>e</span>,
-  hide_overlay = <span class='fl'>TRUE</span>,
-  text = <span class='st'>"loading"</span>,
-  color = <span class='st'>"#c23531"</span>,
-  text_color = <span class='st'>"#000"</span>,
-  mask_color = <span class='st'>"rgba(255, 255, 255, 0.8)"</span>,
-  zlevel = <span class='fl'>0</span>
+  <span class='no'>e</span>,
+  <span class='kw'>hide_overlay</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"loading"</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"#c23531"</span>,
+  <span class='kw'>text_color</span> <span class='kw'>=</span> <span class='st'>"#000"</span>,
+  <span class='kw'>mask_color</span> <span class='kw'>=</span> <span class='st'>"rgba(255, 255, 255, 0.8)"</span>,
+  <span class='kw'>zlevel</span> <span class='kw'>=</span> <span class='fl'>0</span>
 )
 
-<span class='fu'>e_hide_loading</span>(<span class='kw'>e</span>)</pre>
+<span class='fu'>e_hide_loading</span>(<span class='no'>e</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>hide_overlay</th>
@@ -344,60 +344,59 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     <p>This only applies to Shiny.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 
 <span class='co'># no redraw</span>
 <span class='co'># no loading</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://shiny.rstudio.com'>shiny</a></span>)
-<span class='kw'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
+<span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span>(
     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span>(<span class='fl'>12</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span>(<span class='st'>"update"</span>, <span class='st'>"Update"</span>))
   ),
   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span>(
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span>(<span class='fl'>12</span>, <span class='fu'>echarts4rOutput</span>(<span class='st'>"plot"</span>))
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span>(<span class='fl'>12</span>, <span class='fu'><a href='echarts4r-shiny.html'>echarts4rOutput</a></span>(<span class='st'>"plot"</span>))
   )
 )
 
-<span class='kw'>server</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>input</span>, <span class='kw'>output</span>){
-  <span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>eventReactive</a></span>(<span class='kw'>input</span><span class='op'>$</span><span class='kw'>update</span>, {
+<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>){
+  <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>eventReactive</a></span>(<span class='no'>input</span>$<span class='no'>update</span>, {
     <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-      x = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
-      y = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>)
+      <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>,
+      <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>)
     )
   })
-  
-  <span class='kw'>output</span><span class='op'>$</span><span class='kw'>plot</span> <span class='op'>&lt;-</span> <span class='fu'>renderEcharts4r</span>({
-    <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>() <span class='op'>%&gt;%</span> 
-      <span class='fu'>e_charts</span>(<span class='kw'>x</span>) <span class='op'>%&gt;%</span> 
-      <span class='fu'>e_bar</span>(<span class='kw'>y</span>)
+
+  <span class='no'>output</span>$<span class='no'>plot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span>({
+    <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>() <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='e_bar.html'>e_bar</a></span>(<span class='no'>y</span>)
   })
 }
 
-<span class='co'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>())
- <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='kw'>ui</span>, <span class='kw'>server</span>)
+<span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>())
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 
 <span class='co'># add loading</span>
-<span class='kw'>server</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>input</span>, <span class='kw'>output</span>){
-  <span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>eventReactive</a></span>(<span class='kw'>input</span><span class='op'>$</span><span class='kw'>update</span>, {
+<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>){
+  <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>eventReactive</a></span>(<span class='no'>input</span>$<span class='no'>update</span>, {
     <span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span>(<span class='fl'>1</span>) <span class='co'># sleep one second to show loading</span>
     <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-      x = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
-      y = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>)
+      <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>,
+      <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>)
     )
   })
-  
-  <span class='kw'>output</span><span class='op'>$</span><span class='kw'>plot</span> <span class='op'>&lt;-</span> <span class='fu'>renderEcharts4r</span>({
-    <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>() <span class='op'>%&gt;%</span> 
-      <span class='fu'>e_charts</span>(<span class='kw'>x</span>) <span class='op'>%&gt;%</span> 
-      <span class='fu'>e_bar</span>(<span class='kw'>y</span>) <span class='op'>%&gt;%</span> 
+
+  <span class='no'>output</span>$<span class='no'>plot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span>({
+    <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>() <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='e_bar.html'>e_bar</a></span>(<span class='no'>y</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'>e_show_loading</span>()
   })
 }
 
-<span class='co'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>())
- <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='kw'>ui</span>, <span class='kw'>server</span>)
-}
-</div></pre>
+<span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>())
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

@@ -1308,7 +1308,7 @@ e_pie.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, rm_x = TR
 #' 
 #' @inheritParams e_bar
 #' @param styles  Vector of style lists, defaults to \code{NULL}.
-#' @param names Names of columns to style, expects a \code{list}, defaults to \code{NULL}.
+#' @param names Names of items to style, expects a \code{list}, defaults to \code{NULL}.
 #' @param levels Hierarchical levels to style, expects a \code{list}, defaults to \code{NULL}. 
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
@@ -1358,6 +1358,7 @@ e_pie.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, rm_x = TR
 #' 
 #' 
 #'    # tibble hierarchical data representation
+#' library(dplyr)
 #' df <- tibble(
 #'   name = c("earth", "mars", "venus"), value = c(30, 40, 30),        # 1st level
 #'   itemStyle = tibble(color = c(NA, 'red', 'blue')),     # embedded styles, optional
@@ -1418,18 +1419,33 @@ e_sunburst.echarts4rProxy <- function(e, styles=NULL, names=NULL, levels=NULL, r
 #' 
 #' @inheritParams e_bar
 #' @param styles  Vector of style lists, defaults to \code{NULL}.
-#' @param names Names of columns to style, expects a \code{list}, defaults to \code{NULL}.
+#' @param names Names of items to style, expects a \code{list}, defaults to \code{NULL}.
 #' @param levels Hierarchical levels to style, expects a \code{list}, defaults to \code{NULL}. 
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
-#' see data structures \code{jsonl} and \code{df} in e_sunburst examples above
-#' 
-#' jsonl %>% e_charts() %>% e_treemap()     # demo
+#' library(dplyr)
+#' df <- tibble(
+#'   name = c("earth", "mars", "venus"), value = c(30, 40, 30),        # 1st level
+#'   itemStyle = tibble(color = c(NA, 'red', 'blue')),     # embedded styles, optional
+#'   children = list(
+#'     tibble(name = c("land", "ocean"), value = c(10,20),             # 2nd level
+#'            children = list(
+#'              tibble(name = c("forest", "river"), value = c(3,7)),   # 3rd level 
+#'              tibble(name = c("fish", "kelp"), value = c(10,5),
+#'                     children = list(
+#'                       tibble(name = c("shark", "tuna"), value = c(2,6)),  # 4th level 
+#'                       NULL  # kelp
+#'                     ))
+#'            )),
+#'     tibble(name = c("crater", "valley"), value = c(20,20)),
+#'     NULL  # venus
+#'   )
+#' )
 #' 
 #' df %>% 
 #'   e_charts() %>% 
-#'   e_treemap(myStyles, myNames, myLevels) 
+#'   e_treemap() 
 #'   
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-treemap}{Additional arguments}
 #' 
@@ -1563,8 +1579,23 @@ e_boxplot.echarts4rProxy <- function(e, serie, name = NULL, outliers = TRUE, ...
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #' 
 #' @examples 
-#' see data structures \code{jsonl} and \code{df} in e_sunburst examples above
-#' 
+#' library(dplyr)
+#' df <- tibble(
+#'   name = "earth",        # 1st level
+#'   children = list(
+#'     tibble(name = c("land", "ocean"),             # 2nd level
+#'            children = list(
+#'              tibble(name = c("forest", "river")),   # 3rd level 
+#'              tibble(name = c("fish", "kelp"),
+#'                     children = list(
+#'                       tibble(name = c("shark", "tuna"),  # 4th level 
+#'                              NULL  # kelp
+#'                       ))
+#'              )
+#'            ))
+#'   )
+#' )
+#'  
 #' df %>% 
 #'   e_charts() %>% 
 #'   e_tree(initialTreeDepth=3, label=list(offset=c(0,-11)))

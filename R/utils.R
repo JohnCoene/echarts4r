@@ -333,17 +333,31 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   jsonl
 }
 
-.build_sun <- function(e, myStyles=NULL, myNames=NULL, myLevels=NULL) {
+#' Adding styles to hierarchical data by item names or levels
+#' @author helgasoft.com
+#' 
+#' @inheritParams e_bar
+#' @param styles Style lists, expects a \code{vector}, defaults to \code{NULL}.
+#' @param names Names of items to style, expects a \code{list}, defaults to \code{NULL}.
+#' @param levels Hierarchical levels to style, expects a \code{list}, defaults to \code{NULL}. 
+#' @return updated hierarchy in json list format
+
+.build_sun <- function(e, styles=NULL, names=NULL, levels=NULL) {
 
   #' recursive json-list traversal, append style on matching level and/or name 
   recu <- function(chld, level) {
-    if (!is.null(myLevels))
-      idLevel <- unlist(lapply(seq_along(myLevels), function(x, i) { if (level %in% x[[i]]) i}, x=myLevels ))
-    if (!is.null(myNames))
-      idName <- unlist(lapply(seq_along(myNames), function(x, i) { if (chld$name %in% x[[i]]) i}, x=myNames ))
+    if (!is.null(levels))
+      idLevel <- unlist(lapply(seq_along(levels), 
+                               function(x, i) { if (level %in% x[[i]]) i}, x=levels ))
+    if (!is.null(names))
+      idName <- unlist(lapply(seq_along(names), 
+                              function(x, i) { if (chld$name %in% x[[i]]) i}, x=names ))
     id <- if(length(idName)>0) idName else idLevel    # name supersedes level 
-    if (length(id)>0) chld$itemStyle <- myStyles[id]
-    if (!is.null(chld$children)) { chld$children <- lapply(chld$children, function(x) recu(x, level+1)); level<-level-1 }
+    if (length(id)>0) 
+      chld$itemStyle <- styles[id]
+    if (!is.null(chld$children)) { 
+      chld$children <- lapply(chld$children, 
+                              function(x) recu(x, level+1)); level <- level-1 }
     chld
   }
   
@@ -354,7 +368,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   }
   if (!jsonlite::validate(jsonlite::toJSON(jsonl)))
     stop("invalid input data", call. = FALSE)
-  if (!is.null(myStyles))
+  if (!is.null(styles))
     jsonl <- lapply(jsonl, function(x) recu(x, level=1))    # recursively add styles
   jsonl
 }

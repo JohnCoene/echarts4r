@@ -293,15 +293,15 @@
     <p>Selects data range of visual mapping.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_visual_map_range</span>(<span class='kw'>e</span>, <span class='kw'>...</span>, btn = <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>e_visual_map_range</span>(<span class='no'>e</span>, <span class='no'>...</span>, <span class='kw'>btn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -309,7 +309,7 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>btn</th>
-      <td><p>A <code>e_button</code> id.</p></td>
+      <td><p>A <code><a href='e_button.html'>e_button</a></code> id.</p></td>
     </tr>
     </table>
 
@@ -317,15 +317,14 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"state"</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='kw'>state.x77</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>Population</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_scatter</span>(<span class='kw'>Income</span>, <span class='kw'>Frost</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_visual_map</span>(<span class='kw'>Frost</span>, scale = <span class='kw'>e_scale</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_legend</span>(<span class='fl'>FALSE</span>) <span class='op'>%&gt;%</span> 
+<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>state.x77</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Population</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>Income</span>, <span class='no'>Frost</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='no'>Frost</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='no'>e_scale</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_legend.html'>e_legend</a></span>(<span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_visual_map_range</span>(
-    selected = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>60</span>, <span class='fl'>120</span>)
-  )
-</div></pre>
+    <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>60</span>, <span class='fl'>120</span>)
+  )</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

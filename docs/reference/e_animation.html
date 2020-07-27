@@ -294,15 +294,15 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_animation</span>(
-  <span class='kw'>e</span>,
-  show = <span class='fl'>TRUE</span>,
-  threshold = <span class='kw'>NULL</span>,
-  duration = <span class='kw'>NULL</span>,
-  easing = <span class='kw'>NULL</span>,
-  delay = <span class='kw'>NULL</span>,
-  duration.update = <span class='kw'>NULL</span>,
-  easing.update = <span class='kw'>NULL</span>,
-  delay.update = <span class='kw'>NULL</span>
+  <span class='no'>e</span>,
+  <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>threshold</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>duration</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>easing</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>delay</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>duration.update</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>easing.update</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>delay.update</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -310,8 +310,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>show</th>
@@ -353,11 +353,10 @@ Animation will be disabled when graphic number is larger than threshold.</p></td
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#animation'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>mtcars</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>mpg</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_area</span>(<span class='kw'>drat</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_animation</span>(duration = <span class='fl'>10000</span>)
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_area.html'>e_area</a></span>(<span class='no'>drat</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_animation</span>(<span class='kw'>duration</span> <span class='kw'>=</span> <span class='fl'>10000</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

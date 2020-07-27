@@ -293,15 +293,15 @@
     <p>Customise chart and background colors.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_color</span>(<span class='kw'>e</span>, color = <span class='kw'>NULL</span>, background = <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>e_color</span>(<span class='no'>e</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>background</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>color</th>
@@ -315,20 +315,19 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>e_theme</code>, 
+    <div class='dont-index'><p><code><a href='theme.html'>e_theme</a></code>, 
 <a href='https://echarts.apache.org/en/option.html#color'>Official color documentation</a>, 
 <a href='https://echarts.apache.org/en/option.html#backgroundColor'>Official background documentation</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>mtcars</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>drat</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_line</span>(<span class='kw'>mpg</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_area</span>(<span class='kw'>qsec</span>) <span class='op'>%&gt;%</span> 
+    <pre class="examples"><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>drat</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_area.html'>e_area</a></span>(<span class='no'>qsec</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_color</span>(
     <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"red"</span>, <span class='st'>"blue"</span>),
     <span class='st'>"#d3d3d3"</span>
-  )
-  </div></pre>
+  )</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

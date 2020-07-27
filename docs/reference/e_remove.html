@@ -293,16 +293,16 @@
     <p>Remove a serie by name or precising its index.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_remove_serie_p</span>(<span class='kw'>proxy</span>, serie_name = <span class='kw'>NULL</span>, serie_index = <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>e_remove_serie_p</span>(<span class='no'>proxy</span>, <span class='kw'>serie_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>serie_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>e_remove_serie</span>(<span class='kw'>proxy</span>, serie_name = <span class='kw'>NULL</span>, serie_index = <span class='kw'>NULL</span>)</pre>
+<span class='fu'>e_remove_serie</span>(<span class='no'>proxy</span>, <span class='kw'>serie_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>serie_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>proxy</th>
-      <td><p>An echarts4r proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An echarts4r proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>serie_name</th>
@@ -316,37 +316,36 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://shiny.rstudio.com'>shiny</a></span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
 
-<span class='kw'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
+<span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span>(<span class='st'>"rm"</span>, <span class='st'>"Remove z serie"</span>),
-  <span class='fu'>echarts4rOutput</span>(<span class='st'>"plot"</span>)
+  <span class='fu'><a href='echarts4r-shiny.html'>echarts4rOutput</a></span>(<span class='st'>"plot"</span>)
 )
 
-<span class='kw'>server</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>input</span>, <span class='kw'>output</span>, <span class='kw'>session</span>){
+<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>){
 
-  <span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-    x = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>5</span>, <span class='fl'>3</span>), 
-    y = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>12</span>), 
-    z = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>5</span>)
+  <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+    <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>5</span>, <span class='fl'>3</span>),
+    <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>12</span>),
+    <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>5</span>)
   )
 
-  <span class='kw'>output</span><span class='op'>$</span><span class='kw'>plot</span> <span class='op'>&lt;-</span> <span class='fu'>renderEcharts4r</span>({
-    <span class='kw'>data</span> <span class='op'>%&gt;%</span> 
-     <span class='fu'>e_charts</span>(<span class='kw'>x</span>) <span class='op'>%&gt;%</span> 
-     <span class='fu'>e_scatter</span>(<span class='kw'>y</span>) <span class='op'>%&gt;%</span>
-     <span class='fu'>e_scatter</span>(<span class='kw'>z</span>)
+  <span class='no'>output</span>$<span class='no'>plot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span>({
+    <span class='no'>data</span> <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>y</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>z</span>)
   })
 
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='kw'>input</span><span class='op'>$</span><span class='kw'>rm</span>, {
-    <span class='fu'>echarts4rProxy</span>(<span class='st'>"plot"</span>) <span class='op'>%&gt;%</span> 
-      <span class='fu'>e_remove_serie_p</span>(serie_name = <span class='st'>"z"</span>)
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>rm</span>, {
+    <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"plot"</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'>e_remove_serie_p</span>(<span class='kw'>serie_name</span> <span class='kw'>=</span> <span class='st'>"z"</span>)
   })
- 
+
 }
 
-<span class='co'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='kw'>ui</span>, <span class='kw'>server</span>)
-</div></pre>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

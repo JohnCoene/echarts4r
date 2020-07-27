@@ -220,6 +220,7 @@ mtcars %>%
 ## Sunburst
 
 ```{r}
+library(dplyr)
 df <- tibble(
   name = c("earth", "mars", "venus"), value = c(30, 40, 30),        # 1st level
   itemStyle = tibble(color = c(NA, 'red', 'blue')),

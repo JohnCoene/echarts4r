@@ -293,15 +293,15 @@
     <p>Add data zoom.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_datazoom</span>(<span class='kw'>e</span>, x_index = <span class='kw'>NULL</span>, y_index = <span class='kw'>NULL</span>, toolbox = <span class='fl'>TRUE</span>, <span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_datazoom</span>(<span class='no'>e</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>toolbox</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>x_index</th>
@@ -313,7 +313,7 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>toolbox</th>
-      <td><p>Whether to add the toolbox, <code>e_toolbox_feature</code>, (<code>e_toolbox_feature(e, "dataZoom")</code>).</p></td>
+      <td><p>Whether to add the toolbox, <code><a href='toolbox.html'>e_toolbox_feature</a></code>, (<code><a href='toolbox.html'>e_toolbox_feature(e, "dataZoom")</a></code>).</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -326,17 +326,16 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#dataZoom'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>USArrests</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>UrbanPop</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_line</span>(<span class='kw'>Assault</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_area</span>(<span class='kw'>Murder</span>, y_index = <span class='fl'>1</span>, x_index = <span class='fl'>1</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_y_axis</span>(gridIndex = <span class='fl'>1</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_x_axis</span>(gridIndex = <span class='fl'>1</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_grid</span>(height = <span class='st'>"35%"</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_grid</span>(height = <span class='st'>"35%"</span>, top = <span class='st'>"50%"</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_toolbox_feature</span>(<span class='st'>"dataZoom"</span>, title = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(zoom = <span class='st'>"zoom"</span>, back = <span class='st'>"back"</span>)) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_datazoom</span>(x_index = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>))
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>UrbanPop</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Assault</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_area.html'>e_area</a></span>(<span class='no'>Murder</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='axis.html'>e_y_axis</a></span>(<span class='kw'>gridIndex</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='axis.html'>e_x_axis</a></span>(<span class='kw'>gridIndex</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_grid.html'>e_grid</a></span>(<span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"35%"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_grid.html'>e_grid</a></span>(<span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"35%"</span>, <span class='kw'>top</span> <span class='kw'>=</span> <span class='st'>"50%"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='toolbox.html'>e_toolbox_feature</a></span>(<span class='st'>"dataZoom"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>zoom</span> <span class='kw'>=</span> <span class='st'>"zoom"</span>, <span class='kw'>back</span> <span class='kw'>=</span> <span class='st'>"back"</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_datazoom</span>(<span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
