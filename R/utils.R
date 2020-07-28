@@ -555,7 +555,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 }
 
 .get_index <- function(e, serie){
-  series <- purrr::map(e$x$opts$series, "name") %>% unlist()
+  series <- if (e$x$tl) names(e$x$data) else purrr::map(e$x$opts$series, "name") %>% unlist()
   purrr::map(serie, ~which(series == .)) %>% unlist() %>% unique()
 }
 
