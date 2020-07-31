@@ -1329,6 +1329,7 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
       
       if(!is.null(bind))
         data <- .add_bind2(e, data, bind, i = i)
+      
     } else {
       data <- .build_cartesian3D(e, e$x$mapping$x, y, z, i = i)
     }

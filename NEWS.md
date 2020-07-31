@@ -4,6 +4,7 @@
 - Fix `e_flip_coords` for timeline feature, see [#166](https://github.com/JohnCoene/echarts4r/issues/166)
 - `name` argument was not used in `e_boxplot`, see [#171](https://github.com/JohnCoene/echarts4r/issues/171)
 - Allow customising area under the curve of density plot see [172](https://github.com/JohnCoene/echarts4r/issues/172)
+- Update mapbox dependency from `0.38` to `1.11`
 
 # echarts4r 0.3.2
 
