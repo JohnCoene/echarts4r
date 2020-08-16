@@ -263,10 +263,10 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
   
   if(is.null(map) && length(e$x$registerMap[[1]]$mapName))
     map <- unlist(e$x$registerMap[[1]]$mapName)
-  else
+  else if (is.null(map))    	# fix when map value is not NULL
     stop("not map registered, see e_map_register", call. = FALSE)
   
-  e$x$renderer <- "webgl"
+  e$x$renderer <- "webgl"	# 'canvas' works also, maybe even more efficient
   
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
@@ -295,6 +295,16 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
   app$data <- data
   
   e$x$opts$series <- append(e$x$opts$series, list(app))
+  
+  # add dependency
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-gl",
+    version = "1.1.2",
+    src = c(file = path),
+    script = "echarts-gl.min.js"
+  )
+  e$dependencies <- append(e$dependencies, list(dep)) 
   
   e
 }
