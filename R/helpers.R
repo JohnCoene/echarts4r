@@ -16,7 +16,7 @@
 #' e_country_names(cns, country)
 #'   
 #' # specify output
-#' e_country_names(cns, country, country.name)
+#' e_country_names(cns, country, country_name)
 #'   
 #' 
 #' @rdname e_country_names

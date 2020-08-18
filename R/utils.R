@@ -546,12 +546,44 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 }
 
 .correct_countries <- function(x){
-  x <- gsub("^United States of America$", "United States", x)
-  x <- gsub("^Viet Nam$", "Vietnam", x)
-  x <- gsub("^United Kingdom of Great Britain and Northern Ireland$", "United Kingdom", x)
-  x <- gsub("^Republic of Korea$", "Korea", x)
-  x <- gsub("^Russian Federation$", "Russia", x)
-  x
+  dplyr::recode(
+    x,
+    "United States of America" = "United States",
+    "Viet Nam" = "Vietnam",
+    "United Kingdom of Great Britain and Northern Ireland" = "United Kingdom",
+    "Republic of Korea" = "Korea",
+    "Russian Federation" = "Russia",
+    "Congo - Kinshasa" = "Dem. Rep. Congo",
+    "Congo - Brazzaville" = "Congo",
+    "Central African Republic" = "Central African Rep.",
+    "South Sudan" = "S. Sudan",
+    "North Korea" = "Dem. Rep. Korea",
+    "South Korea" = "Korea",
+    "Western Sahara" = "W. Sahara",
+    "Myanmar (Burma)" = "Myanmar",
+    "Laos" = "Lao PDR",
+    "C\\u00f4te d\\u2019Ivoire" = "C\\u00f4te d\\'Ivoire",
+    "Czechia" = "Czech Rep.",
+    "Equatorial Guinea" = "Eq. Guinea",
+    "Eswatini" = "Swaziland",
+    "Falkland Islands" = "Falkland Is.",
+    "South Georgia & South Sandwich Islands" = "S. Geo. and S. Sandw. Is.",
+    "French Southern Territories" = "Fr. S. Antarctic Lands",
+    "British Indian Ocean Territory" = "Br. Indian Ocean Ter.",
+    "Solomon Islands" = "Solomon Is.",
+    "Dominican Republic" = "Dominican Rep.",
+    "Bosnia & Herzegovina" = "Bosnia and Herz.",
+    "North Macedonia" = "Macedonia",
+    "Heard & McDonald Islands" = "Heard I. and McDonald Is.",
+    "Micronesia (Federated States of)" = "Micronesia",
+    "Trinidad & Tobago" = "Trinidad and Tobago",
+    "St. Vincent & Grenadines" = "St. Vin. and Gren.",
+    "St. Lucia" = "Saint Lucia",
+    "Antigua & Barbuda" = "Antigua",
+    "U.S. Virgin Islands" = "U.S. Virgin Is.",
+    "Faroe Islands" = "Faeroe Is.",
+    "\\u00c5lland Islands" = "Aland"
+  )
 }
 
 .get_index <- function(e, serie){
