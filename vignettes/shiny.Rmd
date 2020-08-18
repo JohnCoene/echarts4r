@@ -76,6 +76,8 @@ Get data from shiny with the following:
 
 If you want to implement a missing callback with `e_distpatch_action_p`.
 
+A demo app of shiny working with callbacks is available [here](https://psim.shinyapps.io/echarts4r_callbacks/).
+
 ## Proxies
 
 Interact with the charts without redrawing (proxies):
