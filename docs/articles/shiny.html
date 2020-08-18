@@ -227,13 +227,13 @@
 
       
 
-      </header><script src="shiny_files/header-attrs-2.3.2/header-attrs.js"></script><script src="shiny_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="shiny_files/header-attrs-2.3/header-attrs.js"></script><script src="shiny_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Shiny</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2020-07-07</h4>
+            <h4 class="date">2020-08-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JohnCoene/echarts4r/blob/master/vignettes/shiny.Rmd"><code>vignettes/shiny.Rmd</code></a></small>
       <div class="hidden name"><code>shiny.Rmd</code></div>
@@ -298,6 +298,8 @@ sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""</code></p
 <code>elementId</code> + <code>_mouseover_serie</code> - returns name of serie of hovered data point.</li>
 </ul>
 <p>If you want to implement a missing callback with <code>e_distpatch_action_p</code>.</p>
+<p><a href="https://github.com/psimm">Paul Simmering</a> kindly created a demo app showcasing callbacks.</p>
+<p><a href="https://psim.shinyapps.io/echarts4r_callbacks/" target="_blank" class="btn btn-default"> Callbacks demo </a></p>
 </div>
 <div id="proxies" class="section level2">
 <h2 class="hasAnchor">
@@ -320,17 +322,17 @@ sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""</code></p
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://shiny.rstudio.com">shiny</a></span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://echarts4r.john-coene.com">echarts4r</a></span>)
 
-<span class="kw">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span>(
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span>(<span class="st">"add"</span>, <span class="st">"Add Data to y"</span>),
+<span class="kw">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidPage</a></span>(
+  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html">actionButton</a></span>(<span class="st">"add"</span>, <span class="st">"Add Data to y"</span>),
   <span class="fu"><a href="../reference/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"plot"</span>),
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">verbatimTextOutput</a></span>(<span class="st">"selected"</span>)
+  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html">verbatimTextOutput</a></span>(<span class="st">"selected"</span>)
 )
 
 <span class="kw">server</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">input</span>, <span class="kw">output</span>, <span class="kw">session</span>){
 
   <span class="kw">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(x = <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>, <span class="fl">5</span>, <span class="fl">3</span>), y = <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">12</span>), z = <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">5</span>))
   
-  <span class="kw">react</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">eventReactive</a></span>(<span class="kw">input</span><span class="op">$</span><span class="kw">add</span>, {
+  <span class="kw">react</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html">eventReactive</a></span>(<span class="kw">input</span><span class="op">$</span><span class="kw">add</span>, {
     <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>, <span class="fl">1</span>))
     <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(x = <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>, <span class="fl">5</span>, <span class="fl">2</span>), y = <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">10</span>))
   })
@@ -343,18 +345,18 @@ sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""</code></p
      <span class="fu"><a href="../reference/e_brush.html">e_brush</a></span>(throttleDelay = <span class="fl">1000</span>)
   })
   
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span>(<span class="kw">input</span><span class="op">$</span><span class="kw">add</span>, {
+  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html">observeEvent</a></span>(<span class="kw">input</span><span class="op">$</span><span class="kw">add</span>, {
     <span class="fu"><a href="../reference/echarts4r-shiny.html">echarts4rProxy</a></span>(<span class="st">"plot"</span>) <span class="op">%&gt;%</span> 
       <span class="fu"><a href="../reference/e_append1_p.html">e_append1_p</a></span>(<span class="fl">0</span>, <span class="fu">react</span>(), <span class="kw">x</span>, <span class="kw">y</span>)
   })
   
-  <span class="kw">output</span><span class="op">$</span><span class="kw">selected</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderPrint</a></span>({
+  <span class="kw">output</span><span class="op">$</span><span class="kw">selected</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html">renderPrint</a></span>({
     <span class="kw">input</span><span class="op">$</span><span class="kw">plot_brush</span>
   })
   
 }
 
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(<span class="kw">ui</span>, <span class="kw">server</span>)
+<span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(<span class="kw">ui</span>, <span class="kw">server</span>)
 </pre></div>
 </div>
 <div id="loading" class="section level2">
@@ -366,17 +368,17 @@ sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""</code></p
 <span class="co"># no redraw</span>
 <span class="co"># no loading</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://shiny.rstudio.com">shiny</a></span>)
-<span class="kw">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span>(
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidRow</a></span>(
-    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html">column</a></span>(<span class="fl">12</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton</a></span>(<span class="st">"update"</span>, <span class="st">"Update"</span>))
+<span class="kw">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidPage</a></span>(
+  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidRow</a></span>(
+    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/column.html">column</a></span>(<span class="fl">12</span>, <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html">actionButton</a></span>(<span class="st">"update"</span>, <span class="st">"Update"</span>))
   ),
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidRow</a></span>(
-    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html">column</a></span>(<span class="fl">12</span>, <span class="fu"><a href="../reference/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"plot"</span>))
+  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidRow</a></span>(
+    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/column.html">column</a></span>(<span class="fl">12</span>, <span class="fu"><a href="../reference/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"plot"</span>))
   )
 )
 
 <span class="kw">server</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">input</span>, <span class="kw">output</span>){
-  <span class="kw">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">eventReactive</a></span>(<span class="kw">input</span><span class="op">$</span><span class="kw">update</span>, {
+  <span class="kw">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html">eventReactive</a></span>(<span class="kw">input</span><span class="op">$</span><span class="kw">update</span>, {
     <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
       x = <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,
       y = <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>)
@@ -390,14 +392,14 @@ sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""</code></p
   })
 }
 
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(<span class="kw">ui</span>, <span class="kw">server</span>)
+<span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(<span class="kw">ui</span>, <span class="kw">server</span>)
 </pre></div>
 <p>With loading.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="co"># keep UI</span>
 <span class="co"># add loading</span>
 <span class="kw">server</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">input</span>, <span class="kw">output</span>){
-  <span class="kw">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">eventReactive</a></span>(<span class="kw">input</span><span class="op">$</span><span class="kw">update</span>, {
+  <span class="kw">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html">eventReactive</a></span>(<span class="kw">input</span><span class="op">$</span><span class="kw">update</span>, {
     <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="fl">1</span>) <span class="co"># sleep one second to show loading</span>
     <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
       x = <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,
@@ -413,7 +415,7 @@ sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""</code></p
   })
 }
 
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(<span class="kw">ui</span>, <span class="kw">server</span>)
+<span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(<span class="kw">ui</span>, <span class="kw">server</span>)
 </pre></div>
 </div>
   </div>
