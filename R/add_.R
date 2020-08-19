@@ -647,6 +647,9 @@ e_radar_ <- function(e, serie, max = 100, name = NULL, legend = TRUE,
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
   
+  if(is.null(name)) # defaults to column name
+    name <- serie
+  
   # build JSON data
   .get_data(e, serie) -> vector
   
