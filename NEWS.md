@@ -3,8 +3,10 @@
 - Fix `e_common` theme, was no longer applied due to dynamic dependencies introduced in `0.3.2`
 - Fix `e_flip_coords` for timeline feature, see [#166](https://github.com/JohnCoene/echarts4r/issues/166)
 - `name` argument was not used in `e_boxplot`, see [#171](https://github.com/JohnCoene/echarts4r/issues/171)
-- Allow customising area under the curve of density plot see [172](https://github.com/JohnCoene/echarts4r/issues/172)
+- Allow customising area under the curve of density plot see [#172](https://github.com/JohnCoene/echarts4r/issues/172)
 - Update mapbox dependency from `0.38` to `1.11`
+- Fix country name conversion in `e_country_names` [#189](https://github.com/JohnCoene/echarts4r/issues/189)
+- Fix legend toggle in radar charts [#74](https://github.com/JohnCoene/echarts4r/issues/74)
 
 # echarts4r 0.3.2
 
