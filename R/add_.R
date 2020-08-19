@@ -633,7 +633,7 @@ e_candle_ <- function(e, opening, closing, low, high, bind = NULL, name = NULL, 
 #' @rdname e_radar
 #' @export
 e_radar_ <- function(e, serie, max = 100, name = NULL, legend = TRUE, 
-                    rm_x = TRUE, rm_y = TRUE, ..., radar = list()){
+  rm_x = TRUE, rm_y = TRUE, ..., radar = list()){
   
   r.index = 0
   
@@ -647,9 +647,6 @@ e_radar_ <- function(e, serie, max = 100, name = NULL, legend = TRUE,
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
   
-  if(is.null(name)) # defaults to column name
-    name <- serie
-  
   # build JSON data
   .get_data(e, serie) -> vector
   
@@ -658,7 +655,6 @@ e_radar_ <- function(e, serie, max = 100, name = NULL, legend = TRUE,
   
   if(!"radar" %in% series){
     serie <- list(
-      name = name,
       type = "radar",
       data = list(list(value = vector, name = name)),
       radarIndex = r.index,
