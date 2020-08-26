@@ -13,6 +13,7 @@ e_lm(
   legend = TRUE,
   symbol = "none",
   smooth = TRUE,
+  model_args = list(),
   ...
 )
 
@@ -23,6 +24,7 @@ e_glm(
   legend = TRUE,
   symbol = "none",
   smooth = TRUE,
+  model_args = list(),
   ...
 )
 
@@ -33,9 +35,9 @@ e_loess(
   legend = TRUE,
   symbol = "none",
   smooth = TRUE,
-  span = 0.75,
   x_index = 0,
   y_index = 0,
+  model_args = list(),
   ...
 )
 }
@@ -53,10 +55,9 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{smooth}{Whether to smooth the line.}
 
-\item{...}{Additional arguments to pass to \code{\link{e_line}}.}
+\item{model_args}{Arguments to pass to the underlying model.}
 
-\item{span}{The parameter alpha which controls the degree of smoothing: 
-passed to \link[stats]{loess}.}
+\item{...}{Additional arguments to pass to \code{\link{e_line}}.}
 
 \item{x_index}{Indexes of x and y axis.}
 

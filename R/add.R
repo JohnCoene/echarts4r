@@ -2671,8 +2671,7 @@ e_pictorial.echarts4rProxy <- function(e, serie, symbol, bind, name = NULL, lege
 #' @param formula formula to pass to \code{\link{lm}}.
 #' @param symbol Symbol to use in \code{\link{e_line}}.
 #' @param smooth Whether to smooth the line.
-#' @param span The parameter alpha which controls the degree of smoothing: 
-#' passed to \link[stats]{loess}.
+#' @param model_args Arguments to pass to the underlying model.
 #' @param ... Additional arguments to pass to \code{\link{e_line}}.
 #' 
 #' @examples 
@@ -2699,23 +2698,24 @@ e_pictorial.echarts4rProxy <- function(e, serie, symbol, bind, name = NULL, lege
 #' 
 #' @rdname smooth
 #' @export
-e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, ...) UseMethod("e_lm")
+e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, model_args = list(), ...) UseMethod("e_lm")
 
 #' @export
 #' @method e_lm echarts4r
 #' @importFrom stats complete.cases
-e_lm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, ...){
+e_lm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, model_args = list(), ...){
   
   form <- as.formula(formula)
   
   for(i in 1:length(e$x$data)){
     
     e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
+
+    model_args$formula <- form
+    model_args$data <- e$x$data[[i]]
     
     model <- tryCatch(
-      eval(
-        lm(form, data = e$x$data[[i]])
-      ),
+      do.call(lm, model_args),
       error = function(e) e
     )
     
@@ -2776,18 +2776,19 @@ e_lm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "non
 #' @export
 #' @method e_lm echarts4rProxy
 #' @importFrom stats complete.cases
-e_lm.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, ...){
+e_lm.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, model_args = list(), ...){
   
   form <- as.formula(formula)
   
   for(i in 1:length(e$chart$x$data)){
     
-    e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
+    e$chart$x$data[[i]] <- e$chart$x$data[[i]][stats::complete.cases(e$chart$x$data[[i]]), ]
+    
+    model_args$formula <- form
+    model_args$data <- e$chart$x$data[[i]]
     
     model <- tryCatch(
-      eval(
-        lm(form, data = e$chart$x$data[[i]])
-      ),
+      do.call(lm, model_args),
       error = function(e) e
     )
     
@@ -2847,12 +2848,12 @@ e_lm.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol =
 
 #' @rdname smooth
 #' @export
-e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, ...) UseMethod("e_glm")
+e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, model_args = list(), ...) UseMethod("e_glm")
 
 #' @export 
 #' @method e_glm echarts4r
 #' @importFrom stats complete.cases
-e_glm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, ...){
+e_glm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, model_args = list(), ...){
   
   form <- as.formula(formula)
   
@@ -2860,10 +2861,11 @@ e_glm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "no
     
     e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
     
+    model_args$formula <- form
+    model_args$data <- e$x$data[[i]]
+    
     model <- tryCatch(
-      eval(
-        glm(form, data = e$x$data[[i]])
-      ),
+      do.call(glm, model_args),
       error = function(e) e
     )
     
@@ -2924,18 +2926,19 @@ e_glm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "no
 #' @export 
 #' @method e_glm echarts4rProxy
 #' @importFrom stats complete.cases
-e_glm.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, ...){
+e_glm.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, model_args = list(), ...){
   
   form <- as.formula(formula)
   
   for(i in 1:length(e$chart$x$data)){
     
-    e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
+    e$chart$x$data[[i]] <- e$chart$x$data[[i]][stats::complete.cases(e$chart$x$data[[i]]), ]
+
+    model_args$formula <- form
+    model_args$data <- e$chart$x$data[[i]]
     
     model <- tryCatch(
-      eval(
-        glm(form, data = e$chart$x$data[[i]])
-      ),
+      do.call(glm, model_args),
       error = function(e) e
     )
     
@@ -2996,22 +2999,23 @@ e_glm.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol 
 #' @rdname smooth
 #' @export
 e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, 
-                    span = 0.75, x_index = 0, y_index = 0, ...) UseMethod("e_loess")
+                    x_index = 0, y_index = 0, model_args = list(), ...) UseMethod("e_loess")
 
 #' @export 
 #' @method e_loess echarts4r
 #' @importFrom stats complete.cases
 e_loess.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, 
-                    span = 0.75, x_index = 0, y_index = 0, ...){
+                    x_index = 0, y_index = 0, model_args = list(), ...){
 
   for(i in 1:length(e$x$data)){
     
     e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
+
+    model_args$formula <- as.formula(formula)
+    model_args$data <- e$x$data[[i]]
     
     mod <- tryCatch(
-      eval(
-        loess(as.formula(formula), data = e$x$data[[i]], span = span)
-      ),
+      do.call(loess, model_args),
       error = function(e) e
     )
     
@@ -3081,16 +3085,17 @@ e_loess.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "
 #' @method e_loess echarts4rProxy
 #' @importFrom stats complete.cases
 e_loess.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, 
-                    span = 0.75, x_index = 0, y_index = 0, ...){
+                    x_index = 0, y_index = 0, model_args = list(), ...){
 
   for(i in 1:length(e$chart$x$data)){
     
-    e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
+    e$chart$x$data[[i]] <- e$chart$x$data[[i]][stats::complete.cases(e$chart$x$data[[i]]), ]
+
+    model_args$formula <- as.formula(formula)
+    model_args$data <- e$chart$x$data[[i]]
     
     mod <- tryCatch(
-      eval(
-        loess(as.formula(formula), data = e$chart$x$data[[i]], span = span)
-      ),
+      do.call(loess, model_args),
       error = function(e) e
     )
     
