@@ -2671,6 +2671,8 @@ e_pictorial.echarts4rProxy <- function(e, serie, symbol, bind, name = NULL, lege
 #' @param formula formula to pass to \code{\link{lm}}.
 #' @param symbol Symbol to use in \code{\link{e_line}}.
 #' @param smooth Whether to smooth the line.
+#' @param span The parameter alpha which controls the degree of smoothing: 
+#' passed to \link[stats]{loess}.
 #' @param ... Additional arguments to pass to \code{\link{e_line}}.
 #' 
 #' @examples 
@@ -2994,13 +2996,13 @@ e_glm.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol 
 #' @rdname smooth
 #' @export
 e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, 
-                    x_index = 0, y_index = 0, ...) UseMethod("e_loess")
+                    span = 0.75, x_index = 0, y_index = 0, ...) UseMethod("e_loess")
 
 #' @export 
 #' @method e_loess echarts4r
 #' @importFrom stats complete.cases
 e_loess.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, 
-                    x_index = 0, y_index = 0, ...){
+                    span = 0.75, x_index = 0, y_index = 0, ...){
 
   for(i in 1:length(e$x$data)){
     
@@ -3008,7 +3010,7 @@ e_loess.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "
     
     mod <- tryCatch(
       eval(
-        loess(as.formula(formula), data = e$x$data[[i]])
+        loess(as.formula(formula), data = e$x$data[[i]], span = span)
       ),
       error = function(e) e
     )
@@ -3079,7 +3081,7 @@ e_loess.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "
 #' @method e_loess echarts4rProxy
 #' @importFrom stats complete.cases
 e_loess.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, 
-                    x_index = 0, y_index = 0, ...){
+                    span = 0.75, x_index = 0, y_index = 0, ...){
 
   for(i in 1:length(e$chart$x$data)){
     
@@ -3087,7 +3089,7 @@ e_loess.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbo
     
     mod <- tryCatch(
       eval(
-        loess(as.formula(formula), data = e$chart$x$data[[i]])
+        loess(as.formula(formula), data = e$chart$x$data[[i]], span = span)
       ),
       error = function(e) e
     )

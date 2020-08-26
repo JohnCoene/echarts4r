@@ -33,6 +33,7 @@ e_loess(
   legend = TRUE,
   symbol = "none",
   smooth = TRUE,
+  span = 0.75,
   x_index = 0,
   y_index = 0,
   ...
@@ -53,6 +54,9 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{smooth}{Whether to smooth the line.}
 
 \item{...}{Additional arguments to pass to \code{\link{e_line}}.}
+
+\item{span}{The parameter alpha which controls the degree of smoothing: 
+passed to \link[stats]{loess}.}
 
 \item{x_index}{Indexes of x and y axis.}
 
