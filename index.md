@@ -9,7 +9,7 @@
 </div>
 
 <div class = "col-md-8">
-<p>Interactive visualisations for R via <a href="https://echarts.apache.org/">echarts.js</a></p>
+<p>Interactive visualisations for R via <a href="https://echarts.apache.org/">Apache ECharts (incubating)</a></p>
 <a class = "btn btn-success" href = "articles/get_started.html" style = "margin-bottom: 5px;">Get Started</a>
 <a class = "btn btn-primary" href = "reference/" style = "margin-bottom: 5px;">Reference</a>
 <a class = "btn btn-info" href = "articles/timeline" style = "margin-bottom: 5px;">Timeline</a>
