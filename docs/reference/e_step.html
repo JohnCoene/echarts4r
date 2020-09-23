@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Step — e_step" />
 <meta property="og:description" content="Add step serie." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Step</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add.R'><code>R/add.R</code></a>, <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add_.R'><code>R/add_.R</code></a></small>
+    
     <div class="hidden name"><code>e_step.Rd</code></div>
     </div>
 
@@ -297,7 +301,7 @@
   <span class='no'>e</span>,
   <span class='no'>serie</span>,
   <span class='no'>bind</span>,
-  <span class='kw'>step</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"start"</span>, <span class='st'>"middle"</span>, <span class='st'>"end"</span>),
+  <span class='kw'>step</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"start"</span>, <span class='st'>"middle"</span>, <span class='st'>"end"</span>),
   <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -311,7 +315,7 @@
   <span class='no'>e</span>,
   <span class='no'>serie</span>,
   <span class='kw'>bind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>step</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"start"</span>, <span class='st'>"middle"</span>, <span class='st'>"end"</span>),
+  <span class='kw'>step</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"start"</span>, <span class='st'>"middle"</span>, <span class='st'>"end"</span>),
   <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -377,7 +381,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>State</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/row.names.html'>row.names</a></span>(<span class='no'>.</span>)) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>State</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/row.names'>row.names</a></span>(<span class='no'>.</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>State</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_step</span>(<span class='no'>Murder</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Start"</span>, <span class='kw'>step</span> <span class='kw'>=</span> <span class='st'>"start"</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_step</span>(<span class='no'>Rape</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Middle"</span>, <span class='kw'>step</span> <span class='kw'>=</span> <span class='st'>"middle"</span>) <span class='kw'>%&gt;%</span>
@@ -396,7 +400,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   </div>
 </div>
 
-
       <footer>
       <div class="copyright">
   <p>Developed by <a href='http://john-coene.com'>John Coene</a>.</p>
@@ -410,7 +413,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -433,8 +435,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 </script>
 
 
-
   </body>
 </html>
-
 

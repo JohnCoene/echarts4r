@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Node Adjacency — e_focus_adjacency_p" />
 <meta property="og:description" content="Focus or unfocus on node adjacency." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Node Adjacency</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/proxies.R'><code>R/proxies.R</code></a></small>
+    
     <div class="hidden name"><code>node_adjacency.Rd</code></div>
     </div>
 
@@ -320,40 +324,37 @@
     <p>Must pass <code>seriesId</code>, <code>seriesIndex</code>, or <code>seriesName</code>, generally <code>seriesIndex = 0</code> will work.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>value</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>10</span>, <span class='fl'>2</span>)
+    <pre class="examples"><div class='input'><span class='no'>value</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>10</span>, <span class='fl'>2</span>)
 
-<span class='no'>nodes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='no'>LETTERS</span>, <span class='fl'>10</span>),
+<span class='no'>nodes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>LETTERS</span>, <span class='fl'>10</span>),
   <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>value</span>,
   <span class='kw'>size</span> <span class='kw'>=</span> <span class='no'>value</span>,
-  <span class='kw'>grp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"grp1"</span>, <span class='st'>"grp2"</span>), <span class='fl'>5</span>),
+  <span class='kw'>grp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"grp1"</span>, <span class='st'>"grp2"</span>), <span class='fl'>5</span>),
   <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
 
-<span class='no'>edges</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='kw'>source</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='no'>nodes</span>$<span class='no'>name</span>, <span class='fl'>20</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>target</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='no'>nodes</span>$<span class='no'>name</span>, <span class='fl'>20</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
+<span class='no'>edges</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
+  <span class='kw'>source</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>nodes</span>$<span class='no'>name</span>, <span class='fl'>20</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
+  <span class='kw'>target</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>nodes</span>$<span class='no'>name</span>, <span class='fl'>20</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
   <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)
+)</div><span class='co'># NOT RUN {</span>
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
 
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-
-  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
-
-  <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span>(
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span>(
-        <span class='fl'>2</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/numericInput.html'>numericInput</a></span>(<span class='st'>"index"</span>, <span class='st'>"Node"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>9</span>)
+  <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidPage</a></span>(
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidRow</a></span>(
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(
+        <span class='fl'>2</span>, <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/numericInput.html'>numericInput</a></span>(<span class='st'>"index"</span>, <span class='st'>"Node"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>9</span>)
       ),
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span>(
-        <span class='fl'>2</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>br</a></span>(), <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span>(<span class='st'>"focus"</span>, <span class='st'>"Focus"</span>)
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(
+        <span class='fl'>2</span>, <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>br</a></span>(), <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"focus"</span>, <span class='st'>"Focus"</span>)
       ),
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span>(
-        <span class='fl'>2</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>br</a></span>(), <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span>(<span class='st'>"unfocus"</span>, <span class='st'>"Unfocus"</span>)
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(
+        <span class='fl'>2</span>, <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>br</a></span>(), <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"unfocus"</span>, <span class='st'>"Unfocus"</span>)
       )
     ),
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span>(
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span>(<span class='fl'>12</span>, <span class='fu'><a href='echarts4r-shiny.html'>echarts4rOutput</a></span>(<span class='st'>"graph"</span>))
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidRow</a></span>(
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(<span class='fl'>12</span>, <span class='fu'><a href='echarts4r-shiny.html'>echarts4rOutput</a></span>(<span class='st'>"graph"</span>))
     )
   )
 
@@ -366,7 +367,7 @@
         <span class='fu'><a href='graph.html'>e_graph_edges</a></span>(<span class='no'>edges</span>, <span class='no'>source</span>, <span class='no'>target</span>)
     })
 
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>focus</span>, {
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>focus</span>, {
 
       <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"graph"</span>) <span class='kw'>%&gt;%</span>
         <span class='fu'>e_focus_adjacency_p</span>(
@@ -376,7 +377,7 @@
 
     })
 
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>unfocus</span>, {
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>unfocus</span>, {
 
       <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"graph"</span>) <span class='kw'>%&gt;%</span>
         <span class='fu'>e_unfocus_adjacency_p</span>(<span class='kw'>seriesIndex</span> <span class='kw'>=</span> <span class='fl'>0</span>)
@@ -385,16 +386,16 @@
 
   }
 
-  <span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>())
-   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+  <span class='kw'>if</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>())
+   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 
-}</div></pre>
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -409,7 +410,6 @@
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -432,8 +432,6 @@
 </script>
 
 
-
   </body>
 </html>
-
 

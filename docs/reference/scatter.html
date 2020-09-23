@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Scatter — e_scatter" />
 <meta property="og:description" content="Add scatter serie." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Scatter</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add.R'><code>R/add.R</code></a>, <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add_.R'><code>R/add_.R</code></a></small>
+    
     <div class="hidden name"><code>scatter.Rd</code></div>
     </div>
 
@@ -464,13 +468,13 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># scaling</span>
-<span class='fu'>e_scale</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1000</span>))</div><div class='output co'>#&gt; [1]  1 20</div><div class='input'>
+<span class='fu'>e_scale</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1000</span>))</div><div class='output co'>#&gt; [1]  1 20</div><div class='input'>
 <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_scatter</span>(<span class='no'>wt</span>, <span class='no'>qsec</span>)
 
 <span class='co'># custom function</span>
-<span class='no'>my_scale</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='kw pkg'>scales</span><span class='kw ns'>::</span><span class='fu'><a href='https://scales.r-lib.org//reference/rescale.html'>rescale</a></span>(<span class='no'>x</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>50</span>))
+<span class='no'>my_scale</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='kw pkg'>scales</span><span class='kw ns'>::</span><span class='fu'><a href='https://scales.r-lib.org//reference/rescale.html'>rescale</a></span>(<span class='no'>x</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>50</span>))
 
 <span class='no'>echart</span> <span class='kw'>&lt;-</span> <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
@@ -502,14 +506,14 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Assault</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_scatter</span>(<span class='no'>Murder</span>, <span class='no'>Rape</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_effect_scatter</span>(<span class='no'>Rape</span>, <span class='no'>Murder</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_grid.html'>e_grid</a></span>(<span class='kw'>index</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_grid.html'>e_grid</a></span>(<span class='kw'>index</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e-tooltip.html'>e_tooltip</a></span>()
 
 <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts_</a></span>(<span class='st'>"Sepal.Length"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_scatter_</span>(
     <span class='st'>"Sepal.Width"</span>,
-    <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>8</span>, <span class='fl'>2</span>),
+    <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>8</span>, <span class='fl'>2</span>),
     <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"rect"</span>
   ) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='axis.html'>e_x_axis</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>4</span>)
@@ -518,9 +522,9 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>long</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_geo.html'>e_geo</a></span>(
     <span class='kw'>roam</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>boundingCoords</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-      <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>185</span>, - <span class='fl'>10</span>),
-      <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>165</span>, -<span class='fl'>40</span>)
+    <span class='kw'>boundingCoords</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>185</span>, - <span class='fl'>10</span>),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>165</span>, -<span class='fl'>40</span>)
     )
   ) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_scatter</span>(<span class='no'>lat</span>, <span class='no'>mag</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>) <span class='kw'>%&gt;%</span>
@@ -538,7 +542,6 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
   </div>
 </div>
 
-
       <footer>
       <div class="copyright">
   <p>Developed by <a href='http://john-coene.com'>John Coene</a>.</p>
@@ -552,7 +555,6 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -575,8 +577,6 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
 </script>
 
 
-
   </body>
 </html>
-
 

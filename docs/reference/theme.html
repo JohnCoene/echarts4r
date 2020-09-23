@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Themes — e_theme" />
 <meta property="og:description" content="Add a custom theme or apply a pre-built one." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Themes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/themes.R'><code>R/themes.R</code></a></small>
+    
     <div class="hidden name"><code>theme.Rd</code></div>
     </div>
 
@@ -325,18 +329,15 @@ theme every time and is more computationally expensive.</p>
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
     
-
-<ul>
+    <ul>
 <li><p><code>e_theme</code> - Use a default theme by name.</p></li>
 <li><p><code>e_theme_custom</code> - Use a custom theme.</p></li>
 <li><p><code>e_theme_register</code> - Register a theme globally in shiny or R markdown.</p></li>
 </ul>
-
     <h2 class="hasAnchor" id="theme-names"><a class="anchor" href="#theme-names"></a>Theme names</h2>
 
     
- 
-<ul>
+    <ul>
 <li><p><code>default</code></p></li>
 <li><p><code>dark</code></p></li>
 <li><p><code>vintage</code></p></li>
@@ -382,7 +383,6 @@ theme every time and is more computationally expensive.</p>
 <li><p><code>sakura</code></p></li>
 <li><p><code>tech-blue</code></p></li>
 </ul>
-
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='http://echarts.baidu.com/theme-builder/'>create your own theme</a>.</p></div>
@@ -402,7 +402,6 @@ theme every time and is more computationally expensive.</p>
   </div>
 </div>
 
-
       <footer>
       <div class="copyright">
   <p>Developed by <a href='http://john-coene.com'>John Coene</a>.</p>
@@ -416,7 +415,6 @@ theme every time and is more computationally expensive.</p>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -439,8 +437,6 @@ theme every time and is more computationally expensive.</p>
 </script>
 
 
-
   </body>
 </html>
-
 

@@ -2,11 +2,18 @@
 (function($) {
   $(function() {
 
-    $('.navbar-fixed-top').headroom();
+    $("#sidebar")
+      .stick_in_parent({offset_top: 40})
+      .on('sticky_kit:bottom', function(e) {
+        $(this).parent().css('position', 'static');
+      })
+      .on('sticky_kit:unbottom', function(e) {
+        $(this).parent().css('position', 'relative');
+      });
 
-    $('body').css('padding-top', $('.navbar').height() + 10);
-    $(window).resize(function(){
-      $('body').css('padding-top', $('.navbar').height() + 10);
+    $('body').scrollspy({
+      target: '#sidebar',
+      offset: 60
     });
 
     $('[data-toggle="tooltip"]').tooltip();

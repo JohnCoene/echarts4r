@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Select &amp; Unselect Pie — pie_action" />
 <meta property="og:description" content="Actions related to e_pie." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Select &amp; Unselect Pie</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/actions.R'><code>R/actions.R</code></a></small>
+    
     <div class="hidden name"><code>pie_action.Rd</code></div>
     </div>
 
@@ -318,8 +322,8 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>model</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/row.names.html'>row.names</a></span>(<span class='no'>.</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>model</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/row.names'>row.names</a></span>(<span class='no'>.</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>model</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_pie.html'>e_pie</a></span>(<span class='no'>carb</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_pie_select</span>(<span class='kw'>dataIndex</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div></pre>
@@ -328,7 +332,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -343,7 +346,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -366,8 +368,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 </script>
 
 
-
   </body>
 </html>
-
 

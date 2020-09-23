@@ -96,8 +96,8 @@ choropleth \%>\%
 # custom
 buildings <- jsonlite::read_json(
   paste0(
-    "https://ecomfe.github.io/echarts-examples/",
-    "public/data-gl/asset/data/buildings.json"
+    "https://echarts.apache.org/examples/",
+    "data-gl/asset/data/buildings.json"
   )
 )
 

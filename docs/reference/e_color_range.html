@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Color range — e_color_range" />
 <meta property="og:description" content="Build manual color range" />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Color range</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/helpers.R'><code>R/helpers.R</code></a></small>
+    
     <div class="hidden name"><code>e_color_range.Rd</code></div>
     </div>
 
@@ -297,7 +301,7 @@
   <span class='no'>data</span>,
   <span class='no'>input</span>,
   <span class='no'>output</span>,
-  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"#bf444c"</span>, <span class='st'>"#d88273"</span>, <span class='st'>"#f6efa6"</span>),
+  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"#bf444c"</span>, <span class='st'>"#d88273"</span>, <span class='st'>"#f6efa6"</span>),
   <span class='no'>...</span>
 )
 
@@ -305,7 +309,7 @@
   <span class='no'>data</span>,
   <span class='no'>input</span>,
   <span class='no'>output</span>,
-  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"#bf444c"</span>, <span class='st'>"#d88273"</span>, <span class='st'>"#f6efa6"</span>),
+  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"#bf444c"</span>, <span class='st'>"#d88273"</span>, <span class='st'>"#f6efa6"</span>),
   <span class='no'>...</span>
 )</pre>
 
@@ -322,17 +326,17 @@
     </tr>
     <tr>
       <th>colors</th>
-      <td><p>Colors to pass to <code><a href='https://rdrr.io/r/grDevices/colorRamp.html'>colorRampPalette</a></code>.</p></td>
+      <td><p>Colors to pass to <code><a href='https://www.rdocumentation.org/packages/grDevices/topics/colorRamp'>colorRampPalette</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Any other argument to pass to <code><a href='https://rdrr.io/r/grDevices/colorRamp.html'>colorRampPalette</a></code>.</p></td>
+      <td><p>Any other argument to pass to <code><a href='https://www.rdocumentation.org/packages/grDevices/topics/colorRamp'>colorRampPalette</a></code>.</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>val</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>)
+    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>val</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>)
 
 <span class='fu'>e_color_range</span>(<span class='no'>df</span>, <span class='no'>val</span>, <span class='no'>colors</span>)</div><div class='output co'>#&gt;    val  colors
 #&gt; 1    1 #BF444C
@@ -352,7 +356,6 @@
   </div>
 </div>
 
-
       <footer>
       <div class="copyright">
   <p>Developed by <a href='http://john-coene.com'>John Coene</a>.</p>
@@ -366,7 +369,6 @@
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -389,8 +391,6 @@
 </script>
 
 
-
   </body>
 </html>
-
 

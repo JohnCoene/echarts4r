@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Lines — e_lines" />
 <meta property="og:description" content="Add lines." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Lines</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add.R'><code>R/add.R</code></a>, <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add_.R'><code>R/add_.R</code></a></small>
+    
     <div class="hidden name"><code>e_lines.Rd</code></div>
     </div>
 
@@ -368,8 +372,8 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#series-lines'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>flights</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(
-  <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"https://raw.githubusercontent.com/plotly/datasets/"</span>,
+    <pre class="examples"><div class='input'><span class='no'>flights</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"https://raw.githubusercontent.com/plotly/datasets/"</span>,
          <span class='st'>"master/2011_february_aa_flight_paths.csv"</span>)
 )
 
@@ -385,10 +389,10 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <span class='no'>airport2</span>,
     <span class='no'>cnt</span>,
     <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"flights"</span>,
-    <span class='kw'>lineStyle</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>normal</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>curveness</span> <span class='kw'>=</span> <span class='fl'>0.3</span>))
+    <span class='kw'>lineStyle</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>normal</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>curveness</span> <span class='kw'>=</span> <span class='fl'>0.3</span>))
   ) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e-tooltip.html'>e_tooltip</a></span>(<span class='kw'>trigger</span><span class='kw'>=</span><span class='st'>"item"</span>,
-    <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='kw pkg'>htmlwidgets</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/htmlwidgets/man/JS.html'>JS</a></span>(<span class='st'>"
+    <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='kw pkg'>htmlwidgets</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/htmlwidgets/topics/JS'>JS</a></span>(<span class='st'>"
       function(params){
         return(
           params.seriesName +'&lt;br /&gt;' + 
@@ -400,7 +404,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   )
 
 <span class='co'># timeline</span>
-<span class='no'>flights</span>$<span class='no'>grp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>2</span>], <span class='fl'>89</span>)
+<span class='no'>flights</span>$<span class='no'>grp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>2</span>], <span class='fl'>89</span>)
 
 <span class='no'>flights</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>grp</span>) <span class='kw'>%&gt;%</span>
@@ -420,7 +424,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   </div>
 </div>
 
-
       <footer>
       <div class="copyright">
   <p>Developed by <a href='http://john-coene.com'>John Coene</a>.</p>
@@ -434,7 +437,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -457,8 +459,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 </script>
 
 
-
   </body>
 </html>
-
 

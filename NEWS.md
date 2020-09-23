@@ -1,5 +1,6 @@
 # echarts4r 0.3.3
 
+- Added `echarts4rBox`, `renderEcharts4rBox`, and `echarts4rBoxOutput` to create value boxes.
 - Fix `e_common` theme, was no longer applied due to dynamic dependencies introduced in `0.3.2`
 - Fix `e_flip_coords` for timeline feature, see [#166](https://github.com/JohnCoene/echarts4r/issues/166)
 - `name` argument was not used in `e_boxplot`, see [#171](https://github.com/JohnCoene/echarts4r/issues/171)

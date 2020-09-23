@@ -30,8 +30,8 @@
 #' # custom
 #' buildings <- jsonlite::read_json(
 #'   paste0(
-#'     "https://ecomfe.github.io/echarts-examples/",
-#'     "public/data-gl/asset/data/buildings.json"
+#'     "https://echarts.apache.org/examples/",
+#'     "data-gl/asset/data/buildings.json"
 #'   )
 #' )
 #' 
@@ -399,8 +399,8 @@ e_map_register_ui <- function(name, json, async = FALSE){
 #' 
 #' @examples 
 #' \dontrun{
-#' url <- paste0("https://ecomfe.github.io/echarts-examples/",
-#'               "public/data-gl/asset/data/population.json")
+#' url <- paste0("https://echarts.apache.org/examples/", 
+#'  "data-gl/asset/data/population.json")
 #' data <- jsonlite::fromJSON(url)
 #' data <- as.data.frame(data)
 #' names(data) <- c("lon", "lat", "value")

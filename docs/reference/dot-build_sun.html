@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>recursive json-list traversal, append style on matching level and/or name — .build_sun • echarts4r</title>
+<title>Adding styles to hierarchical data by item names or levels — .build_sun • echarts4r</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,9 +54,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="recursive json-list traversal, append style on matching level and/or name — .build_sun" />
-<meta property="og:description" content="recursive json-list traversal, append style on matching level and/or name" />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:title" content="Adding styles to hierarchical data by item names or levels — .build_sun" />
+<meta property="og:description" content="Adding styles to hierarchical data by item names or levels" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,31 +283,54 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>recursive json-list traversal, append style on matching level and/or name</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <h1>Adding styles to hierarchical data by item names or levels</h1>
+    
     <div class="hidden name"><code>dot-build_sun.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>recursive json-list traversal, append style on matching level and/or name</p>
+    <p>Adding styles to hierarchical data by item names or levels</p>
     </div>
 
-    <pre class="usage"><span class='fu'>.build_sun</span>(<span class='no'>e</span>, <span class='kw'>myStyles</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>myNames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>myLevels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>.build_sun</span>(<span class='no'>e</span>, <span class='kw'>styles</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>e</th>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>styles</th>
+      <td><p>Style lists, expects a <code>vector</code>, defaults to <code>NULL</code>.</p></td>
+    </tr>
+    <tr>
+      <th>names</th>
+      <td><p>Names of items to style, expects a <code>list</code>, defaults to <code>NULL</code>.</p></td>
+    </tr>
+    <tr>
+      <th>levels</th>
+      <td><p>Hierarchical levels to style, expects a <code>list</code>, defaults to <code>NULL</code>.</p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>updated hierarchy in json list format
+recursive json-list traversal, append style on matching level and/or name</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -317,7 +345,6 @@
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -340,8 +367,6 @@
 </script>
 
 
-
   </body>
 </html>
-
 

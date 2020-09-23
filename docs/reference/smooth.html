@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Smooth — e_lm" />
 <meta property="og:description" content="Plot formulas." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Smooth</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add.R'><code>R/add.R</code></a></small>
+    
     <div class="hidden name"><code>smooth.Rd</code></div>
     </div>
 
@@ -300,6 +304,7 @@
   <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
   <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>model_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
   <span class='no'>...</span>
 )
 
@@ -310,6 +315,7 @@
   <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
   <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>model_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
   <span class='no'>...</span>
 )
 
@@ -322,6 +328,7 @@
   <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>model_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
   <span class='no'>...</span>
 )</pre>
 
@@ -335,7 +342,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     </tr>
     <tr>
       <th>formula</th>
-      <td><p>formula to pass to <code><a href='https://rdrr.io/r/stats/lm.html'>lm</a></code>.</p></td>
+      <td><p>formula to pass to <code><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></code>.</p></td>
     </tr>
     <tr>
       <th>name</th>
@@ -352,6 +359,10 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <tr>
       <th>smooth</th>
       <td><p>Whether to smooth the line.</p></td>
+    </tr>
+    <tr>
+      <th>model_args</th>
+      <td><p>Arguments to pass to the underlying model.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -395,7 +406,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   </div>
 </div>
 
-
       <footer>
       <div class="copyright">
   <p>Developed by <a href='http://john-coene.com'>John Coene</a>.</p>
@@ -409,7 +419,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -432,8 +441,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 </script>
 
 
-
   </body>
 </html>
-
 

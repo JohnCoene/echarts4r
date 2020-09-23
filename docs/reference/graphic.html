@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Graphic — e_graphic_g" />
 <meta property="og:description" content="Low level API to define graphic elements." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Graphic</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/graphic.R'><code>R/graphic.R</code></a></small>
+    
     <div class="hidden name"><code>graphic.Rd</code></div>
     </div>
 
@@ -339,8 +343,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
     
-
-<ul>
+    <ul>
 <li><p><code>e_graphic_g</code> to initialise graphics, entirely optional.</p></li>
 <li><p><code>e_group_g</code> to create group, the children of which will share attributes.</p></li>
 <li><p><code>e_image_g</code> to a png or jpg image.</p></li>
@@ -355,7 +358,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <li><p><code>e_line_g</code> to draw a line.</p></li>
 <li><p><code>e_bezier_curve_g</code> to draw a quadratic bezier curve or cubic bezier curve.</p></li>
 </ul>
-
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#graphic'>official documentation</a></p></div>
@@ -370,7 +372,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <span class='kw'>right</span> <span class='kw'>=</span> <span class='fl'>20</span>,
     <span class='kw'>top</span> <span class='kw'>=</span> <span class='fl'>20</span>,
     <span class='kw'>z</span> <span class='kw'>=</span> -<span class='fl'>999</span>,
-    <span class='kw'>style</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+    <span class='kw'>style</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
       <span class='kw'>image</span> <span class='kw'>=</span> <span class='st'>"https://www.r-project.org/logo/Rlogo.png"</span>,
       <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>150</span>,
       <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>150</span>,
@@ -382,7 +384,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -397,7 +398,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -420,8 +420,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 </script>
 
 
-
   </body>
 </html>
-
 

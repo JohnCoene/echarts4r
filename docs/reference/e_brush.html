@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Brush — e_brush" />
 <meta property="og:description" content="Add a brush." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Brush</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/opts.R'><code>R/opts.R</code></a></small>
+    
     <div class="hidden name"><code>e_brush.Rd</code></div>
     </div>
 
@@ -324,11 +328,10 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <h2 class="hasAnchor" id="brush-link"><a class="anchor" href="#brush-link"></a><code>brush_link</code></h2>
 
     <p>$</p><ul>
-<li><p><code><a href='https://rdrr.io/r/base/c.html'>c(3, 4, 5)</a></code>, for interacting series with seriesIndex as 3, 4, or 5.</p></li>
+<li><p><code><a href='https://www.rdocumentation.org/packages/base/topics/c'>c(3, 4, 5)</a></code>, for interacting series with seriesIndex as 3, 4, or 5.</p></li>
 <li><p><code>all</code>, for interacting all series.</p></li>
 <li><p><code>none</code> for disabling.</p></li>
 </ul>
-
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#brush'>Additional arguments</a></p></div>
@@ -337,9 +340,9 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <pre class="examples"><div class='input'><span class='no'>quakes</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>long</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_geo.html'>e_geo</a></span>(
-    <span class='kw'>boundingCoords</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-      <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>190</span>, -<span class='fl'>10</span>),
-      <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>180</span>, -<span class='fl'>40</span>)
+    <span class='kw'>boundingCoords</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>190</span>, -<span class='fl'>10</span>),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>180</span>, -<span class='fl'>40</span>)
      )
   ) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>lat</span>, <span class='no'>mag</span>, <span class='no'>stations</span>, <span class='kw'>coord.system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"mag"</span>) <span class='kw'>%&gt;%</span>
@@ -355,7 +358,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   </div>
 </div>
 
-
       <footer>
       <div class="copyright">
   <p>Developed by <a href='http://john-coene.com'>John Coene</a>.</p>
@@ -369,7 +371,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -392,8 +393,6 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 </script>
 
 
-
   </body>
 </html>
-
 

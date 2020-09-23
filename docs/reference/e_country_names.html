@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Country names — e_country_names" />
 <meta property="og:description" content="Convert country names to echarts format." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Country names</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/helpers.R'><code>R/helpers.R</code></a></small>
+    
     <div class="hidden name"><code>e_country_names.Rd</code></div>
     </div>
 
@@ -310,11 +314,11 @@
     </tr>
     <tr>
       <th>type</th>
-      <td><p>Passed to <a href='https://rdrr.io/pkg/countrycode/man/countrycode.html'>countrycode</a> <code>origin</code> parameter.</p></td>
+      <td><p>Passed to <a href='https://www.rdocumentation.org/packages/countrycode/topics/countrycode'>countrycode</a> <code>origin</code> parameter.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Any other parameter to pass to <a href='https://rdrr.io/pkg/countrycode/man/countrycode.html'>countrycode</a>.</p></td>
+      <td><p>Any other parameter to pass to <a href='https://www.rdocumentation.org/packages/countrycode/topics/countrycode'>countrycode</a>.</p></td>
     </tr>
     </table>
 
@@ -323,14 +327,14 @@
     <p>Taiwan and Hong Kong cannot be plotted.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>cns</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>country</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"US"</span>, <span class='st'>"BE"</span>))
+    <pre class="examples"><div class='input'><span class='no'>cns</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>country</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"US"</span>, <span class='st'>"BE"</span>))
 
 <span class='co'># replace</span>
 <span class='fu'>e_country_names</span>(<span class='no'>cns</span>, <span class='no'>country</span>)</div><div class='output co'>#&gt;         country
 #&gt; 1 United States
 #&gt; 2       Belgium</div><div class='input'>
 <span class='co'># specify output</span>
-<span class='fu'>e_country_names</span>(<span class='no'>cns</span>, <span class='no'>country</span>, <span class='no'>country.name</span>)</div><div class='output co'>#&gt;   country  country.name
+<span class='fu'>e_country_names</span>(<span class='no'>cns</span>, <span class='no'>country</span>, <span class='no'>country_name</span>)</div><div class='output co'>#&gt;   country  country_name
 #&gt; 1      US United States
 #&gt; 2      BE       Belgium</div><div class='input'>  
 
@@ -340,7 +344,6 @@
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -355,7 +358,6 @@
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -378,8 +380,6 @@
 </script>
 
 
-
   </body>
 </html>
-
 
