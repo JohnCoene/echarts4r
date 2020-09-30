@@ -40,3 +40,7 @@ The development version from Github.
 # install.packages("remotes")
 remotes::install_github("JohnCoene/echarts4r")
 ```
+
+## Code of Conduct
+
+Please note that the echarts4r project is released with a [Contributor Code of Conduct](https:/github.com/JohnCoene/echarts4r/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
