@@ -13,6 +13,10 @@ Started](https://echarts4r.john-coene.com/articles/get_started.html)
 
 </div>
 
+## Example
+
+Basic example.
+
 ```r
 library(echarts4r)
 
@@ -22,4 +26,17 @@ e_chart(cars, speed) %>%
 
 ![](./man/figures/ex.png)
 
-Get it with `install.packages("echarts4r")`.
+## Get it
+
+Stable version from CRAN.
+
+```r
+install.packages("echarts4r")
+```
+
+The development version from Github.
+
+```r
+# install.packages("remotes")
+remotes::install_github("JohnCoene/echarts4r")
+```
