@@ -1,7 +1,7 @@
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/JohnCoene/echarts4r/master/docs/logo.png" height = "200px" />
+[![](man/figures/echarts4r-banner.png)](https://xscode.com/johncoene/echarts4r)
 
 <br />
 <br />
