@@ -16,7 +16,8 @@ echarts4rBox(
   text_color = "#ffffff",
   background_color = "#293c55",
   step = c("start", "middle", "end"),
-  title_args = list()
+  title_args = list(),
+  tooltip = list(trigger = "axis")
 )
 }
 \arguments{
@@ -39,6 +40,8 @@ echarts4rBox(
 \item{step}{Step method, only used if \code{type = "step"}.}
 
 \item{title_args}{Additional arguments to add to the title.}
+
+\item{tooltip}{Tooltip to use.}
 }
 \description{
 Renders a data box in shiny.

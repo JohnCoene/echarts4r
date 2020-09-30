@@ -11,6 +11,7 @@
 #' @param background_color Color of box.
 #' @param step Step method, only used if \code{type = "step"}.
 #' @param title_args Additional arguments to add to the title.
+#' @param tooltip Tooltip to use.
 #' @param ... Additional arguments to pass to the serie.
 #' 
 #' @examples
