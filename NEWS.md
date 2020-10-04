@@ -10,6 +10,7 @@
 - Fix legend toggle in radar charts [#74](https://github.com/JohnCoene/echarts4r/issues/74)
 - `e_loess`, and `e_lm` take a `model_args` argument to pass arguments to underlying model function [#194](https://github.com/JohnCoene/echarts4r/issues/194)
 - Bump to JavaScript version to `4.9.0`
+- `echarts_from_json` supports functions, see [199](https://github.com/JohnCoene/echarts4r/pull/199) (thanks to [swsoyee](https://github.com/swsoyee))
 
 # echarts4r 0.3.2
 
