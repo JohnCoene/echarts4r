@@ -2,7 +2,9 @@ Package: echarts4r
 Title: Create Interactive Graphs with 'Echarts JavaScript' Version 4
 Date: 2020-06-17
 Version: 0.3.3
-Authors@R: person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre", "cph"))
+Authors@R: c(
+  person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre", "cph")), 
+  person(given = "Wei", family = "Su", email = "swsoyee@gmail.com", role = "ctb"))
 Description: Easily create interactive charts by leveraging the 'Echarts Javascript' library which includes
     36 chart types, themes, 'Shiny' proxies and animations.
 License: Apache License (>= 2.0)
