@@ -12,6 +12,11 @@ template:
 development:
   mode: release
 
+home:
+  links:
+  - text: Original library
+    href: https://echarts.apache.org/
+
 reference:
   - title: "Initialisation & Shiny"
     desc: "Initialise echarts and use in Shiny."
@@ -124,6 +129,9 @@ reference:
       - e_show_loading
       - echarts4rProxy
       - e_execute
+      - echarts4rBox
+      - renderEcharts4rBox
+      - echarts4rBoxOutput
   - title: "Graphics"
     desc: "Add graphics to charts."
     contents: 
@@ -160,8 +168,6 @@ navbar:
       href: news/index.html
     - icon: fa-code
       href: "reference/"
-    - icon: fa-paint-brush
-      href: articles/gallery.html
     - icon: fa-lightbulb-o
       href: articles/development.html
     - text: "Guide"
@@ -221,7 +227,11 @@ navbar:
         - text: "Themes"
           href: articles/themes.html
     - text: "Shiny" 
-      href: articles/shiny.html
+      menu:
+        - text: 'Basics' 
+          href: articles/shiny.html
+        - text: 'Boxes' 
+          href: articles/boxes.html
     - text: "Timeline" 
       href: articles/timeline.html
   right:

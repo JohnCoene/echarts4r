@@ -633,7 +633,7 @@ e_candle_ <- function(e, opening, closing, low, high, bind = NULL, name = NULL, 
 #' @rdname e_radar
 #' @export
 e_radar_ <- function(e, serie, max = 100, name = NULL, legend = TRUE, 
-                    rm_x = TRUE, rm_y = TRUE, ..., radar = list()){
+  rm_x = TRUE, rm_y = TRUE, ..., radar = list()){
   
   r.index = 0
   
@@ -658,7 +658,6 @@ e_radar_ <- function(e, serie, max = 100, name = NULL, legend = TRUE,
   
   if(!"radar" %in% series){
     serie <- list(
-      name = name,
       type = "radar",
       data = list(list(value = vector, name = name)),
       radarIndex = r.index,
@@ -959,7 +958,7 @@ e_pie_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRU
 
 #' @rdname e_sunburst
 #' @export
-e_sunburst_ <- function(e, parent, child, value, itemStyle = NULL, rm_x = TRUE, rm_y = TRUE, ...){
+e_sunburst_ <- function(e, styles=NULL, names=NULL, levels=NULL, rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -967,7 +966,7 @@ e_sunburst_ <- function(e, parent, child, value, itemStyle = NULL, rm_x = TRUE, 
   e <- .rm_axis(e, rm_y, "y")
   
   # build JSON data
-  data <- .build_sun(e, parent, child, value, itemStyle)
+  data <- .build_sun(e, styles, names, levels)
   
   serie <- list(
     type = "sunburst",
@@ -981,18 +980,15 @@ e_sunburst_ <- function(e, parent, child, value, itemStyle = NULL, rm_x = TRUE, 
 
 #' @rdname e_treemap
 #' @export
-e_treemap_ <- function(e, parent, child, value, itemStyle = NULL, rm_x = TRUE, rm_y = TRUE, ...){
+e_treemap_ <- function(e, styles=NULL, names=NULL, levels=NULL, rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
-  
-  if(missing(parent) || missing(child) || missing(value))
-    stop("must pass parent, child and value", call. = FALSE)
-  
+   
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
   
   # build JSON data
-  data <- .build_sun(e, parent, child, value, itemStyle)
+  data <- .build_sun(e, styles, names, levels)
   
   serie <- list(
     type = "treemap",
@@ -1109,23 +1105,20 @@ e_boxplot_ <- function(e, serie, name = NULL, outliers = TRUE, ...){
 
 #' @rdname e_tree
 #' @export
-e_tree_ <- function(e, parent, child, rm_x = TRUE, rm_y = TRUE, ...){
+e_tree_ <- function(e, rm_x = TRUE, rm_y = TRUE, ...){
   if(missing(e))
     stop("must pass e", call. = FALSE)
-  
-  if(missing(parent) || missing(child))
-    stop("must pass parent and child", call. = FALSE)
   
   # remove axis
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
   
   # build JSON data
-  data <- .build_tree(e, parent, child)
+  data <- .build_tree(e)
   
   serie <- list(
     type = "tree",
-    data = list(data),
+    data = data,
     ...
   )
   
@@ -1314,8 +1307,6 @@ e_line_3d_ <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, r
 #' @rdname e_bar_3d
 #' @export
 e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name = NULL, rm_x = TRUE, rm_y = TRUE, ...){
-
-  coord_system <- tolower(coord_system)
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -1332,11 +1323,12 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
   
   for(i in 1:length(e$x$data)){
     
-    if(coord_system != "cartesian3d"){
+    if(coord_system != "cartesian3D"){
       data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
       
       if(!is.null(bind))
         data <- .add_bind2(e, data, bind, i = i)
+      
     } else {
       data <- .build_cartesian3D(e, e$x$mapping$x, y, z, i = i)
     }
@@ -1344,7 +1336,7 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
     if(!e$x$tl){
       
       # globe
-      if(coord_system == "cartesian3d"){ # cartesian
+      if(coord_system == "cartesian3D"){ # cartesian
         
         if(!length(e$x$opts$zAxis3D))
           e$x$opts$zAxis3D <- list(list(show = TRUE))
@@ -1533,8 +1525,6 @@ e_lines_ <- function(e, source_lon, source_lat, target_lon, target_lat, source_n
 e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord_system = "cartesian3D", name = NULL, 
                          rm_x = TRUE, rm_y = TRUE, legend = FALSE, ...){
 
-  coord_system <- tolower(coord_system)
-
   if(missing(e))
     stop("must pass e", call. = FALSE)
   
@@ -1551,7 +1541,7 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
   for(i in 1:length(e$x$data)){
     
     # globe
-    if(coord_system != "cartesian3d"){
+    if(coord_system != "cartesian3D"){
       
       data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
       
@@ -1692,8 +1682,6 @@ e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = N
 #' @rdname e_scatter_gl
 #' @export
 e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRUE, rm_y = TRUE, ...){
-
-  coord_system <- tolower(coord_system)
   
   if(missing(e))
     stop("must pass e", call. = FALSE)
@@ -1721,7 +1709,7 @@ e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRU
     )
     
     # globe
-    if(coord_system == "cartesian3d"){
+    if(coord_system == "cartesian3D"){
       
       if(!e$x$tl){
         if(!length(e$x$opts$zAxis3D))

@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Grid — e_grid_3d" />
 <meta property="og:description" content="Customise grid." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Grid</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/grid3d.R'><code>R/grid3d.R</code></a></small>
+    
     <div class="hidden name"><code>e_grid_3d.Rd</code></div>
     </div>
 
@@ -293,15 +297,15 @@
     <p>Customise grid.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_grid_3d</span>(<span class='kw'>e</span>, index = <span class='fl'>0</span>, <span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_grid_3d</span>(<span class='no'>e</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>index</th>
@@ -319,35 +323,33 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># phony data</span>
-<span class='kw'>v</span> <span class='op'>&lt;-</span> <span class='kw'>LETTERS</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>]
-<span class='kw'>matrix</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  x = <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>v</span>, <span class='fl'>300</span>, replace = <span class='fl'>TRUE</span>), 
-  y = <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>v</span>, <span class='fl'>300</span>, replace = <span class='fl'>TRUE</span>), 
-  z1 = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span>),
-  z2 = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span>),
-  stringsAsFactors = <span class='fl'>FALSE</span>
-) <span class='op'>%&gt;%</span> 
-  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>x</span>, <span class='kw'>y</span>) <span class='op'>%&gt;%</span> 
-  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span>(
-    z1 = <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='kw'>z1</span>),
-    z2 = <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='kw'>z2</span>)
-  ) <span class='op'>%&gt;%</span> 
-  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span>() </div><div class='output co'>#&gt; <span class='message'>`summarise()` regrouping output by 'x' (override with `.groups` argument)</span></div><div class='input'>  
-<span class='kw'>trans</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(opacity = <span class='fl'>0.4</span>) <span class='co'># transparency</span>
-<span class='kw'>emphasis</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(itemStyle = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(color = <span class='st'>"#313695"</span>))
-  
-<span class='kw'>matrix</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>x</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_bar_3d</span>(<span class='kw'>y</span>, <span class='kw'>z1</span>, stack = <span class='st'>"stack"</span>, name = <span class='st'>"Serie 1"</span>, itemStyle = <span class='kw'>trans</span>, emphasis = <span class='kw'>emphasis</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_bar_3d</span>(<span class='kw'>y</span>, <span class='kw'>z2</span>, stack = <span class='st'>"stack"</span>, name = <span class='st'>"Serie 2"</span>, itemStyle = <span class='kw'>trans</span>, emphasis = <span class='kw'>emphasis</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_grid_3d</span>(splitLine = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(lineStyle = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(color = <span class='st'>"blue"</span>)))
-</div></pre>
+<span class='no'>v</span> <span class='kw'>&lt;-</span> <span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>10</span>]
+<span class='no'>matrix</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>v</span>, <span class='fl'>300</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>v</span>, <span class='fl'>300</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
+  <span class='kw'>z1</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span>),
+  <span class='kw'>z2</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span>),
+  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>x</span>, <span class='no'>y</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span>(
+    <span class='kw'>z1</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>z1</span>),
+    <span class='kw'>z2</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>z2</span>)
+  ) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span>()</div><div class='output co'>#&gt; <span class='message'>`summarise()` regrouping output by 'x' (override with `.groups` argument)</span></div><div class='input'>
+<span class='no'>trans</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>opacity</span> <span class='kw'>=</span> <span class='fl'>0.4</span>) <span class='co'># transparency</span>
+<span class='no'>emphasis</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>itemStyle</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"#313695"</span>))
+
+<span class='no'>matrix</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_bar_3d.html'>e_bar_3d</a></span>(<span class='no'>y</span>, <span class='no'>z1</span>, <span class='kw'>stack</span> <span class='kw'>=</span> <span class='st'>"stack"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Serie 1"</span>, <span class='kw'>itemStyle</span> <span class='kw'>=</span> <span class='no'>trans</span>, <span class='kw'>emphasis</span> <span class='kw'>=</span> <span class='no'>emphasis</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_bar_3d.html'>e_bar_3d</a></span>(<span class='no'>y</span>, <span class='no'>z2</span>, <span class='kw'>stack</span> <span class='kw'>=</span> <span class='st'>"stack"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Serie 2"</span>, <span class='kw'>itemStyle</span> <span class='kw'>=</span> <span class='no'>trans</span>, <span class='kw'>emphasis</span> <span class='kw'>=</span> <span class='no'>emphasis</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_grid_3d</span>(<span class='kw'>splitLine</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>lineStyle</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>)))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -362,7 +364,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -385,8 +386,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 </script>
 
 
-
   </body>
 </html>
-
 

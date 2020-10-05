@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Axis — e_axis" />
 <meta property="og:description" content="Customise axis." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Axis</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/grid.R'><code>R/grid.R</code></a></small>
+    
     <div class="hidden name"><code>axis.Rd</code></div>
     </div>
 
@@ -294,44 +298,44 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_axis</span>(
-  <span class='kw'>e</span>,
-  <span class='kw'>serie</span>,
-  axis = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>, <span class='st'>"z"</span>),
-  index = <span class='fl'>0</span>,
-  formatter = <span class='kw'>NULL</span>,
-  margin = <span class='fl'>0</span>,
-  <span class='kw'>...</span>
+  <span class='no'>e</span>,
+  <span class='no'>serie</span>,
+  <span class='kw'>axis</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>, <span class='st'>"z"</span>),
+  <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='no'>...</span>
 )
 
 <span class='fu'>e_axis_</span>(
-  <span class='kw'>e</span>,
-  serie = <span class='kw'>NULL</span>,
-  axis = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>, <span class='st'>"z"</span>),
-  index = <span class='fl'>0</span>,
-  formatter = <span class='kw'>NULL</span>,
-  margin = <span class='fl'>0</span>,
-  <span class='kw'>...</span>
+  <span class='no'>e</span>,
+  <span class='kw'>serie</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>axis</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>, <span class='st'>"z"</span>),
+  <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='no'>...</span>
 )
 
-<span class='fu'>e_x_axis_</span>(<span class='kw'>e</span>, serie = <span class='kw'>NULL</span>, index = <span class='fl'>0</span>, formatter = <span class='kw'>NULL</span>, margin = <span class='fl'>0</span>, <span class='kw'>...</span>)
+<span class='fu'>e_x_axis_</span>(<span class='no'>e</span>, <span class='kw'>serie</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_y_axis_</span>(<span class='kw'>e</span>, serie = <span class='kw'>NULL</span>, index = <span class='fl'>0</span>, formatter = <span class='kw'>NULL</span>, margin = <span class='fl'>0</span>, <span class='kw'>...</span>)
+<span class='fu'>e_y_axis_</span>(<span class='no'>e</span>, <span class='kw'>serie</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_z_axis_</span>(<span class='kw'>e</span>, serie = <span class='kw'>NULL</span>, index = <span class='fl'>0</span>, margin = <span class='fl'>0</span>, <span class='kw'>...</span>)
+<span class='fu'>e_z_axis_</span>(<span class='no'>e</span>, <span class='kw'>serie</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_x_axis</span>(<span class='kw'>e</span>, <span class='kw'>serie</span>, index = <span class='fl'>0</span>, formatter = <span class='kw'>NULL</span>, margin = <span class='fl'>0</span>, <span class='kw'>...</span>)
+<span class='fu'>e_x_axis</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_y_axis</span>(<span class='kw'>e</span>, <span class='kw'>serie</span>, index = <span class='fl'>0</span>, formatter = <span class='kw'>NULL</span>, margin = <span class='fl'>0</span>, <span class='kw'>...</span>)
+<span class='fu'>e_y_axis</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_z_axis</span>(<span class='kw'>e</span>, <span class='kw'>serie</span>, index = <span class='fl'>0</span>, margin = <span class='fl'>0</span>, <span class='kw'>...</span>)
+<span class='fu'>e_z_axis</span>(<span class='no'>e</span>, <span class='no'>serie</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_rm_axis</span>(<span class='kw'>e</span>, axis = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>, <span class='st'>"z"</span>))
+<span class='fu'>e_rm_axis</span>(<span class='no'>e</span>, <span class='kw'>axis</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>, <span class='st'>"z"</span>))
 
 <span class='fu'>e_axis_formatter</span>(
-  style = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"decimal"</span>, <span class='st'>"percent"</span>, <span class='st'>"currency"</span>),
-  digits = <span class='fl'>0</span>,
-  locale = <span class='kw'>NULL</span>,
-  currency = <span class='st'>"USD"</span>
+  <span class='kw'>style</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"decimal"</span>, <span class='st'>"percent"</span>, <span class='st'>"currency"</span>),
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>locale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>currency</span> <span class='kw'>=</span> <span class='st'>"USD"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -339,8 +343,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>serie</th>
@@ -394,12 +398,10 @@ Rmarkdown and Shiny.</p>
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
     
-
-<ul>
+    <ul>
 <li><p><code>e_axis</code> to customise axis</p></li>
 <li><p><code>e_rm_axis</code> to remove axis</p></li>
 </ul>
-
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#xAxis'>Additional x arguments</a>, 
@@ -407,41 +409,38 @@ Rmarkdown and Shiny.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># range axis based on serie</span>
-<span class='kw'>cars</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>speed</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_line</span>(<span class='kw'>dist</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_x_axis</span>(<span class='kw'>speed</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_y_axis</span>(<span class='kw'>dist</span>)
-  
+<span class='no'>cars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>speed</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>dist</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_x_axis</span>(<span class='no'>speed</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_y_axis</span>(<span class='no'>dist</span>)
+
 <span class='co'># use formatter</span>
-<span class='kw'>cars</span> <span class='op'>%&gt;%</span> 
-  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(
-    speed = <span class='kw'>speed</span> <span class='op'>/</span> <span class='fl'>25</span>
-  ) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>speed</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_scatter</span>(<span class='kw'>dist</span>) <span class='op'>%&gt;%</span> 
+<span class='no'>cars</span> <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(
+    <span class='kw'>speed</span> <span class='kw'>=</span> <span class='no'>speed</span> / <span class='fl'>25</span>
+  ) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>speed</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>dist</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_y_axis</span>(
-    formatter = <span class='fu'>e_axis_formatter</span>(<span class='st'>"currency"</span>)
-  ) <span class='op'>%&gt;%</span> 
+    <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='fu'>e_axis_formatter</span>(<span class='st'>"currency"</span>)
+  ) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_x_axis</span>(
-    formatter = <span class='fu'>e_axis_formatter</span>(<span class='st'>"percent"</span>, digits = <span class='fl'>0</span>)
+    <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='fu'>e_axis_formatter</span>(<span class='st'>"percent"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>0</span>)
   )
 
 <span class='co'># plot all labels &amp; rotate</span>
-<span class='kw'>USArrests</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fl'>10</span>) <span class='op'>%&gt;%</span> 
-  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(State = <span class='fu'><a href='https://rdrr.io/r/base/row.names.html'>row.names</a></span>(<span class='kw'>.</span>)) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>State</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_area</span>(<span class='kw'>Murder</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_x_axis</span>(axisLabel = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(interval = <span class='fl'>0</span>, rotate = <span class='fl'>45</span>)) <span class='co'># rotate</span>
-  
-  </div></pre>
+<span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='fl'>10</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>State</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/row.names'>row.names</a></span>(<span class='no'>.</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>State</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_area.html'>e_area</a></span>(<span class='no'>Murder</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_x_axis</span>(<span class='kw'>axisLabel</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>interval</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>rotate</span> <span class='kw'>=</span> <span class='fl'>45</span>)) <span class='co'># rotate</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -456,7 +455,6 @@ Rmarkdown and Shiny.</p>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -479,8 +477,6 @@ Rmarkdown and Shiny.</p>
 </script>
 
 
-
   </body>
 </html>
-
 

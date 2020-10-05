@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 library(echarts4r)
 
 e_common(
-    font_family = "Raleway"
+  font_family = "Raleway"
 )
 ```
 
@@ -61,14 +61,15 @@ mtcars %>%
   e_tooltip(trigger = "axis")
 ```
 
-In order to *customize* the tooltip, though, you'll need to be comfortable adding a little JavaScript to your R code. Tooltip customization uses the format
+In order to *customize* the tooltip, you'll need to be comfortable adding a little JavaScript to your R code. Tooltip customization uses the formatter.
 
-```{r, eval=FALSE}
-e_tooltip(formatter = htmlwidgets::JS("
+```r
+e_tooltip(
+  formatter = htmlwidgets::JS("
     function(params){
-	    return( )
-	  }
-	")
+      return();
+    }
+  ")
 )
 ```
 
@@ -88,7 +89,7 @@ mtcars %>%
       function(params){
         return('wt: ' + params.value[0] + '<br />mpg: ' + params.value[1])
       }
-      ")
+    ")
   )
 ```
 
@@ -99,11 +100,13 @@ mtcars %>%
   tibble::rownames_to_column("model") %>% 
   e_charts(wt) %>% 
   e_scatter(mpg, qsec, bind = model) %>%
-  e_tooltip(formatter = htmlwidgets::JS("
-              function(params){
-                return('<strong>' + params.name + 
-                       '</strong><br />wt: ' + params.value[0] + 
-                       '<br />mpg: ' + params.value[1]) 
-                        }
-                  "))
+  e_tooltip(
+    formatter = htmlwidgets::JS("
+      function(params){
+        return('<strong>' + params.name + 
+                '</strong><br />wt: ' + params.value[0] + 
+                '<br />mpg: ' + params.value[1]) 
+                }
+    ")
+  )
 ```

@@ -1,15 +1,22 @@
 # echarts4r 0.3.3
 
+- Added `echarts4rBox`, `renderEcharts4rBox`, and `echarts4rBoxOutput` to create value boxes.
 - Fix `e_common` theme, was no longer applied due to dynamic dependencies introduced in `0.3.2`
 - Fix `e_flip_coords` for timeline feature, see [#166](https://github.com/JohnCoene/echarts4r/issues/166)
 - `name` argument was not used in `e_boxplot`, see [#171](https://github.com/JohnCoene/echarts4r/issues/171)
-- Allow customising area under the curve of density plot see [172](https://github.com/JohnCoene/echarts4r/issues/172)
+- Allow customising area under the curve of density plot see [#172](https://github.com/JohnCoene/echarts4r/issues/172)
+- Update mapbox dependency from `0.38` to `1.11`
+- Fix country name conversion in `e_country_names` [#189](https://github.com/JohnCoene/echarts4r/issues/189)
+- Fix legend toggle in radar charts [#74](https://github.com/JohnCoene/echarts4r/issues/74)
+- `e_loess`, and `e_lm` take a `model_args` argument to pass arguments to underlying model function [#194](https://github.com/JohnCoene/echarts4r/issues/194)
+- Bump to JavaScript version to `4.9.0`
+- `echarts_from_json` supports functions, see [199](https://github.com/JohnCoene/echarts4r/pull/199) (thanks to [swsoyee](https://github.com/swsoyee))
 
 # echarts4r 0.3.2
 
 - Bump echarts.js to 4.8.0 and echarts-gl to 1.1.2
 - Fix `e_add` when used with timeline feature see [#165](https://github.com/JohnCoene/echarts4r/issues/165).
-- Bump echart.js to 4.8.0 now in english (no longer chinese.
+- Bump echart.js to 4.8.0 now in english (no longer Chinese).
 
 Dynamic dependencies:
 

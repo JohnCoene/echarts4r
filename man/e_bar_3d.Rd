@@ -62,8 +62,8 @@ volcano \%>\%
   e_bar_3d(Var2, Freq) \%>\% 
   e_visual_map(Freq)
 
-url <- paste0("https://ecomfe.github.io/echarts-examples/",
-              "public/data-gl/asset/data/population.json")
+url <- paste0("https://echarts.apache.org/examples/", 
+ "data-gl/asset/data/population.json")
 data <- jsonlite::fromJSON(url)
 data <- as.data.frame(data)
 names(data) <- c("lon", "lat", "value")

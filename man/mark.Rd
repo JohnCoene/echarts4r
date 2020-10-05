@@ -85,6 +85,28 @@ mtcars \%>\%
     list(xAxis = "max", yAxis = "max"))
  )
 
+# serie options
+
+iris \%>\% 
+  group_by(Species) \%>\% 
+  e_charts(Sepal.Length, timeline = TRUE) \%>\% 
+  e_line(Sepal.Width) \%>\% 
+  e_timeline_serie(
+     title = list(
+        list(text = "setosa"),
+        list(text = "versicolor"),
+        list(text = "virginica")
+     )
+  ) \%>\%
+  e_mark_area(serie='setosa') \%>\%
+  e_mark_area(serie='versicolor',
+	    data=list(
+	      list(xAxis = 2), 
+	      list(xAxis = 4)),
+	    itemStyle = list(color='lightblue')
+  ) \%>\%
+  e_mark_area(serie='virginica')
+
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-line.markPoint}{Additional point arguments},

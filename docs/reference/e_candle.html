@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Candlestick — e_candle" />
 <meta property="og:description" content="Add a candlestick chart." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Candlestick</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add.R'><code>R/add.R</code></a>, <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add_.R'><code>R/add_.R</code></a></small>
+    
     <div class="hidden name"><code>e_candle.Rd</code></div>
     </div>
 
@@ -293,18 +297,18 @@
     <p>Add a candlestick chart.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_candle</span>(<span class='kw'>e</span>, <span class='kw'>opening</span>, <span class='kw'>closing</span>, <span class='kw'>low</span>, <span class='kw'>high</span>, <span class='kw'>bind</span>, name = <span class='kw'>NULL</span>, legend = <span class='fl'>TRUE</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>e_candle</span>(<span class='no'>e</span>, <span class='no'>opening</span>, <span class='no'>closing</span>, <span class='no'>low</span>, <span class='no'>high</span>, <span class='no'>bind</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='fu'>e_candle_</span>(
-  <span class='kw'>e</span>,
-  <span class='kw'>opening</span>,
-  <span class='kw'>closing</span>,
-  <span class='kw'>low</span>,
-  <span class='kw'>high</span>,
-  bind = <span class='kw'>NULL</span>,
-  name = <span class='kw'>NULL</span>,
-  legend = <span class='fl'>TRUE</span>,
-  <span class='kw'>...</span>
+  <span class='no'>e</span>,
+  <span class='no'>opening</span>,
+  <span class='no'>closing</span>,
+  <span class='no'>low</span>,
+  <span class='no'>high</span>,
+  <span class='kw'>bind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -312,8 +316,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>opening, closing, low, high</th>
@@ -321,7 +325,7 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>bind</th>
-      <td><p>Binding between datasets, namely for use of <code>e_brush</code>.</p></td>
+      <td><p>Binding between datasets, namely for use of <code><a href='e_brush.html'>e_brush</a></code>.</p></td>
     </tr>
     <tr>
       <th>name</th>
@@ -342,28 +346,26 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#series-candlestick'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"2017-01-01"</span>, <span class='st'>"2017-01-02"</span>, <span class='st'>"2017-01-03"</span>, <span class='st'>"2017-01-04"</span>, <span class='st'>"2017-03-05"</span>, 
+    <pre class="examples"><div class='input'><span class='no'>date</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"2017-01-01"</span>, <span class='st'>"2017-01-02"</span>, <span class='st'>"2017-01-03"</span>, <span class='st'>"2017-01-04"</span>, <span class='st'>"2017-03-05"</span>,
          <span class='st'>"2017-01-06"</span>, <span class='st'>"2017-01-07"</span>)
-         
-<span class='kw'>stock</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  date = <span class='kw'>date</span>,
-  opening = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>200.60</span>, <span class='fl'>200.22</span>, <span class='fl'>198.43</span>, <span class='fl'>199.05</span>, <span class='fl'>203.54</span>, <span class='fl'>203.40</span>, <span class='fl'>208.34</span>),
-  closing = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>200.72</span>, <span class='fl'>198.85</span>, <span class='fl'>199.05</span>, <span class='fl'>203.73</span>, <span class='fl'>204.08</span>, <span class='fl'>208.11</span>, <span class='fl'>211.88</span>),
-  low = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>197.82</span>, <span class='fl'>198.07</span>, <span class='fl'>197.90</span>, <span class='fl'>198.10</span>, <span class='fl'>202.00</span>, <span class='fl'>201.50</span>, <span class='fl'>207.60</span>),
-  high = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>203.32</span>, <span class='fl'>200.67</span>, <span class='fl'>200.00</span>, <span class='fl'>203.95</span>, <span class='fl'>204.90</span>, <span class='fl'>208.44</span>, <span class='fl'>213.17</span>)
+
+<span class='no'>stock</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
+  <span class='kw'>date</span> <span class='kw'>=</span> <span class='no'>date</span>,
+  <span class='kw'>opening</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>200.60</span>, <span class='fl'>200.22</span>, <span class='fl'>198.43</span>, <span class='fl'>199.05</span>, <span class='fl'>203.54</span>, <span class='fl'>203.40</span>, <span class='fl'>208.34</span>),
+  <span class='kw'>closing</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>200.72</span>, <span class='fl'>198.85</span>, <span class='fl'>199.05</span>, <span class='fl'>203.73</span>, <span class='fl'>204.08</span>, <span class='fl'>208.11</span>, <span class='fl'>211.88</span>),
+  <span class='kw'>low</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>197.82</span>, <span class='fl'>198.07</span>, <span class='fl'>197.90</span>, <span class='fl'>198.10</span>, <span class='fl'>202.00</span>, <span class='fl'>201.50</span>, <span class='fl'>207.60</span>),
+  <span class='kw'>high</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>203.32</span>, <span class='fl'>200.67</span>, <span class='fl'>200.00</span>, <span class='fl'>203.95</span>, <span class='fl'>204.90</span>, <span class='fl'>208.44</span>, <span class='fl'>213.17</span>)
 )
 
-<span class='kw'>stock</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>date</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_candle</span>(<span class='kw'>opening</span>, <span class='kw'>closing</span>, <span class='kw'>low</span>, <span class='kw'>high</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_y_axis</span>(min = <span class='fl'>190</span>, max = <span class='fl'>220</span>)
-  </div></pre>
+<span class='no'>stock</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>date</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_candle</span>(<span class='no'>opening</span>, <span class='no'>closing</span>, <span class='no'>low</span>, <span class='no'>high</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='axis.html'>e_y_axis</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>190</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>220</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -378,7 +380,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -401,8 +402,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 </script>
 
 
-
   </body>
 </html>
-
 
