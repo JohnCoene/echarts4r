@@ -571,6 +571,145 @@ test_that("e_flow_gl plot has the good classes", {
 
 
 
+test_that("e_band plot has the good classes", {
+  df <- data.frame(
+    x = 1:10,
+    y = runif(10, 5, 10)
+  ) %>% 
+    dplyr::mutate(
+      lwr = y - runif(10, 1, 3),
+      upr = y + runif(10, 2, 4)
+    )
+  
+  plot <- df %>% 
+    e_charts(x) %>% 
+    e_line(y) %>% 
+    e_band(lwr, upr)
+  
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+  
+})
+
+
+test_that("e_correlations plot has the good classes", {
+  plot <- cor(mtcars) %>% 
+    e_charts() %>% 
+    e_correlations(order = "hclust") %>% 
+    e_tooltip()
+  
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+  
+})
+
+test_that("e_error_bar plot has the good classes", {
+  df <- data.frame(
+    x = factor(c(1, 2)),
+    y = c(1, 5),
+    upper = c(1.1, 5.3),
+    lower = c(0.8, 4.3)
+  )
+  
+  plot <- df %>% 
+    e_charts(x) %>% 
+    e_bar(y) %>% 
+    e_error_bar(lower, upper)
+  
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+  
+})
+
+
+test_that("e_boxplot plot has the good classes", {
+  df <- data.frame(
+    x = c(
+      rnorm(100),
+      runif(100, -5, 10),
+      rnorm(100, 10, 3)
+    ),
+    grp = c(
+      rep(LETTERS[1], 100),
+      rep(LETTERS[2], 100),
+      rep(LETTERS[3], 100)
+    )
+  )
+  
+  plot <- df %>% 
+    group_by(grp) %>% 
+    e_charts() %>% 
+    e_boxplot(x)
+  
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+  
+})
+
+
+test_that("e_histogram plot has the good classes", {
+  # data.frame
+  df <- data.frame(
+    x = 1:100,
+    y = rnorm(100, 20, 12)
+  )
+  
+  plot <- df %>% 
+    e_charts() %>% 
+    e_histogram(y) %>% 
+    e_tooltip()
+  
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+  
+})
+
+
+
+test_that("e_density plot has the good classes", {
+  df <- data.frame(
+    x = 1:100,
+    y = rnorm(100, 20, 12)
+  )
+  
+  plot <- df %>%
+    e_charts() %>% 
+    e_histogram(y) %>% 
+    e_density(y, name = "density", areaStyle = list(opacity = .4), 
+              smooth = TRUE, y_index = 1) %>% 
+    e_tooltip()
+  
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+  
+})
+
+
+test_that("e_lm plot has the good classes", {
+  plot <- iris %>% 
+    group_by(Species) %>% 
+    e_charts(Sepal.Length) %>% 
+    e_line(Sepal.Width) %>% 
+    e_lm(Sepal.Width ~ Sepal.Length) %>% 
+    e_x_axis(min = 4)
+  
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+  
+})
+
+
+
+test_that("e_loess plot has the good classes", {
+  plot <- mtcars %>% 
+    e_charts(disp) %>% 
+    e_scatter(mpg, qsec) %>% 
+    e_loess(mpg ~ disp)
+  
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+  
+})
 
 
 
