@@ -1,5 +1,3 @@
-library(testthat)
-
 df <- data.frame(
   x = seq(50),
   y = rnorm(50, 10, 3),
