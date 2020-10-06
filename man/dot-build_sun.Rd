@@ -18,7 +18,6 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 }
 \value{
 updated hierarchy in json list format
-recursive json-list traversal, append style on matching level and/or name
 }
 \description{
 Adding styles to hierarchical data by item names or levels
@@ -26,3 +25,4 @@ Adding styles to hierarchical data by item names or levels
 \author{
 helgasoft.com
 }
+\keyword{internal}
