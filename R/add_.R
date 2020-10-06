@@ -2070,6 +2070,9 @@ e_error_bar_ <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 
   if(missing(lower) || missing(upper))
     stop("must pass lower, or upper", call. = FALSE)
   
+  args <- list(...)
+  names(args) <- names(args)
+  
   for(i in 1:length(e$x$data)){
     
     .build_data2(e$x$data[[i]], e$x$mapping$x, lower, upper) -> vector
@@ -2103,6 +2106,7 @@ e_error_bar_ <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 
         type = "custom",
         yAxisIndex = y_index,
         xAxisIndex = x_index,
+        z = ifelse("z" %in% names(args), args$z, 3),
         coordinateSystem = coord_system,
         itemStyle = list(
           normal = list(
@@ -2141,6 +2145,7 @@ e_error_bar_ <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 
       type = "custom",
       yAxisIndex = y_index,
       xAxisIndex = x_index,
+      z = ifelse("z" %in% names(args), args$z, 3),
       coordinateSystem = coord_system,
       itemStyle = list(
         normal = list(
