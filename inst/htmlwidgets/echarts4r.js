@@ -10,7 +10,8 @@ HTMLWidgets.widget({
 
     var chart,opts;
 
-    const evalFun = (object) => {
+    const evalFun = (originalObject) => {
+      let object = Object.assign({}, originalObject);
       Object.keys(object).forEach((key) => {
         if (object[key] !== null) {
           if (typeof object[key] === 'object') {
