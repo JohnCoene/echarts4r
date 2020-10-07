@@ -10,22 +10,22 @@ HTMLWidgets.widget({
 
     var chart,opts;
 
-    const evalFun = (originalObject) => {
-      let object = Object.assign({}, originalObject);
-      Object.keys(object).forEach((key) => {
-        if (object[key] !== null) {
-          if (typeof object[key] === 'object') {
-            evalFun(object[key]);
+    const evalFun = (sourceOpts) => {
+      let opts = Object.assign({}, sourceOpts);
+      Object.keys(opts).forEach((key) => {
+        if (opts[key] !== null) {
+          if (typeof opts[key] === 'object') {
+            evalFun(opts[key]);
             return;
           }
-          if (typeof object[key] === 'string') {
+          if (typeof opts[key] === 'string') {
             try {
-              object[key] = eval('(' + object[key] + ')');
+              opts[key] = eval('(' + opts[key] + ')');
             } catch { }
           }
         }
       });
-      return(object);
+      return(opts);
     }
     
     return {
