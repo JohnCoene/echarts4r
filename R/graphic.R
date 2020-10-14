@@ -1,9 +1,9 @@
 #' Graphic
-#' 
+#'
 #' Low level API to define graphic elements.
-#' 
+#'
 #' @inheritParams  e_bar
-#' 
+#'
 #' @section Functions:
 #' \itemize{
 #'   \item{\code{e_graphic_g} to initialise graphics, entirely optional.}
@@ -20,14 +20,14 @@
 #'   \item{\code{e_line_g} to draw a line.}
 #'   \item{\code{e_bezier_curve_g} to draw a quadratic bezier curve or cubic bezier curve.}
 #' }
-#' 
+#'
 #' @note Some elements, i.e.: \code{e_image_g} may not display in the RStudio browwser but will work fine in your browser, R markdown documents and Shiny applications.
-#' 
-#' @examples 
+#'
+#' @examples
 #' # may not work in RStudio viewer
 #' # Open in browser
-#' cars %>% 
-#'   e_charts(speed) %>% 
+#' cars %>%
+#'   e_charts(speed) %>%
 #'   e_scatter(dist) %>%
 #'   e_image_g(
 #'     right = 20,
@@ -40,161 +40,160 @@
 #'       opacity = .6
 #'     )
 #'   )
-#' 
 #' @seealso \href{https://echarts.apache.org/en/option.html#graphic}{official documentation}
-#' 
+#'
 #' @rdname graphic
 #' @export
-e_graphic_g <- function(e, ...){
-  
-  if(missing(e))
+e_graphic_g <- function(e, ...) {
+  if (missing(e)) {
     stop("must pass e", call. = FALSE)
-  
-  if(!e$x$tl)
+  }
+
+  if (!e$x$tl) {
     e$x$opts$graphic <- list(...)
-  else
+  } else {
     e$x$opts$baseOption$graphic <- list(...)
+  }
   e
 }
 
 #' @rdname graphic
 #' @export
-e_group_g <- function(e, ...){
-  
-  if(missing(e))
+e_group_g <- function(e, ...) {
+  if (missing(e)) {
     stop("must pass e", call. = FALSE)
-  
+  }
+
   .e_graphic_elem(e, "group", ...)
 }
 
 #' @rdname graphic
 #' @export
-e_image_g <- function(e, ...){
-  
-  if(missing(e))
+e_image_g <- function(e, ...) {
+  if (missing(e)) {
     stop("must pass e", call. = FALSE)
-  
+  }
+
   .e_graphic_elem(e, "image", ...)
 }
 
 #' @rdname graphic
 #' @export
-e_text_g <- function(e, ...){
-  
-  if(missing(e))
+e_text_g <- function(e, ...) {
+  if (missing(e)) {
     stop("must pass e", call. = FALSE)
-  
+  }
+
   .e_graphic_elem(e, "text", ...)
 }
 
 #' @rdname graphic
 #' @export
-e_rect_g <- function(e, ...){
-  
-  if(missing(e))
+e_rect_g <- function(e, ...) {
+  if (missing(e)) {
     stop("must pass e", call. = FALSE)
-  
+  }
+
   .e_graphic_elem(e, "rect", ...)
 }
 
 #' @rdname graphic
 #' @export
-e_circle_g <- function(e, ...){
-  
-  if(missing(e))
+e_circle_g <- function(e, ...) {
+  if (missing(e)) {
     stop("must pass e", call. = FALSE)
-  
+  }
+
   .e_graphic_elem(e, "circle", ...)
 }
 
 #' @rdname graphic
 #' @export
-e_ring_g <- function(e, ...){
-  
-  if(missing(e))
+e_ring_g <- function(e, ...) {
+  if (missing(e)) {
     stop("must pass e", call. = FALSE)
-  
+  }
+
   .e_graphic_elem(e, "ring", ...)
 }
 
 #' @rdname graphic
 #' @export
-e_sector_g <- function(e, ...){
-  
-  if(missing(e))
+e_sector_g <- function(e, ...) {
+  if (missing(e)) {
     stop("must pass e", call. = FALSE)
-  
+  }
+
   .e_graphic_elem(e, "sector", ...)
 }
 
 #' @rdname graphic
 #' @export
-e_arc_g <- function(e, ...){
-  
-  if(missing(e))
+e_arc_g <- function(e, ...) {
+  if (missing(e)) {
     stop("must pass e", call. = FALSE)
-  
+  }
+
   .e_graphic_elem(e, "arc", ...)
 }
 
 #' @rdname graphic
 #' @export
-e_polygon_g <- function(e, ...){
-  
-  if(missing(e))
+e_polygon_g <- function(e, ...) {
+  if (missing(e)) {
     stop("must pass e", call. = FALSE)
-  
+  }
+
   .e_graphic_elem(e, "polygon", ...)
 }
 
 #' @rdname graphic
 #' @export
-e_polyline_g <- function(e, ...){
-  
-  if(missing(e))
+e_polyline_g <- function(e, ...) {
+  if (missing(e)) {
     stop("must pass e", call. = FALSE)
-  
+  }
+
   .e_graphic_elem(e, "polyline", ...)
 }
 
 #' @rdname graphic
 #' @export
-e_line_g <- function(e, ...){
-  
-  if(missing(e))
+e_line_g <- function(e, ...) {
+  if (missing(e)) {
     stop("must pass e", call. = FALSE)
-  
+  }
+
   .e_graphic_elem(e, "line", ...)
 }
 
 #' @rdname graphic
 #' @export
-e_bezier_curve_g <- function(e, ...){
-  
-  if(missing(e))
+e_bezier_curve_g <- function(e, ...) {
+  if (missing(e)) {
     stop("must pass e", call. = FALSE)
-  
+  }
+
   .e_graphic_elem(e, "bezierCurve", ...)
 }
 
 #' Draft
-#' 
+#'
 #' Add a draft watermark to your graph.
-#' 
+#'
 #' @inheritParams e_bar
 #' @param text Text to display.
 #' @param size Font size of text.
 #' @param opacity,color Opacity and color of text.
-#' 
-#' @examples 
-#' cars %>% 
-#'   e_charts(speed) %>% 
+#'
+#' @examples
+#' cars %>%
+#'   e_charts(speed) %>%
 #'   e_scatter(dist) %>%
 #'   e_draft()
-#' 
 #' @export
-e_draft <- function(e, text = "DRAFT", size = "120px", opacity = 0.4, color = "#d3d3d3"){
-  e %>% 
+e_draft <- function(e, text = "DRAFT", size = "120px", opacity = 0.4, color = "#d3d3d3") {
+  e %>%
     e_text_g(
       left = "center",
       top = "center",
