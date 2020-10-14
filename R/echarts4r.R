@@ -1,14 +1,15 @@
 echarts_build <- function(e) {
   e$x$data <- NULL
   e$x$mapping <- NULL
-  
+
   ff <- getOption("ECHARTS4R_FONT_FAMILY")
-  
-  if(!is.null(ff))
+
+  if (!is.null(ff)) {
     e <- e_text_style(e, fontFamily = ff)
-  
+  }
+
   e
-} 
+}
 
 #' Initialise
 #'
@@ -27,7 +28,7 @@ echarts_build <- function(e) {
 #' @param timeline Set to \code{TRUE} to build a timeline, see timeline section.
 #' @param ... Any other argument.
 #' @param reorder Set the \code{FALSE} to not reorder numeric x axis values.
-#' 
+#'
 #' @section Timeline:
 #' The timeline feature currently supports the following chart types.
 #' \itemize{
@@ -58,33 +59,32 @@ echarts_build <- function(e) {
 #'   \item{\code{\link{e_line_3d}}}
 #'   \item{\code{\link{e_gauge}}}
 #' }
-#' 
-#' @examples 
-#' mtcars %>% 
+#'
+#' @examples
+#' mtcars %>%
 #'   e_charts(qsec) %>%
 #'   e_line(mpg)
-#'
 #' @import htmlwidgets
 #' @importFrom grDevices boxplot.stats
 #' @importFrom grDevices colorRampPalette
 #' @importFrom stats as.formula lm glm loess predict
 #' @importFrom graphics hist
-#' 
+#'
 #' @name init
 #' @export
-e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dispose = TRUE, 
+e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dispose = TRUE,
                      draw = TRUE, renderer = "canvas", timeline = FALSE, ..., reorder = TRUE) {
-
   xmap <- NULL
-  
-  if(!missing(x))
+
+  if (!missing(x)) {
     xmap <- deparse(substitute(x))
+  }
 
   # forward options using x
-  x = list(
+  x <- list(
     theme = "",
     tl = timeline,
-    draw = draw, 
+    draw = draw,
     renderer = tolower(renderer),
     mapping = list(),
     events = list(),
@@ -96,71 +96,74 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
       )
     )
   )
-  
-  if(!missing(data)){
-    
+
+  if (!missing(data)) {
     row.names(data) <- NULL
-    
-    if(!is.null(xmap) && timeline == FALSE)
+
+    if (!is.null(xmap) && timeline == FALSE) {
       data <- .arrange_data_x(data, xmap, reorder = reorder)
+    }
 
     x$data <- map_grps_(data, timeline)
   }
-  
-  if(!is.null(xmap)){
+
+  if (!is.null(xmap)) {
     x$mapping$x <- xmap[1]
     x$mapping$x_class <- class(data[[xmap]])
     x <- .assign_axis(x, data)
   }
-  
-  if(isTRUE(timeline)){
-    
-    if(missing(data))
+
+  if (isTRUE(timeline)) {
+    if (missing(data)) {
       stop("timeline expects data", call. = FALSE)
-    
-    if(!dplyr::is_grouped_df(data))
+    }
+
+    if (!dplyr::is_grouped_df(data)) {
       stop("must pass grouped data when timeline = TRUE", call. = FALSE)
-    
-    if(!is.null(xmap))
+    }
+
+    if (!is.null(xmap)) {
       x$data <- .arrange_data_by_group(x$data, xmap, reorder = reorder)
-    
+    }
+
     tl <- list(
       baseOption = list(
         yAxis = list(
           list(show = TRUE)
         )
       ),
-      options = purrr::map(1:dplyr::n_groups(data), function(x) list())      
+      options = purrr::map(1:dplyr::n_groups(data), function(x) list())
     )
-    
+
     x$opts <- tl
-    
+
     x$opts$baseOption$timeline <- list(
       data = as.list(names(x$data)),
       axisType = "category",
       ...
     )
-    
-    if(!is.null(xmap)){
+
+    if (!is.null(xmap)) {
       x$mapping$x <- xmap[1]
       x$mapping$x_class <- class(data[[xmap]])
-      
+
       x$mapping$include_x <- FALSE
       cl <- x$mapping$x_class
-      if(cl == "character" || cl == "factor"){
+      if (cl == "character" || cl == "factor") {
         labs <- unique(data[[x$mapping$x]])
-        
-        if(length(labs) == 1)
+
+        if (length(labs) == 1) {
           labs <- list(labs)
-        
+        }
+
         x$opts$baseOption$xAxis <- list(list(data = labs, type = "category", boundaryGap = TRUE))
-      } else if(cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
-        
+      } else if (cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
         labs <- unique(data[[x$mapping$x]])
-        
-        if(length(labs) == 1)
+
+        if (length(labs) == 1) {
           labs <- list(labs)
-        
+        }
+
         x$opts$baseOption$xAxis <- list(list(data = labs, type = "time", boundaryGap = TRUE))
       } else {
         x$mapping$include_x <- TRUE
@@ -168,16 +171,16 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
       }
     }
   }
-  
+
   x$dispose <- dispose
-  
+
   # create widget
   widget <- htmlwidgets::createWidget(
-    name = 'echarts4r',
+    name = "echarts4r",
     x,
     width = width,
     height = height,
-    package = 'echarts4r',
+    package = "echarts4r",
     elementId = elementId,
     preRenderHook = echarts_build,
     sizingPolicy = htmlwidgets::sizingPolicy(
@@ -188,23 +191,23 @@ e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dis
     )
   )
 
-  # check for theme
-  theme <- getOption("ECHARTS4R_THEME") # default theme
-  if(!is.null(theme))
+  #  check for theme
+  theme <- getOption("ECHARTS4R_THEME") #  default theme
+  if (!is.null(theme)) {
     widget <- e_theme(widget, theme)
+  }
 
   return(widget)
 }
 
 #' @rdname init
 #' @export
-e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = NULL, dispose = TRUE, 
+e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = NULL, dispose = TRUE,
                       draw = TRUE, renderer = "canvas", timeline = FALSE, ..., reorder = TRUE) {
-  
   xmap <- x
-  
+
   # forward options using x
-  x = list(
+  x <- list(
     theme = "",
     tl = timeline,
     renderer = tolower(renderer),
@@ -219,32 +222,32 @@ e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = N
       )
     )
   )
-  
-  if(!missing(data)){
-    
+
+  if (!missing(data)) {
     row.names(data) <- NULL
-    
-    if(!is.null(xmap))
+
+    if (!is.null(xmap)) {
       data <- .arrange_data_x(data, xmap)
-    
+    }
+
     x$data <- map_grps_(data, timeline)
   }
-  
-  if(!is.null(xmap)){
+
+  if (!is.null(xmap)) {
     x$mapping$x <- xmap
     x$mapping$x_class <- class(data[[xmap]])
     x <- .assign_axis(x, data)
   }
-  
+
   x$dispose <- dispose
-  
+
   # create widget
   htmlwidgets::createWidget(
-    name = 'echarts4r',
+    name = "echarts4r",
     x,
     width = width,
     height = height,
-    package = 'echarts4r',
+    package = "echarts4r",
     elementId = elementId,
     sizingPolicy = htmlwidgets::sizingPolicy(
       defaultWidth = "100%",
@@ -259,41 +262,42 @@ e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = N
 e_chart <- e_charts
 
 
-#' Add a dataset 
-#' This function can add one or more dataset into a echarts object. 
-#' 
-#' @examples 
-#' points <- mtcars[1:3,]
-#' mtcars %>% 
+#' Add a dataset
+#' This function can add one or more dataset into a echarts object.
+#'
+#' @examples
+#' points <- mtcars[1:3, ]
+#' mtcars %>%
 #'   e_charts_("qsec") %>%
 #'   e_line(mpg) %>%
 #'   e_data(points, qsec) %>%
 #'   e_scatter(mpg, color = "blue")
-#'
 #' @rdname init
 #' @export
-e_data <- function(e, data, x){
-  
-  if(missing(data))
+e_data <- function(e, data, x) {
+  if (missing(data)) {
     data <- e$x$data[[1]]
-  
-  if(!missing(x))
+  }
+
+  if (!missing(x)) {
     xmap <- deparse(substitute(x))
-  
-  if(!missing(x)){
+  }
+
+  if (!missing(x)) {
     e$x$mapping$x <- xmap
     e$x$mapping$x_class <- class(data[[xmap]])
     e$x <- .assign_axis(e$x, data)
   }
-  
+
   row.names(data) <- NULL
-  
-  if(!missing(x))
+
+  if (!missing(x)) {
     data <- .arrange_data_x(data, xmap)
-  
+  }
+
   data <- map_grps_(data, FALSE)
   e$x$data <- data
-  
+
   e
 }
 
@@ -301,7 +305,7 @@ e_data <- function(e, data, x){
 #'
 #' Output and render functions for using echarts4r within Shiny
 #' applications and interactive Rmd documents.
-#' 
+#'
 #' @inheritParams init
 #' @param outputId output variable to read from.
 #' @param width,height Must be a valid CSS unit (like \code{'100\%'},
@@ -313,7 +317,7 @@ e_data <- function(e, data, x){
 #'   is useful if you want to save an expression in a variable.
 #' @param id Target chart id.
 #' @param session Shiny session.
-#' 
+#'
 #' @section Callbacks:
 #' \itemize{
 #'   \item{\code{id_brush}: returns data on brushed data points.}
@@ -327,12 +331,12 @@ e_data <- function(e, data, x){
 #'   \item{\code{id_mouseover_row}: returns row o hovered data point.}
 #'   \item{\code{id_mouseover_serie}: returns name of serie of hovered data point.}
 #' }
-#' 
+#'
 #' @section Proxies:
-#' The \code{echarts4rProxy} function returns a proxy for chart which allows 
+#' The \code{echarts4rProxy} function returns a proxy for chart which allows
 #' manipulating a drawn chart, adding data, adding or removing series, etc. without
 #' redrawing the entire chart.
-#' 
+#'
 #' \itemize{
 #'   \item{\code{\link{e_append1_p}} & \code{\link{e_append2_p}}}
 #'   \item{\code{\link{e_showtip_p}} & \code{\link{e_hidetip_p}}}
@@ -342,42 +346,44 @@ e_data <- function(e, data, x){
 #'   \item{\code{\link{e_execute}}}
 #'   \item{\code{\link{e_remove_serie_p}}}
 #' }
-#' 
+#'
 #'
 #' @name echarts4r-shiny
 #'
 #' @export
-echarts4rOutput <- function(outputId, width = '100%', height = '400px'){
-  htmlwidgets::shinyWidgetOutput(outputId, 'echarts4r', width, height, package = 'echarts4r')
+echarts4rOutput <- function(outputId, width = "100%", height = "400px") {
+  htmlwidgets::shinyWidgetOutput(outputId, "echarts4r", width, height, package = "echarts4r")
 }
 
 #' @rdname echarts4r-shiny
 #' @export
 renderEcharts4r <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
+  if (!quoted) {
+    expr <- substitute(expr)
+  } # force quoted
   htmlwidgets::shinyRenderWidget(expr, echarts4rOutput, env, quoted = TRUE)
 }
 
 #' @rdname echarts4r-shiny
 #' @export
-echarts4rProxy <- function(id, data, x, timeline = FALSE, session = shiny::getDefaultReactiveDomain(), reorder = TRUE){
-
-  if(missing(data)){
+echarts4rProxy <- function(id, data, x, timeline = FALSE, session = shiny::getDefaultReactiveDomain(), reorder = TRUE) {
+  if (missing(data)) {
     proxy <- list(id = id, session = session)
     class(proxy) <- "echarts4rProxy"
     return(proxy)
   }
-  
+
   xmap <- NULL
-  
-  if(!missing(x))
+
+  if (!missing(x)) {
     xmap <- deparse(substitute(x))
+  }
 
   # forward options using x
-  x = list(
+  x <- list(
     theme = "",
     tl = timeline,
-    draw = TRUE, 
+    draw = TRUE,
     renderer = "canvas",
     mapping = list(),
     events = list(),
@@ -388,70 +394,73 @@ echarts4rProxy <- function(id, data, x, timeline = FALSE, session = shiny::getDe
       )
     )
   )
-  
-  if(!missing(data)){
-    
+
+  if (!missing(data)) {
     row.names(data) <- NULL
-    
-    if(!is.null(xmap))
+
+    if (!is.null(xmap)) {
       data <- .arrange_data_x(data, xmap, reorder = reorder)
-    
+    }
+
     x$data <- map_grps_(data, timeline)
   }
-  
-  if(!is.null(xmap)){
+
+  if (!is.null(xmap)) {
     x$mapping$x <- xmap[1]
     x$mapping$x_class <- class(data[[xmap]])
     x <- .assign_axis(x, data)
   }
-  
-  if(isTRUE(timeline)){
-    
-    if(missing(data))
+
+  if (isTRUE(timeline)) {
+    if (missing(data)) {
       stop("timeline expects data", call. = FALSE)
-    
-    if(!dplyr::is_grouped_df(data))
+    }
+
+    if (!dplyr::is_grouped_df(data)) {
       stop("must pass grouped data when timeline = TRUE", call. = FALSE)
-    
-    if(!is.null(xmap))
+    }
+
+    if (!is.null(xmap)) {
       x$data <- .arrange_data_by_group(x$data, xmap, reorder = reorder)
-    
+    }
+
     tl <- list(
       baseOption = list(
         yAxis = list(
           list(show = TRUE)
         )
       ),
-      options = purrr::map(1:dplyr::n_groups(data), function(x) list())      
+      options = purrr::map(1:dplyr::n_groups(data), function(x) list())
     )
-    
+
     x$opts <- tl
-    
+
     x$opts$baseOption$timeline <- list(
       data = as.list(names(x$data)),
       axisType = "category"
     )
-    
-    if(!is.null(xmap)){
+
+    if (!is.null(xmap)) {
       x$mapping$x <- xmap[1]
       x$mapping$x_class <- class(data[[xmap]])
-      
+
       x$mapping$include_x <- FALSE
       cl <- x$mapping$x_class
-      if(cl == "character" || cl == "factor"){
+      if (cl == "character" || cl == "factor") {
         labs <- unique(data[[x$mapping$x]])
-        
-        if(length(labs) == 1)
+
+        if (length(labs) == 1) {
           labs <- list(labs)
-        
+        }
+
         x$opts$baseOption$xAxis <- list(list(data = labs, type = "category", boundaryGap = TRUE))
-      } else if(cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
-        
+      } else if (cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
         labs <- unique(data[[x$mapping$x]])
-        
-        if(length(labs) == 1)
+
+        if (length(labs) == 1) {
           labs <- list(labs)
-        
+        }
+
         x$opts$baseOption$xAxis <- list(list(data = labs, type = "time", boundaryGap = TRUE))
       } else {
         x$mapping$include_x <- TRUE
@@ -459,12 +468,12 @@ echarts4rProxy <- function(id, data, x, timeline = FALSE, session = shiny::getDe
       }
     }
   }
-  
+
   chart <- structure(list(x = x), class = c("echarts4r", class(x)))
 
   proxy <- list(id = id, session = session, chart = chart)
   class(proxy) <- "echarts4rProxy"
-  
+
   return(proxy)
 }
 
