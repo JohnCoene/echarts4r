@@ -7,7 +7,8 @@
 #' 
 #' @details Each serie, i.e.: \code{\link{e_bar}} will be plotted against a facet.
 #' 
-#' @keywords interval
+#' @noRd 
+#' @keywords internal
 e_facet <- function(e, rows = 1, cols = 1){
   
   # number of series

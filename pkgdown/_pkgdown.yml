@@ -100,7 +100,6 @@ reference:
       - matches("grid")
       - matches("axis")
       - e_flip_coords
-      - e_facet
       - e_color_range
       - e_polar
       - e_calendar
