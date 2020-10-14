@@ -12,6 +12,8 @@
 - Bump to JavaScript version to `4.9.0`
 - `echarts_from_json` supports functions, see [199](https://github.com/JohnCoene/echarts4r/pull/199) (thanks to [swsoyee](https://github.com/swsoyee))
 - Remove `e_facet`, was wrongly exported [#212](https://github.com/JohnCoene/echarts4r/issues/212)
+- Add tests, thanks to Etienne Bacher, see [#201](https://github.com/JohnCoene/echarts4r/pull/201)
+- Add styler, thanks to Wei Su see [#211](https://github.com/JohnCoene/echarts4r/pull/211)
 
 # echarts4r 0.3.2
 
