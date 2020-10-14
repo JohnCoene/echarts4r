@@ -28,7 +28,7 @@ e_sankey_(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{source, target}{Source and target columns.}
@@ -52,10 +52,9 @@ sankey <- data.frame(
   stringsAsFactors = FALSE
 )
 
-sankey \%>\% 
-  e_charts() \%>\% 
-  e_sankey(source, target, value) 
-
+sankey \%>\%
+  e_charts() \%>\%
+  e_sankey(source, target, value)
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-sankey}{Additional arguments}

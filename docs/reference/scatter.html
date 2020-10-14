@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Scatter — e_scatter" />
 <meta property="og:description" content="Add scatter serie." />
-<meta property="og:image" content="" />
+<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 
 
 
@@ -84,9 +84,10 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -272,7 +273,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -283,13 +284,14 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Scatter</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add.R'><code>R/add.R</code></a>, <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add_.R'><code>R/add_.R</code></a></small>
     <div class="hidden name"><code>scatter.Rd</code></div>
     </div>
 
@@ -298,85 +300,85 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_scatter</span>(
-  <span class='no'>e</span>,
-  <span class='no'>serie</span>,
-  <span class='no'>size</span>,
-  <span class='no'>bind</span>,
-  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='no'>e_scale</span>,
-  <span class='kw'>scale_js</span> <span class='kw'>=</span> <span class='st'>"function(data){ return data[3];}"</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
-  <span class='kw'>jitter_factor</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>jitter_amount</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  <span class='kw'>e</span>,
+  <span class='kw'>serie</span>,
+  <span class='kw'>size</span>,
+  <span class='kw'>bind</span>,
+  symbol = <span class='kw'>NULL</span>,
+  symbol_size = <span class='fl'>1</span>,
+  scale = <span class='kw'>e_scale</span>,
+  scale_js = <span class='st'>"function(data){ return data[3];}"</span>,
+  name = <span class='kw'>NULL</span>,
+  coord_system = <span class='st'>"cartesian2d"</span>,
+  jitter_factor = <span class='fl'>0</span>,
+  jitter_amount = <span class='kw'>NULL</span>,
+  legend = <span class='fl'>TRUE</span>,
+  y_index = <span class='fl'>0</span>,
+  x_index = <span class='fl'>0</span>,
+  rm_x = <span class='fl'>TRUE</span>,
+  rm_y = <span class='fl'>TRUE</span>,
+  <span class='kw'>...</span>
 )
 
 <span class='fu'>e_effect_scatter</span>(
-  <span class='no'>e</span>,
-  <span class='no'>serie</span>,
-  <span class='no'>size</span>,
-  <span class='no'>bind</span>,
-  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='no'>e_scale</span>,
-  <span class='kw'>scale_js</span> <span class='kw'>=</span> <span class='st'>"function(data){ return data[3];}"</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  <span class='kw'>e</span>,
+  <span class='kw'>serie</span>,
+  <span class='kw'>size</span>,
+  <span class='kw'>bind</span>,
+  symbol = <span class='kw'>NULL</span>,
+  symbol_size = <span class='fl'>1</span>,
+  scale = <span class='kw'>e_scale</span>,
+  scale_js = <span class='st'>"function(data){ return data[3];}"</span>,
+  name = <span class='kw'>NULL</span>,
+  coord_system = <span class='st'>"cartesian2d"</span>,
+  legend = <span class='fl'>TRUE</span>,
+  y_index = <span class='fl'>0</span>,
+  x_index = <span class='fl'>0</span>,
+  rm_x = <span class='fl'>TRUE</span>,
+  rm_y = <span class='fl'>TRUE</span>,
+  <span class='kw'>...</span>
 )
 
-<span class='fu'>e_scale</span>(<span class='no'>x</span>)
+<span class='fu'>e_scale</span>(<span class='kw'>x</span>)
 
 <span class='fu'>e_scatter_</span>(
-  <span class='no'>e</span>,
-  <span class='no'>serie</span>,
-  <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>bind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='no'>e_scale</span>,
-  <span class='kw'>scale_js</span> <span class='kw'>=</span> <span class='st'>"function(data){ return data[3];}"</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
-  <span class='kw'>jitter_factor</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>jitter_amount</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  <span class='kw'>e</span>,
+  <span class='kw'>serie</span>,
+  size = <span class='kw'>NULL</span>,
+  bind = <span class='kw'>NULL</span>,
+  symbol = <span class='kw'>NULL</span>,
+  symbol_size = <span class='fl'>1</span>,
+  scale = <span class='kw'>e_scale</span>,
+  scale_js = <span class='st'>"function(data){ return data[3];}"</span>,
+  name = <span class='kw'>NULL</span>,
+  coord_system = <span class='st'>"cartesian2d"</span>,
+  jitter_factor = <span class='fl'>0</span>,
+  jitter_amount = <span class='kw'>NULL</span>,
+  legend = <span class='fl'>TRUE</span>,
+  y_index = <span class='fl'>0</span>,
+  x_index = <span class='fl'>0</span>,
+  rm_x = <span class='fl'>TRUE</span>,
+  rm_y = <span class='fl'>TRUE</span>,
+  <span class='kw'>...</span>
 )
 
 <span class='fu'>e_effect_scatter_</span>(
-  <span class='no'>e</span>,
-  <span class='no'>serie</span>,
-  <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>bind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='no'>e_scale</span>,
-  <span class='kw'>scale_js</span> <span class='kw'>=</span> <span class='st'>"function(data){ return data[3];}"</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>x_index</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  <span class='kw'>e</span>,
+  <span class='kw'>serie</span>,
+  size = <span class='kw'>NULL</span>,
+  bind = <span class='kw'>NULL</span>,
+  symbol = <span class='kw'>NULL</span>,
+  symbol_size = <span class='fl'>1</span>,
+  scale = <span class='kw'>e_scale</span>,
+  scale_js = <span class='st'>"function(data){ return data[3];}"</span>,
+  name = <span class='kw'>NULL</span>,
+  coord_system = <span class='st'>"cartesian2d"</span>,
+  legend = <span class='fl'>TRUE</span>,
+  y_index = <span class='fl'>0</span>,
+  x_index = <span class='fl'>0</span>,
+  rm_x = <span class='fl'>TRUE</span>,
+  rm_y = <span class='fl'>TRUE</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -384,8 +386,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
-a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or
+a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>serie</th>
@@ -397,7 +399,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     </tr>
     <tr>
       <th>bind</th>
-      <td><p>Binding between datasets, namely for use of <code><a href='e_brush.html'>e_brush</a></code>.</p></td>
+      <td><p>Binding between datasets, namely for use of <code>e_brush</code>.</p></td>
     </tr>
     <tr>
       <th>symbol</th>
@@ -406,7 +408,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     </tr>
     <tr>
       <th>symbol_size</th>
-      <td><p>Size of points, either an integer or a vector of length 2, 
+      <td><p>Size of points, either an integer or a vector of length 2,
 if <code>size</code> is <em>not</em> <code>NULL</code> or missing it is applied as a multiplier to <code>scale</code>.</p></td>
     </tr>
     <tr>
@@ -444,7 +446,7 @@ of the same length. You can disable the scaling by setting it to <code>NULL</cod
     </tr>
     <tr>
       <th>rm_x, rm_y</th>
-      <td><p>Whether to remove x and y axis, only applies if <code>coord_system</code> is not 
+      <td><p>Whether to remove x and y axis, only applies if <code>coord_system</code> is not
 set to <code>cartesian2d</code>.</p></td>
     </tr>
     <tr>
@@ -468,79 +470,80 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># scaling</span>
-<span class='fu'>e_scale</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1000</span>))</div><div class='output co'>#&gt; [1]  1 20</div><div class='input'>
-<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_scatter</span>(<span class='no'>wt</span>, <span class='no'>qsec</span>)
+<span class='fu'>e_scale</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1000</span>))</div><div class='output co'>#&gt; [1]  1 20</div><div class='input'>
+<span class='kw'>mtcars</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_charts</span>(<span class='kw'>mpg</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_scatter</span>(<span class='kw'>wt</span>, <span class='kw'>qsec</span>)
 
 <span class='co'># custom function</span>
-<span class='no'>my_scale</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='kw pkg'>scales</span><span class='kw ns'>::</span><span class='fu'><a href='https://scales.r-lib.org//reference/rescale.html'>rescale</a></span>(<span class='no'>x</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>50</span>))
+<span class='kw'>my_scale</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>x</span>) <span class='kw'>scales</span>::<span class='fu'><a href='https://scales.r-lib.org//reference/rescale.html'>rescale</a></span>(<span class='kw'>x</span>, to = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>50</span>))
 
-<span class='no'>echart</span> <span class='kw'>&lt;-</span> <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_scatter</span>(<span class='no'>wt</span>, <span class='no'>qsec</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='no'>my_scale</span>)
+<span class='kw'>echart</span> <span class='op'>&lt;-</span> <span class='kw'>mtcars</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_charts</span>(<span class='kw'>mpg</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_scatter</span>(<span class='kw'>wt</span>, <span class='kw'>qsec</span>, scale = <span class='kw'>my_scale</span>)
 
-<span class='no'>echart</span>
+<span class='kw'>echart</span>
 
 <span class='co'># rescale color too</span>
-<span class='no'>echart</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='no'>wt</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='no'>my_scale</span>)
+<span class='kw'>echart</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_visual_map</span>(<span class='kw'>wt</span>, scale = <span class='kw'>my_scale</span>)
 
 <span class='co'># or</span>
-<span class='no'>echart</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>50</span>)
+<span class='kw'>echart</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_visual_map</span>(min = <span class='fl'>2</span>, max = <span class='fl'>50</span>)
 
 <span class='co'># disable scaling</span>
-<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>qsec</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_scatter</span>(<span class='no'>wt</span>, <span class='no'>mpg</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='kw'>mtcars</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_charts</span>(<span class='kw'>qsec</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_scatter</span>(<span class='kw'>wt</span>, <span class='kw'>mpg</span>, scale = <span class='kw'>NULL</span>)
 
 <span class='co'># jitter point</span>
-<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>cyl</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_scatter</span>(<span class='no'>wt</span>, <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fl'>5</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_scatter</span>(<span class='no'>wt</span>, <span class='kw'>jitter_factor</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='kw'>mtcars</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_charts</span>(<span class='kw'>cyl</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_scatter</span>(<span class='kw'>wt</span>, symbol_size = <span class='fl'>5</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_scatter</span>(<span class='kw'>wt</span>, jitter_factor = <span class='fl'>2</span>, legend = <span class='fl'>FALSE</span>)
 
 <span class='co'># examples</span>
-<span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Assault</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_scatter</span>(<span class='no'>Murder</span>, <span class='no'>Rape</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_effect_scatter</span>(<span class='no'>Rape</span>, <span class='no'>Murder</span>, <span class='kw'>y_index</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_grid.html'>e_grid</a></span>(<span class='kw'>index</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e-tooltip.html'>e_tooltip</a></span>()
+<span class='kw'>USArrests</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_charts</span>(<span class='kw'>Assault</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_scatter</span>(<span class='kw'>Murder</span>, <span class='kw'>Rape</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_effect_scatter</span>(<span class='kw'>Rape</span>, <span class='kw'>Murder</span>, y_index = <span class='fl'>1</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_grid</span>(index = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>)) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_tooltip</span>()
 
-<span class='no'>iris</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts_</a></span>(<span class='st'>"Sepal.Length"</span>) <span class='kw'>%&gt;%</span>
+<span class='kw'>iris</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_charts_</span>(<span class='st'>"Sepal.Length"</span>) <span class='op'>%&gt;%</span>
   <span class='fu'>e_scatter_</span>(
     <span class='st'>"Sepal.Width"</span>,
-    <span class='kw'>symbol_size</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>8</span>, <span class='fl'>2</span>),
-    <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"rect"</span>
-  ) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='axis.html'>e_x_axis</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+    symbol_size = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>8</span>, <span class='fl'>2</span>),
+    symbol = <span class='st'>"rect"</span>
+  ) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_x_axis</span>(min = <span class='fl'>4</span>)
 
-<span class='no'>quakes</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>long</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_geo.html'>e_geo</a></span>(
-    <span class='kw'>roam</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>boundingCoords</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>185</span>, - <span class='fl'>10</span>),
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>165</span>, -<span class='fl'>40</span>)
+<span class='kw'>quakes</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_charts</span>(<span class='kw'>long</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_geo</span>(
+    roam = <span class='fl'>TRUE</span>,
+    boundingCoords = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+      <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>185</span>, <span class='op'>-</span><span class='fl'>10</span>),
+      <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>165</span>, <span class='op'>-</span><span class='fl'>40</span>)
     )
-  ) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_scatter</span>(<span class='no'>lat</span>, <span class='no'>mag</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>6.5</span>)
+  ) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_scatter</span>(<span class='kw'>lat</span>, <span class='kw'>mag</span>, coord_system = <span class='st'>"geo"</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_visual_map</span>(min = <span class='fl'>4</span>, max = <span class='fl'>6.5</span>)
 
-<span class='co'># timeline  </span>
-<span class='no'>iris</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Petal.Width</span>, <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_scatter</span>(<span class='no'>Sepal.Width</span>, <span class='no'>Sepal.Length</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e-tooltip.html'>e_tooltip</a></span>(<span class='kw'>trigger</span> <span class='kw'>=</span> <span class='st'>"axis"</span>)</div></pre>
+<span class='co'># timeline</span>
+<span class='kw'>iris</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>Species</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_charts</span>(<span class='kw'>Petal.Width</span>, timeline = <span class='fl'>TRUE</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_scatter</span>(<span class='kw'>Sepal.Width</span>, <span class='kw'>Sepal.Length</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_tooltip</span>(trigger = <span class='st'>"axis"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -555,6 +558,7 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
    </div>
 
@@ -577,6 +581,8 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
 </script>
 
 
+
   </body>
 </html>
+
 

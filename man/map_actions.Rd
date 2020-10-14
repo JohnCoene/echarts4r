@@ -14,7 +14,7 @@ e_map_unselect(e, ..., btn = NULL)
 e_map_toggle_select(e, ..., btn = NULL)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{...}{Any options, see \href{https://echarts.apache.org/en/api.html#action.map}{official documentation}}
@@ -33,13 +33,12 @@ choropleth <- data.frame(
   values = round(runif(9, 10, 25))
 )
 
-choropleth \%>\% 
-  e_charts(countries) \%>\% 
-  e_map(values) \%>\% 
-  e_visual_map(min = 10, max = 25) \%>\% 
-  e_map_toggle_select(name = "China", btn = "btn") \%>\% 
+choropleth \%>\%
+  e_charts(countries) \%>\%
+  e_map(values) \%>\%
+  e_visual_map(min = 10, max = 25) \%>\%
+  e_map_toggle_select(name = "China", btn = "btn") \%>\%
   e_button("btn", "Select China")
-
 }
 \seealso{
 \code{\link{e_map_register}}

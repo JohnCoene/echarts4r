@@ -32,7 +32,7 @@ e_heatmap_(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{y, z}{Coordinates and values.}
@@ -41,10 +41,10 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{name}{name of the serie.}
 
-\item{coord_system}{Coordinate system to plot against, takes 
+\item{coord_system}{Coordinate system to plot against, takes
 \code{cartesian2d}, \code{geo} or \code{calendar}.}
 
-\item{rm_x, rm_y}{Whether to remove x and y axis, only applies if \code{coord_system} is not 
+\item{rm_x, rm_y}{Whether to remove x and y axis, only applies if \code{coord_system} is not
 set to \code{cartesian2d}.}
 
 \item{calendar}{The index of the calendar to plot against.}
@@ -57,58 +57,58 @@ Draw heatmap by coordinates.
 \examples{
 v <- LETTERS[1:10]
 matrix <- data.frame(
-  x = sample(v, 300, replace = TRUE), 
-  y = sample(v, 300, replace = TRUE), 
+  x = sample(v, 300, replace = TRUE),
+  y = sample(v, 300, replace = TRUE),
   z = rnorm(300, 10, 1),
   stringsAsFactors = FALSE
-) \%>\% 
-  dplyr::group_by(x, y) \%>\% 
-  dplyr::summarise(z = sum(z)) \%>\% 
+) \%>\%
+  dplyr::group_by(x, y) \%>\%
+  dplyr::summarise(z = sum(z)) \%>\%
   dplyr::ungroup()
 
-matrix \%>\% 
-  e_charts(x) \%>\% 
-  e_heatmap(y, z, itemStyle = list(emphasis = list(shadowBlur = 10))) \%>\% 
+matrix \%>\%
+  e_charts(x) \%>\%
+  e_heatmap(y, z, itemStyle = list(emphasis = list(shadowBlur = 10))) \%>\%
   e_visual_map(z)
 
-# calendar   
+# calendar
 dates <- seq.Date(as.Date("2017-01-01"), as.Date("2018-12-31"), by = "day")
 values <- rnorm(length(dates), 20, 6)
 
 year <- data.frame(date = dates, values = values)
 
-year \%>\% 
-  e_charts(date) \%>\% 
-  e_calendar(range = "2018") \%>\% 
-  e_heatmap(values, coord_system = "calendar") \%>\% 
+year \%>\%
+  e_charts(date) \%>\%
+  e_calendar(range = "2018") \%>\%
+  e_heatmap(values, coord_system = "calendar") \%>\%
   e_visual_map(max = 30)
-  
+
 # calendar multiple years
-year \%>\% 
-  dplyr::mutate(year = format(date, "\%Y")) \%>\% 
-  group_by(year) \%>\% 
-  e_charts(date) \%>\% 
-  e_calendar(range = "2017", top = 40) \%>\% 
-  e_calendar(range = "2018", top = 260) \%>\% 
-  e_heatmap(values, coord_system = "calendar") \%>\% 
+year \%>\%
+  dplyr::mutate(year = format(date, "\%Y")) \%>\%
+  group_by(year) \%>\%
+  e_charts(date) \%>\%
+  e_calendar(range = "2017", top = 40) \%>\%
+  e_calendar(range = "2018", top = 260) \%>\%
+  e_heatmap(values, coord_system = "calendar") \%>\%
   e_visual_map(max = 30)
-  
+
 # map
 quakes \%>\%
-  e_charts(long) \%>\% 
+  e_charts(long) \%>\%
   e_geo(
     boundingCoords = list(
       c(190, -10),
       c(180, -40)
-   )
-  ) \%>\% 
+    )
+  ) \%>\%
   e_heatmap(
-    lat, 
-    mag, 
-    coord_system = "geo", 
-    blurSize = 5, 
+    lat,
+    mag,
+    coord_system = "geo",
+    blurSize = 5,
     pointSize = 3
-  ) \%>\% 
+  ) \%>\%
   e_visual_map(mag)
 
 # timeline
@@ -117,19 +117,18 @@ library(dplyr)
 axis <- LETTERS[1:10]
 df <- expand.grid(axis, axis)
 
-bind_rows(df, df) \%>\% 
+bind_rows(df, df) \%>\%
   mutate(
     values = runif(n(), 1, 10),
     grp = c(
       rep("A", 100),
       rep("B", 100)
     )
-  ) \%>\% 
-  group_by(grp) \%>\% 
-  e_charts(Var1, timeline = TRUE) \%>\% 
-  e_heatmap(Var2, values) \%>\% 
+  ) \%>\%
+  group_by(grp) \%>\%
+  e_charts(Var1, timeline = TRUE) \%>\%
+  e_heatmap(Var2, values) \%>\%
   e_visual_map(values)
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-heatmap}{Additional arguments}

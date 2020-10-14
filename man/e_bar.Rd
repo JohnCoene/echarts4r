@@ -30,7 +30,7 @@ e_bar_(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{serie}{Column name of serie to plot.}
@@ -53,16 +53,15 @@ Add bar serie.
 \examples{
 library(dplyr)
 
-mtcars \%>\% 
+mtcars \%>\%
   mutate(
     model = row.names(.),
     total = mpg + qsec
-  ) \%>\% 
-  arrange(desc(total)) \%>\% 
-  e_charts(model) \%>\% 
-  e_bar(mpg, stack = "grp") \%>\% 
+  ) \%>\%
+  arrange(desc(total)) \%>\%
+  e_charts(model) \%>\%
+  e_bar(mpg, stack = "grp") \%>\%
   e_bar(qsec, stack = "grp")
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-bar}{Additional arguments}

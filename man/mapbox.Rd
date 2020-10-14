@@ -8,7 +8,7 @@
 e_mapbox(e, token, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{token}{Your mapbox token from \href{https://www.mapbox.com/}{mapbox}.}
@@ -23,19 +23,21 @@ Mapbox may not work properly in the RSudio console.
 }
 \examples{
 \dontrun{
-url <- paste0("https://echarts.apache.org/examples/", 
- "data-gl/asset/data/population.json")
+url <- paste0(
+  "https://echarts.apache.org/examples/",
+  "data-gl/asset/data/population.json"
+)
 data <- jsonlite::fromJSON(url)
 data <- as.data.frame(data)
 names(data) <- c("lon", "lat", "value")
 
-data \%>\% 
-  e_charts(lon) \%>\% 
+data \%>\%
+  e_charts(lon) \%>\%
   e_mapbox(
     token = "YOUR_MAPBOX_TOKEN",
     style = "mapbox://styles/mapbox/dark-v9"
-  ) \%>\% 
-  e_bar_3d(lat, value, coord_system = "mapbox") \%>\% 
+  ) \%>\%
+  e_bar_3d(lat, value, coord_system = "mapbox") \%>\%
   e_visual_map()
 }
 

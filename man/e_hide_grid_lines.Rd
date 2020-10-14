@@ -7,7 +7,7 @@
 e_hide_grid_lines(e, which = c("x", "y"))
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{which}{Which axis grid lines to hide.}
@@ -17,8 +17,7 @@ A convenience function to easily hide grid lines.
 }
 \examples{
 cars \%>\%
- e_charts(speed) \%>\% 
- e_scatter(dist) \%>\% 
- e_hide_grid_lines()
- 
+  e_charts(speed) \%>\%
+  e_scatter(dist) \%>\%
+  e_hide_grid_lines()
 }

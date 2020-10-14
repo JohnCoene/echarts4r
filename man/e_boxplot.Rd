@@ -10,7 +10,7 @@ e_boxplot(e, serie, name = NULL, outliers = TRUE, ...)
 e_boxplot_(e, serie, name = NULL, outliers = TRUE, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{serie}{Column name of serie to plot.}
@@ -30,11 +30,10 @@ df <- data.frame(
   y = c(1:10, -6)
 )
 
-df \%>\% 
-  e_charts() \%>\% 
-  e_boxplot(y, outliers = TRUE) \%>\% 
+df \%>\%
+  e_charts() \%>\%
+  e_boxplot(y, outliers = TRUE) \%>\%
   e_boxplot(x, outliers = TRUE)
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-boxplot}{Additional arguments}

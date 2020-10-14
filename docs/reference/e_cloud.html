@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Wordcloud — e_cloud" />
 <meta property="og:description" content="Draw a wordcloud." />
-<meta property="og:image" content="" />
+<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 
 
 
@@ -84,9 +84,10 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -272,7 +273,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -283,13 +284,14 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Wordcloud</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/plugins.R'><code>R/plugins.R</code></a></small>
     <div class="hidden name"><code>e_cloud.Rd</code></div>
     </div>
 
@@ -297,17 +299,17 @@
     <p>Draw a wordcloud.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_cloud</span>(<span class='no'>e</span>, <span class='no'>word</span>, <span class='no'>freq</span>, <span class='no'>color</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>e_cloud</span>(<span class='kw'>e</span>, <span class='kw'>word</span>, <span class='kw'>freq</span>, <span class='kw'>color</span>, rm_x = <span class='fl'>TRUE</span>, rm_y = <span class='fl'>TRUE</span>, <span class='kw'>...</span>)
 
-<span class='fu'>e_cloud_</span>(<span class='no'>e</span>, <span class='no'>word</span>, <span class='no'>freq</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>e_cloud_</span>(<span class='kw'>e</span>, <span class='kw'>word</span>, <span class='kw'>freq</span>, color = <span class='kw'>NULL</span>, rm_x = <span class='fl'>TRUE</span>, rm_y = <span class='fl'>TRUE</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
-a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or
+a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>word, freq</th>
@@ -332,24 +334,27 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <div class='dont-index'><p><a href='https://github.com/ecomfe/echarts-wordcloud'>official documentation</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>words</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>n</span> <span class='kw'>=</span> <span class='fl'>5000</span>) {
-  <span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/do.call'>do.call</a></span>(<span class='no'>paste0</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>replicate</a></span>(<span class='fl'>5</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>LETTERS</span>, <span class='no'>n</span>, <span class='fl'>TRUE</span>), <span class='fl'>FALSE</span>))
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='no'>a</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sprintf'>sprintf</a></span>(<span class='st'>"%04d"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='fl'>9999</span>, <span class='no'>n</span>, <span class='fl'>TRUE</span>)), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>LETTERS</span>, <span class='no'>n</span>, <span class='fl'>TRUE</span>))
+    <pre class="examples"><div class='input'><span class='kw'>words</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>n</span> = <span class='fl'>5000</span>) {
+  <span class='kw'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span>(<span class='kw'>paste0</span>, <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span>(<span class='fl'>5</span>, <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>LETTERS</span>, <span class='kw'>n</span>, <span class='fl'>TRUE</span>), <span class='fl'>FALSE</span>))
+  <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='kw'>a</span>, <span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span>(<span class='st'>"%04d"</span>, <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>9999</span>, <span class='kw'>n</span>, <span class='fl'>TRUE</span>)), <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>LETTERS</span>, <span class='kw'>n</span>, <span class='fl'>TRUE</span>))
 }
 
-<span class='no'>tf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>terms</span> <span class='kw'>=</span> <span class='fu'>words</span>(<span class='fl'>100</span>),
-  <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>100</span>, <span class='fl'>55</span>, <span class='fl'>10</span>)) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span>(-<span class='no'>freq</span>)
+<span class='kw'>tf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  terms = <span class='fu'>words</span>(<span class='fl'>100</span>),
+  freq = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>100</span>, <span class='fl'>55</span>, <span class='fl'>10</span>)
+) <span class='op'>%&gt;%</span>
+  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span>(<span class='op'>-</span><span class='kw'>freq</span>)
 
-<span class='no'>tf</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_color_range.html'>e_color_range</a></span>(<span class='no'>freq</span>, <span class='no'>color</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_cloud</span>(<span class='no'>terms</span>, <span class='no'>freq</span>, <span class='no'>color</span>, <span class='kw'>shape</span> <span class='kw'>=</span> <span class='st'>"circle"</span>, <span class='kw'>sizeRange</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>15</span>))</div></pre>
+<span class='kw'>tf</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_color_range</span>(<span class='kw'>freq</span>, <span class='kw'>color</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_charts</span>() <span class='op'>%&gt;%</span>
+  <span class='fu'>e_cloud</span>(<span class='kw'>terms</span>, <span class='kw'>freq</span>, <span class='kw'>color</span>, shape = <span class='st'>"circle"</span>, sizeRange = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>15</span>))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -364,6 +369,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
    </div>
 
@@ -386,6 +392,8 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 </script>
 
 
+
   </body>
 </html>
+
 

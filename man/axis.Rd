@@ -55,7 +55,7 @@ e_axis_formatter(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{serie}{Column name of serie to range the axis. If used the range of the serie is used as,
@@ -67,7 +67,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{formatter}{An axis formatter as returned by \code{\link{e_axis_formatter}}.}
 
-\item{margin}{Margin to apply to \code{serie}: \eqn{min = serie - margin} and 
+\item{margin}{Margin to apply to \code{serie}: \eqn{min = serie - margin} and
 \eqn{max = serie + margin}}
 
 \item{...}{Any other option to pass, check See Also section.}
@@ -84,8 +84,8 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Customise axis.
 }
 \details{
-The \code{e_axis_formatter} may not work in RStudio, 
-open the plot in your browser. It will display just fine in 
+The \code{e_axis_formatter} may not work in RStudio,
+open the plot in your browser. It will display just fine in
 Rmarkdown and Shiny.
 }
 \section{Functions}{
@@ -98,37 +98,35 @@ Rmarkdown and Shiny.
 
 \examples{
 # range axis based on serie
-cars \%>\% 
-  e_charts(speed) \%>\% 
-  e_line(dist) \%>\% 
-  e_x_axis(speed) \%>\% 
+cars \%>\%
+  e_charts(speed) \%>\%
+  e_line(dist) \%>\%
+  e_x_axis(speed) \%>\%
   e_y_axis(dist)
-  
+
 # use formatter
-cars \%>\% 
+cars \%>\%
   dplyr::mutate(
     speed = speed / 25
-  ) \%>\% 
-  e_charts(speed) \%>\% 
-  e_scatter(dist) \%>\% 
+  ) \%>\%
+  e_charts(speed) \%>\%
+  e_scatter(dist) \%>\%
   e_y_axis(
     formatter = e_axis_formatter("currency")
-  ) \%>\% 
+  ) \%>\%
   e_x_axis(
     formatter = e_axis_formatter("percent", digits = 0)
   )
 
 # plot all labels & rotate
-USArrests \%>\% 
-  head(10) \%>\% 
-  dplyr::mutate(State = row.names(.)) \%>\% 
-  e_charts(State) \%>\% 
-  e_area(Murder) \%>\% 
+USArrests \%>\%
+  head(10) \%>\%
+  dplyr::mutate(State = row.names(.)) \%>\%
+  e_charts(State) \%>\%
+  e_area(Murder) \%>\%
   e_x_axis(axisLabel = list(interval = 0, rotate = 45)) # rotate
-  
-  
 }
 \seealso{
-\href{https://echarts.apache.org/en/option.html#xAxis}{Additional x arguments}, 
+\href{https://echarts.apache.org/en/option.html#xAxis}{Additional x arguments},
 \href{https://echarts.apache.org/en/option.html#yAxis}{Additional y arguments}
 }

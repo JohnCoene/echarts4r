@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Render box — renderEcharts4rBox" />
 <meta property="og:description" content="Render an echarts4r box." />
-<meta property="og:image" content="" />
+<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 
 
 
@@ -84,9 +84,10 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -272,7 +273,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -283,13 +284,14 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Render box</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/boxes.R'><code>R/boxes.R</code></a></small>
     <div class="hidden name"><code>renderEcharts4rBox.Rd</code></div>
     </div>
 
@@ -297,14 +299,14 @@
     <p>Render an echarts4r box.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>renderEcharts4rBox</span>(<span class='no'>expr</span>, <span class='kw'>env</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(), <span class='kw'>quoted</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>renderEcharts4rBox</span>(<span class='kw'>expr</span>, env = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span>(), quoted = <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>expr</th>
-      <td><p>An expression that produces as <code><a href='echarts4rBox.html'>echarts4rBox</a></code>.</p></td>
+      <td><p>An expression that produces as <code>echarts4rBox</code>.</p></td>
     </tr>
     <tr>
       <th>env</th>
@@ -323,6 +325,7 @@
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by <a href='http://john-coene.com'>John Coene</a>.</p>
@@ -336,6 +339,7 @@
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
    </div>
 
@@ -358,6 +362,8 @@
 </script>
 
 
+
   </body>
 </html>
+
 

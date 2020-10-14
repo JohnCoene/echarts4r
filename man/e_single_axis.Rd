@@ -7,7 +7,7 @@
 e_single_axis(e, index = 0, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{index}{Index of axis to customise.}
@@ -24,13 +24,12 @@ df <- data.frame(
   size = runif(10, 3, 20)
 )
 
-df \%>\% 
-  e_charts(axis) \%>\% 
+df \%>\%
+  e_charts(axis) \%>\%
   e_single_axis() \%>\% # add the single axis
   e_scatter(
     value,
-    size, 
+    size,
     coord_system = "singleAxis"
-  ) 
-
+  )
 }

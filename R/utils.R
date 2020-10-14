@@ -346,6 +346,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 #' @return updated hierarchy in json list format
 #' 
 #' @noRd
+#' @keywords internal
 .build_sun <- function(e, styles = NULL, names = NULL, levels = NULL) {
 
   #' recursive json-list traversal, append style on matching level and/or name

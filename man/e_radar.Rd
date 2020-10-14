@@ -30,7 +30,7 @@ e_radar_(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{serie}{Column name of serie to plot.}
@@ -45,7 +45,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{...}{Any other option to pass, check See Also section.}
 
-\item{radar}{A \code{list} of options to pass to the \code{radar} 
+\item{radar}{A \code{list} of options to pass to the \code{radar}
 rather than the serie, see \href{https://echarts.apache.org/en/option.html#radar}{official documentation}
 alternatively, use the \code{\link{e_radar_opts}}.}
 }
@@ -59,10 +59,9 @@ df <- data.frame(
   z = runif(5, 3, 7)
 )
 
-df \%>\% 
-  e_charts(x) \%>\%  
-  e_radar(y, max = 7) \%>\% 
-  e_radar(z) \%>\% 
+df \%>\%
+  e_charts(x) \%>\%
+  e_radar(y, max = 7) \%>\%
+  e_radar(z) \%>\%
   e_tooltip(trigger = "item")
-
 }

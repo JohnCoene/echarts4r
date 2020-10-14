@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Highlight &amp; Downplay Proxy — e_highlight_p" />
 <meta property="og:description" content="Proxies to highlight and downplay series." />
-<meta property="og:image" content="" />
+<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 
 
 
@@ -84,9 +84,10 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -272,7 +273,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -283,13 +284,14 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Highlight &amp; Downplay Proxy</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/proxies.R'><code>R/proxies.R</code></a></small>
     <div class="hidden name"><code>highlight_proxy.Rd</code></div>
     </div>
 
@@ -297,16 +299,16 @@
     <p>Proxies to highlight and downplay series.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_highlight_p</span>(<span class='no'>proxy</span>, <span class='kw'>series_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>series_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>e_highlight_p</span>(<span class='kw'>proxy</span>, series_index = <span class='kw'>NULL</span>, series_name = <span class='kw'>NULL</span>)
 
-<span class='fu'>e_downplay_p</span>(<span class='no'>proxy</span>, <span class='kw'>series_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>series_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>e_downplay_p</span>(<span class='kw'>proxy</span>, series_index = <span class='kw'>NULL</span>, series_name = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>proxy</th>
-      <td><p>An echarts4r proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
+      <td><p>An echarts4r proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>series_index</th>
@@ -320,74 +322,75 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://shiny.rstudio.com'>shiny</a></span>)
 
- <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidPage</a></span>(
-   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidRow</a></span>(
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(
-       <span class='fl'>3</span>,
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"highlightmpg"</span>, <span class='st'>"Highlight MPG"</span>)
-     ),
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(
-       <span class='fl'>3</span>,
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"highlighthp"</span>, <span class='st'>"Highlight HP"</span>)
-     ),
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(
-       <span class='fl'>3</span>,
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"downplaympg"</span>, <span class='st'>"Downplay MPG"</span>)
-     ),
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(
-       <span class='fl'>3</span>,
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"downplayhp"</span>, <span class='st'>"Downplay HP"</span>)
-     )
-   ),
-   <span class='fu'><a href='echarts4r-shiny.html'>echarts4rOutput</a></span>(<span class='st'>"plot"</span>)
- )
+<span class='kw'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidPage</a></span>(
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidRow</a></span>(
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(
+      <span class='fl'>3</span>,
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"highlightmpg"</span>, <span class='st'>"Highlight MPG"</span>)
+    ),
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(
+      <span class='fl'>3</span>,
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"highlighthp"</span>, <span class='st'>"Highlight HP"</span>)
+    ),
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(
+      <span class='fl'>3</span>,
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"downplaympg"</span>, <span class='st'>"Downplay MPG"</span>)
+    ),
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(
+      <span class='fl'>3</span>,
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"downplayhp"</span>, <span class='st'>"Downplay HP"</span>)
+    )
+  ),
+  <span class='fu'>echarts4rOutput</span>(<span class='st'>"plot"</span>)
+)
 
- <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>){
-   <span class='no'>output</span>$<span class='no'>plot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span>({
-     <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
-       <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
-       <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>disp</span>) <span class='kw'>%&gt;%</span>
-       <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>hp</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"HP"</span>) <span class='co'># explicitly pass name</span>
-   })
+<span class='kw'>server</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>input</span>, <span class='kw'>output</span>, <span class='kw'>session</span>) {
+  <span class='kw'>output</span><span class='op'>$</span><span class='kw'>plot</span> <span class='op'>&lt;-</span> <span class='fu'>renderEcharts4r</span>({
+    <span class='kw'>mtcars</span> <span class='op'>%&gt;%</span>
+      <span class='fu'>e_charts</span>(<span class='kw'>mpg</span>) <span class='op'>%&gt;%</span>
+      <span class='fu'>e_line</span>(<span class='kw'>disp</span>) <span class='op'>%&gt;%</span>
+      <span class='fu'>e_line</span>(<span class='kw'>hp</span>, name = <span class='st'>"HP"</span>) <span class='co'># explicitly pass name</span>
+  })
 
-   <span class='co'># highlight</span>
+  <span class='co'># highlight</span>
 
-   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>highlightmpg</span>, {
-     <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"plot"</span>) <span class='kw'>%&gt;%</span>
-       <span class='fu'>e_highlight_p</span>(<span class='kw'>series_index</span> <span class='kw'>=</span> <span class='fl'>0</span>) <span class='co'># using index</span>
-   })
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='kw'>input</span><span class='op'>$</span><span class='kw'>highlightmpg</span>, {
+    <span class='fu'>echarts4rProxy</span>(<span class='st'>"plot"</span>) <span class='op'>%&gt;%</span>
+      <span class='fu'>e_highlight_p</span>(series_index = <span class='fl'>0</span>) <span class='co'># using index</span>
+  })
 
-   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>highlighthp</span>, {
-     <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"plot"</span>) <span class='kw'>%&gt;%</span>
-       <span class='fu'>e_highlight_p</span>(<span class='kw'>series_name</span> <span class='kw'>=</span> <span class='st'>"HP"</span>) <span class='co'># using name</span>
-   })
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='kw'>input</span><span class='op'>$</span><span class='kw'>highlighthp</span>, {
+    <span class='fu'>echarts4rProxy</span>(<span class='st'>"plot"</span>) <span class='op'>%&gt;%</span>
+      <span class='fu'>e_highlight_p</span>(series_name = <span class='st'>"HP"</span>) <span class='co'># using name</span>
+  })
 
-   <span class='co'># downplay</span>
+  <span class='co'># downplay</span>
 
-   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>downplaympg</span>, {
-     <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"plot"</span>) <span class='kw'>%&gt;%</span>
-       <span class='fu'>e_downplay_p</span>(<span class='kw'>series_name</span> <span class='kw'>=</span> <span class='st'>"disp"</span>)
-   })
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='kw'>input</span><span class='op'>$</span><span class='kw'>downplaympg</span>, {
+    <span class='fu'>echarts4rProxy</span>(<span class='st'>"plot"</span>) <span class='op'>%&gt;%</span>
+      <span class='fu'>e_downplay_p</span>(series_name = <span class='st'>"disp"</span>)
+  })
 
-   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>downplayhp</span>, {
-     <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"plot"</span>) <span class='kw'>%&gt;%</span>
-       <span class='fu'>e_downplay_p</span>(<span class='kw'>series_index</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-   })
- }
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='kw'>input</span><span class='op'>$</span><span class='kw'>downplayhp</span>, {
+    <span class='fu'>echarts4rProxy</span>(<span class='st'>"plot"</span>) <span class='op'>%&gt;%</span>
+      <span class='fu'>e_downplay_p</span>(series_index = <span class='fl'>1</span>)
+  })
+}
 
- <span class='kw'>if</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>())
-   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
-
-<span class='co'># }</span><div class='input'>
+<span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='kw'>ui</span>, <span class='kw'>server</span>)
+}
+}
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -402,6 +405,7 @@
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
    </div>
 
@@ -424,6 +428,8 @@
 </script>
 
 
+
   </body>
 </html>
+
 

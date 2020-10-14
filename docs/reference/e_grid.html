@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Grid — e_grid" />
 <meta property="og:description" content="Customise grid." />
-<meta property="og:image" content="" />
+<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 
 
 
@@ -84,9 +84,10 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -272,7 +273,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -283,13 +284,14 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Grid</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/grid.R'><code>R/grid.R</code></a></small>
     <div class="hidden name"><code>e_grid.Rd</code></div>
     </div>
 
@@ -297,15 +299,15 @@
     <p>Customise grid.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_grid</span>(<span class='no'>e</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_grid</span>(<span class='kw'>e</span>, index = <span class='kw'>NULL</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
-a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or
+a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>index</th>
@@ -322,19 +324,20 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#grid'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>USArrests</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>UrbanPop</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Assault</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_area.html'>e_area</a></span>(<span class='no'>Murder</span>, <span class='kw'>y.index</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>x.index</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='axis.html'>e_y_axis</a></span>(<span class='kw'>gridIndex</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='axis.html'>e_x_axis</a></span>(<span class='kw'>gridIndex</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_grid</span>(<span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"40%"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_grid</span>(<span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"40%"</span>, <span class='kw'>top</span> <span class='kw'>=</span> <span class='st'>"55%"</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>USArrests</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_charts</span>(<span class='kw'>UrbanPop</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_line</span>(<span class='kw'>Assault</span>, smooth = <span class='fl'>TRUE</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_area</span>(<span class='kw'>Murder</span>, y.index = <span class='fl'>1</span>, x.index = <span class='fl'>1</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_y_axis</span>(gridIndex = <span class='fl'>1</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_x_axis</span>(gridIndex = <span class='fl'>1</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_grid</span>(height = <span class='st'>"40%"</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_grid</span>(height = <span class='st'>"40%"</span>, top = <span class='st'>"55%"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -349,6 +352,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
    </div>
 
@@ -371,6 +375,8 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 </script>
 
 
+
   </body>
 </html>
+
 

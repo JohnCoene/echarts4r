@@ -306,7 +306,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
+      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or
 a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
@@ -333,18 +333,20 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='kw'>url</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"https://echarts.apache.org/examples/"</span>, 
- <span class='st'>"data-gl/asset/data/population.json"</span>)
+<span class='kw'>url</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(
+  <span class='st'>"https://echarts.apache.org/examples/"</span>,
+  <span class='st'>"data-gl/asset/data/population.json"</span>
+)
 <span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='kw'>jsonlite</span>::<span class='fu'><a href='https://rdrr.io/pkg/jsonlite/man/fromJSON.html'>fromJSON</a></span>(<span class='kw'>url</span>)
 <span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='kw'>data</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='kw'>data</span>) <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"lon"</span>, <span class='st'>"lat"</span>, <span class='st'>"value"</span>)
 
-<span class='kw'>data</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>lon</span>) <span class='op'>%&gt;%</span> 
+<span class='kw'>data</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_charts</span>(<span class='kw'>lon</span>) <span class='op'>%&gt;%</span>
   <span class='fu'>e_globe</span>(
     displacementScale = <span class='fl'>0.04</span>
-  ) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_bar_3d</span>(<span class='kw'>lat</span>, <span class='kw'>value</span>, <span class='st'>"globe"</span>) <span class='op'>%&gt;%</span> 
+  ) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_bar_3d</span>(<span class='kw'>lat</span>, <span class='kw'>value</span>, <span class='st'>"globe"</span>) <span class='op'>%&gt;%</span>
   <span class='fu'>e_visual_map</span>(show = <span class='fl'>FALSE</span>)
 }
 </div></pre>

@@ -20,7 +20,7 @@ e_disconnect_group(e, group = NULL)
 e_arrange(..., rows = NULL, cols = NULL, width = "xs", title = NULL)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{ids}{Scalar, vector or list of ids of chart to connect with.}
@@ -36,7 +36,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{title}{Title of charts.}
 }
 \value{
-\code{e_arrange}: in an interactive session, returns a \code{htmltools::browsable}, in \code{rmarkdown} returns a 
+\code{e_arrange}: in an interactive session, returns a \code{htmltools::browsable}, in \code{rmarkdown} returns a
 container (\code{htmltools::div}).
 }
 \description{
@@ -58,26 +58,26 @@ Connect charts together.
 
 \examples{
 # linked datazoom
-e1 <- cars \%>\% 
+e1 <- cars \%>\%
   e_charts(
     speed,
     height = 200
-  ) \%>\% 
-  e_scatter(dist) \%>\% 
-  e_datazoom(show = FALSE) \%>\% 
+  ) \%>\%
+  e_scatter(dist) \%>\%
+  e_datazoom(show = FALSE) \%>\%
   e_group("grp") # assign group
-  
-e2 <- cars \%>\% 
+
+e2 <- cars \%>\%
   e_charts(
     dist,
     height = 200
-  ) \%>\% 
-  e_scatter(speed) \%>\% 
-  e_datazoom() \%>\% 
-  e_group("grp") \%>\%  # assign group
+  ) \%>\%
+  e_scatter(speed) \%>\%
+  e_datazoom() \%>\%
+  e_group("grp") \%>\% # assign group
   e_connect_group("grp") # connect
 
-if(interactive())
- e_arrange(e1, e2, title = "Linked datazoom")
-
+if (interactive()) {
+  e_arrange(e1, e2, title = "Linked datazoom")
+}
 }

@@ -17,7 +17,7 @@ e_legend_toggle_select(e, name, btn = NULL)
 e_legend_scroll(e, scroll_index = NULL, legend_id = NULL, btn = NULL)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{name}{Legend name.}
@@ -32,16 +32,15 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Legend
 }
 \examples{
-e <- CO2 \%>\% 
-  group_by(Type) \%>\% 
-  e_charts(conc) \%>\% 
-  e_scatter(uptake) 
-  
-e \%>\% 
-  e_legend_unselect("Quebec")
-  
-e \%>\% 
-  e_legend_unselect("Quebec", btn = "btn") \%>\% 
-  e_button("btn", "Quebec")
+e <- CO2 \%>\%
+  group_by(Type) \%>\%
+  e_charts(conc) \%>\%
+  e_scatter(uptake)
 
+e \%>\%
+  e_legend_unselect("Quebec")
+
+e \%>\%
+  e_legend_unselect("Quebec", btn = "btn") \%>\%
+  e_button("btn", "Quebec")
 }

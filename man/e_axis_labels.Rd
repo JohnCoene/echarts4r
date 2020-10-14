@@ -7,7 +7,7 @@
 e_axis_labels(e, x = "", y = "")
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{x, y}{Labels of axes.}
@@ -16,12 +16,11 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Convenience function to add axis labels.
 }
 \examples{
-cars \%>\% 
- e_charts(speed) \%>\% 
- e_scatter(dist) \%>\% 
- e_axis_labels(
-   x = "speed",
-   y = "distance"
- )
-
+cars \%>\%
+  e_charts(speed) \%>\%
+  e_scatter(dist) \%>\%
+  e_axis_labels(
+    x = "speed",
+    y = "distance"
+  )
 }

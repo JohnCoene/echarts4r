@@ -7,7 +7,7 @@
 e_correlations(e, order = NULL, visual_map = TRUE, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{order}{Ordering method, passed to \link[corrplot]{corrMatOrder}.}
@@ -20,15 +20,14 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Correlation
 }
 \examples{
-cor(mtcars) \%>\% 
-  e_charts() \%>\% 
+cor(mtcars) \%>\%
+  e_charts() \%>\%
   e_correlations(
     order = "hclust",
     visual_map = FALSE
-  ) \%>\% 
+  ) \%>\%
   e_visual_map(
-   min = -1, 
-   max = 1
+    min = -1,
+    max = 1
   )
-
 }

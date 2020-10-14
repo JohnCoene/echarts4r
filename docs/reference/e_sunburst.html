@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Sunburst — e_sunburst" />
 <meta property="og:description" content="Build a sunburst." />
-<meta property="og:image" content="" />
+<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 
 
 
@@ -84,9 +84,10 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -272,7 +273,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -283,13 +284,14 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Sunburst</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add.R'><code>R/add.R</code></a>, <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add_.R'><code>R/add_.R</code></a></small>
     <div class="hidden name"><code>e_sunburst.Rd</code></div>
     </div>
 
@@ -298,23 +300,23 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_sunburst</span>(
-  <span class='no'>e</span>,
-  <span class='kw'>styles</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  <span class='kw'>e</span>,
+  styles = <span class='kw'>NULL</span>,
+  names = <span class='kw'>NULL</span>,
+  levels = <span class='kw'>NULL</span>,
+  rm_x = <span class='fl'>TRUE</span>,
+  rm_y = <span class='fl'>TRUE</span>,
+  <span class='kw'>...</span>
 )
 
 <span class='fu'>e_sunburst_</span>(
-  <span class='no'>e</span>,
-  <span class='kw'>styles</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  <span class='kw'>e</span>,
+  styles = <span class='kw'>NULL</span>,
+  names = <span class='kw'>NULL</span>,
+  levels = <span class='kw'>NULL</span>,
+  rm_x = <span class='fl'>TRUE</span>,
+  rm_y = <span class='fl'>TRUE</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -322,8 +324,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
-a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or
+a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>styles</th>
@@ -354,10 +356,10 @@ Such structure could be represented thru json lists or nested tibbles (data.fram
 Input data may contain styles, see <code>itemStyle</code> in examples <code>jsonl</code> and <code>df</code> below.
 The number of lists in the <code>styles</code> parameter should match the number of elements
 in <code>names</code> and/or <code>levels</code>. If both <code>names</code> and <code>levels</code> are present,
-name styles will take precedence over level styles.  
-Multiple names may have the same style, see <code><a href='https://www.rdocumentation.org/packages/base/topics/c'>c('land','river')</a></code> below.
-Multiple levels may have the same style, see <code><a href='https://www.rdocumentation.org/packages/base/topics/c'>c(3,4)</a></code> below.
-<code>styles</code> lists contain items such as <code>color</code>, or <code>borderColor</code> as specified in the 
+name styles will take precedence over level styles.
+Multiple names may have the same style, see <code><a href='https://rdrr.io/r/base/c.html'>c('land','river')</a></code> below.
+Multiple levels may have the same style, see <code><a href='https://rdrr.io/r/base/c.html'>c(3,4)</a></code> below.
+<code>styles</code> lists contain items such as <code>color</code>, or <code>borderColor</code> as specified in the
 <a href='https://echarts.apache.org/en/option.html#series-sunburst.data.itemStyle'>official documentation</a>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -365,20 +367,20 @@ Multiple levels may have the same style, see <code><a href='https://www.rdocumen
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-   <span class='co'># json list hierarchical data representation</span>
-<span class='no'>jsonl</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>jsonlite</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/jsonlite/topics/fromJSON'>fromJSON</a></span>(<span class='st'>'[
+<span class='co'># json list hierarchical data representation</span>
+<span class='kw'>jsonl</span> <span class='op'>&lt;-</span> <span class='kw'>jsonlite</span>::<span class='fu'><a href='https://rdrr.io/pkg/jsonlite/man/fromJSON.html'>fromJSON</a></span>(<span class='st'>'[
   {"name": "earth", "value": 30,
     "children": [
-      {"name": "land", "value":10, 
+      {"name": "land", "value":10,
         "children": [
-                {"name": "forest", "value": 3}, 
+                {"name": "forest", "value": 3},
                 {"name": "river", "value": 7}
         ]},
       {"name": "ocean", "value":20,
         "children": [
           {"name": "fish", "value": 10,
             "children": [
-              {"name": "shark", "value":2}, 
+              {"name": "shark", "value":2},
               {"name": "tuna", "value":6}
             ]},
           {"name": "kelp", "value": 5}
@@ -387,53 +389,85 @@ Multiple levels may have the same style, see <code><a href='https://www.rdocumen
   },
   {"name": "mars", "value": 30,
     "children": [
-      {"name": "crater", "value": 20}, 
+      {"name": "crater", "value": 20},
       {"name": "valley", "value": 20}
     ]},
   {"name": "venus", "value": 40, "itemStyle": {"color": "blue"} }
-]'</span>, <span class='kw'>simplifyDataFrame</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+]'</span>onl <- jsonlite::fromJSON('[
+  {"name": "earth", "value": 30,
+    "children": [
+      {"name": "land", "value":10,
+        "children": [
+                {"name": "forest", "value": 3},
+                {"name": "river", "value": 7}
+        ]},
+      {"name": "ocean", "value":20,
+        "children": [
+          {"name": "fish", "value": 10,
+            "children": [
+              {"name": "shark", "value":2},
+              {"name": "tuna", "value":6}
+            ]},
+          {"name": "kelp", "value": 5}
+        ]}
+    ]
+  },
+  {"name": "mars", "value": 30,
+    "children": [
+      {"name": "crater", "value": 20},
+      {"name": "valley", "value": 20}
+    ]},
+  {"name": "venus", "value": 40, "itemStyle": {"color": "blue"} }
+]', simplifyDataFrame = <span class='fl'>FALSE</span>)
 
-<span class='no'>jsonl</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'>e_sunburst</span>()     <span class='co'># demo</span>
+<span class='kw'>jsonl</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_charts</span>() <span class='op'>%&gt;%</span>
+  <span class='fu'>e_sunburst</span>() <span class='co'># demo</span>
 
 
-   <span class='co'># tibble hierarchical data representation</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"earth"</span>, <span class='st'>"mars"</span>, <span class='st'>"venus"</span>), <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>30</span>, <span class='fl'>40</span>, <span class='fl'>30</span>),        <span class='co'># 1st level</span>
-  <span class='kw'>itemStyle</span> <span class='kw'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, <span class='st'>'red'</span>, <span class='st'>'blue'</span>)),     <span class='co'># embedded styles, optional</span>
-  <span class='kw'>children</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"land"</span>, <span class='st'>"ocean"</span>), <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>10</span>,<span class='fl'>20</span>),             <span class='co'># 2nd level</span>
-           <span class='kw'>children</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-             <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"forest"</span>, <span class='st'>"river"</span>), <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>3</span>,<span class='fl'>7</span>)),   <span class='co'># 3rd level </span>
-             <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"fish"</span>, <span class='st'>"kelp"</span>), <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>10</span>,<span class='fl'>5</span>),
-                    <span class='kw'>children</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-                      <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"shark"</span>, <span class='st'>"tuna"</span>), <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>6</span>)),  <span class='co'># 4th level </span>
-                      <span class='kw'>NULL</span>  <span class='co'># kelp</span>
-                    ))
-           )),
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"crater"</span>, <span class='st'>"valley"</span>), <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>20</span>,<span class='fl'>20</span>)),
-    <span class='kw'>NULL</span>  <span class='co'># venus</span>
+<span class='co'># tibble hierarchical data representation</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://dplyr.tidyverse.org'>dplyr</a></span>)
+<span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span>(
+  name = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"earth"</span>, <span class='st'>"mars"</span>, <span class='st'>"venus"</span>), value = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>30</span>, <span class='fl'>40</span>, <span class='fl'>30</span>), <span class='co'># 1st level</span>
+  itemStyle = <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span>(color = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='st'>"red"</span>, <span class='st'>"blue"</span>)), <span class='co'># embedded styles, optional</span>
+  children = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+    <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span>(
+      name = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"land"</span>, <span class='st'>"ocean"</span>), value = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>20</span>), <span class='co'># 2nd level</span>
+      children = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+        <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span>(name = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"forest"</span>, <span class='st'>"river"</span>), value = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>7</span>)), <span class='co'># 3rd level</span>
+        <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span>(
+          name = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"fish"</span>, <span class='st'>"kelp"</span>), value = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>5</span>),
+          children = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+            <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span>(name = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"shark"</span>, <span class='st'>"tuna"</span>), value = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>6</span>)), <span class='co'># 4th level</span>
+            <span class='kw'>NULL</span> <span class='co'># kelp</span>
+          )
+        )
+      )
+    ),
+    <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span>(name = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"crater"</span>, <span class='st'>"valley"</span>), value = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>20</span>)),
+    <span class='kw'>NULL</span> <span class='co'># venus</span>
   )
 )
 
-<span class='no'>df</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_sunburst</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='theme.html'>e_theme</a></span>(<span class='st'>"westeros"</span>)
+<span class='kw'>df</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_charts</span>() <span class='op'>%&gt;%</span>
+  <span class='fu'>e_sunburst</span>() <span class='op'>%&gt;%</span>
+  <span class='fu'>e_theme</span>(<span class='st'>"westeros"</span>)
 
 <span class='co'># with styles</span>
-<span class='no'>myStyles</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>color</span><span class='kw'>=</span><span class='st'>'green'</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>color</span><span class='kw'>=</span><span class='st'>'magenta'</span>))   <span class='co'># custom styles defined</span>
-<span class='no'>myNames</span>  <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'land'</span>,<span class='st'>'river'</span>), <span class='st'>'crater'</span>)    <span class='co'># names to style</span>
-<span class='no'>myLevels</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>2</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>3</span>,<span class='fl'>4</span>))                      <span class='co'># hierarchical levels to style</span>
+<span class='kw'>myStyles</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(color = <span class='st'>"green"</span>), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(color = <span class='st'>"magenta"</span>)) <span class='co'># custom styles defined</span>
+<span class='kw'>myNames</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"land"</span>, <span class='st'>"river"</span>), <span class='st'>"crater"</span>) <span class='co'># names to style</span>
+<span class='kw'>myLevels</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>2</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>4</span>)) <span class='co'># hierarchical levels to style</span>
 
-<span class='no'>df</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_sunburst</span>(<span class='no'>myStyles</span>, <span class='no'>myNames</span>, <span class='no'>myLevels</span>)</div></pre>
+<span class='kw'>df</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_charts</span>() <span class='op'>%&gt;%</span>
+  <span class='fu'>e_sunburst</span>(<span class='kw'>myStyles</span>, <span class='kw'>myNames</span>, <span class='kw'>myLevels</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -448,6 +482,7 @@ Multiple levels may have the same style, see <code><a href='https://www.rdocumen
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
    </div>
 
@@ -470,6 +505,8 @@ Multiple levels may have the same style, see <code><a href='https://www.rdocumen
 </script>
 
 
+
   </body>
 </html>
+
 

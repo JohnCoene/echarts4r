@@ -14,7 +14,7 @@ e_timeline_serie(e, ..., index = 1)
 e_timeline_on_serie(e, ..., serie_index)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{axis_type}{Type of axis, \code{time}, \code{value}, or \code{category}.}
@@ -39,26 +39,25 @@ Set timeline options
 
 \examples{
 # general options
-iris \%>\% 
-  group_by(Species) \%>\% 
-  e_charts(Sepal.Length, timeline = TRUE) \%>\% 
-  e_line(Sepal.Width) \%>\% 
+iris \%>\%
+  group_by(Species) \%>\%
+  e_charts(Sepal.Length, timeline = TRUE) \%>\%
+  e_line(Sepal.Width) \%>\%
   e_timeline_opts(
     autoPlay = TRUE,
     rewind = TRUE
   )
-  
-# serie options
-iris \%>\% 
-  group_by(Species) \%>\% 
-  e_charts(Sepal.Length, timeline = TRUE) \%>\% 
-  e_line(Sepal.Width) \%>\% 
-    e_timeline_serie(
-      title = list(
-        list(text = "setosa"),
-        list(text = "versicolor"),
-        list(text = "virginica")
-      )
-    )
 
+# serie options
+iris \%>\%
+  group_by(Species) \%>\%
+  e_charts(Sepal.Length, timeline = TRUE) \%>\%
+  e_line(Sepal.Width) \%>\%
+  e_timeline_serie(
+    title = list(
+      list(text = "setosa"),
+      list(text = "versicolor"),
+      list(text = "virginica")
+    )
+  )
 }

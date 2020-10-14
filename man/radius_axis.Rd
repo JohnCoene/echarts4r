@@ -11,7 +11,7 @@ e_radius_axis(e, serie, show = TRUE, ...)
 e_radius_axis_(e, serie = NULL, show = TRUE, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{serie}{Serie to use as axis labels.}
@@ -26,13 +26,12 @@ Customise radius axis.
 \examples{
 df <- data.frame(x = LETTERS[1:10], y = seq(1, 20, by = 2))
 
-df \%>\% 
-  e_charts(x) \%>\% 
-  e_polar() \%>\% 
-  e_angle_axis() \%>\% 
-  e_radius_axis(x) \%>\% 
-  e_bar(y, coord.system = "polar") 
-
+df \%>\%
+  e_charts(x) \%>\%
+  e_polar() \%>\%
+  e_angle_axis() \%>\%
+  e_radius_axis(x) \%>\%
+  e_bar(y, coord.system = "polar")
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#radiusAxis}{Additional arguments}

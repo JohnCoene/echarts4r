@@ -7,7 +7,7 @@
 e_geo(e, map = "world", ..., rm_x = TRUE, rm_y = TRUE)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{map}{Map type.}
@@ -21,22 +21,23 @@ Initialise geo.
 }
 \examples{
 flights <- read.csv(
-  paste0("https://raw.githubusercontent.com/plotly/datasets/",
-         "master/2011_february_aa_flight_paths.csv")
+  paste0(
+    "https://raw.githubusercontent.com/plotly/datasets/",
+    "master/2011_february_aa_flight_paths.csv"
+  )
 )
 
-flights \%>\% 
-  e_charts() \%>\% 
-  e_geo() \%>\% 
+flights \%>\%
+  e_charts() \%>\%
+  e_geo() \%>\%
   e_lines(
-    start_lon, 
-    start_lat, 
-    end_lon, 
+    start_lon,
+    start_lat,
+    end_lon,
     end_lat,
     name = "flights",
     lineStyle = list(normal = list(curveness = 0.3))
-   )
-
+  )
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#geo}{Additional arguments}

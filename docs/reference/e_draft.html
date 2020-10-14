@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Draft — e_draft" />
 <meta property="og:description" content="Add a draft watermark to your graph." />
-<meta property="og:image" content="" />
+<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 
 
 
@@ -84,9 +84,10 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -272,7 +273,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -283,13 +284,14 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Draft</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/graphic.R'><code>R/graphic.R</code></a></small>
     <div class="hidden name"><code>e_draft.Rd</code></div>
     </div>
 
@@ -297,15 +299,15 @@
     <p>Add a draft watermark to your graph.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_draft</span>(<span class='no'>e</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"DRAFT"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"120px"</span>, <span class='kw'>opacity</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"#d3d3d3"</span>)</pre>
+    <pre class="usage"><span class='fu'>e_draft</span>(<span class='kw'>e</span>, text = <span class='st'>"DRAFT"</span>, size = <span class='st'>"120px"</span>, opacity = <span class='fl'>0.4</span>, color = <span class='st'>"#d3d3d3"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
-a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or
+a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>text</th>
@@ -323,15 +325,16 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>cars</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>speed</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>dist</span>) <span class='kw'>%&gt;%</span>
+    <pre class="examples"><div class='input'><span class='kw'>cars</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_charts</span>(<span class='kw'>speed</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_scatter</span>(<span class='kw'>dist</span>) <span class='op'>%&gt;%</span>
   <span class='fu'>e_draft</span>()</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -346,6 +349,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
    </div>
 
@@ -368,6 +372,8 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 </script>
 
 
+
   </body>
 </html>
+
 

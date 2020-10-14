@@ -50,57 +50,54 @@ e_append2_p_(
 Append data dynamically.
 }
 \details{
-Currently not all types of series supported incremental rendering when using appendData. 
-Only these types of series support it: \code{\link{e_scatter}} and \code{\link{e_line}} of pure echarts, and 
+Currently not all types of series supported incremental rendering when using appendData.
+Only these types of series support it: \code{\link{e_scatter}} and \code{\link{e_line}} of pure echarts, and
 \code{\link{e_scatter_3d}}, and \code{\link{e_line_3d}} of echarts-gl.
 }
 \examples{
 \dontrun{
-  library(shiny)
-  
-  ui <- fluidPage(
-    actionButton("add", "Add Data to y"),
-    echarts4rOutput("plot"),
-    h4("Brush"),
-    verbatimTextOutput("selected"),
-    h4("Legend select change"),
-    verbatimTextOutput("legend")
-  )
-  
-  server <- function(input, output, session){
-  
-    data <- data.frame(x = rnorm(10, 5, 3), y = rnorm(10, 50, 12), z = rnorm(10, 5, 20))
-    
-    react <- eventReactive(input$add, {
-      set.seed(sample(1:1000, 1))
-      data.frame(x = rnorm(10, 5, 2), y = rnorm(10, 50, 10), z = rnorm(10, 5, 20))
-    })
-    
-    output$plot <- renderEcharts4r({
-      data \%>\% 
-       e_charts(x) \%>\% 
-       e_scatter(y, z, scale = NULL) \%>\%
-       e_scatter(z) \%>\% 
-       e_brush()
-    })
-    
-    observeEvent(input$add, {
-      echarts4rProxy("plot") \%>\% 
-        e_append2_p(0, react(), x, y, z)
-    })
-    
-    output$selected <- renderPrint({
-      input$plot_brush
-    })
-    
-    output$legend <- renderPrint({
-      input$plot_legend_change
-    })
-    
-  }
-  
-  shinyApp(ui, server)
-  
+library(shiny)
+
+ui <- fluidPage(
+  actionButton("add", "Add Data to y"),
+  echarts4rOutput("plot"),
+  h4("Brush"),
+  verbatimTextOutput("selected"),
+  h4("Legend select change"),
+  verbatimTextOutput("legend")
+)
+
+server <- function(input, output, session) {
+  data <- data.frame(x = rnorm(10, 5, 3), y = rnorm(10, 50, 12), z = rnorm(10, 5, 20))
+
+  react <- eventReactive(input$add, {
+    set.seed(sample(1:1000, 1))
+    data.frame(x = rnorm(10, 5, 2), y = rnorm(10, 50, 10), z = rnorm(10, 5, 20))
+  })
+
+  output$plot <- renderEcharts4r({
+    data \%>\%
+      e_charts(x) \%>\%
+      e_scatter(y, z, scale = NULL) \%>\%
+      e_scatter(z) \%>\%
+      e_brush()
+  })
+
+  observeEvent(input$add, {
+    echarts4rProxy("plot") \%>\%
+      e_append2_p(0, react(), x, y, z)
+  })
+
+  output$selected <- renderPrint({
+    input$plot_brush
+  })
+
+  output$legend <- renderPrint({
+    input$plot_legend_change
+  })
+}
+
+shinyApp(ui, server)
 }
 
 }

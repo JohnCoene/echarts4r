@@ -45,7 +45,7 @@ USArrests \%>\%
   dplyr::mutate(states = row.names(.)) \%>\%
   e_charts(states) \%>\%
   e_map_register("USA", json) \%>\%
-  e_map(Murder, map = "USA") \%>\% 
+  e_map(Murder, map = "USA") \%>\%
   e_visual_map(Murder)
 }
 

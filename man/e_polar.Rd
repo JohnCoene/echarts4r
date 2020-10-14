@@ -7,7 +7,7 @@
 e_polar(e, show = TRUE, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{show}{Whether to display the axis.}
@@ -20,13 +20,12 @@ Customise polar coordinates.
 \examples{
 df <- data.frame(x = 1:10, y = seq(1, 20, by = 2))
 
-df \%>\% 
-  e_charts(x) \%>\% 
-  e_polar() \%>\% 
-  e_angle_axis() \%>\% 
-  e_radius_axis() \%>\% 
-  e_line(y, coord.system = "polar", smooth = TRUE) 
-
+df \%>\%
+  e_charts(x) \%>\%
+  e_polar() \%>\%
+  e_angle_axis() \%>\%
+  e_radius_axis() \%>\%
+  e_line(y, coord.system = "polar", smooth = TRUE)
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#polar}{Additional arguments}

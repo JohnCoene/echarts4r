@@ -18,7 +18,7 @@ e_show_loading(
 e_hide_loading(e)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{hide_overlay}{Hides the white overaly that appears in shiny when a plot is recalculating.}
@@ -54,26 +54,27 @@ ui <- fluidPage(
   )
 )
 
-server <- function(input, output){
+server <- function(input, output) {
   data <- eventReactive(input$update, {
     data.frame(
       x = 1:10,
       y = rnorm(10)
     )
   })
-  
+
   output$plot <- renderEcharts4r({
-    data() \%>\% 
-      e_charts(x) \%>\% 
+    data() \%>\%
+      e_charts(x) \%>\%
       e_bar(y)
   })
 }
 
-if(interactive())
- shinyApp(ui, server)
+if (interactive()) {
+  shinyApp(ui, server)
+}
 
 # add loading
-server <- function(input, output){
+server <- function(input, output) {
   data <- eventReactive(input$update, {
     Sys.sleep(1) # sleep one second to show loading
     data.frame(
@@ -81,17 +82,18 @@ server <- function(input, output){
       y = rnorm(10)
     )
   })
-  
+
   output$plot <- renderEcharts4r({
-    data() \%>\% 
-      e_charts(x) \%>\% 
-      e_bar(y) \%>\% 
+    data() \%>\%
+      e_charts(x) \%>\%
+      e_bar(y) \%>\%
       e_show_loading()
   })
 }
 
-if(interactive())
- shinyApp(ui, server)
+if (interactive()) {
+  shinyApp(ui, server)
+}
 }
 
 }

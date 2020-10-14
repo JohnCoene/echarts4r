@@ -7,7 +7,7 @@
 e_get_data(e)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 }
 \value{
@@ -17,13 +17,12 @@ A list of data.frames, one for each group.
 Get data passed to \code{\link{e_charts}}.
 }
 \examples{
-echart <- cars \%>\% 
-  e_charts(speed) \%>\% 
-  e_scatter(dist) \%>\% 
-  e_lm(dist ~ speed) 
-  
+echart <- cars \%>\%
+  e_charts(speed) \%>\%
+  e_scatter(dist) \%>\%
+  e_lm(dist ~ speed)
+
 echart
 
 e_get_data(echart)[[1]]
-
 }

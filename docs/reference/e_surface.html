@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Surface — e_surface" />
 <meta property="og:description" content="Add a surface plot." />
-<meta property="og:image" content="" />
+<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 
 
 
@@ -84,9 +84,10 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -272,7 +273,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -283,13 +284,14 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Surface</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add.R'><code>R/add.R</code></a>, <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add_.R'><code>R/add_.R</code></a></small>
     <div class="hidden name"><code>e_surface.Rd</code></div>
     </div>
 
@@ -297,17 +299,17 @@
     <p>Add a surface plot.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_surface</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='no'>bind</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>e_surface</span>(<span class='kw'>e</span>, <span class='kw'>y</span>, <span class='kw'>z</span>, <span class='kw'>bind</span>, name = <span class='kw'>NULL</span>, rm_x = <span class='fl'>TRUE</span>, rm_y = <span class='fl'>TRUE</span>, <span class='kw'>...</span>)
 
-<span class='fu'>e_surface_</span>(<span class='no'>e</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>bind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>e_surface_</span>(<span class='kw'>e</span>, <span class='kw'>y</span>, <span class='kw'>z</span>, bind = <span class='kw'>NULL</span>, name = <span class='kw'>NULL</span>, rm_x = <span class='fl'>TRUE</span>, rm_y = <span class='fl'>TRUE</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
-a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or
+a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>y, z</th>
@@ -333,21 +335,22 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"volcano"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"volcano"</span>)
 
-<span class='no'>surface</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/table'>as.table</a></span>(<span class='no'>volcano</span>))
-<span class='no'>surface</span>$<span class='no'>Var1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>as.numeric</a></span>(<span class='no'>surface</span>$<span class='no'>Var1</span>)
-<span class='no'>surface</span>$<span class='no'>Var2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>as.numeric</a></span>(<span class='no'>surface</span>$<span class='no'>Var2</span>)
+<span class='kw'>surface</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/table.html'>as.table</a></span>(<span class='kw'>volcano</span>))
+<span class='kw'>surface</span><span class='op'>$</span><span class='kw'>Var1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='kw'>surface</span><span class='op'>$</span><span class='kw'>Var1</span>)
+<span class='kw'>surface</span><span class='op'>$</span><span class='kw'>Var2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='kw'>surface</span><span class='op'>$</span><span class='kw'>Var2</span>)
 
-<span class='no'>surface</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Var1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_surface</span>(<span class='no'>Var2</span>, <span class='no'>Freq</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='no'>Freq</span>)</div></pre>
+<span class='kw'>surface</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_charts</span>(<span class='kw'>Var1</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_surface</span>(<span class='kw'>Var2</span>, <span class='kw'>Freq</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'>e_visual_map</span>(<span class='kw'>Freq</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -362,6 +365,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
    </div>
 
@@ -384,6 +388,8 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 </script>
 
 
+
   </body>
 </html>
+
 

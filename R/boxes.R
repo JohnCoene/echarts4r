@@ -29,7 +29,7 @@
 #'   })
 #' }
 #'
-#' if (interactive()) {
+#' \dontrun{
 #'   shinyApp(ui, server)
 #' }
 #' @seealso \code{\link{renderEcharts4rBox}}, \code{\link{echarts4rBoxOutput}}
