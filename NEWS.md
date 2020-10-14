@@ -14,6 +14,7 @@
 - Remove `e_facet`, was wrongly exported [#212](https://github.com/JohnCoene/echarts4r/issues/212)
 - Add tests, thanks to Etienne Bacher, see [#201](https://github.com/JohnCoene/echarts4r/pull/201)
 - Add styler, thanks to Wei Su see [#211](https://github.com/JohnCoene/echarts4r/pull/211)
+- Removed the {d3r} import: no longer necessary.
 
 # echarts4r 0.3.2
 

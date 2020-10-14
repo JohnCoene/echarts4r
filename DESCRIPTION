@@ -16,7 +16,6 @@ Imports:
   dplyr (>= 0.7.0),
   purrr,
   countrycode,
-  d3r,
   broom,
   shiny,
   scales,
