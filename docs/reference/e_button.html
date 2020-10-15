@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Button — e_button" />
 <meta property="og:description" content="Add a button to your visualisation." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -273,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -284,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Button</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/button.R'><code>R/button.R</code></a></small>
+    
     <div class="hidden name"><code>e_button.Rd</code></div>
     </div>
 
@@ -299,15 +297,15 @@
     <p>Add a button to your visualisation.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_button</span>(<span class='kw'>e</span>, <span class='kw'>id</span>, <span class='kw'>...</span>, position = <span class='st'>"top"</span>, tag = <span class='kw'>htmltools</span>::<span class='kw'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>tags</a></span><span class='op'>$</span><span class='kw'>button</span>)</pre>
+    <pre class="usage"><span class='fu'>e_button</span>(<span class='no'>e</span>, <span class='no'>id</span>, <span class='no'>...</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"top"</span>, <span class='kw'>tag</span> <span class='kw'>=</span> <span class='kw pkg'>htmltools</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/htmltools/topics/builder'>tags</a></span>$<span class='no'>button</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>id</th>
@@ -323,25 +321,24 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>tag</th>
-      <td><p>A Valid <code><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>htmltools::tags</a></code> function.</p></td>
+      <td><p>A Valid <code><a href='https://www.rdocumentation.org/packages/htmltools/topics/builder'>htmltools::tags</a></code> function.</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>iris</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>Species</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_charts</span>(<span class='kw'>Sepal.Length</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_line</span>(<span class='kw'>Sepal.Width</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_line</span>(<span class='kw'>Petal.Length</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_highlight</span>(series_name = <span class='st'>"setosa"</span>, btn = <span class='st'>"myBtn"</span>) <span class='op'>%&gt;%</span>
+    <pre class="examples"><div class='input'><span class='no'>iris</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Sepal.Length</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Sepal.Width</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Petal.Length</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='highlight_action.html'>e_highlight</a></span>(<span class='kw'>series_name</span> <span class='kw'>=</span> <span class='st'>"setosa"</span>, <span class='kw'>btn</span> <span class='kw'>=</span> <span class='st'>"myBtn"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_button</span>(<span class='st'>"myBtn"</span>, <span class='st'>"highlight stuff"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -356,7 +353,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -379,8 +375,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 </script>
 
 
-
   </body>
 </html>
-
 

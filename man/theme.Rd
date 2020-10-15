@@ -98,5 +98,5 @@ p \%>\% e_theme("chalk")
 p \%>\% e_theme_custom('{"color":["#ff715e","#ffaf51"]}')
 }
 \seealso{
-\href{http://echarts.baidu.com/theme-builder/}{create your own theme}.
+\href{https://echarts.apache.org/en/theme-builder.html}{create your own theme}.
 }

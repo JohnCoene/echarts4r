@@ -43,6 +43,6 @@ data \%>\%
 
 }
 \seealso{
-\href{http://www.echartsjs.com/option-gl.html#mapbox3D.style}{Official documentation},
-\href{https://www.mapbox.com/mapbox-gl-js/api/}{mapbox documentation}
+\href{https://echarts.apache.org/en/option-gl.html#mapbox3D.style}{Official documentation},
+\href{https://docs.mapbox.com/mapbox-gl-js/api/}{mapbox documentation}
 }

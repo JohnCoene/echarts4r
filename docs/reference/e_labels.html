@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Format labels — e_labels" />
 <meta property="og:description" content="Format labels" />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -273,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -284,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Format labels</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/helpers.R'><code>R/helpers.R</code></a></small>
+    
     <div class="hidden name"><code>e_labels.Rd</code></div>
     </div>
 
@@ -299,15 +297,15 @@
     <p>Format labels</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_labels</span>(<span class='kw'>e</span>, show = <span class='fl'>TRUE</span>, position = <span class='st'>"top"</span>, <span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_labels</span>(<span class='no'>e</span>, <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"top"</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>show</th>
@@ -328,29 +326,28 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_chart</span>(<span class='kw'>wt</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_scatter</span>(<span class='kw'>qsec</span>, <span class='kw'>cyl</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_labels</span>(fontSize = <span class='fl'>9</span>)
+    <pre class="examples"><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_chart</a></span>(<span class='no'>wt</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>qsec</span>, <span class='no'>cyl</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_labels</span>(<span class='kw'>fontSize</span> <span class='kw'>=</span> <span class='fl'>9</span>)
 
-<span class='kw'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>cyl</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_chart</span>(<span class='kw'>wt</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_scatter</span>(<span class='kw'>qsec</span>, <span class='kw'>mpg</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_labels</span>(fontSize = <span class='fl'>9</span>)
+<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>cyl</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_chart</a></span>(<span class='no'>wt</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>qsec</span>, <span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_labels</span>(<span class='kw'>fontSize</span> <span class='kw'>=</span> <span class='fl'>9</span>)
 
 <span class='co'># timeline</span>
-<span class='kw'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>cyl</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_chart</span>(<span class='kw'>wt</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_scatter</span>(<span class='kw'>qsec</span>, <span class='kw'>mpg</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_labels</span>(fontSize = <span class='fl'>9</span>)</div></pre>
+<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>cyl</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_chart</a></span>(<span class='no'>wt</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>qsec</span>, <span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_labels</span>(<span class='kw'>fontSize</span> <span class='kw'>=</span> <span class='fl'>9</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -365,7 +362,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -388,8 +384,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 </script>
 
 
-
   </body>
 </html>
-
 

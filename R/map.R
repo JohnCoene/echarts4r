@@ -89,7 +89,7 @@
 #'
 #' @seealso \code{\link{e_country_names}},
 #' \href{https://echarts.apache.org/en/option.html#series-map}{Additional map arguments},
-#' \href{http://echarts.baidu.com/option-gl.html#series-map3D}{Additional map 3D arguments}
+#' \href{https://echarts.apache.org/en/option-gl.html#series-map3D}{Additional map 3D arguments}
 #'
 #' @rdname map
 #' @export
@@ -317,11 +317,11 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
 
 #' Register map
 #'
-#' Register a \href{http://geojson.org/}{geojson} map.
+#' Register a \href{https://geojson.org/}{geojson} map.
 #'
 #' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
 #' @param name Name of map, to use in \code{\link{e_map}}.
-#' @param json \href{http://geojson.org/}{Geojson}.
+#' @param json \href{https://geojson.org/}{Geojson}.
 #' @param async Whether to read the file asynchronously.
 #' @param session A valid Shiny session.
 #'
@@ -332,7 +332,7 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
 #'
 #' @examples
 #' \dontrun{
-#' json <- jsonlite::read_json("http://www.echartsjs.com/gallery/data/asset/geo/USA.json")
+#' json <- jsonlite::read_json("https://echarts.apache.org/examples/data/asset/geo/USA.json")
 #'
 #' USArrests %>%
 #'   dplyr::mutate(states = row.names(.)) %>%
@@ -423,8 +423,8 @@ e_map_register_ui <- function(name, json, async = FALSE) {
 #'
 #' @note Mapbox may not work properly in the RSudio console.
 #'
-#' @seealso \href{http://www.echartsjs.com/option-gl.html#mapbox3D.style}{Official documentation},
-#' \href{https://www.mapbox.com/mapbox-gl-js/api/}{mapbox documentation}
+#' @seealso \href{https://echarts.apache.org/en/option-gl.html#mapbox3D.style}{Official documentation},
+#' \href{https://docs.mapbox.com/mapbox-gl-js/api/}{mapbox documentation}
 #'
 #' @name mapbox
 #' @export

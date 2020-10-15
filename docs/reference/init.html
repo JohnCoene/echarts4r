@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Initialise — init" />
 <meta property="og:description" content="Initialise a chart." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -273,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -284,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Initialise</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/echarts4r.R'><code>R/echarts4r.R</code></a></small>
+    
     <div class="hidden name"><code>init.Rd</code></div>
     </div>
 
@@ -300,48 +298,48 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_charts</span>(
-  <span class='kw'>data</span>,
-  <span class='kw'>x</span>,
-  width = <span class='kw'>NULL</span>,
-  height = <span class='kw'>NULL</span>,
-  elementId = <span class='kw'>NULL</span>,
-  dispose = <span class='fl'>TRUE</span>,
-  draw = <span class='fl'>TRUE</span>,
-  renderer = <span class='st'>"canvas"</span>,
-  timeline = <span class='fl'>FALSE</span>,
-  <span class='kw'>...</span>,
-  reorder = <span class='fl'>TRUE</span>
+  <span class='no'>data</span>,
+  <span class='no'>x</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dispose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>draw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>renderer</span> <span class='kw'>=</span> <span class='st'>"canvas"</span>,
+  <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>reorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )
 
 <span class='fu'>e_charts_</span>(
-  <span class='kw'>data</span>,
-  x = <span class='kw'>NULL</span>,
-  width = <span class='kw'>NULL</span>,
-  height = <span class='kw'>NULL</span>,
-  elementId = <span class='kw'>NULL</span>,
-  dispose = <span class='fl'>TRUE</span>,
-  draw = <span class='fl'>TRUE</span>,
-  renderer = <span class='st'>"canvas"</span>,
-  timeline = <span class='fl'>FALSE</span>,
-  <span class='kw'>...</span>,
-  reorder = <span class='fl'>TRUE</span>
+  <span class='no'>data</span>,
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dispose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>draw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>renderer</span> <span class='kw'>=</span> <span class='st'>"canvas"</span>,
+  <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>reorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )
 
 <span class='fu'>e_chart</span>(
-  <span class='kw'>data</span>,
-  <span class='kw'>x</span>,
-  width = <span class='kw'>NULL</span>,
-  height = <span class='kw'>NULL</span>,
-  elementId = <span class='kw'>NULL</span>,
-  dispose = <span class='fl'>TRUE</span>,
-  draw = <span class='fl'>TRUE</span>,
-  renderer = <span class='st'>"canvas"</span>,
-  timeline = <span class='fl'>FALSE</span>,
-  <span class='kw'>...</span>,
-  reorder = <span class='fl'>TRUE</span>
+  <span class='no'>data</span>,
+  <span class='no'>x</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dispose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>draw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>renderer</span> <span class='kw'>=</span> <span class='st'>"canvas"</span>,
+  <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>reorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )
 
-<span class='fu'>e_data</span>(<span class='kw'>e</span>, <span class='kw'>data</span>, <span class='kw'>x</span>)</pre>
+<span class='fu'>e_data</span>(<span class='no'>e</span>, <span class='no'>data</span>, <span class='no'>x</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -370,7 +368,7 @@ string and have <code>'px'</code> appended.</p></td>
     </tr>
     <tr>
       <th>draw</th>
-      <td><p>Whether to draw the chart, intended to be used with <code>e_draw_p</code>.</p></td>
+      <td><p>Whether to draw the chart, intended to be used with <code><a href='e_draw_p.html'>e_draw_p</a></code>.</p></td>
     </tr>
     <tr>
       <th>renderer</th>
@@ -397,53 +395,50 @@ string and have <code>'px'</code> appended.</p></td>
     <h2 class="hasAnchor" id="timeline"><a class="anchor" href="#timeline"></a>Timeline</h2>
 
     
-
-<p>The timeline feature currently supports the following chart types.</p><ul>
-<li><p><code>e_bar</code></p></li>
-<li><p><code>e_line</code></p></li>
-<li><p><code>e_step</code></p></li>
-<li><p><code>e_area</code></p></li>
-<li><p><code>e_scatter</code></p></li>
-<li><p><code>e_effect_scatter</code></p></li>
-<li><p><code>e_candle</code></p></li>
-<li><p><code>e_heatmap</code></p></li>
-<li><p><code>e_pie</code></p></li>
-<li><p><code>e_line_3d</code></p></li>
-<li><p><code>e_lines_3d</code></p></li>
-<li><p><code>e_bar_3d</code></p></li>
-<li><p><code>e_lines</code></p></li>
-<li><p><code>e_scatter_3d</code></p></li>
-<li><p><code>e_scatter_gl</code></p></li>
-<li><p><code>e_histogram</code></p></li>
-<li><p><code>e_lm</code></p></li>
-<li><p><code>e_loess</code></p></li>
-<li><p><code>e_glm</code></p></li>
-<li><p><code>e_density</code></p></li>
-<li><p><code>e_pictorial</code></p></li>
-<li><p><code>e_boxplot</code></p></li>
-<li><p><code>e_map</code></p></li>
-<li><p><code>e_map_3d</code></p></li>
-<li><p><code>e_line_3d</code></p></li>
-<li><p><code>e_gauge</code></p></li>
+    <p>The timeline feature currently supports the following chart types.</p><ul>
+<li><p><code><a href='e_bar.html'>e_bar</a></code></p></li>
+<li><p><code><a href='e_line.html'>e_line</a></code></p></li>
+<li><p><code><a href='e_step.html'>e_step</a></code></p></li>
+<li><p><code><a href='e_area.html'>e_area</a></code></p></li>
+<li><p><code><a href='scatter.html'>e_scatter</a></code></p></li>
+<li><p><code><a href='scatter.html'>e_effect_scatter</a></code></p></li>
+<li><p><code><a href='e_candle.html'>e_candle</a></code></p></li>
+<li><p><code><a href='e_heatmap.html'>e_heatmap</a></code></p></li>
+<li><p><code><a href='e_pie.html'>e_pie</a></code></p></li>
+<li><p><code><a href='line3D.html'>e_line_3d</a></code></p></li>
+<li><p><code><a href='line3D.html'>e_lines_3d</a></code></p></li>
+<li><p><code><a href='e_bar_3d.html'>e_bar_3d</a></code></p></li>
+<li><p><code><a href='e_lines.html'>e_lines</a></code></p></li>
+<li><p><code><a href='e_scatter_3d.html'>e_scatter_3d</a></code></p></li>
+<li><p><code><a href='e_scatter_gl.html'>e_scatter_gl</a></code></p></li>
+<li><p><code><a href='histogram.html'>e_histogram</a></code></p></li>
+<li><p><code><a href='smooth.html'>e_lm</a></code></p></li>
+<li><p><code><a href='smooth.html'>e_loess</a></code></p></li>
+<li><p><code><a href='smooth.html'>e_glm</a></code></p></li>
+<li><p><code><a href='histogram.html'>e_density</a></code></p></li>
+<li><p><code><a href='e_pictorial.html'>e_pictorial</a></code></p></li>
+<li><p><code><a href='e_boxplot.html'>e_boxplot</a></code></p></li>
+<li><p><code><a href='map.html'>e_map</a></code></p></li>
+<li><p><code><a href='map.html'>e_map_3d</a></code></p></li>
+<li><p><code><a href='line3D.html'>e_line_3d</a></code></p></li>
+<li><p><code><a href='e_gauge.html'>e_gauge</a></code></p></li>
 </ul>
 
-
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_charts</span>(<span class='kw'>qsec</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_line</span>(<span class='kw'>mpg</span>)
-<span class='kw'>points</span> <span class='op'>&lt;-</span> <span class='kw'>mtcars</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, ]
-<span class='kw'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_charts_</span>(<span class='st'>"qsec"</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_line</span>(<span class='kw'>mpg</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_data</span>(<span class='kw'>points</span>, <span class='kw'>qsec</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_scatter</span>(<span class='kw'>mpg</span>, color = <span class='st'>"blue"</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_charts</span>(<span class='no'>qsec</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>mpg</span>)
+<span class='no'>points</span> <span class='kw'>&lt;-</span> <span class='no'>mtcars</span>[<span class='fl'>1</span>:<span class='fl'>3</span>, ]
+<span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_charts_</span>(<span class='st'>"qsec"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>mpg</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_data</span>(<span class='no'>points</span>, <span class='no'>qsec</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>mpg</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -458,7 +453,6 @@ string and have <code>'px'</code> appended.</p></td>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -481,8 +475,6 @@ string and have <code>'px'</code> appended.</p></td>
 </script>
 
 
-
   </body>
 </html>
-
 

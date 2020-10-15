@@ -42,5 +42,5 @@ data \%>\%
 
 }
 \seealso{
-\code{\link{e_country_names}}, \href{http://echarts.baidu.com/option-gl.html#globe}{Additional arguments}
+\code{\link{e_country_names}}, \href{https://echarts.apache.org/en/option-gl.html#globe}{Additional arguments}
 }

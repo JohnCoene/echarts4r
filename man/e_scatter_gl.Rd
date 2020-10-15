@@ -72,5 +72,5 @@ quakes \%>\%
   e_scatter_gl(lat, depth)
 }
 \seealso{
-\href{http://echarts.baidu.com/option-gl.html#series-scatterGL}{Additional arguments}
+\href{https://echarts.apache.org/en/option-gl.html#series-scatterGL}{Additional arguments}
 }

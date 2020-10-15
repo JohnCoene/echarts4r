@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Show &amp; Hide Tooltip — tooltip_action" />
 <meta property="og:description" content="Show or hide tooltip." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -273,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -284,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Show &amp; Hide Tooltip</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/actions.R'><code>R/actions.R</code></a></small>
+    
     <div class="hidden name"><code>tooltip_action.Rd</code></div>
     </div>
 
@@ -299,17 +297,17 @@
     <p>Show or hide tooltip.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_showtip</span>(<span class='kw'>e</span>, <span class='kw'>...</span>, btn = <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>e_showtip</span>(<span class='no'>e</span>, <span class='no'>...</span>, <span class='kw'>btn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>e_hidetip</span>(<span class='kw'>e</span>, <span class='kw'>...</span>, btn = <span class='kw'>NULL</span>)</pre>
+<span class='fu'>e_hidetip</span>(<span class='no'>e</span>, <span class='no'>...</span>, <span class='kw'>btn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -317,27 +315,26 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>btn</th>
-      <td><p>A <code>e_button</code> id.</p></td>
+      <td><p>A <code><a href='e_button.html'>e_button</a></code> id.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>The tooltip must be initialised with <code>e_tooltip</code> for this to work.</p>
+    <p>The tooltip must be initialised with <code><a href='e-tooltip.html'>e_tooltip</a></code> for this to work.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>cars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_charts</span>(<span class='kw'>dist</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_scatter</span>(<span class='kw'>speed</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_tooltip</span>() <span class='op'>%&gt;%</span>
-  <span class='fu'>e_hidetip</span>(btn = <span class='st'>"btn"</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_button</span>(<span class='st'>"btn"</span>, <span class='st'>"Hide tooltip"</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>cars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>dist</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>speed</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e-tooltip.html'>e_tooltip</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_hidetip</span>(<span class='kw'>btn</span> <span class='kw'>=</span> <span class='st'>"btn"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_button.html'>e_button</a></span>(<span class='st'>"btn"</span>, <span class='st'>"Hide tooltip"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -352,7 +349,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -375,8 +371,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 </script>
 
 
-
   </body>
 </html>
-
 

@@ -57,7 +57,7 @@
 <meta property="og:title" content="Dispatch Action — e_dispatch_action_p" />
 <meta property="og:description" content="Create your own proxies, essentially a wrapper around the
 action API." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -85,10 +85,9 @@ action API." />
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -274,7 +273,7 @@ action API." />
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -285,14 +284,13 @@ action API." />
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Dispatch Action</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/proxies.R'><code>R/proxies.R</code></a></small>
+    
     <div class="hidden name"><code>e_dispatch_action_p.Rd</code></div>
     </div>
 
@@ -301,14 +299,14 @@ action API." />
 <a href='https://echarts.apache.org/en/api.html#action'>action API</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_dispatch_action_p</span>(<span class='kw'>proxy</span>, <span class='kw'>type</span>, <span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_dispatch_action_p</span>(<span class='no'>proxy</span>, <span class='no'>type</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>proxy</th>
-      <td><p>An echarts4r proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An echarts4r proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -322,44 +320,42 @@ action API." />
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://shiny.rstudio.com'>shiny</a></span>)
-
-<span class='kw'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidPage</a></span>(
+<span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidPage</a></span>(
   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidRow</a></span>(
-    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(<span class='fl'>8</span>, <span class='fu'>echarts4rOutput</span>(<span class='st'>"chart"</span>)),
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(<span class='fl'>8</span>, <span class='fu'><a href='echarts4r-shiny.html'>echarts4rOutput</a></span>(<span class='st'>"chart"</span>)),
     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(<span class='fl'>4</span>, <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"zoom"</span>, <span class='st'>"Zoom"</span>))
   )
 )
 
-<span class='kw'>server</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>input</span>, <span class='kw'>output</span>, <span class='kw'>session</span>) {
-  <span class='kw'>output</span><span class='op'>$</span><span class='kw'>chart</span> <span class='op'>&lt;-</span> <span class='fu'>renderEcharts4r</span>({
-    <span class='kw'>cars</span> <span class='op'>%&gt;%</span>
-      <span class='fu'>e_charts</span>(<span class='kw'>speed</span>) <span class='op'>%&gt;%</span>
-      <span class='fu'>e_scatter</span>(<span class='kw'>dist</span>) <span class='op'>%&gt;%</span>
-      <span class='fu'>e_datazoom</span>()
+<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+  <span class='no'>output</span>$<span class='no'>chart</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span>({
+    <span class='no'>cars</span> <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>speed</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>dist</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='e_datazoom.html'>e_datazoom</a></span>()
   })
 
   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>({
-    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span>(<span class='kw'>input</span><span class='op'>$</span><span class='kw'>zoom</span>)
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>zoom</span>)
 
-    <span class='fu'>echarts4rProxy</span>(<span class='st'>"chart"</span>) <span class='op'>%&gt;%</span>
-      <span class='fu'>e_dispatch_action_p</span>(<span class='st'>"dataZoom"</span>, startValue = <span class='fl'>1</span>, endValue = <span class='fl'>10</span>)
+    <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"chart"</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'>e_dispatch_action_p</span>(<span class='st'>"dataZoom"</span>, <span class='kw'>startValue</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>endValue</span> <span class='kw'>=</span> <span class='fl'>10</span>)
   })
 }
 
-<span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
-  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='kw'>ui</span>, <span class='kw'>server</span>)
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 }
-}
+<span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -374,7 +370,6 @@ action API." />
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -397,8 +392,6 @@ action API." />
 </script>
 
 
-
   </body>
 </html>
-
 

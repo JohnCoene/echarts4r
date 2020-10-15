@@ -1827,8 +1827,8 @@ e_gauge_ <- function(...) {
 #'   e_line_3d(y, z) %>%
 #'   e_visual_map() %>%
 #'   e_title("nonsense")
-#' @seealso \href{http://echarts.baidu.com/option-gl.html#series-lines3D}{Additional arguments for lines 3D},
-#'  \href{http://echarts.baidu.com/option-gl.html#series-line3D}{Additional arguments for line 3D}
+#' @seealso \href{https://echarts.apache.org/en/option-gl.html#series-lines3D}{Additional arguments for lines 3D},
+#'  \href{https://echarts.apache.org/en/option-gl.html#series-lines3D}{Additional arguments for line 3D}
 #'
 #' @seealso \url{https://echarts4r-assets.john-coene.com}
 #'
@@ -2022,7 +2022,7 @@ e_line_3d.echarts4rProxy <- function(e, y, z, name = NULL, coord_system = NULL, 
 #'   e_visual_map(z2)
 #' }
 #'
-#' @seealso \href{http://echarts.baidu.com/option-gl.html#series-bar3D}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option-gl.html#series-bar3D}{Additional arguments}
 #'
 #' @rdname e_bar_3d
 #' @export
@@ -2360,7 +2360,7 @@ e_lines.echarts4rProxy <- function(e, source_lon, source_lat, target_lon, target
 #'   ) %>%
 #'   e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = "lighter") %>%
 #'   e_visual_map(inRange = list(symbolSize = c(1, 10)))
-#' @seealso \href{http://echarts.baidu.com/option-gl.html#series-scatter3D}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option-gl.html#series-scatter3D}{Additional arguments}
 #'
 #' @rdname e_scatter_3d
 #' @export
@@ -2509,7 +2509,7 @@ e_scatter_3d.echarts4rProxy <- function(e, y, z, color, size, bind, coord_system
 #'       )
 #'     )
 #'   )
-#' @seealso \href{http://echarts.baidu.com/option-gl.html#series-flowGL}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option-gl.html#series-flowGL}{Additional arguments}
 #'
 #' @rdname e_flow_gl
 #' @export
@@ -2599,7 +2599,7 @@ e_flow_gl.echarts4rProxy <- function(e, y, sx, sy, color, name = NULL, coord_sys
 #'     )
 #'   ) %>%
 #'   e_scatter_gl(lat, depth)
-#' @seealso \href{http://echarts.baidu.com/option-gl.html#series-scatterGL}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option-gl.html#series-scatterGL}{Additional arguments}
 #'
 #' @rdname e_scatter_gl
 #' @export

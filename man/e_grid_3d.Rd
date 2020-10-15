@@ -44,5 +44,5 @@ matrix \%>\%
   e_grid_3d(splitLine = list(lineStyle = list(color = "blue")))
 }
 \seealso{
-\href{http://www.echartsjs.com/option-gl.html#grid3D}{Additional arguments}
+\href{https://echarts.apache.org/en/option-gl.html#grid3D}{Additional arguments}
 }

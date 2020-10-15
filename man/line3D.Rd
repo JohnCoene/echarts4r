@@ -162,8 +162,8 @@ df \%>\%
   e_title("nonsense")
 }
 \seealso{
-\href{http://echarts.baidu.com/option-gl.html#series-lines3D}{Additional arguments for lines 3D},
- \href{http://echarts.baidu.com/option-gl.html#series-line3D}{Additional arguments for line 3D}
+\href{https://echarts.apache.org/en/option-gl.html#series-lines3D}{Additional arguments for lines 3D},
+ \href{https://echarts.apache.org/en/option-gl.html#series-lines3D}{Additional arguments for line 3D}
 
 \url{https://echarts4r-assets.john-coene.com}
 }

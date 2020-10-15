@@ -117,5 +117,5 @@ airports \%>\%
   e_visual_map(inRange = list(symbolSize = c(1, 10)))
 }
 \seealso{
-\href{http://echarts.baidu.com/option-gl.html#series-scatter3D}{Additional arguments}
+\href{https://echarts.apache.org/en/option-gl.html#series-scatter3D}{Additional arguments}
 }

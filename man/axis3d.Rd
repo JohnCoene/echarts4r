@@ -55,7 +55,7 @@ matrix \%>\%
   e_x_axis_3d(axisLine = list(lineStyle = list(color = "blue")))
 }
 \seealso{
-\href{http://www.echartsjs.com/option-gl.html#xAxis3D}{Additional x arguments},
- \href{http://www.echartsjs.com/option-gl.html#yAxis3D}{Additional y arguments},
- \href{http://www.echartsjs.com/option-gl.html#zAxis3D}{Additional z arguments}
+\href{https://echarts.apache.org/en/option-gl.html#xAxis3D}{Additional x arguments},
+ \href{https://echarts.apache.org/en/option-gl.html#yAxis3D}{Additional y arguments},
+ \href{https://echarts.apache.org/en/option-gl.html#zAxis3D}{Additional z arguments}
 }

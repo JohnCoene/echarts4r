@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Get data — e_get_data" />
 <meta property="og:description" content="Get data passed to e_charts." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -273,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -284,30 +283,29 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/helpers.R'><code>R/helpers.R</code></a></small>
+    
     <div class="hidden name"><code>e_get_data.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get data passed to <code>e_charts</code>.</p>
+    <p>Get data passed to <code><a href='init.html'>e_charts</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_get_data</span>(<span class='kw'>e</span>)</pre>
+    <pre class="usage"><span class='fu'>e_get_data</span>(<span class='no'>e</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     </table>
 
@@ -316,14 +314,14 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     <p>A list of data.frames, one for each group.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>echart</span> <span class='op'>&lt;-</span> <span class='kw'>cars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_charts</span>(<span class='kw'>speed</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_scatter</span>(<span class='kw'>dist</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'>e_lm</span>(<span class='kw'>dist</span> <span class='op'>~</span> <span class='kw'>speed</span>)
+    <pre class="examples"><div class='input'><span class='no'>echart</span> <span class='kw'>&lt;-</span> <span class='no'>cars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>speed</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>dist</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='smooth.html'>e_lm</a></span>(<span class='no'>dist</span> ~ <span class='no'>speed</span>)
 
-<span class='kw'>echart</span>
+<span class='no'>echart</span>
 
-<span class='fu'>e_get_data</span>(<span class='kw'>echart</span>)[[<span class='fl'>1</span>]]</div><div class='output co'>#&gt;    speed dist   .fitted     .resid  .std.resid       .hat   .sigma      .cooksd
+<span class='fu'>e_get_data</span>(<span class='no'>echart</span>)<span class='kw'>[[</span><span class='fl'>1</span>]]</div><div class='output co'>#&gt;    speed dist   .fitted     .resid  .std.resid       .hat   .sigma      .cooksd
 #&gt; 1      4    2 -1.849460   3.849460  0.26604155 0.11486131 15.53088 4.592312e-03
 #&gt; 2      4   10 -1.849460  11.849460  0.81893273 0.11486131 15.43338 4.351399e-02
 #&gt; 3      7    4  9.947766  -5.947766 -0.40134618 0.07150365 15.51624 6.202350e-03
@@ -380,7 +378,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
   </div>
 </div>
 
-
       <footer>
       <div class="copyright">
   <p>Developed by <a href='http://john-coene.com'>John Coene</a>.</p>
@@ -394,7 +391,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -417,8 +413,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 </script>
 
 
-
   </body>
 </html>
-
 

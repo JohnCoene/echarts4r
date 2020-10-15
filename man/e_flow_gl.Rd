@@ -119,5 +119,5 @@ wind \%>\%
   )
 }
 \seealso{
-\href{http://echarts.baidu.com/option-gl.html#series-flowGL}{Additional arguments}
+\href{https://echarts.apache.org/en/option-gl.html#series-flowGL}{Additional arguments}
 }

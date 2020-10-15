@@ -31,9 +31,9 @@
 #'   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) %>%
 #'   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) %>%
 #'   e_x_axis_3d(axisLine = list(lineStyle = list(color = "blue")))
-#' @seealso \href{http://www.echartsjs.com/option-gl.html#xAxis3D}{Additional x arguments},
-#'  \href{http://www.echartsjs.com/option-gl.html#yAxis3D}{Additional y arguments},
-#'  \href{http://www.echartsjs.com/option-gl.html#zAxis3D}{Additional z arguments}
+#' @seealso \href{https://echarts.apache.org/en/option-gl.html#xAxis3D}{Additional x arguments},
+#'  \href{https://echarts.apache.org/en/option-gl.html#yAxis3D}{Additional y arguments},
+#'  \href{https://echarts.apache.org/en/option-gl.html#zAxis3D}{Additional z arguments}
 #'
 #' @rdname axis3d
 #' @export
@@ -132,7 +132,7 @@ e_z_axis_3d <- function(e, index = 0, ...) {
 #'   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) %>%
 #'   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) %>%
 #'   e_grid_3d(splitLine = list(lineStyle = list(color = "blue")))
-#' @seealso \href{http://www.echartsjs.com/option-gl.html#grid3D}{Additional arguments}
+#' @seealso \href{https://echarts.apache.org/en/option-gl.html#grid3D}{Additional arguments}
 #'
 #' @export
 e_grid_3d <- function(e, index = 0, ...) {
