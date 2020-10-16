@@ -2,24 +2,24 @@
 
 - Added `echarts4rBox`, `renderEcharts4rBox`, and `echarts4rBoxOutput` to create value boxes.
 - Fix `e_common` theme, was no longer applied due to dynamic dependencies introduced in `0.3.2`
-- Fix `e_flip_coords` for timeline feature, see [#166](https://github.com/JohnCoene/echarts4r/issues/166)
-- `name` argument was not used in `e_boxplot`, see [#171](https://github.com/JohnCoene/echarts4r/issues/171)
-- Allow customising area under the curve of density plot see [#172](https://github.com/JohnCoene/echarts4r/issues/172)
+- Fix `e_flip_coords` for timeline feature, see [#166](https://github.com/JohnCoene/echarts4r/issues/166/)
+- `name` argument was not used in `e_boxplot`, see [#171](https://github.com/JohnCoene/echarts4r/issues/171/)
+- Allow customising area under the curve of density plot see [#172](https://github.com/JohnCoene/echarts4r/issues/172/)
 - Update mapbox dependency from `0.38` to `1.11`
-- Fix country name conversion in `e_country_names` [#189](https://github.com/JohnCoene/echarts4r/issues/189)
-- Fix legend toggle in radar charts [#74](https://github.com/JohnCoene/echarts4r/issues/74)
-- `e_loess`, and `e_lm` take a `model_args` argument to pass arguments to underlying model function [#194](https://github.com/JohnCoene/echarts4r/issues/194)
+- Fix country name conversion in `e_country_names` [#189](https://github.com/JohnCoene/echarts4r/issues/189/)
+- Fix legend toggle in radar charts [#74](https://github.com/JohnCoene/echarts4r/issues/74/)
+- `e_loess`, and `e_lm` take a `model_args` argument to pass arguments to underlying model function [#194](https://github.com/JohnCoene/echarts4r/issues/194/)
 - Bump to JavaScript version to `4.9.0`
-- `echarts_from_json` supports functions, see [199](https://github.com/JohnCoene/echarts4r/pull/199) (thanks to [swsoyee](https://github.com/swsoyee))
-- Remove `e_facet`, was wrongly exported [#212](https://github.com/JohnCoene/echarts4r/issues/212)
-- Add tests, thanks to Etienne Bacher, see [#201](https://github.com/JohnCoene/echarts4r/pull/201)
-- Add styler, thanks to Wei Su see [#211](https://github.com/JohnCoene/echarts4r/pull/211)
+- `echarts_from_json` supports functions, see [199](https://github.com/JohnCoene/echarts4r/pull/199/) (thanks to [swsoyee](https://github.com/swsoyee/))
+- Remove `e_facet`, was wrongly exported [#212](https://github.com/JohnCoene/echarts4r/issues/212/)
+- Add tests, thanks to Etienne Bacher, see [#201](https://github.com/JohnCoene/echarts4r/pull/201/)
+- Add styler, thanks to Wei Su see [#211](https://github.com/JohnCoene/echarts4r/pull/211/)
 - Removed the {d3r} import: no longer necessary.
 
 # echarts4r 0.3.2
 
 - Bump echarts.js to 4.8.0 and echarts-gl to 1.1.2
-- Fix `e_add` when used with timeline feature see [#165](https://github.com/JohnCoene/echarts4r/issues/165).
+- Fix `e_add` when used with timeline feature see [#165](https://github.com/JohnCoene/echarts4r/issues/165/).
 - Bump echart.js to 4.8.0 now in english (no longer Chinese).
 
 Dynamic dependencies:
@@ -122,7 +122,7 @@ __Support for timeline added__
 
 Arguments containing `.` have been replaced by `_` for clarity. I.e.: `coord.system` => `coord_system`.
 
-Deprecated functions from `0.1.2` have been removed, they can be found in the [echarts4r.assets](http://echarts4r-assets.john-coene.com/) package:
+Deprecated functions from `0.1.2` have been removed, they can be found in the [echarts4r.assets](https://echarts4r-assets.john-coene.com/) package:
 
 - `e_convert_texture`
 - `e_stars_texture`
@@ -143,7 +143,7 @@ Retired `e_keras_history` due to its uselessness.
 * `e_add` added for nested data.
 * `e_showtip_p` and `e_hidetip_p` fixed.
 * `e_focus_adjacency_p` and `e_unfocus_adjacency_p` proxies to highlight adjacent nodes (on graph/network) added.
-* Deprecation of texture related functions in favour of [echarts4r.assets](http://echarts4r-assets.john-coene.com/).
+* Deprecation of texture related functions in favour of [echarts4r.assets](https://echarts4r-assets.john-coene.com/).
 * `e_single_axis` added, works with `e_scatter`.
 * `e_text_style` added, to customise global fonts.
 * `e_angle_axis` now takes `serie` argument, see example.
