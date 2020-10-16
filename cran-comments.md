@@ -8,3 +8,11 @@
 
 0 errors | 0 warnings | 0 note
 
+>   Found the following (possibly) invalid URLs:
+>     URL: http://echarts4r-assets.john-coene.com/ (moved to
+>https://echarts4r-assets.john-coene.com/)
+>       From: NEWS.md
+>       Status: 200
+>       Message: OK
+
+Fixed
