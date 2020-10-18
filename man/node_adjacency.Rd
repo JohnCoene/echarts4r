@@ -14,7 +14,7 @@ e_unfocus_adjacency_p(proxy, ...)
 
 \item{index}{One or more node index to focus on.}
 
-\item{...}{Any other options, see 
+\item{...}{Any other options, see
 \href{https://echarts.apache.org/en/api.html#action.graph}{official documentation} and details.}
 }
 \description{
@@ -39,59 +39,52 @@ edges <- data.frame(
   target = sample(nodes$name, 20, replace = TRUE),
   stringsAsFactors = FALSE
 )
-
 \dontrun{
 
-  library(shiny)
+library(shiny)
 
-  ui <- fluidPage(
-    fluidRow(
-      column(
-        2, numericInput("index", "Node", value = 3, min = 1, max = 9)
-      ),
-      column(
-        2, br(), actionButton("focus", "Focus")
-      ),
-      column(
-        2, br(), actionButton("unfocus", "Unfocus")
-      )
+ui <- fluidPage(
+  fluidRow(
+    column(
+      2, numericInput("index", "Node", value = 3, min = 1, max = 9)
     ),
-    fluidRow(
-      column(12, echarts4rOutput("graph"))
+    column(
+      2, br(), actionButton("focus", "Focus")
+    ),
+    column(
+      2, br(), actionButton("unfocus", "Unfocus")
     )
+  ),
+  fluidRow(
+    column(12, echarts4rOutput("graph"))
   )
-  
-  server <- function(input, output, session){
-  
-    output$graph <- renderEcharts4r({
-      e_charts() \%>\% 
-        e_graph() \%>\% 
-        e_graph_nodes(nodes, name, value, size, grp) \%>\% 
-        e_graph_edges(edges, source, target)
-    })
-    
-    observeEvent(input$focus, {
-    
-      echarts4rProxy("graph") \%>\% 
-        e_focus_adjacency_p(
-          seriesIndex = 0,
-          index = input$index
-        )
-    
-    })
-    
-    observeEvent(input$unfocus, {
-      
-      echarts4rProxy("graph") \%>\% 
-        e_unfocus_adjacency_p(seriesIndex = 0)
-      
-    })
-  
-  }
-  
-  if(interactive())
-   shinyApp(ui, server)
+)
 
+server <- function(input, output, session) {
+  output$graph <- renderEcharts4r({
+    e_charts() \%>\%
+      e_graph() \%>\%
+      e_graph_nodes(nodes, name, value, size, grp) \%>\%
+      e_graph_edges(edges, source, target)
+  })
+
+  observeEvent(input$focus, {
+    echarts4rProxy("graph") \%>\%
+      e_focus_adjacency_p(
+        seriesIndex = 0,
+        index = input$index
+      )
+  })
+
+  observeEvent(input$unfocus, {
+    echarts4rProxy("graph") \%>\%
+      e_unfocus_adjacency_p(seriesIndex = 0)
+  })
+}
+
+if (interactive()) {
+  shinyApp(ui, server)
+}
 }
 
 }

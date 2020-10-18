@@ -7,7 +7,7 @@
 e_title(e, text = NULL, subtext = NULL, link = NULL, sublink = NULL, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{text, subtext}{Title and Subtitle.}
@@ -20,13 +20,12 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Add title.
 }
 \examples{
-quakes \%>\% 
-  dplyr::mutate(mag = exp(mag) / 60) \%>\% 
-  e_charts(stations) \%>\% 
-  e_scatter(depth, mag) \%>\% 
-  e_visual_map(min = 3, max = 7) \%>\% 
+quakes \%>\%
+  dplyr::mutate(mag = exp(mag) / 60) \%>\%
+  e_charts(stations) \%>\%
+  e_scatter(depth, mag) \%>\%
+  e_visual_map(min = 3, max = 7) \%>\%
   e_title("Quakes", "Stations and Magnitude")
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#title}{Additional arguments}

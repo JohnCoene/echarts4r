@@ -10,7 +10,7 @@ e_liquid(e, serie, color, rm_x = TRUE, rm_y = TRUE, ...)
 e_liquid_(e, serie, color = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{serie}{Column name of serie to plot.}
@@ -27,11 +27,10 @@ Draw liquid fill.
 \examples{
 df <- data.frame(val = c(0.6, 0.5, 0.4))
 
-df \%>\% 
-  e_charts() \%>\% 
-  e_liquid(val) \%>\% 
+df \%>\%
+  e_charts() \%>\%
+  e_liquid(val) \%>\%
   e_theme("dark")
-
 }
 \seealso{
 \href{https://github.com/ecomfe/echarts-liquidfill}{official documentation}

@@ -321,7 +321,7 @@
   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/actionButton.html'>actionButton</a></span>(<span class='st'>"draw"</span>, <span class='st'>"draw"</span>)
 )
 
-<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>){
+<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
   <span class='no'>output</span>$<span class='no'>chart</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span>({
     <span class='no'>mtcars</span> <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>mpg</span>, <span class='kw'>draw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
@@ -335,8 +335,9 @@
   })
 }
 
-<span class='kw'>if</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>())
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+}
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>

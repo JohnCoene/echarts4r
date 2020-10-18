@@ -22,14 +22,14 @@ e_map_register_ui(name, json, async = FALSE)
 
 \item{name}{Name of map, to use in \code{\link{e_map}}.}
 
-\item{json}{\href{http://geojson.org/}{Geojson}.}
+\item{json}{\href{https://geojson.org/}{Geojson}.}
 
 \item{async}{Whether to read the file asynchronously.}
 
 \item{session}{A valid Shiny session.}
 }
 \description{
-Register a \href{http://geojson.org/}{geojson} map.
+Register a \href{https://geojson.org/}{geojson} map.
 }
 \details{
 \code{e_map_register_p} is not truly a proxy as it does not require
@@ -39,13 +39,13 @@ from the UI (generally www folder).
 }
 \examples{
 \dontrun{
-json <- jsonlite::read_json("http://www.echartsjs.com/gallery/data/asset/geo/USA.json")
+json <- jsonlite::read_json("https://echarts.apache.org/examples/data/asset/geo/USA.json")
 
 USArrests \%>\%
   dplyr::mutate(states = row.names(.)) \%>\%
   e_charts(states) \%>\%
   e_map_register("USA", json) \%>\%
-  e_map(Murder, map = "USA") \%>\% 
+  e_map(Murder, map = "USA") \%>\%
   e_visual_map(Murder)
 }
 

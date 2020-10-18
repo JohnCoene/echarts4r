@@ -312,7 +312,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
 a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
@@ -343,7 +343,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>e_arrange</code>: in an interactive session, returns a <code><a href='https://www.rdocumentation.org/packages/htmltools/topics/browsable'>htmltools::browsable</a></code>, in <code>rmarkdown</code> returns a 
+    <p><code>e_arrange</code>: in an interactive session, returns a <code><a href='https://www.rdocumentation.org/packages/htmltools/topics/browsable'>htmltools::browsable</a></code>, in <code>rmarkdown</code> returns a
 container (<code><a href='https://www.rdocumentation.org/packages/htmltools/topics/builder'>htmltools::div</a></code>).</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
@@ -377,11 +377,12 @@ container (<code><a href='https://www.rdocumentation.org/packages/htmltools/topi
   ) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>speed</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_datazoom.html'>e_datazoom</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_group</span>(<span class='st'>"grp"</span>) <span class='kw'>%&gt;%</span>  <span class='co'># assign group</span>
+  <span class='fu'>e_group</span>(<span class='st'>"grp"</span>) <span class='kw'>%&gt;%</span> <span class='co'># assign group</span>
   <span class='fu'>e_connect_group</span>(<span class='st'>"grp"</span>) <span class='co'># connect</span>
 
-<span class='kw'>if</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>())
- <span class='fu'>e_arrange</span>(<span class='no'>e1</span>, <span class='no'>e2</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Linked datazoom"</span>)</div></pre>
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
+  <span class='fu'>e_arrange</span>(<span class='no'>e1</span>, <span class='no'>e2</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Linked datazoom"</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

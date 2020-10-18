@@ -29,7 +29,7 @@ e_band_(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{min, max}{series.}
@@ -42,7 +42,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{legend}{Whether to show \code{min} and \code{max} in legend.}
 
-\item{...}{All options must be of vectors or lists of length 2 where the first argument is 
+\item{...}{All options must be of vectors or lists of length 2 where the first argument is
 for the lower bound and the second for the upper bound, see examples.}
 }
 \description{
@@ -52,15 +52,14 @@ Add confidence bands
 df <- data.frame(
   x = 1:10,
   y = runif(10, 5, 10)
-) \%>\% 
+) \%>\%
   dplyr::mutate(
     lwr = y - runif(10, 1, 3),
     upr = y + runif(10, 2, 4)
   )
 
-df \%>\% 
-  e_charts(x) \%>\% 
-  e_line(y) \%>\% 
+df \%>\%
+  e_charts(x) \%>\%
+  e_line(y) \%>\%
   e_band(lwr, upr)
-
 }

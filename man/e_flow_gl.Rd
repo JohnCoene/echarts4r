@@ -32,7 +32,7 @@ e_flow_gl_(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{y}{Vector position on the y axis.}
@@ -60,28 +60,30 @@ vectors$sx <- rnorm(100)
 vectors$sy <- rnorm(100)
 vectors$color <- log10(runif(100, 1, 10))
 
-vectors \%>\% 
-  e_charts(x) \%>\% 
-  e_flow_gl(y, sx, sy, color) \%>\% 
+vectors \%>\%
+  e_charts(x) \%>\%
+  e_flow_gl(y, sx, sy, color) \%>\%
   e_visual_map(
     min = 0, max = 1, # log 10
     dimension = 4, # x = 0, y = 1, sx = 3, sy = 4
     show = FALSE, # hide
     inRange = list(
-      color = c('#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8',
-                '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026')
+      color = c(
+        "#313695", "#4575b4", "#74add1", "#abd9e9", "#e0f3f8",
+        "#ffffbf", "#fee090", "#fdae61", "#f46d43", "#d73027", "#a50026"
+      )
     )
-  ) \%>\% 
+  ) \%>\%
   e_x_axis(
     splitLine = list(show = FALSE)
-  ) \%>\% 
+  ) \%>\%
   e_y_axis(
     splitLine = list(show = FALSE)
-  )   
-  
+  )
+
 # map
 latlong <- seq(-180, 180, by = 5)
-wind = expand.grid(lng = latlong, lat = latlong)
+wind <- expand.grid(lng = latlong, lat = latlong)
 wind$slng <- rnorm(nrow(wind), 0, 200)
 wind$slat <- rnorm(nrow(wind), 0, 200)
 wind$color <- abs(wind$slat) - abs(wind$slng)
@@ -89,8 +91,8 @@ rng <- range(wind$color)
 
 trans <- list(opacity = 0.5) # transparency
 
-wind \%>\% 
-  e_charts(lng, backgroundColor = '#333') \%>\% 
+wind \%>\%
+  e_charts(lng, backgroundColor = "#333") \%>\%
   e_geo(
     itemStyle = list(
       normal = list(
@@ -98,23 +100,24 @@ wind \%>\%
         borderColor = "#111"
       )
     )
-  ) \%>\% 
-  e_flow_gl(lat, slng, slat, color, 
-    coord_system = "geo", 
+  ) \%>\%
+  e_flow_gl(lat, slng, slat, color,
+    coord_system = "geo",
     itemStyle = trans,
     particleSize = 2
-  ) \%>\% 
+  ) \%>\%
   e_visual_map(
     min = rng[1], max = rng[2], # range
     dimension = 4, # lng = 0, lat = 1, slng = 2, slat = 3, color = 4
     show = FALSE, # hide
     inRange = list(
-      color = c('#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', 
-                '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026')
+      color = c(
+        "#313695", "#4575b4", "#74add1", "#abd9e9", "#e0f3f8",
+        "#ffffbf", "#fee090", "#fdae61", "#f46d43", "#d73027", "#a50026"
+      )
     )
   )
-
 }
 \seealso{
-\href{http://echarts.baidu.com/option-gl.html#series-flowGL}{Additional arguments}
+\href{https://echarts.apache.org/en/option-gl.html#series-flowGL}{Additional arguments}
 }

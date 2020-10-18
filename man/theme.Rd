@@ -13,7 +13,7 @@ e_theme_custom(e, theme, name = "custom")
 e_theme_register(theme, name = "custom")
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{name}{Name of theme.}
@@ -25,7 +25,7 @@ Add a custom theme or apply a pre-built one.
 }
 \details{
 The function \code{e_theme_register} can be used to register the theme globally
-in R markdown or shiny (UI). This is useful because 1) the \code{e_theme_custom} registers the 
+in R markdown or shiny (UI). This is useful because 1) the \code{e_theme_custom} registers the
 theme every time and is more computationally expensive.
 }
 \section{Functions}{
@@ -38,7 +38,7 @@ theme every time and is more computationally expensive.
 }
 
 \section{Theme names}{
- 
+
 \itemize{
   \item{\code{default}}
   \item{\code{dark}}
@@ -88,16 +88,15 @@ theme every time and is more computationally expensive.
 }
 
 \examples{
-mtcars \%>\% 
+mtcars \%>\%
   e_charts(mpg) \%>\%
-  e_line(disp) \%>\% 
-  e_area(hp) \%>\% 
+  e_line(disp) \%>\%
+  e_area(hp) \%>\%
   e_x_axis(min = 10) -> p
-  
+
 p \%>\% e_theme("chalk")
 p \%>\% e_theme_custom('{"color":["#ff715e","#ffaf51"]}')
-
 }
 \seealso{
-\href{http://echarts.baidu.com/theme-builder/}{create your own theme}.
+\href{https://echarts.apache.org/en/theme-builder.html}{create your own theme}.
 }

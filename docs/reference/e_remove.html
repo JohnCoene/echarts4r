@@ -327,8 +327,7 @@
   <span class='fu'><a href='echarts4r-shiny.html'>echarts4rOutput</a></span>(<span class='st'>"plot"</span>)
 )
 
-<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>){
-
+<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
   <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
     <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>5</span>, <span class='fl'>3</span>),
     <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>12</span>),
@@ -337,16 +336,15 @@
 
   <span class='no'>output</span>$<span class='no'>plot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span>({
     <span class='no'>data</span> <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>y</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>z</span>)
+      <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>y</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>z</span>)
   })
 
   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>rm</span>, {
     <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span>(<span class='st'>"plot"</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'>e_remove_serie_p</span>(<span class='kw'>serie_name</span> <span class='kw'>=</span> <span class='st'>"z"</span>)
   })
-
 }</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 <span class='co'># }</span><div class='input'>

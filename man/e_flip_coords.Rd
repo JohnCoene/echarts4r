@@ -7,7 +7,7 @@
 e_flip_coords(e)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 }
 \description{
@@ -21,11 +21,10 @@ df <- data.frame(
 )
 
 df \%>\%
- e_charts(x) \%>\%
- e_bar(y) \%>\% 
- e_line(z) -> plot
- 
+  e_charts(x) \%>\%
+  e_bar(y) \%>\%
+  e_line(z) -> plot
+
 plot # normal
 e_flip_coords(plot) # flip
-
 }

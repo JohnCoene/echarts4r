@@ -62,7 +62,7 @@ e_line_3d_(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{source_lon, source_lat, target_lon, target_lat}{coordinates.}
@@ -87,82 +87,83 @@ Add 3D lines.
 \examples{
 # get data
 flights <- read.csv(
-  paste0("https://raw.githubusercontent.com/plotly/datasets/",
-         "master/2011_february_aa_flight_paths.csv")
+  paste0(
+    "https://raw.githubusercontent.com/plotly/datasets/",
+    "master/2011_february_aa_flight_paths.csv"
+  )
 )
 
 # Lines 3D
 # Globe
 # get tetures: echarts4r-assets.john-coene.com
-flights \%>\% 
-  e_charts() \%>\% 
-  e_globe( 
+flights \%>\%
+  e_charts() \%>\%
+  e_globe(
     displacementScale = 0.05
-  ) \%>\% 
+  ) \%>\%
   e_lines_3d(
-    start_lon, 
-    start_lat, 
-    end_lon, 
+    start_lon,
+    start_lat,
+    end_lon,
     end_lat,
     name = "flights",
     effect = list(show = TRUE)
-  ) \%>\% 
+  ) \%>\%
   e_legend(FALSE)
 
 # Geo 3D
-flights \%>\% 
-  e_charts() \%>\% 
-  e_geo_3d() \%>\% 
+flights \%>\%
+  e_charts() \%>\%
+  e_geo_3d() \%>\%
   e_lines_3d(
-    start_lon, 
-    start_lat, 
-    end_lon, 
+    start_lon,
+    start_lat,
+    end_lon,
     end_lat,
     coord_system = "geo3D"
   )
-  
+
 # groups
 flights$grp <- rep(LETTERS[1:2], 89)
 
-flights \%>\% 
-  group_by(grp) \%>\% 
-  e_charts() \%>\% 
-  e_geo_3d() \%>\% 
+flights \%>\%
+  group_by(grp) \%>\%
+  e_charts() \%>\%
+  e_geo_3d() \%>\%
   e_lines_3d(
-    start_lon, 
-    start_lat, 
-    end_lon, 
+    start_lon,
+    start_lat,
+    end_lon,
     end_lat,
     coord_system = "geo3D"
   )
- 
-# line 3D 
+
+# line 3D
 df <- data.frame(
   x = 1:100,
   y = runif(100, 10, 25),
   z = rnorm(100, 100, 50)
 )
 
-df \%>\% 
-  e_charts(x) \%>\% 
-  e_line_3d(y, z) \%>\% 
-  e_visual_map() \%>\% 
+df \%>\%
+  e_charts(x) \%>\%
+  e_line_3d(y, z) \%>\%
+  e_visual_map() \%>\%
   e_title("nonsense")
-  
+
 # timeline
 df$grp <- rep(LETTERS[1:5], 20)
 
-df \%>\% 
-  group_by(grp) \%>\% 
-  e_charts(x) \%>\% 
-  e_line_3d(y, z) \%>\% 
-  e_visual_map() \%>\% 
+df \%>\%
+  group_by(grp) \%>\%
+  e_charts(x) \%>\%
+  e_line_3d(y, z) \%>\%
+  e_visual_map() \%>\%
   e_title("nonsense")
-
 }
 \seealso{
-\href{http://echarts.baidu.com/option-gl.html#series-lines3D}{Additional arguments for lines 3D},
- \href{http://echarts.baidu.com/option-gl.html#series-line3D}{Additional arguments for line 3D}
+\href{https://echarts.apache.org/en/option-gl.html#series-lines3D}{Additional arguments for lines 3D},
+ \href{https://echarts.apache.org/en/option-gl.html#series-lines3D}{Additional arguments for line 3D}
 
 \url{https://echarts4r-assets.john-coene.com}
 }

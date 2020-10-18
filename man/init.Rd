@@ -114,15 +114,13 @@ The timeline feature currently supports the following chart types.
 }
 
 \examples{
-mtcars \%>\% 
+mtcars \%>\%
   e_charts(qsec) \%>\%
   e_line(mpg)
-
-points <- mtcars[1:3,]
-mtcars \%>\% 
+points <- mtcars[1:3, ]
+mtcars \%>\%
   e_charts_("qsec") \%>\%
   e_line(mpg) \%>\%
   e_data(points, qsec) \%>\%
   e_scatter(mpg, color = "blue")
-
 }

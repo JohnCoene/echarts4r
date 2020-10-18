@@ -306,7 +306,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
 a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
@@ -326,24 +326,29 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 <span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"earth"</span>,        <span class='co'># 1st level</span>
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"earth"</span>, <span class='co'># 1st level</span>
   <span class='kw'>children</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"land"</span>, <span class='st'>"ocean"</span>),             <span class='co'># 2nd level</span>
-           <span class='kw'>children</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-             <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"forest"</span>, <span class='st'>"river"</span>)),   <span class='co'># 3rd level </span>
-             <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"fish"</span>, <span class='st'>"kelp"</span>),
-                    <span class='kw'>children</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-                      <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"shark"</span>, <span class='st'>"tuna"</span>),  <span class='co'># 4th level </span>
-                             <span class='kw'>NULL</span>  <span class='co'># kelp</span>
-                      ))
-             )
-           ))
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(
+      <span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"land"</span>, <span class='st'>"ocean"</span>), <span class='co'># 2nd level</span>
+      <span class='kw'>children</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"forest"</span>, <span class='st'>"river"</span>)), <span class='co'># 3rd level</span>
+        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(
+          <span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"fish"</span>, <span class='st'>"kelp"</span>),
+          <span class='kw'>children</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+            <span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>tibble</a></span>(
+              <span class='kw'>name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"shark"</span>, <span class='st'>"tuna"</span>), <span class='co'># 4th level</span>
+              <span class='kw'>NULL</span> <span class='co'># kelp</span>
+            )
+          )
+        )
+      )
+    )
   )
 )
 
 <span class='no'>df</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_tree</span>(<span class='kw'>initialTreeDepth</span><span class='kw'>=</span><span class='fl'>3</span>, <span class='kw'>label</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>offset</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>,-<span class='fl'>11</span>)))</div></pre>
+  <span class='fu'>e_tree</span>(<span class='kw'>initialTreeDepth</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>offset</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, -<span class='fl'>11</span>)))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

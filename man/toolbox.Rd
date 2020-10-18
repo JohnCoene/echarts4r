@@ -10,7 +10,7 @@ e_toolbox_feature(e, feature, ...)
 e_toolbox(e, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{feature}{Feature to add, defaults to all.}
@@ -32,22 +32,21 @@ Valid \code{feature}:
 }
 }
 \examples{
-USArrests \%>\% 
-  e_charts(UrbanPop) \%>\% 
-  e_line(Assault) \%>\% 
-  e_area(Murder, y_index = 1, x_index = 1) \%>\% 
-  e_datazoom(x_index = 0) 
-  
-mtcars \%>\% 
-  dplyr::mutate(model = row.names(.)) \%>\%  
-  e_charts(model) \%>\% 
-  e_line(qsec) \%>\% 
-  e_toolbox() \%>\% 
-  e_toolbox_feature(
-    feature = "magicType", 
-    type = list("line", "bar")
-  ) 
+USArrests \%>\%
+  e_charts(UrbanPop) \%>\%
+  e_line(Assault) \%>\%
+  e_area(Murder, y_index = 1, x_index = 1) \%>\%
+  e_datazoom(x_index = 0)
 
+mtcars \%>\%
+  dplyr::mutate(model = row.names(.)) \%>\%
+  e_charts(model) \%>\%
+  e_line(qsec) \%>\%
+  e_toolbox() \%>\%
+  e_toolbox_feature(
+    feature = "magicType",
+    type = list("line", "bar")
+  )
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#toolbox}{Additional arguments}

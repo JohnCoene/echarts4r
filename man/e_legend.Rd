@@ -7,7 +7,7 @@
 e_legend(e, show = TRUE, type = c("plain", "scroll"), icons = NULL, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{show}{Set to \code{FALSE} to hide the legend.}
@@ -22,17 +22,17 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Customise the legend.
 }
 \examples{
-e <- cars \%>\% 
-  e_charts(speed) \%>\% 
+e <- cars \%>\%
+  e_charts(speed) \%>\%
   e_scatter(dist, symbol_size = 5)
 
-# with legend  
+# with legend
 e
 
 # without legend
-e \%>\% 
+e \%>\%
   e_legend(show = FALSE)
-  
+
 # with icon
 # path is taken from http://svgicons.sparkk.fr/
 path <- paste0(
@@ -42,11 +42,10 @@ path <- paste0(
   "-2.724L11.344,5.71z"
 )
 
-e \%>\% 
+e \%>\%
   e_legend(
     icons = list(path)
   )
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#legend}{Additional arguments}

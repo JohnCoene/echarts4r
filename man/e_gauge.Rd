@@ -10,7 +10,7 @@ e_gauge(e, value, name, rm_x = TRUE, rm_y = TRUE, ...)
 e_gauge_(...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{value}{Value to gauge.}
@@ -25,9 +25,8 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Plot a gauge.
 }
 \examples{
-e_charts() \%>\% 
+e_charts() \%>\%
   e_gauge(57, "PERCENT")
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-gauge}{Additional arguments}

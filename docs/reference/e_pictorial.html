@@ -55,7 +55,7 @@
   
 
 <meta property="og:title" content="Pictorial — e_pictorial" />
-<meta property="og:description" content="Pictorial bar chart is a type of bar chart that custimzed glyph 
+<meta property="og:description" content="Pictorial bar chart is a type of bar chart that custimzed glyph
 (like images, SVG PathData) can be used instead of rectangular bar." />
 <meta property="og:image" content="" />
 
@@ -295,7 +295,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Pictorial bar chart is a type of bar chart that custimzed glyph 
+    <p>Pictorial bar chart is a type of bar chart that custimzed glyph
 (like images, SVG PathData) can be used instead of rectangular bar.</p>
     </div>
 
@@ -328,7 +328,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
 a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
@@ -369,7 +369,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 
     
     <ul>
-<li><p>Built-in <code>circle</code>, <code>rect</code>, <code>roundRect</code>, <code>triangle</code>, <code>diamond</code>, 
+<li><p>Built-in <code>circle</code>, <code>rect</code>, <code>roundRect</code>, <code>triangle</code>, <code>diamond</code>,
   <code>pin</code>, <code>arrow</code>.</p></li>
 <li><p>SVG Path</p></li>
 <li><p>Images Path to image, don't forget to precede it with <code>image://</code>, see examples.</p></li>
@@ -390,8 +390,10 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <span class='no'>df</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_bar.html'>e_bar</a></span>(<span class='no'>z</span>, <span class='kw'>barWidth</span> <span class='kw'>=</span> <span class='fl'>10</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_pictorial</span>(<span class='no'>y</span>, <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"rect"</span>, <span class='kw'>symbolRepeat</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>z</span> <span class='kw'>=</span> -<span class='fl'>1</span>,
-    <span class='kw'>symbolSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>4</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_pictorial</span>(<span class='no'>y</span>,
+    <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"rect"</span>, <span class='kw'>symbolRepeat</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>z</span> <span class='kw'>=</span> -<span class='fl'>1</span>,
+    <span class='kw'>symbolSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>4</span>)
+  ) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='theme.html'>e_theme</a></span>(<span class='st'>"westeros"</span>)
 
 <span class='co'># svg path</span>
@@ -404,8 +406,10 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 
 <span class='no'>df</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_pictorial</span>(<span class='no'>y</span>, <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='no'>path</span>, <span class='kw'>barCategoryGap</span> <span class='kw'>=</span> <span class='st'>"-130%"</span>,
-    <span class='kw'>itemStyle</span> <span class='kw'>=</span> <span class='no'>style</span>)
+  <span class='fu'>e_pictorial</span>(<span class='no'>y</span>,
+    <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='no'>path</span>, <span class='kw'>barCategoryGap</span> <span class='kw'>=</span> <span class='st'>"-130%"</span>,
+    <span class='kw'>itemStyle</span> <span class='kw'>=</span> <span class='no'>style</span>
+  )
 
 <span class='co'># image</span>
 <span class='co'># might not work in RStudio viewer</span>
@@ -423,8 +427,10 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Qomolangma"</span>, <span class='st'>"Kilimanjaro"</span>),
   <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>8844</span>, <span class='fl'>5895</span>),
-  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"image://"</span>, <span class='no'>qomo</span>),
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"image://"</span>, <span class='no'>kili</span>))
+  <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"image://"</span>, <span class='no'>qomo</span>),
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"image://"</span>, <span class='no'>kili</span>)
+  )
 )
 
 <span class='no'>data</span> <span class='kw'>%&gt;%</span>
@@ -446,7 +452,8 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>year</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>, <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_pictorial</span>(
-    <span class='no'>y</span>, <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"rect"</span>,
+    <span class='no'>y</span>,
+    <span class='kw'>symbol</span> <span class='kw'>=</span> <span class='st'>"rect"</span>,
     <span class='kw'>symbolRepeat</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>z</span> <span class='kw'>=</span> -<span class='fl'>1</span>,
     <span class='kw'>symbolSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>4</span>)
   )</div></pre>

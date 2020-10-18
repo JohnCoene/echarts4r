@@ -11,7 +11,7 @@ e_pie_select(e, ..., btn = NULL)
 e_pie_unselect(e, ..., btn = NULL)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{...}{Any options, see \href{https://echarts.apache.org/en/api.html#action.pie}{official documentation}}
@@ -22,11 +22,10 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Actions related to \code{\link{e_pie}}.
 }
 \examples{
-mtcars \%>\% 
-  head() \%>\% 
-  dplyr::mutate(model = row.names(.)) \%>\% 
-  e_charts(model) \%>\% 
-  e_pie(carb) \%>\% 
+mtcars \%>\%
+  head() \%>\%
+  dplyr::mutate(model = row.names(.)) \%>\%
+  e_charts(model) \%>\%
+  e_pie(carb) \%>\%
   e_pie_select(dataIndex = 0)
-
 }

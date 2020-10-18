@@ -306,7 +306,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
 a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
@@ -337,8 +337,10 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='no'>a</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sprintf'>sprintf</a></span>(<span class='st'>"%04d"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='fl'>9999</span>, <span class='no'>n</span>, <span class='fl'>TRUE</span>)), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>LETTERS</span>, <span class='no'>n</span>, <span class='fl'>TRUE</span>))
 }
 
-<span class='no'>tf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>terms</span> <span class='kw'>=</span> <span class='fu'>words</span>(<span class='fl'>100</span>),
-  <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>100</span>, <span class='fl'>55</span>, <span class='fl'>10</span>)) <span class='kw'>%&gt;%</span>
+<span class='no'>tf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
+  <span class='kw'>terms</span> <span class='kw'>=</span> <span class='fu'>words</span>(<span class='fl'>100</span>),
+  <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>100</span>, <span class='fl'>55</span>, <span class='fl'>10</span>)
+) <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span>(-<span class='no'>freq</span>)
 
 <span class='no'>tf</span> <span class='kw'>%&gt;%</span>

@@ -332,7 +332,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
 a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
@@ -371,7 +371,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='http://echarts.baidu.com/option-gl.html#series-scatter3D'>Additional arguments</a></p></div>
+    <div class='dont-index'><p><a href='https://echarts.apache.org/en/option-gl.html#series-scatter3D'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>v</span> <span class='kw'>&lt;-</span> <span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>10</span>]
@@ -400,14 +400,16 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   ) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(
     <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-    <span class='kw'>inRange</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'#bf444c'</span>, <span class='st'>'#d88273'</span>, <span class='st'>'#f6efa6'</span>)), <span class='co'># scale colors</span>
+    <span class='kw'>inRange</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"#bf444c"</span>, <span class='st'>"#d88273"</span>, <span class='st'>"#f6efa6"</span>)), <span class='co'># scale colors</span>
     <span class='kw'>dimension</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='co'># third dimension 0 = x, y = 1, z = 2, size = 3, color = 4</span>
     <span class='kw'>bottom</span> <span class='kw'>=</span> <span class='fl'>300</span> <span class='co'># padding to avoid visual maps overlap</span>
   )
 
 <span class='no'>airports</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"https://raw.githubusercontent.com/plotly/datasets/"</span>,
-         <span class='st'>"master/2011_february_us_airport_traffic.csv"</span>)
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(
+    <span class='st'>"https://raw.githubusercontent.com/plotly/datasets/"</span>,
+    <span class='st'>"master/2011_february_us_airport_traffic.csv"</span>
+  )
 )
 
 <span class='no'>airports</span> <span class='kw'>%&gt;%</span>
@@ -415,7 +417,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   <span class='fu'><a href='e_globe.html'>e_globe</a></span>(
     <span class='kw'>globeOuterRadius</span> <span class='kw'>=</span> <span class='fl'>100</span>
   ) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_scatter_3d</span>(<span class='no'>lat</span>, <span class='no'>cnt</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"globe"</span>, <span class='kw'>blendMode</span> <span class='kw'>=</span> <span class='st'>'lighter'</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_scatter_3d</span>(<span class='no'>lat</span>, <span class='no'>cnt</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"globe"</span>, <span class='kw'>blendMode</span> <span class='kw'>=</span> <span class='st'>"lighter"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>inRange</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>symbolSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>10</span>)))</div><div class='output co'>#&gt; <span class='message'>`base_texture` is `NULL`, see echarts4r-assets.john-coene.com</span></div><div class='input'>
 <span class='co'># timeline</span>
 <span class='no'>airports</span> <span class='kw'>%&gt;%</span>
@@ -424,9 +426,8 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   <span class='fu'><a href='e_globe.html'>e_globe</a></span>(
     <span class='kw'>globeOuterRadius</span> <span class='kw'>=</span> <span class='fl'>100</span>
   ) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_scatter_3d</span>(<span class='no'>lat</span>, <span class='no'>cnt</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"globe"</span>, <span class='kw'>blendMode</span> <span class='kw'>=</span> <span class='st'>'lighter'</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>inRange</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>symbolSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>10</span>)))</div><div class='output co'>#&gt; <span class='message'>`base_texture` is `NULL`, see echarts4r-assets.john-coene.com</span></div><div class='input'>
-</div></pre>
+  <span class='fu'>e_scatter_3d</span>(<span class='no'>lat</span>, <span class='no'>cnt</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"globe"</span>, <span class='kw'>blendMode</span> <span class='kw'>=</span> <span class='st'>"lighter"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>inRange</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>symbolSize</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>10</span>)))</div><div class='output co'>#&gt; <span class='message'>`base_texture` is `NULL`, see echarts4r-assets.john-coene.com</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

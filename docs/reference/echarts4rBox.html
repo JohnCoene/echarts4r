@@ -309,7 +309,8 @@
   <span class='kw'>text_color</span> <span class='kw'>=</span> <span class='st'>"#ffffff"</span>,
   <span class='kw'>background_color</span> <span class='kw'>=</span> <span class='st'>"#293c55"</span>,
   <span class='kw'>step</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"start"</span>, <span class='st'>"middle"</span>, <span class='st'>"end"</span>),
-  <span class='kw'>title_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>()
+  <span class='kw'>title_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
+  <span class='kw'>tooltip</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>trigger</span> <span class='kw'>=</span> <span class='st'>"axis"</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -355,6 +356,10 @@
       <th>title_args</th>
       <td><p>Additional arguments to add to the title.</p></td>
     </tr>
+    <tr>
+      <th>tooltip</th>
+      <td><p>Tooltip to use.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -365,19 +370,18 @@
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
 
 <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidPage</a></span>(
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidRow</a></span>(
-   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(<span class='fl'>3</span>, <span class='fu'><a href='echarts4rBoxOutput.html'>echarts4rBoxOutput</a></span>(<span class='st'>"box1"</span>))
- )
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidRow</a></span>(
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(<span class='fl'>3</span>, <span class='fu'><a href='echarts4rBoxOutput.html'>echarts4rBoxOutput</a></span>(<span class='st'>"box1"</span>))
+  )
 )
 
-<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>){
- <span class='no'>output</span>$<span class='no'>box1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='renderEcharts4rBox.html'>renderEcharts4rBox</a></span>({
-   <span class='fu'>echarts4rBox</span>(<span class='no'>cars</span>, <span class='no'>speed</span>, <span class='no'>dist</span>, <span class='st'>"Cars"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"bar"</span>)
- })
-}
-
-<span class='kw'>if</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>())
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)</div></pre>
+<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+  <span class='no'>output</span>$<span class='no'>box1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='renderEcharts4rBox.html'>renderEcharts4rBox</a></span>({
+    <span class='fu'>echarts4rBox</span>(<span class='no'>cars</span>, <span class='no'>speed</span>, <span class='no'>dist</span>, <span class='st'>"Cars"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"bar"</span>)
+  })
+}</div><span class='co'># NOT RUN {</span>
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

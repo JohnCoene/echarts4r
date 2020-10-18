@@ -14,42 +14,40 @@ e_dispatch_action_p(proxy, type, ...)
 \item{...}{Named options.}
 }
 \description{
-Create your own proxies, essentially a wrapper around the 
+Create your own proxies, essentially a wrapper around the
 \href{https://echarts.apache.org/en/api.html#action}{action API}.
 }
 \examples{
 \dontrun{
 
-  library(shiny)
+library(shiny)
 
-  ui <- fluidPage(
-    fluidRow(
-      column(8, echarts4rOutput("chart")),
-      column(4, actionButton("zoom", "Zoom"))
-    )
+ui <- fluidPage(
+  fluidRow(
+    column(8, echarts4rOutput("chart")),
+    column(4, actionButton("zoom", "Zoom"))
   )
-  
-  server <- function(input, output, session){
-  
-    output$chart <- renderEcharts4r({
-      cars \%>\% 
-        e_charts(speed) \%>\% 
-        e_scatter(dist) \%>\% 
-        e_datazoom()
-    })
-    
-    observe({
-      req(input$zoom)
-      
-      echarts4rProxy("chart") \%>\% 
-        e_dispatch_action_p("dataZoom", startValue = 1, endValue = 10)
-    })
-  
-  }
-  
-  if(interactive())
-   shinyApp(ui, server)
+)
 
+server <- function(input, output, session) {
+  output$chart <- renderEcharts4r({
+    cars \%>\%
+      e_charts(speed) \%>\%
+      e_scatter(dist) \%>\%
+      e_datazoom()
+  })
+
+  observe({
+    req(input$zoom)
+
+    echarts4rProxy("chart") \%>\%
+      e_dispatch_action_p("dataZoom", startValue = 1, endValue = 10)
+  })
+}
+
+if (interactive()) {
+  shinyApp(ui, server)
+}
 }
 
 }

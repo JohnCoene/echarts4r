@@ -78,7 +78,7 @@ applications and interactive Rmd documents.
 
 \section{Proxies}{
 
-The \code{echarts4rProxy} function returns a proxy for chart which allows 
+The \code{echarts4rProxy} function returns a proxy for chart which allows
 manipulating a drawn chart, adding data, adding or removing series, etc. without
 redrawing the entire chart.
 

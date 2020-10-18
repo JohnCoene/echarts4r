@@ -11,7 +11,7 @@ e_focus_adjacency(e, ..., btn = NULL)
 e_unfocus_adjacency(e, ..., btn = NULL)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{...}{Any options, see \href{https://echarts.apache.org/en/api.html#action.graph}{official documentation}}
@@ -38,13 +38,12 @@ edges <- data.frame(
   stringsAsFactors = FALSE
 )
 
-e_charts() \%>\% 
-  e_graph() \%>\% 
-  e_graph_nodes(nodes, name, value, size, grp) \%>\% 
-  e_graph_edges(edges, source, target) \%>\% 
+e_charts() \%>\%
+  e_graph() \%>\%
+  e_graph_nodes(nodes, name, value, size, grp) \%>\%
+  e_graph_edges(edges, source, target) \%>\%
   e_focus_adjacency(
     seriesIndex = 0,
     dataIndex = 4
   )
-
 }

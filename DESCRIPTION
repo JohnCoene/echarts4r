@@ -1,6 +1,6 @@
 Package: echarts4r
 Title: Create Interactive Graphs with 'Echarts JavaScript' Version 4
-Date: 2020-06-17
+Date: 2020-10-15
 Version: 0.3.3
 Authors@R: c(
   person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre", "cph")), 
@@ -16,7 +16,6 @@ Imports:
   dplyr (>= 0.7.0),
   purrr,
   countrycode,
-  d3r,
   broom,
   shiny,
   scales,
@@ -28,8 +27,8 @@ Suggests:
     tidyr,
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    covr
 RoxygenNote: 7.1.1.9000
 URL: https://echarts4r.john-coene.com/
-BugReports: https://github.com/JohnCoene/echarts4r/issues
-VignetteBuilder: knitr
+BugReports: https://github.com/JohnCoene/echarts4r/issues/

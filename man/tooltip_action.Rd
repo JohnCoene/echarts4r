@@ -11,7 +11,7 @@ e_showtip(e, ..., btn = NULL)
 e_hidetip(e, ..., btn = NULL)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{...}{Any options, see \href{https://echarts.apache.org/en/api.html#action.tooltip}{official documentation}}
@@ -25,11 +25,10 @@ Show or hide tooltip.
 The tooltip must be initialised with \code{\link{e_tooltip}} for this to work.
 }
 \examples{
-cars \%>\% 
-  e_charts(dist) \%>\% 
-  e_scatter(speed) \%>\% 
-  e_tooltip() \%>\% 
-  e_hidetip(btn = "btn") \%>\% 
+cars \%>\%
+  e_charts(dist) \%>\%
+  e_scatter(speed) \%>\%
+  e_tooltip() \%>\%
+  e_hidetip(btn = "btn") \%>\%
   e_button("btn", "Hide tooltip")
-
 }

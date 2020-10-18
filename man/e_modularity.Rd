@@ -7,13 +7,13 @@
 e_modularity(e, modularity = TRUE)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{modularity}{Either set to \code{TRUE}, or a \code{list}.}
 }
 \description{
-Graph modularity extension will do community detection and partian a graph's vertices in several subsets. 
+Graph modularity extension will do community detection and partian a graph's vertices in several subsets.
 Each subset will be assigned a different color.
 }
 \note{
@@ -40,17 +40,16 @@ edges <- data.frame(
   stringsAsFactors = FALSE
 )
 
-e_charts() \%>\% 
-  e_graph() \%>\% 
-  e_graph_nodes(nodes, name, value) \%>\% 
-  e_graph_edges(edges, source, target) \%>\% 
+e_charts() \%>\%
+  e_graph() \%>\%
+  e_graph_nodes(nodes, name, value) \%>\%
+  e_graph_edges(edges, source, target) \%>\%
   e_modularity(
     list(
       resolution = 5,
       sort = TRUE
     )
   )
-  
 }
 \seealso{
 \href{https://github.com/ecomfe/echarts-graph-modularity}{Official documentation}

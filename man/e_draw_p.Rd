@@ -24,22 +24,23 @@ ui <- fluidPage(
   actionButton("draw", "draw")
 )
 
-server <- function(input, output){
+server <- function(input, output) {
   output$chart <- renderEcharts4r({
-    mtcars \%>\% 
-      e_charts(mpg, draw = FALSE) \%>\% 
-      e_scatter(qsec) \%>\% 
-      e_datazoom() 
+    mtcars \%>\%
+      e_charts(mpg, draw = FALSE) \%>\%
+      e_scatter(qsec) \%>\%
+      e_datazoom()
   })
-  
+
   observeEvent(input$draw, {
-    echarts4rProxy("chart") \%>\% 
+    echarts4rProxy("chart") \%>\%
       e_draw_p()
   })
 }
 
-if(interactive())
- shinyApp(ui, server)
+if (interactive()) {
+  shinyApp(ui, server)
+}
 }
 
 }

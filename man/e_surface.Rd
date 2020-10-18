@@ -10,7 +10,7 @@ e_surface(e, y, z, bind, name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 e_surface_(e, y, z, bind = NULL, name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{y, z}{Coordinates.}
@@ -33,9 +33,8 @@ surface <- as.data.frame(as.table(volcano))
 surface$Var1 <- as.numeric(surface$Var1)
 surface$Var2 <- as.numeric(surface$Var2)
 
-surface \%>\% 
-  e_charts(Var1) \%>\% 
-  e_surface(Var2, Freq) \%>\% 
+surface \%>\%
+  e_charts(Var1) \%>\%
+  e_surface(Var2, Freq) \%>\%
   e_visual_map(Freq)
-
 }

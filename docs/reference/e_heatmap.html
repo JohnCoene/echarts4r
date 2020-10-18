@@ -328,7 +328,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
 a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
@@ -345,12 +345,12 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     </tr>
     <tr>
       <th>coord_system</th>
-      <td><p>Coordinate system to plot against, takes 
+      <td><p>Coordinate system to plot against, takes
 <code>cartesian2d</code>, <code>geo</code> or <code>calendar</code>.</p></td>
     </tr>
     <tr>
       <th>rm_x, rm_y</th>
-      <td><p>Whether to remove x and y axis, only applies if <code>coord_system</code> is not 
+      <td><p>Whether to remove x and y axis, only applies if <code>coord_system</code> is not
 set to <code>cartesian2d</code>.</p></td>
     </tr>
     <tr>
@@ -383,7 +383,7 @@ set to <code>cartesian2d</code>.</p></td>
   <span class='fu'>e_heatmap</span>(<span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>itemStyle</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>emphasis</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>shadowBlur</span> <span class='kw'>=</span> <span class='fl'>10</span>))) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='no'>z</span>)
 
-<span class='co'># calendar   </span>
+<span class='co'># calendar</span>
 <span class='no'>dates</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq.Date'>seq.Date</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.Date'>as.Date</a></span>(<span class='st'>"2017-01-01"</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.Date'>as.Date</a></span>(<span class='st'>"2018-12-31"</span>), <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"day"</span>)
 <span class='no'>values</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>dates</span>), <span class='fl'>20</span>, <span class='fl'>6</span>)
 
@@ -412,7 +412,7 @@ set to <code>cartesian2d</code>.</p></td>
     <span class='kw'>boundingCoords</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>190</span>, -<span class='fl'>10</span>),
       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>180</span>, -<span class='fl'>40</span>)
-   )
+    )
   ) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_heatmap</span>(
     <span class='no'>lat</span>,

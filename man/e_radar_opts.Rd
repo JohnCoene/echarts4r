@@ -7,7 +7,7 @@
 e_radar_opts(e, index = 0, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{index}{Index of axis to customise.}
@@ -28,7 +28,6 @@ df \%>\%
   e_charts(x) \%>\%
   e_radar(y, max = 7) \%>\%
   e_radar(z) \%>\%
-  e_radar_opts(center = c("25\%", "25\%")) \%>\% 
+  e_radar_opts(center = c("25\%", "25\%")) \%>\%
   e_tooltip(trigger = "item")
-
 }

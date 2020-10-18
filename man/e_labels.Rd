@@ -7,38 +7,37 @@
 e_labels(e, show = TRUE, position = "top", ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{show}{Set to \code{TRUE} to show the labels.}
 
-\item{position}{Position of labels, see 
+\item{position}{Position of labels, see
 \href{https://echarts.apache.org/en/option.html#series-line.label.position}{official documentation}
  for the full list of options.}
 
-\item{...}{Any other options see 
+\item{...}{Any other options see
 \href{https://echarts.apache.org/en/option.html#series-line.label}{documentation} for other options.}
 }
 \description{
 Format labels
 }
 \examples{
-mtcars \%>\% 
-  e_chart(wt) \%>\% 
-  e_scatter(qsec, cyl) \%>\% 
-  e_labels(fontSize = 9)
-  
-mtcars \%>\% 
-  group_by(cyl) \%>\% 
-  e_chart(wt) \%>\% 
-  e_scatter(qsec, mpg) \%>\% 
+mtcars \%>\%
+  e_chart(wt) \%>\%
+  e_scatter(qsec, cyl) \%>\%
   e_labels(fontSize = 9)
 
-# timeline  
-mtcars \%>\% 
-  group_by(cyl) \%>\% 
-  e_chart(wt) \%>\% 
-  e_scatter(qsec, mpg) \%>\% 
+mtcars \%>\%
+  group_by(cyl) \%>\%
+  e_chart(wt) \%>\%
+  e_scatter(qsec, mpg) \%>\%
   e_labels(fontSize = 9)
 
+# timeline
+mtcars \%>\%
+  group_by(cyl) \%>\%
+  e_chart(wt) \%>\%
+  e_scatter(qsec, mpg) \%>\%
+  e_labels(fontSize = 9)
 }

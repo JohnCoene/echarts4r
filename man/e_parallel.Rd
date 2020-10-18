@@ -10,7 +10,7 @@ e_parallel(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE)
 e_parallel_(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{...}{Any other option to pass, check See Also section.}
@@ -29,10 +29,9 @@ df <- data.frame(
   letter = LETTERS[1:5]
 )
 
-df \%>\% 
-  e_charts() \%>\% 
-  e_parallel(price, amount, letter) 
-  
+df \%>\%
+  e_charts() \%>\%
+  e_parallel(price, amount, letter)
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-parallel}{Additional arguments}

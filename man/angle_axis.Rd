@@ -11,7 +11,7 @@ e_angle_axis(e, serie, show = TRUE, ...)
 e_angle_axis_(e, serie = NULL, show = TRUE, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{serie}{Serie to use as axis labels.}
@@ -26,23 +26,22 @@ Customise angle axis.
 \examples{
 df <- data.frame(x = 1:100, y = seq(1, 200, by = 2))
 
-df \%>\% 
-  e_charts(x) \%>\% 
-  e_polar(FALSE) \%>\% 
-  e_angle_axis(FALSE) \%>\% 
-  e_radius_axis(FALSE) \%>\% 
-  e_line(y, coord.system = "polar", smooth = TRUE) \%>\% 
+df \%>\%
+  e_charts(x) \%>\%
+  e_polar(FALSE) \%>\%
+  e_angle_axis(FALSE) \%>\%
+  e_radius_axis(FALSE) \%>\%
+  e_line(y, coord.system = "polar", smooth = TRUE) \%>\%
   e_legend(show = FALSE)
-  
+
 df <- data.frame(x = LETTERS[1:5], y = runif(5))
 
-df \%>\% 
-  e_charts(x) \%>\% 
-  e_polar() \%>\% 
-  e_angle_axis(x) \%>\% 
-  e_radius_axis() \%>\% 
+df \%>\%
+  e_charts(x) \%>\%
+  e_polar() \%>\%
+  e_angle_axis(x) \%>\%
+  e_radius_axis() \%>\%
   e_line(y, coord.system = "polar", smooth = TRUE)
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#angleAxis}{Additional arguments}

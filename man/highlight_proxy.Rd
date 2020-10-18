@@ -21,66 +21,66 @@ Proxies to highlight and downplay series.
 }
 \examples{
 \dontrun{
-  library(shiny)
+library(shiny)
 
- ui <- fluidPage(
-   fluidRow(
-     column(
-       3,
-       actionButton("highlightmpg", "Highlight MPG")
-     ),
-     column(
-       3,
-       actionButton("highlighthp", "Highlight HP")
-     ),
-     column(
-       3,
-       actionButton("downplaympg", "Downplay MPG")
-     ),
-     column(
-       3,
-       actionButton("downplayhp", "Downplay HP")
-     )
-   ),
-   echarts4rOutput("plot")
- ) 
- 
- server <- function(input, output, session){
-   output$plot <- renderEcharts4r({
-     mtcars \%>\% 
-       e_charts(mpg) \%>\% 
-       e_line(disp) \%>\% 
-       e_line(hp, name = "HP") # explicitly pass name
-   })
-   
-   # highlight
-   
-   observeEvent(input$highlightmpg, {
-     echarts4rProxy("plot") \%>\% 
-       e_highlight_p(series_index = 0) # using index
-   })
-   
-   observeEvent(input$highlighthp, {
-     echarts4rProxy("plot") \%>\% 
-       e_highlight_p(series_name = "HP") # using name
-   })
-   
-   # downplay
-   
-   observeEvent(input$downplaympg, {
-     echarts4rProxy("plot") \%>\% 
-       e_downplay_p(series_name = "disp")
-   })
-   
-   observeEvent(input$downplayhp, {
-     echarts4rProxy("plot") \%>\% 
-       e_downplay_p(series_index = 1)
-   })
- }
- 
- if(interactive())
-   shinyApp(ui, server)
+ui <- fluidPage(
+  fluidRow(
+    column(
+      3,
+      actionButton("highlightmpg", "Highlight MPG")
+    ),
+    column(
+      3,
+      actionButton("highlighthp", "Highlight HP")
+    ),
+    column(
+      3,
+      actionButton("downplaympg", "Downplay MPG")
+    ),
+    column(
+      3,
+      actionButton("downplayhp", "Downplay HP")
+    )
+  ),
+  echarts4rOutput("plot")
+)
 
+server <- function(input, output, session) {
+  output$plot <- renderEcharts4r({
+    mtcars \%>\%
+      e_charts(mpg) \%>\%
+      e_line(disp) \%>\%
+      e_line(hp, name = "HP") # explicitly pass name
+  })
+
+  # highlight
+
+  observeEvent(input$highlightmpg, {
+    echarts4rProxy("plot") \%>\%
+      e_highlight_p(series_index = 0) # using index
+  })
+
+  observeEvent(input$highlighthp, {
+    echarts4rProxy("plot") \%>\%
+      e_highlight_p(series_name = "HP") # using name
+  })
+
+  # downplay
+
+  observeEvent(input$downplaympg, {
+    echarts4rProxy("plot") \%>\%
+      e_downplay_p(series_name = "disp")
+  })
+
+  observeEvent(input$downplayhp, {
+    echarts4rProxy("plot") \%>\%
+      e_downplay_p(series_index = 1)
+  })
+}
+
+if (interactive()) {
+  shinyApp(ui, server)
+}
 }
 
 }

@@ -7,7 +7,7 @@
 e_grid_3d(e, index = 0, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{index}{Index of axis to customise.}
@@ -21,29 +21,28 @@ Customise grid.
 # phony data
 v <- LETTERS[1:10]
 matrix <- data.frame(
-  x = sample(v, 300, replace = TRUE), 
-  y = sample(v, 300, replace = TRUE), 
+  x = sample(v, 300, replace = TRUE),
+  y = sample(v, 300, replace = TRUE),
   z1 = rnorm(300, 10, 1),
   z2 = rnorm(300, 10, 1),
   stringsAsFactors = FALSE
-) \%>\% 
-  dplyr::group_by(x, y) \%>\% 
+) \%>\%
+  dplyr::group_by(x, y) \%>\%
   dplyr::summarise(
     z1 = sum(z1),
     z2 = sum(z2)
-  ) \%>\% 
-  dplyr::ungroup() 
-  
+  ) \%>\%
+  dplyr::ungroup()
+
 trans <- list(opacity = 0.4) # transparency
 emphasis <- list(itemStyle = list(color = "#313695"))
-  
-matrix \%>\% 
-  e_charts(x) \%>\% 
-  e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) \%>\%
-  e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) \%>\% 
-  e_grid_3d(splitLine = list(lineStyle = list(color = "blue")))
 
+matrix \%>\%
+  e_charts(x) \%>\%
+  e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) \%>\%
+  e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) \%>\%
+  e_grid_3d(splitLine = list(lineStyle = list(color = "blue")))
 }
 \seealso{
-\href{http://www.echartsjs.com/option-gl.html#grid3D}{Additional arguments}
+\href{https://echarts.apache.org/en/option-gl.html#grid3D}{Additional arguments}
 }

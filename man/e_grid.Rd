@@ -7,7 +7,7 @@
 e_grid(e, index = NULL, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{index}{Index of axis to customise.}
@@ -18,15 +18,14 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Customise grid.
 }
 \examples{
-USArrests \%>\% 
-  e_charts(UrbanPop) \%>\% 
-  e_line(Assault, smooth = TRUE) \%>\% 
-  e_area(Murder, y.index = 1, x.index = 1) \%>\% 
+USArrests \%>\%
+  e_charts(UrbanPop) \%>\%
+  e_line(Assault, smooth = TRUE) \%>\%
+  e_area(Murder, y.index = 1, x.index = 1) \%>\%
   e_y_axis(gridIndex = 1) \%>\%
-  e_x_axis(gridIndex = 1) \%>\% 
-  e_grid(height = "40\%") \%>\% 
+  e_x_axis(gridIndex = 1) \%>\%
+  e_grid(height = "40\%") \%>\%
   e_grid(height = "40\%", top = "55\%")
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#grid}{Additional arguments}

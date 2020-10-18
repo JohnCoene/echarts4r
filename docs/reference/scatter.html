@@ -384,7 +384,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
 a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
@@ -406,7 +406,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     </tr>
     <tr>
       <th>symbol_size</th>
-      <td><p>Size of points, either an integer or a vector of length 2, 
+      <td><p>Size of points, either an integer or a vector of length 2,
 if <code>size</code> is <em>not</em> <code>NULL</code> or missing it is applied as a multiplier to <code>scale</code>.</p></td>
     </tr>
     <tr>
@@ -444,7 +444,7 @@ of the same length. You can disable the scaling by setting it to <code>NULL</cod
     </tr>
     <tr>
       <th>rm_x, rm_y</th>
-      <td><p>Whether to remove x and y axis, only applies if <code>coord_system</code> is not 
+      <td><p>Whether to remove x and y axis, only applies if <code>coord_system</code> is not
 set to <code>cartesian2d</code>.</p></td>
     </tr>
     <tr>
@@ -523,14 +523,14 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
   <span class='fu'><a href='e_geo.html'>e_geo</a></span>(
     <span class='kw'>roam</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
     <span class='kw'>boundingCoords</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>185</span>, - <span class='fl'>10</span>),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>185</span>, -<span class='fl'>10</span>),
       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>165</span>, -<span class='fl'>40</span>)
     )
   ) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_scatter</span>(<span class='no'>lat</span>, <span class='no'>mag</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>6.5</span>)
 
-<span class='co'># timeline  </span>
+<span class='co'># timeline</span>
 <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Petal.Width</span>, <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>

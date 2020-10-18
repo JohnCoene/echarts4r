@@ -7,7 +7,7 @@
 e_axis_stagger(e)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 }
 \description{
@@ -15,13 +15,12 @@ Stagger axis labels.
 }
 \examples{
 df <- data.frame(
- x = c("a very long label", "Another long label"),
- y = 1:2
+  x = c("a very long label", "Another long label"),
+  y = 1:2
 )
 
-df \%>\% 
- e_charts(x, width = 150) \%>\% 
- e_bar(y) \%>\% 
- e_axis_stagger()
-
+df \%>\%
+  e_charts(x, width = 150) \%>\%
+  e_bar(y) \%>\%
+  e_axis_stagger()
 }

@@ -95,7 +95,7 @@ df %>%
 
 ## GeoJSON support
 
-Use a custom [geojson](http://geojson.org/) map; 1) read the json and register it with `e_register_map`.
+Use a custom [geojson](https://geojson.org/) map; 1) read the json and register it with `e_register_map`.
 
 ```{r}
 json <- jsonlite::read_json("https://raw.githubusercontent.com/shawnbot/topogram/master/data/us-states.geojson")

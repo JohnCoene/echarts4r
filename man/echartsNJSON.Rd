@@ -10,7 +10,7 @@ e_inspect(e, json = FALSE, ...)
 echarts_from_json(txt)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{json}{Whether to return the JSON, otherwise returns a \code{list}.}
@@ -20,7 +20,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{txt}{JSON character string, url, or file.}
 }
 \value{
-\code{e_inspect} Returns a \code{list} if \code{json} is \code{FALSE} and a 
+\code{e_inspect} Returns a \code{list} if \code{json} is \code{FALSE} and a
 JSON string otherwise. \code{echarts_from_json} returns an object of class \code{echarts4r}.
 }
 \description{
@@ -34,24 +34,23 @@ This is subsequently passed to the \code{setOption} ECharts (JavaScript) functio
 Must be passed as last option.
 }
 \examples{
-p <- cars \%>\% 
-  e_charts(dist) \%>\% 
-  e_scatter(speed, symbol_size = 10) 
- 
+p <- cars \%>\%
+  e_charts(dist) \%>\%
+  e_scatter(speed, symbol_size = 10)
+
 p # plot
 
-# extract the JSON 
-json <- p \%>\% 
+# extract the JSON
+json <- p \%>\%
   e_inspect(
     json = TRUE,
     pretty = TRUE
   )
-  
+
 # print json
 json
-  
-# rebuild plot
-echarts_from_json(json) \%>\% 
-  e_theme("dark") # modify
 
+# rebuild plot
+echarts_from_json(json) \%>\%
+  e_theme("dark") # modify
 }

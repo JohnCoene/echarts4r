@@ -50,20 +50,20 @@ Renders a data box in shiny.
 library(shiny)
 
 ui <- fluidPage(
- fluidRow(
-   column(3, echarts4rBoxOutput("box1"))
- )
+  fluidRow(
+    column(3, echarts4rBoxOutput("box1"))
+  )
 )
 
-server <- function(input, output){
- output$box1 <- renderEcharts4rBox({
-   echarts4rBox(cars, speed, dist, "Cars", type = "bar")
- })
+server <- function(input, output) {
+  output$box1 <- renderEcharts4rBox({
+    echarts4rBox(cars, speed, dist, "Cars", type = "bar")
+  })
 }
 
-if(interactive())
- shinyApp(ui, server)
-
+\dontrun{
+  shinyApp(ui, server)
+}
 }
 \seealso{
 \code{\link{renderEcharts4rBox}}, \code{\link{echarts4rBoxOutput}}

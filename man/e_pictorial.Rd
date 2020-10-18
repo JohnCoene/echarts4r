@@ -30,7 +30,7 @@ e_pictorial_(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{serie}{Column name of serie to plot.}
@@ -50,13 +50,13 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{
-Pictorial bar chart is a type of bar chart that custimzed glyph 
+Pictorial bar chart is a type of bar chart that custimzed glyph
 (like images, SVG PathData) can be used instead of rectangular bar.
 }
 \section{Symbols}{
 
 \itemize{
-  \item{Built-in}{ \code{circle}, \code{rect}, \code{roundRect}, \code{triangle}, \code{diamond}, 
+  \item{Built-in}{ \code{circle}, \code{rect}, \code{roundRect}, \code{triangle}, \code{diamond},
   \code{pin}, \code{arrow}.}
   \item{SVG Path}
   \item{Images}{ Path to image, don't forget to precede it with \code{image://}, see examples.}
@@ -72,13 +72,15 @@ df <- data.frame(
   z = y - rnorm(10, 5, 1)
 )
 
-df \%>\% 
-  e_charts(x) \%>\% 
-  e_bar(z, barWidth = 10) \%>\% 
-  e_pictorial(y, symbol = "rect", symbolRepeat = TRUE, z = -1,
-    symbolSize = c(10, 4)) \%>\% 
+df \%>\%
+  e_charts(x) \%>\%
+  e_bar(z, barWidth = 10) \%>\%
+  e_pictorial(y,
+    symbol = "rect", symbolRepeat = TRUE, z = -1,
+    symbolSize = c(10, 4)
+  ) \%>\%
   e_theme("westeros")
-  
+
 # svg path
 path <- "path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"
 
@@ -87,11 +89,13 @@ style <- list(
   emphasis = list(opacity = 1) # on hover
 )
 
-df \%>\% 
-  e_charts(x) \%>\% 
-  e_pictorial(y, symbol = path, barCategoryGap = "-130\%",
-    itemStyle = style) 
-    
+df \%>\%
+  e_charts(x) \%>\%
+  e_pictorial(y,
+    symbol = path, barCategoryGap = "-130\%",
+    itemStyle = style
+  )
+
 # image
 # might not work in RStudio viewer
 # open in browser
@@ -101,22 +105,24 @@ qomo <- paste0(
 )
 
 kili <- paste0(
-  "https://ecomfe.github.io/echarts-examples/public/", 
+  "https://ecomfe.github.io/echarts-examples/public/",
   "data/asset/img/hill-Kilimanjaro.png"
 )
 
 data <- data.frame(
-  x = c("Qomolangma", "Kilimanjaro"), 
+  x = c("Qomolangma", "Kilimanjaro"),
   value = c(8844, 5895),
-  symbol = c(paste0("image://", qomo),
-    paste0("image://", kili))
+  symbol = c(
+    paste0("image://", qomo),
+    paste0("image://", kili)
+  )
 )
 
-data \%>\% 
-  e_charts(x) \%>\% 
-  e_pictorial(value, symbol) \%>\% 
-  e_legend(FALSE) 
- 
+data \%>\%
+  e_charts(x) \%>\%
+  e_pictorial(value, symbol) \%>\%
+  e_legend(FALSE)
+
 # timeline
 df <- data.frame(
   x = rep(1:5, 2),
@@ -127,15 +133,15 @@ df <- data.frame(
   )
 )
 
-df \%>\% 
-  group_by(year) \%>\% 
-  e_charts(x, timeline = TRUE) \%>\% 
+df \%>\%
+  group_by(year) \%>\%
+  e_charts(x, timeline = TRUE) \%>\%
   e_pictorial(
-    y, symbol = "rect", 
+    y,
+    symbol = "rect",
     symbolRepeat = TRUE, z = -1,
     symbolSize = c(10, 4)
   )
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-pictorialBar}{Additional arguments}

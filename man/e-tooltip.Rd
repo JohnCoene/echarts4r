@@ -40,13 +40,13 @@ e_tooltip_pointer_formatter(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{trigger}{What triggers the tooltip, one of \code{item} or \code{item}.}
 
-\item{formatter}{Item and Pointer formatter as returned 
-by \code{\link{e_tooltip_item_formatter}}, \code{\link{e_tooltip_pointer_formatter}}, 
+\item{formatter}{Item and Pointer formatter as returned
+by \code{\link{e_tooltip_item_formatter}}, \code{\link{e_tooltip_pointer_formatter}},
 \code{\link{e_tooltip_pie_formatter}}.}
 
 \item{...}{Any other option to pass, check See Also section.}
@@ -74,33 +74,32 @@ Customise tooltip
 
 \examples{
 # basic
-USArrests \%>\% 
-  e_charts(Assault) \%>\% 
-  e_scatter(Murder) \%>\% 
+USArrests \%>\%
+  e_charts(Assault) \%>\%
+  e_scatter(Murder) \%>\%
   e_tooltip()
-  
+
 # formatter
-cars \%>\% 
+cars \%>\%
   dplyr::mutate(
     dist = dist / 120
-  ) \%>\% 
-  e_charts(speed) \%>\% 
-  e_scatter(dist, symbol_size = 5) \%>\% 
+  ) \%>\%
+  e_charts(speed) \%>\%
+  e_scatter(dist, symbol_size = 5) \%>\%
   e_tooltip(
     formatter = e_tooltip_item_formatter("percent")
   )
 
 # axis pointer
-cars \%>\% 
-  e_charts(speed) \%>\% 
-  e_scatter(dist, symbol_size = 5) \%>\% 
+cars \%>\%
+  e_charts(speed) \%>\%
+  e_scatter(dist, symbol_size = 5) \%>\%
   e_tooltip(
-    formatter = e_tooltip_pointer_formatter("currency"), 
+    formatter = e_tooltip_pointer_formatter("currency"),
     axisPointer = list(
       type = "cross"
     )
   )
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#tooltip}{Additional arguments}

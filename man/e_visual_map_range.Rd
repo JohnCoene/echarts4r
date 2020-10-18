@@ -7,7 +7,7 @@
 e_visual_map_range(e, ..., btn = NULL)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{...}{Any options, see \href{https://echarts.apache.org/en/api.html#action.visualMap}{official documentation}}
@@ -20,13 +20,12 @@ Selects data range of visual mapping.
 \examples{
 data("state")
 
-as.data.frame(state.x77) \%>\% 
-  e_charts(Population) \%>\% 
-  e_scatter(Income, Frost) \%>\% 
-  e_visual_map(Frost, scale = e_scale) \%>\% 
-  e_legend(FALSE) \%>\% 
+as.data.frame(state.x77) \%>\%
+  e_charts(Population) \%>\%
+  e_scatter(Income, Frost) \%>\%
+  e_visual_map(Frost, scale = e_scale) \%>\%
+  e_legend(FALSE) \%>\%
   e_visual_map_range(
     selected = list(60, 120)
   )
-
 }

@@ -329,7 +329,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
 a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
@@ -356,7 +356,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>To set a label you need to either use the <code>title</code> 
+    <p>To set a label you need to either use the <code>title</code>
 argument or pass a list specifying the label formatter.
 <code>label = list(formatter = "label")</code>. The former is more convenient
 but more limited, e.g.: you cannot specify the placement of the label.</p>
@@ -391,8 +391,8 @@ but more limited, e.g.: you cannot specify the placement of the label.</p>
   <span class='fu'>e_mark_line</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>avg</span>) <span class='kw'>%&gt;%</span> <span class='co'># applies to all</span>
   <span class='fu'>e_mark_area</span>(<span class='kw'>serie</span> <span class='kw'>=</span> <span class='st'>"wt"</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
     <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>xAxis</span> <span class='kw'>=</span> <span class='st'>"min"</span>, <span class='kw'>yAxis</span> <span class='kw'>=</span> <span class='st'>"min"</span>),
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>xAxis</span> <span class='kw'>=</span> <span class='st'>"max"</span>, <span class='kw'>yAxis</span> <span class='kw'>=</span> <span class='st'>"max"</span>))
- )
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>xAxis</span> <span class='kw'>=</span> <span class='st'>"max"</span>, <span class='kw'>yAxis</span> <span class='kw'>=</span> <span class='st'>"max"</span>)
+  ))
 
 <span class='co'># serie options</span>
 
@@ -401,20 +401,22 @@ but more limited, e.g.: you cannot specify the placement of the label.</p>
   <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Sepal.Length</span>, <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Sepal.Width</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='timeline-opts.html'>e_timeline_serie</a></span>(
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"setosa"</span>),
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"versicolor"</span>),
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"virginica"</span>)
-     )
+    <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"setosa"</span>),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"versicolor"</span>),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"virginica"</span>)
+    )
   ) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_mark_area</span>(<span class='kw'>serie</span><span class='kw'>=</span><span class='st'>'setosa'</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_mark_area</span>(<span class='kw'>serie</span><span class='kw'>=</span><span class='st'>'versicolor'</span>,
-            <span class='kw'>data</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-              <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>xAxis</span> <span class='kw'>=</span> <span class='fl'>2</span>),
-              <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>xAxis</span> <span class='kw'>=</span> <span class='fl'>4</span>)),
-            <span class='kw'>itemStyle</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>color</span><span class='kw'>=</span><span class='st'>'lightblue'</span>)
+  <span class='fu'>e_mark_area</span>(<span class='kw'>serie</span> <span class='kw'>=</span> <span class='st'>"setosa"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_mark_area</span>(
+    <span class='kw'>serie</span> <span class='kw'>=</span> <span class='st'>"versicolor"</span>,
+    <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>xAxis</span> <span class='kw'>=</span> <span class='fl'>2</span>),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>xAxis</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+    ),
+    <span class='kw'>itemStyle</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"lightblue"</span>)
   ) <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_mark_area</span>(<span class='kw'>serie</span><span class='kw'>=</span><span class='st'>'virginica'</span>)</div></pre>
+  <span class='fu'>e_mark_area</span>(<span class='kw'>serie</span> <span class='kw'>=</span> <span class='st'>"virginica"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

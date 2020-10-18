@@ -328,7 +328,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or 
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
 a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
@@ -363,7 +363,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='http://echarts.baidu.com/option-gl.html#series-flowGL'>Additional arguments</a></p></div>
+    <div class='dont-index'><p><a href='https://echarts.apache.org/en/option-gl.html#series-flowGL'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># coordinates</span>
@@ -381,8 +381,10 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <span class='kw'>dimension</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='co'># x = 0, y = 1, sx = 3, sy = 4</span>
     <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='co'># hide</span>
     <span class='kw'>inRange</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-      <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'#313695'</span>, <span class='st'>'#4575b4'</span>, <span class='st'>'#74add1'</span>, <span class='st'>'#abd9e9'</span>, <span class='st'>'#e0f3f8'</span>,
-                <span class='st'>'#ffffbf'</span>, <span class='st'>'#fee090'</span>, <span class='st'>'#fdae61'</span>, <span class='st'>'#f46d43'</span>, <span class='st'>'#d73027'</span>, <span class='st'>'#a50026'</span>)
+      <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+        <span class='st'>"#313695"</span>, <span class='st'>"#4575b4"</span>, <span class='st'>"#74add1"</span>, <span class='st'>"#abd9e9"</span>, <span class='st'>"#e0f3f8"</span>,
+        <span class='st'>"#ffffbf"</span>, <span class='st'>"#fee090"</span>, <span class='st'>"#fdae61"</span>, <span class='st'>"#f46d43"</span>, <span class='st'>"#d73027"</span>, <span class='st'>"#a50026"</span>
+      )
     )
   ) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='axis.html'>e_x_axis</a></span>(
@@ -394,7 +396,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 
 <span class='co'># map</span>
 <span class='no'>latlong</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(-<span class='fl'>180</span>, <span class='fl'>180</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>5</span>)
-<span class='no'>wind</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/expand.grid'>expand.grid</a></span>(<span class='kw'>lng</span> <span class='kw'>=</span> <span class='no'>latlong</span>, <span class='kw'>lat</span> <span class='kw'>=</span> <span class='no'>latlong</span>)
+<span class='no'>wind</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/expand.grid'>expand.grid</a></span>(<span class='kw'>lng</span> <span class='kw'>=</span> <span class='no'>latlong</span>, <span class='kw'>lat</span> <span class='kw'>=</span> <span class='no'>latlong</span>)
 <span class='no'>wind</span>$<span class='no'>slng</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>wind</span>), <span class='fl'>0</span>, <span class='fl'>200</span>)
 <span class='no'>wind</span>$<span class='no'>slat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>wind</span>), <span class='fl'>0</span>, <span class='fl'>200</span>)
 <span class='no'>wind</span>$<span class='no'>color</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/MathFun'>abs</a></span>(<span class='no'>wind</span>$<span class='no'>slat</span>) - <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/MathFun'>abs</a></span>(<span class='no'>wind</span>$<span class='no'>slng</span>)
@@ -403,7 +405,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <span class='no'>trans</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>opacity</span> <span class='kw'>=</span> <span class='fl'>0.5</span>) <span class='co'># transparency</span>
 
 <span class='no'>wind</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>lng</span>, <span class='kw'>backgroundColor</span> <span class='kw'>=</span> <span class='st'>'#333'</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>lng</span>, <span class='kw'>backgroundColor</span> <span class='kw'>=</span> <span class='st'>"#333"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='e_geo.html'>e_geo</a></span>(
     <span class='kw'>itemStyle</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
       <span class='kw'>normal</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
@@ -422,8 +424,10 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <span class='kw'>dimension</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='co'># lng = 0, lat = 1, slng = 2, slat = 3, color = 4</span>
     <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='co'># hide</span>
     <span class='kw'>inRange</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-      <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'#313695'</span>, <span class='st'>'#4575b4'</span>, <span class='st'>'#74add1'</span>, <span class='st'>'#abd9e9'</span>, <span class='st'>'#e0f3f8'</span>,
-                <span class='st'>'#ffffbf'</span>, <span class='st'>'#fee090'</span>, <span class='st'>'#fdae61'</span>, <span class='st'>'#f46d43'</span>, <span class='st'>'#d73027'</span>, <span class='st'>'#a50026'</span>)
+      <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+        <span class='st'>"#313695"</span>, <span class='st'>"#4575b4"</span>, <span class='st'>"#74add1"</span>, <span class='st'>"#abd9e9"</span>, <span class='st'>"#e0f3f8"</span>,
+        <span class='st'>"#ffffbf"</span>, <span class='st'>"#fee090"</span>, <span class='st'>"#fdae61"</span>, <span class='st'>"#f46d43"</span>, <span class='st'>"#d73027"</span>, <span class='st'>"#a50026"</span>
+      )
     )
   )</div></pre>
   </div>
