@@ -211,9 +211,13 @@ e_tooltip_item_formatter <- function(style = c("decimal", "percent", "currency")
 
   tip <- htmlwidgets::JS(sprintf("function(params, ticket, callback) {
         var fmt = new Intl.NumberFormat('%s', %s);
+        var idx = 0;
+        if (params.name == params.value[0]) {
+            idx = 1;
+        }
         return params.value[0] + '<br>' +
                params.marker + ' ' +
-               params.seriesName + ': ' + fmt.format(parseFloat(params.value[1]));
+               params.seriesName + ': ' + fmt.format(parseFloat(params.value[idx]));
     }", locale, jsonlite::toJSON(opts, auto_unbox = TRUE)))
 
   tip <- structure(tip, class = c("JS_EVAL", "item_formatter"))
