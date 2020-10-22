@@ -344,7 +344,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 #' @param names Names of items to style, expects a \code{list}, defaults to \code{NULL}.
 #' @param levels Hierarchical levels to style, expects a \code{list}, defaults to \code{NULL}.
 #' @return updated hierarchy in json list format
-#' 
+#'
 #' @noRd
 #' @keywords internal
 .build_sun <- function(e, styles = NULL, names = NULL, levels = NULL) {

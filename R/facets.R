@@ -6,10 +6,10 @@
 #' @param rows,cols Number of rows and columns.
 #'
 #' @details Each serie, i.e.: \code{\link{e_bar}} will be plotted against a facet.
-#' 
-#' @noRd 
+#'
+#' @noRd
 #' @keywords internal
-e_facet <- function(e, rows = 1, cols = 1){
+e_facet <- function(e, rows = 1, cols = 1) {
 
   # number of series
   nseries <- length(e$x$opts$series)
