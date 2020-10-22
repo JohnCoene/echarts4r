@@ -2023,11 +2023,9 @@ e_density_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
     }
 
     if (!e$x$tl) {
-      if (is.null(name)) { # defaults to column name
-        name <- serie
-      }
+      nm <- .name_it(e, serie, name, i)
 
-      serie_opts$name <- name
+      serie_opts$name <- nm
 
       if (!length(e$x$opts$xAxis)) {
         e$x$opts$xAxis <- list(
@@ -2037,13 +2035,13 @@ e_density_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
         )
       }
 
-      serie <- append(serie_opts, serie_data)
+      series <- append(serie_opts, serie_data)
 
       if (isTRUE(legend)) {
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
       }
 
-      e$x$opts$series <- append(e$x$opts$series, list(serie))
+      e$x$opts$series <- append(e$x$opts$series, list(series))
     } else {
       e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie_data))
     }
