@@ -692,3 +692,28 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 .get_locale <- function() {
   "en"
 }
+
+#' Determines the extremum of a vector
+#'
+#' If the vector contains only 1 element, then one of the extremum is set to 0.
+#'
+#' @author Wei Su
+#'
+#' @param rng Numeric vector.
+#' @return A list contains maximum and minimum value.
+#'
+#' @noRd
+.get_validate_range <- function(rng) {
+  max <- max(rng, na.rm = TRUE)
+  min <- min(rng, na.rm = TRUE)
+  if (!(max > min)) {
+    if (rng[1] >= 0) {
+      max <- rng[1]
+      min <- 0
+    } else {
+      max <- 0
+      min <- rng[1]
+    }
+  }
+  return(list(max = max, min = min))
+}
