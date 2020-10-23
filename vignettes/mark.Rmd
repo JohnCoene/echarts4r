@@ -28,7 +28,7 @@ You can mark points, lines and areas on your chart to emphasise certain things.
 
 ## Type
 
-You mark things by passing a `list` to the `data` argument, this list can be of many different format, see the [official documentation](https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.markPoint.data).
+You mark things by passing a `list` to the `data` argument, this list can be of many different format, see the [official documentation](https://echarts.apache.org/en/option.html#series-line.markPoint.data).
 
 One of the format is to pass a `type`:
 
