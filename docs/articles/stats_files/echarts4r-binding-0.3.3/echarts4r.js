@@ -9,6 +9,24 @@ HTMLWidgets.widget({
     var initialized = false;
 
     var chart,opts;
+
+    const evalFun = (sourceOpts) => {
+      let opts = Object.assign({}, sourceOpts);
+      Object.keys(opts).forEach((key) => {
+        if (opts[key] !== null) {
+          if (typeof opts[key] === 'object') {
+            evalFun(opts[key]);
+            return;
+          }
+          if (typeof opts[key] === 'string') {
+            try {
+              opts[key] = eval('(' + opts[key] + ')');
+            } catch { }
+          }
+        }
+      });
+      return(opts);
+    }
     
     return {
 
@@ -40,7 +58,7 @@ HTMLWidgets.widget({
         
         chart = echarts.init(document.getElementById(el.id), x.theme, {renderer: x.renderer});
         
-        opts = x.opts;
+        opts = evalFun(x.opts);
         
         if(x.draw === true)
           chart.setOption(opts);
