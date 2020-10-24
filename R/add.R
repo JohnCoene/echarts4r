@@ -1256,14 +1256,14 @@ e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE) 
   data <- unname(data)
 
   data <- apply(data, 1, as.list)
-  
+
   # remove white spaces (ex: in " 1")
   data <- purrr::map(data, function(x) {
-    x %>% 
+    x %>%
       gsub(" ", "", .) %>%
       as.list()
   })
-  
+
   serie <- list(
     name = name,
     type = "parallel",
