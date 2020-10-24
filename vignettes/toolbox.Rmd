@@ -55,4 +55,4 @@ echart %>% e_toolbox_feature(feature = "dataZoom")
 echart %>% e_toolbox_feature(feature = "dataView")
 ```
 
-See the [official documentation](https://ecomfe.github.io/echarts-doc/public/en/option.html#toolbox.feature) for the full list.
+See the [official documentation](https://echarts.apache.org/en/option.html#toolbox.feature) for the full list.
