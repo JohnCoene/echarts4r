@@ -112,7 +112,7 @@ df %>%
   e_legend(right = 0) # move legend to the bottom
 ```
 
-Add a tooltip, of which there are numerous [options](https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip), here we use `trigger = "axis"` to trigger the tooltip by the axis rather than a single data point.
+Add a tooltip, of which there are numerous [options](https://echarts.apache.org/en/option.html#tooltip), here we use `trigger = "axis"` to trigger the tooltip by the axis rather than a single data point.
 
 ```{r}
 df %>% 
@@ -144,20 +144,20 @@ df %>%
 
 ## Navigate options
 
-`echarts4r` is highly customisable, there are too many options to have them all hard-coded in the package but rest assured; they are available, and can be passe to `...`. You will find all these options in the [official documentation](https://ecomfe.github.io/echarts-doc/public/en/option.html).
+`echarts4r` is highly customisable, there are too many options to have them all hard-coded in the package but rest assured; they are available, and can be passe to `...`. You will find all these options in the [official documentation](https://echarts.apache.org/en/option.html).
 
-<a href="https://ecomfe.github.io/echarts-doc/public/en/option.html" class="btn btn-default" target="_blank">
+<a href="https://echarts.apache.org/en/option.html" class="btn btn-default" target="_blank">
   <i class="fa fa-book"></i>
   Official Documentation
 </a>
 
 For instance the documentation for the tooltip looks like this:
 
-<a href="https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip" target="_blank">
+<a href="https://echarts.apache.org/en/option.html#tooltip" target="_blank">
   <img src="https://echarts4r.john-coene.com/articles/docs.png" class="img-responsive responsive-img" />
 </a>
 
-Therefore if we want to change our tooltip to an [axisPointer](https://ecomfe.github.io/echarts-doc/public/en/option.html#tooltip.axisPointer) we can do so by passing a list to `axisPointer`.
+Therefore if we want to change our tooltip to an [axisPointer](https://echarts.apache.org/en/option.html#tooltip.axisPointer) we can do so by passing a list to `axisPointer`.
 
 ```{r}
 df %>% 
