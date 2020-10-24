@@ -60,9 +60,8 @@ server <- function(input, output) {
     echarts4rBox(cars, speed, dist, "Cars", type = "bar")
   })
 }
-
 \dontrun{
-  shinyApp(ui, server)
+shinyApp(ui, server)
 }
 }
 \seealso{
