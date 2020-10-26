@@ -1,3 +1,7 @@
+# echarts4r 0.3.4
+
+- Fixed naming of x axis for `e_boxplot` [#219](https://github.com/JohnCoene/echarts4r/issues/219)
+
 # echarts4r 0.3.3
 
 - Added `echarts4rBox`, `renderEcharts4rBox`, and `echarts4rBoxOutput` to create value boxes.

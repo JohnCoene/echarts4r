@@ -1123,6 +1123,8 @@ e_boxplot_ <- function(e, serie, name = NULL, outliers = TRUE, ...) {
 
       # xaxis
       xs <- names(e$x$data)[i]
+      if(is.null(xs))
+        xs <- serie
       e$x$opts$xAxis[[1]]$data <- append(e$x$opts$xAxis[[1]]$data, list(xs))
       e$x$opts$xAxis[[1]]$type <- "category"
     } else {
