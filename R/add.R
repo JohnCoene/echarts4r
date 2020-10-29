@@ -1223,7 +1223,9 @@ e_heatmap.echarts4rProxy <- function(e, y, z, bind, name = NULL, coord_system = 
 #' Draw parallel coordinates.
 #'
 #' @inheritParams e_bar
+#' @param ... Columns to select from the data passed to \code{\link{e_charts}}.
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
+#' @param opts A list of additional options to pass to the serie.
 #'
 #' @examples
 #' df <- data.frame(
@@ -1234,16 +1236,16 @@ e_heatmap.echarts4rProxy <- function(e, y, z, bind, name = NULL, coord_system = 
 #'
 #' df %>%
 #'   e_charts() %>%
-#'   e_parallel(price, amount, letter)
+#'   e_parallel(price, amount, letter, opts = list(smooth = TRUE))
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-parallel}{Additional arguments}
 #'
 #' @rdname e_parallel
 #' @export
-e_parallel <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE) UseMethod("e_parallel")
+e_parallel <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = list()) UseMethod("e_parallel")
 
 #' @export
 #' @method e_parallel echarts4r
-e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE) {
+e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = list()) {
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
@@ -1269,6 +1271,8 @@ e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE) 
     type = "parallel",
     data = data
   )
+
+  serie <- append(serie, opts)
 
   para <- list()
   for (i in 1:ncol(df)) {

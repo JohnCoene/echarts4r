@@ -888,7 +888,7 @@ e_heatmap_ <- function(e, y, z = NULL, bind = NULL, name = NULL, coord_system = 
 
 #' @rdname e_parallel
 #' @export
-e_parallel_ <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE) {
+e_parallel_ <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = list()) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
@@ -912,6 +912,8 @@ e_parallel_ <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE) {
     type = "parallel",
     data = data
   )
+
+  serie <- append(serie, opts)
 
   para <- list()
   for (i in 1:ncol(df)) {
