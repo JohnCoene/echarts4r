@@ -28,7 +28,8 @@ Suggests:
     testthat,
     knitr,
     rmarkdown,
-    covr
+    covr,
+    data.tree
 RoxygenNote: 7.1.1.9000
 URL: https://echarts4r.john-coene.com/
 BugReports: https://github.com/JohnCoene/echarts4r/issues/
