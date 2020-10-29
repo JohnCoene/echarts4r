@@ -1,6 +1,8 @@
 # echarts4r 0.3.4
 
-- Fixed naming of x axis for `e_boxplot` [#219](https://github.com/JohnCoene/echarts4r/issues/219)
+- Fixed naming of x axis for `e_boxplot`, see [#219](https://github.com/JohnCoene/echarts4r/issues/219)
+- Fixed `e_parallel` arguments, see [#223](https://github.com/JohnCoene/echarts4r/issues/223)
+- Accept `data.tree` data for easy creation of tree, treemaps and sunbursts, see [#207](https://github.com/JohnCoene/echarts4r/issues/207)
 
 # echarts4r 0.3.3
 
