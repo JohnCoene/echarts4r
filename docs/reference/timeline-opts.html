@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Timeline — timeline-opts" />
 <meta property="og:description" content="Set timeline options" />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Timeline</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/timeline.R'><code>R/timeline.R</code></a></small>
+    
     <div class="hidden name"><code>timeline-opts.Rd</code></div>
     </div>
 
@@ -293,19 +297,19 @@
     <p>Set timeline options</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_timeline_opts</span>(<span class='kw'>e</span>, axis_type = <span class='st'>"category"</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>e_timeline_opts</span>(<span class='no'>e</span>, <span class='kw'>axis_type</span> <span class='kw'>=</span> <span class='st'>"category"</span>, <span class='no'>...</span>)
 
-<span class='fu'>e_timeline_serie</span>(<span class='kw'>e</span>, <span class='kw'>...</span>, index = <span class='fl'>1</span>)
+<span class='fu'>e_timeline_serie</span>(<span class='no'>e</span>, <span class='no'>...</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 
-<span class='fu'>e_timeline_on_serie</span>(<span class='kw'>e</span>, <span class='kw'>...</span>, <span class='kw'>serie_index</span>)</pre>
+<span class='fu'>e_timeline_on_serie</span>(<span class='no'>e</span>, <span class='no'>...</span>, <span class='no'>serie_index</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>axis_type</th>
@@ -328,44 +332,40 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
     
-
-<ul>
+    <ul>
 <li><p><code>e_timeline_opts</code>: Pass general timeline options, see <a href='https://echarts.apache.org/en/option.html#timeline'>official documentation</a>.</p></li>
 <li><p><code>e_timeline_serie</code>: Pass options to each serie, each options <em>must</em>  be a vector or list the same length as their are steps, see examples.</p></li>
 <li><p><code>e_timeline_make</code>: Helper function that wraps your data and <code>e_timeline_serie</code> to dynamically add options to series.</p></li>
 </ul>
 
-
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># general options</span>
-<span class='kw'>iris</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>Species</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>Sepal.Length</span>, timeline = <span class='fl'>TRUE</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_line</span>(<span class='kw'>Sepal.Width</span>) <span class='op'>%&gt;%</span> 
+<span class='no'>iris</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Sepal.Length</span>, <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Sepal.Width</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_timeline_opts</span>(
-    autoPlay = <span class='fl'>TRUE</span>,
-    rewind = <span class='fl'>TRUE</span>
+    <span class='kw'>autoPlay</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+    <span class='kw'>rewind</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
   )
-  
+
 <span class='co'># serie options</span>
-<span class='kw'>iris</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>Species</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>Sepal.Length</span>, timeline = <span class='fl'>TRUE</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_line</span>(<span class='kw'>Sepal.Width</span>) <span class='op'>%&gt;%</span> 
-    <span class='fu'>e_timeline_serie</span>(
-      title = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-        <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(text = <span class='st'>"setosa"</span>),
-        <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(text = <span class='st'>"versicolor"</span>),
-        <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(text = <span class='st'>"virginica"</span>)
-      )
+<span class='no'>iris</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Sepal.Length</span>, <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_line.html'>e_line</a></span>(<span class='no'>Sepal.Width</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_timeline_serie</span>(
+    <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"setosa"</span>),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"versicolor"</span>),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"virginica"</span>)
     )
-</div></pre>
+  )</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -380,7 +380,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -403,8 +402,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 </script>
 
 
-
   </body>
 </html>
-
 

@@ -11,7 +11,7 @@ e_on(e, query, handler, event = "click")
 e_off(e, query, handler, event = "click")
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{query}{Condistion that triggers the handler}
@@ -24,14 +24,13 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Binds events to chart interactions.
 }
 \examples{
-cars \%>\% 
-  e_charts(speed) \%>\% 
-  e_scatter(dist) \%>\% 
+cars \%>\%
+  e_charts(speed) \%>\%
+  e_scatter(dist) \%>\%
   e_on(
     list(seriesName = "dist"),
     "function(){alert('Serie clicked')}"
   )
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/api.html#echartsInstance.on}{official documentation}

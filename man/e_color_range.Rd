@@ -37,5 +37,4 @@ Build manual color range
 df <- data.frame(val = 1:10)
 
 e_color_range(df, val, colors)
-  
 }

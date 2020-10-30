@@ -13,6 +13,7 @@ e_lm(
   legend = TRUE,
   symbol = "none",
   smooth = TRUE,
+  model_args = list(),
   ...
 )
 
@@ -23,6 +24,7 @@ e_glm(
   legend = TRUE,
   symbol = "none",
   smooth = TRUE,
+  model_args = list(),
   ...
 )
 
@@ -35,11 +37,12 @@ e_loess(
   smooth = TRUE,
   x_index = 0,
   y_index = 0,
+  model_args = list(),
   ...
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{formula}{formula to pass to \code{\link{lm}}.}
@@ -52,6 +55,8 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{smooth}{Whether to smooth the line.}
 
+\item{model_args}{Arguments to pass to the underlying model.}
+
 \item{...}{Additional arguments to pass to \code{\link{e_line}}.}
 
 \item{x_index}{Indexes of x and y axis.}
@@ -62,25 +67,24 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Plot formulas.
 }
 \examples{
-iris \%>\% 
-  group_by(Species) \%>\% 
-  e_charts(Sepal.Length) \%>\% 
-  e_scatter(Sepal.Width) \%>\% 
-  e_lm(Sepal.Width ~ Sepal.Length) \%>\% 
+iris \%>\%
+  group_by(Species) \%>\%
+  e_charts(Sepal.Length) \%>\%
+  e_scatter(Sepal.Width) \%>\%
+  e_lm(Sepal.Width ~ Sepal.Length) \%>\%
   e_x_axis(min = 4)
-  
-mtcars \%>\% 
-  e_charts(disp) \%>\% 
-  e_scatter(mpg, qsec) \%>\% 
+
+mtcars \%>\%
+  e_charts(disp) \%>\%
+  e_scatter(mpg, qsec) \%>\%
   e_loess(mpg ~ disp, smooth = TRUE, showSymbol = FALSE)
 
-# timeline   
-iris \%>\% 
-  group_by(Species) \%>\% 
-  e_charts(Sepal.Length, timeline = TRUE) \%>\% 
-  e_scatter(Sepal.Width) \%>\% 
-  e_lm(Sepal.Width ~ Sepal.Length) \%>\% 
-  e_x_axis(min = 4, max = 8) \%>\% 
+# timeline
+iris \%>\%
+  group_by(Species) \%>\%
+  e_charts(Sepal.Length, timeline = TRUE) \%>\%
+  e_scatter(Sepal.Width) \%>\%
+  e_lm(Sepal.Width ~ Sepal.Length) \%>\%
+  e_x_axis(min = 4, max = 8) \%>\%
   e_y_axis(max = 5)
-
 }

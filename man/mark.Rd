@@ -34,7 +34,7 @@ e_mark_area(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{serie}{Serie or vector of series to mark on, defaults to all series.}
@@ -51,7 +51,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Mark points and lines.
 }
 \details{
-To set a label you need to either use the \code{title} 
+To set a label you need to either use the \code{title}
 argument or pass a list specifying the label formatter.
 \code{label = list(formatter = "label")}. The former is more convenient
 but more limited, e.g.: you cannot specify the placement of the label.
@@ -72,19 +72,42 @@ avg <- list(
   name = "AVG"
 )
 
-mtcars \%>\% 
-  e_charts(mpg) \%>\% 
-  e_line(wt) \%>\% 
-  e_line(drat) \%>\% 
-  e_line(cyl) \%>\% 
-  e_mark_point("wt", data = max) \%>\% 
-  e_mark_point(c("cyl", "drat"), data = min) \%>\% 
+mtcars \%>\%
+  e_charts(mpg) \%>\%
+  e_line(wt) \%>\%
+  e_line(drat) \%>\%
+  e_line(cyl) \%>\%
+  e_mark_point("wt", data = max) \%>\%
+  e_mark_point(c("cyl", "drat"), data = min) \%>\%
   e_mark_line(data = avg) \%>\% # applies to all
   e_mark_area(serie = "wt", data = list(
-    list(xAxis = "min", yAxis = "min"), 
-    list(xAxis = "max", yAxis = "max"))
- )
+    list(xAxis = "min", yAxis = "min"),
+    list(xAxis = "max", yAxis = "max")
+  ))
 
+# serie options
+
+iris \%>\%
+  group_by(Species) \%>\%
+  e_charts(Sepal.Length, timeline = TRUE) \%>\%
+  e_line(Sepal.Width) \%>\%
+  e_timeline_serie(
+    title = list(
+      list(text = "setosa"),
+      list(text = "versicolor"),
+      list(text = "virginica")
+    )
+  ) \%>\%
+  e_mark_area(serie = "setosa") \%>\%
+  e_mark_area(
+    serie = "versicolor",
+    data = list(
+      list(xAxis = 2),
+      list(xAxis = 4)
+    ),
+    itemStyle = list(color = "lightblue")
+  ) \%>\%
+  e_mark_area(serie = "virginica")
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-line.markPoint}{Additional point arguments},

@@ -7,7 +7,7 @@
 e_aria(e, show = TRUE, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{show}{Whether to show aria helper text.}
@@ -15,13 +15,13 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{
-W3C defined the Accessible Rich Internet Applications Suite (WAI-ARIA) 
-to make Web content and Web applications more accessible to the disabled. 
-From ECharts 4.0, echarts4r supports ARIA by generating description for 
+W3C defined the Accessible Rich Internet Applications Suite (WAI-ARIA)
+to make Web content and Web applications more accessible to the disabled.
+From ECharts 4.0, echarts4r supports ARIA by generating description for
 charts automatically.
 }
 \details{
-There should be an aria-label attribute on the chart DOM, which 
+There should be an aria-label attribute on the chart DOM, which
 can help the disabled understand the content of charts with the help of certain devices.
 }
 \seealso{

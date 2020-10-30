@@ -1,8 +1,10 @@
 Package: echarts4r
 Title: Create Interactive Graphs with 'Echarts JavaScript' Version 4
-Date: 2020-06-17
-Version: 0.3.3
-Authors@R: person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre", "cph"))
+Date: 2020-10-15
+Version: 0.3.4
+Authors@R: c(
+  person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre", "cph")), 
+  person(given = "Wei", family = "Su", email = "swsoyee@gmail.com", role = "ctb"))
 Description: Easily create interactive charts by leveraging the 'Echarts Javascript' library which includes
     36 chart types, themes, 'Shiny' proxies and animations.
 License: Apache License (>= 2.0)
@@ -14,17 +16,20 @@ Imports:
   dplyr (>= 0.7.0),
   purrr,
   countrycode,
-  d3r,
   broom,
   shiny,
   scales,
   corrplot,
-  data.tree,
   htmltools,
   jsonlite,
   rstudioapi
 Suggests:
-    tidyr
+    tidyr,
+    testthat,
+    knitr,
+    rmarkdown,
+    covr,
+    data.tree
 RoxygenNote: 7.1.1.9000
-URL: http://echarts4r.john-coene.com/
-BugReports: https://github.com/JohnCoene/echarts4r/issues
+URL: https://echarts4r.john-coene.com/
+BugReports: https://github.com/JohnCoene/echarts4r/issues/

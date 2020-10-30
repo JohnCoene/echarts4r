@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
       </span>
     </div>
 
@@ -128,12 +128,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +245,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -293,21 +299,21 @@
     <p>Draw parallel coordinates.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_parallel</span>(<span class='kw'>e</span>, <span class='kw'>...</span>, name = <span class='kw'>NULL</span>, rm_x = <span class='fl'>TRUE</span>, rm_y = <span class='fl'>TRUE</span>)
+    <pre class="usage"><span class='fu'>e_parallel</span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>...</span>, name <span class='op'>=</span> <span class='cn'>NULL</span>, rm_x <span class='op'>=</span> <span class='cn'>TRUE</span>, rm_y <span class='op'>=</span> <span class='cn'>TRUE</span>, opts <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>e_parallel_</span>(<span class='kw'>e</span>, <span class='kw'>...</span>, name = <span class='kw'>NULL</span>, rm_x = <span class='fl'>TRUE</span>, rm_y = <span class='fl'>TRUE</span>)</pre>
+<span class='fu'>e_parallel_</span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>...</span>, name <span class='op'>=</span> <span class='cn'>NULL</span>, rm_x <span class='op'>=</span> <span class='cn'>TRUE</span>, rm_y <span class='op'>=</span> <span class='cn'>TRUE</span>, opts <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Any other option to pass, check See Also section.</p></td>
+      <td><p>Columns to select from the data passed to <code><a href='init.html'>e_charts</a></code>.</p></td>
     </tr>
     <tr>
       <th>name</th>
@@ -317,6 +323,10 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
       <th>rm_x, rm_y</th>
       <td><p>Whether to remove x and y axis, defaults to <code>TRUE</code>.</p></td>
     </tr>
+    <tr>
+      <th>opts</th>
+      <td><p>A list of additional options to pass to the serie.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -324,16 +334,16 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#series-parallel'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  price = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>, <span class='fl'>10</span>),
-  amount = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>, <span class='fl'>15</span>),
-  letter = <span class='kw'>LETTERS</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>]
-)
+    <pre class="examples"><div class='input'><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+  price <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>10</span><span class='op'>)</span>,
+  amount <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>15</span><span class='op'>)</span>,
+  letter <span class='op'>=</span> <span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+<span class='op'>)</span>
 
-<span class='kw'>df</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>() <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_parallel</span>(<span class='kw'>price</span>, <span class='kw'>amount</span>, <span class='kw'>letter</span>) 
-  </div></pre>
+<span class='va'>df</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_parallel</span><span class='op'>(</span><span class='va'>price</span>, <span class='va'>amount</span>, <span class='va'>letter</span>, opts <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>smooth <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

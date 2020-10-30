@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Connect charts — connections" />
 <meta property="og:description" content="Connect charts together." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Connect charts</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/opts.R'><code>R/opts.R</code></a></small>
+    
     <div class="hidden name"><code>connections.Rd</code></div>
     </div>
 
@@ -293,23 +297,23 @@
     <p>Connect charts together.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_connect</span>(<span class='kw'>e</span>, <span class='kw'>ids</span>)
+    <pre class="usage"><span class='fu'>e_connect</span>(<span class='no'>e</span>, <span class='no'>ids</span>)
 
-<span class='fu'>e_group</span>(<span class='kw'>e</span>, <span class='kw'>group</span>)
+<span class='fu'>e_group</span>(<span class='no'>e</span>, <span class='no'>group</span>)
 
-<span class='fu'>e_connect_group</span>(<span class='kw'>e</span>, <span class='kw'>group</span>)
+<span class='fu'>e_connect_group</span>(<span class='no'>e</span>, <span class='no'>group</span>)
 
-<span class='fu'>e_disconnect_group</span>(<span class='kw'>e</span>, group = <span class='kw'>NULL</span>)
+<span class='fu'>e_disconnect_group</span>(<span class='no'>e</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
-<span class='fu'>e_arrange</span>(<span class='kw'>...</span>, rows = <span class='kw'>NULL</span>, cols = <span class='kw'>NULL</span>, width = <span class='st'>"xs"</span>, title = <span class='kw'>NULL</span>)</pre>
+<span class='fu'>e_arrange</span>(<span class='no'>...</span>, <span class='kw'>rows</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"xs"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>ids</th>
@@ -339,16 +343,15 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>e_arrange</code>: in an interactive session, returns a <code><a href='https://rdrr.io/pkg/htmltools/man/browsable.html'>htmltools::browsable</a></code>, in <code>rmarkdown</code> returns a 
-container (<code><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>htmltools::div</a></code>).</p>
+    <p><code>e_arrange</code>: in an interactive session, returns a <code><a href='https://www.rdocumentation.org/packages/htmltools/topics/browsable'>htmltools::browsable</a></code>, in <code>rmarkdown</code> returns a
+container (<code><a href='https://www.rdocumentation.org/packages/htmltools/topics/builder'>htmltools::div</a></code>).</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p><code>e_arrange</code> may not work properly in the RStudio viewer.</p>
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
     
-
-<ul>
+    <ul>
 <li><p><code>e_connect</code>: connects charts by <code>ids</code>, <em>cannot</em> be disconnected.</p></li>
 <li><p><code>e_group</code>: assigns a group to chart.</p></li>
 <li><p><code>e_connect_group</code>: connects chart with another group.</p></li>
@@ -356,37 +359,35 @@ container (<code><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>htmlto
 <li><p><code>e_arrange</code>: arrange charts.</p></li>
 </ul>
 
-
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># linked datazoom</span>
-<span class='kw'>e1</span> <span class='op'>&lt;-</span> <span class='kw'>cars</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(
-    <span class='kw'>speed</span>,
-    height = <span class='fl'>200</span>
-  ) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_scatter</span>(<span class='kw'>dist</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_datazoom</span>(show = <span class='fl'>FALSE</span>) <span class='op'>%&gt;%</span> 
+<span class='no'>e1</span> <span class='kw'>&lt;-</span> <span class='no'>cars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(
+    <span class='no'>speed</span>,
+    <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>200</span>
+  ) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>dist</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_datazoom.html'>e_datazoom</a></span>(<span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_group</span>(<span class='st'>"grp"</span>) <span class='co'># assign group</span>
-  
-<span class='kw'>e2</span> <span class='op'>&lt;-</span> <span class='kw'>cars</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(
-    <span class='kw'>dist</span>,
-    height = <span class='fl'>200</span>
-  ) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_scatter</span>(<span class='kw'>speed</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_datazoom</span>() <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_group</span>(<span class='st'>"grp"</span>) <span class='op'>%&gt;%</span>  <span class='co'># assign group</span>
+
+<span class='no'>e2</span> <span class='kw'>&lt;-</span> <span class='no'>cars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(
+    <span class='no'>dist</span>,
+    <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>200</span>
+  ) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>speed</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_datazoom.html'>e_datazoom</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_group</span>(<span class='st'>"grp"</span>) <span class='kw'>%&gt;%</span> <span class='co'># assign group</span>
   <span class='fu'>e_connect_group</span>(<span class='st'>"grp"</span>) <span class='co'># connect</span>
 
-<span class='co'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>())
- <span class='fu'>e_arrange</span>(<span class='kw'>e1</span>, <span class='kw'>e2</span>, title = <span class='st'>"Linked datazoom"</span>)
-</div></pre>
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
+  <span class='fu'>e_arrange</span>(<span class='no'>e1</span>, <span class='no'>e2</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Linked datazoom"</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -401,7 +402,6 @@ container (<code><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>htmlto
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -424,8 +424,6 @@ container (<code><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>htmlto
 </script>
 
 
-
   </body>
 </html>
-
 

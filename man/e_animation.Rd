@@ -17,12 +17,12 @@ e_animation(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{show}{Set to show animation.}
 
-\item{threshold}{Whether to set graphic number threshold to animation. 
+\item{threshold}{Whether to set graphic number threshold to animation.
 Animation will be disabled when graphic number is larger than threshold.}
 
 \item{duration}{Duration of the first animation.}
@@ -41,11 +41,10 @@ Animation will be disabled when graphic number is larger than threshold.}
 Customise animations.
 }
 \examples{
-mtcars \%>\% 
-  e_charts(mpg) \%>\% 
-  e_area(drat) \%>\% 
+mtcars \%>\%
+  e_charts(mpg) \%>\%
+  e_area(drat) \%>\%
   e_animation(duration = 10000)
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#animation}{Additional arguments}

@@ -25,6 +25,9 @@
     <loc>http://echarts4r.john-coene.com/reference/connections.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/dot-build_sun.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/e-tooltip.html</loc>
   </url>
   <url>
@@ -250,6 +253,12 @@
     <loc>http://echarts4r.john-coene.com/reference/echarts4r-shiny.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/echarts4rBox.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/echarts4rBoxOutput.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/echartsNJSON.html</loc>
   </url>
   <url>
@@ -319,6 +328,9 @@
     <loc>http://echarts4r.john-coene.com/reference/reexports.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/renderEcharts4rBox.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/scatter.html</loc>
   </url>
   <url>
@@ -346,6 +358,9 @@
     <loc>http://echarts4r.john-coene.com/articles/advanced.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/articles/boxes.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/articles/brush.html</loc>
   </url>
   <url>
@@ -356,9 +371,6 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/articles/development.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/gallery.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/articles/geo.html</loc>

@@ -42,12 +42,7 @@ choropleth %>%
 ## Buildings
 
 ```{r}
-buildings <- jsonlite::read_json(
-  paste0(
-    "https://ecomfe.github.io/echarts-examples/",
-    "public/data-gl/asset/data/buildings.json"
-  )
-)
+buildings <- jsonlite::read_json("https://echarts.apache.org/examples/data-gl/asset/data/buildings.json")
 
 heights <- purrr::map(buildings$features, "properties") %>% 
   purrr::map("height") %>% 

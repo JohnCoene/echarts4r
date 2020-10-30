@@ -29,9 +29,7 @@ cns <- data.frame(country = c("US", "BE"))
 
 # replace
 e_country_names(cns, country)
-  
-# specify output
-e_country_names(cns, country, country.name)
-  
 
+# specify output
+e_country_names(cns, country, country_name)
 }

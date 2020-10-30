@@ -10,7 +10,7 @@ e_cloud(e, word, freq, color, rm_x = TRUE, rm_y = TRUE, ...)
 e_cloud_(e, word, freq, color = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{word, freq}{Terms and their frequencies.}
@@ -30,15 +30,16 @@ words <- function(n = 5000) {
   paste0(a, sprintf("\%04d", sample(9999, n, TRUE)), sample(LETTERS, n, TRUE))
 }
 
-tf <- data.frame(terms = words(100), 
-  freq = rnorm(100, 55, 10)) \%>\% 
+tf <- data.frame(
+  terms = words(100),
+  freq = rnorm(100, 55, 10)
+) \%>\%
   dplyr::arrange(-freq)
 
-tf \%>\% 
-  e_color_range(freq, color) \%>\% 
-  e_charts() \%>\% 
+tf \%>\%
+  e_color_range(freq, color) \%>\%
+  e_charts() \%>\%
   e_cloud(terms, freq, color, shape = "circle", sizeRange = c(3, 15))
-
 }
 \seealso{
 \href{https://github.com/ecomfe/echarts-wordcloud}{official documentation}

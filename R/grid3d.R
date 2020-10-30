@@ -1,165 +1,173 @@
 #' Axis 3D
-#' 
+#'
 #' Customise 3D axis.
-#' 
+#'
 #' @inheritParams e_bar
 #' @param axis Axis to customise.
 #' @param index Index of axis to customise.
-#' 
-#' @examples 
+#'
+#' @examples
 #' # phony data
 #' v <- LETTERS[1:10]
 #' matrix <- data.frame(
-#'   x = sample(v, 300, replace = TRUE), 
-#'   y = sample(v, 300, replace = TRUE), 
+#'   x = sample(v, 300, replace = TRUE),
+#'   y = sample(v, 300, replace = TRUE),
 #'   z1 = rnorm(300, 10, 1),
 #'   z2 = rnorm(300, 10, 1),
 #'   stringsAsFactors = FALSE
-#' ) %>% 
-#'   dplyr::group_by(x, y) %>% 
+#' ) %>%
+#'   dplyr::group_by(x, y) %>%
 #'   dplyr::summarise(
 #'     z1 = sum(z1),
 #'     z2 = sum(z2)
-#'   ) %>% 
-#'   dplyr::ungroup() 
-#'   
+#'   ) %>%
+#'   dplyr::ungroup()
+#'
 #' trans <- list(opacity = 0.4) # transparency
 #' emphasis <- list(itemStyle = list(color = "#313695"))
-#'   
-#' matrix %>% 
-#'   e_charts(x) %>% 
+#'
+#' matrix %>%
+#'   e_charts(x) %>%
 #'   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) %>%
-#'   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) %>% 
+#'   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) %>%
 #'   e_x_axis_3d(axisLine = list(lineStyle = list(color = "blue")))
-#' 
-#' @seealso \href{http://www.echartsjs.com/option-gl.html#xAxis3D}{Additional x arguments},
-#'  \href{http://www.echartsjs.com/option-gl.html#yAxis3D}{Additional y arguments},
-#'  \href{http://www.echartsjs.com/option-gl.html#zAxis3D}{Additional z arguments}
-#' 
+#' @seealso \href{https://echarts.apache.org/en/option-gl.html#xAxis3D}{Additional x arguments},
+#'  \href{https://echarts.apache.org/en/option-gl.html#yAxis3D}{Additional y arguments},
+#'  \href{https://echarts.apache.org/en/option-gl.html#zAxis3D}{Additional z arguments}
+#'
 #' @rdname axis3d
 #' @export
-e_axis_3d <- function(e, axis = c("x", "y", "z"), index = 0, ...){
-  
-  if(missing(e))
+e_axis_3d <- function(e, axis = c("x", "y", "z"), index = 0, ...) {
+  if (missing(e)) {
     stop("missing e", call. = FALSE)
-  
+  }
+
   axis <- .r2axis3D(axis[1])
-  
+
   r.index <- index + 1
   max <- length(e$x$opts[[axis]])
-  
-  if(r.index > max)
+
+  if (r.index > max) {
     stop("invalid axis", call. = FALSE)
-  
-  attrs <- list(...)
-  
-  if(!length(attrs))
-    stop("no attribute", call. = FALSE)
-  
-  for(i in 1:length(attrs)){
-    arg <- names(attrs)[i]
-    
-    if(!e$x$tl)
-      e$x$opts[[axis]][[r.index]][[arg]] <- attrs[[i]]
-    else
-      e$x$opts$baseOption[[axis]][[r.index]][[arg]] <- attrs[[i]]
   }
-  
+
+  attrs <- list(...)
+
+  if (!length(attrs)) {
+    stop("no attribute", call. = FALSE)
+  }
+
+  for (i in 1:length(attrs)) {
+    arg <- names(attrs)[i]
+
+    if (!e$x$tl) {
+      e$x$opts[[axis]][[r.index]][[arg]] <- attrs[[i]]
+    } else {
+      e$x$opts$baseOption[[axis]][[r.index]][[arg]] <- attrs[[i]]
+    }
+  }
+
   e
 }
 
 #' @rdname axis3d
 #' @export
-e_x_axis_3d <- function(e, index = 0, ...){
-  if(missing(e))
+e_x_axis_3d <- function(e, index = 0, ...) {
+  if (missing(e)) {
     stop("missing e", call. = FALSE)
+  }
   e <- e_axis_3d(e, axis = "x", index = index, ...)
   e
 }
 
 #' @rdname axis3d
 #' @export
-e_y_axis_3d <- function(e, index = 0, ...){
-  if(missing(e))
+e_y_axis_3d <- function(e, index = 0, ...) {
+  if (missing(e)) {
     stop("missing e", call. = FALSE)
+  }
   e <- e_axis_3d(e = e, axis = "y", index = index, ...)
   e
 }
 
 #' @rdname axis3d
 #' @export
-e_z_axis_3d <- function(e, index = 0, ...){
-  if(missing(e))
+e_z_axis_3d <- function(e, index = 0, ...) {
+  if (missing(e)) {
     stop("missing e", call. = FALSE)
+  }
   e <- e_axis_3d(e = e, axis = "z", index = index, ...)
   e
 }
 
 #' Grid
-#' 
+#'
 #' Customise grid.
-#' 
+#'
 #' @inheritParams e_bar
 #' @inheritParams e_axis
-#' 
-#' @examples 
+#'
+#' @examples
 #' # phony data
 #' v <- LETTERS[1:10]
 #' matrix <- data.frame(
-#'   x = sample(v, 300, replace = TRUE), 
-#'   y = sample(v, 300, replace = TRUE), 
+#'   x = sample(v, 300, replace = TRUE),
+#'   y = sample(v, 300, replace = TRUE),
 #'   z1 = rnorm(300, 10, 1),
 #'   z2 = rnorm(300, 10, 1),
 #'   stringsAsFactors = FALSE
-#' ) %>% 
-#'   dplyr::group_by(x, y) %>% 
+#' ) %>%
+#'   dplyr::group_by(x, y) %>%
 #'   dplyr::summarise(
 #'     z1 = sum(z1),
 #'     z2 = sum(z2)
-#'   ) %>% 
-#'   dplyr::ungroup() 
-#'   
+#'   ) %>%
+#'   dplyr::ungroup()
+#'
 #' trans <- list(opacity = 0.4) # transparency
 #' emphasis <- list(itemStyle = list(color = "#313695"))
-#'   
-#' matrix %>% 
-#'   e_charts(x) %>% 
+#'
+#' matrix %>%
+#'   e_charts(x) %>%
 #'   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) %>%
-#'   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) %>% 
+#'   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) %>%
 #'   e_grid_3d(splitLine = list(lineStyle = list(color = "blue")))
-#' 
-#' @seealso \href{http://www.echartsjs.com/option-gl.html#grid3D}{Additional arguments}
-#' 
+#' @seealso \href{https://echarts.apache.org/en/option-gl.html#grid3D}{Additional arguments}
+#'
 #' @export
-e_grid_3d <- function(e, index = 0, ...){
-  
-  if(missing(e))
+e_grid_3d <- function(e, index = 0, ...) {
+  if (missing(e)) {
     stop("missing e", call. = FALSE)
-  
+  }
+
   r.index <- index + 1
-  
+
   # initialise of not existing
-  if(!e$x$tl){
-    if(!length(e$x$opts[["grid3D"]]))
-      e$x$opts$grid3D  <- list()
+  if (!e$x$tl) {
+    if (!length(e$x$opts[["grid3D"]])) {
+      e$x$opts$grid3D <- list()
+    }
   } else {
-    if(!length(e$x$opts$baseOption[["grid3D"]]))
-      e$x$opts$baseOption$grid3D  <- list()
+    if (!length(e$x$opts$baseOption[["grid3D"]])) {
+      e$x$opts$baseOption$grid3D <- list()
+    }
   }
-  
+
   attrs <- list(...)
-  
-  if(!length(attrs))
+
+  if (!length(attrs)) {
     stop("no attribute", call. = FALSE)
-  
-  for(i in 1:length(attrs)){
-    arg <- names(attrs)[i]
-    
-    if(!e$x$tl)
-      e$x$opts$grid3D[[r.index]][[arg]] <- attrs[[i]]
-    else
-      e$x$opts$baseOption$grid3D[[r.index]][[arg]] <- attrs[[i]]
   }
-  
+
+  for (i in 1:length(attrs)) {
+    arg <- names(attrs)[i]
+
+    if (!e$x$tl) {
+      e$x$opts$grid3D[[r.index]][[arg]] <- attrs[[i]]
+    } else {
+      e$x$opts$baseOption$grid3D[[r.index]][[arg]] <- attrs[[i]]
+    }
+  }
+
   e
 }

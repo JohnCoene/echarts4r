@@ -152,7 +152,7 @@ df %>%
 
 ## Time step options
 
-The function `e_timeline_opts` is used to set general options on the timeline, i.e.: auto-play like above. The full list of options is on the [official website](https://ecomfe.github.io/echarts-doc/public/en/option.html#timeline).
+The function `e_timeline_opts` is used to set general options on the timeline, i.e.: auto-play like above. The full list of options is on the [official website](https://echarts.apache.org/en/option.html#timeline).
 
 However, we can also set options specific to each timestep with `e_timeline_serie`. The arguments to this function differ quite a bit from the rest of the package. As we have to assign options to multiple timesteps at once we need to pass vectors or lists of options, the length of the timesteps.
 

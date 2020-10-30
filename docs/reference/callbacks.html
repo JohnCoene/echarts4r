@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Callbacks — callbacks" />
 <meta property="og:description" content="Binds events to chart interactions." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Callbacks</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/callbacks.R'><code>R/callbacks.R</code></a></small>
+    
     <div class="hidden name"><code>callbacks.Rd</code></div>
     </div>
 
@@ -293,17 +297,17 @@
     <p>Binds events to chart interactions.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_on</span>(<span class='kw'>e</span>, <span class='kw'>query</span>, <span class='kw'>handler</span>, event = <span class='st'>"click"</span>)
+    <pre class="usage"><span class='fu'>e_on</span>(<span class='no'>e</span>, <span class='no'>query</span>, <span class='no'>handler</span>, <span class='kw'>event</span> <span class='kw'>=</span> <span class='st'>"click"</span>)
 
-<span class='fu'>e_off</span>(<span class='kw'>e</span>, <span class='kw'>query</span>, <span class='kw'>handler</span>, event = <span class='st'>"click"</span>)</pre>
+<span class='fu'>e_off</span>(<span class='no'>e</span>, <span class='no'>query</span>, <span class='no'>handler</span>, <span class='kw'>event</span> <span class='kw'>=</span> <span class='st'>"click"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>query</th>
@@ -311,7 +315,7 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>handler</th>
-      <td><p>JavaSscript handler, passed to <a href='https://rdrr.io/pkg/htmlwidgets/man/JS.html'>JS</a>.</p></td>
+      <td><p>JavaSscript handler, passed to <a href='https://www.rdocumentation.org/packages/htmlwidgets/topics/JS'>JS</a>.</p></td>
     </tr>
     <tr>
       <th>event</th>
@@ -324,20 +328,18 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/api.html#echartsInstance.on'>official documentation</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>cars</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>speed</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_scatter</span>(<span class='kw'>dist</span>) <span class='op'>%&gt;%</span> 
+    <pre class="examples"><div class='input'><span class='no'>cars</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>speed</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='scatter.html'>e_scatter</a></span>(<span class='no'>dist</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_on</span>(
-    <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(seriesName = <span class='st'>"dist"</span>),
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>seriesName</span> <span class='kw'>=</span> <span class='st'>"dist"</span>),
     <span class='st'>"function(){alert('Serie clicked')}"</span>
-  )
-</div></pre>
+  )</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -352,7 +354,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -375,8 +376,6 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 </script>
 
 
-
   </body>
 </html>
-
 

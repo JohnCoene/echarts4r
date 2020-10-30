@@ -7,7 +7,7 @@
 e_globe(e, environment = NULL, base_texture = NULL, height_texture = NULL, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{environment}{Texture of background.}
@@ -23,22 +23,24 @@ Add globe.
 }
 \examples{
 \dontrun{
-url <- paste0("https://ecomfe.github.io/echarts-examples/",
-              "public/data-gl/asset/data/population.json")
+url <- paste0(
+  "https://echarts.apache.org/examples/",
+  "data-gl/asset/data/population.json"
+)
 data <- jsonlite::fromJSON(url)
 data <- as.data.frame(data)
 names(data) <- c("lon", "lat", "value")
 
-data \%>\% 
-  e_charts(lon) \%>\% 
+data \%>\%
+  e_charts(lon) \%>\%
   e_globe(
     displacementScale = 0.04
-  ) \%>\% 
-  e_bar_3d(lat, value, "globe") \%>\% 
+  ) \%>\%
+  e_bar_3d(lat, value, "globe") \%>\%
   e_visual_map(show = FALSE)
 }
 
 }
 \seealso{
-\code{\link{e_country_names}}, \href{http://echarts.baidu.com/option-gl.html#globe}{Additional arguments}
+\code{\link{e_country_names}}, \href{https://echarts.apache.org/en/option-gl.html#globe}{Additional arguments}
 }

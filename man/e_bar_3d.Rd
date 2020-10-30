@@ -30,7 +30,7 @@ e_bar_3d_(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{y, z}{Coordinates.}
@@ -51,71 +51,73 @@ Add 3D bars
 \examples{
 \dontrun{
 # volcano
-volcano \%>\% 
-  as.table() \%>\% 
-  as.data.frame() \%>\% 
+volcano \%>\%
+  as.table() \%>\%
+  as.data.frame() \%>\%
   dplyr::mutate(
     Var1 = as.integer(Var1),
     Var2 = as.integer(Var2)
-  ) \%>\% 
-  e_charts(Var1) \%>\% 
-  e_bar_3d(Var2, Freq) \%>\% 
+  ) \%>\%
+  e_charts(Var1) \%>\%
+  e_bar_3d(Var2, Freq) \%>\%
   e_visual_map(Freq)
 
-url <- paste0("https://ecomfe.github.io/echarts-examples/",
-              "public/data-gl/asset/data/population.json")
+url <- paste0(
+  "https://echarts.apache.org/examples/",
+  "data-gl/asset/data/population.json"
+)
 data <- jsonlite::fromJSON(url)
 data <- as.data.frame(data)
 names(data) <- c("lon", "lat", "value")
 
 # globe
-data \%>\% 
-  e_charts(lon) \%>\% 
-  e_globe() \%>\% 
-  e_bar_3d(lat, value, coord_system = "globe") \%>\% 
+data \%>\%
+  e_charts(lon) \%>\%
+  e_globe() \%>\%
+  e_bar_3d(lat, value, coord_system = "globe") \%>\%
   e_visual_map()
 
 # get3d
-data \%>\% 
-  e_charts(lon) \%>\% 
-  e_geo_3d() \%>\% 
-  e_bar_3d(lat, value, coord_system = "geo3D") \%>\% 
+data \%>\%
+  e_charts(lon) \%>\%
+  e_geo_3d() \%>\%
+  e_bar_3d(lat, value, coord_system = "geo3D") \%>\%
   e_visual_map()
 
 # stacked
 v <- LETTERS[1:10]
 matrix <- data.frame(
-  x = sample(v, 300, replace = TRUE), 
-  y = sample(v, 300, replace = TRUE), 
+  x = sample(v, 300, replace = TRUE),
+  y = sample(v, 300, replace = TRUE),
   z1 = rnorm(300, 10, 1),
   z2 = rnorm(300, 10, 1),
   stringsAsFactors = FALSE
-) \%>\% 
-  dplyr::group_by(x, y) \%>\% 
+) \%>\%
+  dplyr::group_by(x, y) \%>\%
   dplyr::summarise(
     z1 = sum(z1),
     z2 = sum(z2)
-  ) \%>\% 
-  dplyr::ungroup() 
-  
+  ) \%>\%
+  dplyr::ungroup()
+
 trans <- list(opacity = 0.4) # transparency
 emphasis <- list(itemStyle = list(color = "#313695"))
-  
-matrix \%>\% 
-  e_charts(x) \%>\% 
+
+matrix \%>\%
+  e_charts(x) \%>\%
   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) \%>\%
-  e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) \%>\% 
+  e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) \%>\%
   e_legend()
-  
+
 # timeline
-matrix \%>\% 
-  group_by(x) \%>\% 
-  e_charts(y, timeline = TRUE) \%>\% 
-  e_bar_3d(z1, z2) \%>\% 
+matrix \%>\%
+  group_by(x) \%>\%
+  e_charts(y, timeline = TRUE) \%>\%
+  e_bar_3d(z1, z2) \%>\%
   e_visual_map(z2)
 }
 
 }
 \seealso{
-\href{http://echarts.baidu.com/option-gl.html#series-bar3D}{Additional arguments}
+\href{https://echarts.apache.org/en/option-gl.html#series-bar3D}{Additional arguments}
 }

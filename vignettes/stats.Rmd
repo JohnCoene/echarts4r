@@ -25,12 +25,7 @@ e_common(
 ## Confidence Bands
 
 ```{r}
-data <- jsonlite::fromJSON(
-    paste0(
-        "https://ecomfe.github.io/echarts-examples/public/",
-        "data/asset/data/confidence-band.json"
-    )
-)
+data <- jsonlite::fromJSON("https://echarts.apache.org/examples/data/asset/data/confidence-band.json")
 
 data %>% 
   dplyr::mutate(

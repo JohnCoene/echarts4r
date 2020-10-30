@@ -28,7 +28,7 @@ e_scatter_gl_(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{y, z}{Column names containing y and z data.}
@@ -45,33 +45,32 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Draw scatter GL.
 }
 \examples{
-quakes \%>\% 
-  e_charts(long) \%>\% 
+quakes \%>\%
+  e_charts(long) \%>\%
   e_geo(
     roam = TRUE,
     boundingCoords = list(
-      c(185, - 10),
+      c(185, -10),
       c(165, -40)
-     )
-  ) \%>\% 
+    )
+  ) \%>\%
   e_scatter_gl(lat, depth)
-  
+
 # timeline
 quakes$year <- rep(c("2017", "2018"), 500)
 
 quakes \%>\%
-  group_by(year) \%>\%  
-  e_charts(long, timeline = TRUE) \%>\% 
+  group_by(year) \%>\%
+  e_charts(long, timeline = TRUE) \%>\%
   e_geo(
     roam = TRUE,
     boundingCoords = list(
-      c(185, - 10),
+      c(185, -10),
       c(165, -40)
-     )
-  ) \%>\% 
+    )
+  ) \%>\%
   e_scatter_gl(lat, depth)
-
 }
 \seealso{
-\href{http://echarts.baidu.com/option-gl.html#series-scatterGL}{Additional arguments}
+\href{https://echarts.apache.org/en/option-gl.html#series-scatterGL}{Additional arguments}
 }

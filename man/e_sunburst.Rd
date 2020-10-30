@@ -5,29 +5,35 @@
 \alias{e_sunburst_}
 \title{Sunburst}
 \usage{
-e_sunburst(e, parent, child, value, itemStyle, rm_x = TRUE, rm_y = TRUE, ...)
+e_sunburst(
+  e,
+  styles = NULL,
+  names = NULL,
+  levels = NULL,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 
 e_sunburst_(
   e,
-  parent,
-  child,
-  value,
-  itemStyle = NULL,
+  styles = NULL,
+  names = NULL,
+  levels = NULL,
   rm_x = TRUE,
   rm_y = TRUE,
   ...
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{parent, child}{Edges.}
+\item{styles}{Vector of style lists, defaults to \code{NULL}.}
 
-\item{value}{Name of column containing values.}
+\item{names}{Names of items to style, expects a \code{list}, defaults to \code{NULL}.}
 
-\item{itemStyle}{Name of column containing styles to pass to \code{child}, 
-expects a \code{data.frame} or a \code{list}, see details.}
+\item{levels}{Hierarchical levels to style, expects a \code{list}, defaults to \code{NULL}.}
 
 \item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
@@ -37,33 +43,89 @@ expects a \code{data.frame} or a \code{list}, see details.}
 Build a sunburst.
 }
 \details{
-The \code{itemStyle} argument essentially is a nested data.frame with column names such as
-\code{color}, or \code{borderColor} as specified in the 
+Charts e_sunburst, e_treemap and e_tree require hierarchical input data.
+Such structure could be represented thru json lists or nested tibbles (data.frame).
+Input data may contain styles, see \code{itemStyle} in examples \code{jsonl} and \code{df} below.
+The number of lists in the \code{styles} parameter should match the number of elements
+in \code{names} and/or \code{levels}. If both \code{names} and \code{levels} are present,
+name styles will take precedence over level styles.
+Multiple names may have the same style, see \code{c('land','river')} below.
+Multiple levels may have the same style, see \code{c(3,4)} below.
+\code{styles} lists contain items such as \code{color}, or \code{borderColor} as specified in the
 \href{https://echarts.apache.org/en/option.html#series-sunburst.data.itemStyle}{official documentation}.
 }
 \examples{
-df <- data.frame(
-  parent = c("earth", "earth", "earth", "mars", "mars"), 
-  child = c("forest", "ocean", "iceberg", "elon", "curiosity"),
-  value = ceiling(rnorm(5, 10, 2))
+
+# json list hierarchical data representation
+jsonl <- jsonlite::fromJSON('[
+  {"name": "earth", "value": 30,
+    "children": [
+      {"name": "land", "value":10,
+        "children": [
+                {"name": "forest", "value": 3},
+                {"name": "river", "value": 7}
+        ]},
+      {"name": "ocean", "value":20,
+        "children": [
+          {"name": "fish", "value": 10,
+            "children": [
+              {"name": "shark", "value":2},
+              {"name": "tuna", "value":6}
+            ]},
+          {"name": "kelp", "value": 5}
+        ]}
+    ]
+  },
+  {"name": "mars", "value": 30,
+    "children": [
+      {"name": "crater", "value": 20},
+      {"name": "valley", "value": 20}
+    ]},
+  {"name": "venus", "value": 40, "itemStyle": {"color": "blue"} }
+]', simplifyDataFrame = FALSE)
+
+jsonl \%>\%
+  e_charts() \%>\%
+  e_sunburst() # demo
+
+
+# tibble hierarchical data representation
+library(dplyr)
+df <- tibble(
+  name = c("earth", "mars", "venus"), value = c(30, 40, 30), # 1st level
+  itemStyle = tibble(color = c(NA, "red", "blue")), # embedded styles, optional
+  children = list(
+    tibble(
+      name = c("land", "ocean"), value = c(10, 20), # 2nd level
+      children = list(
+        tibble(name = c("forest", "river"), value = c(3, 7)), # 3rd level
+        tibble(
+          name = c("fish", "kelp"), value = c(10, 5),
+          children = list(
+            tibble(name = c("shark", "tuna"), value = c(2, 6)), # 4th level
+            NULL # kelp
+          )
+        )
+      )
+    ),
+    tibble(name = c("crater", "valley"), value = c(20, 20)),
+    NULL # venus
+  )
 )
 
-df \%>\% 
-  e_charts() \%>\% 
-  e_sunburst(parent, child, value) \%>\% 
+df \%>\%
+  e_charts() \%>\%
+  e_sunburst() \%>\%
   e_theme("westeros")
-  
-# with itemStyle
-colors <- c("red", "black", "blue")
 
-df$color <- sample(colors, 5, replace = TRUE)
-df$borderColor <- sample(colors, 5, replace = TRUE)
+# with styles
+myStyles <- c(list(color = "green"), list(color = "magenta")) # custom styles defined
+myNames <- list(c("land", "river"), "crater") # names to style
+myLevels <- list(2, c(3, 4)) # hierarchical levels to style
 
-df \%>\% 
-  tidyr::nest(c(color, borderColor), .key = "style") \%>\% # nest
-  e_charts() \%>\% 
-  e_sunburst(parent, child, value, style) 
-
+df \%>\%
+  e_charts() \%>\%
+  e_sunburst(myStyles, myNames, myLevels)
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-sunburst}{Additional arguments}

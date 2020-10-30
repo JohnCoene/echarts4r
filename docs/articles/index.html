@@ -55,7 +55,7 @@
   
 
 <meta property="og:title" content="Articles" />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -83,10 +83,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-article-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -127,12 +126,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -250,8 +243,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -266,7 +271,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -277,7 +282,6 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
@@ -290,68 +294,39 @@
       <h3>All vignettes</h3>
       <p class="section-desc"></p>
 
-      <dl>
-        <dt><a href="actions-buttons.html">Actions &amp; Buttons</a></dt>
-        <dd></dt>
-        <dt><a href="advanced.html">Advanced</a></dt>
-        <dd></dt>
-        <dt><a href="brush.html">Brush &amp; Slide</a></dt>
-        <dd></dt>
-        <dt><a href="chart_types.html">Chart Types</a></dt>
-        <dd></dt>
-        <dt><a href="connect.html">Arrange &amp; Connect</a></dt>
-        <dd></dt>
-        <dt><a href="development.html">Development</a></dt>
-        <dd></dt>
-        <dt><a href="gallery.html">Gallery</a></dt>
-        <dd></dt>
-        <dt><a href="geo.html">Geo</a></dt>
-        <dd></dt>
-        <dt><a href="geo3d.html">Geo 3D</a></dt>
-        <dd></dt>
-        <dt><a href="get_started.html">Get Started</a></dt>
-        <dd></dt>
-        <dt><a href="gl.html">web GL</a></dt>
-        <dd></dt>
-        <dt><a href="globe.html">Globe</a></dt>
-        <dd></dt>
-        <dt><a href="graph.html">Graph</a></dt>
-        <dd></dt>
-        <dt><a href="graphics.html">Graphics</a></dt>
-        <dd></dt>
-        <dt><a href="grid.html">Grid &amp; Axis</a></dt>
-        <dd></dt>
-        <dt><a href="leaflet-mapbox.html">Leaflet &amp; Mapbox</a></dt>
-        <dd></dt>
-        <dt><a href="make-geo-json.html">GeoJSON data</a></dt>
-        <dd></dt>
-        <dt><a href="map.html">Maps</a></dt>
-        <dd></dt>
-        <dt><a href="map3d.html">Map 3D</a></dt>
-        <dd></dt>
-        <dt><a href="mark.html">Mark Points, Lines &amp; Areas</a></dt>
-        <dd></dt>
-        <dt><a href="pictorial.html">Pictorial</a></dt>
-        <dd></dt>
-        <dt><a href="shiny.html">Shiny</a></dt>
-        <dd></dt>
-        <dt><a href="stats.html">Statistical plots</a></dt>
-        <dd></dt>
-        <dt><a href="themes.html">Themes</a></dt>
-        <dd></dt>
-        <dt><a href="threeD.html">3D</a></dt>
-        <dd></dt>
-        <dt><a href="timeline.html">Timeline</a></dt>
-        <dd></dt>
-        <dt><a href="toolbox.html">Toolbox</a></dt>
-        <dd></dt>
-        <dt><a href="tooltip.html">Tooltip</a></dt>
-        <dd></dt>
-      </dl>
+      <ul>
+        <li><a href="actions-buttons.html">Actions &amp; Buttons</a></li>
+        <li><a href="advanced.html">Advanced</a></li>
+        <li><a href="boxes.html">boxes</a></li>
+        <li><a href="brush.html">Brush &amp; Slide</a></li>
+        <li><a href="chart_types.html">Chart Types</a></li>
+        <li><a href="connect.html">Arrange &amp; Connect</a></li>
+        <li><a href="development.html">Development</a></li>
+        <li><a href="geo.html">Geo</a></li>
+        <li><a href="geo3d.html">Geo 3D</a></li>
+        <li><a href="get_started.html">Get Started</a></li>
+        <li><a href="gl.html">web GL</a></li>
+        <li><a href="globe.html">Globe</a></li>
+        <li><a href="graph.html">Graph</a></li>
+        <li><a href="graphics.html">Graphics</a></li>
+        <li><a href="grid.html">Grid &amp; Axis</a></li>
+        <li><a href="leaflet-mapbox.html">Leaflet &amp; Mapbox</a></li>
+        <li><a href="make-geo-json.html">GeoJSON data</a></li>
+        <li><a href="map.html">Maps</a></li>
+        <li><a href="map3d.html">Map 3D</a></li>
+        <li><a href="mark.html">Mark Points, Lines &amp; Areas</a></li>
+        <li><a href="pictorial.html">Pictorial</a></li>
+        <li><a href="shiny.html">Shiny</a></li>
+        <li><a href="stats.html">Statistical plots</a></li>
+        <li><a href="themes.html">Themes</a></li>
+        <li><a href="threeD.html">3D</a></li>
+        <li><a href="timeline.html">Timeline</a></li>
+        <li><a href="toolbox.html">Toolbox</a></li>
+        <li><a href="tooltip.html">Tooltip</a></li>
+      </ul>
     </div>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -366,7 +341,6 @@
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -389,8 +363,6 @@
 </script>
 
 
-
   </body>
 </html>
-
 

@@ -7,7 +7,7 @@
 e_calendar(e, range, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{range}{Range of calendar format, string or vector.}
@@ -19,20 +19,19 @@ Calendar
 }
 \examples{
 # year
-mtcars \%>\% 
-  e_charts() \%>\% 
+mtcars \%>\%
+  e_charts() \%>\%
   e_calendar(range = "2017")
-  
-# month
-mtcars \%>\% 
-  e_charts() \%>\% 
-  e_calendar(range = "2018-01")
-  
-# range
-mtcars \%>\% 
-  e_charts() \%>\% 
-  e_calendar(range = c("2018-01", "2018-07"))
 
+# month
+mtcars \%>\%
+  e_charts() \%>\%
+  e_calendar(range = "2018-01")
+
+# range
+mtcars \%>\%
+  e_charts() \%>\%
+  e_calendar(range = c("2018-01", "2018-07"))
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#calendar}{Additional arguments}

@@ -56,7 +56,7 @@ e_density_(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{serie}{Column name of serie to plot.}
@@ -81,19 +81,18 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Add a histogram or density plots.
 }
 \examples{
-mtcars \%>\% 
-  e_charts() \%>\% 
-  e_histogram(mpg, name = "histogram") \%>\% 
-  e_density(mpg, areaStyle = list(opacity = .4), smooth = TRUE, name = "density", y_index = 1) \%>\% 
+mtcars \%>\%
+  e_charts() \%>\%
+  e_histogram(mpg, name = "histogram") \%>\%
+  e_density(mpg, areaStyle = list(opacity = .4), smooth = TRUE, name = "density", y_index = 1) \%>\%
   e_tooltip(trigger = "axis")
-  
+
 # timeline
 mtcars \%>\%
-  group_by(cyl) \%>\%  
-  e_charts(timeline = TRUE) \%>\% 
-  e_histogram(mpg, name = "histogram") \%>\% 
+  group_by(cyl) \%>\%
+  e_charts(timeline = TRUE) \%>\%
+  e_histogram(mpg, name = "histogram") \%>\%
   e_density(mpg, name = "density", y_index = 1)
-  
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-bar}{Additional arguments for histogram},

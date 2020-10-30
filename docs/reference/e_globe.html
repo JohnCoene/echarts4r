@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
       </span>
     </div>
 
@@ -128,12 +128,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +245,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -293,15 +299,15 @@
     <p>Add globe.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_globe</span>(<span class='kw'>e</span>, environment = <span class='kw'>NULL</span>, base_texture = <span class='kw'>NULL</span>, height_texture = <span class='kw'>NULL</span>, <span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>e_globe</span><span class='op'>(</span><span class='va'>e</span>, environment <span class='op'>=</span> <span class='cn'>NULL</span>, base_texture <span class='op'>=</span> <span class='cn'>NULL</span>, height_texture <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>environment</th>
@@ -323,24 +329,27 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>e_country_names</code>, <a href='http://echarts.baidu.com/option-gl.html#globe'>Additional arguments</a></p></div>
+    <div class='dont-index'><p><code><a href='e_country_names.html'>e_country_names</a></code>, <a href='https://echarts.apache.org/en/option-gl.html#globe'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='kw'>url</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"https://ecomfe.github.io/echarts-examples/"</span>,
-              <span class='st'>"public/data-gl/asset/data/population.json"</span>)
-<span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='kw'>jsonlite</span>::<span class='fu'><a href='https://jeroen.cran.dev/jsonlite/reference/fromJSON.html'>fromJSON</a></span>(<span class='kw'>url</span>)
-<span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='kw'>data</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='kw'>data</span>) <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"lon"</span>, <span class='st'>"lat"</span>, <span class='st'>"value"</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>url</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span>
+  <span class='st'>"https://echarts.apache.org/examples/"</span>,
+  <span class='st'>"data-gl/asset/data/population.json"</span>
+<span class='op'>)</span>
+<span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'>jsonlite</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/jsonlite/man/fromJSON.html'>fromJSON</a></span><span class='op'>(</span><span class='va'>url</span><span class='op'>)</span>
+<span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"lon"</span>, <span class='st'>"lat"</span>, <span class='st'>"value"</span><span class='op'>)</span>
 
-<span class='kw'>data</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>lon</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_globe</span>(
-    displacementScale = <span class='fl'>0.04</span>
-  ) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_bar_3d</span>(<span class='kw'>lat</span>, <span class='kw'>value</span>, <span class='st'>"globe"</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_visual_map</span>(show = <span class='fl'>FALSE</span>)
-}
+<span class='va'>data</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>lon</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_globe</span><span class='op'>(</span>
+    displacementScale <span class='op'>=</span> <span class='fl'>0.04</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='e_bar_3d.html'>e_bar_3d</a></span><span class='op'>(</span><span class='va'>lat</span>, <span class='va'>value</span>, <span class='st'>"globe"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span><span class='op'>(</span>show <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='op'>}</span>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

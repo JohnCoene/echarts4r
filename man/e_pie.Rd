@@ -10,7 +10,7 @@ e_pie(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...)
 e_pie_(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{serie}{Column name of serie to plot.}
@@ -27,12 +27,12 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Draw pie and donut charts.
 }
 \examples{
-mtcars \%>\% 
-  head() \%>\% 
-  dplyr::mutate(model = row.names(.)) \%>\% 
-  e_charts(model) \%>\% 
+mtcars \%>\%
+  head() \%>\%
+  dplyr::mutate(model = row.names(.)) \%>\%
+  e_charts(model) \%>\%
   e_pie(carb)
-  
+
 # timeline
 df <- data.frame(
   grp = c("A", "A", "A", "B", "B", "B"),
@@ -40,11 +40,10 @@ df <- data.frame(
   values = runif(6, 1, 5)
 )
 
-df \%>\% 
-  group_by(grp) \%>\% 
-  e_charts(labels, timeline = TRUE) \%>\% 
+df \%>\%
+  group_by(grp) \%>\%
+  e_charts(labels, timeline = TRUE) \%>\%
   e_pie(values)
-  
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-pie}{Additional arguments}

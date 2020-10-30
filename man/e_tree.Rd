@@ -5,15 +5,13 @@
 \alias{e_tree_}
 \title{Tree}
 \usage{
-e_tree(e, parent, child, rm_x = TRUE, rm_y = TRUE, ...)
+e_tree(e, rm_x = TRUE, rm_y = TRUE, ...)
 
-e_tree_(e, parent, child, rm_x = TRUE, rm_y = TRUE, ...)
+e_tree_(e, rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
-
-\item{parent, child}{Edges.}
 
 \item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
@@ -23,15 +21,31 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Build a tree.
 }
 \examples{
-df <- data.frame(
-  parent = c("earth","earth","forest","forest","ocean","ocean","ocean","ocean"), 
-  child = c("ocean","forest","tree","sasquatch","fish","seaweed","mantis shrimp","sea monster")
+library(dplyr)
+df <- tibble(
+  name = "earth", # 1st level
+  children = list(
+    tibble(
+      name = c("land", "ocean"), # 2nd level
+      children = list(
+        tibble(name = c("forest", "river")), # 3rd level
+        tibble(
+          name = c("fish", "kelp"),
+          children = list(
+            tibble(
+              name = c("shark", "tuna"), # 4th level
+              NULL # kelp
+            )
+          )
+        )
+      )
+    )
+  )
 )
 
-df \%>\% 
-  e_charts() \%>\% 
-  e_tree(parent, child)
-
+df \%>\%
+  e_charts() \%>\%
+  e_tree(initialTreeDepth = 3, label = list(offset = c(0, -11)))
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-tree}{Additional arguments}

@@ -43,7 +43,7 @@ e_line_g(e, ...)
 e_bezier_curve_g(e, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{...}{Any other option to pass, check See Also section.}
@@ -76,8 +76,8 @@ Some elements, i.e.: \code{e_image_g} may not display in the RStudio browwser bu
 \examples{
 # may not work in RStudio viewer
 # Open in browser
-cars \%>\% 
-  e_charts(speed) \%>\% 
+cars \%>\%
+  e_charts(speed) \%>\%
   e_scatter(dist) \%>\%
   e_image_g(
     right = 20,
@@ -90,7 +90,6 @@ cars \%>\%
       opacity = .6
     )
   )
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#graphic}{official documentation}

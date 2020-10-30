@@ -15,7 +15,7 @@ e_leaflet_tile(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{roam}{Whether to allow the user to roam.}
@@ -34,18 +34,20 @@ Will not render in the RStudio, open in browser.
 }
 \examples{
 \dontrun{
-url <- paste0("https://ecomfe.github.io/echarts-examples/",
-              "public/data-gl/asset/data/population.json")
+url <- paste0(
+  "https://echarts.apache.org/examples/",
+  "data-gl/asset/data/population.json"
+)
 data <- jsonlite::fromJSON(url)
 data <- as.data.frame(data)
 names(data) <- c("lon", "lat", "value")
 data$value <- log(data$value)
 
-data \%>\% 
-  e_charts(lon) \%>\% 
+data \%>\%
+  e_charts(lon) \%>\%
   e_leaflet() \%>\%
-  e_leaflet_tile() \%>\%  
-  e_scatter(lat, size = value, coord.system = "leaflet") 
+  e_leaflet_tile() \%>\%
+  e_scatter(lat, size = value, coord.system = "leaflet")
 }
 
 }

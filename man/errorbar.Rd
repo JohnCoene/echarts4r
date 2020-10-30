@@ -30,7 +30,7 @@ e_error_bar_(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{lower, upper}{Lower and upper error bands.}
@@ -58,11 +58,11 @@ df <- data.frame(
   lower = c(0.8, 4.6)
 )
 
-df \%>\% 
-  e_charts(x) \%>\% 
-  e_bar(y) \%>\% 
+df \%>\%
+  e_charts(x) \%>\%
+  e_bar(y) \%>\%
   e_error_bar(lower, upper)
-  
+
 # timeline
 df <- data.frame(
   x = factor(c(1, 1, 2, 2)),
@@ -72,10 +72,9 @@ df <- data.frame(
   lower = c(0.8, 4.6, 2.4, 3.6)
 )
 
-df \%>\% 
-  group_by(step) \%>\% 
-  e_charts(x, timeline = TRUE) \%>\% 
-  e_bar(y) \%>\% 
+df \%>\%
+  group_by(step) \%>\%
+  e_charts(x, timeline = TRUE) \%>\%
+  e_bar(y) \%>\%
   e_error_bar(lower, upper)
-
 }

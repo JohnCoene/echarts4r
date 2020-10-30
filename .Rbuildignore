@@ -22,3 +22,5 @@ test.R
 ^\.vscode$
 index.md
 ^FUNDING\.yml$
+^CODE_OF_CONDUCT\.md$
+^echarts4r-banner\.png$

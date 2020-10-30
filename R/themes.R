@@ -1,23 +1,23 @@
 #' Themes
-#' 
+#'
 #' Add a custom theme or apply a pre-built one.
-#' 
+#'
 #' @inheritParams e_bar
 #' @param theme Theme, A json string or a see below.
 #' @param name Name of theme.
-#' 
+#'
 #' @section Functions:
 #' \itemize{
 #'  \item{\code{e_theme} - Use a default theme by name.}
 #'  \item{\code{e_theme_custom} - Use a custom theme.}
 #'  \item{\code{e_theme_register} - Register a theme globally in shiny or R markdown.}
 #' }
-#' 
+#'
 #' @details The function \code{e_theme_register} can be used to register the theme globally
-#' in R markdown or shiny (UI). This is useful because 1) the \code{e_theme_custom} registers the 
+#' in R markdown or shiny (UI). This is useful because 1) the \code{e_theme_custom} registers the
 #' theme every time and is more computationally expensive.
-#' 
-#' @section Theme names: 
+#'
+#' @section Theme names:
 #' \itemize{
 #'   \item{\code{default}}
 #'   \item{\code{dark}}
@@ -64,26 +64,25 @@
 #'   \item{\code{sakura}}
 #'   \item{\code{tech-blue}}
 #' }
-#' 
+#'
 #' @examples
-#' mtcars %>% 
+#' mtcars %>%
 #'   e_charts(mpg) %>%
-#'   e_line(disp) %>% 
-#'   e_area(hp) %>% 
+#'   e_line(disp) %>%
+#'   e_area(hp) %>%
 #'   e_x_axis(min = 10) -> p
-#'   
+#'
 #' p %>% e_theme("chalk")
 #' p %>% e_theme_custom('{"color":["#ff715e","#ffaf51"]}')
-#' 
-#' @seealso \href{http://echarts.baidu.com/theme-builder/}{create your own theme}.
-#' 
+#' @seealso \href{https://echarts.apache.org/en/theme-builder.html}{create your own theme}.
+#'
 #' @rdname theme
 #' @export
-e_theme <- function(e, name){
-  
-  if(missing(name))
+e_theme <- function(e, name) {
+  if (missing(name)) {
     stop("must pass name", call. = FALSE)
-  
+  }
+
   # add name to register
   e$x$theme <- name
 
@@ -102,11 +101,12 @@ e_theme <- function(e, name){
 
 #' @rdname theme
 #' @export
-e_theme_custom <- function(e, theme, name = "custom"){
-  if(missing(theme))
+e_theme_custom <- function(e, theme, name = "custom") {
+  if (missing(theme)) {
     stop("must pass `theme`", call. = FALSE)
+  }
 
-  if(grepl("\\.json", theme)){
+  if (grepl("\\.json", theme)) {
     theme <- readLines(theme) # read the file
     theme <- paste0(theme, collapse = "") # collapse to a string
   }
@@ -120,11 +120,12 @@ e_theme_custom <- function(e, theme, name = "custom"){
 
 #' @rdname theme
 #' @export
-e_theme_register <- function(theme, name = "custom"){
-  if(missing(theme))
+e_theme_register <- function(theme, name = "custom") {
+  if (missing(theme)) {
     stop("must pass `theme`", call. = FALSE)
+  }
 
-  if(grepl("\\.json", theme)){
+  if (grepl("\\.json", theme)) {
     theme <- readLines(theme) # read the file
     theme <- paste0(theme, collapse = "") # collapse to a string
   }
@@ -132,7 +133,7 @@ e_theme_register <- function(theme, name = "custom"){
   shiny::singleton(
     shiny::tags$head(
       shiny::tags$script(
-        paste0("window.echarts.registerTheme('", name, "', ", theme,");")
+        paste0("window.echarts.registerTheme('", name, "', ", theme, ");")
       )
     )
   )

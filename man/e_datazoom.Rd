@@ -7,7 +7,7 @@
 e_datazoom(e, x_index = NULL, y_index = NULL, toolbox = TRUE, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{x_index}{Indexes of x and y axis.}
@@ -22,17 +22,16 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Add data zoom.
 }
 \examples{
-USArrests \%>\% 
-  e_charts(UrbanPop) \%>\% 
-  e_line(Assault) \%>\% 
-  e_area(Murder, y_index = 1, x_index = 1) \%>\% 
+USArrests \%>\%
+  e_charts(UrbanPop) \%>\%
+  e_line(Assault) \%>\%
+  e_area(Murder, y_index = 1, x_index = 1) \%>\%
   e_y_axis(gridIndex = 1) \%>\%
-  e_x_axis(gridIndex = 1) \%>\% 
-  e_grid(height = "35\%") \%>\% 
-  e_grid(height = "35\%", top = "50\%") \%>\% 
-  e_toolbox_feature("dataZoom", title = list(zoom = "zoom", back = "back")) \%>\% 
+  e_x_axis(gridIndex = 1) \%>\%
+  e_grid(height = "35\%") \%>\%
+  e_grid(height = "35\%", top = "50\%") \%>\%
+  e_toolbox_feature("dataZoom", title = list(zoom = "zoom", back = "back")) \%>\%
   e_datazoom(x_index = c(0, 1))
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#dataZoom}{Additional arguments}

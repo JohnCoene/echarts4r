@@ -55,7 +55,7 @@ e_map_3d_custom(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{serie}{Values to plot.}
@@ -78,57 +78,59 @@ Draw maps.
 \examples{
 \dontrun{
 choropleth <- data.frame(
-  countries = c("France", "Brazil", "China", "Russia", "Canada", "India", "United States",
-                "Argentina", "Australia"),
+  countries = c(
+    "France", "Brazil", "China", "Russia", "Canada", "India", "United States",
+    "Argentina", "Australia"
+  ),
   values = round(runif(9, 10, 25))
 )
 
-choropleth \%>\% 
-  e_charts(countries) \%>\% 
-  e_map(values) \%>\% 
+choropleth \%>\%
+  e_charts(countries) \%>\%
+  e_map(values) \%>\%
   e_visual_map(min = 10, max = 25)
 
-choropleth \%>\% 
-  e_charts(countries) \%>\% 
-  e_map_3d(values, shading = "lambert") \%>\% 
+choropleth \%>\%
+  e_charts(countries) \%>\%
+  e_map_3d(values, shading = "lambert") \%>\%
   e_visual_map(min = 10, max = 30)
-        
+
 # custom
 buildings <- jsonlite::read_json(
   paste0(
-    "https://ecomfe.github.io/echarts-examples/",
-    "public/data-gl/asset/data/buildings.json"
+    "https://echarts.apache.org/examples/",
+    "data-gl/asset/data/buildings.json"
   )
 )
 
-heights <- purrr::map(buildings$features, "properties") \%>\% 
-  purrr::map("height") \%>\% 
+heights <- purrr::map(buildings$features, "properties") \%>\%
+  purrr::map("height") \%>\%
   unlist()
-  
-names <- purrr::map(buildings$features, "properties") \%>\% 
-  purrr::map("name") \%>\% 
+
+names <- purrr::map(buildings$features, "properties") \%>\%
+  purrr::map("name") \%>\%
   unlist()
-  
+
 data <- dplyr::tibble(
   name = names,
   value = round(runif(length(names), 0, 1), 6),
   height = heights / 10
 )
 
-data \%>\% 
-  e_charts() \%>\% 
+data \%>\%
+  e_charts() \%>\%
   e_map_register("buildings", buildings) \%>\%
-  e_map_3d_custom(name, value, height) \%>\% 
+  e_map_3d_custom(name, value, height) \%>\%
   e_visual_map(
     show = FALSE,
     min = 0.4,
     max = 1
-  ) 
-  
+  )
+
 # timeline
 choropleth <- data.frame(
-    countries = rep(choropleth$countries, 3)
-  ) \%>\% 
+  countries = rep(choropleth$countries, 3)
+) \%>\%
   dplyr::mutate(
     grp = c(
       rep(2016, nrow(choropleth)),
@@ -137,23 +139,23 @@ choropleth <- data.frame(
     ),
     values = runif(27, 1, 10)
   )
-  
-choropleth \%>\% 
-  group_by(grp) \%>\% 
-  e_charts(countries, timeline = TRUE) \%>\% 
-  e_map(values) \%>\% 
+
+choropleth \%>\%
+  group_by(grp) \%>\%
+  e_charts(countries, timeline = TRUE) \%>\%
+  e_map(values) \%>\%
   e_visual_map(min = 1, max = 10)
-  
-choropleth \%>\% 
-  group_by(grp) \%>\% 
-  e_charts(countries, timeline = TRUE) \%>\% 
-  e_map_3d(values) \%>\% 
+
+choropleth \%>\%
+  group_by(grp) \%>\%
+  e_charts(countries, timeline = TRUE) \%>\%
+  e_map_3d(values) \%>\%
   e_visual_map(min = 1, max = 10)
 }
 
 }
 \seealso{
-\code{\link{e_country_names}}, 
-\href{https://echarts.apache.org/en/option.html#series-map}{Additional map arguments}, 
-\href{http://echarts.baidu.com/option-gl.html#series-map3D}{Additional map 3D arguments}
+\code{\link{e_country_names}},
+\href{https://echarts.apache.org/en/option.html#series-map}{Additional map arguments},
+\href{https://echarts.apache.org/en/option-gl.html#series-map3D}{Additional map 3D arguments}
 }

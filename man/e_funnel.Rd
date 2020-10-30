@@ -48,14 +48,13 @@ No \code{bind} argument here, with a funnel \code{bind} = \code{labels}.
 }
 \examples{
 funnel <- data.frame(
-  stage = c("View", "Click", "Purchase"), 
+  stage = c("View", "Click", "Purchase"),
   value = c(80, 30, 20)
 )
 
-funnel \%>\% 
-  e_charts() \%>\% 
+funnel \%>\%
+  e_charts() \%>\%
   e_funnel(value, stage)
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-funnel}{Additional arguments}

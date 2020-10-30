@@ -7,7 +7,7 @@
 e_capture(e, event)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{event}{An event name from the \href{https://echarts.apache.org/en/api.html#events}{event documentation}.}
@@ -28,22 +28,23 @@ ui <- fluidPage(
   verbatimTextOutput("zoom")
 )
 
-server <- function(input, output){
+server <- function(input, output) {
   output$chart <- renderEcharts4r({
-    mtcars \%>\% 
-      e_charts(mpg) \%>\% 
-      e_scatter(qsec) \%>\% 
-      e_datazoom() \%>\% 
+    mtcars \%>\%
+      e_charts(mpg) \%>\%
+      e_scatter(qsec) \%>\%
+      e_datazoom() \%>\%
       e_capture("datazoom")
   })
-  
+
   output$zoom <- renderPrint({
     input$chart_datazoom
   })
 }
 
-if(interactive())
- shinyApp(ui, server)
+if (interactive()) {
+  shinyApp(ui, server)
+}
 }
 
 }

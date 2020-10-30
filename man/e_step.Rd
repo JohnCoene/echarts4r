@@ -34,7 +34,7 @@ e_step_(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{serie}{Column name of serie to plot.}
@@ -61,21 +61,20 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Add step serie.
 }
 \examples{
-USArrests \%>\% 
-  dplyr::mutate(State = row.names(.)) \%>\% 
+USArrests \%>\%
+  dplyr::mutate(State = row.names(.)) \%>\%
   e_charts(State) \%>\%
-  e_step(Murder, name = "Start", step = "start", fill = TRUE) \%>\% 
-  e_step(Rape, name = "Middle", step = "middle") \%>\% 
-  e_step(Assault, name = "End", step = "end") \%>\% 
-  e_tooltip(trigger = "axis")
-  
-# timeline  
-iris \%>\% 
-  group_by(Species) \%>\% 
-  e_charts(Sepal.Length, timeline = TRUE) \%>\% 
-  e_step(Sepal.Width) \%>\% 
+  e_step(Murder, name = "Start", step = "start", fill = TRUE) \%>\%
+  e_step(Rape, name = "Middle", step = "middle") \%>\%
+  e_step(Assault, name = "End", step = "end") \%>\%
   e_tooltip(trigger = "axis")
 
+# timeline
+iris \%>\%
+  group_by(Species) \%>\%
+  e_charts(Sepal.Length, timeline = TRUE) \%>\%
+  e_step(Sepal.Width) \%>\%
+  e_tooltip(trigger = "axis")
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-line}{Additional arguments}

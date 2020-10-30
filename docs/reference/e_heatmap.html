@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Heatmap — e_heatmap" />
 <meta property="og:description" content="Draw heatmap by coordinates." />
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
+<meta property="og:image" content="" />
 
 
 
@@ -84,10 +84,9 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   </head>
 
-  <body data-spy="scroll" data-target="#toc">
+  <body>
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +127,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -251,8 +244,20 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../articles/shiny.html">Shiny</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -267,7 +272,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+      <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -278,14 +283,13 @@
 </div><!--/.navbar -->
 
       
-
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Heatmap</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add.R'><code>R/add.R</code></a>, <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/add_.R'><code>R/add_.R</code></a></small>
+    
     <div class="hidden name"><code>e_heatmap.Rd</code></div>
     </div>
 
@@ -294,29 +298,29 @@
     </div>
 
     <pre class="usage"><span class='fu'>e_heatmap</span>(
-  <span class='kw'>e</span>,
-  <span class='kw'>y</span>,
-  <span class='kw'>z</span>,
-  <span class='kw'>bind</span>,
-  name = <span class='kw'>NULL</span>,
-  coord_system = <span class='st'>"cartesian2d"</span>,
-  rm_x = <span class='fl'>TRUE</span>,
-  rm_y = <span class='fl'>TRUE</span>,
-  calendar = <span class='kw'>NULL</span>,
-  <span class='kw'>...</span>
+  <span class='no'>e</span>,
+  <span class='no'>y</span>,
+  <span class='no'>z</span>,
+  <span class='no'>bind</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
+  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>calendar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>
 )
 
 <span class='fu'>e_heatmap_</span>(
-  <span class='kw'>e</span>,
-  <span class='kw'>y</span>,
-  z = <span class='kw'>NULL</span>,
-  bind = <span class='kw'>NULL</span>,
-  name = <span class='kw'>NULL</span>,
-  coord_system = <span class='st'>"cartesian2d"</span>,
-  rm_x = <span class='fl'>TRUE</span>,
-  rm_y = <span class='fl'>TRUE</span>,
-  calendar = <span class='kw'>NULL</span>,
-  <span class='kw'>...</span>
+  <span class='no'>e</span>,
+  <span class='no'>y</span>,
+  <span class='kw'>z</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>bind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"cartesian2d"</span>,
+  <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>calendar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -324,8 +328,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>e</th>
-      <td><p>An <code>echarts4r</code> object as returned by <code>e_charts</code> or 
-a proxy as returned by <code>echarts4rProxy</code>.</p></td>
+      <td><p>An <code>echarts4r</code> object as returned by <code><a href='init.html'>e_charts</a></code> or
+a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></code>.</p></td>
     </tr>
     <tr>
       <th>y, z</th>
@@ -333,7 +337,7 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>bind</th>
-      <td><p>Binding between datasets, namely for use of <code>e_brush</code>.</p></td>
+      <td><p>Binding between datasets, namely for use of <code><a href='e_brush.html'>e_brush</a></code>.</p></td>
     </tr>
     <tr>
       <th>name</th>
@@ -341,12 +345,12 @@ a proxy as returned by <code>echarts4rProxy</code>.</p></td>
     </tr>
     <tr>
       <th>coord_system</th>
-      <td><p>Coordinate system to plot against, takes 
+      <td><p>Coordinate system to plot against, takes
 <code>cartesian2d</code>, <code>geo</code> or <code>calendar</code>.</p></td>
     </tr>
     <tr>
       <th>rm_x, rm_y</th>
-      <td><p>Whether to remove x and y axis, only applies if <code>coord_system</code> is not 
+      <td><p>Whether to remove x and y axis, only applies if <code>coord_system</code> is not
 set to <code>cartesian2d</code>.</p></td>
     </tr>
     <tr>
@@ -364,86 +368,84 @@ set to <code>cartesian2d</code>.</p></td>
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#series-heatmap'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>v</span> <span class='op'>&lt;-</span> <span class='kw'>LETTERS</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>]
-<span class='kw'>matrix</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  x = <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>v</span>, <span class='fl'>300</span>, replace = <span class='fl'>TRUE</span>), 
-  y = <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>v</span>, <span class='fl'>300</span>, replace = <span class='fl'>TRUE</span>), 
-  z = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span>),
-  stringsAsFactors = <span class='fl'>FALSE</span>
-) <span class='op'>%&gt;%</span> 
-  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>x</span>, <span class='kw'>y</span>) <span class='op'>%&gt;%</span> 
-  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span>(z = <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='kw'>z</span>)) <span class='op'>%&gt;%</span> 
-  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span>()</div><div class='output co'>#&gt; <span class='message'>`summarise()` regrouping output by 'x' (override with `.groups` argument)</span></div><div class='input'>
-<span class='kw'>matrix</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>x</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_heatmap</span>(<span class='kw'>y</span>, <span class='kw'>z</span>, itemStyle = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(emphasis = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(shadowBlur = <span class='fl'>10</span>))) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_visual_map</span>(<span class='kw'>z</span>)
+    <pre class="examples"><div class='input'><span class='no'>v</span> <span class='kw'>&lt;-</span> <span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>10</span>]
+<span class='no'>matrix</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>v</span>, <span class='fl'>300</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='no'>v</span>, <span class='fl'>300</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
+  <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span>),
+  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>x</span>, <span class='no'>y</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span>(<span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>z</span>)) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span>()</div><div class='output co'>#&gt; <span class='message'>`summarise()` regrouping output by 'x' (override with `.groups` argument)</span></div><div class='input'>
+<span class='no'>matrix</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>x</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_heatmap</span>(<span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>itemStyle</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>emphasis</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>shadowBlur</span> <span class='kw'>=</span> <span class='fl'>10</span>))) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='no'>z</span>)
 
-<span class='co'># calendar   </span>
-<span class='kw'>dates</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.Date.html'>seq.Date</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"2017-01-01"</span>), <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"2018-12-31"</span>), by = <span class='st'>"day"</span>)
-<span class='kw'>values</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='kw'>dates</span>), <span class='fl'>20</span>, <span class='fl'>6</span>)
+<span class='co'># calendar</span>
+<span class='no'>dates</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq.Date'>seq.Date</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.Date'>as.Date</a></span>(<span class='st'>"2017-01-01"</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.Date'>as.Date</a></span>(<span class='st'>"2018-12-31"</span>), <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"day"</span>)
+<span class='no'>values</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>dates</span>), <span class='fl'>20</span>, <span class='fl'>6</span>)
 
-<span class='kw'>year</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(date = <span class='kw'>dates</span>, values = <span class='kw'>values</span>)
+<span class='no'>year</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>date</span> <span class='kw'>=</span> <span class='no'>dates</span>, <span class='kw'>values</span> <span class='kw'>=</span> <span class='no'>values</span>)
 
-<span class='kw'>year</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>date</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_calendar</span>(range = <span class='st'>"2018"</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_heatmap</span>(<span class='kw'>values</span>, coord_system = <span class='st'>"calendar"</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_visual_map</span>(max = <span class='fl'>30</span>)
-  
+<span class='no'>year</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>date</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_calendar.html'>e_calendar</a></span>(<span class='kw'>range</span> <span class='kw'>=</span> <span class='st'>"2018"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_heatmap</span>(<span class='no'>values</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"calendar"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>30</span>)
+
 <span class='co'># calendar multiple years</span>
-<span class='kw'>year</span> <span class='op'>%&gt;%</span> 
-  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(year = <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span>(<span class='kw'>date</span>, <span class='st'>"%Y"</span>)) <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>year</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>date</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_calendar</span>(range = <span class='st'>"2017"</span>, top = <span class='fl'>40</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_calendar</span>(range = <span class='st'>"2018"</span>, top = <span class='fl'>260</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_heatmap</span>(<span class='kw'>values</span>, coord_system = <span class='st'>"calendar"</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_visual_map</span>(max = <span class='fl'>30</span>)
-  
+<span class='no'>year</span> <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/format'>format</a></span>(<span class='no'>date</span>, <span class='st'>"%Y"</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>year</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>date</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_calendar.html'>e_calendar</a></span>(<span class='kw'>range</span> <span class='kw'>=</span> <span class='st'>"2017"</span>, <span class='kw'>top</span> <span class='kw'>=</span> <span class='fl'>40</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_calendar.html'>e_calendar</a></span>(<span class='kw'>range</span> <span class='kw'>=</span> <span class='st'>"2018"</span>, <span class='kw'>top</span> <span class='kw'>=</span> <span class='fl'>260</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_heatmap</span>(<span class='no'>values</span>, <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"calendar"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>30</span>)
+
 <span class='co'># map</span>
-<span class='kw'>quakes</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_charts</span>(<span class='kw'>long</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_geo</span>(
-    boundingCoords = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-      <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>190</span>, <span class='op'>-</span><span class='fl'>10</span>),
-      <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>180</span>, <span class='op'>-</span><span class='fl'>40</span>)
-   )
-  ) <span class='op'>%&gt;%</span> 
+<span class='no'>quakes</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>long</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_geo.html'>e_geo</a></span>(
+    <span class='kw'>boundingCoords</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>190</span>, -<span class='fl'>10</span>),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>180</span>, -<span class='fl'>40</span>)
+    )
+  ) <span class='kw'>%&gt;%</span>
   <span class='fu'>e_heatmap</span>(
-    <span class='kw'>lat</span>, 
-    <span class='kw'>mag</span>, 
-    coord_system = <span class='st'>"geo"</span>, 
-    blurSize = <span class='fl'>5</span>, 
-    pointSize = <span class='fl'>3</span>
-  ) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_visual_map</span>(<span class='kw'>mag</span>)
+    <span class='no'>lat</span>,
+    <span class='no'>mag</span>,
+    <span class='kw'>coord_system</span> <span class='kw'>=</span> <span class='st'>"geo"</span>,
+    <span class='kw'>blurSize</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+    <span class='kw'>pointSize</span> <span class='kw'>=</span> <span class='fl'>3</span>
+  ) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='no'>mag</span>)
 
 <span class='co'># timeline</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://dplyr.tidyverse.org'>dplyr</a></span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 
-<span class='kw'>axis</span> <span class='op'>&lt;-</span> <span class='kw'>LETTERS</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>]
-<span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span>(<span class='kw'>axis</span>, <span class='kw'>axis</span>)
+<span class='no'>axis</span> <span class='kw'>&lt;-</span> <span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>10</span>]
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/expand.grid'>expand.grid</a></span>(<span class='no'>axis</span>, <span class='no'>axis</span>)
 
-<span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_rows</a></span>(<span class='kw'>df</span>, <span class='kw'>df</span>) <span class='op'>%&gt;%</span> 
+<span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_rows</a></span>(<span class='no'>df</span>, <span class='no'>df</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(
-    values = <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span>(), <span class='fl'>1</span>, <span class='fl'>10</span>),
-    grp = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
-      <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='st'>"A"</span>, <span class='fl'>100</span>),
-      <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='st'>"B"</span>, <span class='fl'>100</span>)
+    <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span>(<span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span>(), <span class='fl'>1</span>, <span class='fl'>10</span>),
+    <span class='kw'>grp</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='st'>"A"</span>, <span class='fl'>100</span>),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='st'>"B"</span>, <span class='fl'>100</span>)
     )
-  ) <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>grp</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_charts</span>(<span class='kw'>Var1</span>, timeline = <span class='fl'>TRUE</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_heatmap</span>(<span class='kw'>Var2</span>, <span class='kw'>values</span>) <span class='op'>%&gt;%</span> 
-  <span class='fu'>e_visual_map</span>(<span class='kw'>values</span>)
-</div></pre>
+  ) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>grp</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span>(<span class='no'>Var1</span>, <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>e_heatmap</span>(<span class='no'>Var2</span>, <span class='no'>values</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span>(<span class='no'>values</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -458,7 +460,6 @@ set to <code>cartesian2d</code>.</p></td>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
    </div>
 
@@ -481,8 +482,6 @@ set to <code>cartesian2d</code>.</p></td>
 </script>
 
 
-
   </body>
 </html>
-
 

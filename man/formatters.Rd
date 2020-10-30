@@ -13,7 +13,7 @@ e_format_x_axis(e, suffix = NULL, prefix = NULL, ...)
 e_format_y_axis(e, suffix = NULL, prefix = NULL, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{axis}{Axis to apply formatter to.}
@@ -31,13 +31,12 @@ df <- data.frame(
   x = 1:10,
   y = round(
     runif(10, 1, 100), 2
-  ) 
+  )
 )
 
-df \%>\% 
-  e_charts(x) \%>\% 
-  e_line(y) \%>\% 
+df \%>\%
+  e_charts(x) \%>\%
+  e_line(y) \%>\%
   e_format_y_axis(suffix = "\%") \%>\%
-  e_format_x_axis(prefix = "A") 
-
+  e_format_x_axis(prefix = "A")
 }

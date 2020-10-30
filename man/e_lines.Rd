@@ -38,7 +38,7 @@ e_lines_(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{source_lon, source_lat, target_lon, target_lat}{coordinates.}
@@ -60,52 +60,54 @@ Add lines.
 }
 \examples{
 flights <- read.csv(
-  paste0("https://raw.githubusercontent.com/plotly/datasets/",
-         "master/2011_february_aa_flight_paths.csv")
+  paste0(
+    "https://raw.githubusercontent.com/plotly/datasets/",
+    "master/2011_february_aa_flight_paths.csv"
+  )
 )
 
-flights \%>\% 
-  e_charts() \%>\% 
-  e_geo() \%>\% 
+flights \%>\%
+  e_charts() \%>\%
+  e_geo() \%>\%
   e_lines(
-    start_lon, 
-    start_lat, 
-    end_lon, 
+    start_lon,
+    start_lat,
+    end_lon,
     end_lat,
     airport1,
     airport2,
     cnt,
     name = "flights",
     lineStyle = list(normal = list(curveness = 0.3))
-  ) \%>\% 
-  e_tooltip(trigger="item",
+  ) \%>\%
+  e_tooltip(
+    trigger = "item",
     formatter = htmlwidgets::JS("
       function(params){
         return(
-          params.seriesName +'<br />' + 
-          params.data.source_name + ' -> ' + 
+          params.seriesName +'<br />' +
+          params.data.source_name + ' -> ' +
           params.data.target_name + ':'+ params.value
         )
       }
    ")
   )
-  
+
 # timeline
 flights$grp <- rep(LETTERS[1:2], 89)
 
-flights \%>\% 
-  group_by(grp) \%>\% 
-  e_charts(timeline = TRUE) \%>\% 
-  e_geo() \%>\% 
+flights \%>\%
+  group_by(grp) \%>\%
+  e_charts(timeline = TRUE) \%>\%
+  e_geo() \%>\%
   e_lines(
-    start_lon, 
-    start_lat, 
-    end_lon, 
+    start_lon,
+    start_lat,
+    end_lon,
     end_lat,
     cnt,
     coord_system = "geo"
   )
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-lines}{Additional arguments}

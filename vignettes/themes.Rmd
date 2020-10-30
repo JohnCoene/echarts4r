@@ -22,7 +22,7 @@ e_common(
 )
 ```
 
-You can easily customise the appearance of your chart using one of the 13 themes provided, or even build you own theme: use the online [theme builder](http://echarts.baidu.com/download-theme.html) to create your own.
+You can easily customise the appearance of your chart using one of the 13 themes provided, or even build you own theme: use the online [theme builder](https://echarts.apache.org/en/theme-builder.html) to create your own.
 
 ## default
 
@@ -286,7 +286,7 @@ p %>% e_theme("tech-blue")
 p %>% e_theme_custom('{"color":["#ff715e","#ffaf51"]}')
 ```
 
-The above is an admittedly small theme, if you want to create a large custom theme, download the JSON from the [theme builder](http://echarts.baidu.com/download-theme.html) and use it, `e_theme_custom` and `e_register_theme` both detect the json file and read it in.
+The above is an admittedly small theme, if you want to create a large custom theme, download the JSON from the [theme builder](https://echarts.apache.org/en/theme-builder.html) and use it, `e_theme_custom` and `e_register_theme` both detect the json file and read it in.
 
 <div class="row">
 

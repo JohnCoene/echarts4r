@@ -7,7 +7,7 @@
 e_text_style(e, ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{...}{Any other option to pass, check See Also section.}
@@ -19,15 +19,14 @@ Define global font style.
 Do not use \code{e_arrange} in R markdown or Shiny.
 }
 \examples{
-cars \%>\% 
-  e_charts(dist) \%>\% 
-  e_scatter(speed) \%>\% 
-  e_labels() \%>\% 
+cars \%>\%
+  e_charts(dist) \%>\%
+  e_scatter(speed) \%>\%
+  e_labels() \%>\%
   e_text_style(
     color = "blue",
     fontStyle = "italic"
   )
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#textStyle}{official documentation}

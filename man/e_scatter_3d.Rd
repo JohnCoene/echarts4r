@@ -36,7 +36,7 @@ e_scatter_3d_(
 )
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{y, z}{Coordinates.}
@@ -61,60 +61,61 @@ Add 3D scatter.
 \examples{
 v <- LETTERS[1:10]
 matrix <- data.frame(
-  x = sample(v, 300, replace = TRUE), 
-  y = sample(v, 300, replace = TRUE), 
+  x = sample(v, 300, replace = TRUE),
+  y = sample(v, 300, replace = TRUE),
   z = rnorm(300, 10, 1),
   color = rnorm(300, 10, 1),
   size = rnorm(300, 10, 1),
   stringsAsFactors = FALSE
-) \%>\% 
-  dplyr::group_by(x, y) \%>\% 
+) \%>\%
+  dplyr::group_by(x, y) \%>\%
   dplyr::summarise(
     z = sum(z),
     color = sum(color),
     size = sum(size)
-  ) \%>\% 
-  dplyr::ungroup() 
-  
-matrix \%>\% 
-  e_charts(x) \%>\% 
-  e_scatter_3d(y, z, size, color) \%>\% 
+  ) \%>\%
+  dplyr::ungroup()
+
+matrix \%>\%
+  e_charts(x) \%>\%
+  e_scatter_3d(y, z, size, color) \%>\%
   e_visual_map(
     min = 1, max = 100,
     inRange = list(symbolSize = c(1, 30)), # scale size
     dimension = 3 # third dimension 0 = x, y = 1, z = 2, size = 3
-  ) \%>\% 
+  ) \%>\%
   e_visual_map(
     min = 1, max = 100,
-    inRange = list(color = c('#bf444c', '#d88273', '#f6efa6')), # scale colors
+    inRange = list(color = c("#bf444c", "#d88273", "#f6efa6")), # scale colors
     dimension = 4, # third dimension 0 = x, y = 1, z = 2, size = 3, color = 4
     bottom = 300 # padding to avoid visual maps overlap
   )
-  
+
 airports <- read.csv(
-  paste0("https://raw.githubusercontent.com/plotly/datasets/",
-         "master/2011_february_us_airport_traffic.csv")
+  paste0(
+    "https://raw.githubusercontent.com/plotly/datasets/",
+    "master/2011_february_us_airport_traffic.csv"
+  )
 )
 
-airports \%>\% 
-  e_charts(long) \%>\% 
+airports \%>\%
+  e_charts(long) \%>\%
   e_globe(
     globeOuterRadius = 100
-  ) \%>\% 
-  e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = 'lighter') \%>\% 
-  e_visual_map(inRange = list(symbolSize = c(1, 10)))
-  
-# timeline
-airports \%>\% 
-  group_by(state) \%>\% 
-  e_charts(long, timeline = TRUE) \%>\% 
-  e_globe(
-    globeOuterRadius = 100
-  ) \%>\% 
-  e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = 'lighter') \%>\% 
+  ) \%>\%
+  e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = "lighter") \%>\%
   e_visual_map(inRange = list(symbolSize = c(1, 10)))
 
+# timeline
+airports \%>\%
+  group_by(state) \%>\%
+  e_charts(long, timeline = TRUE) \%>\%
+  e_globe(
+    globeOuterRadius = 100
+  ) \%>\%
+  e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = "lighter") \%>\%
+  e_visual_map(inRange = list(symbolSize = c(1, 10)))
 }
 \seealso{
-\href{http://echarts.baidu.com/option-gl.html#series-scatter3D}{Additional arguments}
+\href{https://echarts.apache.org/en/option-gl.html#series-scatter3D}{Additional arguments}
 }

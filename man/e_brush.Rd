@@ -7,7 +7,7 @@
 e_brush(e, x_index = NULL, y_index = NULL, brush_link = "all", ...)
 }
 \arguments{
-\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or 
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{x_index}{Indexes of x and y axis.}
@@ -26,27 +26,26 @@ $
 \itemize{
   \item{\code{c(3, 4, 5)}, for interacting series with seriesIndex as 3, 4, or 5.}
   \item{\code{all}, for interacting all series.}
-  \item{\code{none} for disabling.}  
+  \item{\code{none} for disabling.}
 }
 }
 
 \examples{
-quakes \%>\% 
-  e_charts(long) \%>\% 
+quakes \%>\%
+  e_charts(long) \%>\%
   e_geo(
     boundingCoords = list(
       c(190, -10),
       c(180, -40)
-     )
-  ) \%>\% 
-  e_scatter(lat, mag, stations, coord.system = "geo", name = "mag") \%>\% 
-  e_data(quakes, depth) \%>\% 
-  e_scatter(mag, mag, stations, name = "mag & depth") \%>\%  
-  e_grid(right = 40, top = 100, width = "30\%") \%>\% 
-  e_y_axis(type = "value", name = "depth", min = 3.5) \%>\% 
-  e_brush() \%>\% 
+    )
+  ) \%>\%
+  e_scatter(lat, mag, stations, coord.system = "geo", name = "mag") \%>\%
+  e_data(quakes, depth) \%>\%
+  e_scatter(mag, mag, stations, name = "mag & depth") \%>\%
+  e_grid(right = 40, top = 100, width = "30\%") \%>\%
+  e_y_axis(type = "value", name = "depth", min = 3.5) \%>\%
+  e_brush() \%>\%
   e_theme("dark")
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#brush}{Additional arguments}

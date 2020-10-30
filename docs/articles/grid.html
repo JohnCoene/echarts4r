@@ -21,8 +21,8 @@
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Grid &amp; Axis">
-<meta property="og:description" content="echarts4r">
-<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png">
+<meta property="og:description" content="">
+<meta property="og:image" content="">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -34,7 +34,7 @@
   gtag('config', 'UA-74544116-1');
 </script><!-- Place this tag in your head or just before your close body tag. --><script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -74,12 +74,6 @@
 <li>
   <a href="../reference/">
     <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../articles/gallery.html">
-    <span class="fa fa-paint-brush"></span>
      
   </a>
 </li>
@@ -197,8 +191,20 @@
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Shiny
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
 <li>
-  <a href="../articles/shiny.html">Shiny</a>
+      <a href="../articles/shiny.html">Basics</a>
+    </li>
+    <li>
+      <a href="../articles/boxes.html">Boxes</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../articles/timeline.html">Timeline</a>
@@ -212,7 +218,7 @@
   </a>
 </li>
       </ul>
-<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+<form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
@@ -226,16 +232,15 @@
 <!--/.navbar -->
 
       
-
-      </header><script src="grid_files/header-attrs-2.3.2/header-attrs.js"></script><script src="grid_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="grid_files/htmlwidgets-1.5.1/htmlwidgets.js"></script><script src="grid_files/echarts4r-4.8.0/echarts-en.min.js"></script><script src="grid_files/echarts4r-4.8.0/ecStat.min.js"></script><script src="grid_files/echarts4r-4.8.0/dataTool.min.js"></script><script src="grid_files/echarts4r-binding-0.3.3/echarts4r.js"></script><div class="row">
+      </header><script src="grid_files/header-attrs-2.3.9/header-attrs.js"></script><script src="grid_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="grid_files/htmlwidgets-1.5.1.9002/htmlwidgets.js"></script><script src="grid_files/echarts4r-4.8.0/echarts-en.min.js"></script><script src="grid_files/echarts4r-4.8.0/ecStat.min.js"></script><script src="grid_files/echarts4r-4.8.0/dataTool.min.js"></script><script src="grid_files/echarts4r-binding-0.3.3/echarts4r.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Grid &amp; Axis</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2020-07-07</h4>
+            <h4 class="date">2020-09-23</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/JohnCoene/echarts4r/blob/master/vignettes/grid.Rmd"><code>vignettes/grid.Rmd</code></a></small>
+      
       <div class="hidden name"><code>grid.Rmd</code></div>
 
     </div>
@@ -248,174 +253,150 @@
 <a href="#axis-helper" class="anchor"></a>Axis helper</h2>
 <p>You can customise the axis with <code>e_axis</code>, <code>e_x_axis</code> or <code>e_y_axis</code>, you can see the <a href="https://ecomfe.github.io/echarts-doc/public/en/option.html#xAxis">official documentation</a> for more details. There is also a helper function, <code>e_format_axis</code> and its sisters <code>e_format_x_axis</code> and <code>e_format_y_axis</code>. The latter lets you easily add suffix or prefix to your axis labels.</p>
 <p>Say you want to plot against ceslius.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  x = <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="co"># celsius</span>
-  y = <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fl">20</span>, <span class="fl">1</span>, <span class="fl">100</span>) <span class="co"># percentages</span>
-)
-
-<span class="kw">df</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_line.html">e_line</a></span>(<span class="kw">y</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_format_axis.html">e_format_x_axis</a></span>(suffix = <span class="st">"°C"</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_legend.html">e_legend</a></span>(<span class="fl">FALSE</span>)
-</pre></div>
-<div id="htmlwidget-35a5f24ca9253afe8314" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-35a5f24ca9253afe8314">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value","axisLabel":{"formatter":" {value} °C"}}],"legend":{"data":["y"],"show":false,"type":"plain"},"series":[{"data":[{"value":[1,75.4427912558895]},{"value":[2,72.6123577444814]},{"value":[3,81.1716368063353]},{"value":[4,50.6602243874222]},{"value":[5,29.6004314552993]},{"value":[6,77.7621985040605]},{"value":[7,85.2288261151407]},{"value":[8,25.3381000452209]},{"value":[9,63.7699743290432]},{"value":[10,51.7325107031502]},{"value":[11,29.7744069206528]},{"value":[12,40.1143401409499]},{"value":[13,26.47284117667]},{"value":[14,35.1377378385514]},{"value":[15,36.9260270642117]},{"value":[16,37.7205641488545]},{"value":[17,31.3675015578046]},{"value":[18,15.0322893075645]},{"value":[19,79.1111562910955]},{"value":[20,49.0235220273025]}],"yAxisIndex":0,"xAxisIndex":0,"name":"y","type":"line","coordinateSystem":"cartesian2d"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>Since version <code>0.2.1</code> you can also easily format the axis to decimal, percentages or currencies thanks to contribution from <a href="https://github.com/artemklevtsov">Artem Klevtsov</a>.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw">df</span> <span class="op">%&gt;%</span> 
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(y = <span class="kw">y</span> <span class="op">/</span> <span class="fl">100</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_line.html">e_line</a></span>(<span class="kw">y</span>, legend = <span class="fl">FALSE</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_axis.html">e_x_axis</a></span>(
-    formatter = <span class="fu"><a href="../reference/e_axis.html">e_axis_formatter</a></span>(<span class="st">"currency"</span>, currency = <span class="st">"GBP"</span>)
-  ) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_axis.html">e_y_axis</a></span>(
-    formatter = <span class="fu"><a href="../reference/e_axis.html">e_axis_formatter</a></span>(<span class="st">"decimal"</span>, digits = <span class="fl">3</span>)
-  )
-</pre></div>
-<div id="htmlwidget-3615c8e8eeed3601e959" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3615c8e8eeed3601e959">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"axisLabel":{"formatter":"function(value, index) {\n        var fmt = new Intl.NumberFormat('en', {\"style\":\"decimal\",\"minimumFractionDigits\":3,\"maximumFractionDigits\":3,\"currency\":\"USD\"});\n        return fmt.format(value);\n    }"}}],"xAxis":[{"type":"value","axisLabel":{"formatter":"function(value, index) {\n        var fmt = new Intl.NumberFormat('en', {\"style\":\"currency\",\"minimumFractionDigits\":0,\"maximumFractionDigits\":0,\"currency\":\"GBP\"});\n        return fmt.format(value);\n    }"}}],"series":[{"data":[{"value":[1,0.754427912558895]},{"value":[2,0.726123577444814]},{"value":[3,0.811716368063353]},{"value":[4,0.506602243874222]},{"value":[5,0.296004314552993]},{"value":[6,0.777621985040605]},{"value":[7,0.852288261151407]},{"value":[8,0.253381000452209]},{"value":[9,0.637699743290432]},{"value":[10,0.517325107031502]},{"value":[11,0.297744069206528]},{"value":[12,0.401143401409499]},{"value":[13,0.2647284117667]},{"value":[14,0.351377378385514]},{"value":[15,0.369260270642117]},{"value":[16,0.377205641488545]},{"value":[17,0.313675015578046]},{"value":[18,0.150322893075645]},{"value":[19,0.791111562910955]},{"value":[20,0.490235220273025]}],"yAxisIndex":0,"xAxisIndex":0,"name":"y","type":"line","coordinateSystem":"cartesian2d"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":["opts.yAxis.0.axisLabel.formatter","opts.xAxis.0.axisLabel.formatter"],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="co"># celsius</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dv">20</span>, <span class="dv">1</span>, <span class="dv">100</span>) <span class="co"># percentages</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(y) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="st">  </span><span class="kw"><a href="../reference/formatters.html">e_format_x_axis</a></span>(<span class="dt">suffix =</span> <span class="st">"°C"</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="st">  </span><span class="kw"><a href="../reference/e_legend.html">e_legend</a></span>(<span class="ot">FALSE</span>)</span></code></pre></div>
+<div id="htmlwidget-014da882aef5ee53c826" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-014da882aef5ee53c826">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value","axisLabel":{"formatter":" {value} °C"}}],"legend":{"data":["y"],"show":false,"type":"plain"},"series":[{"data":[{"value":[1,19.6904084437992]},{"value":[2,13.978376517538]},{"value":[3,93.6257108175196]},{"value":[4,41.1254139333032]},{"value":[5,99.3342762652319]},{"value":[6,63.1742370508146]},{"value":[7,30.7761984760873]},{"value":[8,76.8727854127064]},{"value":[9,91.9588523667771]},{"value":[10,3.21223260485567]},{"value":[11,20.0893892957829]},{"value":[12,78.2653533429839]},{"value":[13,6.3103719225619]},{"value":[14,17.9436360083055]},{"value":[15,12.9561288477853]},{"value":[16,80.9641315951012]},{"value":[17,61.7557616720442]},{"value":[18,15.8010188664775]},{"value":[19,58.318102484569]},{"value":[20,46.0839311836753]}],"yAxisIndex":0,"xAxisIndex":0,"name":"y","type":"line","coordinateSystem":"cartesian2d"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>Since version <code>0.2.1</code> you can also easily format the axis to decimal, percentages or currencies thanks to contribution from <a href="https://github.com/artemklevtsov">Artem Klevtsov</a>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">y =</span> y <span class="op">/</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(y, <span class="dt">legend =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="st">  </span><span class="kw"><a href="../reference/axis.html">e_x_axis</a></span>(</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="dt">formatter =</span> <span class="kw"><a href="../reference/axis.html">e_axis_formatter</a></span>(<span class="st">"currency"</span>, <span class="dt">currency =</span> <span class="st">"GBP"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="st">  </span><span class="kw"><a href="../reference/axis.html">e_y_axis</a></span>(</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="dt">formatter =</span> <span class="kw"><a href="../reference/axis.html">e_axis_formatter</a></span>(<span class="st">"decimal"</span>, <span class="dt">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb2-10"><a href="#cb2-10"></a>  )</span></code></pre></div>
+<div id="htmlwidget-8ada57daf714387e684b" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8ada57daf714387e684b">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"axisLabel":{"formatter":"function(value, index) {\n        var fmt = new Intl.NumberFormat('en', {\"style\":\"decimal\",\"minimumFractionDigits\":3,\"maximumFractionDigits\":3,\"currency\":\"USD\"});\n        return fmt.format(value);\n    }"}}],"xAxis":[{"type":"value","axisLabel":{"formatter":"function(value, index) {\n        var fmt = new Intl.NumberFormat('en', {\"style\":\"currency\",\"minimumFractionDigits\":0,\"maximumFractionDigits\":0,\"currency\":\"GBP\"});\n        return fmt.format(value);\n    }"}}],"series":[{"data":[{"value":[1,0.196904084437992]},{"value":[2,0.13978376517538]},{"value":[3,0.936257108175196]},{"value":[4,0.411254139333032]},{"value":[5,0.993342762652319]},{"value":[6,0.631742370508146]},{"value":[7,0.307761984760873]},{"value":[8,0.768727854127064]},{"value":[9,0.919588523667771]},{"value":[10,0.0321223260485567]},{"value":[11,0.200893892957829]},{"value":[12,0.782653533429839]},{"value":[13,0.063103719225619]},{"value":[14,0.179436360083055]},{"value":[15,0.129561288477853]},{"value":[16,0.809641315951012]},{"value":[17,0.617557616720442]},{"value":[18,0.158010188664775]},{"value":[19,0.58318102484569]},{"value":[20,0.460839311836753]}],"yAxisIndex":0,"xAxisIndex":0,"name":"y","type":"line","coordinateSystem":"cartesian2d"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":["opts.yAxis.0.axisLabel.formatter","opts.xAxis.0.axisLabel.formatter"],"jsHooks":[]}</script>
 </div>
 <div id="grid" class="section level2">
 <h2 class="hasAnchor">
 <a href="#grid" class="anchor"></a>Grid</h2>
 <p>You can also customise the grid to have, for instance, multiple plots on one canvas.</p>
 <p>Let’s initialise a basic plot.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  x = <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, 
-  w = <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fl">20</span>, <span class="fl">1</span>, <span class="fl">100</span>),
-  z = <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">75</span>)
-)
-
-<span class="kw">df</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_line.html">e_line</a></span>(<span class="kw">w</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_line.html">e_line</a></span>(<span class="kw">z</span>)
-</pre></div>
-<div id="htmlwidget-af164dc8343d38f200b3" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-af164dc8343d38f200b3">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["w","z"]},"series":[{"data":[{"value":[1,43.2330530139152]},{"value":[2,18.2662446592003]},{"value":[3,6.39300954598002]},{"value":[4,69.1777676264755]},{"value":[5,84.7872437520418]},{"value":[6,32.3811819166876]},{"value":[7,50.9746455952991]},{"value":[8,34.2554140309803]},{"value":[9,29.0421466808766]},{"value":[10,46.2764178537764]},{"value":[11,79.9733991730027]},{"value":[12,22.3017561913002]},{"value":[13,55.0568607042078]},{"value":[14,28.4217526598368]},{"value":[15,44.2854378961492]},{"value":[16,6.38615044183098]},{"value":[17,46.328138544457]},{"value":[18,13.3774550803937]},{"value":[19,63.6141102390829]},{"value":[20,77.3182471531909]}],"yAxisIndex":0,"xAxisIndex":0,"name":"w","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[1,68.1025342782959]},{"value":[2,51.1891010799445]},{"value":[3,47.1290823072195]},{"value":[4,27.8870387584902]},{"value":[5,26.2119324994273]},{"value":[6,61.5702502895147]},{"value":[7,29.1445122100413]},{"value":[8,73.036220157519]},{"value":[9,58.9848669129424]},{"value":[10,31.9732310599647]},{"value":[11,31.7566507845186]},{"value":[12,28.2004354638048]},{"value":[13,51.3863603817299]},{"value":[14,62.4133469420485]},{"value":[15,58.9712843997404]},{"value":[16,45.8170507685281]},{"value":[17,37.0036007720046]},{"value":[18,73.8872273708694]},{"value":[19,58.5150318802334]},{"value":[20,51.6537337913178]}],"yAxisIndex":0,"xAxisIndex":0,"name":"z","type":"line","coordinateSystem":"cartesian2d"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>Now say we don’t want <code>w</code> and <code>z</code> on the same plot. We could of course make two entirely different plots (2 plots initialised with <code><a href="../reference/init.html">e_charts()</a></code>), but it would be cleaner to have them on the same canvas, a bit like <a href="http://ggplot2.tidyverse.org/reference/facet_grid.html">ggplot2 facets</a>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, </span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="dt">w =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dv">20</span>, <span class="dv">1</span>, <span class="dv">100</span>),</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">z =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">75</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(w) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(z)</span></code></pre></div>
+<div id="htmlwidget-6d3f467fec4c843404c7" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6d3f467fec4c843404c7">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["w","z"]},"series":[{"data":[{"value":[1,59.0102053678129]},{"value":[2,96.6370975840837]},{"value":[3,70.0907588941045]},{"value":[4,34.4546606661752]},{"value":[5,92.5291177076288]},{"value":[6,48.1635759167839]},{"value":[7,69.0356616908684]},{"value":[8,15.0486627414357]},{"value":[9,74.393368858844]},{"value":[10,58.6785668800585]},{"value":[11,44.5223430120386]},{"value":[12,7.13145381771028]},{"value":[13,44.4452831763774]},{"value":[14,51.217268506065]},{"value":[15,80.6516136219725]},{"value":[16,55.1715684405062]},{"value":[17,38.2096125674434]},{"value":[18,29.8076635212637]},{"value":[19,65.7394769547973]},{"value":[20,59.8945856019855]}],"yAxisIndex":0,"xAxisIndex":0,"name":"w","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[1,59.068105975166]},{"value":[2,41.8452315498143]},{"value":[3,40.2882636641152]},{"value":[4,67.479795368854]},{"value":[5,48.0319034773856]},{"value":[6,50.6445557810366]},{"value":[7,27.0540452795103]},{"value":[8,60.1959745632485]},{"value":[9,73.8313975394703]},{"value":[10,52.1057078498416]},{"value":[11,57.9095434048213]},{"value":[12,70.6895579583943]},{"value":[13,51.082043768838]},{"value":[14,26.4080009539612]},{"value":[15,31.4295294461772]},{"value":[16,30.5539343506098]},{"value":[17,35.0320514524356]},{"value":[18,50.8413176052272]},{"value":[19,37.86000541877]},{"value":[20,60.077834839467]}],"yAxisIndex":0,"xAxisIndex":0,"name":"z","type":"line","coordinateSystem":"cartesian2d"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>Now say we don’t want <code>w</code> and <code>z</code> on the same plot. We could of course make two entirely different plots (2 plots initialised with <code><a href="../reference/init.html">e_charts()</a></code>), but it would be cleaner to have them on the same canvas, a bit like <a href="http://ggplot2.tidyverse.org/reference/facet_grid.html">ggplot2 facets</a>.</p>
 <p>First two plots on the same canvas means multiple axis, so we’ll plot each serie on its own axis.</p>
 <p><code>echarts4r</code> is an R API to a JavaScript library, so arrays start at one; <code>x</code> and <code>y</code> indices default to 0 so we only need to change one of the series’ indices to 1. Therefore one serie is plotted on index 0 and the other on index 1 for two <code>x</code>and <code>y</code> axis.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw">df</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_line.html">e_line</a></span>(<span class="kw">w</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_line.html">e_line</a></span>(<span class="kw">z</span>, x_index = <span class="fl">1</span>, y_index = <span class="fl">1</span>)
-</pre></div>
-<div id="htmlwidget-9862198eee95754d9877" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9862198eee95754d9877">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true},{"type":"value"}],"xAxis":[{"type":"value"},{"type":"value"}],"legend":{"data":["w","z"]},"series":[{"data":[{"value":[1,43.2330530139152]},{"value":[2,18.2662446592003]},{"value":[3,6.39300954598002]},{"value":[4,69.1777676264755]},{"value":[5,84.7872437520418]},{"value":[6,32.3811819166876]},{"value":[7,50.9746455952991]},{"value":[8,34.2554140309803]},{"value":[9,29.0421466808766]},{"value":[10,46.2764178537764]},{"value":[11,79.9733991730027]},{"value":[12,22.3017561913002]},{"value":[13,55.0568607042078]},{"value":[14,28.4217526598368]},{"value":[15,44.2854378961492]},{"value":[16,6.38615044183098]},{"value":[17,46.328138544457]},{"value":[18,13.3774550803937]},{"value":[19,63.6141102390829]},{"value":[20,77.3182471531909]}],"yAxisIndex":0,"xAxisIndex":0,"name":"w","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[1,68.1025342782959]},{"value":[2,51.1891010799445]},{"value":[3,47.1290823072195]},{"value":[4,27.8870387584902]},{"value":[5,26.2119324994273]},{"value":[6,61.5702502895147]},{"value":[7,29.1445122100413]},{"value":[8,73.036220157519]},{"value":[9,58.9848669129424]},{"value":[10,31.9732310599647]},{"value":[11,31.7566507845186]},{"value":[12,28.2004354638048]},{"value":[13,51.3863603817299]},{"value":[14,62.4133469420485]},{"value":[15,58.9712843997404]},{"value":[16,45.8170507685281]},{"value":[17,37.0036007720046]},{"value":[18,73.8872273708694]},{"value":[19,58.5150318802334]},{"value":[20,51.6537337913178]}],"yAxisIndex":1,"xAxisIndex":1,"name":"z","type":"line","coordinateSystem":"cartesian2d"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>Notice how <code>echarts4r</code> puts the additional axis on the top and right of the plot. This is a useful feature but not what we want; we’re missing a split grid.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(w) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(z, <span class="dt">x_index =</span> <span class="dv">1</span>, <span class="dt">y_index =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div id="htmlwidget-7fee8a35eb6f5d4ed799" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7fee8a35eb6f5d4ed799">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true},{"type":"value"}],"xAxis":[{"type":"value"},{"type":"value"}],"legend":{"data":["w","z"]},"series":[{"data":[{"value":[1,59.0102053678129]},{"value":[2,96.6370975840837]},{"value":[3,70.0907588941045]},{"value":[4,34.4546606661752]},{"value":[5,92.5291177076288]},{"value":[6,48.1635759167839]},{"value":[7,69.0356616908684]},{"value":[8,15.0486627414357]},{"value":[9,74.393368858844]},{"value":[10,58.6785668800585]},{"value":[11,44.5223430120386]},{"value":[12,7.13145381771028]},{"value":[13,44.4452831763774]},{"value":[14,51.217268506065]},{"value":[15,80.6516136219725]},{"value":[16,55.1715684405062]},{"value":[17,38.2096125674434]},{"value":[18,29.8076635212637]},{"value":[19,65.7394769547973]},{"value":[20,59.8945856019855]}],"yAxisIndex":0,"xAxisIndex":0,"name":"w","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[1,59.068105975166]},{"value":[2,41.8452315498143]},{"value":[3,40.2882636641152]},{"value":[4,67.479795368854]},{"value":[5,48.0319034773856]},{"value":[6,50.6445557810366]},{"value":[7,27.0540452795103]},{"value":[8,60.1959745632485]},{"value":[9,73.8313975394703]},{"value":[10,52.1057078498416]},{"value":[11,57.9095434048213]},{"value":[12,70.6895579583943]},{"value":[13,51.082043768838]},{"value":[14,26.4080009539612]},{"value":[15,31.4295294461772]},{"value":[16,30.5539343506098]},{"value":[17,35.0320514524356]},{"value":[18,50.8413176052272]},{"value":[19,37.86000541877]},{"value":[20,60.077834839467]}],"yAxisIndex":1,"xAxisIndex":1,"name":"z","type":"line","coordinateSystem":"cartesian2d"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>Notice how <code>echarts4r</code> puts the additional axis on the top and right of the plot. This is a useful feature but not what we want; we’re missing a split grid.</p>
 <p>We use <code>e_grid</code> twice for two grids, we define the height of each; <code>35%</code> is ideal for stacked grids, you need some margin for the legend, the axis, etc. hence not using <code>50%</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw">df</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_line.html">e_line</a></span>(<span class="kw">w</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_line.html">e_line</a></span>(<span class="kw">z</span>, x_index = <span class="fl">1</span>, y_index = <span class="fl">1</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_grid.html">e_grid</a></span>(height = <span class="st">"35%"</span>) <span class="op">%&gt;%</span> <span class="co"># two grids of 35% height</span>
-  <span class="fu"><a href="../reference/e_grid.html">e_grid</a></span>(height = <span class="st">"35%"</span>, top = <span class="st">"50%"</span>) <span class="co"># this grid is 50% from the top</span>
-</pre></div>
-<div id="htmlwidget-3b21dd74a3ec4c87e971" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3b21dd74a3ec4c87e971">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true},{"type":"value"}],"xAxis":[{"type":"value"},{"type":"value"}],"legend":{"data":["w","z"]},"series":[{"data":[{"value":[1,43.2330530139152]},{"value":[2,18.2662446592003]},{"value":[3,6.39300954598002]},{"value":[4,69.1777676264755]},{"value":[5,84.7872437520418]},{"value":[6,32.3811819166876]},{"value":[7,50.9746455952991]},{"value":[8,34.2554140309803]},{"value":[9,29.0421466808766]},{"value":[10,46.2764178537764]},{"value":[11,79.9733991730027]},{"value":[12,22.3017561913002]},{"value":[13,55.0568607042078]},{"value":[14,28.4217526598368]},{"value":[15,44.2854378961492]},{"value":[16,6.38615044183098]},{"value":[17,46.328138544457]},{"value":[18,13.3774550803937]},{"value":[19,63.6141102390829]},{"value":[20,77.3182471531909]}],"yAxisIndex":0,"xAxisIndex":0,"name":"w","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[1,68.1025342782959]},{"value":[2,51.1891010799445]},{"value":[3,47.1290823072195]},{"value":[4,27.8870387584902]},{"value":[5,26.2119324994273]},{"value":[6,61.5702502895147]},{"value":[7,29.1445122100413]},{"value":[8,73.036220157519]},{"value":[9,58.9848669129424]},{"value":[10,31.9732310599647]},{"value":[11,31.7566507845186]},{"value":[12,28.2004354638048]},{"value":[13,51.3863603817299]},{"value":[14,62.4133469420485]},{"value":[15,58.9712843997404]},{"value":[16,45.8170507685281]},{"value":[17,37.0036007720046]},{"value":[18,73.8872273708694]},{"value":[19,58.5150318802334]},{"value":[20,51.6537337913178]}],"yAxisIndex":1,"xAxisIndex":1,"name":"z","type":"line","coordinateSystem":"cartesian2d"}],"grid":[{"height":"35%"},{"height":"35%","top":"50%"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>However, we still have both line plots on the same grid. Here is how to think about grids and axis in <code>echarts4r</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(w) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(z, <span class="dt">x_index =</span> <span class="dv">1</span>, <span class="dt">y_index =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="st">  </span><span class="kw"><a href="../reference/e_grid.html">e_grid</a></span>(<span class="dt">height =</span> <span class="st">"35%"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># two grids of 35% height</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="st">  </span><span class="kw"><a href="../reference/e_grid.html">e_grid</a></span>(<span class="dt">height =</span> <span class="st">"35%"</span>, <span class="dt">top =</span> <span class="st">"50%"</span>) <span class="co"># this grid is 50% from the top</span></span></code></pre></div>
+<div id="htmlwidget-f3743c5f208a2f9f57d6" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f3743c5f208a2f9f57d6">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true},{"type":"value"}],"xAxis":[{"type":"value"},{"type":"value"}],"legend":{"data":["w","z"]},"series":[{"data":[{"value":[1,59.0102053678129]},{"value":[2,96.6370975840837]},{"value":[3,70.0907588941045]},{"value":[4,34.4546606661752]},{"value":[5,92.5291177076288]},{"value":[6,48.1635759167839]},{"value":[7,69.0356616908684]},{"value":[8,15.0486627414357]},{"value":[9,74.393368858844]},{"value":[10,58.6785668800585]},{"value":[11,44.5223430120386]},{"value":[12,7.13145381771028]},{"value":[13,44.4452831763774]},{"value":[14,51.217268506065]},{"value":[15,80.6516136219725]},{"value":[16,55.1715684405062]},{"value":[17,38.2096125674434]},{"value":[18,29.8076635212637]},{"value":[19,65.7394769547973]},{"value":[20,59.8945856019855]}],"yAxisIndex":0,"xAxisIndex":0,"name":"w","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[1,59.068105975166]},{"value":[2,41.8452315498143]},{"value":[3,40.2882636641152]},{"value":[4,67.479795368854]},{"value":[5,48.0319034773856]},{"value":[6,50.6445557810366]},{"value":[7,27.0540452795103]},{"value":[8,60.1959745632485]},{"value":[9,73.8313975394703]},{"value":[10,52.1057078498416]},{"value":[11,57.9095434048213]},{"value":[12,70.6895579583943]},{"value":[13,51.082043768838]},{"value":[14,26.4080009539612]},{"value":[15,31.4295294461772]},{"value":[16,30.5539343506098]},{"value":[17,35.0320514524356]},{"value":[18,50.8413176052272]},{"value":[19,37.86000541877]},{"value":[20,60.077834839467]}],"yAxisIndex":1,"xAxisIndex":1,"name":"z","type":"line","coordinateSystem":"cartesian2d"}],"grid":[{"height":"35%"},{"height":"35%","top":"50%"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>However, we still have both line plots on the same grid. Here is how to think about grids and axis in <code>echarts4r</code>.</p>
 <ol style="list-style-type: decimal">
 <li>Your series (i.e.: <code>e_line</code>) are plotted against axis (<code>e_axis</code>)</li>
 <li>These axis are plotted in grids <code>e_grid</code>
 </li>
 </ol>
 <p>So we have two grids and two axis but the axis are both plotted on the same grid(point #2 above). So we need to move our two additional axis to another grid. Note that grid indices also start at 0 here.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="kw">df</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_line.html">e_line</a></span>(<span class="kw">w</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_line.html">e_line</a></span>(<span class="kw">z</span>, x_index = <span class="fl">1</span>, y_index = <span class="fl">1</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_grid.html">e_grid</a></span>(height = <span class="st">"35%"</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_grid.html">e_grid</a></span>(height = <span class="st">"35%"</span>, top = <span class="st">"50%"</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_axis.html">e_y_axis</a></span>(gridIndex = <span class="fl">1</span>) <span class="op">%&gt;%</span> <span class="co"># put x and y on grid index 1</span>
-  <span class="fu"><a href="../reference/e_axis.html">e_x_axis</a></span>(gridIndex = <span class="fl">1</span>)
-</pre></div>
-<div id="htmlwidget-e36f2302e49e966e4fe7" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e36f2302e49e966e4fe7">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"gridIndex":1},{"type":"value"}],"xAxis":[{"type":"value","gridIndex":1},{"type":"value"}],"legend":{"data":["w","z"]},"series":[{"data":[{"value":[1,43.2330530139152]},{"value":[2,18.2662446592003]},{"value":[3,6.39300954598002]},{"value":[4,69.1777676264755]},{"value":[5,84.7872437520418]},{"value":[6,32.3811819166876]},{"value":[7,50.9746455952991]},{"value":[8,34.2554140309803]},{"value":[9,29.0421466808766]},{"value":[10,46.2764178537764]},{"value":[11,79.9733991730027]},{"value":[12,22.3017561913002]},{"value":[13,55.0568607042078]},{"value":[14,28.4217526598368]},{"value":[15,44.2854378961492]},{"value":[16,6.38615044183098]},{"value":[17,46.328138544457]},{"value":[18,13.3774550803937]},{"value":[19,63.6141102390829]},{"value":[20,77.3182471531909]}],"yAxisIndex":0,"xAxisIndex":0,"name":"w","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[1,68.1025342782959]},{"value":[2,51.1891010799445]},{"value":[3,47.1290823072195]},{"value":[4,27.8870387584902]},{"value":[5,26.2119324994273]},{"value":[6,61.5702502895147]},{"value":[7,29.1445122100413]},{"value":[8,73.036220157519]},{"value":[9,58.9848669129424]},{"value":[10,31.9732310599647]},{"value":[11,31.7566507845186]},{"value":[12,28.2004354638048]},{"value":[13,51.3863603817299]},{"value":[14,62.4133469420485]},{"value":[15,58.9712843997404]},{"value":[16,45.8170507685281]},{"value":[17,37.0036007720046]},{"value":[18,73.8872273708694]},{"value":[19,58.5150318802334]},{"value":[20,51.6537337913178]}],"yAxisIndex":1,"xAxisIndex":1,"name":"z","type":"line","coordinateSystem":"cartesian2d"}],"grid":[{"height":"35%"},{"height":"35%","top":"50%"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>There you go!</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(w) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(z, <span class="dt">x_index =</span> <span class="dv">1</span>, <span class="dt">y_index =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="st">  </span><span class="kw"><a href="../reference/e_grid.html">e_grid</a></span>(<span class="dt">height =</span> <span class="st">"35%"</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="st">  </span><span class="kw"><a href="../reference/e_grid.html">e_grid</a></span>(<span class="dt">height =</span> <span class="st">"35%"</span>, <span class="dt">top =</span> <span class="st">"50%"</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="st">  </span><span class="kw"><a href="../reference/axis.html">e_y_axis</a></span>(<span class="dt">gridIndex =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># put x and y on grid index 1</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="st">  </span><span class="kw"><a href="../reference/axis.html">e_x_axis</a></span>(<span class="dt">gridIndex =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div id="htmlwidget-54657965722dbde9b489" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-54657965722dbde9b489">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"gridIndex":1},{"type":"value"}],"xAxis":[{"type":"value","gridIndex":1},{"type":"value"}],"legend":{"data":["w","z"]},"series":[{"data":[{"value":[1,59.0102053678129]},{"value":[2,96.6370975840837]},{"value":[3,70.0907588941045]},{"value":[4,34.4546606661752]},{"value":[5,92.5291177076288]},{"value":[6,48.1635759167839]},{"value":[7,69.0356616908684]},{"value":[8,15.0486627414357]},{"value":[9,74.393368858844]},{"value":[10,58.6785668800585]},{"value":[11,44.5223430120386]},{"value":[12,7.13145381771028]},{"value":[13,44.4452831763774]},{"value":[14,51.217268506065]},{"value":[15,80.6516136219725]},{"value":[16,55.1715684405062]},{"value":[17,38.2096125674434]},{"value":[18,29.8076635212637]},{"value":[19,65.7394769547973]},{"value":[20,59.8945856019855]}],"yAxisIndex":0,"xAxisIndex":0,"name":"w","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[1,59.068105975166]},{"value":[2,41.8452315498143]},{"value":[3,40.2882636641152]},{"value":[4,67.479795368854]},{"value":[5,48.0319034773856]},{"value":[6,50.6445557810366]},{"value":[7,27.0540452795103]},{"value":[8,60.1959745632485]},{"value":[9,73.8313975394703]},{"value":[10,52.1057078498416]},{"value":[11,57.9095434048213]},{"value":[12,70.6895579583943]},{"value":[13,51.082043768838]},{"value":[14,26.4080009539612]},{"value":[15,31.4295294461772]},{"value":[16,30.5539343506098]},{"value":[17,35.0320514524356]},{"value":[18,50.8413176052272]},{"value":[19,37.86000541877]},{"value":[20,60.077834839467]}],"yAxisIndex":1,"xAxisIndex":1,"name":"z","type":"line","coordinateSystem":"cartesian2d"}],"grid":[{"height":"35%"},{"height":"35%","top":"50%"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>There you go!</p>
 <p>You can also have a different grid to put the plots side by side.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="kw">df</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_line.html">e_line</a></span>(<span class="kw">w</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_line.html">e_line</a></span>(<span class="kw">z</span>, x_index = <span class="fl">1</span>, y_index = <span class="fl">1</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_grid.html">e_grid</a></span>(width = <span class="st">"35%"</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_grid.html">e_grid</a></span>(width = <span class="st">"35%"</span>, left = <span class="st">"55%"</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_axis.html">e_y_axis</a></span>(gridIndex = <span class="fl">1</span>) <span class="op">%&gt;%</span> <span class="co"># put x and y on grid index 1</span>
-  <span class="fu"><a href="../reference/e_axis.html">e_x_axis</a></span>(gridIndex = <span class="fl">1</span>)
-</pre></div>
-<div id="htmlwidget-f6142d5e1566ac89feab" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f6142d5e1566ac89feab">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"gridIndex":1},{"type":"value"}],"xAxis":[{"type":"value","gridIndex":1},{"type":"value"}],"legend":{"data":["w","z"]},"series":[{"data":[{"value":[1,43.2330530139152]},{"value":[2,18.2662446592003]},{"value":[3,6.39300954598002]},{"value":[4,69.1777676264755]},{"value":[5,84.7872437520418]},{"value":[6,32.3811819166876]},{"value":[7,50.9746455952991]},{"value":[8,34.2554140309803]},{"value":[9,29.0421466808766]},{"value":[10,46.2764178537764]},{"value":[11,79.9733991730027]},{"value":[12,22.3017561913002]},{"value":[13,55.0568607042078]},{"value":[14,28.4217526598368]},{"value":[15,44.2854378961492]},{"value":[16,6.38615044183098]},{"value":[17,46.328138544457]},{"value":[18,13.3774550803937]},{"value":[19,63.6141102390829]},{"value":[20,77.3182471531909]}],"yAxisIndex":0,"xAxisIndex":0,"name":"w","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[1,68.1025342782959]},{"value":[2,51.1891010799445]},{"value":[3,47.1290823072195]},{"value":[4,27.8870387584902]},{"value":[5,26.2119324994273]},{"value":[6,61.5702502895147]},{"value":[7,29.1445122100413]},{"value":[8,73.036220157519]},{"value":[9,58.9848669129424]},{"value":[10,31.9732310599647]},{"value":[11,31.7566507845186]},{"value":[12,28.2004354638048]},{"value":[13,51.3863603817299]},{"value":[14,62.4133469420485]},{"value":[15,58.9712843997404]},{"value":[16,45.8170507685281]},{"value":[17,37.0036007720046]},{"value":[18,73.8872273708694]},{"value":[19,58.5150318802334]},{"value":[20,51.6537337913178]}],"yAxisIndex":1,"xAxisIndex":1,"name":"z","type":"line","coordinateSystem":"cartesian2d"}],"grid":[{"width":"35%"},{"width":"35%","left":"55%"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(w) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(z, <span class="dt">x_index =</span> <span class="dv">1</span>, <span class="dt">y_index =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="st">  </span><span class="kw"><a href="../reference/e_grid.html">e_grid</a></span>(<span class="dt">width =</span> <span class="st">"35%"</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="st">  </span><span class="kw"><a href="../reference/e_grid.html">e_grid</a></span>(<span class="dt">width =</span> <span class="st">"35%"</span>, <span class="dt">left =</span> <span class="st">"55%"</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="st">  </span><span class="kw"><a href="../reference/axis.html">e_y_axis</a></span>(<span class="dt">gridIndex =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># put x and y on grid index 1</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="st">  </span><span class="kw"><a href="../reference/axis.html">e_x_axis</a></span>(<span class="dt">gridIndex =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div id="htmlwidget-6783a407dfd61ccd81d3" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6783a407dfd61ccd81d3">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"gridIndex":1},{"type":"value"}],"xAxis":[{"type":"value","gridIndex":1},{"type":"value"}],"legend":{"data":["w","z"]},"series":[{"data":[{"value":[1,59.0102053678129]},{"value":[2,96.6370975840837]},{"value":[3,70.0907588941045]},{"value":[4,34.4546606661752]},{"value":[5,92.5291177076288]},{"value":[6,48.1635759167839]},{"value":[7,69.0356616908684]},{"value":[8,15.0486627414357]},{"value":[9,74.393368858844]},{"value":[10,58.6785668800585]},{"value":[11,44.5223430120386]},{"value":[12,7.13145381771028]},{"value":[13,44.4452831763774]},{"value":[14,51.217268506065]},{"value":[15,80.6516136219725]},{"value":[16,55.1715684405062]},{"value":[17,38.2096125674434]},{"value":[18,29.8076635212637]},{"value":[19,65.7394769547973]},{"value":[20,59.8945856019855]}],"yAxisIndex":0,"xAxisIndex":0,"name":"w","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[1,59.068105975166]},{"value":[2,41.8452315498143]},{"value":[3,40.2882636641152]},{"value":[4,67.479795368854]},{"value":[5,48.0319034773856]},{"value":[6,50.6445557810366]},{"value":[7,27.0540452795103]},{"value":[8,60.1959745632485]},{"value":[9,73.8313975394703]},{"value":[10,52.1057078498416]},{"value":[11,57.9095434048213]},{"value":[12,70.6895579583943]},{"value":[13,51.082043768838]},{"value":[14,26.4080009539612]},{"value":[15,31.4295294461772]},{"value":[16,30.5539343506098]},{"value":[17,35.0320514524356]},{"value":[18,50.8413176052272]},{"value":[19,37.86000541877]},{"value":[20,60.077834839467]}],"yAxisIndex":1,"xAxisIndex":1,"name":"z","type":"line","coordinateSystem":"cartesian2d"}],"grid":[{"width":"35%"},{"width":"35%","left":"55%"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="why-bother" class="section level2">
 <h2 class="hasAnchor">
 <a href="#why-bother" class="anchor"></a>Why bother?</h2>
 <p>Well now those charts can share interactions.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="kw">df</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_line.html">e_line</a></span>(<span class="kw">w</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_line.html">e_line</a></span>(<span class="kw">z</span>, x_index = <span class="fl">1</span>, y_index = <span class="fl">1</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_grid.html">e_grid</a></span>(height = <span class="st">"35%"</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_grid.html">e_grid</a></span>(height = <span class="st">"35%"</span>, top = <span class="st">"50%"</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_axis.html">e_y_axis</a></span>(gridIndex = <span class="fl">1</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_axis.html">e_x_axis</a></span>(gridIndex = <span class="fl">1</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_tooltip.html">e_tooltip</a></span>(trigger = <span class="st">"axis"</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_datazoom.html">e_datazoom</a></span>(x_index = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">1</span>)) <span class="co"># add data zoom for for x axis</span>
-</pre></div>
-<div id="htmlwidget-aa81e06e163d54460c47" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-aa81e06e163d54460c47">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"gridIndex":1},{"type":"value"}],"xAxis":[{"type":"value","gridIndex":1},{"type":"value"}],"legend":{"data":["w","z"]},"series":[{"data":[{"value":[1,43.2330530139152]},{"value":[2,18.2662446592003]},{"value":[3,6.39300954598002]},{"value":[4,69.1777676264755]},{"value":[5,84.7872437520418]},{"value":[6,32.3811819166876]},{"value":[7,50.9746455952991]},{"value":[8,34.2554140309803]},{"value":[9,29.0421466808766]},{"value":[10,46.2764178537764]},{"value":[11,79.9733991730027]},{"value":[12,22.3017561913002]},{"value":[13,55.0568607042078]},{"value":[14,28.4217526598368]},{"value":[15,44.2854378961492]},{"value":[16,6.38615044183098]},{"value":[17,46.328138544457]},{"value":[18,13.3774550803937]},{"value":[19,63.6141102390829]},{"value":[20,77.3182471531909]}],"yAxisIndex":0,"xAxisIndex":0,"name":"w","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[1,68.1025342782959]},{"value":[2,51.1891010799445]},{"value":[3,47.1290823072195]},{"value":[4,27.8870387584902]},{"value":[5,26.2119324994273]},{"value":[6,61.5702502895147]},{"value":[7,29.1445122100413]},{"value":[8,73.036220157519]},{"value":[9,58.9848669129424]},{"value":[10,31.9732310599647]},{"value":[11,31.7566507845186]},{"value":[12,28.2004354638048]},{"value":[13,51.3863603817299]},{"value":[14,62.4133469420485]},{"value":[15,58.9712843997404]},{"value":[16,45.8170507685281]},{"value":[17,37.0036007720046]},{"value":[18,73.8872273708694]},{"value":[19,58.5150318802334]},{"value":[20,51.6537337913178]}],"yAxisIndex":1,"xAxisIndex":1,"name":"z","type":"line","coordinateSystem":"cartesian2d"}],"grid":[{"height":"35%"},{"height":"35%","top":"50%"}],"tooltip":{"trigger":"axis"},"dataZoom":[{"xAxisIndex":[0,1]}],"toolbox":{"feature":{"dataZoom":[]}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(w) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(z, <span class="dt">x_index =</span> <span class="dv">1</span>, <span class="dt">y_index =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="st">  </span><span class="kw"><a href="../reference/e_grid.html">e_grid</a></span>(<span class="dt">height =</span> <span class="st">"35%"</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="st">  </span><span class="kw"><a href="../reference/e_grid.html">e_grid</a></span>(<span class="dt">height =</span> <span class="st">"35%"</span>, <span class="dt">top =</span> <span class="st">"50%"</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="st">  </span><span class="kw"><a href="../reference/axis.html">e_y_axis</a></span>(<span class="dt">gridIndex =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="st">  </span><span class="kw"><a href="../reference/axis.html">e_x_axis</a></span>(<span class="dt">gridIndex =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="st">  </span><span class="kw"><a href="../reference/e-tooltip.html">e_tooltip</a></span>(<span class="dt">trigger =</span> <span class="st">"axis"</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="st">  </span><span class="kw"><a href="../reference/e_datazoom.html">e_datazoom</a></span>(<span class="dt">x_index =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="co"># add data zoom for for x axis</span></span></code></pre></div>
+<div id="htmlwidget-b08871f4621bdcfe5e0f" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b08871f4621bdcfe5e0f">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"gridIndex":1},{"type":"value"}],"xAxis":[{"type":"value","gridIndex":1},{"type":"value"}],"legend":{"data":["w","z"]},"series":[{"data":[{"value":[1,59.0102053678129]},{"value":[2,96.6370975840837]},{"value":[3,70.0907588941045]},{"value":[4,34.4546606661752]},{"value":[5,92.5291177076288]},{"value":[6,48.1635759167839]},{"value":[7,69.0356616908684]},{"value":[8,15.0486627414357]},{"value":[9,74.393368858844]},{"value":[10,58.6785668800585]},{"value":[11,44.5223430120386]},{"value":[12,7.13145381771028]},{"value":[13,44.4452831763774]},{"value":[14,51.217268506065]},{"value":[15,80.6516136219725]},{"value":[16,55.1715684405062]},{"value":[17,38.2096125674434]},{"value":[18,29.8076635212637]},{"value":[19,65.7394769547973]},{"value":[20,59.8945856019855]}],"yAxisIndex":0,"xAxisIndex":0,"name":"w","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[1,59.068105975166]},{"value":[2,41.8452315498143]},{"value":[3,40.2882636641152]},{"value":[4,67.479795368854]},{"value":[5,48.0319034773856]},{"value":[6,50.6445557810366]},{"value":[7,27.0540452795103]},{"value":[8,60.1959745632485]},{"value":[9,73.8313975394703]},{"value":[10,52.1057078498416]},{"value":[11,57.9095434048213]},{"value":[12,70.6895579583943]},{"value":[13,51.082043768838]},{"value":[14,26.4080009539612]},{"value":[15,31.4295294461772]},{"value":[16,30.5539343506098]},{"value":[17,35.0320514524356]},{"value":[18,50.8413176052272]},{"value":[19,37.86000541877]},{"value":[20,60.077834839467]}],"yAxisIndex":1,"xAxisIndex":1,"name":"z","type":"line","coordinateSystem":"cartesian2d"}],"grid":[{"height":"35%"},{"height":"35%","top":"50%"}],"tooltip":{"trigger":"axis"},"dataZoom":[{"xAxisIndex":[0,1]}],"toolbox":{"feature":{"dataZoom":[]}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="axis" class="section level2">
 <h2 class="hasAnchor">
 <a href="#axis" class="anchor"></a>Axis</h2>
 <p>You can also mess with the axis to completely change your chart. For instance, from a regular bar chart:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="kw">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  x = <span class="kw">LETTERS</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>], 
-  y = <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">1</span>, <span class="fl">20</span>, by = <span class="fl">2</span>),
-  z = <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fl">10</span>, <span class="fl">5</span>, <span class="fl">20</span>)
-)
-
-<span class="kw">df</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_bar.html">e_bar</a></span>(<span class="kw">y</span>)
-</pre></div>
-<div id="htmlwidget-d45da58b646ee90afdb6" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d45da58b646ee90afdb6">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["A","B","C","D","E","F","G","H","I","J"],"type":"category","boundaryGap":true}],"legend":{"data":["y"]},"series":[{"data":[{"value":["A"," 1"]},{"value":["B"," 3"]},{"value":["C"," 5"]},{"value":["D"," 7"]},{"value":["E"," 9"]},{"value":["F","11"]},{"value":["G","13"]},{"value":["H","15"]},{"value":["I","17"]},{"value":["J","19"]}],"name":"y","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>to a polar chart.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="kw">df</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_polar.html">e_polar</a></span>() <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/angle_axis.html">e_angle_axis</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> <span class="co"># angle = x</span>
-  <span class="fu"><a href="../reference/radius_axis.html">e_radius_axis</a></span>() <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_bar.html">e_bar</a></span>(<span class="kw">y</span>, coord_system = <span class="st">"polar"</span>)
-</pre></div>
-<div id="htmlwidget-4f3724cd423a9d112ac3" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4f3724cd423a9d112ac3">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"polar":{"show":true},"angleAxis":{"show":true,"data":["A","B","C","D","E","F","G","H","I","J"]},"radiusAxis":{"show":true},"legend":{"data":["y"]},"series":[{"data":[1,3,5,7,9,11,13,15,17,19],"name":"y","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"polar"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>or a radial chart one.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="kw">df</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_polar.html">e_polar</a></span>() <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/angle_axis.html">e_angle_axis</a></span>() <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/radius_axis.html">e_radius_axis</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> <span class="co"># radius = x </span>
-  <span class="fu"><a href="../reference/e_bar.html">e_bar</a></span>(<span class="kw">y</span>, coord_system = <span class="st">"polar"</span>)
-</pre></div>
-<div id="htmlwidget-fe9c3f89781ea33e454a" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fe9c3f89781ea33e454a">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"polar":{"show":true},"angleAxis":{"show":true},"radiusAxis":{"show":true,"data":["A","B","C","D","E","F","G","H","I","J"]},"legend":{"data":["y"]},"series":[{"data":[1,3,5,7,9,11,13,15,17,19],"name":"y","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"polar"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>This will also work with other chart types.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="kw">df</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/init.html">e_charts</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_polar.html">e_polar</a></span>() <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/angle_axis.html">e_angle_axis</a></span>() <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/radius_axis.html">e_radius_axis</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_line.html">e_line</a></span>(<span class="kw">y</span>, coord_system = <span class="st">"polar"</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span>(<span class="kw">z</span>, coord_system = <span class="st">"polar"</span>)
-</pre></div>
-<div id="htmlwidget-5d8d8537007a5c70abf3" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5d8d8537007a5c70abf3">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"polar":{"show":true},"angleAxis":{"show":true},"radiusAxis":{"show":true,"data":["A","B","C","D","E","F","G","H","I","J"]},"legend":{"data":["y","z"]},"series":[{"data":[1,3,5,7,9,11,13,15,17,19],"name":"y","type":"line","coordinateSystem":"polar"},{"data":[6.47835072944872,14.9686198495328,16.4179183507804,14.2843963485211,18.9827159745619,17.7103743795305,11.5799726289697,11.7106144386344,12.9635832621716,9.53770737163723],"name":"z","type":"scatter","symbol":null,"coordinateSystem":"polar","symbolSize":3}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="dt">x =</span> LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>], </span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="dt">by =</span> <span class="dv">2</span>),</span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="dt">z =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">20</span>)</span>
+<span id="cb9-5"><a href="#cb9-5"></a>)</span>
+<span id="cb9-6"><a href="#cb9-6"></a></span>
+<span id="cb9-7"><a href="#cb9-7"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="st">  </span><span class="kw"><a href="../reference/e_bar.html">e_bar</a></span>(y)</span></code></pre></div>
+<div id="htmlwidget-63401def889db94d268f" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-63401def889db94d268f">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["A","B","C","D","E","F","G","H","I","J"],"type":"category","boundaryGap":true}],"legend":{"data":["y"]},"series":[{"data":[{"value":["A"," 1"]},{"value":["B"," 3"]},{"value":["C"," 5"]},{"value":["D"," 7"]},{"value":["E"," 9"]},{"value":["F","11"]},{"value":["G","13"]},{"value":["H","15"]},{"value":["I","17"]},{"value":["J","19"]}],"name":"y","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>to a polar chart.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="st">  </span><span class="kw"><a href="../reference/e_polar.html">e_polar</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="st">  </span><span class="kw"><a href="../reference/angle_axis.html">e_angle_axis</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># angle = x</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="st">  </span><span class="kw"><a href="../reference/radius_axis.html">e_radius_axis</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="st">  </span><span class="kw"><a href="../reference/e_bar.html">e_bar</a></span>(y, <span class="dt">coord_system =</span> <span class="st">"polar"</span>)</span></code></pre></div>
+<div id="htmlwidget-3397f91b0a1cbed81cfb" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3397f91b0a1cbed81cfb">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"polar":{"show":true},"angleAxis":{"show":true,"data":["A","B","C","D","E","F","G","H","I","J"]},"radiusAxis":{"show":true},"legend":{"data":["y"]},"series":[{"data":[1,3,5,7,9,11,13,15,17,19],"name":"y","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"polar"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>or a radial chart one.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="st">  </span><span class="kw"><a href="../reference/e_polar.html">e_polar</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="st">  </span><span class="kw"><a href="../reference/angle_axis.html">e_angle_axis</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="st">  </span><span class="kw"><a href="../reference/radius_axis.html">e_radius_axis</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># radius = x </span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="st">  </span><span class="kw"><a href="../reference/e_bar.html">e_bar</a></span>(y, <span class="dt">coord_system =</span> <span class="st">"polar"</span>)</span></code></pre></div>
+<div id="htmlwidget-aec2b9a9b2c0148bf181" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-aec2b9a9b2c0148bf181">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"polar":{"show":true},"angleAxis":{"show":true},"radiusAxis":{"show":true,"data":["A","B","C","D","E","F","G","H","I","J"]},"legend":{"data":["y"]},"series":[{"data":[1,3,5,7,9,11,13,15,17,19],"name":"y","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"polar"}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>This will also work with other chart types.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="st">  </span><span class="kw"><a href="../reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="st">  </span><span class="kw"><a href="../reference/e_polar.html">e_polar</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="st">  </span><span class="kw"><a href="../reference/angle_axis.html">e_angle_axis</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="st">  </span><span class="kw"><a href="../reference/radius_axis.html">e_radius_axis</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="st">  </span><span class="kw"><a href="../reference/e_line.html">e_line</a></span>(y, <span class="dt">coord_system =</span> <span class="st">"polar"</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="st">  </span><span class="kw"><a href="../reference/scatter.html">e_scatter</a></span>(z, <span class="dt">coord_system =</span> <span class="st">"polar"</span>)</span></code></pre></div>
+<div id="htmlwidget-1cdc367db421c84bfd26" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1cdc367db421c84bfd26">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"polar":{"show":true},"angleAxis":{"show":true},"radiusAxis":{"show":true,"data":["A","B","C","D","E","F","G","H","I","J"]},"legend":{"data":["y","z"]},"series":[{"data":[1,3,5,7,9,11,13,15,17,19],"name":"y","type":"line","coordinateSystem":"polar"},{"data":[15.7783996709622,7.31193290324882,10.4631654685363,14.4554515986238,15.6714629975613,13.8207381486427,12.0421931613237,14.9974082224071,19.5511664217338,10.2639034693129],"name":"z","type":"scatter","symbol":null,"coordinateSystem":"polar","symbolSize":3}],"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
   </div>
 
@@ -426,7 +407,6 @@
   </div>
 
 </div>
-
 
 
       <footer><div class="copyright">
@@ -440,7 +420,6 @@
 <div class="pkgdown">
   Site built with pkgdown
 </div>
-
       </footer>
 </div>
 

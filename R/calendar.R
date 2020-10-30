@@ -1,42 +1,43 @@
 #' Calendar
-#' 
+#'
 #' @inheritParams e_bar
 #' @param range Range of calendar format, string or vector.
-#' 
-#' @examples 
+#'
+#' @examples
 #' # year
-#' mtcars %>% 
-#'   e_charts() %>% 
+#' mtcars %>%
+#'   e_charts() %>%
 #'   e_calendar(range = "2017")
-#'   
+#'
 #' # month
-#' mtcars %>% 
-#'   e_charts() %>% 
+#' mtcars %>%
+#'   e_charts() %>%
 #'   e_calendar(range = "2018-01")
-#'   
+#'
 #' # range
-#' mtcars %>% 
-#'   e_charts() %>% 
+#' mtcars %>%
+#'   e_charts() %>%
 #'   e_calendar(range = c("2018-01", "2018-07"))
-#' 
 #' @seealso \href{https://echarts.apache.org/en/option.html#calendar}{Additional arguments}
-#' 
+#'
 #' @export
-e_calendar <- function(e, range, ...){
-  
-  if(missing(e) || missing(range))
+e_calendar <- function(e, range, ...) {
+  if (missing(e) || missing(range)) {
     stop("missing e or range", call. = FALSE)
-  
+  }
+
   # initialise
-  if(!length(e$x$opts$calendar))
+  if (!length(e$x$opts$calendar)) {
     e$x$opts$calendar <- list()
-  
+  }
+
   cal <- list(range = range, ...)
-  
-  if(!e$x$tl)
+
+  if (!e$x$tl) {
     e$x$opts$calendar <- append(e$x$opts$calendar, list(cal))
-  else
+  } else {
     e$x$opts$baseOption$calendar <- append(e$x$opts$baseOption$calendar, list(cal))
-  
+  }
+
   e
 }

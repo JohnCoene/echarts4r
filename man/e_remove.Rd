@@ -28,28 +28,27 @@ ui <- fluidPage(
   echarts4rOutput("plot")
 )
 
-server <- function(input, output, session){
-
+server <- function(input, output, session) {
   data <- data.frame(
-    x = rnorm(10, 5, 3), 
-    y = rnorm(10, 50, 12), 
+    x = rnorm(10, 5, 3),
+    y = rnorm(10, 50, 12),
     z = rnorm(10, 50, 5)
   )
 
   output$plot <- renderEcharts4r({
-    data \%>\% 
-     e_charts(x) \%>\% 
-     e_scatter(y) \%>\%
-     e_scatter(z)
+    data \%>\%
+      e_charts(x) \%>\%
+      e_scatter(y) \%>\%
+      e_scatter(z)
   })
 
   observeEvent(input$rm, {
-    echarts4rProxy("plot") \%>\% 
+    echarts4rProxy("plot") \%>\%
       e_remove_serie_p(serie_name = "z")
   })
- 
 }
-
-\dontrun{shinyApp(ui, server)}
+\dontrun{
+shinyApp(ui, server)
+}
 
 }
