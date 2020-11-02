@@ -3625,14 +3625,14 @@ e_correlations.echarts4rProxy <- function(e, order = NULL, visual_map = TRUE, ..
 #'   e_error_bar(lower, upper)
 #' @rdname errorbar
 #' @export
-e_error_bar <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 0, x_index = 0,
+e_error_bar <- function(e, lower, upper, name = NULL, legend = FALSE, y_index = 0, x_index = 0,
                         coord_system = "cartesian2d", ...) {
   UseMethod("e_error_bar")
 }
 
 #' @export
 #' @method e_error_bar echarts4r
-e_error_bar.echarts4r <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 0, x_index = 0,
+e_error_bar.echarts4r <- function(e, lower, upper, name = NULL, legend = FALSE, y_index = 0, x_index = 0,
                                   coord_system = "cartesian2d", ...) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
@@ -3651,7 +3651,7 @@ e_error_bar.echarts4r <- function(e, lower, upper, name = NULL, legend = TRUE, y
 
 #' @export
 #' @method e_error_bar echarts4rProxy
-e_error_bar.echarts4rProxy <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 0, x_index = 0,
+e_error_bar.echarts4rProxy <- function(e, lower, upper, name = NULL, legend = FALSE, y_index = 0, x_index = 0,
                                        coord_system = "cartesian2d", ...) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
