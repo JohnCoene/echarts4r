@@ -2128,8 +2128,17 @@ e_band_ <- function(e, min, max, stack = "confidence-band", symbol = c("none", "
 
 #' @rdname errorbar
 #' @export
-e_error_bar_ <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 0, x_index = 0,
-                         coord_system = "cartesian2d", ...) {
+#'    comments on changes, by helgasoft.com
+#' It's convenient to "attach" error bars to their related main bars
+#' so they'll show/hide together when user clicks on the legend buttons.
+#' This is done by having the same name for error and main bars.
+#' Default legend = FALSE, since we'll have only main bars in legend.
+#' Error bars will inherit color from their main bars, so it is preferable
+#' to set a specific color, like e_error_bar(..., color='black'), which
+#' is now set as default. See test code in renderer.js.
+
+e_error_bar_ <- function(e, lower, upper, name=NULL, legend=FALSE, y_index=0, x_index=0,
+                         coord_system="cartesian2d", ...) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
@@ -2139,8 +2148,12 @@ e_error_bar_ <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 
   }
 
   args <- list(...)
-  names(args) <- names(args)
-
+  
+  # save series to be read by renderErrorBar2
+  # renderers.js works in a very isolated environment, so we send data thru sessionStorage
+  renderJS <- htmlwidgets::JS(paste0("sessionStorage.setItem('ErrorBar.oss','",
+                        jsonlite::toJSON(e$x$opts$series),"'); renderErrorBar2"))
+  
   for (i in 1:length(e$x$data)) {
     .build_data2(e$x$data[[i]], e$x$mapping$x, lower, upper) -> vector
 
@@ -2164,34 +2177,30 @@ e_error_bar_ <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 
 
     # timeline
     if (!e$x$tl) {
-      if (!is.null(name)) {
-        nm <- name
-      } else {
-        nm <- .name_it(e, NULL, name, i)
-        nm <- paste(nm, "error")
-        nm <- trimws(nm)
-      }
+      nm <- .name_it(e, e$x$opts$series[[i]]$name, name, i)
 
       opts <- list(
         name = nm,
         type = "custom",
         yAxisIndex = y_index,
         xAxisIndex = x_index,
-        z = ifelse("z" %in% names(args), args$z, 3),
+        # z = ifelse("z" %in% names(args), args$z, 3),  # comm.out: bug - adds extra 'z'
         coordinateSystem = coord_system,
         itemStyle = list(
           normal = list(
             borderWidth = 1.5
           )
         ),
-        renderItem = htmlwidgets::JS("renderErrorBar"),
+        renderItem = renderJS,
         encode = list(
           x = 0,
           y = list(1, 2)
         ),
         ...
       )
-
+      if (!("z" %in% names(args))) opts$z <- 3      # keep error bar in front
+      if (!("color" %in% names(args))) opts$color <- 'black'  # set, or it will blend with main bar
+      
       e_serie <- append(e_serie, opts)
 
       if (isTRUE(legend)) {
@@ -2214,21 +2223,22 @@ e_error_bar_ <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 
       type = "custom",
       yAxisIndex = y_index,
       xAxisIndex = x_index,
-      z = ifelse("z" %in% names(args), args$z, 3),
       coordinateSystem = coord_system,
       itemStyle = list(
         normal = list(
           borderWidth = 1.5
         )
       ),
-      renderItem = htmlwidgets::JS("renderErrorBar"),
+      renderItem = renderJS,
       encode = list(
         x = 0,
         y = list(1, 2)
       ),
       ...
     )
-
+    if (!("z" %in% names(args))) series_opts$z <- 3
+    if (!("color" %in% names(args))) series_opts$color <- 'black'
+    
     if (isTRUE(legend)) {
       e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
     }
@@ -2240,7 +2250,7 @@ e_error_bar_ <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 
   path <- system.file("htmlwidgets/lib/echarts-4.8.0/custom", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-renderers",
-    version = "1.0.0",
+    version = "1.0.1",
     src = c(file = path),
     script = "renderers.js"
   )
