@@ -2177,13 +2177,7 @@ e_error_bar_ <- function(e, lower, upper, name=NULL, legend=FALSE, y_index=0, x_
 
     # timeline
     if (!e$x$tl) {
-      if (!is.null(name)) {
-        nm <- name
-      } else {
-        nm <- .name_it(e, NULL, name, i)
-        # nm <- paste(nm, "error")	    # comm.out: now adopts main bar's name
-        nm <- trimws(nm)
-      }
+      nm <- .name_it(e, e$x$opts$series[[i]]$name, name, i)
 
       opts <- list(
         name = nm,
