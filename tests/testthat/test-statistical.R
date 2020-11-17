@@ -38,6 +38,24 @@ test_that("e_band plot has the good data structure and type", {
   )
 })
 
+test_that("e_band2 plot has good data structure and type", {
+  df <- data.frame( x=seq(3),  y=c(1, 3, 9),  w=c(3, 4, 3))
+  plot <- df %>%
+    e_charts(x) %>%
+    e_band2(y, w)
+  
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+  
+  expect_equal(
+    plot$x$opts$series[[1]]$renderItem,
+    htmlwidgets::JS('renderBand')
+  )
+  expect_equal(
+    plot$x$opts$series[[1]]$data[[2]]$value,
+    c(2, 3, 4)
+  )
+})
 
 test_that("e_correlations plot has the good data structure and type", {
   plot <- cor(mtcars[6:9, 1:3]) %>%
@@ -76,15 +94,15 @@ test_that("e_error_bar plot has the good data structure and type", {
     upper = c(1.1, 5.3),
     lower = c(0.8, 4.3)
   )
-
+  
   plot <- df %>%
     e_charts(x) %>%
     e_bar(y) %>%
     e_error_bar(lower, upper)
-
+  
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
-
+  
   expect_equal(
     plot$x$opts$series[[1]]$data,
     list(
@@ -93,8 +111,12 @@ test_that("e_error_bar plot has the good data structure and type", {
     )
   )
   expect_equal(
-    plot$x$opts$series[[1]]$type,
-    "bar"
+    plot$x$opts$series[[2]]$type,
+    "custom"
+  )
+  expect_equal(
+    plot$x$opts$series[[2]]$renderItem,
+    htmlwidgets::JS("sessionStorage.setItem('ErrorBar.oss','[\"\",\"\",\"1\"]'); renderErrorBar2")
   )
 })
 

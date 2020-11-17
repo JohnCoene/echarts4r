@@ -1,4 +1,4 @@
-// render error bars
+// render error bars and bands
 //   the original - works for non-grouped bars only
 function renderErrorBar(params, api) {
   var xValue = api.value(0);
@@ -54,45 +54,42 @@ function renderErrorBar(params, api) {
     e_datazoom(start = 50)
 */
 function renderErrorBar2(params, api) {
+
+  // oss is [last.barGap, last.barCategoryGap, totSeries]
   let oss = JSON.parse(sessionStorage.getItem('ErrorBar.oss'));
   if (oss===null || !Object.keys(oss).length) return null;   // cant work without it
 
-  function findMax(xx) {  	
-  	// find max barGap or barCategoryGap
-  	// if caller is e_bar they are all the same, but could be different if caller is e_list
-  	let out = null;
-  	let tmp = oss.map(d => d[xx]).filter(d => d);
-  	if (tmp.length > 0) {
-  		tmp = Math.max(...tmp.map(d => Number(d[0].replace('%', ''))) ); 
-  		if (isFinite(tmp)) out = tmp + '%';
-  	}
-  	return out;
-  }
+  let totSeries = Number(oss[2]);
 
   let xValue = api.value(0);
   let highPoint = api.coord([xValue, api.value(1)]);
   let lowPoint = api.coord([xValue, api.value(2)]);
   let halfWidth = api.size([1, 0])[0] * 0.1;
 	
-  let csil = api.currentSeriesIndices().length;		// always even
-  if (csil > 2) {
-  	let bgm = findMax('barGap');
-  	let bcgm = findMax('barCategoryGap');
-  	let olay = { count: csil/2 };
-  	olay.barGap = bgm!==null ? bgm : '30%';		// '30%' is default for e_bar
-  	olay.barCategoryGap = bcgm!==null ? bcgm : '20%';
-  	let barLayouts = api.barLayout(olay);
+  let csil = api.currentSeriesIndices().length / 2;
+	// idx is index of related main bar
+  let idx = params.seriesIndex - (params.seriesIndex < totSeries ? 0 : totSeries);	
+
+  if (csil > 1 && totSeries > 1) {
+  	let bgm = oss[0];
+  	let bcgm = oss[1];
+  	let olay = { count: csil };
+  	olay.barGap = bgm!=='' ? bgm : '30%';		// '30%' is default for e_bar
+  	olay.barCategoryGap = bcgm!=='' ? bcgm : '20%';
+  	let barLayouts = api.barLayout(olay);		// will be csil # of barLayouts
   	
-	  let idx = params.seriesIndex - (params.seriesIndex<oss.length ? 0 : oss.length);	
-  	// idx is index of related main bar
-  	let mbar = 0;
-  	api.currentSeriesIndices().forEach( (item, index) => {
-  		if (item == idx) {
-  			highPoint[0] += barLayouts[mbar].offsetCenter;
-  			halfWidth = barLayouts[mbar].width /2;
-  		}
-  		mbar++;
-  	});
+  	if (barLayouts) {
+	  	let mbar = 0;
+	  	api.currentSeriesIndices().some( (item, index) => {
+	  		if (item == idx) {
+	  			highPoint[0] += barLayouts[mbar].offsetCenter;
+	  			halfWidth = barLayouts[mbar].width /2;
+	  			return true;
+	  		}
+	  		mbar++;
+	  		return mbar >= csil;  // false until true
+	  	});
+  	}
   }
   lowPoint[0] = highPoint[0];
   
@@ -125,4 +122,39 @@ function renderErrorBar2(params, api) {
           style: style
       }]
   };
+}
+
+
+// renderer for e_band2
+function renderBand(params, api) {
+    if (params.context.rendered) return;
+    params.context.rendered = true;
+    
+    // set polygon vertices
+    let points = [];
+    let i = 0;
+    while (typeof api.value(0,i) != 'undefined' && !isNaN(api.value(0,i))) {
+    	points.push(api.coord([api.value(0,i), api.value(1,i)]));  // lo
+    	i++;
+    }
+    for (var k = i-1; k > -1 ; k--) {
+        points.push(api.coord([api.value(0,k), api.value(2,k)]));  // up
+    }
+    var color = api.visual('color');
+
+    return {
+        type: 'polygon',
+        shape: {
+            points: echarts.graphic.clipPointsByRect(points, {
+                x: params.coordSys.x,
+                y: params.coordSys.y,
+                width: params.coordSys.width,
+                height: params.coordSys.height
+            })
+        },
+        style: api.style({
+            fill: color,
+            stroke: echarts.color.lift(color)
+        })
+    };
 }

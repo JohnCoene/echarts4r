@@ -3595,6 +3595,8 @@ e_correlations.echarts4rProxy <- function(e, order = NULL, visual_map = TRUE, ..
 #'
 #' @inheritParams e_bar
 #' @param lower,upper Lower and upper error bands.
+#' @param renderer mame of render function from renderers.js
+#' @param itemStyle  mostly used for borderWidth, default 1.5
 #'
 #' @examples
 #' df <- data.frame(
@@ -3667,4 +3669,67 @@ e_error_bar.echarts4rProxy <- function(e, lower, upper, name = NULL, legend = FA
     coord_system = coord_system, ...
   )
   return(e)
+}
+
+
+#' Area bands
+#'
+#' Add area bands
+#'
+#' @inheritParams e_bar
+#' @param lower,upper series of lower and upper borders of the band
+#' @param itemStyle  mostly used for borderWidth, default 0.5
+#' @param ... additional options
+#'
+#' @examples
+#' data(EuStockMarkets)
+#' as.data.frame(EuStockMarkets) %>% dplyr::slice_head(n=200) %>% 
+#'   dplyr::mutate(day=1:dplyr::n()) %>%
+#'   e_charts(day) %>%
+#'   e_line(CAC, symbol='none') %>%
+#'   e_band2(DAX, FTSE, color='lemonchiffon') %>% 
+#'   e_band2(DAX, SMI, color='lightblue', itemStyle=list(borderWidth=0)) %>%
+#'   e_y_axis(scale=TRUE) %>%
+#'   e_datazoom(start = 50) 
+#'
+#' @name band2
+#' @export
+e_band2 <- function(e, lower, upper, ...) {
+  UseMethod("e_band2")
+}
+
+#' @export
+#' @method e_band2 echarts4r
+e_band2.echarts4r <- function(e, lower, upper, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+  if (missing(lower) || missing(upper)) {
+    stop("must pass lower and upper", call. = FALSE)
+  }
+  
+  e_band2_(
+    e,
+    deparse(substitute(lower)),
+    deparse(substitute(upper)),
+    ...
+  )
+}
+
+#' @export
+#' @method e_band2 echarts4rProxy
+e_band2.echarts4rProxy <- function(e, lower, upper, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+  if (missing(lower) || missing(upper)) {
+    stop("must pass lower and upper", call. = FALSE)
+  }
+  
+  e$chart <- e_band2_(
+    e$chart,
+    deparse(substitute(lower)),
+    deparse(substitute(upper)),
+    ...
+  )
 }

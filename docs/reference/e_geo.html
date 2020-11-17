@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Geo — e_geo" />
 <meta property="og:description" content="Initialise geo." />
-<meta property="og:image" content="" />
+<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 
 
 
@@ -84,9 +84,10 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -100,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
       </span>
     </div>
 
@@ -272,7 +273,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -283,13 +284,14 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Geo</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/geo.R'><code>R/geo.R</code></a></small>
     <div class="hidden name"><code>e_geo.Rd</code></div>
     </div>
 
@@ -297,7 +299,7 @@
     <p>Initialise geo.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_geo</span>(<span class='no'>e</span>, <span class='kw'>map</span> <span class='kw'>=</span> <span class='st'>"world"</span>, <span class='no'>...</span>, <span class='kw'>rm_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rm_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>e_geo</span><span class='op'>(</span><span class='va'>e</span>, map <span class='op'>=</span> <span class='st'>"world"</span>, <span class='va'>...</span>, rm_x <span class='op'>=</span> <span class='cn'>TRUE</span>, rm_y <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -326,29 +328,31 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#geo'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>flights</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(
+    <pre class="examples"><div class='input'><span class='va'>flights</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span>
     <span class='st'>"https://raw.githubusercontent.com/plotly/datasets/"</span>,
     <span class='st'>"master/2011_february_aa_flight_paths.csv"</span>
-  )
-)
+  <span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='no'>flights</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>e_geo</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='e_lines.html'>e_lines</a></span>(
-    <span class='no'>start_lon</span>,
-    <span class='no'>start_lat</span>,
-    <span class='no'>end_lon</span>,
-    <span class='no'>end_lat</span>,
-    <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"flights"</span>,
-    <span class='kw'>lineStyle</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>normal</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>curveness</span> <span class='kw'>=</span> <span class='fl'>0.3</span>))
-  )</div></pre>
+<span class='va'>flights</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>e_geo</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='e_lines.html'>e_lines</a></span><span class='op'>(</span>
+    <span class='va'>start_lon</span>,
+    <span class='va'>start_lat</span>,
+    <span class='va'>end_lon</span>,
+    <span class='va'>end_lat</span>,
+    name <span class='op'>=</span> <span class='st'>"flights"</span>,
+    lineStyle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>normal <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>curveness <span class='op'>=</span> <span class='fl'>0.3</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -363,6 +367,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
    </div>
 
@@ -385,6 +390,8 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 </script>
 
 
+
   </body>
 </html>
+
 
