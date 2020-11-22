@@ -3,6 +3,7 @@
 - Fixed naming of x axis for `e_boxplot`, see [#219](https://github.com/JohnCoene/echarts4r/issues/219)
 - Fixed `e_parallel` arguments, see [#223](https://github.com/JohnCoene/echarts4r/issues/223)
 - Accept `data.tree` data for easy creation of tree, treemaps and sunbursts, see [#207](https://github.com/JohnCoene/echarts4r/issues/207)
+- Fix ordering in timeline [#234](https://github.com/JohnCoene/echarts4r/issues/234)
 
 # echarts4r 0.3.3
 
