@@ -2195,14 +2195,6 @@ e_band2_ <- function(e, lower, upper, name=NULL, legend=TRUE,
             
 #' @rdname errorbar
 #' @export
-#'    comments on changes, by helgasoft.com
-#' It's convenient to "attach" error bars to their related main bars
-#' so they'll show/hide together when user clicks on the legend buttons.
-#' This is done by having the same name for error and main bars.
-#' Default legend = FALSE, since we'll have only main bars in legend.
-#' Error bars will inherit color from their main bars, so it is preferable
-#' to set a specific color, like e_error_bar(..., color='black'), which
-#' is now set as default. See test code in renderer.js.
 e_error_bar_ <-  function (e, lower, upper, 
                             name = NULL, legend = FALSE, y_index = 0, 
                             x_index = 0, coord_system = "cartesian2d",
