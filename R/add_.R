@@ -10,7 +10,7 @@ e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 
     stop("must pass serie", call. = FALSE)
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
 
     if (!is.null(bind)) {
@@ -102,7 +102,7 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
     e$x$facets$current <- e$x$facets$current + 1
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
 
     # build JSON data
     .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
@@ -194,7 +194,7 @@ e_area_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
     stop("must pass serie", call. = FALSE)
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
 
     # build JSON data
     .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
@@ -286,7 +286,7 @@ e_step_ <- function(e, serie, bind = NULL, step = c("start", "middle", "end"), f
     stop("wrong step", call. = FALSE)
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
 
     # build JSON data
     .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
@@ -384,7 +384,7 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol = NULL, symbol
     stop("must pass serie", call. = FALSE)
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     if (y_index != 0) {
       e <- .set_y_axis(e, serie, y_index, i)
     }
@@ -504,7 +504,7 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol = NULL,
     stop("must pass serie", call. = FALSE)
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     if (y_index != 0) {
       e <- .set_y_axis(e, serie, y_index, i)
     }
@@ -614,7 +614,7 @@ e_candle_ <- function(e, opening, closing, low, high, bind = NULL, name = NULL, 
     stop("missing inputs", call. = FALSE)
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     data <- .build_data2(e$x$data[[i]], opening, closing, low, high)
 
     if (!is.null(bind)) {
@@ -726,7 +726,7 @@ e_funnel_ <- function(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE
     stop("missing values or labels", call. = FALSE)
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
 
     # build JSON data
     funnel <- .build_data2(e$x$data[[i]], values)
@@ -812,7 +812,7 @@ e_heatmap_ <- function(e, y, z = NULL, bind = NULL, name = NULL, coord_system = 
     stop("must pass y", call. = FALSE)
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     if (!is.null(z)) {
       xyz <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
     } else {
@@ -947,7 +947,7 @@ e_pie_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRU
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
 
     # build JSON data
     data <- .build_data2(e$x$data[[i]], serie)
@@ -1053,7 +1053,7 @@ e_river_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = T
     stop("must pass serie", call. = FALSE)
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     nm <- .name_it(e, serie, name, i)
 
     if (length(e$x$opts$xAxis$data)) {
@@ -1094,7 +1094,7 @@ e_boxplot_ <- function(e, serie, name = NULL, outliers = TRUE, ...) {
     stop("must pass serie", call. = FALSE)
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
 
     # build JSON data
     vector <- .build_boxplot(e, serie, i)
@@ -1199,7 +1199,7 @@ e_lines_3d_ <- function(e, source_lon, source_lat, target_lon, target_lat, sourc
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     data <- .map_lines(
       e,
       source_lon, source_lat,
@@ -1271,7 +1271,7 @@ e_line_3d_ <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, r
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
 
     # build JSON data
     data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
@@ -1372,7 +1372,7 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
   e <- .set_axis_3D(e, "y", y, 0)
   e <- .set_axis_3D(e, "z", z, 0)
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     if (coord_system != "cartesian3D") {
       data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
 
@@ -1492,7 +1492,7 @@ e_surface_ <- function(e, y, z, bind = NULL, name = NULL, rm_x = TRUE, rm_y = TR
     e$x$opts$grid3D <- list(show = TRUE)
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     row.names(e$x$data[[i]]) <- NULL
 
     data <- e$x$data[[i]] %>%
@@ -1544,7 +1544,7 @@ e_lines_ <- function(e, source_lon, source_lat, target_lon, target_lat, source_n
   e <- .rm_axis(e, rm_y, "y")
 
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     data <- .map_lines(e, source_lon, source_lat, target_lon, target_lat, source_name, target_name, value, i)
 
     e.serie <- list(data = data)
@@ -1589,7 +1589,7 @@ e_scatter_3d_ <- function(e, y, z, color = NULL, size = NULL, bind = NULL, coord
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
 
     # globe
     if (coord_system != "cartesian3D") {
@@ -1749,7 +1749,7 @@ e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRU
     stop("must pass y and z", call. = FALSE)
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
 
     # remove axis
     e <- .rm_axis(e, rm_x, "x")
@@ -1839,7 +1839,7 @@ e_pictorial_ <- function(e, serie, symbol, bind = NULL, name = NULL, legend = TR
     e <- .set_x_axis(e, x_index)
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     if (is.null(name)) { # defaults to column name
       name <- serie
     }
@@ -1906,7 +1906,7 @@ e_histogram_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRU
     stop("must pass serie", call. = FALSE)
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     data <- .get_data(e, serie, i)
     histogram <- hist(data, plot = FALSE, breaks)
 
@@ -1993,7 +1993,7 @@ e_density_ <- function(e, serie, breaks = "Sturges", name = NULL, legend = TRUE,
     stop("must pass serie", call. = FALSE)
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     data <- .get_data(e, serie, i = i)
     histogram <- hist(data, plot = FALSE, breaks)
 
@@ -2101,7 +2101,7 @@ e_band_ <- function(e, min, max, stack = "confidence-band", symbol = c("none", "
   min_opts <- purrr::map(args, spl, 1)
   max_opts <- purrr::map(args, spl, 2)
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
 
     # min
     min_opts_index <- min_opts
@@ -2141,7 +2141,7 @@ e_band2_ <- function(e, lower, upper, name=NULL, legend=TRUE,
    
    args <- list(...)
    
-   for (i in 1:length(e$x$data)) {
+   for (i in seq_along(e$x$data)) {
      vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, 
                                         lower, upper)
      e_serie <- list(data = vector)
@@ -2240,7 +2240,7 @@ e_error_bar_ <-  function (e, lower, upper,
                  ,jsonlite::toJSON(info),"'); ", renderer)
   renderJS <- htmlwidgets::JS(info)
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, 
                                        lower, upper)
     e_serie <- list(data = vector)

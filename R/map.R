@@ -117,7 +117,7 @@ e_map_ <- function(e, serie = NULL, map = "world", name = NULL, rm_x = TRUE, rm_
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     app <- list(
       type = "map",
       map = map,
@@ -193,7 +193,7 @@ e_map_3d_ <- function(e, serie = NULL, map = "world", name = NULL, coord_system 
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     if (!is.null(serie)) {
       data <- .build_data2(e$x$data[[i]], serie)
       data <- .add_bind2(e, data, e$x$mapping$x, i = i)

@@ -214,11 +214,11 @@ e_labels <- function(e, show = TRUE, position = "top", ...) {
   )
 
   if (!e$x$tl) {
-    for (i in 1:length(e$x$opts$series)) {
+    for (i in seq_along(e$x$opts$series)) {
       e$x$opts$series[[i]]$label <- opts
     }
   } else {
-    for (i in 1:length(e$x$opts$baseOption$series)) {
+    for (i in seq_along(e$x$opts$baseOption$series)) {
       e$x$opts$baseOption$series[[i]]$label <- opts
     }
   }
