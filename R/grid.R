@@ -112,7 +112,7 @@ e_axis_ <- function(e, serie = NULL, axis = c("x", "y", "z"), index = 0, formatt
   }
 
   if (dp >= 2) {
-    for (i in 1:length(attrs)) {
+    for (i in seq_along(attrs)) {
       arg <- names(attrs)[i]
       if (!e$x$tl) {
         e$x$opts[[axis]][[r.index]][[arg]] <- attrs[[i]]
@@ -121,7 +121,7 @@ e_axis_ <- function(e, serie = NULL, axis = c("x", "y", "z"), index = 0, formatt
       }
     }
   } else {
-    for (i in 1:length(attrs)) {
+    for (i in seq_along(attrs)) {
       arg <- names(attrs)[i]
       if (!e$x$tl) {
         e$x$opts[[axis]][[arg]] <- attrs[[i]]
@@ -502,7 +502,7 @@ e_radar_opts <- function(e, index = 0, ...) {
     }
   }
 
-  for (i in 1:length(attrs)) {
+  for (i in seq_along(attrs)) {
     arg <- names(attrs)[i]
     if (!e$x$tl) {
       e$x$opts$radar[[r.index]][[arg]] <- attrs[[i]]
@@ -572,7 +572,7 @@ e_single_axis <- function(e, index = 0, ...) {
 
     if (type == "category" || type == "time") {
       vect <- c()
-      for (i in 1:length(e$x$data)) {
+      for (i in seq_along(e$x$data)) {
         dat <- e$x$data[[i]] %>%
           dplyr::select(e$x$mapping$x) %>%
           unlist()

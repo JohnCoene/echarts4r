@@ -76,7 +76,7 @@ e_mark_point <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_
   }
 
   if (is.null(serie)) {
-    index <- 1:length(if (e$x$tl) e$x$opts$options else e$x$opts$series)
+    index <- seq_along(if (e$x$tl) e$x$opts$options else e$x$opts$series)
   } else {
     index <- .get_index(e, serie)
   }
@@ -119,7 +119,7 @@ e_mark_line <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_p
   }
 
   if (is.null(serie)) {
-    index <- 1:length(if (e$x$tl) e$x$opts$options else e$x$opts$series)
+    index <- seq_along(if (e$x$tl) e$x$opts$options else e$x$opts$series)
   } else {
     index <- .get_index(e, serie)
   }
@@ -162,7 +162,7 @@ e_mark_area <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_p
   }
 
   if (is.null(serie)) {
-    index <- 1:length(if (e$x$tl) e$x$opts$options else e$x$opts$series)
+    index <- seq_along(if (e$x$tl) e$x$opts$options else e$x$opts$series)
   } else {
     index <- .get_index(e, serie)
   }

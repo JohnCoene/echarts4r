@@ -57,7 +57,7 @@ e_axis_3d <- function(e, axis = c("x", "y", "z"), index = 0, ...) {
     stop("no attribute", call. = FALSE)
   }
 
-  for (i in 1:length(attrs)) {
+  for (i in seq_along(attrs)) {
     arg <- names(attrs)[i]
 
     if (!e$x$tl) {
@@ -159,7 +159,7 @@ e_grid_3d <- function(e, index = 0, ...) {
     stop("no attribute", call. = FALSE)
   }
 
-  for (i in 1:length(attrs)) {
+  for (i in seq_along(attrs)) {
     arg <- names(attrs)[i]
 
     if (!e$x$tl) {
