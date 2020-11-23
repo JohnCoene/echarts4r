@@ -4,6 +4,7 @@
 - Fixed `e_parallel` arguments, see [#223](https://github.com/JohnCoene/echarts4r/issues/223)
 - Accept `data.tree` data for easy creation of tree, treemaps and sunbursts, see [#207](https://github.com/JohnCoene/echarts4r/issues/207)
 - Fix ordering in timeline [#234](https://github.com/JohnCoene/echarts4r/issues/234)
+- Fix the issue that `e_band()` displays the upper band incorrectly, see [#237](https://github.com/JohnCoene/echarts4r/issues/237). Thanks @shrektan for the reporting and PR.
 
 # echarts4r 0.3.3
 

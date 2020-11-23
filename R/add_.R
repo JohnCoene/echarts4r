@@ -2113,7 +2113,7 @@ e_band_ <- function(e, min, max, stack = "confidence-band", symbol = c("none", "
     e <- do.call(e_line_, min_opts_index)
 
     # max
-    # e$x$data[[i]][, max] <- e$x$data[[i]][[serie]] - e$x$data[[i]][[max]]
+    e$x$data[[i]][, max] <- e$x$data[[i]][, max] - e$x$data[[i]][, min]
     max_opts_index <- max_opts
     max_opts_index$e <- e
     max_opts_index$stack <- stack
