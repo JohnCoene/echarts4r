@@ -65,6 +65,8 @@ e_bar_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index = 
   }
 
   if (isTRUE(e$x$tl)) {
+    if(is.null(name)) name <- serie
+
     series_opts <- list(
       name = name,
       type = "bar",
@@ -163,6 +165,8 @@ e_line_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
   }
 
   if (isTRUE(e$x$tl)) {
+    if(is.null(name)) name <- serie
+
     series_opts <- list(
       name = name,
       type = "line",
@@ -250,6 +254,8 @@ e_area_ <- function(e, serie, bind = NULL, name = NULL, legend = TRUE, y_index =
   }
 
   if (isTRUE(e$x$tl)) {
+    if(is.null(name)) name <- serie
+
     series_opts <- list(
       name = name,
       type = "line",
@@ -342,6 +348,8 @@ e_step_ <- function(e, serie, bind = NULL, step = c("start", "middle", "end"), f
   }
 
   if (isTRUE(e$x$tl)) {
+    if(is.null(name)) name <- serie
+
     series_opts <- list(
       name = name,
       type = "line",
@@ -474,6 +482,8 @@ e_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol = NULL, symbol
   }
 
   if (isTRUE(e$x$tl)) {
+    if(is.null(name)) name <- serie
+
     add_opts <- list(
       name = name,
       type = "scatter",
@@ -588,6 +598,8 @@ e_effect_scatter_ <- function(e, serie, size = NULL, bind = NULL, symbol = NULL,
   }
 
   if (isTRUE(e$x$tl)) {
+    if(is.null(name)) name <- serie
+
     add_opts <- list(
       name = name,
       type = "effectScatter",
