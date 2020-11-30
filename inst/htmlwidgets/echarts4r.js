@@ -85,14 +85,14 @@ HTMLWidgets.widget({
           
           if(x.hasOwnProperty('capture')){
             chart.on(x.capture, function(e){
-              Shiny.onInputChange(el.id + '_' + x.capture + ":echarts4rParse", e);
+              Shiny.onInputChange(el.id + '_' + x.capture + ":echarts4rParse", e, {priority: 'event'});
             });
           }
           
           chart.on("click", function(e){
-            Shiny.onInputChange(el.id + '_clicked_data' + ":echarts4rParse", e.data);
-            Shiny.onInputChange(el.id + '_clicked_row' + ":echarts4rParse", e.dataIndex + 1);
-            Shiny.onInputChange(el.id + '_clicked_serie' + ":echarts4rParse", e.seriesName);
+            Shiny.onInputChange(el.id + '_clicked_data' + ":echarts4rParse", e.data, {priority: 'event'});
+            Shiny.onInputChange(el.id + '_clicked_row' + ":echarts4rParse", e.dataIndex + 1, {priority: 'event'});
+            Shiny.onInputChange(el.id + '_clicked_serie' + ":echarts4rParse", e.seriesName, {priority: 'event'});
           });
           
           chart.on("mouseover", function(e){
