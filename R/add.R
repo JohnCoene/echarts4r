@@ -1737,6 +1737,11 @@ e_gauge.echarts4rProxy <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...
   return(e)
 }
 
+#' @inheritParams e_bar
+#' @param value Value to gauge.
+#' @param name Text on gauge.
+#' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
+#'
 #' @rdname e_gauge
 #' @export
 e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
