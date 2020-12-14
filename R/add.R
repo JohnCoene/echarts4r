@@ -1223,7 +1223,9 @@ e_heatmap.echarts4rProxy <- function(e, y, z, bind, name = NULL, coord_system = 
 #' Draw parallel coordinates.
 #'
 #' @inheritParams e_bar
+#' @param ... Columns to select from the data passed to \code{\link{e_charts}}.
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
+#' @param opts A list of additional options to pass to the serie.
 #'
 #' @examples
 #' df <- data.frame(
@@ -1234,16 +1236,16 @@ e_heatmap.echarts4rProxy <- function(e, y, z, bind, name = NULL, coord_system = 
 #'
 #' df %>%
 #'   e_charts() %>%
-#'   e_parallel(price, amount, letter)
+#'   e_parallel(price, amount, letter, opts = list(smooth = TRUE))
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-parallel}{Additional arguments}
 #'
 #' @rdname e_parallel
 #' @export
-e_parallel <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE) UseMethod("e_parallel")
+e_parallel <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = list()) UseMethod("e_parallel")
 
 #' @export
 #' @method e_parallel echarts4r
-e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE) {
+e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = list()) {
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
@@ -1256,19 +1258,21 @@ e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE) 
   data <- unname(data)
 
   data <- apply(data, 1, as.list)
-  
+
   # remove white spaces (ex: in " 1")
   data <- purrr::map(data, function(x) {
-    x %>% 
+    x %>%
       gsub(" ", "", .) %>%
       as.list()
   })
-  
+
   serie <- list(
     name = name,
     type = "parallel",
     data = data
   )
+
+  serie <- append(serie, opts)
 
   para <- list()
   for (i in 1:ncol(df)) {
@@ -1705,7 +1709,7 @@ e_gauge.echarts4r <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
-  for (i in 1:length(value)) {
+  for (i in seq_along(value)) {
     serie <- list(
       data = list(list(value = value[i], name = name[i]))
     )
@@ -2839,7 +2843,7 @@ e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth
 e_lm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, model_args = list(), ...) {
   form <- as.formula(formula)
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
 
     model_args$formula <- form
@@ -2907,7 +2911,7 @@ e_lm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "non
 e_lm.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, model_args = list(), ...) {
   form <- as.formula(formula)
 
-  for (i in 1:length(e$chart$x$data)) {
+  for (i in seq_along(e$chart$x$data)) {
     e$chart$x$data[[i]] <- e$chart$x$data[[i]][stats::complete.cases(e$chart$x$data[[i]]), ]
 
     model_args$formula <- form
@@ -2979,7 +2983,7 @@ e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smoot
 e_glm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, model_args = list(), ...) {
   form <- as.formula(formula)
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
 
     model_args$formula <- form
@@ -3047,7 +3051,7 @@ e_glm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "no
 e_glm.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, model_args = list(), ...) {
   form <- as.formula(formula)
 
-  for (i in 1:length(e$chart$x$data)) {
+  for (i in seq_along(e$chart$x$data)) {
     e$chart$x$data[[i]] <- e$chart$x$data[[i]][stats::complete.cases(e$chart$x$data[[i]]), ]
 
     model_args$formula <- form
@@ -3121,7 +3125,7 @@ e_loess <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smo
 #' @importFrom stats complete.cases
 e_loess.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE,
                               x_index = 0, y_index = 0, model_args = list(), ...) {
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
 
     model_args$formula <- as.formula(formula)
@@ -3199,7 +3203,7 @@ e_loess.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "
 #' @importFrom stats complete.cases
 e_loess.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE,
                                    x_index = 0, y_index = 0, model_args = list(), ...) {
-  for (i in 1:length(e$chart$x$data)) {
+  for (i in seq_along(e$chart$x$data)) {
     e$chart$x$data[[i]] <- e$chart$x$data[[i]][stats::complete.cases(e$chart$x$data[[i]]), ]
 
     model_args$formula <- as.formula(formula)
@@ -3591,6 +3595,8 @@ e_correlations.echarts4rProxy <- function(e, order = NULL, visual_map = TRUE, ..
 #'
 #' @inheritParams e_bar
 #' @param lower,upper Lower and upper error bands.
+#' @param renderer mame of render function from renderers.js
+#' @param itemStyle  mostly used for borderWidth, default 1.5
 #'
 #' @examples
 #' df <- data.frame(
@@ -3621,14 +3627,14 @@ e_correlations.echarts4rProxy <- function(e, order = NULL, visual_map = TRUE, ..
 #'   e_error_bar(lower, upper)
 #' @rdname errorbar
 #' @export
-e_error_bar <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 0, x_index = 0,
+e_error_bar <- function(e, lower, upper, name = NULL, legend = FALSE, y_index = 0, x_index = 0,
                         coord_system = "cartesian2d", ...) {
   UseMethod("e_error_bar")
 }
 
 #' @export
 #' @method e_error_bar echarts4r
-e_error_bar.echarts4r <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 0, x_index = 0,
+e_error_bar.echarts4r <- function(e, lower, upper, name = NULL, legend = FALSE, y_index = 0, x_index = 0,
                                   coord_system = "cartesian2d", ...) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
@@ -3647,7 +3653,7 @@ e_error_bar.echarts4r <- function(e, lower, upper, name = NULL, legend = TRUE, y
 
 #' @export
 #' @method e_error_bar echarts4rProxy
-e_error_bar.echarts4rProxy <- function(e, lower, upper, name = NULL, legend = TRUE, y_index = 0, x_index = 0,
+e_error_bar.echarts4rProxy <- function(e, lower, upper, name = NULL, legend = FALSE, y_index = 0, x_index = 0,
                                        coord_system = "cartesian2d", ...) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
@@ -3663,4 +3669,67 @@ e_error_bar.echarts4rProxy <- function(e, lower, upper, name = NULL, legend = TR
     coord_system = coord_system, ...
   )
   return(e)
+}
+
+
+#' Area bands
+#'
+#' Add area bands
+#'
+#' @inheritParams e_bar
+#' @param lower,upper series of lower and upper borders of the band
+#' @param itemStyle  mostly used for borderWidth, default 0.5
+#' @param ... additional options
+#'
+#' @examples
+#' data(EuStockMarkets)
+#' as.data.frame(EuStockMarkets) %>% dplyr::slice_head(n=200) %>% 
+#'   dplyr::mutate(day=1:dplyr::n()) %>%
+#'   e_charts(day) %>%
+#'   e_line(CAC, symbol='none') %>%
+#'   e_band2(DAX, FTSE, color='lemonchiffon') %>% 
+#'   e_band2(DAX, SMI, color='lightblue', itemStyle=list(borderWidth=0)) %>%
+#'   e_y_axis(scale=TRUE) %>%
+#'   e_datazoom(start = 50) 
+#'
+#' @name band2
+#' @export
+e_band2 <- function(e, lower, upper, ...) {
+  UseMethod("e_band2")
+}
+
+#' @export
+#' @method e_band2 echarts4r
+e_band2.echarts4r <- function(e, lower, upper, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+  if (missing(lower) || missing(upper)) {
+    stop("must pass lower and upper", call. = FALSE)
+  }
+  
+  e_band2_(
+    e,
+    deparse(substitute(lower)),
+    deparse(substitute(upper)),
+    ...
+  )
+}
+
+#' @export
+#' @method e_band2 echarts4rProxy
+e_band2.echarts4rProxy <- function(e, lower, upper, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+  if (missing(lower) || missing(upper)) {
+    stop("must pass lower and upper", call. = FALSE)
+  }
+  
+  e$chart <- e_band2_(
+    e$chart,
+    deparse(substitute(lower)),
+    deparse(substitute(upper)),
+    ...
+  )
 }

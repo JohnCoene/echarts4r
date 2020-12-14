@@ -25,7 +25,7 @@ e_common(
 
 ## Axis helper
 
-You can customise the axis with `e_axis`, `e_x_axis` or `e_y_axis`, you can see the [official documentation](https://ecomfe.github.io/echarts-doc/public/en/option.html#xAxis) for more details. There is also a helper function, `e_format_axis` and its sisters `e_format_x_axis` and `e_format_y_axis`. The latter lets you easily add suffix or prefix to your axis labels.
+You can customise the axis with `e_axis`, `e_x_axis` or `e_y_axis`, you can see the [official documentation](https://echarts.apache.org/en/option.html#xAxis) for more details. There is also a helper function, `e_format_axis` and its sisters `e_format_x_axis` and `e_format_y_axis`. The latter lets you easily add suffix or prefix to your axis labels.
 
 Say you want to plot against ceslius.
 

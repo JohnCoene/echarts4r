@@ -5,19 +5,21 @@
 \alias{e_parallel_}
 \title{Parallel}
 \usage{
-e_parallel(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE)
+e_parallel(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = list())
 
-e_parallel_(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE)
+e_parallel_(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = list())
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{...}{Any other option to pass, check See Also section.}
+\item{...}{Columns to select from the data passed to \code{\link{e_charts}}.}
 
 \item{name}{name of the serie.}
 
 \item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
+
+\item{opts}{A list of additional options to pass to the serie.}
 }
 \description{
 Draw parallel coordinates.
@@ -31,7 +33,7 @@ df <- data.frame(
 
 df \%>\%
   e_charts() \%>\%
-  e_parallel(price, amount, letter)
+  e_parallel(price, amount, letter, opts = list(smooth = TRUE))
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-parallel}{Additional arguments}

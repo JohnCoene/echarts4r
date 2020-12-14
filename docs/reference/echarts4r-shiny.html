@@ -57,7 +57,7 @@
 <meta property="og:title" content="Shiny bindings for echarts4r — echarts4r-shiny" />
 <meta property="og:description" content="Output and render functions for using echarts4r within Shiny
 applications and interactive Rmd documents." />
-<meta property="og:image" content="" />
+<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 
 
 
@@ -85,9 +85,10 @@ applications and interactive Rmd documents." />
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -101,7 +102,7 @@ applications and interactive Rmd documents." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
       </span>
     </div>
 
@@ -273,7 +274,7 @@ applications and interactive Rmd documents." />
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -284,13 +285,14 @@ applications and interactive Rmd documents." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Shiny bindings for echarts4r</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/echarts4r.R'><code>R/echarts4r.R</code></a></small>
     <div class="hidden name"><code>echarts4r-shiny.Rd</code></div>
     </div>
 
@@ -299,27 +301,27 @@ applications and interactive Rmd documents." />
 applications and interactive Rmd documents.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>echarts4rOutput</span>(<span class='no'>outputId</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"100%"</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"400px"</span>)
+    <pre class="usage"><span class='fu'>echarts4rOutput</span><span class='op'>(</span><span class='va'>outputId</span>, width <span class='op'>=</span> <span class='st'>"100%"</span>, height <span class='op'>=</span> <span class='st'>"400px"</span><span class='op'>)</span>
 
-<span class='fu'>renderEcharts4r</span>(<span class='no'>expr</span>, <span class='kw'>env</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>parent.frame</a></span>(), <span class='kw'>quoted</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>renderEcharts4r</span><span class='op'>(</span><span class='va'>expr</span>, env <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span>, quoted <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='fu'>echarts4rProxy</span>(
-  <span class='no'>id</span>,
-  <span class='no'>data</span>,
-  <span class='no'>x</span>,
-  <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span>(),
-  <span class='kw'>reorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)
+<span class='fu'>echarts4rProxy</span><span class='op'>(</span>
+  <span class='va'>id</span>,
+  <span class='va'>data</span>,
+  <span class='va'>x</span>,
+  timeline <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>,
+  reorder <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
 
-<span class='fu'>echarts4r_proxy</span>(
-  <span class='no'>id</span>,
-  <span class='no'>data</span>,
-  <span class='no'>x</span>,
-  <span class='kw'>timeline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span>(),
-  <span class='kw'>reorder</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+<span class='fu'>echarts4r_proxy</span><span class='op'>(</span>
+  <span class='va'>id</span>,
+  <span class='va'>data</span>,
+  <span class='va'>x</span>,
+  timeline <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>,
+  reorder <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -344,7 +346,7 @@ string and have <code>'px'</code> appended.</p></td>
     </tr>
     <tr>
       <th>quoted</th>
-      <td><p>Is <code>expr</code> a quoted expression (with <code><a href='https://www.rdocumentation.org/packages/base/topics/substitute'>quote()</a></code>)? This
+      <td><p>Is <code>expr</code> a quoted expression (with <code><a href='https://rdrr.io/r/base/substitute.html'>quote()</a></code>)? This
 is useful if you want to save an expression in a variable.</p></td>
     </tr>
     <tr>
@@ -376,7 +378,8 @@ is useful if you want to save an expression in a variable.</p></td>
     <h2 class="hasAnchor" id="callbacks"><a class="anchor" href="#callbacks"></a>Callbacks</h2>
 
     
-    <ul>
+
+<ul>
 <li><p><code>id_brush</code>: returns data on brushed data points.</p></li>
 <li><p><code>id_legend_change</code>: returns series name of legend selected/unselected.</p></li>
 <li><p><code>id_clicked_data</code>: returns data of clicked data point.</p></li>
@@ -388,27 +391,31 @@ is useful if you want to save an expression in a variable.</p></td>
 <li><p><code>id_mouseover_row</code>: returns row o hovered data point.</p></li>
 <li><p><code>id_mouseover_serie</code>: returns name of serie of hovered data point.</p></li>
 </ul>
+
     <h2 class="hasAnchor" id="proxies"><a class="anchor" href="#proxies"></a>Proxies</h2>
 
     
-    <p>The <code>echarts4rProxy</code> function returns a proxy for chart which allows
+
+<p>The <code>echarts4rProxy</code> function returns a proxy for chart which allows
 manipulating a drawn chart, adding data, adding or removing series, etc. without
 redrawing the entire chart.</p>
 <ul>
-<li><p><code><a href='append.html'>e_append1_p</a></code> &amp; <code><a href='append.html'>e_append2_p</a></code></p></li>
-<li><p><code><a href='tooltip_proxy.html'>e_showtip_p</a></code> &amp; <code><a href='tooltip_proxy.html'>e_hidetip_p</a></code></p></li>
-<li><p><code><a href='highlight_proxy.html'>e_highlight_p</a></code> &amp; <code><a href='highlight_proxy.html'>e_downplay_p</a></code></p></li>
+<li><p><code><a href='e_append1_p.html'>e_append1_p</a></code> &amp; <code><a href='e_append1_p.html'>e_append2_p</a></code></p></li>
+<li><p><code><a href='e_showtip_p.html'>e_showtip_p</a></code> &amp; <code><a href='e_showtip_p.html'>e_hidetip_p</a></code></p></li>
+<li><p><code><a href='e_highlight_p.html'>e_highlight_p</a></code> &amp; <code><a href='e_highlight_p.html'>e_downplay_p</a></code></p></li>
 <li><p><code><a href='graph_action.html'>e_focus_adjacency</a></code> &amp; <code><a href='graph_action.html'>e_unfocus_adjacency</a></code></p></li>
 <li><p><code><a href='e_dispatch_action_p.html'>e_dispatch_action_p</a></code></p></li>
 <li><p><code><a href='e_execute.html'>e_execute</a></code></p></li>
 <li><p><code><a href='e_remove.html'>e_remove_serie_p</a></code></p></li>
 </ul>
 
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -423,6 +430,7 @@ redrawing the entire chart.</p>
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
    </div>
 
@@ -445,6 +453,8 @@ redrawing the entire chart.</p>
 </script>
 
 
+
   </body>
 </html>
+
 

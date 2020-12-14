@@ -10,7 +10,7 @@ e_error_bar(
   lower,
   upper,
   name = NULL,
-  legend = TRUE,
+  legend = FALSE,
   y_index = 0,
   x_index = 0,
   coord_system = "cartesian2d",
@@ -22,10 +22,12 @@ e_error_bar_(
   lower,
   upper,
   name = NULL,
-  legend = TRUE,
+  legend = FALSE,
   y_index = 0,
   x_index = 0,
   coord_system = "cartesian2d",
+  itemStyle = list(borderWidth = 1.5),
+  renderer = "renderErrorBar2",
   ...
 )
 }
@@ -46,6 +48,10 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{coord_system}{Coordinate system to plot against.}
 
 \item{...}{Any other option to pass, check See Also section.}
+
+\item{itemStyle}{mostly used for borderWidth, default 1.5}
+
+\item{renderer}{mame of render function from renderers.js}
 }
 \description{
 Add error bars.

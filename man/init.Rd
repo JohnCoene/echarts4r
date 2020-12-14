@@ -3,12 +3,42 @@
 \name{init}
 \alias{init}
 \alias{e_charts}
+\alias{e_charts.default}
+\alias{e_charts.Node}
 \alias{e_charts_}
 \alias{e_chart}
 \alias{e_data}
 \title{Initialise}
 \usage{
 e_charts(
+  data,
+  x,
+  width = NULL,
+  height = NULL,
+  elementId = NULL,
+  dispose = TRUE,
+  draw = TRUE,
+  renderer = "canvas",
+  timeline = FALSE,
+  ...,
+  reorder = TRUE
+)
+
+\method{e_charts}{default}(
+  data,
+  x,
+  width = NULL,
+  height = NULL,
+  elementId = NULL,
+  dispose = TRUE,
+  draw = TRUE,
+  renderer = "canvas",
+  timeline = FALSE,
+  ...,
+  reorder = TRUE
+)
+
+\method{e_charts}{Node}(
   data,
   x,
   width = NULL,

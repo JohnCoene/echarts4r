@@ -56,7 +56,7 @@
 
 <meta property="og:title" content="Box — echarts4rBox" />
 <meta property="og:description" content="Renders a data box in shiny." />
-<meta property="og:image" content="" />
+<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png" />
 
 
 
@@ -84,9 +84,10 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -100,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
       </span>
     </div>
 
@@ -272,7 +273,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -283,13 +284,14 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Box</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/JohnCoene/echarts4r/blob/master/R/boxes.R'><code>R/boxes.R</code></a></small>
     <div class="hidden name"><code>echarts4rBox.Rd</code></div>
     </div>
 
@@ -297,21 +299,21 @@
     <p>Renders a data box in shiny.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>echarts4rBox</span>(
-  <span class='no'>data</span>,
-  <span class='no'>x</span>,
-  <span class='no'>y</span>,
-  <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>subtext</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"bar"</span>, <span class='st'>"line"</span>, <span class='st'>"scatter"</span>, <span class='st'>"area"</span>, <span class='st'>"step"</span>),
-  <span class='no'>...</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"#ffffff"</span>,
-  <span class='kw'>text_color</span> <span class='kw'>=</span> <span class='st'>"#ffffff"</span>,
-  <span class='kw'>background_color</span> <span class='kw'>=</span> <span class='st'>"#293c55"</span>,
-  <span class='kw'>step</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"start"</span>, <span class='st'>"middle"</span>, <span class='st'>"end"</span>),
-  <span class='kw'>title_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
-  <span class='kw'>tooltip</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>trigger</span> <span class='kw'>=</span> <span class='st'>"axis"</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>echarts4rBox</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>x</span>,
+  <span class='va'>y</span>,
+  text <span class='op'>=</span> <span class='st'>""</span>,
+  subtext <span class='op'>=</span> <span class='st'>""</span>,
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"bar"</span>, <span class='st'>"line"</span>, <span class='st'>"scatter"</span>, <span class='st'>"area"</span>, <span class='st'>"step"</span><span class='op'>)</span>,
+  <span class='va'>...</span>,
+  color <span class='op'>=</span> <span class='st'>"#ffffff"</span>,
+  text_color <span class='op'>=</span> <span class='st'>"#ffffff"</span>,
+  background_color <span class='op'>=</span> <span class='st'>"#293c55"</span>,
+  step <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"start"</span>, <span class='st'>"middle"</span>, <span class='st'>"end"</span><span class='op'>)</span>,
+  title_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  tooltip <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>trigger <span class='op'>=</span> <span class='st'>"axis"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -367,26 +369,29 @@
     <div class='dont-index'><p><code><a href='renderEcharts4rBox.html'>renderEcharts4rBox</a></code>, <code><a href='echarts4rBoxOutput.html'>echarts4rBoxOutput</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
 
-<span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidPage</a></span>(
-  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidRow</a></span>(
-    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span>(<span class='fl'>3</span>, <span class='fu'><a href='echarts4rBoxOutput.html'>echarts4rBoxOutput</a></span>(<span class='st'>"box1"</span>))
-  )
-)
+<span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidRow</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/column.html'>column</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fu'><a href='echarts4rBoxOutput.html'>echarts4rBoxOutput</a></span><span class='op'>(</span><span class='st'>"box1"</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-  <span class='no'>output</span>$<span class='no'>box1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='renderEcharts4rBox.html'>renderEcharts4rBox</a></span>({
-    <span class='fu'>echarts4rBox</span>(<span class='no'>cars</span>, <span class='no'>speed</span>, <span class='no'>dist</span>, <span class='st'>"Cars"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"bar"</span>)
-  })
-}</div><span class='co'># NOT RUN {</span>
-  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
-<span class='co'># }</span></pre>
+<span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>box1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='renderEcharts4rBox.html'>renderEcharts4rBox</a></span><span class='op'>(</span><span class='op'>{</span>
+    <span class='fu'>echarts4rBox</span><span class='op'>(</span><span class='va'>cars</span>, <span class='va'>speed</span>, <span class='va'>dist</span>, <span class='st'>"Cars"</span>, type <span class='op'>=</span> <span class='st'>"bar"</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span><span class='va'>ui</span>, <span class='va'>server</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -401,6 +406,7 @@
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
    </div>
 
@@ -423,6 +429,8 @@
 </script>
 
 
+
   </body>
 </html>
+
 

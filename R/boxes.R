@@ -28,9 +28,8 @@
 #'     echarts4rBox(cars, speed, dist, "Cars", type = "bar")
 #'   })
 #' }
-#'
 #' \dontrun{
-#'   shinyApp(ui, server)
+#' shinyApp(ui, server)
 #' }
 #' @seealso \code{\link{renderEcharts4rBox}}, \code{\link{echarts4rBoxOutput}}
 #'
