@@ -1702,14 +1702,14 @@ e_gauge.echarts4r <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
   }
 
   if (!inherits(value, "numeric")) {
-    stop("must pass numeric or interger", call. = FALSE)
+    stop("must pass numeric or integer", call. = FALSE)
   }
 
   # remove axis
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
-
-  for (i in seq_along(value)) {
+  
+  for (i in seq_along(value)) {  
     serie <- list(
       data = list(list(value = value[i], name = name[i]))
     )
@@ -1737,10 +1737,51 @@ e_gauge.echarts4rProxy <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...
   return(e)
 }
 
+#' @inheritParams e_bar
+#' @param value Value to gauge.
+#' @param name Text on gauge.
+#' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
+#'
 #' @rdname e_gauge
 #' @export
-e_gauge_ <- function(...) {
-  .Deprecated("e_gauge", package = "echarts4r")
+e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
+  
+  if (missing(e) || missing(value) || missing(name)) {
+    stop("missing e, name, or value", call. = FALSE)
+  }
+  
+  # remove axis
+  e <- .rm_axis(e, rm_x, "x")
+  e <- .rm_axis(e, rm_y, "y")
+  
+  values <- list()
+  
+  for (i in seq_along(e$x$data)) {   
+    
+    values[[i]] <- .get_data(e, value, i = i) %>%
+      unlist() %>%
+      unname() %>%
+      .[[1]]
+    
+    serie <- list(
+      data = list(list(value = values[i], name = name))
+    )
+    
+    opts <- list(
+      type = "gauge",
+      ...
+    )
+    
+    if (!e$x$tl) {
+      lst <- append(serie, opts)
+      e$x$opts$series <- append(e$x$opts$series, list(lst))
+    } else {
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie))
+      e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, opts)
+    }
+  }
+  e
+
 }
 
 #' Lines 3D
