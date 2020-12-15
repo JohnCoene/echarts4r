@@ -1777,7 +1777,7 @@ e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
       e$x$opts$series <- append(e$x$opts$series, list(lst))
     } else {
       e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie))
-      e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(opts))
+      e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, opts)
     }
   }
   e
