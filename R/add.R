@@ -1764,7 +1764,7 @@ e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
       .[[1]]
     
     serie <- list(
-      data = list(list(value = values[i], name = name[i]))
+      data = list(list(value = values[i], name = name))
     )
     
     opts <- list(
