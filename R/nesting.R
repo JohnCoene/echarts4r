@@ -58,13 +58,13 @@ e_add <- function(e, param, ...) {
     stop("missing e or what", call. = FALSE)
   }
 
-  for (i in 1:length(e$x$data)) {
+  for (i in seq_along(e$x$data)) {
     data <- e$x$data[[i]] %>%
       dplyr::select(...)
 
     data <- apply(data, 1, as.list)
 
-    for (j in 1:length(data)) {
+    for (j in seq_along(data)) {
       if (!e$x$tl) {
         e$x$opts$series[[i]]$data[[j]][[param]] <- data[[j]]
       } else {

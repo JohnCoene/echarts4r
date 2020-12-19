@@ -3,30 +3,14 @@ map_grps_ <- function(data, timeline = FALSE) {
   row.names(data) <- NULL
 
   if (dplyr::is.grouped_df(data)) {
+    splat <- dplyr::group_split(data)
+    keys <- dplyr::group_keys(data)[[1]]
+    splat <- purrr::map(splat, as.data.frame)
+    names(splat) <- keys 
+    data <- splat
 
-    # deparse groups to get grp column
-    g.col <- dplyr::groups(data)
-    g.col <- unlist(lapply(g.col, deparse))
-
-    data <- dplyr::ungroup(data)
-    data <- as.data.frame(data)
-    row.names(data) <- NULL
-
-    grps <- unique(data[, g.col]) # get unique grps
-
-    # fun to filter grps
-    filter_grp <- function(grps) {
-      data[data[, g.col] == grps, ]
-    }
-
-    data <- Map(filter_grp, grps)
-    names(data) <- grps
-
-    # order groups for timeline consistency using timeline
-    if (isTRUE(timeline)) {
-      data <- data[order(names(data))]
-    }
   } else {
+
     if (inherits(data, "data.frame")) {
       data <- as.data.frame(data)
     } # force data frame

@@ -7,7 +7,7 @@
 \usage{
 e_gauge(e, value, name, rm_x = TRUE, rm_y = TRUE, ...)
 
-e_gauge_(...)
+e_gauge_(e, value, name, rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
