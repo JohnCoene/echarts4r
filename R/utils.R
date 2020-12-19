@@ -1,9 +1,5 @@
 globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val_loss"))
 
-`%||%` <- function(x, y) {
-  if (!is.null(x)) x else y
-}
-
 .arrange_data_x <- function(data, x, reorder = TRUE) {
   vect <- data[[x]]
 
@@ -648,16 +644,6 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   }
 
   return(nm)
-}
-
-"%||%" <- function(x, y) {
-  if (is.null(x)) {
-    x
-  } else if (is.na(y)) {
-    x
-  } else {
-    y
-  }
 }
 
 .list_depth <- function(this, thisdepth = 0) {
