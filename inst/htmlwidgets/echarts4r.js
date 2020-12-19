@@ -421,5 +421,14 @@ if (HTMLWidgets.shinyMode) {
         chart.setOption(opts, true);
       }
   });
+
+  Shiny.addCustomMessageHandler('e_merge_p',
+    function(data) {    
+      // called by e_merge, add marks to serie
+      var chart = get_e_charts(data.id);
+      if (typeof chart != 'undefined') {
+        chart.setOption(data.opts); 
+      }
+  });
   
 }
