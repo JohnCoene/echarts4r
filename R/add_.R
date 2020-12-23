@@ -2239,9 +2239,10 @@ e_error_bar_ <-  function (e, lower, upper,
   else {    # no name - choose bar or line but not both
     info <- length(unlist(lapply(ser, function(x) grep('bar', x))))
     if (info==0) info <- length(unlist(lapply(ser, function(x) grep('line', x))))
+    if (info==0) info <- length(unlist(lapply(ser, function(x) grep('scatter', x))))
   }
   
-  if (info==0) return(e)    # no bars/lines, nothing to attach to, sorry, bye
+  if (info==0) return(e)    # no bars/lines/scatter, nothing to attach to
   
   # save minimal info to be read by renderErrorBar2
   # renderers.js works in a very isolated environment, so we send data thru sessionStorage
