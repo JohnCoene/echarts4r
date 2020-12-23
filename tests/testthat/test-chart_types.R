@@ -678,7 +678,7 @@ test_that("e_liquid plot has the good data structure and type", {
   )
 })
 
-test_that("e_mark has good data structure", {
+test_that("e_mark_p has good data structure", {
   library(dplyr)
   data(EuStockMarkets)
   dd <- as.data.frame(EuStockMarkets) %>% 
@@ -687,7 +687,7 @@ test_that("e_mark has good data structure", {
   plot <- dd %>%
     e_charts(day) %>%
     e_line(SMI, symbol='none') %>%
-    e_mark( type='line', serie_index=1,
+    e_mark_p( type='line', serie_index=1,
             data=list(list(xAxis=dd$day[10], yAxis=dd$SMI[10]),
                       list(xAxis=dd$day[37], yAxis=dd$SMI[37]) 
     ))

@@ -58,7 +58,7 @@ sudo su - -c "R -e \"install.packages('echarts4r', repos = 'https://cran.rstudio
 sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""
 ```
 
-## Callbacks
+## Events
 
 Get data from shiny with the following:
 
@@ -91,6 +91,7 @@ Interact with the charts without redrawing (proxies):
 * `e_showtip_p` and `e_hidetip_p` - to Show or hide the tooltip.
 * `e_draw_p` to draw the chart, see function documentation for examples.
 * `e_focus_adjacency` and `e_unfocus_adjacency` - to focus or unfocus on adjacent nodes (networks).
+* `e_mark_p` to dynamically mark points, lines, and areas.
 
 See the example below and the various proxies documentation.
 

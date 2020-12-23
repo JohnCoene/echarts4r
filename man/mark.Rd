@@ -108,6 +108,7 @@ iris \%>\%
     itemStyle = list(color = "lightblue")
   ) \%>\%
   e_mark_area(serie = "virginica")
+
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-line.markPoint}{Additional point arguments},
