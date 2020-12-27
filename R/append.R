@@ -227,7 +227,8 @@ e_merge <- function (proxy) {
 	if (missing(proxy)) stop("missing proxy", call. = FALSE)
 	
 	proxy$session$sendCustomMessage("e_merge_p", 
-				list(id = proxy$id, opts = proxy$chart$x$opts))
+    list(id = proxy$id, opts = proxy$chart$x$opts)
+  )
 	return(proxy)
 }
 

@@ -75,6 +75,16 @@ e_geo_3d_ <- function(e, serie = NULL, color = NULL, type = "world", rm_x = TRUE
     e$x$opts$baseOption$geo3D <- series
   }
 
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-gl",
+    version = "1.1.2",
+    src = c(file = path),
+    script = "echarts-gl.min.js"
+  )
+
+  e$dependencies <- append(e$dependencies, list(dep))
+
   if (type == "world") {
     # add dependency
     path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")

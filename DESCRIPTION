@@ -1,11 +1,11 @@
 Package: echarts4r
 Title: Create Interactive Graphs with 'Echarts JavaScript' Version 4
-Date: 2020-10-15
+Date: 2020-12-20
 Version: 0.3.4
 Authors@R: c(
   person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre", "cph")), 
   person(given = "Wei", family = "Su", email = "swsoyee@gmail.com", role = "ctb"),
-  person("Helgasoft", ".com", email="contact@helgasoft.com", role = "ctb"),
+  person(family = "Helgasoft", email="contact@helgasoft.com", role = "ctb"),
   person("Xianying", "Tan", email = "shrektan@126.com", role = "ctb", comment = c(ORCID = "0000-0002-6072-3521"))
   )
 Description: Easily create interactive charts by leveraging the 'Echarts Javascript' library which includes
