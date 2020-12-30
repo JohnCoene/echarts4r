@@ -2,7 +2,7 @@
 % Please edit documentation in R/append.R
 \name{e_merge}
 \alias{e_merge}
-\title{Merge options in chart, used in e_mark}
+\title{Merge options in chart, used in e_mark_p}
 \usage{
 e_merge(proxy)
 }
@@ -10,5 +10,8 @@ e_merge(proxy)
 \item{proxy}{An echarts4r proxy as returned by \code{\link{echarts4rProxy}}.}
 }
 \description{
-Merge options in chart, used in e_mark
+Merge options in chart, used in e_mark_p
+}
+\author{
+helgasoft.com
 }

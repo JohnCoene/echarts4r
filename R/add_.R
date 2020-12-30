@@ -2150,13 +2150,25 @@ e_band2_ <- function(e, lower, upper, name=NULL, legend=TRUE,
      stop("must pass lower, or upper", call. = FALSE)
    if (coord_system != "cartesian2d")
      stop("only cartesian2d supported", call. = FALSE)
-   
-   args <- list(...)
+
+   opts <- function(name) {
+   	list(name = name, type = "custom", yAxisIndex = y_index, 
+                    xAxisIndex = x_index, coordinateSystem = coord_system, 
+                    itemStyle = itemStyle, 
+                    renderItem = htmlwidgets::JS('riPolygon'),
+                    encode = list(x = 0, y = list(1, 2)), ...)
+   }
    
    for (i in seq_along(e$x$data)) {
-     vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, 
-                                        lower, upper)
-     e_serie <- list(data = vector)
+	#vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, lower, upper)
+	#e_serie <- list(data = vector)   # obsolete version with separate lower/upper, changed below
+	l1 <- e$x$data[[i]] %>% dplyr::select(e$x$mapping$x, lower)
+	l2 <- e$x$data[[i]] %>% dplyr::select(e$x$mapping$x, upper)
+	l2 <- l2[order(nrow(l2):1),]  		# reverse
+	colnames(l2) <- colnames(l1)		# needed for bind_rows
+	poly <- .build_data2(dplyr::bind_rows(list(l1), list(l2)), e$x$mapping$x, lower)
+	e_serie <- list(data = poly)		# all points in single list
+		
      if (y_index != 0) 
        e <- .set_y_axis(e, upper, y_index, i)
      if (x_index != 0) 
@@ -2166,37 +2178,23 @@ e_band2_ <- function(e, lower, upper, name=NULL, legend=TRUE,
      
      if (!e$x$tl) {
        
-       opts <- list(name = nm, type = "custom", yAxisIndex = y_index, 
-                    xAxisIndex = x_index, coordinateSystem = coord_system, 
-                    itemStyle = itemStyle, 
-                    renderItem = htmlwidgets::JS('renderBand'),
-                    encode = list(x = 0, y = list(1, 2)), ...)
+       e_serie <- append(opts(nm), e_serie)   # data is used for Y-sizing only, renderItem is used for plot
        
-       e_serie <- append(opts, e_serie)   # data after renderItem, data used for Y-sizing only
-       
-       if (isTRUE(legend)) 
-         e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
        e$x$opts$series <- append(e$x$opts$series, list(e_serie))
      }
      else {
-       if (isTRUE(legend)) 
-         e$x$opts$legend$data <- append(e$x$opts$legend$data, 
-                                        list(nm))
        e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, 
                                               list(e_serie))
      }
+     if (isTRUE(legend)) 
+       e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
    }
    if (isTRUE(e$x$tl)) {
-     series_opts <- list(name = name, type = "custom", 
-                         yAxisIndex = y_index, xAxisIndex = x_index, coordinateSystem = coord_system, 
-                         itemStyle = itemStyle, 
-                         renderItem = htmlwidgets::JS('renderBand'),
-                         encode = list(x = 0, y = list(1, 2)), ...)
      
+     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, 
+                                          list(opts(name)))
      if (isTRUE(legend)) 
        e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
-     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, 
-                                          list(series_opts))
    }
    path <- system.file("htmlwidgets/lib/echarts-4.8.0/custom", package = "echarts4r")
    dep <- htmltools::htmlDependency(name = "echarts-renderers", version = "1.0.2", src = c(file = path), script = "renderers.js")
@@ -2211,7 +2209,7 @@ e_error_bar_ <-  function (e, lower, upper,
                             name = NULL, legend = FALSE, y_index = 0, 
                             x_index = 0, coord_system = "cartesian2d",
                             itemStyle = list(borderWidth = 1.5), 
-                            renderer = 'renderErrorBar2', ...) 
+                            renderer = 'riErrorBar', hwidth = 6, ...) 
 {
   if (missing(e)) 
     stop("must pass e", call. = FALSE)
@@ -2244,14 +2242,22 @@ e_error_bar_ <-  function (e, lower, upper,
   
   if (info==0) return(e)    # no bars/lines/scatter, nothing to attach to
   
-  # save minimal info to be read by renderErrorBar2
+  # save minimal info to be read by the renderer
   # renderers.js works in a very isolated environment, so we send data thru sessionStorage
   # info is last barGap, last barCategoryGap, number of bars
-  info <- c(lbg, lcg, as.character(info))  
+  info <- c(lbg, lcg, as.character(info), hwidth)  
   
   info <- paste0("sessionStorage.setItem('ErrorBar.oss','"
                  ,jsonlite::toJSON(info),"'); ", renderer)
   renderJS <- htmlwidgets::JS(info)
+  optbase <- function(name) {
+    list(name = name, type = "custom", 
+    	yAxisIndex = y_index, xAxisIndex = x_index, 
+    	coordinateSystem = coord_system, 
+        itemStyle = itemStyle,
+        renderItem = renderJS,
+        encode = list(x = 0, y = list(1, 2)), ...)
+  }
 
   for (i in seq_along(e$x$data)) {
     vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, 
@@ -2262,53 +2268,41 @@ e_error_bar_ <-  function (e, lower, upper,
     if (x_index != 0) 
       e <- .set_x_axis(e, x_index, i)
     if (coord_system == "polar") {
-      e_serie$data <- e$x$data[[i]] %>% dplyr::select(lower, 
-                                                      upper) %>% unlist %>% unname %>% as.list
+      e_serie$data <- e$x$data[[i]] %>% dplyr::select(lower, upper) %>% 
+      		unlist %>% unname %>% as.list
     }
     nm <- .name_it(e, ser[[i]]$name, name, i)
     
     if (!e$x$tl) {
       
-      opts <- list(name = nm, type = "custom", 
-                   yAxisIndex = y_index, xAxisIndex = x_index, 
-                   coordinateSystem = coord_system, 
-                   itemStyle = itemStyle,
-                   renderItem = renderJS,
-                   encode = list(x = 0, y = list(1, 2)), ...)
+      opts <- optbase(nm)
       if (!("z" %in% names(args))) opts$z <- 3
       if (!("color" %in% names(args))) opts$color <- 'black'  # set, or it will blend with main bar
       
       e_serie <- append(e_serie, opts)
-      if (isTRUE(legend)) 
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
       e$x$opts$series <- append(e$x$opts$series, list(e_serie))
     }
     else {
-      if (isTRUE(legend)) 
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
       e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, 
                                              list(e_serie))
     }
+    if (isTRUE(legend)) 
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
   }
   if (isTRUE(e$x$tl)) {
-    series_opts <- list(type = "custom", 
-                        yAxisIndex = y_index, xAxisIndex = x_index, 
-                        coordinateSystem = coord_system, 
-                        itemStyle = itemStyle,
-                        renderItem = renderJS,
-                        encode = list(x = 0, y = list(1, 2)), ...)
-    if (!is.null(name)) series_opts$name <- name
+    series_opts <- optbase(name)
+    #if (!is.null(name)) series_opts$name <- name
     if (!("z" %in% names(args))) series_opts$z <- 3
     if (!("color" %in% names(args))) series_opts$color <- 'black'  # set, or it will blend with main bar
     
-    if (isTRUE(legend) && !is.null(name)) 
-      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, 
                                          list(series_opts))
+    if (isTRUE(legend) && !is.null(name)) 
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
   }
   path <- system.file("htmlwidgets/lib/echarts-4.8.0/custom", package = "echarts4r")
-  dep <- htmltools::htmlDependency(name = "echarts-renderers", version = "1.0.2", src = c(file = path), script = "renderers.js")
-  
+  dep <- htmltools::htmlDependency(name = "echarts-renderers", version = "1.0.2", src = c(file = path), script = "renderers.js")  
   e$dependencies <- append(e$dependencies, list(dep))
+  
   e %>% e_x_axis(type = 'category')     # wont work with type 'value'
 }

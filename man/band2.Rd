@@ -56,3 +56,6 @@ as.data.frame(EuStockMarkets) \%>\% dplyr::slice_head(n=200) \%>\%
   e_datazoom(start = 50) 
 
 }
+\author{
+helgasoft.com
+}

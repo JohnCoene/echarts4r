@@ -27,7 +27,8 @@ e_error_bar_(
   x_index = 0,
   coord_system = "cartesian2d",
   itemStyle = list(borderWidth = 1.5),
-  renderer = "renderErrorBar2",
+  renderer = "riErrorBar",
+  hwidth = 6,
   ...
 )
 }
@@ -35,7 +36,7 @@ e_error_bar_(
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{lower, upper}{Lower and upper error bands.}
+\item{lower, upper}{Lower and upper error band points.}
 
 \item{name}{name of the serie.}
 
@@ -51,7 +52,9 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{itemStyle}{mostly used for borderWidth, default 1.5}
 
-\item{renderer}{mame of render function from renderers.js}
+\item{renderer}{name of render function, default 'riErrorBar'}
+
+\item{hwidth}{width of horizontal bar ends in pixels, default 6}
 }
 \description{
 Add error bars.
@@ -67,7 +70,7 @@ df <- data.frame(
 df \%>\%
   e_charts(x) \%>\%
   e_bar(y) \%>\%
-  e_error_bar(lower, upper)
+  e_error_bar(lower, upper, color='blue')
 
 # timeline
 df <- data.frame(

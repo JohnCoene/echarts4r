@@ -205,11 +205,17 @@ e_execute <- function(proxy) {
   if (missing(proxy)) {
     stop("missing proxy", call. = FALSE)
   }
-
-  proxy$session$sendCustomMessage(
-    "e_send_p",
-    list(id = proxy$id, opts = proxy$chart$x$opts)
-  )
+  # proxy$session$sendCustomMessage("e_send_p", list(id = proxy$id, opts = proxy$chart$x$opts) )  # prev.version
+  
+  plist <- list(id = proxy$id, opts = proxy$chart$x$opts)
+  # create web dependencies for JS if present
+  if (!is.null(proxy$chart$dependencies)) {
+    deps <- list(shiny::createWebDependency(
+      htmltools::resolveDependencies( proxy$chart$dependencies )[[1]]
+    ))
+    plist$deps <- deps
+  }
+  proxy$session$sendCustomMessage('e_send_p', plist )
   return(proxy)
 }
 
@@ -217,18 +223,19 @@ e_execute <- function(proxy) {
 #' @export
 e_execute_p <- e_execute
 
-#' Merge options in chart, used in e_mark
+#' Merge options in chart, used in e_mark_p
+#' @author helgasoft.com
 #' 
 #' @inheritParams e_highlight_p
 #'
 #' @name e_merge
 #' @export
 e_merge <- function (proxy) {   
-	if (missing(proxy)) stop("missing proxy", call. = FALSE)
+  if (missing(proxy)) stop("missing proxy", call. = FALSE)
 	
-	proxy$session$sendCustomMessage("e_merge_p", 
+  proxy$session$sendCustomMessage("e_merge_p", 
     list(id = proxy$id, opts = proxy$chart$x$opts)
   )
-	return(proxy)
+  return(proxy)
 }
 

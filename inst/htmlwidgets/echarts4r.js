@@ -363,12 +363,18 @@ if (HTMLWidgets.shinyMode) {
       var chart = get_e_charts(data.id);
       if (typeof chart != 'undefined') {
         let opts = chart.getOption();
+        // add JS dependencies if any
+        if (data.deps) Shiny.renderDependencies(data.deps);
 
         // add series
         if(!opts.series)
           opts.series = [];
 
         data.opts.series.forEach(function(serie){
+          // for some reason JS_EVAL does not survive passing thru echarts4rProxy
+          // below is a harmless remedy, works for e_band2 or others which use renderItem
+          if (typeof serie.renderItem == 'string') serie.renderItem = eval(serie.renderItem);
+          
           opts.series.push(serie);
         })
 
@@ -422,9 +428,12 @@ if (HTMLWidgets.shinyMode) {
       }
   });
 
+  /*
+  called by e_merge(), add e_mark_p to serie
+  author: helgasoft.com
+  */
   Shiny.addCustomMessageHandler('e_merge_p',
     function(data) {    
-      // called by e_merge, add marks to serie
       var chart = get_e_charts(data.id);
       if (typeof chart != 'undefined') {
         chart.setOption(data.opts); 

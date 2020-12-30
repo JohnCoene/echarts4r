@@ -1,4 +1,5 @@
-// render error bars and bands
+//  JS renderers for error bars, bands, etc.
+
 //   the original - works for non-grouped bars only
 function renderErrorBar(params, api) {
   var xValue = api.value(0);
@@ -39,9 +40,22 @@ function renderErrorBar(params, api) {
 
 	
 /*
-  added support for grouped bars, barGap and barCategoryGap by helgasoft.com
+  added ErrorBar support for grouped bars, barGap and barCategoryGap
+  author: helgasoft.com
+     Notes:	
+  Prefix 'ri' stands for 'renderItem' function.
+  Error bars can have chart bars, lines and scatter points as "hosts".
+  It's convenient to "attach" error bars to their related chart bars	
+  so they'll show/hide together when user clicks on a legend button.	
+  This is done by having the same name for error and chart bars.	
+  Default legend = FALSE, since we'll have only chart bars in legend.	
+  Error bars will inherit color from their chart bar, blending with them.
+  Therefore it is preferable to set a different color, like so -
+  e_error_bar(..., color='blue'). Black is now set as default color.
+  
 	To test in R:
-  grps <- 5; rpt <- grps*2
+  grps <- 5    # customizable number of groups
+  rpt <- grps*2
   df <- data.frame('Category' = c(rep(LETTERS[1:grps], each=rpt)),
     'Xaxis' = rep(paste(rep(LETTERS[1:grps], each=2), 1:grps*2, sep='.'), grps*rpt/(grps*2)), 
     'Yaxis' = 50 * abs(rnorm(grps*rpt))) %>%
@@ -53,18 +67,19 @@ function renderErrorBar(params, api) {
     e_error_bar(Lower, Upper) %>%
     e_datazoom(start = 50)
 */
-function renderErrorBar2(params, api) {
+function riErrorBar(params, api) {
 
-  // oss is [last.barGap, last.barCategoryGap, totSeries]
+  // input oss contains 
+  //   [last.barGap, last.barCategoryGap, series.count, ends.width]
   let oss = JSON.parse(sessionStorage.getItem('ErrorBar.oss'));
-  if (oss===null || !Object.keys(oss).length) return null;   // cant work without it
+  if (oss===null || !Object.keys(oss).length) return null;   // needs 4 input values
 
   let totSeries = Number(oss[2]);
 
   let xValue = api.value(0);
   let highPoint = api.coord([xValue, api.value(1)]);
   let lowPoint = api.coord([xValue, api.value(2)]);
-  let halfWidth = api.size([1, 0])[0] * 0.1;
+  let endsWidth = Number(oss[3]);  //api.size([1, 0])[0] * 0.1;
 	
   let csil = api.currentSeriesIndices().length / 2;
 	// idx is index of related main bar
@@ -83,7 +98,7 @@ function renderErrorBar2(params, api) {
 	  	api.currentSeriesIndices().some( (item, index) => {
 	  		if (item == idx) {
 	  			highPoint[0] += barLayouts[mbar].offsetCenter;
-	  			halfWidth = barLayouts[mbar].width /2;
+	  			// endsWidth = barLayouts[mbar].width /2;
 	  			return true;
 	  		}
 	  		mbar++;
@@ -102,8 +117,8 @@ function renderErrorBar2(params, api) {
       children: [{
           type: 'line',
           shape: {
-              x1: highPoint[0] - halfWidth, y1: highPoint[1],
-              x2: highPoint[0] + halfWidth, y2: highPoint[1]
+              x1: highPoint[0] - endsWidth, y1: highPoint[1],
+              x2: highPoint[0] + endsWidth, y2: highPoint[1]
           },
           style: style
       }, {
@@ -116,17 +131,20 @@ function renderErrorBar2(params, api) {
       }, {
           type: 'line',
           shape: {
-              x1: lowPoint[0] - halfWidth, y1: lowPoint[1],
-              x2: lowPoint[0] + halfWidth, y2: lowPoint[1]
+              x1: lowPoint[0] - endsWidth, y1: lowPoint[1],
+              x2: lowPoint[0] + endsWidth, y2: lowPoint[1]
           },
           style: style
       }]
   };
 }
 
-
-// renderer for e_band2
-function renderBand(params, api) {
+/*
+  renderItem function for Polygon
+  author: helgasoft.com
+  used also by e_band2
+*/
+function riPolygon(params, api) {
     if (params.context.rendered) return;
     params.context.rendered = true;
     
@@ -134,11 +152,8 @@ function renderBand(params, api) {
     let points = [];
     let i = 0;
     while (typeof api.value(0,i) != 'undefined' && !isNaN(api.value(0,i))) {
-    	points.push(api.coord([api.value(0,i), api.value(1,i)]));  // lo
+    	points.push(api.coord([api.value(0,i), api.value(1,i)]));
     	i++;
-    }
-    for (var k = i-1; k > -1 ; k--) {
-        points.push(api.coord([api.value(0,k), api.value(2,k)]));  // up
     }
     var color = api.visual('color');
 

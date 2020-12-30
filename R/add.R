@@ -3548,6 +3548,7 @@ e_band.echarts4rProxy <- function(e, min, max, stack = "confidence-band", symbol
     legend = legend,
     ...
   )
+  return(e)
 }
 
 #' Correlation
@@ -3635,10 +3636,17 @@ e_correlations.echarts4rProxy <- function(e, order = NULL, visual_map = TRUE, ..
 #' Add error bars.
 #'
 #' @inheritParams e_bar
-#' @param lower,upper Lower and upper error bands.
-#' @param renderer mame of render function from renderers.js
+#' @param lower,upper Lower and upper error band points.
+#' @param renderer name of render function, default 'riErrorBar'
 #' @param itemStyle  mostly used for borderWidth, default 1.5
+#' @param hwidth  width of error bar in pixels, default 6
 #'
+#' @details under echarts4rProxy, it needs a bar/line/scatter to attach to, like so:
+#'   echarts4rProxy('plot', data=df, x=date) %>% 
+#'     e_line(open) %>% 
+#'     e_error_bar(low, high, hwidth=10, color='red') %>% 
+#'     e_execute()
+#' 
 #' @examples
 #' df <- data.frame(
 #'   x = factor(c(1, 2)),
@@ -3650,7 +3658,7 @@ e_correlations.echarts4rProxy <- function(e, order = NULL, visual_map = TRUE, ..
 #' df %>%
 #'   e_charts(x) %>%
 #'   e_bar(y) %>%
-#'   e_error_bar(lower, upper)
+#'   e_error_bar(lower, upper, color='blue')
 #'
 #' # timeline
 #' df <- data.frame(
@@ -3666,6 +3674,7 @@ e_correlations.echarts4rProxy <- function(e, order = NULL, visual_map = TRUE, ..
 #'   e_charts(x, timeline = TRUE) %>%
 #'   e_bar(y) %>%
 #'   e_error_bar(lower, upper)
+#'   
 #' @rdname errorbar
 #' @export
 e_error_bar <- function(e, lower, upper, name = NULL, legend = FALSE, y_index = 0, x_index = 0,
@@ -3722,6 +3731,7 @@ e_error_bar.echarts4rProxy <- function(e, lower, upper, name = NULL, legend = FA
 #' @param itemStyle  mostly used for borderWidth, default 0.5
 #' @param ... additional options
 #'
+#' @author helgasoft.com
 #' @examples
 #' data(EuStockMarkets)
 #' as.data.frame(EuStockMarkets) %>% dplyr::slice_head(n=200) %>% 
@@ -3773,4 +3783,5 @@ e_band2.echarts4rProxy <- function(e, lower, upper, ...) {
     deparse(substitute(upper)),
     ...
   )
+  return(e)
 }

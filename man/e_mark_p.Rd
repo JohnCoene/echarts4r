@@ -3,7 +3,7 @@
 \name{e_mark_p}
 \alias{e_mark_p}
 \alias{e_mark_p_}
-\title{Mark}
+\title{Marks}
 \usage{
 e_mark_p(e, type, serie_index, data, ...)
 
@@ -16,17 +16,17 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{type}{Type of mark: 'point','line' or 'area', defaults to 'point'.}
 
 \item{serie_index}{Single index of serie to mark on, defaults to 1.
-Proxy doesn't know series' names, so it only uses index.}
+Proxy doesn't know serie's name, so only the index can be used.}
 
 \item{data}{Location of point, line or area, defaults to NULL.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{
-Mark points, lines, and areas with a proxy ([echarts4rProxy()]).
+Mark points, lines, and areas with Shiny proxy \code{\link{echarts4rProxy}}.
 }
 \details{
-Allows the three type of marks to work with [echarts4rProxy()]
+Allows the three type of marks to work with \code{\link{echarts4rProxy}}. Should be followed by \code{\link{e_merge}} instead of \code{\link{e_execute}}.
 }
 \examples{
 library(shiny)
@@ -107,4 +107,9 @@ server <- function(input, output) {
 if (interactive())
   shinyApp(ui, server)
 
+}
+\seealso{
+\href{https://echarts.apache.org/en/option.html#series-line.markPoint}{Additional point arguments},
+ \href{https://echarts.apache.org/en/option.html#series-line.markLine}{Additional line arguments},
+ \href{https://echarts.apache.org/en/option.html#series-line.markArea}{Additional area arguments}
 }

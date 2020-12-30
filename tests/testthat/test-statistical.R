@@ -49,11 +49,11 @@ test_that("e_band2 plot has good data structure and type", {
   
   expect_equal(
     plot$x$opts$series[[1]]$renderItem,
-    htmlwidgets::JS('renderBand')
+    htmlwidgets::JS('riPolygon')
   )
   expect_equal(
     plot$x$opts$series[[1]]$data[[2]]$value,
-    c(2, 3, 4)
+    c(2, 3)
   )
 })
 
@@ -87,7 +87,7 @@ test_that("e_correlations plot has the good data structure and type", {
   )
 })
 
-test_that("e_error_bar plot has the good data structure and type", {
+test_that("e_error_bar plot has good data structure and type", {
   df <- data.frame(
     x = factor(c(1, 2)),
     y = c(1, 5),
@@ -116,7 +116,7 @@ test_that("e_error_bar plot has the good data structure and type", {
   )
   expect_equal(
     plot$x$opts$series[[2]]$renderItem,
-    htmlwidgets::JS("sessionStorage.setItem('ErrorBar.oss','[\"\",\"\",\"1\"]'); renderErrorBar2")
+    htmlwidgets::JS("sessionStorage.setItem('ErrorBar.oss','[\"\",\"\",\"1\",\"6\"]'); riErrorBar")
   )
 })
 
