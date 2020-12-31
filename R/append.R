@@ -193,49 +193,40 @@ e_remove_serie_p <- function(proxy, serie_name = NULL, serie_index = NULL) {
 #' @export
 e_remove_serie <- e_remove_serie_p
 
-#' Send
+#' Execute
 #'
-#' Send new series to chart.
+#' Executes a \code{\link{echarts4rProxy}} command
 #'
 #' @inheritParams e_highlight_p
+#' @param cmd Name of command, default is 'e_send_p'.
+#'
+#' @details Currently two commands are supported. They are related to parameter notMerge of \href{https://echarts.apache.org/en/api.html#echartsInstance.setOption}{setOption}.\cr
+#'   'e_send_p' is used to send new series to a chart (notMerge=true)\cr
+#'   'e_merge_p' is used to add marks(\code{\link{e_mark_p}}) to a serie (notMerge=false)\cr
 #'
 #' @name e_execute
 #' @export
-e_execute <- function(proxy) {
-  if (missing(proxy)) {
+e_execute <- function(proxy, cmd='e_send_p') {
+  if (missing(proxy))
     stop("missing proxy", call. = FALSE)
-  }
-  # proxy$session$sendCustomMessage("e_send_p", list(id = proxy$id, opts = proxy$chart$x$opts) )  # prev.version
+  if (!"echarts4rProxy" %in% class(proxy)) 
+    stop("must pass echarts4rProxy object", call. = FALSE)
   
   plist <- list(id = proxy$id, opts = proxy$chart$x$opts)
-  # create web dependencies for JS if present
+  
+  # create web dependencies for JS, if present
   if (!is.null(proxy$chart$dependencies)) {
     deps <- list(shiny::createWebDependency(
       htmltools::resolveDependencies( proxy$chart$dependencies )[[1]]
     ))
     plist$deps <- deps
   }
-  proxy$session$sendCustomMessage('e_send_p', plist )
+  
+  proxy$session$sendCustomMessage(cmd, plist )
   return(proxy)
 }
 
 #' @rdname e_execute
 #' @export
 e_execute_p <- e_execute
-
-#' Merge options in chart, used in e_mark_p
-#' @author helgasoft.com
-#' 
-#' @inheritParams e_highlight_p
-#'
-#' @name e_merge
-#' @export
-e_merge <- function (proxy) {   
-  if (missing(proxy)) stop("missing proxy", call. = FALSE)
-	
-  proxy$session$sendCustomMessage("e_merge_p", 
-    list(id = proxy$id, opts = proxy$chart$x$opts)
-  )
-  return(proxy)
-}
 

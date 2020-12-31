@@ -26,7 +26,7 @@ Proxy doesn't know serie's name, so only the index can be used.}
 Mark points, lines, and areas with Shiny proxy \code{\link{echarts4rProxy}}.
 }
 \details{
-Allows the three type of marks to work with \code{\link{echarts4rProxy}}. Should be followed by \code{\link{e_merge}} instead of \code{\link{e_execute}}.
+Allows the three type of marks to work with \code{\link{echarts4rProxy}}. Should be followed by \code{\link{e_execute}}('e_merge_p').
 }
 \examples{
 library(shiny)
@@ -85,7 +85,7 @@ server <- function(input, output) {
 			  itemStyle = list(color='lightblue'),
 			  label = list(formatter='X-area', position='middle')
 		) \%>\%
-		e_merge()
+		e_execute('e_merge_p')
  })
 
  react <- eventReactive(input$tln, {

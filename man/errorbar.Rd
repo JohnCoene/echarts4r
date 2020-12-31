@@ -54,10 +54,17 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{renderer}{name of render function, default 'riErrorBar'}
 
-\item{hwidth}{width of horizontal bar ends in pixels, default 6}
+\item{hwidth}{width of error bar in pixels, default 6}
 }
 \description{
 Add error bars.
+}
+\details{
+under echarts4rProxy, it needs a bar/line/scatter to attach to, like so:
+  echarts4rProxy('plot', data=df, x=date) %>% 
+    e_line(open) %>% 
+    e_error_bar(low, high, hwidth=10, color='red') %>% 
+    e_execute()
 }
 \examples{
 df <- data.frame(
@@ -86,4 +93,5 @@ df \%>\%
   e_charts(x, timeline = TRUE) \%>\%
   e_bar(y) \%>\%
   e_error_bar(lower, upper)
+  
 }

@@ -208,7 +208,7 @@ e_mark_area <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_p
 #' Proxy doesn't know serie's name, so only the index can be used.
 #' @param data Location of point, line or area, defaults to NULL.
 #'
-#' @details Allows the three type of marks to work with \code{\link{echarts4rProxy}}. Should be followed by \code{\link{e_merge}} instead of \code{\link{e_execute}}.
+#' @details Allows the three type of marks to work with \code{\link{echarts4rProxy}}. Should be followed by \code{\link{e_execute}}('e_merge_p').
 #' 
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-line.markPoint}{Additional point arguments},
 #'  \href{https://echarts.apache.org/en/option.html#series-line.markLine}{Additional line arguments},
@@ -271,7 +271,7 @@ e_mark_area <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_p
 #' 			  itemStyle = list(color='lightblue'),
 #' 			  label = list(formatter='X-area', position='middle')
 #' 		) %>%
-#' 		e_merge()
+#' 		e_execute('e_merge_p')
 #'  })
 #' 
 #'  react <- eventReactive(input$tln, {

@@ -3,15 +3,22 @@
 \name{e_execute}
 \alias{e_execute}
 \alias{e_execute_p}
-\title{Send}
+\title{Execute}
 \usage{
-e_execute(proxy)
+e_execute(proxy, cmd = "e_send_p")
 
-e_execute_p(proxy)
+e_execute_p(proxy, cmd = "e_send_p")
 }
 \arguments{
 \item{proxy}{An echarts4r proxy as returned by \code{\link{echarts4rProxy}}.}
+
+\item{cmd}{Name of command, default is 'e_send_p'.}
 }
 \description{
-Send new series to chart.
+Executes a \code{\link{echarts4rProxy}} command
+}
+\details{
+Currently two commands are supported. They are related to parameter notMerge of \href{https://echarts.apache.org/en/api.html#echartsInstance.setOption}{setOption}.\cr
+  'e_send_p' is used to send new series to a chart (notMerge=true)\cr
+  'e_merge_p' is used to add marks(\code{\link{e_mark_p}}) to a serie (notMerge=false)\cr
 }
