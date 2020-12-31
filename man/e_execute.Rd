@@ -12,13 +12,59 @@ e_execute_p(proxy, cmd = "e_send_p")
 \arguments{
 \item{proxy}{An echarts4r proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{cmd}{Name of command, default is 'e_send_p'.}
+\item{cmd}{Name of command, default is \emph{e_send_p}.}
 }
 \description{
 Executes a \code{\link{echarts4rProxy}} command
 }
 \details{
-Currently two commands are supported. They are related to parameter notMerge of \href{https://echarts.apache.org/en/api.html#echartsInstance.setOption}{setOption}.\cr
-  'e_send_p' is used to send new series to a chart (notMerge=true)\cr
-  'e_merge_p' is used to add marks(\code{\link{e_mark_p}}) to a serie (notMerge=false)\cr
+Currently three commands are supported. They are related to parameter notMerge of \href{https://echarts.apache.org/en/api.html#echartsInstance.setOption}{setOption}.\cr
+  \emph{e_send_p} - to send new series to a chart (notMerge=true)\cr
+  \emph{e_merge_p} - to add marks(\code{\link{e_mark_p}}) to a serie (notMerge=false)\cr
+  \emph{e_replace_p} - to replace all options (notMerge=true)\cr
+}
+\examples{
+library(shiny)
+
+ui <- fluidPage(
+  actionButton("pxy", "Proxy"),
+  echarts4rOutput("plot")
+)
+server <- function(input, output) {
+  data(EuStockMarkets)
+  df <- as.data.frame(EuStockMarkets) \%>\%
+    dplyr::slice_head(n=50) \%>\% dplyr::mutate(day=1:dplyr::n())
+  hsp <- NULL  # store plot as global
+  
+  output$plot <- renderEcharts4r({
+    hsp <<- df \%>\% e_charts(day) \%>\% 
+      e_y_axis(scale=TRUE) \%>\%
+      e_line(CAC)
+    hsp \%>\% e_datazoom(start=50)
+  })
+  
+  observeEvent(input$pxy, {
+    chart <- hsp \%>\%
+      e_grid(height = "33\%", top = "50\%") \%>\%
+      e_grid(height = "32\%") \%>\% 
+      e_bar(SMI, x_index=1, y_index=1, color="green") \%>\%
+      e_y_axis(gridIndex = 1, scale=TRUE) \%>\% 
+      e_x_axis(gridIndex = 1) \%>\%
+      e_tooltip(trigger='axis') \%>\% 
+      e_axis_pointer(link=list(xAxisIndex='all')) \%>\%
+      e_datazoom(start=50, xAxisIndex=c(0,1))
+    # fine tuning
+    chart$x$opts$yAxis[[1]]$show <- NULL
+    chart$x$opts$xAxis[[1]]$show <- FALSE
+    chart$x$opts$yAxis[[2]]$scale <- TRUE
+    
+    proxy <- list(id = 'plot', session = shiny::getDefaultReactiveDomain(), 
+                  chart = chart)
+    class(proxy) <- "echarts4rProxy"
+    proxy \%>\% e_execute('e_replace_p')
+ })
+}
+if (interactive())
+  shinyApp(ui, server)
+
 }

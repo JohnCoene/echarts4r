@@ -52,9 +52,9 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{itemStyle}{mostly used for borderWidth, default 1.5}
 
-\item{renderer}{name of render function, default 'riErrorBar'}
+\item{renderer}{name of render function, default \emph{riErrorBar}}
 
-\item{hwidth}{width of error bar in pixels, default 6}
+\item{hwidth}{half width of error bar in pixels, default 6}
 }
 \description{
 Add error bars.

@@ -429,8 +429,8 @@ if (HTMLWidgets.shinyMode) {
   });
 
   /*
-  helps adding e_mark_p to serie
-  author: helgasoft.com
+    Helps adding e_mark_p to serie
+    author: helgasoft.com
   */
   Shiny.addCustomMessageHandler('e_merge_p',
     function(data) {    
@@ -439,6 +439,20 @@ if (HTMLWidgets.shinyMode) {
         // add JS dependencies if any
         if (data.deps) Shiny.renderDependencies(data.deps);
         chart.setOption(data.opts);
+      }
+  });
+
+  /*
+    Replace all options
+    author: helgasoft.com
+  */
+  Shiny.addCustomMessageHandler('e_replace_p',
+    function(data) {    
+      var chart = get_e_charts(data.id);
+      if (typeof chart != 'undefined') {
+        // add JS dependencies if any
+        if (data.deps) Shiny.renderDependencies(data.deps);
+        chart.setOption(data.opts, true);
       }
   });
   

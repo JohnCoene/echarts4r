@@ -3637,9 +3637,9 @@ e_correlations.echarts4rProxy <- function(e, order = NULL, visual_map = TRUE, ..
 #'
 #' @inheritParams e_bar
 #' @param lower,upper Lower and upper error band points.
-#' @param renderer name of render function, default 'riErrorBar'
+#' @param renderer name of render function, default \emph{riErrorBar}
 #' @param itemStyle  mostly used for borderWidth, default 1.5
-#' @param hwidth  width of error bar in pixels, default 6
+#' @param hwidth  half width of error bar in pixels, default 6
 #'
 #' @details under echarts4rProxy, it needs a bar/line/scatter to attach to, like so:
 #'   echarts4rProxy('plot', data=df, x=date) %>% 
