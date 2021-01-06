@@ -247,10 +247,11 @@ e_mark_area <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_p
 #'         data = list(type='average'),
 #'         lineStyle = list(type='dashed', color='cyan')
 #'       ) %>%
-#' 		  e_mark_p(
+#' 		  e_mark_p(    # type='point' by default
 #'         serie_index=2,
-#'         data = list(xAxis=bb$day[60], 
-#'         yAxis=bb$SMI[60], value='pnt')
+#'         data = list(
+#'           list(xAxis=bb$day[60], yAxis=bb$SMI[60], value='pnt'),
+#'           list(coord=c(80, bb$SMI[80]), value='80') )
 #'       ) %>%
 #' 		  e_mark_p(
 #'         type='line', 
@@ -317,6 +318,7 @@ e_mark_p.echarts4rProxy <- function(e, type='point', serie_index=NULL, data=NULL
 e_mark_p_ <- function(e, type, serie_index, data=NULL, ...) {
 	if (missing(e)) stop("must pass e", call. = FALSE)
 	if (missing(type)) stop("must pass type", call. = FALSE)
+  if (is.null(data)) stop("must provide data for marks", call. = FALSE)
 	mtype <- type
 	if (!startsWith(mtype, 'mark'))
 		mtype <- switch(type, 'point'='markPoint', 'line'='markLine', 'area'='markArea')
@@ -325,24 +327,28 @@ e_mark_p_ <- function(e, type, serie_index, data=NULL, ...) {
 	index <- ifelse(is.null(serie_index), 1, as.numeric(serie_index))
 
 	for (i in 1:index) {
-		if (length(e$x$opts$series) < i)
-			e$x$opts$series[[i]] <- list()    # init
-		if (i<index) next
 
 		point <- list(...)
 		
-		if (!is.null(data)) point$data <- list(data)
-
+		# to keep a consistent syntax for multiple points of point/line/area 
+		point$data <- if (mtype=='markPoint') data else list(data)
+		
 		suppressWarnings(    # eval generates redundant warnings
 		if (e$x$tl) {
 			if (mtype %in% names(e$x$opts$options[[i]]$series[[1]])) 
-				eval(parse(text=paste0('e$x$opts$options[[i]]$series[[1]]$',mtype,'$data <- append(e$x$opts$options[[i]]$series[[1]]$',mtype,'$data, point$data)')))
+				eval(parse(text=paste0('e$x$opts$options[[i]]$series[[1]]$',mtype,
+				       '$data <- append(e$x$opts$options[[i]]$series[[1]]$',mtype,'$data, point$data)')))
 			else
 				eval(parse(text=paste0("e$x$opts$options[[i]]$series[[1]]$",mtype," <- point")))
 		}
 		else {
-			if (mtype %in% names(e$x$opts$series[[i]])) 
-				eval(parse(text=paste0('e$x$opts$series[[i]]$',mtype,'$data <- append(e$x$opts$series[[i]]$',mtype,'$data, point$data)')))
+		  if (length(e$x$opts$series) < i)
+		    e$x$opts$series[[i]] <- list()    # init
+		  if (i<index) next
+		  
+		  if (mtype %in% names(e$x$opts$series[[i]])) 
+				eval(parse(text=paste0('e$x$opts$series[[i]]$',mtype,
+				       '$data <- append(e$x$opts$series[[i]]$',mtype,'$data, point$data)')))
 			else
 				eval(parse(text=paste0("e$x$opts$series[[i]]$",mtype," <- point")))
 		}

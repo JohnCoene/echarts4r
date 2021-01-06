@@ -61,10 +61,11 @@ server <- function(input, output) {
         data = list(type='average'),
         lineStyle = list(type='dashed', color='cyan')
       ) \%>\%
-		  e_mark_p(
+		  e_mark_p(    # type='point' by default
         serie_index=2,
-        data = list(xAxis=bb$day[60], 
-        yAxis=bb$SMI[60], value='pnt')
+        data = list(
+          list(xAxis=bb$day[60], yAxis=bb$SMI[60], value='pnt'),
+          list(coord=c(80, bb$SMI[80]), value='80') )
       ) \%>\%
 		  e_mark_p(
         type='line', 
