@@ -220,34 +220,26 @@ mtcars %>%
 ## Sunburst
 
 ```{r}
-library(dplyr)
-df <- tibble(
-  name = c("earth", "mars", "venus"), value = c(30, 40, 30),        # 1st level
-  itemStyle = tibble(color = c(NA, 'red', 'blue')),
-  children = list(
-    tibble(name = c("land", "ocean"), value = c(10,20),             # 2nd level
-           children = list(
-             tibble(name = c("forest", "river"), value = c(3,7)),   # 3rd level 
-             tibble(name = c("fish", "kelp"), value = c(10,5),
-                    children = list(
-                      tibble(name = c("shark", "tuna"), value = c(2,6)),  # 4th level 
-                      NULL  # kelp
-                    ))
-           )),
-    tibble(name = c("crater", "valley"), value = c(20,20)),
-    NULL  # venus
-  )
+df <- data.frame(
+  parents = c("","earth", "earth", "mars", "mars", "land", "land", "ocean", "ocean", "fish", "fish", "Everything", "Everything", "Everything"),
+  labels = c("Everything", "land", "ocean", "valley", "crater", "forest", "river", "kelp", "fish", "shark", "tuna", "venus","earth", "mars"),
+  value = c(0, 30, 40, 10, 10, 20, 10, 20, 20, 8, 12, 10, 70, 20)
 )
 
-df %>% 
+# create a tree object
+universe <- data.tree::FromDataFrameNetwork(df)
+
+# use it in echarts4r
+universe %>% 
   e_charts() %>% 
-  e_sunburst() %>% 
-  e_title("Sunburst")
+  e_sunburst()
 ```
 
 ## Tree
 
 ```{r}
+library(tibble)
+
 tree <- tibble(
   name = "earth",        # 1st level
   children = list(
@@ -273,25 +265,7 @@ tree %>%
 ## Treemap
 
 ```{r}
-df <- tibble(
-  name = c("earth", "mars", "venus"), value = c(30, 40, 30),        # 1st level
-  itemStyle = tibble(color = c(NA, 'red', 'blue')),
-  children = list(
-    tibble(name = c("land", "ocean"), value = c(10,20),             # 2nd level
-           children = list(
-             tibble(name = c("forest", "river"), value = c(3,7)),   # 3rd level 
-             tibble(name = c("fish", "kelp"), value = c(10,5),
-                    children = list(
-                      tibble(name = c("shark", "tuna"), value = c(2,6)),  # 4th level 
-                      NULL  # kelp
-                    ))
-           )),
-    tibble(name = c("crater", "valley"), value = c(20,20)),
-    NULL  # venus
-  )
-)
-
-df %>% 
+universe %>% 
   e_charts() %>% 
   e_treemap() %>% 
   e_title("Treemap chart")
