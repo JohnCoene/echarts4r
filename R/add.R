@@ -2163,8 +2163,9 @@ e_surface.echarts4r <- function(e, y, z, bind, name = NULL,
   }
 
   e_surface_(
-    e, deparse(substitute(y)), deparse(substitute(z)), bd,
-    name, rm_x, rm_y, ...
+    e, y = deparse(substitute(y)), z = deparse(substitute(z)), 
+    bind = bd,
+    name = name, rm_x = rm_x, rm_y = rm_y, ...
   )
 }
 

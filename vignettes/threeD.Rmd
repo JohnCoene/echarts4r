@@ -22,6 +22,21 @@ e_common(
 )
 ```
 
+## Surface
+
+```{r}
+data <- expand.grid(
+  x = seq(-3, 3, by = 0.05),
+  y = seq(-3, 3, by = 0.05)
+) %>% 
+  dplyr::mutate(z = sin(x * x + y * y) * x / 3.14)
+
+data %>% 
+  e_charts(x) %>% 
+  e_surface(y, z, wireframe = list(show = FALSE)) %>% 
+  e_visual_map(z)
+```
+
 ## Bar 3D
 
 ```{r}
