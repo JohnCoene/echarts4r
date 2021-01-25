@@ -1,6 +1,6 @@
 Package: echarts4r
 Title: Create Interactive Graphs with 'Echarts JavaScript' Version 4
-Date: 2020-12-20
+Date: 2021-01-25
 Version: 0.3.4
 Authors@R: c(
   person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre", "cph")), 
@@ -33,6 +33,6 @@ Suggests:
     rmarkdown,
     covr,
     data.tree
-RoxygenNote: 7.1.1.9000
+RoxygenNote: 7.1.1
 URL: https://echarts4r.john-coene.com/
 BugReports: https://github.com/JohnCoene/echarts4r/issues/
