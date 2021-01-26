@@ -200,8 +200,13 @@ test_that("e_polar plot has the good data structure and type", {
 
 test_that("e_candle plot has the good data structure and type", {
   date <- c(
-    "2017-01-01", "2017-01-02", "2017-01-03", "2017-01-04", "2017-03-05",
-    "2017-01-06", "2017-01-07"
+    "2017-01-01",
+    "2017-01-02",
+    "2017-01-03",
+    "2017-01-04",
+    "2017-03-05",
+    "2017-01-06",
+    "2017-01-07"
   )
 
   stock <- data.frame(
@@ -530,8 +535,12 @@ test_that("e_river plot has the good data structure and type", {
   expect_equal(
     plot$x$opts$series[[1]]$data,
     list(
-      list(c("2020-10-08"), c("0.2655087"), c("apples")), list(c("2020-10-09"), c("0.3721239"), c("apples")), list(c("2020-10-10"), c("0.5728534"), c("apples")),
-      list(c("2020-10-08"), c("0.9082078"), c("bananas")), list(c("2020-10-09"), c("0.2016819"), c("bananas")), list(c("2020-10-10"), c("0.8983897"), c("bananas"))
+      list(c("2020-10-08"), c("0.2655087"), c("apples")),
+      list(c("2020-10-09"), c("0.3721239"), c("apples")),
+      list(c("2020-10-10"), c("0.5728534"), c("apples")),
+      list(c("2020-10-08"), c("0.9082078"), c("bananas")),
+      list(c("2020-10-09"), c("0.2016819"), c("bananas")),
+      list(c("2020-10-10"), c("0.8983897"), c("bananas"))
     )
   )
   expect_equal(
@@ -681,17 +690,22 @@ test_that("e_liquid plot has the good data structure and type", {
 test_that("e_mark_p has good data structure", {
   library(dplyr)
   data(EuStockMarkets)
-  dd <- as.data.frame(EuStockMarkets) %>% 
-          slice_head(n=50) %>% mutate(day=1:n())
-  
+  dd <- as.data.frame(EuStockMarkets) %>%
+    slice_head(n = 50) %>%
+    mutate(day = 1:n())
+
   plot <- dd %>%
     e_charts(day) %>%
-    e_line(SMI, symbol='none') %>%
-    e_mark_p( type='line', serie_index=1,
-            data=list(list(xAxis=dd$day[10], yAxis=dd$SMI[10]),
-                      list(xAxis=dd$day[37], yAxis=dd$SMI[37]) 
-    ))
-  
+    e_line(SMI, symbol = "none") %>%
+    e_mark_p(
+      type = "line",
+      serie_index = 1,
+      data = list(
+        list(xAxis = dd$day[10], yAxis = dd$SMI[10]),
+        list(xAxis = dd$day[37], yAxis = dd$SMI[37])
+      )
+    )
+
   expect_equal(
     plot$x$opts$series[[1]]$markLine$data[[1]][[1]]$xAxis,
     10

@@ -23,7 +23,7 @@ test_that("get_validate_range works", {
     .get_validate_range(c(1, 2)),
     list(max = 2, min = 1)
   )
-  
+
   expect_equal(
     .get_validate_range(c("a", "c", "b")),
     list(max = "c", min = "a")

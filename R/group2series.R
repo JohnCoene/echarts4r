@@ -6,11 +6,9 @@ map_grps_ <- function(data, timeline = FALSE) {
     splat <- dplyr::group_split(data)
     keys <- dplyr::group_keys(data)[[1]]
     splat <- purrr::map(splat, as.data.frame)
-    names(splat) <- keys 
+    names(splat) <- keys
     data <- splat
-
   } else {
-
     if (inherits(data, "data.frame")) {
       data <- as.data.frame(data)
     } # force data frame

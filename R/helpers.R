@@ -129,7 +129,8 @@ e_get_data <- function(e) {
 #' df <- data.frame(
 #'   x = 1:10,
 #'   y = round(
-#'     runif(10, 1, 100), 2
+#'     runif(10, 1, 100),
+#'     2
 #'   )
 #' )
 #'

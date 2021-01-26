@@ -72,13 +72,37 @@ echarts_build <- function(e) {
 #'
 #' @name init
 #' @export
-e_charts <- function(data, x, width = NULL, height = NULL, elementId = NULL, dispose = TRUE,
-  draw = TRUE, renderer = "canvas", timeline = FALSE, ..., reorder = TRUE) UseMethod("e_charts")
+e_charts <- function(
+  data,
+  x,
+  width = NULL,
+  height = NULL,
+  elementId = NULL,
+  dispose = TRUE,
+  draw = TRUE,
+  renderer = "canvas",
+  timeline = FALSE,
+  ...,
+  reorder = TRUE
+) {
+  UseMethod("e_charts")
+}
 
 #' @rdname init
 #' @export
-e_charts.default <- function(data, x, width = NULL, height = NULL, elementId = NULL, dispose = TRUE,
-  draw = TRUE, renderer = "canvas", timeline = FALSE, ..., reorder = TRUE) {
+e_charts.default <- function(
+  data,
+  x,
+  width = NULL,
+  height = NULL,
+  elementId = NULL,
+  dispose = TRUE,
+  draw = TRUE,
+  renderer = "canvas",
+  timeline = FALSE,
+  ...,
+  reorder = TRUE
+) {
   xmap <- NULL
 
   if (!missing(x)) {
@@ -208,22 +232,54 @@ e_charts.default <- function(data, x, width = NULL, height = NULL, elementId = N
 #' @rdname init
 #' @method e_charts Node
 #' @export
-e_charts.Node <- function(data, x, width = NULL, height = NULL, elementId = NULL, dispose = TRUE,
-  draw = TRUE, renderer = "canvas", timeline = FALSE, ..., reorder = TRUE){
-
+e_charts.Node <- function(
+  data,
+  x,
+  width = NULL,
+  height = NULL,
+  elementId = NULL,
+  dispose = TRUE,
+  draw = TRUE,
+  renderer = "canvas",
+  timeline = FALSE,
+  ...,
+  reorder = TRUE
+) {
   check_installed("data.tree")
-  
-  json <- data.tree::ToListExplicit(data, unname=TRUE)
+
+  json <- data.tree::ToListExplicit(data, unname = TRUE)
   data <- json$children[[1]]$children
 
-  e_charts(data, x, width = width, height = height, elementId = elementId, dispose = dispose,
-    draw = draw, renderer = renderer, timeline = timeline, ..., reorder = reorder)
+  e_charts(
+    data,
+    x,
+    width = width,
+    height = height,
+    elementId = elementId,
+    dispose = dispose,
+    draw = draw,
+    renderer = renderer,
+    timeline = timeline,
+    ...,
+    reorder = reorder
+  )
 }
 
 #' @rdname init
 #' @export
-e_charts_ <- function(data, x = NULL, width = NULL, height = NULL, elementId = NULL, dispose = TRUE,
-  draw = TRUE, renderer = "canvas", timeline = FALSE, ..., reorder = TRUE) {
+e_charts_ <- function(
+  data,
+  x = NULL,
+  width = NULL,
+  height = NULL,
+  elementId = NULL,
+  dispose = TRUE,
+  draw = TRUE,
+  renderer = "canvas",
+  timeline = FALSE,
+  ...,
+  reorder = TRUE
+) {
   xmap <- x
 
   # forward options using x

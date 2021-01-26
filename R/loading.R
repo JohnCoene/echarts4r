@@ -71,8 +71,15 @@
 #'
 #' @rdname loading
 #' @export
-e_show_loading <- function(e, hide_overlay = TRUE, text = "loading", color = "#c23531", text_color = "#000",
-                           mask_color = "rgba(255, 255, 255, 0.8)", zlevel = 0) {
+e_show_loading <- function(
+  e,
+  hide_overlay = TRUE,
+  text = "loading",
+  color = "#c23531",
+  text_color = "#000",
+  mask_color = "rgba(255, 255, 255, 0.8)",
+  zlevel = 0
+) {
   e$x$loading <- TRUE
   e$x$hideWhite <- hide_overlay
   opts <- list(

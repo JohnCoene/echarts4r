@@ -34,9 +34,21 @@
 #' @seealso \code{\link{renderEcharts4rBox}}, \code{\link{echarts4rBoxOutput}}
 #'
 #' @export
-echarts4rBox <- function(data, x, y, text = "", subtext = "", type = c("bar", "line", "scatter", "area", "step"), ...,
-                         color = "#ffffff", text_color = "#ffffff", background_color = "#293c55", step = c("start", "middle", "end"),
-                         title_args = list(), tooltip = list(trigger = "axis")) {
+echarts4rBox <- function(
+  data,
+  x,
+  y,
+  text = "",
+  subtext = "",
+  type = c("bar", "line", "scatter", "area", "step"),
+  ...,
+  color = "#ffffff",
+  text_color = "#ffffff",
+  background_color = "#293c55",
+  step = c("start", "middle", "end"),
+  title_args = list(),
+  tooltip = list(trigger = "axis")
+) {
 
   # for area, keep to use in series opts
   original_type <- type

@@ -218,17 +218,17 @@ e_execute <- function(proxy) {
 e_execute_p <- e_execute
 
 #' Merge options in chart, used in e_mark
-#' 
+#'
 #' @inheritParams e_highlight_p
 #'
 #' @name e_merge
 #' @export
-e_merge <- function (proxy) {   
-	if (missing(proxy)) stop("missing proxy", call. = FALSE)
-	
-	proxy$session$sendCustomMessage("e_merge_p", 
+e_merge <- function(proxy) {
+  if (missing(proxy)) stop("missing proxy", call. = FALSE)
+
+  proxy$session$sendCustomMessage(
+    "e_merge_p",
     list(id = proxy$id, opts = proxy$chart$x$opts)
   )
-	return(proxy)
+  return(proxy)
 }
-

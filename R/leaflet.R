@@ -57,8 +57,12 @@ e_leaflet <- function(e, roam = TRUE, ...) {
 
 #' @rdname leaflet
 #' @export
-e_leaflet_tile <- function(e, template = "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
-                           options = NULL, ...) {
+e_leaflet_tile <- function(
+  e,
+  template = "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
+  options = NULL,
+  ...
+) {
   pkgs <- utils::installed.packages() %>% rownames()
   if (!"leaflet" %in% pkgs) {
     stop("Requires the `leaflet` package installed", call. = FALSE)

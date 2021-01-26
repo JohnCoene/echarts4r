@@ -34,7 +34,7 @@ bay$Var1 <- as.numeric(bay$Var1)
 bay$Var2 <- as.numeric(bay$Var2)
 
 bay %>%  
-  e_charts(Var1) %>% 
+  e_charts(Var1, reorder = FALSE) %>% 
   e_surface(Var2, Freq) %>% 
   e_visual_map(Freq) 
 ```

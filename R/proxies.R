@@ -239,13 +239,18 @@ e_hidetip_p <- function(proxy) {
 #' ui <- fluidPage(
 #'   fluidRow(
 #'     column(
-#'       2, numericInput("index", "Node", value = 3, min = 1, max = 9)
+#'       2,
+#'       numericInput("index", "Node", value = 3, min = 1, max = 9)
 #'     ),
 #'     column(
-#'       2, br(), actionButton("focus", "Focus")
+#'       2,
+#'       br(),
+#'       actionButton("focus", "Focus")
 #'     ),
 #'     column(
-#'       2, br(), actionButton("unfocus", "Unfocus")
+#'       2,
+#'       br(),
+#'       actionButton("unfocus", "Unfocus")
 #'     )
 #'   ),
 #'   fluidRow(

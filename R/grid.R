@@ -222,8 +222,12 @@ e_rm_axis <- function(e, axis = c("x", "y", "z")) {
 
 #' @rdname axis
 #' @export
-e_axis_formatter <- function(style = c("decimal", "percent", "currency"), digits = 0,
-                             locale = NULL, currency = "USD") {
+e_axis_formatter <- function(
+  style = c("decimal", "percent", "currency"),
+  digits = 0,
+  locale = NULL,
+  currency = "USD"
+) {
   if (rstudioapi::isAvailable()) {
     warning("`e_axis_formatter` breaks the plot in RStudio, open it in your browser.", call. = FALSE)
   }

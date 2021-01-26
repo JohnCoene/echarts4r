@@ -51,14 +51,19 @@
 #'   e_charts(x) %>%
 #'   e_scatter_3d(y, z, color, size) %>%
 #'   e_visual_map(
-#'     z, # scale to z
-#'     inRange = list(symbolSize = c(1, 30)), # scale size
+#'     z,
+#'     # scale to z
+#'     inRange = list(symbolSize = c(1, 30)),
+#'     # scale size
 #'     dimension = 3 # third dimension 0 = x, y = 1, z = 2, size = 3
 #'   ) %>%
 #'   e_visual_map(
-#'     z, # scale to z
-#'     inRange = list(color = c("#bf444c", "#d88273", "#f6efa6")), # scale colors
-#'     dimension = 4, # third dimension 0 = x, y = 1, z = 2, size = 3, color = 4
+#'     z,
+#'     # scale to z
+#'     inRange = list(color = c("#bf444c", "#d88273", "#f6efa6")),
+#'     # scale colors
+#'     dimension = 4,
+#'     # third dimension 0 = x, y = 1, z = 2, size = 3, color = 4
 #'     bottom = 300 # padding to avoid visual maps overlap
 #'   )
 #' @seealso \href{https://echarts.apache.org/en/option.html#visualMap}{Additional arguments}
@@ -195,8 +200,12 @@ e_tooltip <- function(e, trigger = c("item", "axis"), formatter = NULL, ...) {
 
 #' @rdname e-tooltip
 #' @export
-e_tooltip_item_formatter <- function(style = c("decimal", "percent", "currency"), digits = 0,
-                                     locale = NULL, currency = "USD") {
+e_tooltip_item_formatter <- function(
+  style = c("decimal", "percent", "currency"),
+  digits = 0,
+  locale = NULL,
+  currency = "USD"
+) {
   if (is.null(locale)) {
     locale <- .get_locale()
   }
@@ -226,8 +235,12 @@ e_tooltip_item_formatter <- function(style = c("decimal", "percent", "currency")
 
 #' @rdname e-tooltip
 #' @export
-e_tooltip_choro_formatter <- function(style = c("decimal", "percent", "currency"), digits = 0,
-                                      locale = NULL, currency = "USD") {
+e_tooltip_choro_formatter <- function(
+  style = c("decimal", "percent", "currency"),
+  digits = 0,
+  locale = NULL,
+  currency = "USD"
+) {
   if (is.null(locale)) {
     locale <- .get_locale()
   }
@@ -253,8 +266,13 @@ e_tooltip_choro_formatter <- function(style = c("decimal", "percent", "currency"
 
 #' @rdname e-tooltip
 #' @export
-e_tooltip_pie_formatter <- function(style = c("decimal", "percent", "currency"), digits = 0,
-                                    locale = NULL, currency = "USD", ...) {
+e_tooltip_pie_formatter <- function(
+  style = c("decimal", "percent", "currency"),
+  digits = 0,
+  locale = NULL,
+  currency = "USD",
+  ...
+) {
   if (is.null(locale)) {
     locale <- .get_locale()
   }
@@ -287,8 +305,12 @@ e_tooltip_pie_formatter <- function(style = c("decimal", "percent", "currency"),
 
 #' @rdname e-tooltip
 #' @export
-e_tooltip_pointer_formatter <- function(style = c("decimal", "percent", "currency"), digits = 0,
-                                        locale = NULL, currency = "USD") {
+e_tooltip_pointer_formatter <- function(
+  style = c("decimal", "percent", "currency"),
+  digits = 0,
+  locale = NULL,
+  currency = "USD"
+) {
   if (is.null(locale)) {
     locale <- .get_locale()
   }
@@ -362,8 +384,10 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), icons = NULL, 
     if (length(icons) < length(e$x$opts$legend$data)) {
       stop(
         "invalid number of icons; ",
-        length(icons), " icons passed but ",
-        length(e$x$opts$legend$data), " legend items."
+        length(icons),
+        " icons passed but ",
+        length(e$x$opts$legend$data),
+        " legend items."
       )
     }
 
@@ -743,8 +767,17 @@ e_axis_pointer <- function(e, ...) {
 #' @seealso \href{https://echarts.apache.org/en/option.html#animation}{Additional arguments}
 #'
 #' @export
-e_animation <- function(e, show = TRUE, threshold = NULL, duration = NULL, easing = NULL, delay = NULL,
-                        duration.update = NULL, easing.update = NULL, delay.update = NULL) {
+e_animation <- function(
+  e,
+  show = TRUE,
+  threshold = NULL,
+  duration = NULL,
+  easing = NULL,
+  delay = NULL,
+  duration.update = NULL,
+  easing.update = NULL,
+  delay.update = NULL
+) {
   if (!e$x$tl) {
     e$x$opts$animation <- show
     e$x$opts$animationThreshold <- threshold

@@ -348,7 +348,8 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   #' recursive json-list traversal, append style on matching level and/or name
   recu <- function(chld, level) {
     if (!is.null(levels)) {
-      idLevel <- unlist(lapply(seq_along(levels),
+      idLevel <- unlist(lapply(
+        seq_along(levels),
         function(x, i) {
           if (level %in% x[[i]]) i
         },
@@ -356,7 +357,8 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
       ))
     }
     if (!is.null(names)) {
-      idName <- unlist(lapply(seq_along(names),
+      idName <- unlist(lapply(
+        seq_along(names),
         function(x, i) {
           if (chld$name %in% x[[i]]) i
         },
@@ -503,7 +505,10 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 .map_lines <- function(e, source.lon, source.lat, target.lon, target.lat, source.name, target.name, value, i) {
   data <- e$x$data[[i]] %>%
     dplyr::select(
-      source.lon, source.lat, target.lon, target.lat
+      source.lon,
+      source.lat,
+      target.lon,
+      target.lat
     ) %>%
     apply(., 1, function(x) {
       x <- unname(x)
@@ -704,9 +709,10 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   return(list(max = max, min = min))
 }
 
-check_installed <- function(pkg){
+check_installed <- function(pkg) {
   has_it <- base::requireNamespace(pkg, quietly = TRUE)
 
-  if(!has_it)
+  if (!has_it) {
     stop(sprintf("This function requires the package {%s}", pkg), call. = FALSE)
+  }
 }

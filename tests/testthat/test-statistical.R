@@ -39,17 +39,17 @@ test_that("e_band plot has the good data structure and type", {
 })
 
 test_that("e_band2 plot has good data structure and type", {
-  df <- data.frame( x=seq(3),  y=c(1, 3, 9),  w=c(3, 4, 3))
+  df <- data.frame(x = seq(3), y = c(1, 3, 9), w = c(3, 4, 3))
   plot <- df %>%
     e_charts(x) %>%
     e_band2(y, w)
-  
+
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
-  
+
   expect_equal(
     plot$x$opts$series[[1]]$renderItem,
-    htmlwidgets::JS('renderBand')
+    htmlwidgets::JS("renderBand")
   )
   expect_equal(
     plot$x$opts$series[[1]]$data[[2]]$value,
@@ -94,15 +94,15 @@ test_that("e_error_bar plot has the good data structure and type", {
     upper = c(1.1, 5.3),
     lower = c(0.8, 4.3)
   )
-  
+
   plot <- df %>%
     e_charts(x) %>%
     e_bar(y) %>%
     e_error_bar(lower, upper)
-  
+
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
-  
+
   expect_equal(
     plot$x$opts$series[[1]]$data,
     list(
@@ -214,9 +214,12 @@ test_that("e_density plot has the good data structure and type", {
   plot <- df %>%
     e_charts() %>%
     e_histogram(y) %>%
-    e_density(y,
-      name = "density", areaStyle = list(opacity = .4),
-      smooth = TRUE, y_index = 1
+    e_density(
+      y,
+      name = "density",
+      areaStyle = list(opacity = .4),
+      smooth = TRUE,
+      y_index = 1
     ) %>%
     e_tooltip()
 
@@ -296,16 +299,24 @@ test_that("e_loess plot has the good data structure and type", {
     unlist(plot$x$opts$series[[1]]$data) - unlist(list(
       list(value = c(108.00000, 22.80000, 18.61000, 13.01598)),
       list(value = c(
-        160.000000, 21.000000, 16.460000, 3.689498
+        160.000000,
+        21.000000,
+        16.460000,
+        3.689498
       )),
       list(value = c(
-        160.000000, 21.000000, 17.020000, 6.118721
+        160.000000,
+        21.000000,
+        17.020000,
+        6.118721
       )),
       list(value = c(225.00, 18.10, 20.22, 20.00)),
-
       list(value = c(258.00000, 21.40000, 19.44000, 16.61644)),
       list(value = c(
-        360.000000, 18.700000, 17.020000, 6.118721
+        360.000000,
+        18.700000,
+        17.020000,
+        6.118721
       )),
       list(value = c(360.00, 14.30, 15.84, 1.00))
     ))
