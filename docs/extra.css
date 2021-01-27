@@ -36,16 +36,15 @@ li>a {
   color: #191919;
 }
 
-.btn-copy-ex{
+.btn-copy-ex:hover{
   background-color: #F72C5B;
   border-color: #081642;
 }
 
-.btn-copy-ex:hover{
+.btn-copy-ex{
   background-color: #081642;
   border-color: #F72C5B;
 }
-
 
 pre {
   box-shadow:
@@ -99,7 +98,12 @@ pre {
 .nav-pills>li.active>a,
 .nav-pills>li.active>a:hover,
 .nav-pills>li.active>a:focus {
-  color: #081642;
+  color: #FFF;
+  background-color: #F72C5B;
+}
+
+#navbar > ul:nth-child(1) > li.dropdown.active.open > ul > li.active > a{
+  color: #FFF;
   background-color: #F72C5B;
 }
 
