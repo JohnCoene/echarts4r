@@ -31,7 +31,7 @@ e_chart(cars, speed) %>%
   e_scatter(dist, symbolSize = 10)
 ```
 
-![](./man/figures/ex.png)
+![](./man/figures/ex1.png)
 
 ## Get it
 
