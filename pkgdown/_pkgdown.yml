@@ -163,12 +163,10 @@ navbar:
       href: index.html
     - icon: fa-balance-scale
       href: LICENSE.html
-    - icon: fa-newspaper-o
+    - icon: fa-newspaper
       href: news/index.html
     - icon: fa-code
       href: "reference/"
-    - icon: fa-lightbulb-o
-      href: articles/development.html
     - text: "Guide"
       menu: 
         - text: "Get Started"
@@ -234,7 +232,7 @@ navbar:
     - text: "Timeline" 
       href: articles/timeline.html
   right:
-    - icon: fa-github fa-lg
+    - icon: fab fa-github fa-lg
       href: https://github.com/JohnCoene/echarts4r
 
 authors:

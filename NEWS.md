@@ -1,3 +1,7 @@
+# echarts4r 0.4.0.9000
+
+- Bump ECharts.js updated from version 4 to 5.
+
 # echarts4r 0.3.4
 
 - Fixed naming of x axis for `e_boxplot`, see [#219](https://github.com/JohnCoene/echarts4r/issues/219)

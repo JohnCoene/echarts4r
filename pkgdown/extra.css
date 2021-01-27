@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway|Ubuntu+Mono');
 
 h1, h2, h3, h4, h5{
-  color: #293c55;
+  color: #081642;
 }
 
 body{
@@ -13,19 +13,19 @@ code{
 }
 
 p>a {
-  color: #B03A5B;
+  color: #F72C5B;
 }
 
 li>a {
-  color: #B03A5B;
+  color: #F72C5B;
 }
 
 .sourceCode>a{
-  color: #293c55;
+  color: #081642;
 }
 
 .st{
-  color: #B03A5B;
+  color: #F72C5B;
 }
 
 .op{
@@ -37,13 +37,13 @@ li>a {
 }
 
 .btn-copy-ex{
-  background-color: #B03A5B;
-  border-color: #293c55;
+  background-color: #F72C5B;
+  border-color: #081642;
 }
 
 .btn-copy-ex:hover{
-  background-color: #293c55;
-  border-color: #B03A5B;
+  background-color: #081642;
+  border-color: #F72C5B;
 }
 
 
@@ -55,55 +55,56 @@ pre {
 }
 
 .navbar-default{
-  border-color: #B03A5B;
-  background-color: #293c55;
+  color: #081642;
+  border-color: #F72C5B;
+  background-color: #FFF;
 }
 
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-    color: #f3f3f3;
-    background-color: #B03A5B;
+  color: #081642;
+  background-color: #F72C5B;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-    color: #d8d8d8;
+  color: #081642;
 }
 
  .navbar-default .navbar-nav .open .dropdown-menu>li>a, .navbar-default .navbar-nav .open .dropdown-menu {
-  border-color: #B03A5B;
-  background-color: #293c55;
+  border-color: #F72C5B;
+  background-color: #FFF;
 }
 
 .navbar-default .navbar-nav > .dropdown > a .caret {
-  color: #999999;
+  color: #081642;
 }
 .navbar-default .navbar-nav > .dropdown > a:hover .caret,
 .navbar-default .navbar-nav > .dropdown > a:focus .caret {
-  color: #B03A5B;
+  color: #F72C5B;
 }
 
 .navbar-default .navbar-nav>.open>a,
 .navbar-default .navbar-nav>.open>a:hover,
 .navbar-default .navbar-nav>.open>a:focus{
-  color: #d8d8d8;
+  color: #081642;
 }
 
 .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,
 .navbar-default .navbar-nav .open .dropdown-menu{
-  color: #d8d8d8;
+  color: #081642;
 }
 
 .nav-pills>li.active>a,
 .nav-pills>li.active>a:hover,
 .nav-pills>li.active>a:focus {
-  color: #d8d8d8;
-  background-color: #293c55;
+  color: #081642;
+  background-color: #F72C5B;
 }
 
 a:hover, a:focus {
-  color: #293c55;
+  color: #F72C5B;
 }
 
 .version{

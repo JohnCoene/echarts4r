@@ -31,6 +31,10 @@
 </div>
 </div>
 
+## Note
+
+The Github version is currently going through the update from ECharts.js version 4 to version 5: feel free to test it but there are some issues. Please use the stable CRAN version otherwise.
+
 ## Installation
 
 The package is available on [CRAN](https://CRAN.R-project.org/package=echarts4r). The full installation can be obtained with:

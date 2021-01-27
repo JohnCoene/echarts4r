@@ -19,13 +19,13 @@
     <loc>http://echarts4r.john-coene.com/reference/band.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/band2.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/callbacks.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/connections.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/reference/dot-build_sun.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e-tooltip.html</loc>
@@ -109,9 +109,6 @@
     <loc>http://echarts4r.john-coene.com/reference/e_execute.html</loc>
   </url>
   <url>
-    <loc>http://echarts4r.john-coene.com/reference/e_facet.html</loc>
-  </url>
-  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_flip_coords.html</loc>
   </url>
   <url>
@@ -170,6 +167,12 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_map_register.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_mark_p.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_merge.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_modularity.html</loc>
