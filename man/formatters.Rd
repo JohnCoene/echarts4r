@@ -30,7 +30,8 @@ Simple formatters as helpers.
 df <- data.frame(
   x = 1:10,
   y = round(
-    runif(10, 1, 100), 2
+    runif(10, 1, 100),
+    2
   )
 )
 

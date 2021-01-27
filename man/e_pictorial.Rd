@@ -75,8 +75,11 @@ df <- data.frame(
 df \%>\%
   e_charts(x) \%>\%
   e_bar(z, barWidth = 10) \%>\%
-  e_pictorial(y,
-    symbol = "rect", symbolRepeat = TRUE, z = -1,
+  e_pictorial(
+    y,
+    symbol = "rect",
+    symbolRepeat = TRUE,
+    z = -1,
     symbolSize = c(10, 4)
   ) \%>\%
   e_theme("westeros")
@@ -85,14 +88,17 @@ df \%>\%
 path <- "path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"
 
 style <- list(
-  normal = list(opacity = 0.5), # normal
+  normal = list(opacity = 0.5),
+  # normal
   emphasis = list(opacity = 1) # on hover
 )
 
 df \%>\%
   e_charts(x) \%>\%
-  e_pictorial(y,
-    symbol = path, barCategoryGap = "-130\%",
+  e_pictorial(
+    y,
+    symbol = path,
+    barCategoryGap = "-130\%",
     itemStyle = style
   )
 
@@ -139,7 +145,8 @@ df \%>\%
   e_pictorial(
     y,
     symbol = "rect",
-    symbolRepeat = TRUE, z = -1,
+    symbolRepeat = TRUE,
+    z = -1,
     symbolSize = c(10, 4)
   )
 }

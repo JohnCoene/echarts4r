@@ -126,7 +126,7 @@ reference:
       - e_restore
       - e_capture
       - e_show_loading
-      - echarts4rProxy
+      - e_merge
       - e_execute
       - echarts4rBox
       - renderEcharts4rBox

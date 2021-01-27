@@ -21,8 +21,8 @@
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Graph">
-<meta property="og:description" content="">
-<meta property="og:image" content="">
+<meta property="og:description" content="echarts4r">
+<meta property="og:image" content="http://echarts4r.john-coene.com/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -34,7 +34,7 @@
   gtag('config', 'UA-74544116-1');
 </script><!-- Place this tag in your head or just before your close body tag. --><script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -47,7 +47,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
       </span>
     </div>
 
@@ -55,31 +55,31 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
   <a href="../LICENSE.html">
-    <span class="fa fa-balance-scale"></span>
+    <span class="fas fa-balance-scale"></span>
      
   </a>
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fa fa-newspaper-o"></span>
+    <span class="fas fa-newspaper-o"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/">
-    <span class="fa fa-code"></span>
+    <span class="fas fa-code"></span>
      
   </a>
 </li>
 <li>
   <a href="../articles/development.html">
-    <span class="fa fa-lightbulb-o"></span>
+    <span class="fas fa-lightbulb-o"></span>
      
   </a>
 </li>
@@ -213,12 +213,12 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/JohnCoene/echarts4r">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
-<form class="navbar-form navbar-right" role="search">
+<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
@@ -232,15 +232,16 @@
 <!--/.navbar -->
 
       
-      </header><script src="graph_files/header-attrs-2.3.9/header-attrs.js"></script><script src="graph_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="graph_files/htmlwidgets-1.5.1.9002/htmlwidgets.js"></script><script src="graph_files/echarts4r-4.8.0/echarts-en.min.js"></script><script src="graph_files/echarts4r-4.8.0/ecStat.min.js"></script><script src="graph_files/echarts4r-4.8.0/dataTool.min.js"></script><script src="graph_files/echarts4r-binding-0.3.3/echarts4r.js"></script><script src="graph_files/echarts-gl-1.1.2/echarts-gl.min.js"></script><script src="graph_files/echarts-modularity-1.0.0/echarts-graph-modularity.min.js"></script><div class="row">
+
+      </header><script src="graph_files/htmlwidgets-1.5.3/htmlwidgets.js"></script><script src="graph_files/echarts4r-4.8.0/echarts-en.min.js"></script><script src="graph_files/echarts4r-4.8.0/ecStat.min.js"></script><script src="graph_files/echarts4r-4.8.0/dataTool.min.js"></script><script src="graph_files/echarts4r-binding-0.3.4/echarts4r.js"></script><script src="graph_files/echarts-gl-1.1.2/echarts-gl.min.js"></script><script src="graph_files/echarts-modularity-1.0.0/echarts-graph-modularity.min.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Graph</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2020-09-23</h4>
+            <h4 class="date">2021-01-27</h4>
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/JohnCoene/echarts4r/blob/master/vignettes/graph.Rmd"><code>vignettes/graph.Rmd</code></a></small>
       <div class="hidden name"><code>graph.Rmd</code></div>
 
     </div>
@@ -252,115 +253,119 @@
 <h2 class="hasAnchor">
 <a href="#basic" class="anchor"></a>Basic</h2>
 <p>Initialise your graph with <code>e_charts</code> then add nodes and edges with <code>e_graph_nodes</code> and <code>e_graph_edges</code> respectively.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>value &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>nodes &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="dt">name =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(LETTERS, <span class="dv">10</span>),</span>
-<span id="cb1-5"><a href="#cb1-5"></a>  <span class="dt">value =</span> value,</span>
-<span id="cb1-6"><a href="#cb1-6"></a>  <span class="dt">size =</span> value,</span>
-<span id="cb1-7"><a href="#cb1-7"></a>  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>)</span>
-<span id="cb1-9"><a href="#cb1-9"></a></span>
-<span id="cb1-10"><a href="#cb1-10"></a>edges &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</span>
-<span id="cb1-11"><a href="#cb1-11"></a>  <span class="dt">source =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(nodes<span class="op">$</span>name, <span class="dv">20</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb1-12"><a href="#cb1-12"></a>  <span class="dt">target =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(nodes<span class="op">$</span>name, <span class="dv">20</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb1-13"><a href="#cb1-13"></a>  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>)</span>
-<span id="cb1-15"><a href="#cb1-15"></a></span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="kw"><a href="../reference/init.html">e_charts</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1-17"><a href="#cb1-17"></a><span class="st">  </span><span class="kw"><a href="../reference/graph.html">e_graph</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="st">  </span><span class="kw"><a href="../reference/graph.html">e_graph_nodes</a></span>(nodes, name, value, size) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1-19"><a href="#cb1-19"></a><span class="st">  </span><span class="kw"><a href="../reference/graph.html">e_graph_edges</a></span>(edges, source, target) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1-20"><a href="#cb1-20"></a><span class="st">  </span><span class="kw"><a href="../reference/e-tooltip.html">e_tooltip</a></span>()</span></code></pre></div>
-<div id="htmlwidget-112fbd3d32db3138048b" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-112fbd3d32db3138048b">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"series":[{"name":null,"type":"graph","layout":"force","data":[{"name":"J","value":"10.013747","symbolSize":"10.013747"},{"name":"Y","value":"10.085276","symbolSize":"10.085276"},{"name":"M","value":" 8.606435","symbolSize":" 8.606435"},{"name":"E","value":"10.616629","symbolSize":"10.616629"},{"name":"T","value":"12.704933","symbolSize":"12.704933"},{"name":"D","value":" 7.951979","symbolSize":" 7.951979"},{"name":"P","value":"10.167950","symbolSize":"10.167950"},{"name":"N","value":" 8.229872","symbolSize":" 8.229872"},{"name":"X","value":" 8.116929","symbolSize":" 8.116929"},{"name":"C","value":"11.137811","symbolSize":"11.137811"}],"links":[{"source":"T","target":"P"},{"source":"M","target":"J"},{"source":"M","target":"D"},{"source":"N","target":"D"},{"source":"N","target":"Y"},{"source":"E","target":"P"},{"source":"N","target":"P"},{"source":"X","target":"M"},{"source":"M","target":"T"},{"source":"E","target":"C"},{"source":"M","target":"N"},{"source":"M","target":"X"},{"source":"M","target":"X"},{"source":"X","target":"X"},{"source":"T","target":"E"},{"source":"E","target":"D"},{"source":"T","target":"D"},{"source":"J","target":"E"},{"source":"X","target":"E"},{"source":"P","target":"Y"}]}],"tooltip":{"trigger":"item"},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span>
+
+<span class="va">nodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">LETTERS</span>, <span class="fl">10</span><span class="op">)</span>,
+  value <span class="op">=</span> <span class="va">value</span>,
+  size <span class="op">=</span> <span class="va">value</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
+
+<span class="va">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  source <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">$</span><span class="va">name</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+  target <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">$</span><span class="va">name</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_graph.html">e_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_graph.html">e_graph_nodes</a></span><span class="op">(</span><span class="va">nodes</span>, <span class="va">name</span>, <span class="va">value</span>, <span class="va">size</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_graph.html">e_graph_edges</a></span><span class="op">(</span><span class="va">edges</span>, <span class="va">source</span>, <span class="va">target</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_tooltip.html">e_tooltip</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-692317bb182adf39d7e0" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-692317bb182adf39d7e0">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"series":[{"name":null,"type":"graph","layout":"force","data":[{"name":"W","value":"12.250919","symbolSize":"12.250919"},{"name":"J","value":"12.694473","symbolSize":"12.694473"},{"name":"T","value":" 9.917141","symbolSize":" 9.917141"},{"name":"A","value":"13.220964","symbolSize":"13.220964"},{"name":"Y","value":"12.492622","symbolSize":"12.492622"},{"name":"V","value":"11.504648","symbolSize":"11.504648"},{"name":"I","value":"12.263502","symbolSize":"12.263502"},{"name":"L","value":"10.084711","symbolSize":"10.084711"},{"name":"K","value":"13.624376","symbolSize":"13.624376"},{"name":"M","value":"10.843821","symbolSize":"10.843821"}],"links":[{"source":"I","target":"M"},{"source":"W","target":"K"},{"source":"T","target":"K"},{"source":"J","target":"W"},{"source":"I","target":"W"},{"source":"J","target":"Y"},{"source":"I","target":"M"},{"source":"Y","target":"Y"},{"source":"K","target":"V"},{"source":"L","target":"Y"},{"source":"Y","target":"T"},{"source":"K","target":"Y"},{"source":"J","target":"M"},{"source":"W","target":"M"},{"source":"L","target":"A"},{"source":"K","target":"A"},{"source":"T","target":"K"},{"source":"A","target":"K"},{"source":"A","target":"J"},{"source":"L","target":"J"}]}],"tooltip":{"trigger":"item"},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="groups" class="section level2">
 <h2 class="hasAnchor">
 <a href="#groups" class="anchor"></a>Groups</h2>
 <p>The same but with groups.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>value &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>nodes &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="dt">name =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(LETTERS, <span class="dv">10</span>),</span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="dt">value =</span> value,</span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="dt">size =</span> value,</span>
-<span id="cb2-7"><a href="#cb2-7"></a>  <span class="dt">grp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"grp1"</span>, <span class="st">"grp2"</span>), <span class="dv">5</span>),</span>
-<span id="cb2-8"><a href="#cb2-8"></a>  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>)</span>
-<span id="cb2-10"><a href="#cb2-10"></a></span>
-<span id="cb2-11"><a href="#cb2-11"></a>edges &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</span>
-<span id="cb2-12"><a href="#cb2-12"></a>  <span class="dt">source =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(nodes<span class="op">$</span>name, <span class="dv">20</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb2-13"><a href="#cb2-13"></a>  <span class="dt">target =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(nodes<span class="op">$</span>name, <span class="dv">20</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb2-14"><a href="#cb2-14"></a>  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>)</span>
-<span id="cb2-16"><a href="#cb2-16"></a></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="kw"><a href="../reference/init.html">e_charts</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="st">  </span><span class="kw"><a href="../reference/graph.html">e_graph</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="st">  </span><span class="kw"><a href="../reference/graph.html">e_graph_nodes</a></span>(nodes, name, value, size, grp) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb2-20"><a href="#cb2-20"></a><span class="st">  </span><span class="kw"><a href="../reference/graph.html">e_graph_edges</a></span>(edges, source, target) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="st">  </span><span class="kw"><a href="../reference/e-tooltip.html">e_tooltip</a></span>()</span></code></pre></div>
-<div id="htmlwidget-79f1703f7d7fef32c9a0" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-79f1703f7d7fef32c9a0">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"series":[{"name":null,"type":"graph","layout":"force","categories":[{"name":"grp1"},{"name":"grp2"}],"data":[{"name":"X","value":"10.979089","symbolSize":"10.979089","category":"grp1"},{"name":"G","value":"10.132087","symbolSize":"10.132087","category":"grp2"},{"name":"M","value":"11.048736","symbolSize":"11.048736","category":"grp1"},{"name":"K","value":" 7.548408","symbolSize":" 7.548408","category":"grp2"},{"name":"W","value":" 8.771999","symbolSize":" 8.771999","category":"grp1"},{"name":"B","value":" 7.640485","symbolSize":" 7.640485","category":"grp2"},{"name":"H","value":" 9.371731","symbolSize":" 9.371731","category":"grp1"},{"name":"Z","value":"14.411234","symbolSize":"14.411234","category":"grp2"},{"name":"D","value":" 8.886266","symbolSize":" 8.886266","category":"grp1"},{"name":"L","value":"10.409891","symbolSize":"10.409891","category":"grp2"}],"links":[{"source":"G","target":"W"},{"source":"H","target":"X"},{"source":"K","target":"Z"},{"source":"X","target":"M"},{"source":"Z","target":"D"},{"source":"K","target":"K"},{"source":"W","target":"D"},{"source":"W","target":"Z"},{"source":"W","target":"B"},{"source":"H","target":"Z"},{"source":"M","target":"K"},{"source":"D","target":"X"},{"source":"K","target":"H"},{"source":"M","target":"M"},{"source":"Z","target":"W"},{"source":"Z","target":"D"},{"source":"W","target":"K"},{"source":"H","target":"D"},{"source":"H","target":"H"},{"source":"K","target":"L"}]}],"legend":{"data":["grp1","grp2"]},"tooltip":{"trigger":"item"},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span>
+
+<span class="va">nodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">LETTERS</span>, <span class="fl">10</span><span class="op">)</span>,
+  value <span class="op">=</span> <span class="va">value</span>,
+  size <span class="op">=</span> <span class="va">value</span>,
+  grp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"grp1"</span>, <span class="st">"grp2"</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
+
+<span class="va">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  source <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">$</span><span class="va">name</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+  target <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">$</span><span class="va">name</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_graph.html">e_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_graph.html">e_graph_nodes</a></span><span class="op">(</span><span class="va">nodes</span>, <span class="va">name</span>, <span class="va">value</span>, <span class="va">size</span>, <span class="va">grp</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_graph.html">e_graph_edges</a></span><span class="op">(</span><span class="va">edges</span>, <span class="va">source</span>, <span class="va">target</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_tooltip.html">e_tooltip</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-013f0058570ac481cd6b" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-013f0058570ac481cd6b">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"series":[{"name":null,"type":"graph","layout":"force","categories":[{"name":"grp1"},{"name":"grp2"}],"data":[{"name":"T","value":" 7.960759","symbolSize":" 7.960759","category":"grp1"},{"name":"M","value":" 9.024458","symbolSize":" 9.024458","category":"grp2"},{"name":"H","value":" 9.197567","symbolSize":" 9.197567","category":"grp1"},{"name":"V","value":" 7.576234","symbolSize":" 7.576234","category":"grp2"},{"name":"O","value":"11.201224","symbolSize":"11.201224","category":"grp1"},{"name":"N","value":" 9.237947","symbolSize":" 9.237947","category":"grp2"},{"name":"A","value":"12.263284","symbolSize":"12.263284","category":"grp1"},{"name":"B","value":"11.755302","symbolSize":"11.755302","category":"grp2"},{"name":"F","value":"12.877268","symbolSize":"12.877268","category":"grp1"},{"name":"Y","value":"15.198064","symbolSize":"15.198064","category":"grp2"}],"links":[{"source":"V","target":"B"},{"source":"T","target":"M"},{"source":"T","target":"B"},{"source":"V","target":"N"},{"source":"V","target":"Y"},{"source":"B","target":"M"},{"source":"A","target":"T"},{"source":"B","target":"V"},{"source":"M","target":"B"},{"source":"B","target":"Y"},{"source":"T","target":"A"},{"source":"V","target":"O"},{"source":"Y","target":"N"},{"source":"B","target":"N"},{"source":"H","target":"V"},{"source":"F","target":"B"},{"source":"A","target":"A"},{"source":"N","target":"O"},{"source":"B","target":"F"},{"source":"N","target":"O"}]}],"legend":{"data":["grp1","grp2"]},"tooltip":{"trigger":"item"},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="groups-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#groups-1" class="anchor"></a>Groups</h2>
 <p>The same but with groups and symbols.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>value &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a>nodes &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">name =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(LETTERS, <span class="dv">10</span>),</span>
-<span id="cb3-5"><a href="#cb3-5"></a>  <span class="dt">value =</span> value,</span>
-<span id="cb3-6"><a href="#cb3-6"></a>  <span class="dt">size =</span> value,</span>
-<span id="cb3-7"><a href="#cb3-7"></a>  <span class="dt">grp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"grp1"</span>, <span class="st">"grp2"</span>), <span class="dv">5</span>),</span>
-<span id="cb3-8"><a href="#cb3-8"></a>  <span class="dt">symbol =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"circle"</span>, <span class="st">"rect"</span>, <span class="st">"triangle"</span>), <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb3-9"><a href="#cb3-9"></a>  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>)</span>
-<span id="cb3-11"><a href="#cb3-11"></a></span>
-<span id="cb3-12"><a href="#cb3-12"></a>edges &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</span>
-<span id="cb3-13"><a href="#cb3-13"></a>  <span class="dt">source =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(nodes<span class="op">$</span>name, <span class="dv">20</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb3-14"><a href="#cb3-14"></a>  <span class="dt">target =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(nodes<span class="op">$</span>name, <span class="dv">20</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb3-15"><a href="#cb3-15"></a>  <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a>)</span>
-<span id="cb3-17"><a href="#cb3-17"></a></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="kw"><a href="../reference/init.html">e_charts</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb3-19"><a href="#cb3-19"></a><span class="st">  </span><span class="kw"><a href="../reference/graph.html">e_graph</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="st">  </span><span class="kw"><a href="../reference/graph.html">e_graph_nodes</a></span>(nodes, name, value, size, grp, symbol) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb3-21"><a href="#cb3-21"></a><span class="st">  </span><span class="kw"><a href="../reference/graph.html">e_graph_edges</a></span>(edges, source, target) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb3-22"><a href="#cb3-22"></a><span class="st">  </span><span class="kw"><a href="../reference/e-tooltip.html">e_tooltip</a></span>()</span></code></pre></div>
-<div id="htmlwidget-17067e5bec381c3f2a2a" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-17067e5bec381c3f2a2a">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"series":[{"name":null,"type":"graph","layout":"force","categories":[{"name":"grp1"},{"name":"grp2"}],"data":[{"name":"T","value":"10.329295","symbolSize":"10.329295","category":"grp1","symbol":"triangle"},{"name":"W","value":"10.844508","symbolSize":"10.844508","category":"grp2","symbol":"rect"},{"name":"Y","value":"10.920265","symbolSize":"10.920265","category":"grp1","symbol":"triangle"},{"name":"O","value":" 9.464263","symbolSize":" 9.464263","category":"grp2","symbol":"circle"},{"name":"Z","value":"10.992984","symbolSize":"10.992984","category":"grp1","symbol":"circle"},{"name":"H","value":"10.837064","symbolSize":"10.837064","category":"grp2","symbol":"triangle"},{"name":"E","value":" 9.141136","symbolSize":" 9.141136","category":"grp1","symbol":"triangle"},{"name":"M","value":"10.601282","symbolSize":"10.601282","category":"grp2","symbol":"triangle"},{"name":"X","value":" 9.834864","symbolSize":" 9.834864","category":"grp1","symbol":"circle"},{"name":"Q","value":"10.031057","symbolSize":"10.031057","category":"grp2","symbol":"triangle"}],"links":[{"source":"Z","target":"E"},{"source":"Z","target":"E"},{"source":"X","target":"W"},{"source":"Q","target":"Z"},{"source":"W","target":"T"},{"source":"W","target":"E"},{"source":"Q","target":"Y"},{"source":"M","target":"X"},{"source":"W","target":"H"},{"source":"E","target":"T"},{"source":"W","target":"H"},{"source":"O","target":"W"},{"source":"H","target":"O"},{"source":"E","target":"M"},{"source":"Z","target":"E"},{"source":"Z","target":"H"},{"source":"H","target":"Q"},{"source":"Q","target":"Q"},{"source":"Q","target":"O"},{"source":"Y","target":"H"}]}],"legend":{"data":["grp1","grp2"]},"tooltip":{"trigger":"item"},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span>
+
+<span class="va">nodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">LETTERS</span>, <span class="fl">10</span><span class="op">)</span>,
+  value <span class="op">=</span> <span class="va">value</span>,
+  size <span class="op">=</span> <span class="va">value</span>,
+  grp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"grp1"</span>, <span class="st">"grp2"</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span>,
+  symbol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"circle"</span>, <span class="st">"rect"</span>, <span class="st">"triangle"</span><span class="op">)</span>, <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
+
+<span class="va">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  source <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">$</span><span class="va">name</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+  target <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">$</span><span class="va">name</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_graph.html">e_graph</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_graph.html">e_graph_nodes</a></span><span class="op">(</span><span class="va">nodes</span>, <span class="va">name</span>, <span class="va">value</span>, <span class="va">size</span>, <span class="va">grp</span>, <span class="va">symbol</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_graph.html">e_graph_edges</a></span><span class="op">(</span><span class="va">edges</span>, <span class="va">source</span>, <span class="va">target</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/e_tooltip.html">e_tooltip</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-338cc7556e6d5b00db1a" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-338cc7556e6d5b00db1a">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"series":[{"name":null,"type":"graph","layout":"force","categories":[{"name":"grp1"},{"name":"grp2"}],"data":[{"name":"R","value":" 7.002375","symbolSize":" 7.002375","category":"grp1","symbol":"triangle"},{"name":"Q","value":"13.021325","symbolSize":"13.021325","category":"grp2","symbol":"triangle"},{"name":"O","value":" 9.571012","symbolSize":" 9.571012","category":"grp1","symbol":"rect"},{"name":"E","value":" 9.901752","symbolSize":" 9.901752","category":"grp2","symbol":"triangle"},{"name":"V","value":"13.818223","symbolSize":"13.818223","category":"grp1","symbol":"triangle"},{"name":"M","value":" 6.559066","symbolSize":" 6.559066","category":"grp2","symbol":"rect"},{"name":"F","value":" 9.993334","symbolSize":" 9.993334","category":"grp1","symbol":"triangle"},{"name":"X","value":" 8.148334","symbolSize":" 8.148334","category":"grp2","symbol":"rect"},{"name":"L","value":"11.110996","symbolSize":"11.110996","category":"grp1","symbol":"circle"},{"name":"G","value":" 7.120981","symbolSize":" 7.120981","category":"grp2","symbol":"rect"}],"links":[{"source":"O","target":"F"},{"source":"O","target":"G"},{"source":"L","target":"F"},{"source":"M","target":"X"},{"source":"R","target":"O"},{"source":"V","target":"G"},{"source":"L","target":"G"},{"source":"M","target":"M"},{"source":"X","target":"F"},{"source":"R","target":"L"},{"source":"M","target":"V"},{"source":"E","target":"F"},{"source":"M","target":"L"},{"source":"X","target":"F"},{"source":"L","target":"V"},{"source":"R","target":"R"},{"source":"L","target":"G"},{"source":"G","target":"E"},{"source":"X","target":"R"},{"source":"E","target":"O"}]}],"legend":{"data":["grp1","grp2"]},"tooltip":{"trigger":"item"},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="graph-gl" class="section level2">
 <h2 class="hasAnchor">
 <a href="#graph-gl" class="anchor"></a>Graph GL</h2>
 <p>Simply use <code>e_graph_gl</code> instead of <code>e_graph</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>flights &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/read.table">read.csv</a></span>(</span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"https://raw.githubusercontent.com/plotly/datasets/"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3"></a>         <span class="st">"master/2011_february_aa_flight_paths.csv"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4"></a>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(airport1, airport2)</span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a>airports &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/read.table">read.csv</a></span>(</span>
-<span id="cb4-8"><a href="#cb4-8"></a>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"https://raw.githubusercontent.com/plotly/datasets/"</span>,</span>
-<span id="cb4-9"><a href="#cb4-9"></a>         <span class="st">"master/2011_february_us_airport_traffic.csv"</span>)</span>
-<span id="cb4-10"><a href="#cb4-10"></a>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(iata, cnt)</span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="co"># remove airports with no flights</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a>airp &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unique">unique</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/character">as.character</a></span>(flights<span class="op">$</span>airport1), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/character">as.character</a></span>(flights<span class="op">$</span>airport2)))</span>
-<span id="cb4-15"><a href="#cb4-15"></a>airports &lt;-<span class="st"> </span>airports <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(iata <span class="op">%in%</span><span class="st"> </span>airp)</span>
-<span id="cb4-17"><a href="#cb4-17"></a></span>
-<span id="cb4-18"><a href="#cb4-18"></a><span class="kw"><a href="../reference/init.html">e_charts</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="st">    </span><span class="kw"><a href="../reference/graph.html">e_graph_gl</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="st">    </span><span class="kw"><a href="../reference/graph.html">e_graph_nodes</a></span>(airports, iata, cnt) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="st">    </span><span class="kw"><a href="../reference/graph.html">e_graph_edges</a></span>(flights, airport1, airport2) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-22"><a href="#cb4-22"></a><span class="st">    </span><span class="kw"><a href="../reference/e_modularity.html">e_modularity</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-23"><a href="#cb4-23"></a><span class="st">    </span><span class="kw"><a href="../reference/e-tooltip.html">e_tooltip</a></span>()</span></code></pre></div>
-<div id="htmlwidget-614739f92cf63ff423eb" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-614739f92cf63ff423eb">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"series":[{"name":null,"type":"graphGL","layout":"force","data":[{"name":"ORD","value":"25129"},{"name":"ATL","value":"21925"},{"name":"DFW","value":"20662"},{"name":"PHX","value":"17290"},{"name":"DEN","value":"13781"},{"name":"IAH","value":"13223"},{"name":"SFO","value":"12016"},{"name":"LAX","value":"11797"},{"name":"MCO","value":"10536"},{"name":"CLT","value":"10490"},{"name":"SLC","value":" 9898"},{"name":"TPA","value":" 9182"},{"name":"EWR","value":" 8678"},{"name":"LAS","value":" 8523"},{"name":"PHL","value":" 7965"},{"name":"MSP","value":" 7690"},{"name":"SEA","value":" 7541"},{"name":"LGA","value":" 7392"},{"name":"IAD","value":" 6779"},{"name":"SAN","value":" 6233"},{"name":"STL","value":" 6204"},{"name":"DTW","value":" 6044"},{"name":"JFK","value":" 5945"},{"name":"MIA","value":" 5907"},{"name":"BOS","value":" 5627"},{"name":"SMF","value":" 4943"},{"name":"BWI","value":" 4749"},{"name":"SNA","value":" 4616"},{"name":"MSY","value":" 4432"},{"name":"SJC","value":" 4367"},{"name":"DCA","value":" 4332"},{"name":"PDX","value":" 4071"},{"name":"RSW","value":" 4057"},{"name":"PBI","value":" 3972"},{"name":"RDU","value":" 3896"},{"name":"SAT","value":" 3654"},{"name":"FLL","value":" 3616"},{"name":"MCI","value":" 3403"},{"name":"PIT","value":" 3180"},{"name":"MEM","value":" 3058"},{"name":"JAX","value":" 3005"},{"name":"TUS","value":" 2786"},{"name":"IND","value":" 2136"},{"name":"RNO","value":" 2104"},{"name":"OKC","value":" 2104"},{"name":"TUL","value":" 2003"},{"name":"CMH","value":" 1752"},{"name":"SDF","value":" 1716"},{"name":"ONT","value":" 1622"},{"name":"OMA","value":" 1474"},{"name":"ORF","value":" 1439"},{"name":"DAY","value":" 1337"},{"name":"XNA","value":" 1310"},{"name":"BNA","value":" 1299"},{"name":"ABQ","value":" 1258"},{"name":"ELP","value":" 1206"},{"name":"RIC","value":" 1199"},{"name":"BDL","value":" 1162"},{"name":"COS","value":" 1040"},{"name":"BHM","value":"  956"},{"name":"PSP","value":"  949"},{"name":"HSV","value":"  880"},{"name":"ICT","value":"  747"},{"name":"HDN","value":"  408"},{"name":"AUS","value":"  393"},{"name":"EGE","value":"  296"},{"name":"JAC","value":"  295"},{"name":"BUR","value":"  280"},{"name":"FAT","value":"  264"},{"name":"MFE","value":"  248"},{"name":"MTJ","value":"  210"}],"links":[{"source":"DFW","target":"ABQ"},{"source":"ORD","target":"AUS"},{"source":"DFW","target":"BDL"},{"source":"SJU","target":"BDL"},{"source":"DFW","target":"BHM"},{"source":"MIA","target":"BNA"},{"source":"DFW","target":"BOS"},{"source":"MIA","target":"BOS"},{"source":"ORD","target":"BOS"},{"source":"SJU","target":"BOS"},{"source":"STT","target":"BOS"},{"source":"MIA","target":"BWI"},{"source":"SJU","target":"BWI"},{"source":"DFW","target":"CLT"},{"source":"DFW","target":"COS"},{"source":"DFW","target":"DAY"},{"source":"DFW","target":"DCA"},{"source":"MIA","target":"DEN"},{"source":"ORD","target":"DEN"},{"source":"ATL","target":"DFW"},{"source":"AUS","target":"DFW"},{"source":"BNA","target":"DFW"},{"source":"BUR","target":"DFW"},{"source":"BWI","target":"DFW"},{"source":"CMH","target":"DFW"},{"source":"DEN","target":"DFW"},{"source":"DTW","target":"DFW"},{"source":"EGE","target":"DFW"},{"source":"EWR","target":"DFW"},{"source":"FAT","target":"DFW"},{"source":"FLL","target":"DFW"},{"source":"HSV","target":"DFW"},{"source":"IAH","target":"DFW"},{"source":"LAX","target":"DFW"},{"source":"MCI","target":"DFW"},{"source":"MCO","target":"DFW"},{"source":"MEM","target":"DFW"},{"source":"MFE","target":"DFW"},{"source":"MIA","target":"DFW"},{"source":"MSP","target":"DFW"},{"source":"MTJ","target":"DFW"},{"source":"OGG","target":"DFW"},{"source":"OKC","target":"DFW"},{"source":"OMA","target":"DFW"},{"source":"ORD","target":"DFW"},{"source":"PHL","target":"DFW"},{"source":"PHX","target":"DFW"},{"source":"RIC","target":"DFW"},{"source":"RNO","target":"DFW"},{"source":"SAN","target":"DFW"},{"source":"SAT","target":"DFW"},{"source":"SDF","target":"DFW"},{"source":"SFO","target":"DFW"},{"source":"SJC","target":"DFW"},{"source":"SLC","target":"DFW"},{"source":"STL","target":"DFW"},{"source":"XNA","target":"DFW"},{"source":"MIA","target":"DTW"},{"source":"LGA","target":"EGE"},{"source":"ORD","target":"EGE"},{"source":"DFW","target":"ELP"},{"source":"LAX","target":"EWR"},{"source":"MIA","target":"EWR"},{"source":"JFK","target":"FLL"},{"source":"DFW","target":"HDN"},{"source":"DFW","target":"HNL"},{"source":"LAX","target":"HNL"},{"source":"DFW","target":"IAD"},{"source":"LAX","target":"IAD"},{"source":"MIA","target":"IAD"},{"source":"MIA","target":"IAH"},{"source":"DFW","target":"ICT"},{"source":"DFW","target":"IND"},{"source":"DFW","target":"JAC"},{"source":"DFW","target":"JAX"},{"source":"AUS","target":"JFK"},{"source":"DFW","target":"JFK"},{"source":"EGE","target":"JFK"},{"source":"MCO","target":"JFK"},{"source":"MIA","target":"JFK"},{"source":"SEA","target":"JFK"},{"source":"SFO","target":"JFK"},{"source":"STT","target":"JFK"},{"source":"TPA","target":"JFK"},{"source":"DFW","target":"LAS"},{"source":"JFK","target":"LAS"},{"source":"LAX","target":"LAS"},{"source":"ORD","target":"LAS"},{"source":"AUS","target":"LAX"},{"source":"BNA","target":"LAX"},{"source":"BOS","target":"LAX"},{"source":"EGE","target":"LAX"},{"source":"JFK","target":"LAX"},{"source":"KOA","target":"LAX"},{"source":"OGG","target":"LAX"},{"source":"ORD","target":"LAX"},{"source":"STL","target":"LAX"},{"source":"BNA","target":"LGA"},{"source":"DFW","target":"LGA"},{"source":"STL","target":"LGA"},{"source":"LAX","target":"LIH"},{"source":"LAX","target":"MCO"},{"source":"MIA","target":"MCO"},{"source":"ATL","target":"MIA"},{"source":"BDL","target":"MIA"},{"source":"DCA","target":"MIA"},{"source":"EGE","target":"MIA"},{"source":"LAS","target":"MIA"},{"source":"LAX","target":"MIA"},{"source":"LGA","target":"MIA"},{"source":"MSP","target":"MIA"},{"source":"ORD","target":"MIA"},{"source":"PHL","target":"MIA"},{"source":"PHX","target":"MIA"},{"source":"SFO","target":"MIA"},{"source":"SJU","target":"MIA"},{"source":"TUL","target":"MIA"},{"source":"ORD","target":"MSP"},{"source":"DFW","target":"MSY"},{"source":"MIA","target":"MSY"},{"source":"ORD","target":"MSY"},{"source":"DFW","target":"ONT"},{"source":"DCA","target":"ORD"},{"source":"EWR","target":"ORD"},{"source":"FLL","target":"ORD"},{"source":"HDN","target":"ORD"},{"source":"HNL","target":"ORD"},{"source":"JAC","target":"ORD"},{"source":"JFK","target":"ORD"},{"source":"LGA","target":"ORD"},{"source":"MCI","target":"ORD"},{"source":"MCO","target":"ORD"},{"source":"RDU","target":"ORD"},{"source":"RNO","target":"ORD"},{"source":"SAN","target":"ORD"},{"source":"SAT","target":"ORD"},{"source":"SJC","target":"ORD"},{"source":"SJU","target":"ORD"},{"source":"STL","target":"ORD"},{"source":"TUL","target":"ORD"},{"source":"TUS","target":"ORD"},{"source":"DFW","target":"ORF"},{"source":"DFW","target":"PBI"},{"source":"ORD","target":"PBI"},{"source":"DFW","target":"PDX"},{"source":"ORD","target":"PHL"},{"source":"SJU","target":"PHL"},{"source":"ORD","target":"PHX"},{"source":"DFW","target":"PIT"},{"source":"DFW","target":"PSP"},{"source":"ORD","target":"PSP"},{"source":"DFW","target":"RDU"},{"source":"MIA","target":"RDU"},{"source":"DFW","target":"RSW"},{"source":"ORD","target":"RSW"},{"source":"JFK","target":"SAN"},{"source":"DFW","target":"SEA"},{"source":"ORD","target":"SEA"},{"source":"HNL","target":"SFO"},{"source":"LAX","target":"SFO"},{"source":"ORD","target":"SFO"},{"source":"DFW","target":"SJU"},{"source":"IAD","target":"SJU"},{"source":"JFK","target":"SJU"},{"source":"LAX","target":"SJU"},{"source":"DFW","target":"SMF"},{"source":"DFW","target":"SNA"},{"source":"ORD","target":"SNA"},{"source":"DCA","target":"STL"},{"source":"MIA","target":"STL"},{"source":"MIA","target":"STT"},{"source":"MIA","target":"STX"},{"source":"DFW","target":"TPA"},{"source":"MIA","target":"TPA"},{"source":"ORD","target":"TPA"},{"source":"SJU","target":"TPA"},{"source":"DFW","target":"TUL"},{"source":"DFW","target":"TUS"}],"modularity":{"modularity":true}}],"tooltip":{"trigger":"item"},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">flights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/plotly/datasets/"</span>,
+         <span class="st">"master/2011_february_aa_flight_paths.csv"</span><span class="op">)</span>
+<span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">airport1</span>, <span class="va">airport2</span><span class="op">)</span>
+
+<span class="va">airports</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/plotly/datasets/"</span>,
+         <span class="st">"master/2011_february_us_airport_traffic.csv"</span><span class="op">)</span>
+<span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">iata</span>, <span class="va">cnt</span><span class="op">)</span>
+
+<span class="co"># remove airports with no flights</span>
+<span class="va">airp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">flights</span><span class="op">$</span><span class="va">airport1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">flights</span><span class="op">$</span><span class="va">airport2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">airports</span> <span class="op">&lt;-</span> <span class="va">airports</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">iata</span> <span class="op">%in%</span> <span class="va">airp</span><span class="op">)</span>
+
+<span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/e_graph.html">e_graph_gl</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/e_graph.html">e_graph_nodes</a></span><span class="op">(</span><span class="va">airports</span>, <span class="va">iata</span>, <span class="va">cnt</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/e_graph.html">e_graph_edges</a></span><span class="op">(</span><span class="va">flights</span>, <span class="va">airport1</span>, <span class="va">airport2</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/e_modularity.html">e_modularity</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/e_tooltip.html">e_tooltip</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-41ff258cc3c010aa73ff" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-41ff258cc3c010aa73ff">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"series":[{"name":null,"type":"graphGL","layout":"force","data":[{"name":"ORD","value":"25129"},{"name":"ATL","value":"21925"},{"name":"DFW","value":"20662"},{"name":"PHX","value":"17290"},{"name":"DEN","value":"13781"},{"name":"IAH","value":"13223"},{"name":"SFO","value":"12016"},{"name":"LAX","value":"11797"},{"name":"MCO","value":"10536"},{"name":"CLT","value":"10490"},{"name":"SLC","value":" 9898"},{"name":"TPA","value":" 9182"},{"name":"EWR","value":" 8678"},{"name":"LAS","value":" 8523"},{"name":"PHL","value":" 7965"},{"name":"MSP","value":" 7690"},{"name":"SEA","value":" 7541"},{"name":"LGA","value":" 7392"},{"name":"IAD","value":" 6779"},{"name":"SAN","value":" 6233"},{"name":"STL","value":" 6204"},{"name":"DTW","value":" 6044"},{"name":"JFK","value":" 5945"},{"name":"MIA","value":" 5907"},{"name":"BOS","value":" 5627"},{"name":"SMF","value":" 4943"},{"name":"BWI","value":" 4749"},{"name":"SNA","value":" 4616"},{"name":"MSY","value":" 4432"},{"name":"SJC","value":" 4367"},{"name":"DCA","value":" 4332"},{"name":"PDX","value":" 4071"},{"name":"RSW","value":" 4057"},{"name":"PBI","value":" 3972"},{"name":"RDU","value":" 3896"},{"name":"SAT","value":" 3654"},{"name":"FLL","value":" 3616"},{"name":"MCI","value":" 3403"},{"name":"PIT","value":" 3180"},{"name":"MEM","value":" 3058"},{"name":"JAX","value":" 3005"},{"name":"TUS","value":" 2786"},{"name":"IND","value":" 2136"},{"name":"RNO","value":" 2104"},{"name":"OKC","value":" 2104"},{"name":"TUL","value":" 2003"},{"name":"CMH","value":" 1752"},{"name":"SDF","value":" 1716"},{"name":"ONT","value":" 1622"},{"name":"OMA","value":" 1474"},{"name":"ORF","value":" 1439"},{"name":"DAY","value":" 1337"},{"name":"XNA","value":" 1310"},{"name":"BNA","value":" 1299"},{"name":"ABQ","value":" 1258"},{"name":"ELP","value":" 1206"},{"name":"RIC","value":" 1199"},{"name":"BDL","value":" 1162"},{"name":"COS","value":" 1040"},{"name":"BHM","value":"  956"},{"name":"PSP","value":"  949"},{"name":"HSV","value":"  880"},{"name":"ICT","value":"  747"},{"name":"HDN","value":"  408"},{"name":"AUS","value":"  393"},{"name":"EGE","value":"  296"},{"name":"JAC","value":"  295"},{"name":"BUR","value":"  280"},{"name":"FAT","value":"  264"},{"name":"MFE","value":"  248"},{"name":"MTJ","value":"  210"}],"links":[{"source":"DFW","target":"ABQ"},{"source":"ORD","target":"AUS"},{"source":"DFW","target":"BDL"},{"source":"SJU","target":"BDL"},{"source":"DFW","target":"BHM"},{"source":"MIA","target":"BNA"},{"source":"DFW","target":"BOS"},{"source":"MIA","target":"BOS"},{"source":"ORD","target":"BOS"},{"source":"SJU","target":"BOS"},{"source":"STT","target":"BOS"},{"source":"MIA","target":"BWI"},{"source":"SJU","target":"BWI"},{"source":"DFW","target":"CLT"},{"source":"DFW","target":"COS"},{"source":"DFW","target":"DAY"},{"source":"DFW","target":"DCA"},{"source":"MIA","target":"DEN"},{"source":"ORD","target":"DEN"},{"source":"ATL","target":"DFW"},{"source":"AUS","target":"DFW"},{"source":"BNA","target":"DFW"},{"source":"BUR","target":"DFW"},{"source":"BWI","target":"DFW"},{"source":"CMH","target":"DFW"},{"source":"DEN","target":"DFW"},{"source":"DTW","target":"DFW"},{"source":"EGE","target":"DFW"},{"source":"EWR","target":"DFW"},{"source":"FAT","target":"DFW"},{"source":"FLL","target":"DFW"},{"source":"HSV","target":"DFW"},{"source":"IAH","target":"DFW"},{"source":"LAX","target":"DFW"},{"source":"MCI","target":"DFW"},{"source":"MCO","target":"DFW"},{"source":"MEM","target":"DFW"},{"source":"MFE","target":"DFW"},{"source":"MIA","target":"DFW"},{"source":"MSP","target":"DFW"},{"source":"MTJ","target":"DFW"},{"source":"OGG","target":"DFW"},{"source":"OKC","target":"DFW"},{"source":"OMA","target":"DFW"},{"source":"ORD","target":"DFW"},{"source":"PHL","target":"DFW"},{"source":"PHX","target":"DFW"},{"source":"RIC","target":"DFW"},{"source":"RNO","target":"DFW"},{"source":"SAN","target":"DFW"},{"source":"SAT","target":"DFW"},{"source":"SDF","target":"DFW"},{"source":"SFO","target":"DFW"},{"source":"SJC","target":"DFW"},{"source":"SLC","target":"DFW"},{"source":"STL","target":"DFW"},{"source":"XNA","target":"DFW"},{"source":"MIA","target":"DTW"},{"source":"LGA","target":"EGE"},{"source":"ORD","target":"EGE"},{"source":"DFW","target":"ELP"},{"source":"LAX","target":"EWR"},{"source":"MIA","target":"EWR"},{"source":"JFK","target":"FLL"},{"source":"DFW","target":"HDN"},{"source":"DFW","target":"HNL"},{"source":"LAX","target":"HNL"},{"source":"DFW","target":"IAD"},{"source":"LAX","target":"IAD"},{"source":"MIA","target":"IAD"},{"source":"MIA","target":"IAH"},{"source":"DFW","target":"ICT"},{"source":"DFW","target":"IND"},{"source":"DFW","target":"JAC"},{"source":"DFW","target":"JAX"},{"source":"AUS","target":"JFK"},{"source":"DFW","target":"JFK"},{"source":"EGE","target":"JFK"},{"source":"MCO","target":"JFK"},{"source":"MIA","target":"JFK"},{"source":"SEA","target":"JFK"},{"source":"SFO","target":"JFK"},{"source":"STT","target":"JFK"},{"source":"TPA","target":"JFK"},{"source":"DFW","target":"LAS"},{"source":"JFK","target":"LAS"},{"source":"LAX","target":"LAS"},{"source":"ORD","target":"LAS"},{"source":"AUS","target":"LAX"},{"source":"BNA","target":"LAX"},{"source":"BOS","target":"LAX"},{"source":"EGE","target":"LAX"},{"source":"JFK","target":"LAX"},{"source":"KOA","target":"LAX"},{"source":"OGG","target":"LAX"},{"source":"ORD","target":"LAX"},{"source":"STL","target":"LAX"},{"source":"BNA","target":"LGA"},{"source":"DFW","target":"LGA"},{"source":"STL","target":"LGA"},{"source":"LAX","target":"LIH"},{"source":"LAX","target":"MCO"},{"source":"MIA","target":"MCO"},{"source":"ATL","target":"MIA"},{"source":"BDL","target":"MIA"},{"source":"DCA","target":"MIA"},{"source":"EGE","target":"MIA"},{"source":"LAS","target":"MIA"},{"source":"LAX","target":"MIA"},{"source":"LGA","target":"MIA"},{"source":"MSP","target":"MIA"},{"source":"ORD","target":"MIA"},{"source":"PHL","target":"MIA"},{"source":"PHX","target":"MIA"},{"source":"SFO","target":"MIA"},{"source":"SJU","target":"MIA"},{"source":"TUL","target":"MIA"},{"source":"ORD","target":"MSP"},{"source":"DFW","target":"MSY"},{"source":"MIA","target":"MSY"},{"source":"ORD","target":"MSY"},{"source":"DFW","target":"ONT"},{"source":"DCA","target":"ORD"},{"source":"EWR","target":"ORD"},{"source":"FLL","target":"ORD"},{"source":"HDN","target":"ORD"},{"source":"HNL","target":"ORD"},{"source":"JAC","target":"ORD"},{"source":"JFK","target":"ORD"},{"source":"LGA","target":"ORD"},{"source":"MCI","target":"ORD"},{"source":"MCO","target":"ORD"},{"source":"RDU","target":"ORD"},{"source":"RNO","target":"ORD"},{"source":"SAN","target":"ORD"},{"source":"SAT","target":"ORD"},{"source":"SJC","target":"ORD"},{"source":"SJU","target":"ORD"},{"source":"STL","target":"ORD"},{"source":"TUL","target":"ORD"},{"source":"TUS","target":"ORD"},{"source":"DFW","target":"ORF"},{"source":"DFW","target":"PBI"},{"source":"ORD","target":"PBI"},{"source":"DFW","target":"PDX"},{"source":"ORD","target":"PHL"},{"source":"SJU","target":"PHL"},{"source":"ORD","target":"PHX"},{"source":"DFW","target":"PIT"},{"source":"DFW","target":"PSP"},{"source":"ORD","target":"PSP"},{"source":"DFW","target":"RDU"},{"source":"MIA","target":"RDU"},{"source":"DFW","target":"RSW"},{"source":"ORD","target":"RSW"},{"source":"JFK","target":"SAN"},{"source":"DFW","target":"SEA"},{"source":"ORD","target":"SEA"},{"source":"HNL","target":"SFO"},{"source":"LAX","target":"SFO"},{"source":"ORD","target":"SFO"},{"source":"DFW","target":"SJU"},{"source":"IAD","target":"SJU"},{"source":"JFK","target":"SJU"},{"source":"LAX","target":"SJU"},{"source":"DFW","target":"SMF"},{"source":"DFW","target":"SNA"},{"source":"ORD","target":"SNA"},{"source":"DCA","target":"STL"},{"source":"MIA","target":"STL"},{"source":"MIA","target":"STT"},{"source":"MIA","target":"STX"},{"source":"DFW","target":"TPA"},{"source":"MIA","target":"TPA"},{"source":"ORD","target":"TPA"},{"source":"SJU","target":"TPA"},{"source":"DFW","target":"TUL"},{"source":"DFW","target":"TUS"}],"modularity":{"modularity":true}}],"tooltip":{"trigger":"item"},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
   </div>
 
@@ -371,6 +376,7 @@
   </div>
 
 </div>
+
 
 
       <footer><div class="copyright">
@@ -384,6 +390,7 @@
 <div class="pkgdown">
   Site built with pkgdown
 </div>
+
       </footer>
 </div>
 

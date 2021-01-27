@@ -32,79 +32,83 @@ Allows the three type of marks to work with [echarts4rProxy()]
 library(shiny)
 library(dplyr)
 
-ui <- fluidPage( 
+ui <- fluidPage(
   fluidRow(
     column(3, actionButton("pxy", "Marks")),
     column(
-      3, 
-      checkboxInput("tln", "Timeline", value=FALSE)
+      3,
+      checkboxInput("tln", "Timeline", value = FALSE)
     )
   ),
   echarts4rOutput("plot")
 )
 
 server <- function(input, output) {
- 
- data(EuStockMarkets)
+  data(EuStockMarkets)
 
- bb <- as.data.frame(EuStockMarkets) \%>\% 
-  slice_head(n=150) \%>\% 
-  mutate(day=1:n())
- 
- output$plot <- renderEcharts4r({ react() })
+  bb <- as.data.frame(EuStockMarkets) \%>\%
+    slice_head(n = 150) \%>\%
+    mutate(day = 1:n())
 
- observeEvent(input$pxy, {
-	  echarts4rProxy("plot", data=NULL) \%>\%
-		  e_mark_p(
-        type='line', 
-        serie_index=1, 
-        data = list(type='average'),
-        lineStyle = list(type='dashed', color='cyan')
+  output$plot <- renderEcharts4r({
+    react()
+  })
+
+  observeEvent(input$pxy, {
+    echarts4rProxy("plot", data = NULL) \%>\%
+      e_mark_p(
+        type = "line",
+        serie_index = 1,
+        data = list(type = "average"),
+        lineStyle = list(type = "dashed", color = "cyan")
       ) \%>\%
-		  e_mark_p(
-        serie_index=2,
-        data = list(xAxis=bb$day[60], 
-        yAxis=bb$SMI[60], value='pnt')
-      ) \%>\%
-		  e_mark_p(
-        type='line', 
-        serie_index=2, 
+      e_mark_p(
+        serie_index = 2,
         data = list(
-          list(xAxis=bb$day[10], yAxis=bb$SMI[10]),
-          list(xAxis=bb$day[37], yAxis=bb$SMI[37])
-        ), 
-        lineStyle = list(type='solid', color='yellow')
+          xAxis = bb$day[60],
+          yAxis = bb$SMI[60],
+          value = "pnt"
+        )
       ) \%>\%
-		  e_mark_p(
-        type='area', 
-        serie_index=1, 
+      e_mark_p(
+        type = "line",
+        serie_index = 2,
+        data = list(
+          list(xAxis = bb$day[10], yAxis = bb$SMI[10]),
+          list(xAxis = bb$day[37], yAxis = bb$SMI[37])
+        ),
+        lineStyle = list(type = "solid", color = "yellow")
+      ) \%>\%
+      e_mark_p(
+        type = "area",
+        serie_index = 1,
         data = list(
           list(xAxis = bb$day[95]),
           list(xAxis = bb$day[105])
         ),
-			  itemStyle = list(color='lightblue'),
-			  label = list(formatter='X-area', position='middle')
-		) \%>\%
-		e_merge()
- })
-
- react <- eventReactive(input$tln, {
-	  tmp <- bb
-	  if (input$tln) tmp <- tmp \%>\% group_by(day < 75)
-	  
-    tmp \%>\% 
-      e_charts(day, 
-        backgroundColor="#181818", 
-        legend=list(textStyle=list(color='#aaa')),
-        timeline=input$tln
+        itemStyle = list(color = "lightblue"),
+        label = list(formatter = "X-area", position = "middle")
       ) \%>\%
-        e_y_axis(scale=TRUE, axisLabel=list(color='#aaa')) \%>\%
-        e_line(CAC, symbol='none', color="#ff33b8") \%>\%
-        e_line(SMI, symbol='none', color="green")
- })
+      e_merge()
+  })
 
+  react <- eventReactive(input$tln, {
+    tmp <- bb
+    if (input$tln) tmp <- tmp \%>\% group_by(day < 75)
+
+    tmp \%>\%
+      e_charts(
+        day,
+        backgroundColor = "#181818",
+        legend = list(textStyle = list(color = "#aaa")),
+        timeline = input$tln
+      ) \%>\%
+      e_y_axis(scale = TRUE, axisLabel = list(color = "#aaa")) \%>\%
+      e_line(CAC, symbol = "none", color = "#ff33b8") \%>\%
+      e_line(SMI, symbol = "none", color = "green")
+  })
 }
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
-
+}
 }

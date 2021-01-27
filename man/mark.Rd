@@ -80,10 +80,13 @@ mtcars \%>\%
   e_mark_point("wt", data = max) \%>\%
   e_mark_point(c("cyl", "drat"), data = min) \%>\%
   e_mark_line(data = avg) \%>\% # applies to all
-  e_mark_area(serie = "wt", data = list(
-    list(xAxis = "min", yAxis = "min"),
-    list(xAxis = "max", yAxis = "max")
-  ))
+  e_mark_area(
+    serie = "wt",
+    data = list(
+      list(xAxis = "min", yAxis = "min"),
+      list(xAxis = "max", yAxis = "max")
+    )
+  )
 
 # serie options
 
@@ -108,7 +111,6 @@ iris \%>\%
     itemStyle = list(color = "lightblue")
   ) \%>\%
   e_mark_area(serie = "virginica")
-
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-line.markPoint}{Additional point arguments},

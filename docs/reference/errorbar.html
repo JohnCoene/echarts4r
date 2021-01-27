@@ -109,31 +109,31 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
   <a href="../LICENSE.html">
-    <span class="fa fa-balance-scale"></span>
+    <span class="fas fa-balance-scale"></span>
      
   </a>
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fa fa-newspaper-o"></span>
+    <span class="fas fa-newspaper-o"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/">
-    <span class="fa fa-code"></span>
+    <span class="fas fa-code"></span>
      
   </a>
 </li>
 <li>
   <a href="../articles/development.html">
-    <span class="fa fa-lightbulb-o"></span>
+    <span class="fas fa-lightbulb-o"></span>
      
   </a>
 </li>
@@ -267,7 +267,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/JohnCoene/echarts4r">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -320,6 +320,8 @@
   y_index <span class='op'>=</span> <span class='fl'>0</span>,
   x_index <span class='op'>=</span> <span class='fl'>0</span>,
   coord_system <span class='op'>=</span> <span class='st'>"cartesian2d"</span>,
+  itemStyle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>borderWidth <span class='op'>=</span> <span class='fl'>1.5</span><span class='op'>)</span>,
+  renderer <span class='op'>=</span> <span class='st'>"renderErrorBar2"</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -359,11 +361,19 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
       <th>...</th>
       <td><p>Any other option to pass, check See Also section.</p></td>
     </tr>
+    <tr>
+      <th>itemStyle</th>
+      <td><p>mostly used for borderWidth, default 1.5</p></td>
+    </tr>
+    <tr>
+      <th>renderer</th>
+      <td><p>mame of render function from renderers.js</p></td>
+    </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+    <pre class="examples"><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
   x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>,
   y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>5</span><span class='op'>)</span>,
   upper <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1.1</span>, <span class='fl'>5.3</span><span class='op'>)</span>,
@@ -389,7 +399,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>x</span>, timeline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='e_bar.html'>e_bar</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>e_error_bar</span><span class='op'>(</span><span class='va'>lower</span>, <span class='va'>upper</span><span class='op'>)</span>
-</div></pre>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

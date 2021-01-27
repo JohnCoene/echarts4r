@@ -27,8 +27,15 @@ Map-related actions.
 \examples{
 choropleth <- data.frame(
   countries = c(
-    "France", "Brazil", "China", "Russia", "Canada", "India", "United States",
-    "Argentina", "Australia"
+    "France",
+    "Brazil",
+    "China",
+    "Russia",
+    "Canada",
+    "India",
+    "United States",
+    "Argentina",
+    "Australia"
   ),
   values = round(runif(9, 10, 25))
 )

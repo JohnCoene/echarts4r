@@ -23,17 +23,21 @@ Build a tree.
 \examples{
 library(dplyr)
 df <- tibble(
-  name = "earth", # 1st level
+  name = "earth",
+  # 1st level
   children = list(
     tibble(
-      name = c("land", "ocean"), # 2nd level
+      name = c("land", "ocean"),
+      # 2nd level
       children = list(
-        tibble(name = c("forest", "river")), # 3rd level
+        tibble(name = c("forest", "river")),
+        # 3rd level
         tibble(
           name = c("fish", "kelp"),
           children = list(
             tibble(
-              name = c("shark", "tuna"), # 4th level
+              name = c("shark", "tuna"),
+              # 4th level
               NULL # kelp
             )
           )
