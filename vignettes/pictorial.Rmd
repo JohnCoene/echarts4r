@@ -83,12 +83,12 @@ df %>%
 
 ```{r}
 qomo <- paste0(
-  "https://ecomfe.github.io/echarts-examples/public/",
+  "https://echarts.apache.org/examples/",
   "data/asset/img/hill-Qomolangma.png"
 )
 
 kili <- paste0(
-  "https://ecomfe.github.io/echarts-examples/public/", 
+  "https://echarts.apache.org/examples/", 
   "data/asset/img/hill-Kilimanjaro.png"
 )
 
