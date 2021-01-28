@@ -252,6 +252,9 @@
     <li>
       <a href="../articles/boxes.html">Boxes</a>
     </li>
+    <li>
+      <a href="../articles/proxies.html">Proxies</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -295,7 +298,15 @@
 
     <pre class="usage"><span class='fu'>e_graph</span><span class='op'>(</span><span class='va'>e</span>, layout <span class='op'>=</span> <span class='st'>"force"</span>, name <span class='op'>=</span> <span class='cn'>NULL</span>, rm_x <span class='op'>=</span> <span class='cn'>TRUE</span>, rm_y <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>e_graph_gl</span><span class='op'>(</span><span class='va'>e</span>, layout <span class='op'>=</span> <span class='st'>"force"</span>, name <span class='op'>=</span> <span class='cn'>NULL</span>, rm_x <span class='op'>=</span> <span class='cn'>TRUE</span>, rm_y <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='fu'>e_graph_gl</span><span class='op'>(</span>
+  <span class='va'>e</span>,
+  layout <span class='op'>=</span> <span class='st'>"force"</span>,
+  name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  rm_x <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  rm_y <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>,
+  itemStyle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>opacity <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='op'>)</span>
 
 <span class='fu'>e_graph_nodes</span><span class='op'>(</span>
   <span class='va'>e</span>,
@@ -332,6 +343,11 @@
     <tr>
       <th>...</th>
       <td><p>Any other parameter.</p></td>
+    </tr>
+    <tr>
+      <th>itemStyle</th>
+      <td><p>This option is available for for GL and canvas
+graph but is only necessary for GL.</p></td>
     </tr>
     <tr>
       <th>nodes</th>

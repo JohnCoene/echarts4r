@@ -252,6 +252,9 @@
     <li>
       <a href="../articles/boxes.html">Boxes</a>
     </li>
+    <li>
+      <a href="../articles/proxies.html">Proxies</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -413,49 +416,25 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 
 <span class='va'>trans</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>opacity <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='co'># transparency</span>
 
-<span class='va'>wind</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>lng</span>, backgroundColor <span class='op'>=</span> <span class='st'>"#333"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_geo.html'>e_geo</a></span><span class='op'>(</span>
-    itemStyle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
-      normal <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
-        areaColor <span class='op'>=</span> <span class='st'>"#323c48"</span>,
-        borderColor <span class='op'>=</span> <span class='st'>"#111"</span>
-      <span class='op'>)</span>
-    <span class='op'>)</span>
-  <span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_flow_gl</span><span class='op'>(</span>
-    <span class='va'>lat</span>,
-    <span class='va'>slng</span>,
-    <span class='va'>slat</span>,
-    <span class='va'>color</span>,
-    coord_system <span class='op'>=</span> <span class='st'>"geo"</span>,
-    itemStyle <span class='op'>=</span> <span class='va'>trans</span>,
-    particleSize <span class='op'>=</span> <span class='fl'>2</span>
-  <span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span><span class='op'>(</span>
-    min <span class='op'>=</span> <span class='va'>rng</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>,
-    max <span class='op'>=</span> <span class='va'>rng</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>,
-    <span class='co'># range</span>
-    dimension <span class='op'>=</span> <span class='fl'>4</span>,
-    <span class='co'># lng = 0, lat = 1, slng = 2, slat = 3, color = 4</span>
-    show <span class='op'>=</span> <span class='cn'>FALSE</span>,
-    <span class='co'># hide</span>
-    inRange <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
-      color <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-        <span class='st'>"#313695"</span>,
-        <span class='st'>"#4575b4"</span>,
-        <span class='st'>"#74add1"</span>,
-        <span class='st'>"#abd9e9"</span>,
-        <span class='st'>"#e0f3f8"</span>,
-        <span class='st'>"#ffffbf"</span>,
-        <span class='st'>"#fee090"</span>,
-        <span class='st'>"#fdae61"</span>,
-        <span class='st'>"#f46d43"</span>,
-        <span class='st'>"#d73027"</span>,
-        <span class='st'>"#a50026"</span>
-      <span class='op'>)</span>
-    <span class='op'>)</span>
+<span class='va'>wind</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>lng</span>, backgroundColor <span class='op'>=</span> <span class='st'>'#333'</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'><a href='e_geo.html'>e_geo</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'>e_flow_gl</span><span class='op'>(</span>
+   <span class='va'>lat</span>, <span class='va'>slng</span>, <span class='va'>slat</span>, <span class='va'>color</span>,  
+   itemStyle <span class='op'>=</span> <span class='va'>trans</span>,
+   particleSize <span class='op'>=</span> <span class='fl'>2</span>
+ <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span><span class='op'>(</span>
+   <span class='va'>color</span>, <span class='co'># range</span>
+   dimension <span class='op'>=</span> <span class='fl'>4</span>, <span class='co'># lng = 0, lat = 1, slng = 2, slat = 3, color = 4</span>
+   show <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='co'># hide</span>
+   inRange <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+   color <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'#313695'</span>, <span class='st'>'#4575b4'</span>, <span class='st'>'#74add1'</span>, <span class='st'>'#abd9e9'</span>, <span class='st'>'#e0f3f8'</span>, 
+     <span class='st'>'#ffffbf'</span>, <span class='st'>'#fee090'</span>, <span class='st'>'#fdae61'</span>, <span class='st'>'#f46d43'</span>, <span class='st'>'#d73027'</span>, <span class='st'>'#a50026'</span><span class='op'>)</span>
   <span class='op'>)</span>
+ <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'><a href='e_axis.html'>e_x_axis</a></span><span class='op'>(</span>show <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'><a href='e_axis.html'>e_y_axis</a></span><span class='op'>(</span>show <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -229,6 +229,8 @@ navbar:
           href: articles/shiny.html
         - text: 'Boxes' 
           href: articles/boxes.html
+        - text: 'Proxies' 
+          href: articles/proxies.html
     - text: "Timeline" 
       href: articles/timeline.html
   right:

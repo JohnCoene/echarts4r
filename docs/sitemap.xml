@@ -373,9 +373,6 @@
     <loc>http://echarts4r.john-coene.com/articles/connect.html</loc>
   </url>
   <url>
-    <loc>http://echarts4r.john-coene.com/articles/development.html</loc>
-  </url>
-  <url>
     <loc>http://echarts4r.john-coene.com/articles/geo.html</loc>
   </url>
   <url>
@@ -418,6 +415,9 @@
     <loc>http://echarts4r.john-coene.com/articles/pictorial.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/articles/proxies.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/articles/shiny.html</loc>
   </url>
   <url>
@@ -437,5 +437,8 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/articles/tooltip.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/v5.html</loc>
   </url>
 </urlset>

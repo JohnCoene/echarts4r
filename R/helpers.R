@@ -283,14 +283,14 @@ e_list <- function(e, list, append = FALSE) {
 #' can help the disabled understand the content of charts with the help of certain devices.
 #'
 #' @inheritParams e_bar
-#' @param show Whether to show aria helper text.
+#' @param enabled Whether to enable aria helper text.
 #'
 #' @seealso \href{https://echarts.apache.org/en/option.html#aria}{official documentation}
 #'
 #' @export
-e_aria <- function(e, show = TRUE, ...) {
-  e$x$aria <- list(
-    show = show,
+e_aria <- function(e, enabled = TRUE, ...) {
+  e$x$opts$aria <- list(
+    enabled = enabled,
     ...
   )
 

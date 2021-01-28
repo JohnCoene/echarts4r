@@ -8,7 +8,6 @@ articles:
   brush: brush.html
   chart_types: chart_types.html
   connect: connect.html
-  development: development.html
   geo: geo.html
   geo3d: geo3d.html
   get_started: get_started.html
@@ -23,6 +22,7 @@ articles:
   map3d: map3d.html
   mark: mark.html
   pictorial: pictorial.html
+  proxies: proxies.html
   shiny: shiny.html
   stats: stats.html
   themes: themes.html
@@ -30,7 +30,8 @@ articles:
   timeline: timeline.html
   toolbox: toolbox.html
   tooltip: tooltip.html
-last_built: 2021-01-27T18:49Z
+  v5: v5.html
+last_built: 2021-01-28T11:51Z
 urls:
   reference: http://echarts4r.john-coene.com/reference
   article: http://echarts4r.john-coene.com/articles
