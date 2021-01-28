@@ -1832,17 +1832,11 @@ e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = N
   e$x$renderer <- "webgl"
 
   if (missing(y) || missing(sx) || missing(sy)) {
-    stop("must pass y and z", call. = FALSE)
+    stop("must pass y, sx, and sy", call. = FALSE)
   }
 
-  if (is.null(coord_system)) {
-    e$x$opts$xAxis <- list(type = "value")
-    e$x$opts$yAxis <- list(type = "value")
-  } else {
-    # remove axis
-    e <- .rm_axis(e, rm_x, "x")
-    e <- .rm_axis(e, rm_y, "y")
-  }
+  e$x$opts$xAxis <- list(type = "value")
+  e$x$opts$yAxis <- list(type = "value")
 
   if (is.null(color)) {
     data <- .build_data(e, e$x$mapping$x, y, sx, sy)
@@ -1858,10 +1852,6 @@ e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = N
 
   if (!is.null(name)) {
     serie$name <- name
-  }
-
-  if (!is.null(coord_system)) {
-    serie$coordinateSystem <- coord_system
   }
 
   e$x$opts$series <- append(e$x$opts$series, list(serie))
