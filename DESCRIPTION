@@ -1,5 +1,5 @@
 Package: echarts4r
-Title: Create Interactive Graphs with 'Echarts JavaScript' Version 4
+Title: Create Interactive Graphs with 'Echarts JavaScript' Version 5
 Date: 2021-01-25
 Version: 0.4.0.9000
 Authors@R: c(
@@ -27,12 +27,12 @@ Imports:
   jsonlite,
   rstudioapi
 Suggests:
-    tidyr,
-    testthat,
-    knitr,
-    rmarkdown,
-    covr,
-    data.tree
+  tidyr,
+  testthat,
+  knitr,
+  rmarkdown,
+  covr,
+  data.tree
 RoxygenNote: 7.1.1
 URL: https://echarts4r.john-coene.com/
 BugReports: https://github.com/JohnCoene/echarts4r/issues/
