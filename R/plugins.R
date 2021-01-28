@@ -58,9 +58,7 @@ e_cloud_ <- function(e, word, freq, color = NULL, rm_x = TRUE, rm_y = TRUE, ...)
     color <- .get_data(e, color)
     for (i in 1:length(data)) {
       col <- list(
-        normal = list(
-          color = color[i]
-        )
+        color = color[i]
       )
       data[[i]]$textStyle <- col
     }
