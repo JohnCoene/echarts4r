@@ -22,11 +22,11 @@
 
 <div class = "thumbnail" style = "text-align:center;">
 <div class = "caption">
-<i class = "fa fa-code-branch fa-4x" style = "color:#293c55;"></i>
+<i class = "fa fa-code-branch fa-4x" style = "color:#F72C5B;"></i>
 <h4>Version 5</h4>
 <p>Explore new features available on version 5 of echarts.js!</p>
 <br/>
-<a class = "btn btn-warning" href = "articles/v5">Explore</a>
+<a class = "btn btn-default" href = "articles/v5">Explore</a>
 </div>
 </div>
 
