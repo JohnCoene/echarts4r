@@ -1152,13 +1152,13 @@ e_graph.echarts4r <- function(e, layout = "force", name = NULL, rm_x = TRUE, rm_
 
   e$x$opts$series <- append(e$x$opts$series, list(serie))
 
-  # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  # dependency
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0/plugins", package = "echarts4r")
   dep <- htmltools::htmlDependency(
-    name = "echarts-gl",
-    version = "1.1.2",
+    name = "echarts-graph-modularity",
+    version = "1.1.0",
     src = c(file = path),
-    script = "echarts-gl.min.js"
+    script = "echarts-graph-modularity.min.js"
   )
 
   e$dependencies <- append(e$dependencies, list(dep))
