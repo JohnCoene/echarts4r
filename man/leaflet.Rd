@@ -47,7 +47,7 @@ data \%>\%
   e_charts(lon) \%>\%
   e_leaflet() \%>\%
   e_leaflet_tile() \%>\%
-  e_scatter(lat, size = value, coord.system = "leaflet")
+  e_scatter(lat, size = value, coord_system = "leaflet")
 }
 
 }

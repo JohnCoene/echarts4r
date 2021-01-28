@@ -1080,6 +1080,8 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #' @param source,target Column names of source and target.
 #' @param layout Layout, one of \code{force}, \code{none} or \code{circular}.
 #' @param rm_x,rm_y Whether to remove the x and y axis, defaults to \code{TRUE}.
+#' @param itemStyle This option is available for for GL and canvas
+#' graph but is only necessary for GL.
 #' @param ... Any other parameter.
 #'
 #' @examples
@@ -1173,11 +1175,11 @@ e_graph.echarts4rProxy <- function(e, layout = "force", name = NULL, rm_x = TRUE
 
 #' @rdname graph
 #' @export
-e_graph_gl <- function(e, layout = "force", name = NULL, rm_x = TRUE, rm_y = TRUE, ...) UseMethod("e_graph_gl")
+e_graph_gl <- function(e, layout = "force", name = NULL, rm_x = TRUE, rm_y = TRUE, ..., itemStyle = list(opacity = 1)) UseMethod("e_graph_gl")
 
 #' @export
 #' @method e_graph_gl echarts4r
-e_graph_gl.echarts4r <- function(e, layout = "force", name = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
+e_graph_gl.echarts4r <- function(e, layout = "force", name = NULL, rm_x = TRUE, rm_y = TRUE, ..., itemStyle = list(opacity = 1)) {
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
@@ -1185,8 +1187,29 @@ e_graph_gl.echarts4r <- function(e, layout = "force", name = NULL, rm_x = TRUE, 
     name = name,
     type = "graphGL",
     layout = layout,
+    itemStyle = itemStyle,
     ...
   )
+
+  # add dependencies
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  dep_gl <- htmltools::htmlDependency(
+    name = "echarts-gl",
+    version = "1.1.2",
+    src = c(file = path),
+    script = "echarts-gl.min.js"
+  )
+
+  path <- system.file("htmlwidgets/lib/echarts-4.8.0/plugins", package = "echarts4r")
+  dep_modularity <- htmltools::htmlDependency(
+    name = "echarts-graph-modularity",
+    version = "1.1.0",
+    src = c(file = path),
+    script = "echarts-graph-modularity.min.js"
+  )
+
+  e$dependencies <- append(e$dependencies, list(dep_gl))
+  e$dependencies <- append(e$dependencies, list(dep_modularity))
 
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e

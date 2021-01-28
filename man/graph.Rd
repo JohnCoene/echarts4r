@@ -9,7 +9,15 @@
 \usage{
 e_graph(e, layout = "force", name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 
-e_graph_gl(e, layout = "force", name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
+e_graph_gl(
+  e,
+  layout = "force",
+  name = NULL,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...,
+  itemStyle = list(opacity = 1)
+)
 
 e_graph_nodes(
   e,
@@ -34,6 +42,9 @@ e_graph_edges(e, edges, source, target)
 \item{rm_x, rm_y}{Whether to remove the x and y axis, defaults to \code{TRUE}.}
 
 \item{...}{Any other parameter.}
+
+\item{itemStyle}{This option is available for for GL and canvas
+graph but is only necessary for GL.}
 
 \item{nodes}{Data.frame of nodes.}
 
