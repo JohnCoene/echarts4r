@@ -32,7 +32,8 @@ Suggests:
   knitr,
   rmarkdown,
   covr,
-  data.tree
+  data.tree,
+  leaflet
 RoxygenNote: 7.1.1
-URL: https://echarts4r.john-coene.com/
+URL: https://echarts4r.john-coene.com/, https://github.com/JohnCoene/echarts4r
 BugReports: https://github.com/JohnCoene/echarts4r/issues/
