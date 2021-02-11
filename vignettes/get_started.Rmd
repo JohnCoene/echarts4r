@@ -30,6 +30,12 @@ Welcome to `echarts4r`, let's explore the package together.
 4. All functions are `%>%` friendly.
 5. Most functions have escape hatches ending in `_`.
 
+## Video & Article
+
+Thanks to [Sharon Machlis](https://twitter.com/sharon000) there is an amazing video and [article](https://www.infoworld.com/article/3607068/plot-in-r-with-echarts4r.html) introducing echarts4r.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OBJxIWEFHdo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Your first plot
 
 Let's build a line chart, load the library and pipe your data to `e_charts`. If you are not at ease with the `%>%` you can use `e_charts(mtcars, wt)`.
