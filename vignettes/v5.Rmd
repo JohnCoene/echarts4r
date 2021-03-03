@@ -114,3 +114,20 @@ e_charts(mtcars, mpg) %>%
   ) %>% 
   e_x_axis(min = 9)
 ```
+
+## Emphasis
+
+More control on `emphasis` which was previously rarely if ever useful.
+
+```{r}
+df <- data.frame(
+  grp = rep(c("a", "b"), each = 7),
+  x = rep(letters[1:7], 2),
+  y = runif(14, 1, 10)
+)
+
+df %>% 
+  group_by(grp) %>% 
+  e_charts(x) %>% 
+  e_bar(y, emphasis = list(focus = "series"))
+```
