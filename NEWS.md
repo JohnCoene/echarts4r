@@ -1,4 +1,4 @@
-# echarts4r 0.4.0.9000
+# echarts4r 0.4.0
 
 - Bump ECharts.js updated from version 4 to 5.
 
