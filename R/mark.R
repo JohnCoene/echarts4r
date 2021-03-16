@@ -96,10 +96,12 @@ e_mark_point <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_
     }
 
     if (e$x$tl) {
-      if (is.null(e$x$opts$options[[i]]$series[[1]]$markPoint)) {
-        e$x$opts$options[[i]]$series[[1]]$markPoint <- append(e$x$opts$options[[i]]$series[[1]]$markPoint, point)
-      } else {
-        e$x$opts$options[[i]]$series[[1]]$markPoint$data <- append(e$x$opts$options[[i]]$series[[1]]$markPoint$data, point$data)
+      for(j in 1:length(e$x$opts$options[[i]]$series)){
+        if (is.null(e$x$opts$options[[i]]$series[[j]]$markPoint)) {
+          e$x$opts$options[[i]]$series[[j]]$markPoint <- append(e$x$opts$options[[i]]$series[[j]]$markPoint, point)
+        } else {
+          e$x$opts$options[[i]]$series[[j]]$markPoint$data <- append(e$x$opts$options[[i]]$series[[j]]$markPoint$data, point$data)
+        }
       }
     }
     else {
@@ -139,10 +141,12 @@ e_mark_line <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_p
     }
 
     if (e$x$tl) {
-      if (is.null(e$x$opts$options[[i]]$series[[1]]$markLine)) {
-        e$x$opts$options[[i]]$series[[1]]$markLine <- append(e$x$opts$options[[i]]$series[[1]]$markLine, point)
-      } else {
-        e$x$opts$options[[i]]$series[[1]]$markLine$data <- append(e$x$opts$options[[i]]$series[[1]]$markLine$data, point$data)
+      for(j in 1:length(e$x$opts$options[[i]]$series)){
+        if (is.null(e$x$opts$options[[i]]$series[[j]]$markLine)) {
+          e$x$opts$options[[i]]$series[[j]]$markLine <- append(e$x$opts$options[[i]]$series[[j]]$markLine, point)
+        } else {
+          e$x$opts$options[[i]]$series[[j]]$markLine$data <- append(e$x$opts$options[[i]]$series[[j]]$markLine$data, point$data)
+        }
       }
     }
     else {
@@ -182,10 +186,12 @@ e_mark_area <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_p
     }
 
     if (e$x$tl) {
-      if (is.null(e$x$opts$options[[i]]$series[[1]]$markArea)) {
-        e$x$opts$options[[i]]$series[[1]]$markArea <- append(e$x$opts$options[[i]]$series[[1]]$markArea, point)
-      } else {
-        e$x$opts$options[[i]]$series[[1]]$markArea$data <- append(e$x$opts$options[[i]]$series[[1]]$markArea$data, point$data)
+      for(j in 1:length(e$x$opts$options[[i]]$series)){
+        if (is.null(e$x$opts$options[[i]]$series[[j]]$markArea)) {
+          e$x$opts$options[[i]]$series[[j]]$markArea <- append(e$x$opts$options[[i]]$series[[j]]$markArea, point)
+        } else {
+          e$x$opts$options[[i]]$series[[j]]$markArea$data <- append(e$x$opts$options[[i]]$series[[j]]$markArea$data, point$data)
+        }
       }
     }
     else {
