@@ -918,7 +918,7 @@ e_radar.echarts4rProxy <- function(
 
   serie <- deparse(substitute(serie))
 
-  e$chart <- e_radar_(e, serie, max, name, legend, rm_x, rm_y, ..., radar = radar)
+  e$chart <- e_radar_(e$chart, serie, max, name, legend, rm_x, rm_y, ..., radar = radar)
   return(e)
 }
 
@@ -1794,7 +1794,7 @@ e_sunburst.echarts4r <- function(e, styles = NULL, names = NULL, levels = NULL, 
 #' @export
 #' @method e_sunburst echarts4rProxy
 e_sunburst.echarts4rProxy <- function(e, styles = NULL, names = NULL, levels = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
-  e$chart <- e_sunburst_(e, styles, names, levels, rm_x, rm_y, ...)
+  e$chart <- e_sunburst_(e$chart, styles, names, levels, rm_x, rm_y, ...)
 
   return(e)
 }
@@ -1859,7 +1859,7 @@ e_treemap.echarts4r <- function(e, styles = NULL, names = NULL, levels = NULL, r
 #' @export
 #' @method e_treemap echarts4rProxy
 e_treemap.echarts4rProxy <- function(e, styles = NULL, names = NULL, levels = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
-  e$chart <- e_treemap_(e, styles, names, levels, rm_x, rm_y, ...)
+  e$chart <- e_treemap_(e$chart, styles, names, levels, rm_x, rm_y, ...)
 
   return(e)
 }
@@ -1962,7 +1962,7 @@ e_boxplot.echarts4rProxy <- function(e, serie, name = NULL, outliers = TRUE, ...
     name <- deparse(substitute(serie))
   }
 
-  e$chart <- e_boxplot_(e, deparse(substitute(serie)), name, outliers, ...)
+  e$chart <- e_boxplot_(e$chart, deparse(substitute(serie)), name, outliers, ...)
   return(e)
 }
 
