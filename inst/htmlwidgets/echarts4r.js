@@ -409,8 +409,14 @@ if (HTMLWidgets.shinyMode) {
         if(data.serie_name){
           let series = opts.series;
           series.forEach(function(s, index){
+            if (typeof s.name == "undefined"){
+             if (s.data[[0]].name == data.serie_name){
+               this.splice(index, 1);
+             }
+            } else {
             if(s.name == data.serie_name){
               this.splice(index, 1);
+            }
             }
           }, series)
           opts.series = series;
