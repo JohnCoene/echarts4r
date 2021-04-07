@@ -401,6 +401,7 @@ if (HTMLWidgets.shinyMode) {
 
   Shiny.addCustomMessageHandler('e_remove_serie_p',
     function(data) {
+      
       var chart = get_e_charts(data.id);
       if (typeof chart != 'undefined') {
         let opts = chart.getOption();
@@ -415,8 +416,9 @@ if (HTMLWidgets.shinyMode) {
           opts.series = series;
         }
 
-        if(data.serie_index)
-          opts.series = opts.series.splice(data.index, 1);
+        if(data.serie_index != null){
+          opts.series = opts.series.splice(data.serie_index, 1);
+        }
 
         chart.setOption(opts, true);
       }
