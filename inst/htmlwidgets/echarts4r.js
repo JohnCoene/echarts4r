@@ -238,6 +238,10 @@ function distinct(value, index, self) {
   return self.indexOf(value) === index;
 }
 
+function rm_undefined(el){
+  return el != undefined;
+}
+
 if (HTMLWidgets.shinyMode) {
   
   // DRAW
@@ -376,12 +380,12 @@ if (HTMLWidgets.shinyMode) {
         if(opts.legend.length > 0)
           if(data.opts.legend.data)
             opts.legend[0].data = opts.legend[0].data.concat(data.opts.legend.data);
-
+        
         // x Axis
         if(opts.xAxis){
           if(opts.xAxis[0].data){
             let xaxis = opts.xAxis[0].data.concat(data.opts.xAxis[0].data);
-            xaxis = xaxis.filter(distinct);
+            xaxis = xaxis.filter(distinct).filter(rm_undefined);
             opts.xAxis[0].data = xaxis;
           }
         }
@@ -390,7 +394,7 @@ if (HTMLWidgets.shinyMode) {
         if(opts.yAxis){
           if(opts.yAxis[0].data){
             let yaxis = opts.yAxis[0].data.concat(data.opts.yAxis[0].data);
-            yaxis = yaxis.filter(distinct);
+            yaxis = yaxis.filter(distinct).filter(rm_undefined);
             opts.yAxis[0].data = yaxis;
           }
         }
@@ -401,6 +405,7 @@ if (HTMLWidgets.shinyMode) {
 
   Shiny.addCustomMessageHandler('e_remove_serie_p',
     function(data) {
+      
       var chart = get_e_charts(data.id);
       if (typeof chart != 'undefined') {
         let opts = chart.getOption();
@@ -408,15 +413,22 @@ if (HTMLWidgets.shinyMode) {
         if(data.serie_name){
           let series = opts.series;
           series.forEach(function(s, index){
+            if (typeof s.name == "undefined"){
+             if (s.data[[0]].name == data.serie_name){
+               this.splice(index, 1);
+             }
+            } else {
             if(s.name == data.serie_name){
               this.splice(index, 1);
+            }
             }
           }, series)
           opts.series = series;
         }
 
-        if(data.serie_index)
-          opts.series = opts.series.splice(data.index, 1);
+        if(data.serie_index != null){
+          opts.series = opts.series.splice(data.serie_index, 1);
+        }
 
         chart.setOption(opts, true);
       }
