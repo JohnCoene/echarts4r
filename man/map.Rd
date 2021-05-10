@@ -3,6 +3,8 @@
 \name{e_map}
 \alias{e_map}
 \alias{e_map_}
+\alias{e_svg}
+\alias{e_svg_}
 \alias{e_map_3d}
 \alias{e_map_3d_}
 \alias{e_map_3d_custom}
@@ -11,6 +13,18 @@
 e_map(e, serie, map = "world", name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 
 e_map_(
+  e,
+  serie = NULL,
+  map = "world",
+  name = NULL,
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
+
+e_svg(e, serie, map = "world", name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
+
+e_svg_(
   e,
   serie = NULL,
   map = "world",

@@ -131,3 +131,36 @@ df %>%
   e_charts(x) %>% 
   e_bar(y, emphasis = list(focus = "series"))
 ```
+
+## SVG Map
+
+```r
+url <- "https://echarts.apache.org/examples/data/asset/geo/Beef_cuts_France.svg"
+
+svg <- url %>% 
+  readLines() %>% 
+  paste0(collapse = "")
+
+data <- tibble::tibble(
+  name = c(
+    "Queue", 
+    "Langue",
+    "Plat de joue",
+    "Collier",
+    "Rumsteck"
+  ),
+  value = runif(5, 10, 15)
+)
+
+data %>% 
+  e_charts(name) %>% 
+  e_svg_register("beef", svg) %>% 
+  e_svg(
+    value,
+    map = "beef",
+    label = list(
+      show = FALSE
+    )
+  ) %>% 
+  e_visual_map(value)
+```

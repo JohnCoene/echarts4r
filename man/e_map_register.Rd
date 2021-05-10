@@ -2,11 +2,14 @@
 % Please edit documentation in R/map.R
 \name{e_map_register}
 \alias{e_map_register}
+\alias{e_svg_register}
 \alias{e_map_register_p}
 \alias{e_map_register_ui}
 \title{Register map}
 \usage{
 e_map_register(e, name, json)
+
+e_svg_register(e, name, svg)
 
 e_map_register_p(
   name,
@@ -22,7 +25,7 @@ e_map_register_ui(name, json, async = FALSE)
 
 \item{name}{Name of map, to use in \code{\link{e_map}}.}
 
-\item{json}{\href{https://geojson.org/}{Geojson}.}
+\item{json, svg}{\href{https://geojson.org/}{Geojson}, or SVG.}
 
 \item{async}{Whether to read the file asynchronously.}
 

@@ -176,6 +176,14 @@ e_map_ <- function(e, serie = NULL, map = "world", name = NULL, rm_x = TRUE, rm_
 
 #' @rdname map
 #' @export
+e_svg <- e_map
+
+#' @rdname map
+#' @export
+e_svg_ <- e_map_
+
+#' @rdname map
+#' @export
 e_map_3d <- function(e, serie, map = "world", name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
@@ -328,7 +336,7 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
 #'
 #' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
 #' @param name Name of map, to use in \code{\link{e_map}}.
-#' @param json \href{https://geojson.org/}{Geojson}.
+#' @param json,svg \href{https://geojson.org/}{Geojson}, or SVG.
 #' @param async Whether to read the file asynchronously.
 #' @param session A valid Shiny session.
 #'
@@ -363,6 +371,26 @@ e_map_register.echarts4r <- function(e, name, json) {
   opts <- list(
     mapName = name,
     geoJSON = json
+  )
+
+  e$x$registerMap <- append(e$x$registerMap, list(opts))
+  e
+}
+
+#' @rdname e_map_register
+#' @export
+e_svg_register <- function(e, name, svg) UseMethod("e_svg_register")
+
+#' @export
+#' @method e_svg_register echarts4r
+e_svg_register.echarts4r <- function(e, name, svg) {
+  if (!length(e$x$registerMap)) {
+    e$x$registerMap <- list()
+  }
+
+  opts <- list(
+    mapName = name,
+    geoJSON = list(svg = svg)
   )
 
   e$x$registerMap <- append(e$x$registerMap, list(opts))
