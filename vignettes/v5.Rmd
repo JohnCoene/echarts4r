@@ -134,7 +134,7 @@ df %>%
 
 ## SVG Map
 
-```r
+```{r}
 url <- "https://echarts.apache.org/examples/data/asset/geo/Beef_cuts_France.svg"
 
 svg <- url %>% 
