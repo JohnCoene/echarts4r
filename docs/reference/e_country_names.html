@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
       </span>
     </div>
 
@@ -326,14 +326,18 @@
     <p>Taiwan and Hong Kong cannot be plotted.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='va'>cns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>country <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"US"</span>, <span class='st'>"BE"</span><span class='op'>)</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='va'>cns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>country <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"US"</span>, <span class='st'>"BE"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># replace</span>
 <span class='fu'>e_country_names</span><span class='op'>(</span><span class='va'>cns</span>, <span class='va'>country</span><span class='op'>)</span>
-
+</div><div class='output co'>#&gt;         country
+#&gt; 1 United States
+#&gt; 2       Belgium</div><div class='input'>
 <span class='co'># specify output</span>
 <span class='fu'>e_country_names</span><span class='op'>(</span><span class='va'>cns</span>, <span class='va'>country</span>, <span class='va'>country_name</span><span class='op'>)</span>
-</pre>
+</div><div class='output co'>#&gt;   country  country_name
+#&gt; 1      US United States
+#&gt; 2      BE       Belgium</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
       </span>
     </div>
 
@@ -474,7 +474,7 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
   <span class='fu'>e_scatter</span><span class='op'>(</span><span class='va'>wt</span>, <span class='va'>qsec</span><span class='op'>)</span>
 
 <span class='co'># custom function</span>
-<span class='va'>my_scale</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org//reference/rescale.html'>rescale</a></span><span class='op'>(</span><span class='va'>x</span>, to <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>50</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>my_scale</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/rescale.html'>rescale</a></span><span class='op'>(</span><span class='va'>x</span>, to <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>50</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='va'>echart</span> <span class='op'>&lt;-</span> <span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span><span class='op'>)</span> <span class='op'>%&gt;%</span>

@@ -147,9 +147,35 @@ data <- tibble::tibble(
     "Langue",
     "Plat de joue",
     "Collier",
-    "Rumsteck"
+    "Rumsteck",
+    "Plat de joue",
+    "Onglet",
+    "Plat de tranche",
+    "Araignée",
+    "Gîte à la noix",
+    "Bavette d'aloyau",
+    "Tende de tranche",
+    "Rond de gîte",
+    "Plat de côtes",
+    "Bavette",
+    "Basses côtes",
+    "Jumeau à biftek",
+    "Jumeau à pot-au-feu",
+    "Paleron",
+    "Macreuse à bifteck",
+    "Macreuse à pot-au-feu",
+    "Tendron Milieu de poitrine",
+    "Flanchet",
+    "Bavettede de flanchet",
+    "Hampe",
+    "Filet",
+    "Aiguillette baronne",
+    "Côtes Entrecôtes",
+    "Faux-filet",
+    "Gîte",
+    "Gros bout de poitrine"
   ),
-  value = runif(5, 10, 15)
+  value = runif(31, 10, 15)
 )
 
 data %>% 
@@ -162,5 +188,8 @@ data %>%
       show = FALSE
     )
   ) %>% 
-  e_visual_map(value)
+  e_visual_map(
+    value,
+    orient = "horizontal"
+  )
 ```
