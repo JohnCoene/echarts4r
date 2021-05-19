@@ -101,6 +101,19 @@ iris %>%
     e_scatter(Petal.Length, Sepal.Width, scale = my_scale)
 ```
 
+This also works with R 4.1.0 syntax.
+
+```r
+iris |>  
+    group_by(Species) |> 
+    e_charts(Sepal.Length) |> 
+    e_scatter(
+      Petal.Length, 
+      Sepal.Width, 
+      scale = \(x) scales::rescale(x, to = c(5, 30))
+    )
+```
+
 When `size` is not passed the size of the points are defined by `symbol_size`.
 
 ```{r}
