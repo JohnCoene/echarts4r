@@ -10,8 +10,8 @@ df <- data.frame(
 )
 
 test_that("e_line plot has the good data structure and type", {
-  plot <- df %>%
-    e_charts(x) %>%
+  plot <- df |>
+    e_charts(x) |>
     e_line(z)
 
   expect_s3_class(plot, "echarts4r")
@@ -28,8 +28,8 @@ test_that("e_line plot has the good data structure and type", {
 })
 
 test_that("e_area plot has the good data structure and type", {
-  plot <- df %>%
-    e_charts(x) %>%
+  plot <- df |>
+    e_charts(x) |>
     e_area(w)
 
   expect_s3_class(plot, "echarts4r")
@@ -46,8 +46,8 @@ test_that("e_area plot has the good data structure and type", {
 })
 
 test_that("e_bar plot has the good data structure and type", {
-  plot <- df %>%
-    e_charts(x) %>%
+  plot <- df |>
+    e_charts(x) |>
     e_bar(y, name = "Serie 1")
 
   expect_s3_class(plot, "echarts4r")
@@ -65,8 +65,8 @@ test_that("e_bar plot has the good data structure and type", {
 
 
 test_that("e_step plot has the good data structure and type", {
-  plot <- df %>%
-    e_charts(x) %>%
+  plot <- df |>
+    e_charts(x) |>
     e_step(z, name = "Serie 2")
 
   expect_s3_class(plot, "echarts4r")
@@ -84,8 +84,8 @@ test_that("e_step plot has the good data structure and type", {
 
 
 test_that("e_scatter plot has the good data structure and type", {
-  plot <- df %>%
-    e_charts(x) %>%
+  plot <- df |>
+    e_charts(x) |>
     e_scatter(y)
 
   expect_s3_class(plot, "echarts4r")
@@ -101,9 +101,9 @@ test_that("e_scatter plot has the good data structure and type", {
   )
 
 
-  plot2 <- df %>%
-    e_charts(x) %>%
-    e_scatter(y) %>%
+  plot2 <- df |>
+    e_charts(x) |>
+    e_scatter(y) |>
     e_visual_map(y, scale = e_scale)
 
   expect_s3_class(plot2, "echarts4r")
@@ -121,8 +121,8 @@ test_that("e_scatter plot has the good data structure and type", {
 
 
 test_that("e_effect_scatter plot has the good data structure and type", {
-  plot <- df %>%
-    e_charts(x) %>%
+  plot <- df |>
+    e_charts(x) |>
     e_effect_scatter(y)
 
   expect_s3_class(plot, "echarts4r")
@@ -138,9 +138,9 @@ test_that("e_effect_scatter plot has the good data structure and type", {
   )
 
 
-  plot2 <- df %>%
-    e_charts(x) %>%
-    e_effect_scatter(y, ) %>%
+  plot2 <- df |>
+    e_charts(x) |>
+    e_effect_scatter(y, ) |>
     e_visual_map(z, scale = e_scale)
 
   expect_s3_class(plot2, "echarts4r")
@@ -157,11 +157,11 @@ test_that("e_effect_scatter plot has the good data structure and type", {
 })
 
 test_that("e_polar plot has the good data structure and type", {
-  plot <- df %>%
-    e_charts(x) %>%
-    e_polar() %>%
-    e_angle_axis(x) %>% # angle = x
-    e_radius_axis() %>%
+  plot <- df |>
+    e_charts(x) |>
+    e_polar() |>
+    e_angle_axis(x) |> # angle = x
+    e_radius_axis() |>
     e_bar(y, coord_system = "polar")
 
 
@@ -179,16 +179,16 @@ test_that("e_polar plot has the good data structure and type", {
 })
 
 # test_that("e_radius plot has the good data structure and type", {
-#   plot <- df %>%
-#     head(10) %>%
-#     e_charts(x) %>%
+#   plot <- df |>
+#     head(10) |>
+#     e_charts(x) |>
 #     e_radius_axis(x)
 #
-#   plot2 <- df %>%
-#     head(10) %>%
-#     e_charts(x) %>%
-#     e_radius_axis(x) %>%
-#     e_bar(y, coord_system = "polar") %>%
+#   plot2 <- df |>
+#     head(10) |>
+#     e_charts(x) |>
+#     e_radius_axis(x) |>
+#     e_bar(y, coord_system = "polar") |>
 #     e_scatter(z, coord_system = "polar")
 #
 #   expect_s3_class(plot, "echarts4r")
@@ -217,9 +217,9 @@ test_that("e_candle plot has the good data structure and type", {
     high = c(203.32, 200.67, 200.00, 203.95, 204.90, 208.44, 213.17)
   )
 
-  plot <- stock %>%
-    e_charts(date) %>%
-    e_candle(opening, closing, low, high) %>%
+  plot <- stock |>
+    e_charts(date) |>
+    e_candle(opening, closing, low, high) |>
     e_y_axis(min = 190, max = 220)
 
   expect_s3_class(plot, "echarts4r")
@@ -238,9 +238,9 @@ test_that("e_candle plot has the good data structure and type", {
 test_that("e_funnel plot has the good data structure and type", {
   funnel <- data.frame(stage = c("View", "Click", "Purchase"), value = c(80, 30, 20))
 
-  plot <- funnel %>%
-    e_charts() %>%
-    e_funnel(value, stage) %>%
+  plot <- funnel |>
+    e_charts() |>
+    e_funnel(value, stage) |>
     e_title("Funnel")
 
   expect_s3_class(plot, "echarts4r")
@@ -265,9 +265,9 @@ test_that("e_sankey plot has the good data structure and type", {
     stringsAsFactors = FALSE
   )
 
-  plot <- sankey %>%
-    e_charts() %>%
-    e_sankey(source, target, value) %>%
+  plot <- sankey |>
+    e_charts() |>
+    e_sankey(source, target, value) |>
     e_title("Sankey chart")
 
   expect_s3_class(plot, "echarts4r")
@@ -296,15 +296,15 @@ test_that("e_heatmap plot has the good data structure and type", {
     y = sample(v, 5, replace = TRUE),
     z = rnorm(5, 10, 1),
     stringsAsFactors = FALSE
-  ) %>%
-    dplyr::group_by(x, y) %>%
-    dplyr::summarise(z = sum(z)) %>%
+  ) |>
+    dplyr::group_by(x, y) |>
+    dplyr::summarise(z = sum(z)) |>
     dplyr::ungroup()
 
-  plot <- matrix %>%
-    e_charts(x) %>%
-    e_heatmap(y, z) %>%
-    e_visual_map(z) %>%
+  plot <- matrix |>
+    e_charts(x) |>
+    e_heatmap(y, z) |>
+    e_visual_map(z) |>
     e_title("Heatmap")
 
   expect_s3_class(plot, "echarts4r")
@@ -328,9 +328,9 @@ test_that("e_parallel plot has the good data structure and type", {
     letter = LETTERS[1:3]
   )
 
-  plot <- df %>%
-    e_charts() %>%
-    e_parallel(price, amount, letter) %>%
+  plot <- df |>
+    e_charts() |>
+    e_parallel(price, amount, letter) |>
     e_title("Parallel chart")
 
   expect_s3_class(plot, "echarts4r")
@@ -348,11 +348,11 @@ test_that("e_parallel plot has the good data structure and type", {
 
 
 test_that("e_pie plot has the good data structure and type", {
-  plot <- mtcars %>%
-    head(5) %>%
-    dplyr::mutate(model = row.names(.)) %>%
-    e_charts(model) %>%
-    e_pie(carb) %>%
+  plot <- mtcars |>
+    head(5) |>
+    tibble::rownames_to_column("model") |> 
+    e_charts(model) |>
+    e_pie(carb) |>
     e_title("Pie chart")
 
   expect_s3_class(plot, "echarts4r")
@@ -370,11 +370,11 @@ test_that("e_pie plot has the good data structure and type", {
 
 
 test_that("e_donut plot has the good data structure and type", {
-  plot <- mtcars %>%
-    head(5) %>%
-    dplyr::mutate(model = row.names(.)) %>%
-    e_charts(model) %>%
-    e_pie(carb, radius = c("50%", "70%")) %>%
+  plot <- mtcars |>
+    head(5) |>
+    tibble::rownames_to_column("model") |> 
+    e_charts(model) |>
+    e_pie(carb, radius = c("50%", "70%")) |>
     e_title("Donut chart")
 
   expect_s3_class(plot, "echarts4r")
@@ -392,10 +392,10 @@ test_that("e_donut plot has the good data structure and type", {
 
 
 test_that("e_rosetype plot has the good data structure and type", {
-  plot <- mtcars %>%
-    head(5) %>%
-    dplyr::mutate(model = row.names(.)) %>%
-    e_charts(model) %>%
+  plot <- mtcars |>
+    head(5) |>
+    tibble::rownames_to_column("model") |> 
+    e_charts(model) |>
     e_pie(hp, roseType = "radius")
 
   expect_s3_class(plot, "echarts4r")
@@ -436,9 +436,9 @@ test_that("e_rosetype plot has the good data structure and type", {
 #     )
 #   )
 #
-#   plot <- df %>%
-#     e_charts() %>%
-#     e_sunburst() %>%
+#   plot <- df |>
+#     e_charts() |>
+#     e_sunburst() |>
 #     e_title("Sunburst")
 #
 #   expect_s3_class(plot, "echarts4r")
@@ -472,9 +472,9 @@ test_that("e_rosetype plot has the good data structure and type", {
 #     )
 #   )
 #
-#   plot <- tree %>%
-#     e_charts() %>%
-#     e_tree() %>%
+#   plot <- tree |>
+#     e_charts() |>
+#     e_tree() |>
 #     e_title("Tree graph")
 #
 #   expect_s3_class(plot, "echarts4r")
@@ -500,9 +500,9 @@ test_that("e_rosetype plot has the good data structure and type", {
 #     )
 #   )
 #
-#   plot <- df %>%
-#     e_charts() %>%
-#     e_treemap() %>%
+#   plot <- df |>
+#     e_charts() |>
+#     e_treemap() |>
 #     e_title("Treemap chart")
 #
 #   expect_s3_class(plot, "echarts4r")
@@ -522,11 +522,11 @@ test_that("e_river plot has the good data structure and type", {
     pears = runif(length(dates))
   )
 
-  plot <- river %>%
-    e_charts(dates) %>%
-    e_river(apples) %>%
-    e_river(bananas) %>%
-    e_tooltip(trigger = "axis") %>%
+  plot <- river |>
+    e_charts(dates) |>
+    e_river(apples) |>
+    e_river(bananas) |>
+    e_tooltip(trigger = "axis") |>
     e_title("River charts", "(Streamgraphs)")
 
   expect_s3_class(plot, "echarts4r")
@@ -557,11 +557,11 @@ test_that("e_calendar plot has the good data structure and type", {
 
   year <- data.frame(date = dates, values = values)
 
-  plot <- year %>%
-    e_charts(date) %>%
-    e_calendar(range = "2017") %>%
-    e_heatmap(values, coord_system = "calendar") %>%
-    e_visual_map(max = 30) %>%
+  plot <- year |>
+    e_charts(date) |>
+    e_calendar(range = "2017") |>
+    e_heatmap(values, coord_system = "calendar") |>
+    e_visual_map(max = 30) |>
     e_title("Calendar", "Heatmap")
 
 
@@ -579,8 +579,8 @@ test_that("e_calendar plot has the good data structure and type", {
 })
 
 test_that("e_gauge plot has the good data structure and type", {
-  plot <- e_charts() %>%
-    e_gauge(41, "PERCENT") %>%
+  plot <- e_charts() |>
+    e_gauge(41, "PERCENT") |>
     e_title("Gauge")
 
   expect_s3_class(plot, "echarts4r")
@@ -605,10 +605,10 @@ test_that("e_radar plot has the good data structure and type", {
     z = round(runif(5, 3, 7), 6)
   )
 
-  plot <- df %>%
-    e_charts(x) %>%
-    e_radar(y, max = 7, name = "radar") %>%
-    e_radar(z, max = 7, name = "chart") %>%
+  plot <- df |>
+    e_charts(x) |>
+    e_radar(y, max = 7, name = "radar") |>
+    e_radar(z, max = 7, name = "chart") |>
     e_tooltip(trigger = "item")
 
   expect_s3_class(plot, "echarts4r")
@@ -638,13 +638,13 @@ test_that("e_cloud plot has the good data structure and type", {
 
   set.seed(1)
   tf$freq <- round(rnorm(5, 55, 10), 5)
-  tf <- tf %>%
+  tf <- tf |>
     dplyr::arrange(-freq)
 
-  plot <- tf %>%
-    e_color_range(freq, color) %>%
-    e_charts() %>%
-    e_cloud(terms, freq, color, shape = "circle", sizeRange = c(3, 15)) %>%
+  plot <- tf |>
+    e_color_range(freq, color) |>
+    e_charts() |>
+    e_cloud(terms, freq, color, shape = "circle", sizeRange = c(3, 15)) |>
     e_title("Wordcloud", "Random strings")
 
   expect_s3_class(plot, "echarts4r")
@@ -670,8 +670,8 @@ test_that("e_cloud plot has the good data structure and type", {
 test_that("e_liquid plot has the good data structure and type", {
   liquid <- data.frame(val = c(0.6, 0.5, 0.4))
 
-  plot <- liquid %>%
-    e_charts() %>%
+  plot <- liquid |>
+    e_charts() |>
     e_liquid(val)
 
   expect_s3_class(plot, "echarts4r")
@@ -690,13 +690,13 @@ test_that("e_liquid plot has the good data structure and type", {
 test_that("e_mark_p has good data structure", {
   library(dplyr)
   data(EuStockMarkets)
-  dd <- as.data.frame(EuStockMarkets) %>%
-    slice_head(n = 50) %>%
+  dd <- as.data.frame(EuStockMarkets) |>
+    slice_head(n = 50) |>
     mutate(day = 1:n())
 
-  plot <- dd %>%
-    e_charts(day) %>%
-    e_line(SMI, symbol = "none") %>%
+  plot <- dd |>
+    e_charts(day) |>
+    e_line(SMI, symbol = "none") |>
     e_mark_p(
       type = "line",
       serie_index = 1,

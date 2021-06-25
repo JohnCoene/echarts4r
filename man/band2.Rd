@@ -46,13 +46,13 @@ Add area bands
 }
 \examples{
 data(EuStockMarkets)
-as.data.frame(EuStockMarkets) \%>\%
-  dplyr::slice_head(n = 200) \%>\%
-  dplyr::mutate(day = 1:dplyr::n()) \%>\%
-  e_charts(day) \%>\%
-  e_line(CAC, symbol = "none") \%>\%
-  e_band2(DAX, FTSE, color = "lemonchiffon") \%>\%
-  e_band2(DAX, SMI, color = "lightblue", itemStyle = list(borderWidth = 0)) \%>\%
-  e_y_axis(scale = TRUE) \%>\%
+as.data.frame(EuStockMarkets) |>
+  dplyr::slice_head(n = 200) |>
+  dplyr::mutate(day = 1:dplyr::n()) |>
+  e_charts(day) |>
+  e_line(CAC, symbol = "none") |>
+  e_band2(DAX, FTSE, color = "lemonchiffon") |>
+  e_band2(DAX, SMI, color = "lightblue", itemStyle = list(borderWidth = 0)) |>
+  e_y_axis(scale = TRUE) |>
   e_datazoom(start = 50)
 }

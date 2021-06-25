@@ -58,23 +58,23 @@ Connect charts together.
 
 \examples{
 # linked datazoom
-e1 <- cars \%>\%
+e1 <- cars |>
   e_charts(
     speed,
     height = 200
-  ) \%>\%
-  e_scatter(dist) \%>\%
-  e_datazoom(show = FALSE) \%>\%
+  ) |>
+  e_scatter(dist) |>
+  e_datazoom(show = FALSE) |>
   e_group("grp") # assign group
 
-e2 <- cars \%>\%
+e2 <- cars |>
   e_charts(
     dist,
     height = 200
-  ) \%>\%
-  e_scatter(speed) \%>\%
-  e_datazoom() \%>\%
-  e_group("grp") \%>\% # assign group
+  ) |>
+  e_scatter(speed) |>
+  e_datazoom() |>
+  e_group("grp") |> # assign group
   e_connect_group("grp") # connect
 
 if (interactive()) {

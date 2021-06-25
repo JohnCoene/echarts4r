@@ -61,19 +61,19 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Add step serie.
 }
 \examples{
-USArrests \%>\%
-  dplyr::mutate(State = row.names(.)) \%>\%
-  e_charts(State) \%>\%
-  e_step(Murder, name = "Start", step = "start", fill = TRUE) \%>\%
-  e_step(Rape, name = "Middle", step = "middle") \%>\%
-  e_step(Assault, name = "End", step = "end") \%>\%
+USArrests |>
+  tibble::rownames_to_column("State") |> 
+  e_charts(State) |>
+  e_step(Murder, name = "Start", step = "start", fill = TRUE) |>
+  e_step(Rape, name = "Middle", step = "middle") |>
+  e_step(Assault, name = "End", step = "end") |>
   e_tooltip(trigger = "axis")
 
 # timeline
-iris \%>\%
-  group_by(Species) \%>\%
-  e_charts(Sepal.Length, timeline = TRUE) \%>\%
-  e_step(Sepal.Width) \%>\%
+iris |>
+  group_by(Species) |>
+  e_charts(Sepal.Length, timeline = TRUE) |>
+  e_step(Sepal.Width) |>
   e_tooltip(trigger = "axis")
 }
 \seealso{

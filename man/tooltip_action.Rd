@@ -25,10 +25,10 @@ Show or hide tooltip.
 The tooltip must be initialised with \code{\link{e_tooltip}} for this to work.
 }
 \examples{
-cars \%>\%
-  e_charts(dist) \%>\%
-  e_scatter(speed) \%>\%
-  e_tooltip() \%>\%
-  e_hidetip(btn = "btn") \%>\%
+cars |>
+  e_charts(dist) |>
+  e_scatter(speed) |>
+  e_tooltip() |>
+  e_hidetip(btn = "btn") |>
   e_button("btn", "Hide tooltip")
 }

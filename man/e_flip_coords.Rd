@@ -20,9 +20,9 @@ df <- data.frame(
   z = runif(5, 3, 10)
 )
 
-df \%>\%
-  e_charts(x) \%>\%
-  e_bar(y) \%>\%
+df |>
+  e_charts(x) |>
+  e_bar(y) |>
   e_line(z) -> plot
 
 plot # normal

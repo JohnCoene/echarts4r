@@ -66,14 +66,14 @@
 #' }
 #'
 #' @examples
-#' mtcars %>%
-#'   e_charts(mpg) %>%
-#'   e_line(disp) %>%
-#'   e_area(hp) %>%
+#' mtcars |>
+#'   e_charts(mpg) |>
+#'   e_line(disp) |>
+#'   e_area(hp) |>
 #'   e_x_axis(min = 10) -> p
 #'
-#' p %>% e_theme("chalk")
-#' p %>% e_theme_custom('{"color":["#ff715e","#ffaf51"]}')
+#' p |> e_theme("chalk")
+#' p |> e_theme_custom('{"color":["#ff715e","#ffaf51"]}')
 #' @seealso \href{https://echarts.apache.org/en/theme-builder.html}{create your own theme}.
 #'
 #' @rdname theme

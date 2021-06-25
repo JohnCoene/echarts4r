@@ -7,11 +7,11 @@
 #' @param btn A \code{\link{e_button}} id.
 #'
 #' @examples
-#' iris %>%
-#'   group_by(Species) %>%
-#'   e_charts(Sepal.Length) %>%
-#'   e_line(Sepal.Width) %>%
-#'   e_line(Petal.Length) %>%
+#' iris |>
+#'   group_by(Species) |>
+#'   e_charts(Sepal.Length) |>
+#'   e_line(Sepal.Width) |>
+#'   e_line(Petal.Length) |>
 #'   e_highlight(series_name = "setosa") # highlight group
 #' @name highlight_action
 #' @export
@@ -78,11 +78,11 @@ e_downplay <- function(e, series_index = NULL, series_name = NULL, btn = NULL) {
 #' @note The tooltip must be initialised with \code{\link{e_tooltip}} for this to work.
 #'
 #' @examples
-#' cars %>%
-#'   e_charts(dist) %>%
-#'   e_scatter(speed) %>%
-#'   e_tooltip() %>%
-#'   e_hidetip(btn = "btn") %>%
+#' cars |>
+#'   e_charts(dist) |>
+#'   e_scatter(speed) |>
+#'   e_tooltip() |>
+#'   e_hidetip(btn = "btn") |>
 #'   e_button("btn", "Hide tooltip")
 #' @name tooltip_action
 #' @export
@@ -133,16 +133,16 @@ e_hidetip <- function(e, ..., btn = NULL) {
 #' @param ... Any options, see \href{https://echarts.apache.org/en/api.html#action.dataZoom.dataZoom}{official documentation}
 #'
 #' @examples
-#' cars %>%
-#'   e_charts(dist) %>%
-#'   e_scatter(speed) %>%
-#'   e_datazoom() %>%
+#' cars |>
+#'   e_charts(dist) |>
+#'   e_scatter(speed) |>
+#'   e_datazoom() |>
 #'   e_zoom(
 #'     dataZoomIndex = 0,
 #'     start = 20,
 #'     end = 40,
 #'     btn = "BUTTON"
-#'   ) %>%
+#'   ) |>
 #'   e_button("BUTTON", "Zoom in")
 #' @export
 e_zoom <- function(e, ..., btn = NULL) {
@@ -173,11 +173,11 @@ e_zoom <- function(e, ..., btn = NULL) {
 #' @examples
 #' data("state")
 #'
-#' as.data.frame(state.x77) %>%
-#'   e_charts(Population) %>%
-#'   e_scatter(Income, Frost) %>%
-#'   e_visual_map(Frost, scale = e_scale) %>%
-#'   e_legend(FALSE) %>%
+#' as.data.frame(state.x77) |>
+#'   e_charts(Population) |>
+#'   e_scatter(Income, Frost) |>
+#'   e_visual_map(Frost, scale = e_scale) |>
+#'   e_legend(FALSE) |>
 #'   e_visual_map_range(
 #'     selected = list(60, 120)
 #'   )
@@ -209,11 +209,11 @@ e_visual_map_range <- function(e, ..., btn = NULL) {
 #' @param ... Any options, see \href{https://echarts.apache.org/en/api.html#action.pie}{official documentation}
 #'
 #' @examples
-#' mtcars %>%
-#'   head() %>%
-#'   dplyr::mutate(model = row.names(.)) %>%
-#'   e_charts(model) %>%
-#'   e_pie(carb) %>%
+#' mtcars |>
+#'   head() |>
+#'   tibble::rownames_to_column("model") |> 
+#'   e_charts(model) |>
+#'   e_pie(carb) |>
 #'   e_pie_select(dataIndex = 0)
 #' @name pie_action
 #' @export
@@ -280,10 +280,10 @@ e_pie_unselect <- function(e, ..., btn = NULL) {
 #'   stringsAsFactors = FALSE
 #' )
 #'
-#' e_charts() %>%
-#'   e_graph() %>%
-#'   e_graph_nodes(nodes, name, value, size, grp) %>%
-#'   e_graph_edges(edges, source, target) %>%
+#' e_charts() |>
+#'   e_graph() |>
+#'   e_graph_nodes(nodes, name, value, size, grp) |>
+#'   e_graph_edges(edges, source, target) |>
 #'   e_focus_adjacency(
 #'     seriesIndex = 0,
 #'     dataIndex = 4
@@ -337,16 +337,16 @@ e_unfocus_adjacency <- function(e, ..., btn = NULL) {
 #' @param legend_id Id of legend.
 #'
 #' @examples
-#' e <- CO2 %>%
-#'   group_by(Type) %>%
-#'   e_charts(conc) %>%
+#' e <- CO2 |>
+#'   group_by(Type) |>
+#'   e_charts(conc) |>
 #'   e_scatter(uptake)
 #'
-#' e %>%
+#' e |>
 #'   e_legend_unselect("Quebec")
 #'
-#' e %>%
-#'   e_legend_unselect("Quebec", btn = "btn") %>%
+#' e |>
+#'   e_legend_unselect("Quebec", btn = "btn") |>
 #'   e_button("btn", "Quebec")
 #' @name legend_action
 #' @export
@@ -468,11 +468,11 @@ e_legend_scroll <- function(e, scroll_index = NULL, legend_id = NULL, btn = NULL
 #' @param btn A \code{\link{e_button}} id.
 #'
 #' @examples
-#' cars %>%
-#'   e_charts(speed) %>%
-#'   e_scatter(dist) %>%
-#'   e_datazoom() %>%
-#'   e_restore("btn") %>%
+#' cars |>
+#'   e_charts(speed) |>
+#'   e_scatter(dist) |>
+#'   e_datazoom() |>
+#'   e_restore("btn") |>
 #'   e_button("btn", "Reset")
 #' @export
 e_restore <- function(e, btn = NULL) {
@@ -517,11 +517,11 @@ e_restore <- function(e, btn = NULL) {
 #'   values = round(runif(9, 10, 25))
 #' )
 #'
-#' choropleth %>%
-#'   e_charts(countries) %>%
-#'   e_map(values) %>%
-#'   e_visual_map(min = 10, max = 25) %>%
-#'   e_map_toggle_select(name = "China", btn = "btn") %>%
+#' choropleth |>
+#'   e_charts(countries) |>
+#'   e_map(values) |>
+#'   e_visual_map(min = 10, max = 25) |>
+#'   e_map_toggle_select(name = "China", btn = "btn") |>
 #'   e_button("btn", "Select China")
 #' @seealso \code{\link{e_map_register}}
 #'

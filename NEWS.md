@@ -4,6 +4,7 @@
 - Bump ECharts.js
 - Add `e_svg` family of functions to fix [#319](https://github.com/JohnCoene/echarts4r/issues/319)
 - Replaced magrittr pipe `%>%` to R native's `|>`.
+- Fix `e_map` when used with no data, map was not displayed
 
 # echarts4r 0.4.0
 

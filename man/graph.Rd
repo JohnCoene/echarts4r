@@ -85,9 +85,9 @@ edges <- data.frame(
   stringsAsFactors = FALSE
 )
 
-e_charts() \%>\%
-  e_graph() \%>\%
-  e_graph_nodes(nodes, name, value, size, grp, symbol) \%>\%
+e_charts() |>
+  e_graph() |>
+  e_graph_nodes(nodes, name, value, size, grp, symbol) |>
   e_graph_edges(edges, source, target)
 
 # Use graphGL for larger networks
@@ -105,9 +105,9 @@ edges <- data.frame(
   stringsAsFactors = FALSE
 )
 
-e_charts() \%>\%
-  e_graph_gl() \%>\%
-  e_graph_nodes(nodes, name, value, size, grp) \%>\%
+e_charts() |>
+  e_graph_gl() |>
+  e_graph_nodes(nodes, name, value, size, grp) |>
   e_graph_edges(edges, source, target)
 }
 \seealso{

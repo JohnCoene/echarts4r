@@ -67,24 +67,24 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Plot formulas.
 }
 \examples{
-iris \%>\%
-  group_by(Species) \%>\%
-  e_charts(Sepal.Length) \%>\%
-  e_scatter(Sepal.Width) \%>\%
-  e_lm(Sepal.Width ~ Sepal.Length) \%>\%
+iris |>
+  group_by(Species) |>
+  e_charts(Sepal.Length) |>
+  e_scatter(Sepal.Width) |>
+  e_lm(Sepal.Width ~ Sepal.Length) |>
   e_x_axis(min = 4)
 
-mtcars \%>\%
-  e_charts(disp) \%>\%
-  e_scatter(mpg, qsec) \%>\%
+mtcars |>
+  e_charts(disp) |>
+  e_scatter(mpg, qsec) |>
   e_loess(mpg ~ disp, smooth = TRUE, showSymbol = FALSE)
 
 # timeline
-iris \%>\%
-  group_by(Species) \%>\%
-  e_charts(Sepal.Length, timeline = TRUE) \%>\%
-  e_scatter(Sepal.Width) \%>\%
-  e_lm(Sepal.Width ~ Sepal.Length) \%>\%
-  e_x_axis(min = 4, max = 8) \%>\%
+iris |>
+  group_by(Species) |>
+  e_charts(Sepal.Length, timeline = TRUE) |>
+  e_scatter(Sepal.Width) |>
+  e_lm(Sepal.Width ~ Sepal.Length) |>
+  e_x_axis(min = 4, max = 8) |>
   e_y_axis(max = 5)
 }

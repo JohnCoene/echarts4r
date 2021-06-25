@@ -67,25 +67,25 @@ matrix <- data.frame(
   color = rnorm(300, 10, 1),
   size = rnorm(300, 10, 1),
   stringsAsFactors = FALSE
-) \%>\%
-  dplyr::group_by(x, y) \%>\%
+) |>
+  dplyr::group_by(x, y) |>
   dplyr::summarise(
     z = sum(z),
     color = sum(color),
     size = sum(size)
-  ) \%>\%
+  ) |>
   dplyr::ungroup()
 
-matrix \%>\%
-  e_charts(x) \%>\%
-  e_scatter_3d(y, z, size, color) \%>\%
+matrix |>
+  e_charts(x) |>
+  e_scatter_3d(y, z, size, color) |>
   e_visual_map(
     min = 1,
     max = 100,
     inRange = list(symbolSize = c(1, 30)),
     # scale size
     dimension = 3 # third dimension 0 = x, y = 1, z = 2, size = 3
-  ) \%>\%
+  ) |>
   e_visual_map(
     min = 1,
     max = 100,
@@ -103,22 +103,22 @@ airports <- read.csv(
   )
 )
 
-airports \%>\%
-  e_charts(long) \%>\%
+airports |>
+  e_charts(long) |>
   e_globe(
     globeOuterRadius = 100
-  ) \%>\%
-  e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = "lighter") \%>\%
+  ) |>
+  e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = "lighter") |>
   e_visual_map(inRange = list(symbolSize = c(1, 10)))
 
 # timeline
-airports \%>\%
-  group_by(state) \%>\%
-  e_charts(long, timeline = TRUE) \%>\%
+airports |>
+  group_by(state) |>
+  e_charts(long, timeline = TRUE) |>
   e_globe(
     globeOuterRadius = 100
-  ) \%>\%
-  e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = "lighter") \%>\%
+  ) |>
+  e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = "lighter") |>
   e_visual_map(inRange = list(symbolSize = c(1, 10)))
 }
 \seealso{

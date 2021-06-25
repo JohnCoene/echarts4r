@@ -40,10 +40,10 @@ edges <- data.frame(
   stringsAsFactors = FALSE
 )
 
-e_charts() \%>\%
-  e_graph() \%>\%
-  e_graph_nodes(nodes, name, value) \%>\%
-  e_graph_edges(edges, source, target) \%>\%
+e_charts() |>
+  e_graph() |>
+  e_graph_nodes(nodes, name, value) |>
+  e_graph_edges(edges, source, target) |>
   e_modularity(
     list(
       resolution = 5,

@@ -27,32 +27,32 @@
 #'
 #' @examples
 #' # range axis based on serie
-#' cars %>%
-#'   e_charts(speed) %>%
-#'   e_line(dist) %>%
-#'   e_x_axis(speed) %>%
+#' cars |>
+#'   e_charts(speed) |>
+#'   e_line(dist) |>
+#'   e_x_axis(speed) |>
 #'   e_y_axis(dist)
 #'
 #' # use formatter
-#' cars %>%
+#' cars |>
 #'   dplyr::mutate(
 #'     speed = speed / 25
-#'   ) %>%
-#'   e_charts(speed) %>%
-#'   e_scatter(dist) %>%
+#'   ) |>
+#'   e_charts(speed) |>
+#'   e_scatter(dist) |>
 #'   e_y_axis(
 #'     formatter = e_axis_formatter("currency")
-#'   ) %>%
+#'   ) |>
 #'   e_x_axis(
 #'     formatter = e_axis_formatter("percent", digits = 0)
 #'   )
 #'
 #' # plot all labels & rotate
-#' USArrests %>%
-#'   head(10) %>%
-#'   dplyr::mutate(State = row.names(.)) %>%
-#'   e_charts(State) %>%
-#'   e_area(Murder) %>%
+#' USArrests |>
+#'   head(10) |>
+#'   tibble::rownames_to_column(var = "State") |> 
+#'   e_charts(State) |>
+#'   e_area(Murder) |>
 #'   e_x_axis(axisLabel = list(interval = 0, rotate = 45)) # rotate
 #' @seealso \href{https://echarts.apache.org/en/option.html#xAxis}{Additional x arguments},
 #' \href{https://echarts.apache.org/en/option.html#yAxis}{Additional y arguments}
@@ -257,13 +257,13 @@ e_axis_formatter <- function(
 #' @inheritParams e_axis
 #'
 #' @examples
-#' USArrests %>%
-#'   e_charts(UrbanPop) %>%
-#'   e_line(Assault, smooth = TRUE) %>%
-#'   e_area(Murder, y.index = 1, x.index = 1) %>%
-#'   e_y_axis(gridIndex = 1) %>%
-#'   e_x_axis(gridIndex = 1) %>%
-#'   e_grid(height = "40%") %>%
+#' USArrests |>
+#'   e_charts(UrbanPop) |>
+#'   e_line(Assault, smooth = TRUE) |>
+#'   e_area(Murder, y.index = 1, x.index = 1) |>
+#'   e_y_axis(gridIndex = 1) |>
+#'   e_x_axis(gridIndex = 1) |>
+#'   e_grid(height = "40%") |>
 #'   e_grid(height = "40%", top = "55%")
 #' @seealso \href{https://echarts.apache.org/en/option.html#grid}{Additional arguments}
 #'
@@ -308,11 +308,11 @@ e_grid <- function(e, index = NULL, ...) {
 #' @examples
 #' df <- data.frame(x = LETTERS[1:10], y = seq(1, 20, by = 2))
 #'
-#' df %>%
-#'   e_charts(x) %>%
-#'   e_polar() %>%
-#'   e_angle_axis() %>%
-#'   e_radius_axis(x) %>%
+#' df |>
+#'   e_charts(x) |>
+#'   e_polar() |>
+#'   e_angle_axis() |>
+#'   e_radius_axis(x) |>
 #'   e_bar(y, coord.system = "polar")
 #' @seealso \href{https://echarts.apache.org/en/option.html#radiusAxis}{Additional arguments}
 #'
@@ -330,11 +330,11 @@ e_radius_axis <- function(e, serie, show = TRUE, ...) {
   }
 
   if (!missing(serie)) {
-    opts$data <- e$x$data %>%
-      purrr::map(sr) %>%
-      unlist() %>%
-      unname() %>%
-      unique() %>%
+    opts$data <- e$x$data |>
+      purrr::map(sr) |>
+      unlist() |>
+      unname() |>
+      unique() |>
       as.list()
   }
 
@@ -357,11 +357,11 @@ e_radius_axis_ <- function(e, serie = NULL, show = TRUE, ...) {
   opts <- list(show = show, ...)
 
   if (!is.null(serie)) {
-    opts$data <- e$x$data %>%
-      purrr::map(serie) %>%
-      unlist() %>%
-      unname() %>%
-      unique() %>%
+    opts$data <- e$x$data |>
+      purrr::map(serie) |>
+      unlist() |>
+      unname() |>
+      unique() |>
       as.list()
   }
 
@@ -385,21 +385,21 @@ e_radius_axis_ <- function(e, serie = NULL, show = TRUE, ...) {
 #' @examples
 #' df <- data.frame(x = 1:100, y = seq(1, 200, by = 2))
 #'
-#' df %>%
-#'   e_charts(x) %>%
-#'   e_polar(FALSE) %>%
-#'   e_angle_axis(FALSE) %>%
-#'   e_radius_axis(FALSE) %>%
-#'   e_line(y, coord.system = "polar", smooth = TRUE) %>%
+#' df |>
+#'   e_charts(x) |>
+#'   e_polar(FALSE) |>
+#'   e_angle_axis(FALSE) |>
+#'   e_radius_axis(FALSE) |>
+#'   e_line(y, coord.system = "polar", smooth = TRUE) |>
 #'   e_legend(show = FALSE)
 #'
 #' df <- data.frame(x = LETTERS[1:5], y = runif(5))
 #'
-#' df %>%
-#'   e_charts(x) %>%
-#'   e_polar() %>%
-#'   e_angle_axis(x) %>%
-#'   e_radius_axis() %>%
+#' df |>
+#'   e_charts(x) |>
+#'   e_polar() |>
+#'   e_angle_axis(x) |>
+#'   e_radius_axis() |>
 #'   e_line(y, coord.system = "polar", smooth = TRUE)
 #' @seealso \href{https://echarts.apache.org/en/option.html#angleAxis}{Additional arguments}
 #'
@@ -417,11 +417,11 @@ e_angle_axis <- function(e, serie, show = TRUE, ...) {
   }
 
   if (!missing(serie)) {
-    opts$data <- e$x$data %>%
-      purrr::map(sr) %>%
-      unlist() %>%
-      unname() %>%
-      unique() %>%
+    opts$data <- e$x$data |>
+      purrr::map(sr) |>
+      unlist() |>
+      unname() |>
+      unique() |>
       as.list()
   }
 
@@ -444,11 +444,11 @@ e_angle_axis_ <- function(e, serie = NULL, show = TRUE, ...) {
   opts <- list(show = show, ...)
 
   if (!is.null(serie)) {
-    opts$data <- e$x$data %>%
-      purrr::map(serie) %>%
-      unlist() %>%
-      unname() %>%
-      unique() %>%
+    opts$data <- e$x$data |>
+      purrr::map(serie) |>
+      unlist() |>
+      unname() |>
+      unique() |>
       as.list()
   }
 
@@ -475,11 +475,11 @@ e_angle_axis_ <- function(e, serie = NULL, show = TRUE, ...) {
 #'   z = runif(5, 3, 7)
 #' )
 #'
-#' df %>%
-#'   e_charts(x) %>%
-#'   e_radar(y, max = 7) %>%
-#'   e_radar(z) %>%
-#'   e_radar_opts(center = c("25%", "25%")) %>%
+#' df |>
+#'   e_charts(x) |>
+#'   e_radar(y, max = 7) |>
+#'   e_radar(z) |>
+#'   e_radar_opts(center = c("25%", "25%")) |>
 #'   e_tooltip(trigger = "item")
 #' @export
 e_radar_opts <- function(e, index = 0, ...) {
@@ -532,9 +532,9 @@ e_radar_opts <- function(e, index = 0, ...) {
 #'   size = runif(10, 3, 20)
 #' )
 #'
-#' df %>%
-#'   e_charts(axis) %>%
-#'   e_single_axis() %>% # add the single axis
+#' df |>
+#'   e_charts(axis) |>
+#'   e_single_axis() |> # add the single axis
 #'   e_scatter(
 #'     value,
 #'     size,
@@ -577,8 +577,8 @@ e_single_axis <- function(e, index = 0, ...) {
     if (type == "category" || type == "time") {
       vect <- c()
       for (i in seq_along(e$x$data)) {
-        dat <- e$x$data[[i]] %>%
-          dplyr::select(e$x$mapping$x) %>%
+        dat <- e$x$data[[i]] |>
+          dplyr::select(e$x$mapping$x) |>
           unlist()
         dat <- unname(dat)
         dat <- as.character(dat)
@@ -609,17 +609,17 @@ e_single_axis <- function(e, index = 0, ...) {
 #' @param x,y Labels of axes.
 #'
 #' @examples
-#' cars %>%
-#'   e_charts(speed) %>%
-#'   e_scatter(dist) %>%
+#' cars |>
+#'   e_charts(speed) |>
+#'   e_scatter(dist) |>
 #'   e_axis_labels(
 #'     x = "speed",
 #'     y = "distance"
 #'   )
 #' @export
 e_axis_labels <- function(e, x = "", y = "") {
-  e %>%
-    e_x_axis(name = x) %>%
+  e |>
+    e_x_axis(name = x) |>
     e_y_axis(name = y)
 }
 
@@ -631,9 +631,9 @@ e_axis_labels <- function(e, x = "", y = "") {
 #' @param which Which axis grid lines to hide.
 #'
 #' @examples
-#' cars %>%
-#'   e_charts(speed) %>%
-#'   e_scatter(dist) %>%
+#' cars |>
+#'   e_charts(speed) |>
+#'   e_scatter(dist) |>
 #'   e_hide_grid_lines()
 #' @export
 e_hide_grid_lines <- function(e, which = c("x", "y")) {
@@ -668,9 +668,9 @@ e_hide_grid_lines <- function(e, which = c("x", "y")) {
 #'   y = 1:2
 #' )
 #'
-#' df %>%
-#'   e_charts(x, width = 150) %>%
-#'   e_bar(y) %>%
+#' df |>
+#'   e_charts(x, width = 150) |>
+#'   e_bar(y) |>
 #'   e_axis_stagger()
 #' @export
 e_axis_stagger <- function(e) {
@@ -680,7 +680,7 @@ e_axis_stagger <- function(e) {
     }
 
     return(value)
-  }" %>%
+  }" |>
     htmlwidgets::JS()
 
   if (!e$x$tl) {

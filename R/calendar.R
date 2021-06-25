@@ -5,18 +5,18 @@
 #'
 #' @examples
 #' # year
-#' mtcars %>%
-#'   e_charts() %>%
+#' mtcars |>
+#'   e_charts() |>
 #'   e_calendar(range = "2017")
 #'
 #' # month
-#' mtcars %>%
-#'   e_charts() %>%
+#' mtcars |>
+#'   e_charts() |>
 #'   e_calendar(range = "2018-01")
 #'
 #' # range
-#' mtcars %>%
-#'   e_charts() %>%
+#' mtcars |>
+#'   e_charts() |>
 #'   e_calendar(range = c("2018-01", "2018-07"))
 #' @seealso \href{https://echarts.apache.org/en/option.html#calendar}{Additional arguments}
 #'

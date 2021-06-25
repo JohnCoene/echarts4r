@@ -98,32 +98,32 @@ Rmarkdown and Shiny.
 
 \examples{
 # range axis based on serie
-cars \%>\%
-  e_charts(speed) \%>\%
-  e_line(dist) \%>\%
-  e_x_axis(speed) \%>\%
+cars |>
+  e_charts(speed) |>
+  e_line(dist) |>
+  e_x_axis(speed) |>
   e_y_axis(dist)
 
 # use formatter
-cars \%>\%
+cars |>
   dplyr::mutate(
     speed = speed / 25
-  ) \%>\%
-  e_charts(speed) \%>\%
-  e_scatter(dist) \%>\%
+  ) |>
+  e_charts(speed) |>
+  e_scatter(dist) |>
   e_y_axis(
     formatter = e_axis_formatter("currency")
-  ) \%>\%
+  ) |>
   e_x_axis(
     formatter = e_axis_formatter("percent", digits = 0)
   )
 
 # plot all labels & rotate
-USArrests \%>\%
-  head(10) \%>\%
-  dplyr::mutate(State = row.names(.)) \%>\%
-  e_charts(State) \%>\%
-  e_area(Murder) \%>\%
+USArrests |>
+  head(10) |>
+  tibble::rownames_to_column(var = "State") |> 
+  e_charts(State) |>
+  e_area(Murder) |>
   e_x_axis(axisLabel = list(interval = 0, rotate = 45)) # rotate
 }
 \seealso{

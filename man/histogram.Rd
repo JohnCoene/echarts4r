@@ -81,17 +81,17 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Add a histogram or density plots.
 }
 \examples{
-mtcars \%>\%
-  e_charts() \%>\%
-  e_histogram(mpg, name = "histogram") \%>\%
-  e_density(mpg, areaStyle = list(opacity = .4), smooth = TRUE, name = "density", y_index = 1) \%>\%
+mtcars |>
+  e_charts() |>
+  e_histogram(mpg, name = "histogram") |>
+  e_density(mpg, areaStyle = list(opacity = .4), smooth = TRUE, name = "density", y_index = 1) |>
   e_tooltip(trigger = "axis")
 
 # timeline
-mtcars \%>\%
-  group_by(cyl) \%>\%
-  e_charts(timeline = TRUE) \%>\%
-  e_histogram(mpg, name = "histogram") \%>\%
+mtcars |>
+  group_by(cyl) |>
+  e_charts(timeline = TRUE) |>
+  e_histogram(mpg, name = "histogram") |>
   e_density(mpg, name = "density", y_index = 1)
 }
 \seealso{

@@ -36,14 +36,14 @@ server <- function(input, output, session) {
   )
 
   output$plot <- renderEcharts4r({
-    data \%>\%
-      e_charts(x) \%>\%
-      e_scatter(y) \%>\%
+    data |>
+      e_charts(x) |>
+      e_scatter(y) |>
       e_scatter(z)
   })
 
   observeEvent(input$rm, {
-    echarts4rProxy("plot") \%>\%
+    echarts4rProxy("plot") |>
       e_remove_serie_p(serie_name = "z")
   })
 }

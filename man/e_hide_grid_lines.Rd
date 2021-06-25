@@ -16,8 +16,8 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 A convenience function to easily hide grid lines.
 }
 \examples{
-cars \%>\%
-  e_charts(speed) \%>\%
-  e_scatter(dist) \%>\%
+cars |>
+  e_charts(speed) |>
+  e_scatter(dist) |>
   e_hide_grid_lines()
 }

@@ -31,16 +31,16 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   output$chart <- renderEcharts4r({
-    cars \%>\%
-      e_charts(speed) \%>\%
-      e_scatter(dist) \%>\%
+    cars |>
+      e_charts(speed) |>
+      e_scatter(dist) |>
       e_datazoom()
   })
 
   observe({
     req(input$zoom)
 
-    echarts4rProxy("chart") \%>\%
+    echarts4rProxy("chart") |>
       e_dispatch_action_p("dataZoom", startValue = 1, endValue = 10)
   })
 }

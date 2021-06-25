@@ -18,10 +18,10 @@
 #' names(data) <- c("lon", "lat", "value")
 #' data$value <- log(data$value)
 #'
-#' data %>%
-#'   e_charts(lon) %>%
-#'   e_leaflet() %>%
-#'   e_leaflet_tile() %>%
+#' data |>
+#'   e_charts(lon) |>
+#'   e_leaflet() |>
+#'   e_leaflet_tile() |>
 #'   e_scatter(lat, size = value, coord_system = "leaflet")
 #' }
 #'
@@ -63,7 +63,7 @@ e_leaflet_tile <- function(
   options = NULL,
   ...
 ) {
-  pkgs <- utils::installed.packages() %>% rownames()
+  pkgs <- utils::installed.packages() |> rownames()
   if (!"leaflet" %in% pkgs) {
     stop("Requires the `leaflet` package installed", call. = FALSE)
   }

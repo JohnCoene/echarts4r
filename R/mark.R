@@ -29,14 +29,14 @@
 #'   name = "AVG"
 #' )
 #'
-#' mtcars %>%
-#'   e_charts(mpg) %>%
-#'   e_line(wt) %>%
-#'   e_line(drat) %>%
-#'   e_line(cyl) %>%
-#'   e_mark_point("wt", data = max) %>%
-#'   e_mark_point(c("cyl", "drat"), data = min) %>%
-#'   e_mark_line(data = avg) %>% # applies to all
+#' mtcars |>
+#'   e_charts(mpg) |>
+#'   e_line(wt) |>
+#'   e_line(drat) |>
+#'   e_line(cyl) |>
+#'   e_mark_point("wt", data = max) |>
+#'   e_mark_point(c("cyl", "drat"), data = min) |>
+#'   e_mark_line(data = avg) |> # applies to all
 #'   e_mark_area(
 #'     serie = "wt",
 #'     data = list(
@@ -47,18 +47,18 @@
 #'
 #' # serie options
 #'
-#' iris %>%
-#'   group_by(Species) %>%
-#'   e_charts(Sepal.Length, timeline = TRUE) %>%
-#'   e_line(Sepal.Width) %>%
+#' iris |>
+#'   group_by(Species) |>
+#'   e_charts(Sepal.Length, timeline = TRUE) |>
+#'   e_line(Sepal.Width) |>
 #'   e_timeline_serie(
 #'     title = list(
 #'       list(text = "setosa"),
 #'       list(text = "versicolor"),
 #'       list(text = "virginica")
 #'     )
-#'   ) %>%
-#'   e_mark_area(serie = "setosa") %>%
+#'   ) |>
+#'   e_mark_area(serie = "setosa") |>
 #'   e_mark_area(
 #'     serie = "versicolor",
 #'     data = list(
@@ -66,7 +66,7 @@
 #'       list(xAxis = 4)
 #'     ),
 #'     itemStyle = list(color = "lightblue")
-#'   ) %>%
+#'   ) |>
 #'   e_mark_area(serie = "virginica")
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-line.markPoint}{Additional point arguments},
 #' \href{https://echarts.apache.org/en/option.html#series-line.markLine}{Additional line arguments}
@@ -236,8 +236,8 @@ e_mark_area <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_p
 #' server <- function(input, output) {
 #'   data(EuStockMarkets)
 #'
-#'   bb <- as.data.frame(EuStockMarkets) %>%
-#'     slice_head(n = 150) %>%
+#'   bb <- as.data.frame(EuStockMarkets) |>
+#'     slice_head(n = 150) |>
 #'     mutate(day = 1:n())
 #'
 #'   output$plot <- renderEcharts4r({
@@ -245,13 +245,13 @@ e_mark_area <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_p
 #'   })
 #'
 #'   observeEvent(input$pxy, {
-#'     echarts4rProxy("plot", data = NULL) %>%
+#'     echarts4rProxy("plot", data = NULL) |>
 #'       e_mark_p(
 #'         type = "line",
 #'         serie_index = 1,
 #'         data = list(type = "average"),
 #'         lineStyle = list(type = "dashed", color = "cyan")
-#'       ) %>%
+#'       ) |>
 #'       e_mark_p(
 #'         serie_index = 2,
 #'         data = list(
@@ -259,7 +259,7 @@ e_mark_area <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_p
 #'           yAxis = bb$SMI[60],
 #'           value = "pnt"
 #'         )
-#'       ) %>%
+#'       ) |>
 #'       e_mark_p(
 #'         type = "line",
 #'         serie_index = 2,
@@ -268,7 +268,7 @@ e_mark_area <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_p
 #'           list(xAxis = bb$day[37], yAxis = bb$SMI[37])
 #'         ),
 #'         lineStyle = list(type = "solid", color = "yellow")
-#'       ) %>%
+#'       ) |>
 #'       e_mark_p(
 #'         type = "area",
 #'         serie_index = 1,
@@ -278,23 +278,23 @@ e_mark_area <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_p
 #'         ),
 #'         itemStyle = list(color = "lightblue"),
 #'         label = list(formatter = "X-area", position = "middle")
-#'       ) %>%
+#'       ) |>
 #'       e_merge()
 #'   })
 #'
 #'   react <- eventReactive(input$tln, {
 #'     tmp <- bb
-#'     if (input$tln) tmp <- tmp %>% group_by(day < 75)
+#'     if (input$tln) tmp <- tmp |> group_by(day < 75)
 #'
-#'     tmp %>%
+#'     tmp |>
 #'       e_charts(
 #'         day,
 #'         backgroundColor = "#181818",
 #'         legend = list(textStyle = list(color = "#aaa")),
 #'         timeline = input$tln
-#'       ) %>%
-#'       e_y_axis(scale = TRUE, axisLabel = list(color = "#aaa")) %>%
-#'       e_line(CAC, symbol = "none", color = "#ff33b8") %>%
+#'       ) |>
+#'       e_y_axis(scale = TRUE, axisLabel = list(color = "#aaa")) |>
+#'       e_line(CAC, symbol = "none", color = "#ff33b8") |>
 #'       e_line(SMI, symbol = "none", color = "green")
 #'   })
 #' }

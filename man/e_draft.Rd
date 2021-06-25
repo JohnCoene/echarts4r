@@ -20,8 +20,8 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Add a draft watermark to your graph.
 }
 \examples{
-cars \%>\%
-  e_charts(speed) \%>\%
-  e_scatter(dist) \%>\%
+cars |>
+  e_charts(speed) |>
+  e_scatter(dist) |>
   e_draft()
 }

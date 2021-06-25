@@ -61,8 +61,8 @@ choropleth <- data.frame(
   )
 )
 
-choropleth \%>\%
-  e_charts(countries) \%>\%
+choropleth |>
+  e_charts(countries) |>
   e_geo_3d(height, color)
 }
 \seealso{

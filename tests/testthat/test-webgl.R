@@ -11,9 +11,9 @@ test_that("e_surface plot has the good data structure and type", {
   surface$Var1 <- as.numeric(surface$Var1)
   surface$Var2 <- as.numeric(surface$Var2)
 
-  plot <- surface %>%
-    e_charts(Var1) %>%
-    e_surface(Var2, Freq) %>%
+  plot <- surface |>
+    e_charts(Var1) |>
+    e_surface(Var2, Freq) |>
     e_visual_map(Freq)
 
   expect_s3_class(plot, "echarts4r")
@@ -22,16 +22,16 @@ test_that("e_surface plot has the good data structure and type", {
 
 
 test_that("e_scatter_gl plot has the good data structure and type", {
-  plot <- quakes[1:5, ] %>%
-    e_charts(long) %>%
+  plot <- quakes[1:5, ] |>
+    e_charts(long) |>
     e_geo(
       roam = TRUE,
       boundingCoords = list(
         c(185, -10),
         c(165, -40)
       )
-    ) %>%
-    e_scatter_gl(lat, depth) %>%
+    ) |>
+    e_scatter_gl(lat, depth) |>
     e_visual_map()
 
   expect_s3_class(plot, "echarts4r")
@@ -70,9 +70,9 @@ test_that("e_graph_gl plot has the good data structure and type", {
     stringsAsFactors = FALSE
   )
 
-  plot <- e_charts() %>%
-    e_graph_gl() %>%
-    e_graph_nodes(nodes, name, value, size, grp) %>%
+  plot <- e_charts() |>
+    e_graph_gl() |>
+    e_graph_nodes(nodes, name, value, size, grp) |>
     e_graph_edges(edges, source, target)
 
   expect_s3_class(plot, "echarts4r")
@@ -89,10 +89,10 @@ test_that("e_flow_gl plot has the good data structure and type", {
   vectors$color <- log10(runif(nrow(vectors), 1, 10))
 
   # increase the number to better visualize the plot
-  plot <- vectors[1:10, ] %>%
-    dplyr::mutate(color = round(color, 6)) %>%
-    e_charts(x) %>%
-    e_flow_gl(y, sx, sy, color) %>%
+  plot <- vectors[1:10, ] |>
+    dplyr::mutate(color = round(color, 6)) |>
+    e_charts(x) |>
+    e_flow_gl(y, sx, sy, color) |>
     e_visual_map(
       min = 0,
       max = 1,
@@ -116,10 +116,10 @@ test_that("e_flow_gl plot has the good data structure and type", {
           "#a50026"
         )
       )
-    ) %>%
+    ) |>
     e_x_axis(
       splitLine = list(show = FALSE)
-    ) %>%
+    ) |>
     e_y_axis(
       splitLine = list(show = FALSE)
     )

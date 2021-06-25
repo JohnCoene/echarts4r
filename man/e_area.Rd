@@ -53,17 +53,17 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Add area serie.
 }
 \examples{
-CO2 \%>\%
-  group_by(Plant) \%>\%
-  e_charts(conc) \%>\%
-  e_area(uptake) \%>\%
+CO2 |>
+  group_by(Plant) |>
+  e_charts(conc) |>
+  e_area(uptake) |>
   e_tooltip(trigger = "axis")
 
 # timeline
-iris \%>\%
-  group_by(Species) \%>\%
-  e_charts(Sepal.Length, timeline = TRUE) \%>\%
-  e_area(Sepal.Width) \%>\%
+iris |>
+  group_by(Species) |>
+  e_charts(Sepal.Length, timeline = TRUE) |>
+  e_area(Sepal.Width) |>
   e_tooltip(trigger = "axis")
 }
 \seealso{

@@ -17,20 +17,20 @@
 #'
 #' @examples
 #' # general options
-#' iris %>%
-#'   group_by(Species) %>%
-#'   e_charts(Sepal.Length, timeline = TRUE) %>%
-#'   e_line(Sepal.Width) %>%
+#' iris |>
+#'   group_by(Species) |>
+#'   e_charts(Sepal.Length, timeline = TRUE) |>
+#'   e_line(Sepal.Width) |>
 #'   e_timeline_opts(
 #'     autoPlay = TRUE,
 #'     rewind = TRUE
 #'   )
 #'
 #' # serie options
-#' iris %>%
-#'   group_by(Species) %>%
-#'   e_charts(Sepal.Length, timeline = TRUE) %>%
-#'   e_line(Sepal.Width) %>%
+#' iris |>
+#'   group_by(Species) |>
+#'   e_charts(Sepal.Length, timeline = TRUE) |>
+#'   e_line(Sepal.Width) |>
 #'   e_timeline_serie(
 #'     title = list(
 #'       list(text = "setosa"),

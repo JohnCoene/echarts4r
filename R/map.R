@@ -26,14 +26,14 @@
 #'   values = round(runif(9, 10, 25))
 #' )
 #'
-#' choropleth %>%
-#'   e_charts(countries) %>%
-#'   e_map(values) %>%
+#' choropleth |>
+#'   e_charts(countries) |>
+#'   e_map(values) |>
 #'   e_visual_map(min = 10, max = 25)
 #'
-#' choropleth %>%
-#'   e_charts(countries) %>%
-#'   e_map_3d(values, shading = "lambert") %>%
+#' choropleth |>
+#'   e_charts(countries) |>
+#'   e_map_3d(values, shading = "lambert") |>
 #'   e_visual_map(min = 10, max = 30)
 #'
 #' # custom
@@ -44,12 +44,12 @@
 #'   )
 #' )
 #'
-#' heights <- purrr::map(buildings$features, "properties") %>%
-#'   purrr::map("height") %>%
+#' heights <- purrr::map(buildings$features, "properties") |>
+#'   purrr::map("height") |>
 #'   unlist()
 #'
-#' names <- purrr::map(buildings$features, "properties") %>%
-#'   purrr::map("name") %>%
+#' names <- purrr::map(buildings$features, "properties") |>
+#'   purrr::map("name") |>
 #'   unlist()
 #'
 #' data <- dplyr::tibble(
@@ -58,10 +58,10 @@
 #'   height = heights / 10
 #' )
 #'
-#' data %>%
-#'   e_charts() %>%
-#'   e_map_register("buildings", buildings) %>%
-#'   e_map_3d_custom(name, value, height) %>%
+#' data |>
+#'   e_charts() |>
+#'   e_map_register("buildings", buildings) |>
+#'   e_map_3d_custom(name, value, height) |>
 #'   e_visual_map(
 #'     show = FALSE,
 #'     min = 0.4,
@@ -71,7 +71,7 @@
 #' # timeline
 #' choropleth <- data.frame(
 #'   countries = rep(choropleth$countries, 3)
-#' ) %>%
+#' ) |>
 #'   dplyr::mutate(
 #'     grp = c(
 #'       rep(2016, nrow(choropleth)),
@@ -81,16 +81,16 @@
 #'     values = runif(27, 1, 10)
 #'   )
 #'
-#' choropleth %>%
-#'   group_by(grp) %>%
-#'   e_charts(countries, timeline = TRUE) %>%
-#'   e_map(values) %>%
+#' choropleth |>
+#'   group_by(grp) |>
+#'   e_charts(countries, timeline = TRUE) |>
+#'   e_map(values) |>
 #'   e_visual_map(min = 1, max = 10)
 #'
-#' choropleth %>%
-#'   group_by(grp) %>%
-#'   e_charts(countries, timeline = TRUE) %>%
-#'   e_map_3d(values) %>%
+#' choropleth |>
+#'   group_by(grp) |>
+#'   e_charts(countries, timeline = TRUE) |>
+#'   e_map_3d(values) |>
 #'   e_visual_map(min = 1, max = 10)
 #' }
 #'
@@ -132,13 +132,12 @@ e_map_ <- function(e, serie = NULL, map = "world", name = NULL, rm_x = TRUE, rm_
       ...
     )
 
+    app_data <- list()
     if (!is.null(serie)) {
       data <- .build_data2(e$x$data[[i]], serie)
       data <- .add_bind2(e, data, e$x$mapping$x, i = i)
       app_data <- list(data = data)
-    } else {
-      app_data <- list()
-    }
+    } 
 
     if (!e$x$tl) {
       if (is.null(name) && !is.null(serie)) {
@@ -153,10 +152,19 @@ e_map_ <- function(e, serie = NULL, map = "world", name = NULL, rm_x = TRUE, rm_
     }
   }
 
+  if(length(e$x$data) == 0){
+    app <- list(
+      type = "map",
+      map = map,
+      name = name,
+      ...
+    )
+    e$x$opts$series <- append(e$x$opts$series, list(app))
+  }
+
   if (isTRUE(e$x$tl)) {
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(app))
   }
-
 
   if (map == "world") {
     # add dependency
@@ -305,12 +313,12 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
   value_quo <- dplyr::enquo(value)
   height_quo <- dplyr::enquo(height)
 
-  data <- e$x$data[[1]] %>%
+  data <- e$x$data[[1]] |>
     dplyr::select(
       name = !!name_quo,
       value = !!value_quo,
       height = !!height_quo
-    ) %>%
+    ) |>
     apply(1, as.list)
 
   app$data <- data
@@ -349,11 +357,11 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
 #' \dontrun{
 #' json <- jsonlite::read_json("https://echarts.apache.org/examples/data/asset/geo/USA.json")
 #'
-#' USArrests %>%
-#'   dplyr::mutate(states = row.names(.)) %>%
-#'   e_charts(states) %>%
-#'   e_map_register("USA", json) %>%
-#'   e_map(Murder, map = "USA") %>%
+#' USArrests |>
+#'   tibble::rownames_to_column("states") |> 
+#'   e_charts(states) |>
+#'   e_map_register("USA", json) |>
+#'   e_map(Murder, map = "USA") |>
 #'   e_visual_map(Murder)
 #' }
 #'
@@ -446,13 +454,13 @@ e_map_register_ui <- function(name, json, async = FALSE) {
 #' data <- as.data.frame(data)
 #' names(data) <- c("lon", "lat", "value")
 #'
-#' data %>%
-#'   e_charts(lon) %>%
+#' data |>
+#'   e_charts(lon) |>
 #'   e_mapbox(
 #'     token = "YOUR_MAPBOX_TOKEN",
 #'     style = "mapbox://styles/mapbox/dark-v9"
-#'   ) %>%
-#'   e_bar_3d(lat, value, coord_system = "mapbox") %>%
+#'   ) |>
+#'   e_bar_3d(lat, value, coord_system = "mapbox") |>
 #'   e_visual_map()
 #' }
 #'

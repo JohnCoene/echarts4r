@@ -33,8 +33,8 @@ surface <- as.data.frame(as.table(volcano))
 surface$Var1 <- as.numeric(surface$Var1)
 surface$Var2 <- as.numeric(surface$Var2)
 
-surface \%>\%
-  e_charts(Var1) \%>\%
-  e_surface(Var2, Freq) \%>\%
+surface |>
+  e_charts(Var1) |>
+  e_surface(Var2, Freq) |>
   e_visual_map(Freq)
 }

@@ -35,9 +35,9 @@ df <- data.frame(
   )
 )
 
-df \%>\%
-  e_charts(x) \%>\%
-  e_line(y) \%>\%
-  e_format_y_axis(suffix = "\%") \%>\%
+df |>
+  e_charts(x) |>
+  e_line(y) |>
+  e_format_y_axis(suffix = "\%") |>
   e_format_x_axis(prefix = "A")
 }

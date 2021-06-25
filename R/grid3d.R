@@ -15,21 +15,21 @@
 #'   z1 = rnorm(300, 10, 1),
 #'   z2 = rnorm(300, 10, 1),
 #'   stringsAsFactors = FALSE
-#' ) %>%
-#'   dplyr::group_by(x, y) %>%
+#' ) |>
+#'   dplyr::group_by(x, y) |>
 #'   dplyr::summarise(
 #'     z1 = sum(z1),
 #'     z2 = sum(z2)
-#'   ) %>%
+#'   ) |>
 #'   dplyr::ungroup()
 #'
 #' trans <- list(opacity = 0.4) # transparency
 #' emphasis <- list(itemStyle = list(color = "#313695"))
 #'
-#' matrix %>%
-#'   e_charts(x) %>%
-#'   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) %>%
-#'   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) %>%
+#' matrix |>
+#'   e_charts(x) |>
+#'   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) |>
+#'   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) |>
 #'   e_x_axis_3d(axisLine = list(lineStyle = list(color = "blue")))
 #' @seealso \href{https://echarts.apache.org/en/option-gl.html#xAxis3D}{Additional x arguments},
 #'  \href{https://echarts.apache.org/en/option-gl.html#yAxis3D}{Additional y arguments},
@@ -116,21 +116,21 @@ e_z_axis_3d <- function(e, index = 0, ...) {
 #'   z1 = rnorm(300, 10, 1),
 #'   z2 = rnorm(300, 10, 1),
 #'   stringsAsFactors = FALSE
-#' ) %>%
-#'   dplyr::group_by(x, y) %>%
+#' ) |>
+#'   dplyr::group_by(x, y) |>
 #'   dplyr::summarise(
 #'     z1 = sum(z1),
 #'     z2 = sum(z2)
-#'   ) %>%
+#'   ) |>
 #'   dplyr::ungroup()
 #'
 #' trans <- list(opacity = 0.4) # transparency
 #' emphasis <- list(itemStyle = list(color = "#313695"))
 #'
-#' matrix %>%
-#'   e_charts(x) %>%
-#'   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) %>%
-#'   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) %>%
+#' matrix |>
+#'   e_charts(x) |>
+#'   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) |>
+#'   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) |>
 #'   e_grid_3d(splitLine = list(lineStyle = list(color = "blue")))
 #' @seealso \href{https://echarts.apache.org/en/option-gl.html#grid3D}{Additional arguments}
 #'

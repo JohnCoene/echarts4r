@@ -72,16 +72,16 @@ df <- data.frame(
   z = y - rnorm(10, 5, 1)
 )
 
-df \%>\%
-  e_charts(x) \%>\%
-  e_bar(z, barWidth = 10) \%>\%
+df |>
+  e_charts(x) |>
+  e_bar(z, barWidth = 10) |>
   e_pictorial(
     y,
     symbol = "rect",
     symbolRepeat = TRUE,
     z = -1,
     symbolSize = c(10, 4)
-  ) \%>\%
+  ) |>
   e_theme("westeros")
 
 # svg path
@@ -93,8 +93,8 @@ style <- list(
   emphasis = list(opacity = 1) # on hover
 )
 
-df \%>\%
-  e_charts(x) \%>\%
+df |>
+  e_charts(x) |>
   e_pictorial(
     y,
     symbol = path,
@@ -124,9 +124,9 @@ data <- data.frame(
   )
 )
 
-data \%>\%
-  e_charts(x) \%>\%
-  e_pictorial(value, symbol) \%>\%
+data |>
+  e_charts(x) |>
+  e_pictorial(value, symbol) |>
   e_legend(FALSE)
 
 # timeline
@@ -139,9 +139,9 @@ df <- data.frame(
   )
 )
 
-df \%>\%
-  group_by(year) \%>\%
-  e_charts(x, timeline = TRUE) \%>\%
+df |>
+  group_by(year) |>
+  e_charts(x, timeline = TRUE) |>
   e_pictorial(
     y,
     symbol = "rect",

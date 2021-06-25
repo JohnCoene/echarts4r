@@ -96,11 +96,11 @@ flights <- read.csv(
 # Lines 3D
 # Globe
 # get tetures: echarts4r-assets.john-coene.com
-flights \%>\%
-  e_charts() \%>\%
+flights |>
+  e_charts() |>
   e_globe(
     displacementScale = 0.05
-  ) \%>\%
+  ) |>
   e_lines_3d(
     start_lon,
     start_lat,
@@ -108,13 +108,13 @@ flights \%>\%
     end_lat,
     name = "flights",
     effect = list(show = TRUE)
-  ) \%>\%
+  ) |>
   e_legend(FALSE)
 
 # Geo 3D
-flights \%>\%
-  e_charts() \%>\%
-  e_geo_3d() \%>\%
+flights |>
+  e_charts() |>
+  e_geo_3d() |>
   e_lines_3d(
     start_lon,
     start_lat,
@@ -126,10 +126,10 @@ flights \%>\%
 # groups
 flights$grp <- rep(LETTERS[1:2], 89)
 
-flights \%>\%
-  group_by(grp) \%>\%
-  e_charts() \%>\%
-  e_geo_3d() \%>\%
+flights |>
+  group_by(grp) |>
+  e_charts() |>
+  e_geo_3d() |>
   e_lines_3d(
     start_lon,
     start_lat,
@@ -145,20 +145,20 @@ df <- data.frame(
   z = rnorm(100, 100, 50)
 )
 
-df \%>\%
-  e_charts(x) \%>\%
-  e_line_3d(y, z) \%>\%
-  e_visual_map() \%>\%
+df |>
+  e_charts(x) |>
+  e_line_3d(y, z) |>
+  e_visual_map() |>
   e_title("nonsense")
 
 # timeline
 df$grp <- rep(LETTERS[1:5], 20)
 
-df \%>\%
-  group_by(grp) \%>\%
-  e_charts(x) \%>\%
-  e_line_3d(y, z) \%>\%
-  e_visual_map() \%>\%
+df |>
+  group_by(grp) |>
+  e_charts(x) |>
+  e_line_3d(y, z) |>
+  e_visual_map() |>
   e_title("nonsense")
 }
 \seealso{

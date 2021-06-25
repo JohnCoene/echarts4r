@@ -23,21 +23,21 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Format labels
 }
 \examples{
-mtcars \%>\%
-  e_chart(wt) \%>\%
-  e_scatter(qsec, cyl) \%>\%
+mtcars |>
+  e_chart(wt) |>
+  e_scatter(qsec, cyl) |>
   e_labels(fontSize = 9)
 
-mtcars \%>\%
-  group_by(cyl) \%>\%
-  e_chart(wt) \%>\%
-  e_scatter(qsec, mpg) \%>\%
+mtcars |>
+  group_by(cyl) |>
+  e_chart(wt) |>
+  e_scatter(qsec, mpg) |>
   e_labels(fontSize = 9)
 
 # timeline
-mtcars \%>\%
-  group_by(cyl) \%>\%
-  e_chart(wt) \%>\%
-  e_scatter(qsec, mpg) \%>\%
+mtcars |>
+  group_by(cyl) |>
+  e_chart(wt) |>
+  e_scatter(qsec, mpg) |>
   e_labels(fontSize = 9)
 }

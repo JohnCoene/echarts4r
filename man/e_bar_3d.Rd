@@ -51,15 +51,15 @@ Add 3D bars
 \examples{
 \dontrun{
 # volcano
-volcano \%>\%
-  as.table() \%>\%
-  as.data.frame() \%>\%
+volcano |>
+  as.table() |>
+  as.data.frame() |>
   dplyr::mutate(
     Var1 = as.integer(Var1),
     Var2 = as.integer(Var2)
-  ) \%>\%
-  e_charts(Var1) \%>\%
-  e_bar_3d(Var2, Freq) \%>\%
+  ) |>
+  e_charts(Var1) |>
+  e_bar_3d(Var2, Freq) |>
   e_visual_map(Freq)
 
 url <- paste0(
@@ -71,17 +71,17 @@ data <- as.data.frame(data)
 names(data) <- c("lon", "lat", "value")
 
 # globe
-data \%>\%
-  e_charts(lon) \%>\%
-  e_globe() \%>\%
-  e_bar_3d(lat, value, coord_system = "globe") \%>\%
+data |>
+  e_charts(lon) |>
+  e_globe() |>
+  e_bar_3d(lat, value, coord_system = "globe") |>
   e_visual_map()
 
 # get3d
-data \%>\%
-  e_charts(lon) \%>\%
-  e_geo_3d() \%>\%
-  e_bar_3d(lat, value, coord_system = "geo3D") \%>\%
+data |>
+  e_charts(lon) |>
+  e_geo_3d() |>
+  e_bar_3d(lat, value, coord_system = "geo3D") |>
   e_visual_map()
 
 # stacked
@@ -92,28 +92,28 @@ matrix <- data.frame(
   z1 = rnorm(300, 10, 1),
   z2 = rnorm(300, 10, 1),
   stringsAsFactors = FALSE
-) \%>\%
-  dplyr::group_by(x, y) \%>\%
+) |>
+  dplyr::group_by(x, y) |>
   dplyr::summarise(
     z1 = sum(z1),
     z2 = sum(z2)
-  ) \%>\%
+  ) |>
   dplyr::ungroup()
 
 trans <- list(opacity = 0.4) # transparency
 emphasis <- list(itemStyle = list(color = "#313695"))
 
-matrix \%>\%
-  e_charts(x) \%>\%
-  e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) \%>\%
-  e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) \%>\%
+matrix |>
+  e_charts(x) |>
+  e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) |>
+  e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) |>
   e_legend()
 
 # timeline
-matrix \%>\%
-  group_by(x) \%>\%
-  e_charts(y, timeline = TRUE) \%>\%
-  e_bar_3d(z1, z2) \%>\%
+matrix |>
+  group_by(x) |>
+  e_charts(y, timeline = TRUE) |>
+  e_bar_3d(z1, z2) |>
   e_visual_map(z2)
 }
 

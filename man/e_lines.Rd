@@ -66,9 +66,9 @@ flights <- read.csv(
   )
 )
 
-flights \%>\%
-  e_charts() \%>\%
-  e_geo() \%>\%
+flights |>
+  e_charts() |>
+  e_geo() |>
   e_lines(
     start_lon,
     start_lat,
@@ -79,7 +79,7 @@ flights \%>\%
     cnt,
     name = "flights",
     lineStyle = list(normal = list(curveness = 0.3))
-  ) \%>\%
+  ) |>
   e_tooltip(
     trigger = "item",
     formatter = htmlwidgets::JS("
@@ -96,10 +96,10 @@ flights \%>\%
 # timeline
 flights$grp <- rep(LETTERS[1:2], 89)
 
-flights \%>\%
-  group_by(grp) \%>\%
-  e_charts(timeline = TRUE) \%>\%
-  e_geo() \%>\%
+flights |>
+  group_by(grp) |>
+  e_charts(timeline = TRUE) |>
+  e_geo() |>
   e_lines(
     start_lon,
     start_lat,

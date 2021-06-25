@@ -53,17 +53,17 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Add line serie.
 }
 \examples{
-iris \%>\%
-  group_by(Species) \%>\%
-  e_charts(Sepal.Length) \%>\%
-  e_line(Sepal.Width) \%>\%
+iris |>
+  group_by(Species) |>
+  e_charts(Sepal.Length) |>
+  e_line(Sepal.Width) |>
   e_tooltip(trigger = "axis")
 
 # timeline
-iris \%>\%
-  group_by(Species) \%>\%
-  e_charts(Sepal.Length, timeline = TRUE) \%>\%
-  e_line(Sepal.Width) \%>\%
+iris |>
+  group_by(Species) |>
+  e_charts(Sepal.Length, timeline = TRUE) |>
+  e_line(Sepal.Width) |>
   e_tooltip(trigger = "axis")
 }
 \seealso{

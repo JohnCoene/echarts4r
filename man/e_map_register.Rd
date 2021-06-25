@@ -44,11 +44,11 @@ from the UI (generally www folder).
 \dontrun{
 json <- jsonlite::read_json("https://echarts.apache.org/examples/data/asset/geo/USA.json")
 
-USArrests \%>\%
-  dplyr::mutate(states = row.names(.)) \%>\%
-  e_charts(states) \%>\%
-  e_map_register("USA", json) \%>\%
-  e_map(Murder, map = "USA") \%>\%
+USArrests |>
+  tibble::rownames_to_column("states") |> 
+  e_charts(states) |>
+  e_map_register("USA", json) |>
+  e_map(Murder, map = "USA") |>
   e_visual_map(Murder)
 }
 

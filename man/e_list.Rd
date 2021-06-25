@@ -37,6 +37,6 @@ opts <- list(
   )
 )
 
-e_charts() \%>\%
+e_charts() |>
   e_list(opts)
 }

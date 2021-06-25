@@ -37,10 +37,10 @@ e_bar_ <- function(
     }
 
     if (coord_system == "polar") {
-      e_serie$data <- e$x$data[[i]] %>%
-        dplyr::select(serie) %>%
-        unlist() %>%
-        unname() %>%
+      e_serie$data <- e$x$data[[i]] |>
+        dplyr::select(serie) |>
+        unlist() |>
+        unname() |>
         as.list()
     }
 
@@ -149,10 +149,10 @@ e_line_ <- function(
         l$xAxisIndex <- x_index
       }
     } else if (coord_system == "polar") {
-      l$data <- e$x$data[[i]] %>%
-        dplyr::select(serie) %>%
-        unlist() %>%
-        unname() %>%
+      l$data <- e$x$data[[i]] |>
+        dplyr::select(serie) |>
+        unlist() |>
+        unname() |>
         as.list()
     }
 
@@ -250,10 +250,10 @@ e_area_ <- function(
       l$yAxisIndex <- y_index
       l$xAxisIndex <- x_index
     } else if (coord_system == "polar") {
-      l$data <- e$x$data[[i]] %>%
-        dplyr::select(serie) %>%
-        unlist() %>%
-        unname() %>%
+      l$data <- e$x$data[[i]] |>
+        dplyr::select(serie) |>
+        unlist() |>
+        unname() |>
         as.list()
     }
 
@@ -355,10 +355,10 @@ e_step_ <- function(
       l$yAxisIndex <- y_index
       l$xAxisIndex <- x_index
     } else if (coord_system == "polar") {
-      l$data <- e$x$data[[i]] %>%
-        dplyr::select(serie) %>%
-        unlist() %>%
-        unname() %>%
+      l$data <- e$x$data[[i]] |>
+        dplyr::select(serie) |>
+        unlist() |>
+        unname() |>
         as.list()
     }
 
@@ -476,10 +476,10 @@ e_scatter_ <- function(
     e.serie <- list(data = xy)
 
     if (coord_system == "polar") {
-      e.serie$data <- e$x$data[[i]] %>%
-        dplyr::select(serie) %>%
-        unlist() %>%
-        unname() %>%
+      e.serie$data <- e$x$data[[i]] |>
+        dplyr::select(serie) |>
+        unlist() |>
+        unname() |>
         as.list()
     }
 
@@ -609,10 +609,10 @@ e_effect_scatter_ <- function(
     e.serie <- list(data = xy)
 
     if (coord_system == "polar") {
-      e.serie$data <- e$x$data[[i]] %>%
-        dplyr::select(serie) %>%
-        unlist() %>%
-        unname() %>%
+      e.serie$data <- e$x$data[[i]] |>
+        dplyr::select(serie) |>
+        unlist() |>
+        unname() |>
         as.list()
     }
 
@@ -783,7 +783,7 @@ e_radar_ <- function(
   # build JSON data
   .get_data(e, serie) -> vector
 
-  series <- purrr::map(e$x$opts$series, "type") %>%
+  series <- purrr::map(e$x$opts$series, "type") |>
     unlist()
 
   if (!"radar" %in% series) {
@@ -844,8 +844,8 @@ e_funnel_ <- function(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE
 
       # addlegend
       if (isTRUE(legend)) {
-        legend <- .get_data(e, labels) %>%
-          as.character() %>%
+        legend <- .get_data(e, labels) |>
+          as.character() |>
           unique()
         e$x$opts$legend$data <- append(e$x$opts$legend$data, legend)
       }
@@ -858,8 +858,8 @@ e_funnel_ <- function(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE
 
   if (isTRUE(e$x$tl)) {
     if (isTRUE(legend)) {
-      legend <- .get_data(e, labels) %>%
-        as.character() %>%
+      legend <- .get_data(e, labels) |>
+        as.character() |>
         unique()
       e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, legend)
     }
@@ -1000,7 +1000,7 @@ e_parallel_ <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = li
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
-  e$x$data[[1]] %>%
+  e$x$data[[1]] |>
     dplyr::select(...) -> df
 
   # remove names
@@ -1088,8 +1088,8 @@ e_pie_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRU
     if (isTRUE(legend)) {
       e$x$opts$baseOption$legend$data <- append(
         e$x$opts$baseOption$legend$data,
-        purrr::map(e$x$data, "model") %>%
-          unlist() %>%
+        purrr::map(e$x$data, "model") |>
+          unlist() |>
           unique()
       )
     }
@@ -1615,9 +1615,10 @@ e_surface_ <- function(e, y, z, bind = NULL, name = NULL, rm_x = TRUE, rm_y = TR
   for (i in seq_along(e$x$data)) {
     row.names(e$x$data[[i]]) <- NULL
 
-    data <- e$x$data[[i]] %>%
-      dplyr::select(e$x$mapping$x, y, z) %>%
-      unname(.) -> data
+    data <- e$x$data[[i]] |>
+      dplyr::select(e$x$mapping$x, y, z)
+    
+    data <- unname(data)
 
     data <- apply(data, 1, as.list)
 
@@ -2285,7 +2286,7 @@ e_band_ <- function(
     e <- do.call(e_line_, max_opts_index)
   }
 
-  e %>%
+  e |>
     e_x_axis(type = "category")
 }
 
@@ -2482,13 +2483,13 @@ e_error_bar_ <- function(
       e <- .set_x_axis(e, x_index, i)
     }
     if (coord_system == "polar") {
-      e_serie$data <- e$x$data[[i]] %>%
+      e_serie$data <- e$x$data[[i]] |>
         dplyr::select(
           lower,
           upper
-        ) %>%
-        unlist() %>%
-        unname() %>%
+        ) |>
+        unlist() |>
+        unname() |>
         as.list()
     }
     nm <- .name_it(e, ser[[i]]$name, name, i)
@@ -2551,5 +2552,5 @@ e_error_bar_ <- function(
   dep <- htmltools::htmlDependency(name = "echarts-renderers", version = "1.0.2", src = c(file = path), script = "renderers.js")
 
   e$dependencies <- append(e$dependencies, list(dep))
-  e %>% e_x_axis(type = "category") # wont work with type 'value'
+  e |> e_x_axis(type = "category") # wont work with type 'value'
 }

@@ -59,9 +59,9 @@ df <- data.frame(
   z = runif(5, 3, 7)
 )
 
-df \%>\%
-  e_charts(x) \%>\%
-  e_radar(y, max = 7) \%>\%
-  e_radar(z) \%>\%
+df |>
+  e_charts(x) |>
+  e_radar(y, max = 7) |>
+  e_radar(z) |>
   e_tooltip(trigger = "item")
 }

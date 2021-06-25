@@ -36,8 +36,8 @@
 #'   })
 #'
 #'   output$plot <- renderEcharts4r({
-#'     data() %>%
-#'       e_charts(x) %>%
+#'     data() |>
+#'       e_charts(x) |>
 #'       e_bar(y)
 #'   })
 #' }
@@ -57,9 +57,9 @@
 #'   })
 #'
 #'   output$plot <- renderEcharts4r({
-#'     data() %>%
-#'       e_charts(x) %>%
-#'       e_bar(y) %>%
+#'     data() |>
+#'       e_charts(x) |>
+#'       e_bar(y) |>
 #'       e_show_loading()
 #'   })
 #' }

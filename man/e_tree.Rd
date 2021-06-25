@@ -47,8 +47,8 @@ df <- tibble(
   )
 )
 
-df \%>\%
-  e_charts() \%>\%
+df |>
+  e_charts() |>
   e_tree(initialTreeDepth = 3, label = list(offset = c(0, -11)))
 }
 \seealso{

@@ -31,8 +31,8 @@ df <- data.frame(
   letter = LETTERS[1:5]
 )
 
-df \%>\%
-  e_charts() \%>\%
+df |>
+  e_charts() |>
   e_parallel(price, amount, letter, opts = list(smooth = TRUE))
 }
 \seealso{

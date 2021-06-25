@@ -60,9 +60,9 @@ vectors$sx <- rnorm(100)
 vectors$sy <- rnorm(100)
 vectors$color <- log10(runif(100, 1, 10))
 
-vectors \%>\%
-  e_charts(x) \%>\%
-  e_flow_gl(y, sx, sy, color) \%>\%
+vectors |>
+  e_charts(x) |>
+  e_flow_gl(y, sx, sy, color) |>
   e_visual_map(
     min = 0,
     max = 1,
@@ -86,10 +86,10 @@ vectors \%>\%
         "#a50026"
       )
     )
-  ) \%>\%
+  ) |>
   e_x_axis(
     splitLine = list(show = FALSE)
-  ) \%>\%
+  ) |>
   e_y_axis(
     splitLine = list(show = FALSE)
   )
@@ -104,9 +104,9 @@ rng <- range(wind$color)
 
 trans <- list(opacity = 0.5) # transparency
 
-wind \%>\%
-  e_charts(lng, backgroundColor = "#333") \%>\%
-  e_geo() \%>\%
+wind |>
+  e_charts(lng, backgroundColor = "#333") |>
+  e_geo() |>
   e_flow_gl(
     lat,
     slng,
@@ -114,7 +114,7 @@ wind \%>\%
     color,
     itemStyle = trans,
     particleSize = 2
-  ) \%>\%
+  ) |>
   e_visual_map(
     color,
     # range
@@ -137,8 +137,8 @@ wind \%>\%
         "#a50026"
       )
     )
-  ) \%>\%
-  e_x_axis(show = FALSE) \%>\%
+  ) |>
+  e_x_axis(show = FALSE) |>
   e_y_axis(show = FALSE)
 }
 \seealso{

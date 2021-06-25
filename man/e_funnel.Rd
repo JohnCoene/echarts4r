@@ -52,8 +52,8 @@ funnel <- data.frame(
   value = c(80, 30, 20)
 )
 
-funnel \%>\%
-  e_charts() \%>\%
+funnel |>
+  e_charts() |>
   e_funnel(value, stage)
 }
 \seealso{

@@ -34,8 +34,8 @@
 #'   )
 #' )
 #'
-#' choropleth %>%
-#'   e_charts(countries) %>%
+#' choropleth |>
+#'   e_charts(countries) |>
 #'   e_geo_3d(height, color)
 #' @seealso \code{\link{e_country_names}},
 #' \href{https://echarts.apache.org/en/option-gl.html#geo3D}{Additional arguments}
@@ -131,9 +131,9 @@ e_geo_3d_ <- function(e, serie = NULL, color = NULL, type = "world", rm_x = TRUE
 #'   )
 #' )
 #'
-#' flights %>%
-#'   e_charts() %>%
-#'   e_geo() %>%
+#' flights |>
+#'   e_charts() |>
+#'   e_geo() |>
 #'   e_lines(
 #'     start_lon,
 #'     start_lat,

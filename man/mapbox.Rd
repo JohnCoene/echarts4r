@@ -31,13 +31,13 @@ data <- jsonlite::fromJSON(url)
 data <- as.data.frame(data)
 names(data) <- c("lon", "lat", "value")
 
-data \%>\%
-  e_charts(lon) \%>\%
+data |>
+  e_charts(lon) |>
   e_mapbox(
     token = "YOUR_MAPBOX_TOKEN",
     style = "mapbox://styles/mapbox/dark-v9"
-  ) \%>\%
-  e_bar_3d(lat, value, coord_system = "mapbox") \%>\%
+  ) |>
+  e_bar_3d(lat, value, coord_system = "mapbox") |>
   e_visual_map()
 }
 

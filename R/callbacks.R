@@ -8,9 +8,9 @@
 #' @param event Event that triggers the handler.
 #'
 #' @examples
-#' cars %>%
-#'   e_charts(speed) %>%
-#'   e_scatter(dist) %>%
+#' cars |>
+#'   e_charts(speed) |>
+#'   e_scatter(dist) |>
 #'   e_on(
 #'     list(seriesName = "dist"),
 #'     "function(){alert('Serie clicked')}"

@@ -32,17 +32,17 @@ Valid \code{feature}:
 }
 }
 \examples{
-USArrests \%>\%
-  e_charts(UrbanPop) \%>\%
-  e_line(Assault) \%>\%
-  e_area(Murder, y_index = 1, x_index = 1) \%>\%
+USArrests |>
+  e_charts(UrbanPop) |>
+  e_line(Assault) |>
+  e_area(Murder, y_index = 1, x_index = 1) |>
   e_datazoom(x_index = 0)
 
-mtcars \%>\%
-  dplyr::mutate(model = row.names(.)) \%>\%
-  e_charts(model) \%>\%
-  e_line(qsec) \%>\%
-  e_toolbox() \%>\%
+mtcars |>
+  tibble::rownames_to_column("model") |> 
+  e_charts(model) |>
+  e_line(qsec) |>
+  e_toolbox() |>
   e_toolbox_feature(
     feature = "magicType",
     type = list("line", "bar")

@@ -35,15 +35,15 @@
 #'   })
 #'
 #'   output$plot <- renderEcharts4r({
-#'     data %>%
-#'       e_charts(x) %>%
-#'       e_scatter(y, z, scale = NULL) %>%
-#'       e_scatter(z) %>%
+#'     data |>
+#'       e_charts(x) |>
+#'       e_scatter(y, z, scale = NULL) |>
+#'       e_scatter(z) |>
 #'       e_brush()
 #'   })
 #'
 #'   observeEvent(input$add, {
-#'     echarts4rProxy("plot") %>%
+#'     echarts4rProxy("plot") |>
 #'       e_append2_p(0, react(), x, y, z)
 #'   })
 #'
@@ -76,9 +76,9 @@ e_append1_p_ <- function(proxy, series_index = NULL, data, x, y) {
     stop("must pass echarts4rProxy object", call. = FALSE)
   }
 
-  dlist <- data %>%
-    dplyr::select(x, y) %>%
-    unname() %>%
+  dlist <- data |>
+    dplyr::select(x, y) |>
+    unname() |>
     apply(1, as.list)
 
   opts <- list(id = proxy$id, seriesIndex = series_index, data = dlist)
@@ -114,7 +114,7 @@ e_append2_p_ <- function(proxy, series_index = NULL, data, x, y, z, scale = NULL
     stop("must pass echarts4rProxy object", call. = FALSE)
   }
 
-  data %>%
+  data |>
     dplyr::select(x, y, z) -> data
 
   if (!is.null(scale)) {
@@ -160,14 +160,14 @@ e_append2_p_ <- function(proxy, series_index = NULL, data, x, y, z, scale = NULL
 #'   )
 #'
 #'   output$plot <- renderEcharts4r({
-#'     data %>%
-#'       e_charts(x) %>%
-#'       e_scatter(y) %>%
+#'     data |>
+#'       e_charts(x) |>
+#'       e_scatter(y) |>
 #'       e_scatter(z)
 #'   })
 #'
 #'   observeEvent(input$rm, {
-#'     echarts4rProxy("plot") %>%
+#'     echarts4rProxy("plot") |>
 #'       e_remove_serie_p(serie_name = "z")
 #'   })
 #' }

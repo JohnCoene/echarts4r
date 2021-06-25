@@ -27,9 +27,9 @@ flights <- read.csv(
   )
 )
 
-flights \%>\%
-  e_charts() \%>\%
-  e_geo() \%>\%
+flights |>
+  e_charts() |>
+  e_geo() |>
   e_lines(
     start_lon,
     start_lat,

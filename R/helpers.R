@@ -102,9 +102,9 @@ e_color_range_ <- function(data, input, output, colors = c("#bf444c", "#d88273",
 #' @return A list of data.frames, one for each group.
 #'
 #' @examples
-#' echart <- cars %>%
-#'   e_charts(speed) %>%
-#'   e_scatter(dist) %>%
+#' echart <- cars |>
+#'   e_charts(speed) |>
+#'   e_scatter(dist) |>
 #'   e_lm(dist ~ speed)
 #'
 #' echart
@@ -134,10 +134,10 @@ e_get_data <- function(e) {
 #'   )
 #' )
 #'
-#' df %>%
-#'   e_charts(x) %>%
-#'   e_line(y) %>%
-#'   e_format_y_axis(suffix = "%") %>%
+#' df |>
+#'   e_charts(x) |>
+#'   e_line(y) |>
+#'   e_format_y_axis(suffix = "%") |>
 #'   e_format_x_axis(prefix = "A")
 #' @rdname formatters
 #' @export
@@ -152,7 +152,7 @@ e_format_axis <- function(e, axis = "y", suffix = NULL, prefix = NULL, ...) {
 
   fmt <- paste(prefix, "{value}", suffix)
 
-  e <- e %>%
+  e <- e |>
     e_axis(
       axis = axis,
       axisLabel = list(formatter = fmt),
@@ -185,22 +185,22 @@ e_format_y_axis <- function(e, suffix = NULL, prefix = NULL, ...) {
 #' \href{https://echarts.apache.org/en/option.html#series-line.label}{documentation} for other options.
 #'
 #' @examples
-#' mtcars %>%
-#'   e_chart(wt) %>%
-#'   e_scatter(qsec, cyl) %>%
+#' mtcars |>
+#'   e_chart(wt) |>
+#'   e_scatter(qsec, cyl) |>
 #'   e_labels(fontSize = 9)
 #'
-#' mtcars %>%
-#'   group_by(cyl) %>%
-#'   e_chart(wt) %>%
-#'   e_scatter(qsec, mpg) %>%
+#' mtcars |>
+#'   group_by(cyl) |>
+#'   e_chart(wt) |>
+#'   e_scatter(qsec, mpg) |>
 #'   e_labels(fontSize = 9)
 #'
 #' # timeline
-#' mtcars %>%
-#'   group_by(cyl) %>%
-#'   e_chart(wt) %>%
-#'   e_scatter(qsec, mpg) %>%
+#' mtcars |>
+#'   group_by(cyl) |>
+#'   e_chart(wt) |>
+#'   e_scatter(qsec, mpg) |>
 #'   e_labels(fontSize = 9)
 #' @export
 e_labels <- function(e, show = TRUE, position = "top", ...) {
@@ -255,7 +255,7 @@ e_labels <- function(e, show = TRUE, position = "top", ...) {
 #'   )
 #' )
 #'
-#' e_charts() %>%
+#' e_charts() |>
 #'   e_list(opts)
 #' @export
 e_list <- function(e, list, append = FALSE) {
@@ -310,14 +310,14 @@ e_aria <- function(e, enabled = TRUE, ...) {
 #' This is subsequently passed to the \code{setOption} ECharts (JavaScript) function.
 #'
 #' @examples
-#' p <- cars %>%
-#'   e_charts(dist) %>%
+#' p <- cars |>
+#'   e_charts(dist) |>
 #'   e_scatter(speed, symbol_size = 10)
 #'
 #' p # plot
 #'
 #' # extract the JSON
-#' json <- p %>%
+#' json <- p |>
 #'   e_inspect(
 #'     json = TRUE,
 #'     pretty = TRUE
@@ -327,7 +327,7 @@ e_aria <- function(e, enabled = TRUE, ...) {
 #' json
 #'
 #' # rebuild plot
-#' echarts_from_json(json) %>%
+#' echarts_from_json(json) |>
 #'   e_theme("dark") # modify
 #' @return \code{e_inspect} Returns a \code{list} if \code{json} is \code{FALSE} and a
 #' JSON string otherwise. \code{echarts_from_json} returns an object of class \code{echarts4r}.

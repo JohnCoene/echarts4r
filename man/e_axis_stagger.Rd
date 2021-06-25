@@ -19,8 +19,8 @@ df <- data.frame(
   y = 1:2
 )
 
-df \%>\%
-  e_charts(x, width = 150) \%>\%
-  e_bar(y) \%>\%
+df |>
+  e_charts(x, width = 150) |>
+  e_bar(y) |>
   e_axis_stagger()
 }

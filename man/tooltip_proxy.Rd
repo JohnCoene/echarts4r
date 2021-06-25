@@ -39,17 +39,17 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   output$plot <- renderEcharts4r({
-    mtcars \%>\%
-      e_charts(mpg) \%>\%
-      e_line(disp, bind = carb, name = "displacement") \%>\%
-      e_line(hp) \%>\%
-      e_x_axis(min = 10) \%>\%
-      e_tooltip(show = FALSE) \%>\%
+    mtcars |>
+      e_charts(mpg) |>
+      e_line(disp, bind = carb, name = "displacement") |>
+      e_line(hp) |>
+      e_x_axis(min = 10) |>
+      e_tooltip(show = FALSE) |>
       e_theme("westeros")
   })
 
   observeEvent(input$show, {
-    echarts4rProxy("plot") \%>\%
+    echarts4rProxy("plot") |>
       e_showtip_p(
         name = "displacement",
         position = list(5, 5)
@@ -57,7 +57,7 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$hide, {
-    echarts4rProxy("plot") \%>\%
+    echarts4rProxy("plot") |>
       e_hidetip_p()
   })
 
