@@ -27,7 +27,7 @@ Welcome to `echarts4r`, let's explore the package together.
 1. All functions of the `echarts4r` package start with `e_`.
 2. All its [Shiny](https://shiny.rstudio.com/) proxies end with `_p`. 
 3. All `echarts4r` plots are initialised with `e_charts`.
-4. All functions are `%>%` friendly.
+4. All functions are `|>` friendly.
 5. Most functions have escape hatches ending in `_`.
 
 ## Video & Article
@@ -38,37 +38,37 @@ Thanks to [Sharon Machlis](https://twitter.com/sharon000) there is an amazing vi
 
 ## Your first plot
 
-Let's build a line chart, load the library and pipe your data to `e_charts`. If you are not at ease with the `%>%` you can use `e_charts(mtcars, wt)`.
+Let's build a line chart, load the library and pipe your data to `e_charts`. If you are not at ease with the `|>` you can use `e_charts(mtcars, wt)`.
 
 ```{r}
 # prepare data
-df <- state.x77 %>% 
-  as.data.frame() %>% 
+df <- state.x77 |> 
+  as.data.frame() |> 
   tibble::rownames_to_column("State")
 ```
 
 ```{r}
 library(echarts4r) # load echarts4r
 
-df %>% 
-  e_charts(x = State) %>% # initialise and set x
+df |> 
+  e_charts(x = State) |> # initialise and set x
   e_line(serie = Population) # add a line
 ```
 
 If you are not at ease with bare column names you can use the escape hatches ending in `_`.
 
 ```{r, eval = FALSE}
-df %>% 
-  e_charts_("State") %>% 
+df |> 
+  e_charts_("State") |> 
   e_line_("Population")
 ```
 
-The easiest way is to use the `%>%` operator to add plots and options.
+The easiest way is to use the `|>` operator to add plots and options.
 
 ```{r}
-df %>% 
-  e_charts(State) %>% # initialise and set x
-  e_line(Population) %>%  # add a line
+df |> 
+  e_charts(State) |> # initialise and set x
+  e_line(Population) |>  # add a line
   e_area(Income) # add area
 ```
 
@@ -77,58 +77,58 @@ df %>%
 We could also change the lines to make them `smooth`.
 
 ```{r}
-df %>% 
-  e_charts(State) %>% # initialise and set x
-  e_line(Population, smooth = TRUE) %>%  # add a line
+df |> 
+  e_charts(State) |> # initialise and set x
+  e_line(Population, smooth = TRUE) |>  # add a line
   e_area(Income, smooth = TRUE) # add area
 ```
 
 Lets label the axes with the convenience function `e_axis_labels`.
 
 ```{r}
-df %>% 
-  e_charts(State) %>% # initialise and set x
-  e_line(Population, smooth = TRUE) %>%  # add a line
-  e_area(Income, smooth = TRUE) %>%  # add area
+df |> 
+  e_charts(State) |> # initialise and set x
+  e_line(Population, smooth = TRUE) |>  # add a line
+  e_area(Income, smooth = TRUE) |>  # add area
   e_axis_labels(x = "State") # axis labels
 ```
 
 We can use one of the 13 built-in themes, see `?e_theme` for a complete list, we'll also add a title with `e_title`.
 
 ```{r}
-df %>% 
-  e_charts(State) %>% # initialise and set x
-  e_line(Population, smooth = TRUE) %>%  # add a line
-  e_area(Income, smooth = TRUE) %>%  # add area
-  e_axis_labels(x = "State") %>% # axis labels
-  e_title("US States", "Population & Income") %>%  # Add title & subtitle
+df |> 
+  e_charts(State) |> # initialise and set x
+  e_line(Population, smooth = TRUE) |>  # add a line
+  e_area(Income, smooth = TRUE) |>  # add area
+  e_axis_labels(x = "State") |> # axis labels
+  e_title("US States", "Population & Income") |>  # Add title & subtitle
   e_theme("infographic") # theme
 ```
 
 The legend and title are a bit close, let's move the legend to another part the canvas.
 
 ```{r}
-df %>% 
-  e_charts(State) %>% # initialise and set x
-  e_line(Population, smooth = TRUE) %>%  # add a line
-  e_area(Income, smooth = TRUE) %>%  # add area
-  e_axis_labels(x = "State") %>% # axis labels
-  e_title("US States", "Population & Income") %>%  # Add title & subtitle
-  e_theme("infographic") %>%  # theme
+df |> 
+  e_charts(State) |> # initialise and set x
+  e_line(Population, smooth = TRUE) |>  # add a line
+  e_area(Income, smooth = TRUE) |>  # add area
+  e_axis_labels(x = "State") |> # axis labels
+  e_title("US States", "Population & Income") |>  # Add title & subtitle
+  e_theme("infographic") |>  # theme
   e_legend(right = 0) # move legend to the bottom
 ```
 
 Add a tooltip, of which there are numerous [options](https://echarts.apache.org/en/option.html#tooltip), here we use `trigger = "axis"` to trigger the tooltip by the axis rather than a single data point.
 
 ```{r}
-df %>% 
-  e_charts(State) %>% # initialise and set x
-  e_line(Population, smooth = TRUE) %>%  # add a line
-  e_area(Income, smooth = TRUE) %>%  # add area
-  e_axis_labels(x = "State") %>% # axis labels
-  e_title("US States", "Population & Income") %>%  # Add title & subtitle
-  e_theme("infographic") %>%  # theme
-  e_legend(right = 0) %>%  # move legend to the bottom
+df |> 
+  e_charts(State) |> # initialise and set x
+  e_line(Population, smooth = TRUE) |>  # add a line
+  e_area(Income, smooth = TRUE) |>  # add area
+  e_axis_labels(x = "State") |> # axis labels
+  e_title("US States", "Population & Income") |>  # Add title & subtitle
+  e_theme("infographic") |>  # theme
+  e_legend(right = 0) |>  # move legend to the bottom
   e_tooltip(trigger = "axis") # tooltip
 ```
 
@@ -137,14 +137,14 @@ Finally, we are currently plotting population and income on the same axis, let's
 <span class="label label-warning"><i class="fa fa-warning"></i></span> Dual y axes is a terrible idea, it's only here for demonstration purposes.
 
 ```{r}
-df %>% 
-  e_charts(State) %>% # initialise and set x
-  e_line(Population, smooth = TRUE) %>%  # add a line
-  e_area(Income, smooth = TRUE, y_index = 1) %>%  # add area
-  e_axis_labels(x = "State") %>% # axis labels
-  e_title("US States", "Population & Income") %>%  # Add title & subtitle
-  e_theme("infographic") %>%  # theme
-  e_legend(right = 0) %>%  # move legend to the bottom
+df |> 
+  e_charts(State) |> # initialise and set x
+  e_line(Population, smooth = TRUE) |>  # add a line
+  e_area(Income, smooth = TRUE, y_index = 1) |>  # add area
+  e_axis_labels(x = "State") |> # axis labels
+  e_title("US States", "Population & Income") |>  # Add title & subtitle
+  e_theme("infographic") |>  # theme
+  e_legend(right = 0) |>  # move legend to the bottom
   e_tooltip(trigger = "axis") # tooltip
 ```
 
@@ -166,14 +166,14 @@ For instance the documentation for the tooltip looks like this:
 Therefore if we want to change our tooltip to an [axisPointer](https://echarts.apache.org/en/option.html#tooltip.axisPointer) we can do so by passing a list to `axisPointer`.
 
 ```{r}
-df %>% 
-  e_charts(State) %>% # initialise and set x
-  e_line(Population, smooth = TRUE) %>%  # add a line
-  e_area(Income, smooth = TRUE) %>%  # add area
-  e_x_axis(name = "States") %>%  # add x axis name
-  e_title("US States", "Population & Income") %>%  # Add title & subtitle
-  e_theme("infographic") %>%  # theme
-  e_legend(right = 0) %>% # move legend to the bottom
+df |> 
+  e_charts(State) |> # initialise and set x
+  e_line(Population, smooth = TRUE) |>  # add a line
+  e_area(Income, smooth = TRUE) |>  # add area
+  e_x_axis(name = "States") |>  # add x axis name
+  e_title("US States", "Population & Income") |>  # Add title & subtitle
+  e_theme("infographic") |>  # theme
+  e_legend(right = 0) |> # move legend to the bottom
   e_tooltip(
     axisPointer = list(
       type = "cross"

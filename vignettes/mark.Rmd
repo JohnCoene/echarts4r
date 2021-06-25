@@ -56,24 +56,24 @@ avg <- list(
 By default `e_mark_*` is applied to all series.
 
 ```{r}
-iris %>% 
-  group_by(Species) %>% 
-  e_charts(Sepal.Length) %>% 
-  e_line(Sepal.Width) %>% 
-  e_mark_point(data = max) %>% 
-  e_mark_point(data = min) %>% 
+iris |> 
+  group_by(Species) |> 
+  e_charts(Sepal.Length) |> 
+  e_line(Sepal.Width) |> 
+  e_mark_point(data = max) |> 
+  e_mark_point(data = min) |> 
   e_mark_point(data = avg)
 ```
 
 But you can specify one or more serie it should apply apply to.
 
 ```{r}
-iris %>% 
-  group_by(Species) %>% 
-  e_charts(Sepal.Length) %>% 
-  e_line(Sepal.Width) %>% 
-  e_mark_point(serie = "setosa", data = max) %>% 
-  e_mark_point(serie = c("virginica", "setosa"), data = min) %>% 
+iris |> 
+  group_by(Species) |> 
+  e_charts(Sepal.Length) |> 
+  e_line(Sepal.Width) |> 
+  e_mark_point(serie = "setosa", data = max) |> 
+  e_mark_point(serie = c("virginica", "setosa"), data = min) |> 
   e_mark_point(serie = c("virginica", "versicolor"), data = avg)
 ```
 
@@ -84,33 +84,33 @@ library(dplyr)
 
 # get a random point
 (
-  point <- iris %>% 
-    filter(Species == "setosa") %>% 
-    sample_n(1) %>%  
+  point <- iris |> 
+    filter(Species == "setosa") |> 
+    sample_n(1) |>  
     select(
       xAxis = Sepal.Length,
       yAxis = Sepal.Width,
       value = Petal.Width
-    ) %>% 
+    ) |> 
     as.list()
 )
 
-iris %>% 
-  group_by(Species) %>% 
-  e_charts(Sepal.Length) %>% 
-  e_line(Sepal.Width) %>% 
-  e_mark_point(serie = "setosa", data = point) %>% 
+iris |> 
+  group_by(Species) |> 
+  e_charts(Sepal.Length) |> 
+  e_line(Sepal.Width) |> 
+  e_mark_point(serie = "setosa", data = point) |> 
   e_x_axis(min = 4)
 ```
 
 ## Point
 
 ```{r}
-iris %>% 
-  group_by(Species) %>% 
-  e_charts(Sepal.Length) %>% 
-  e_line(Sepal.Width) %>% 
-  e_mark_point(data = avg) %>% 
+iris |> 
+  group_by(Species) |> 
+  e_charts(Sepal.Length) |> 
+  e_line(Sepal.Width) |> 
+  e_mark_point(data = avg) |> 
   e_x_axis(min = 4)
 ```
 
@@ -119,38 +119,38 @@ iris %>%
 Horizontally.
 
 ```{r}
-iris %>% 
-  group_by(Species) %>% 
-  e_charts(Sepal.Length) %>% 
-  e_line(Sepal.Width) %>% 
-  e_mark_line(data = avg) %>% 
+iris |> 
+  group_by(Species) |> 
+  e_charts(Sepal.Length) |> 
+  e_line(Sepal.Width) |> 
+  e_mark_line(data = avg) |> 
   e_x_axis(min = 4)
 ```
 
 Vertically.
 
 ```{r}
-cars %>% 
-  e_charts(speed) %>% 
-  e_scatter(dist, symbol_size = 5) %>% 
-  e_legend(FALSE) %>% 
-  e_mark_line(data = list(xAxis = 7), title = "Tortoise") %>% 
-  e_mark_line(data = list(xAxis = 12), title = "Speed Limit") %>% 
+cars |> 
+  e_charts(speed) |> 
+  e_scatter(dist, symbol_size = 5) |> 
+  e_legend(FALSE) |> 
+  e_mark_line(data = list(xAxis = 7), title = "Tortoise") |> 
+  e_mark_line(data = list(xAxis = 12), title = "Speed Limit") |> 
   e_mark_line(data = list(xAxis = 22), title = "Need for Speed") 
 ```
 
 ## Area
 
 ```{r}
-iris %>% 
-  group_by(Species) %>% 
-  e_charts(Sepal.Length) %>% 
-  e_line(Sepal.Width) %>% 
+iris |> 
+  group_by(Species) |> 
+  e_charts(Sepal.Length) |> 
+  e_line(Sepal.Width) |> 
   e_mark_area(
     data = list(
       list(xAxis = "min", yAxis = "min"), 
       list(xAxis = "max", yAxis = "max")
     )
-  ) %>% 
+  ) |> 
   e_x_axis(min = 4)
 ```

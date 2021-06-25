@@ -27,15 +27,13 @@ You can easily customise the appearance of your chart using one of the 13 themes
 ## default
 
 ```{r}
-p <- USArrests %>% 
-  dplyr::mutate(
-    State = row.names(.),
-    Rape = -Rape
-  ) %>% 
-  e_charts(State) %>% 
-  e_line(Murder) %>% 
-  e_area(Rape, name = "Sick basterd", x_index = 1) %>%  # second y axis
-  e_title("Your plot", "Subtext", sublink = "https://john-coene.com") %>% 
+p <- USArrests |> 
+  tibble::rownames_to_column("State") |> 
+  dplyr::mutate(Rape = -Rape) |> 
+  e_charts(State) |> 
+  e_line(Murder) |> 
+  e_area(Rape, name = "Sick basterd", x_index = 1) |>  # second y axis
+  e_title("Your plot", "Subtext", sublink = "https://john-coene.com") |> 
   e_x_axis(index = 1, show = FALSE) # hide second X Axis
 
 p # default plot
@@ -44,246 +42,246 @@ p # default plot
 ## dark
 
 ```{r}
-p %>% e_theme("dark")
+p |> e_theme("dark")
 ```
 
 ## vintage
 
 ```{r}
-p %>% e_theme("vintage")
+p |> e_theme("vintage")
 ```
 
 ## westeros
 
 ```{r}
-p %>% e_theme("westeros")
+p |> e_theme("westeros")
 ```
 
 ## essos
 
 ```{r}
-p %>% e_theme("essos")
+p |> e_theme("essos")
 ```
 
 ## wonderland
 
 ```{r}
-p %>% e_theme("wonderland")
+p |> e_theme("wonderland")
 ```
 
 ## walden
 
 ```{r}
-p %>% e_theme("walden")
+p |> e_theme("walden")
 ```
 
 ## chalk
 
 ```{r}
-p %>% e_theme("chalk")
+p |> e_theme("chalk")
 ```
 
 ## infographic
 
 ```{r}
-p %>% e_theme("infographic")
+p |> e_theme("infographic")
 ```
 
 ## macarons
 
 ```{r}
-p %>% e_theme("macarons")
+p |> e_theme("macarons")
 ```
 
 ## roma
 
 ```{r}
-p %>% e_theme("roma")
+p |> e_theme("roma")
 ```
 
 ## shine
 
 ```{r}
-p %>% e_theme("shine")
+p |> e_theme("shine")
 ```
 
 ## purple-passion
 
 ```{r}
-p %>% e_theme("purple-passion")
+p |> e_theme("purple-passion")
 ```
 
 ## halloween
 
 ```{r}
-p %>% e_theme("halloween")
+p |> e_theme("halloween")
 ```
 
 ## azul
 
 ```{r}
-p %>% e_theme("azul")
+p |> e_theme("azul")
 ```
 
 ## bee-insipired
 
 ```{r}
-p %>% e_theme("bee-insipired")
+p |> e_theme("bee-insipired")
 ```
 
 ## blue
 
 ```{r}
-p %>% e_theme("blue")
+p |> e_theme("blue")
 ```
 ## caravan
 
 ```{r}
-p %>% e_theme("caravan")
+p |> e_theme("caravan")
 ```
 
 ## carp
 
 ```{r}
-p %>% e_theme("carp")
+p |> e_theme("carp")
 ```
 
 ## cool
 
 ```{r}
-p %>% e_theme("cool")
+p |> e_theme("cool")
 ```
 
 ## dark-blue
 
 ```{r}
-p %>% e_theme("dark-blue")
+p |> e_theme("dark-blue")
 ```
 
 ## dark-bold
 
 ```{r}
-p %>% e_theme("dark-bold")
+p |> e_theme("dark-bold")
 ```
 
 ## dark-digerati
 
 ```{r}
-p %>% e_theme("dark-digerati")
+p |> e_theme("dark-digerati")
 ```
 
 ## dark-fresh-cut
 
 ```{r}
-p %>% e_theme("dark-fresh-cut")
+p |> e_theme("dark-fresh-cut")
 ```
 
 ## dark-mushroom
 
 ```{r}
-p %>% e_theme("dark-mushroom")
+p |> e_theme("dark-mushroom")
 ```
 
 ## forest
 
 ```{r}
-p %>% e_theme("forest")
+p |> e_theme("forest")
 ```
 
 ## fresh-cut
 
 ```{r}
-p %>% e_theme("fresh-cut")
+p |> e_theme("fresh-cut")
 ```
 
 ## fruit
 
 ```{r}
-p %>% e_theme("fruit")
+p |> e_theme("fruit")
 ```
 
 ## gray
 
 ```{r}
-p %>% e_theme("gray")
+p |> e_theme("gray")
 ```
 
 ## green
 
 ```{r}
-p %>% e_theme("green")
+p |> e_theme("green")
 ```
 
 ## helianthus
 
 ```{r}
-p %>% e_theme("helianthus")
+p |> e_theme("helianthus")
 ```
 
 ## inspired
 
 ```{r}
-p %>% e_theme("inspired")
+p |> e_theme("inspired")
 ```
 
 ## london
 
 ```{r}
-p %>% e_theme("london")
+p |> e_theme("london")
 ```
 
 ## macarons
 
 ```{r}
-p %>% e_theme("macarons")
+p |> e_theme("macarons")
 ```
 
 ## macarons2
 
 ```{r}
-p %>% e_theme("macarons2")
+p |> e_theme("macarons2")
 ```
 
 ## mint
 
 ```{r}
-p %>% e_theme("mint")
+p |> e_theme("mint")
 ```
 
 ## red
 
 ```{r}
-p %>% e_theme("red")
+p |> e_theme("red")
 ```
 
 ## red-velvet
 
 ```{r}
-p %>% e_theme("red-velvet")
+p |> e_theme("red-velvet")
 ```
 
 ## royal
 
 ```{r}
-p %>% e_theme("royal")
+p |> e_theme("royal")
 ```
 
 ## sakura
 
 ```{r}
-p %>% e_theme("sakura")
+p |> e_theme("sakura")
 ```
 
 ## tech-blue
 
 ```{r}
-p %>% e_theme("tech-blue")
+p |> e_theme("tech-blue")
 ```
 
 ## custom
 
 ```{r}
-p %>% e_theme_custom('{"color":["#ff715e","#ffaf51"]}')
+p |> e_theme_custom('{"color":["#ff715e","#ffaf51"]}')
 ```
 
 The above is an admittedly small theme, if you want to create a large custom theme, download the JSON from the [theme builder](https://echarts.apache.org/en/theme-builder.html) and use it, `e_theme_custom` and `e_register_theme` both detect the json file and read it in.
@@ -303,7 +301,7 @@ The above is an admittedly small theme, if you want to create a large custom the
 <div class="col col-md-6">
 ```r
 # in R
-p %>% e_theme_custom("theme.json")
+p |> e_theme_custom("theme.json")
 ```
 </div>
 
@@ -322,7 +320,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output){
-  e <- e_charts(cars, speed) %>% 
+  e <- e_charts(cars, speed) |> 
       e_scatter(dist) 
 
   output$chart1 <- renderEcharts4r({

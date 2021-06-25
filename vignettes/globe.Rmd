@@ -49,14 +49,14 @@ airports <- read.csv(
          "master/2011_february_us_airport_traffic.csv")
 )
 
-airports %>% 
-  e_charts(long) %>% 
+airports |> 
+  e_charts(long) |> 
   e_globe(
     environment = ea_asset("starfield"),
     base_texture = ea_asset("world"), 
     globeOuterRadius = 100
-  ) %>% 
-  e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = 'lighter') %>% 
+  ) |> 
+  e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = 'lighter') |> 
   e_visual_map(inRange = list(symbolSize = c(1, 10)))
 ```
 
@@ -68,15 +68,15 @@ data <- jsonlite::fromJSON(url)
 data <- as.data.frame(data)
 names(data) <- c("lon", "lat", "value")
 
-data %>% 
-  e_charts(lon) %>% 
+data |> 
+  e_charts(lon) |> 
   e_globe(
     environment = ea_asset("starfield"),
     base_texture = ea_asset("world topo"), 
     height_texture = ea_asset("world topo"),
     displacementScale = 0.04
-  ) %>% 
-  e_bar_3d(lat, value, coord_system = "globe") %>% 
+  ) |> 
+  e_bar_3d(lat, value, coord_system = "globe") |> 
   e_visual_map(show = FALSE)
 ```
 
@@ -88,14 +88,14 @@ flights <- read.csv(
          "master/2011_february_aa_flight_paths.csv")
 )
 
-flights %>% 
-  e_charts() %>% 
+flights |> 
+  e_charts() |> 
   e_globe(
     environment = ea_asset("starfield"),
     base_texture = ea_asset("world topo"), 
     height_texture = ea_asset("world topo"),
     displacementScale = 0.05
-  ) %>% 
+  ) |> 
   e_lines_3d(
     start_lon, 
     start_lat, 
@@ -103,6 +103,6 @@ flights %>%
     end_lat,
     name = "flights",
     effect = list(show = TRUE)
-  ) %>% 
+  ) |> 
   e_legend(FALSE)
 ```

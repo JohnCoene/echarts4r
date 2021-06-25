@@ -27,10 +27,10 @@ Since version `1.2.0` one can add actions and optionally tie them to buttons.
 For instance once can use the `e_zoom` action to zoom on the graph (requires `e_datazoom` initialised).
 
 ```{r}
-cars %>% 
-  e_charts(dist) %>% 
-  e_scatter(speed) %>% 
-  e_datazoom() %>% 
+cars |> 
+  e_charts(dist) |> 
+  e_scatter(speed) |> 
+  e_datazoom() |> 
   e_zoom(
     dataZoomIndex = 0,
     start = 20,
@@ -43,16 +43,16 @@ cars %>%
 Add a button to let the user trigger that action. We add a button with `e_button` and specify the id of our button in the action (`e_zoom`) so that the button knows which action to trigger.
 
 ```{r}
-cars %>% 
-  e_charts(dist) %>% 
-  e_scatter(speed) %>% 
-  e_datazoom() %>% 
+cars |> 
+  e_charts(dist) |> 
+  e_scatter(speed) |> 
+  e_datazoom() |> 
   e_zoom(
     dataZoomIndex = 0,
     start = 20,
     end = 40,
     btn = "BUTTON"
-  ) %>% 
+  ) |> 
   e_button(
     id = "BUTTON", 
     htmltools::tags$i(class = "fa fa-search"), # passed to the button
@@ -80,10 +80,10 @@ edges <- data.frame(
   stringsAsFactors = FALSE
 )
 
-e_charts() %>% 
-  e_graph() %>% 
-  e_graph_nodes(nodes, name, value, size, grp) %>% 
-  e_graph_edges(edges, source, target) %>% 
+e_charts() |> 
+  e_graph() |> 
+  e_graph_nodes(nodes, name, value, size, grp) |> 
+  e_graph_edges(edges, source, target) |> 
   e_focus_adjacency(
     seriesIndex = 0,
     dataIndex = 4,
@@ -107,24 +107,24 @@ htmltools::tags$a(
 You can also pass multiple buttons and change their positions.
 
 ```{r}
-iris %>% 
-  group_by(Species) %>% 
-  e_charts(Sepal.Length) %>% 
-  e_line(Petal.Length) %>% 
-  e_datazoom() %>% 
-  e_highlight(series_name = "setosa", btn = "highlightButton") %>% # highlight action
+iris |> 
+  group_by(Species) |> 
+  e_charts(Sepal.Length) |> 
+  e_line(Petal.Length) |> 
+  e_datazoom() |> 
+  e_highlight(series_name = "setosa", btn = "highlightButton") |> # highlight action
   e_zoom( # zoom action
     dataZoomIndex = 0,
     startValue = 4,
     endValue = 6,
     btn = "zoomBtn"
-  ) %>% 
+  ) |> 
   e_button(
     id = "zoomBtn",
     position = "bottom",
     class = "btn btn-primary",
     "Zoom"
-  ) %>% 
+  ) |> 
   e_button(
     "highlightButton",
     position = "bottom",

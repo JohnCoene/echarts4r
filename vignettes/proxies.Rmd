@@ -46,7 +46,7 @@ ui <- fluidPage(
 server <- function(input, output){
 
   output$chart <- renderEcharts4r({
-    e_charts(df, x) %>% 
+    e_charts(df, x) |> 
       e_scatter(y, z)
   })
 
@@ -82,13 +82,13 @@ ui <- fluidPage(
 server <- function(input, output){
 
   output$chart <- renderEcharts4r({
-    e_charts(df, x) %>% 
+    e_charts(df, x) |> 
       e_scatter(y, z)
   })
 
   observeEvent(input$add, {
-    echarts4rProxy("chart", data = df, x = x) %>%  # create a proxy
-      e_line(z) %>% 
+    echarts4rProxy("chart", data = df, x = x) |>  # create a proxy
+      e_line(z) |> 
       e_execute()
   })
 
@@ -121,18 +121,18 @@ ui <- fluidPage(
 server <- function(input, output){
 
   output$chart <- renderEcharts4r({
-    e_charts(df, x) %>% 
+    e_charts(df, x) |> 
       e_scatter(y, z)
   })
 
   observeEvent(input$add, {
-    echarts4rProxy("chart", data = df, x = x) %>%  # create a proxy
-      e_line(z) %>% 
+    echarts4rProxy("chart", data = df, x = x) |>  # create a proxy
+      e_line(z) |> 
       e_execute()
   })
 
   observeEvent(input$rm, {
-    echarts4rProxy("chart") %>%  # create a proxy
+    echarts4rProxy("chart") |>  # create a proxy
       e_remove_serie("z")
   })
 
@@ -166,20 +166,20 @@ ui <- fluidPage(
 server <- function(input, output){
 
   output$chart <- renderEcharts4r({
-    e_charts(df, x) %>% 
+    e_charts(df, x) |> 
       e_scatter(y, z)
   })
 
   observeEvent(input$add, {
-    echarts4rProxy("chart", data = df, x = x) %>%  # create a proxy
-      e_line(z) %>% 
-      e_loess(y ~ x, name = "fit") %>% 
+    echarts4rProxy("chart", data = df, x = x) |>  # create a proxy
+      e_line(z) |> 
+      e_loess(y ~ x, name = "fit") |> 
       e_execute()
   })
 
   observeEvent(input$rm, {
-    echarts4rProxy("chart") %>%  # create a proxy
-      e_remove_serie("z") %>% 
+    echarts4rProxy("chart") |>  # create a proxy
+      e_remove_serie("z") |> 
       e_remove_serie("fit")
   })
 

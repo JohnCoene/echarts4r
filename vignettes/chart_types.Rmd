@@ -41,66 +41,66 @@ df <- data.frame(
   w = rnorm(50, 9, 2)
 )
 
-df %>% 
-  e_charts(x) %>% 
-  e_line(z) %>% 
-  e_area(w) %>% 
+df |> 
+  e_charts(x) |> 
+  e_line(z) |> 
+  e_area(w) |> 
   e_title("Line and area charts")
 ```
 
 ## Bar and step
 
 ```{r}
-df %>% 
-  e_charts(x) %>% 
-  e_bar(y, name = "Serie 1") %>% 
-  e_step(z, name = "Serie 2") %>% 
+df |> 
+  e_charts(x) |> 
+  e_bar(y, name = "Serie 1") |> 
+  e_step(z, name = "Serie 2") |> 
   e_title("Bar and step charts")
 ```
 
 ## Scatter
 
 ```{r}
-df %>% 
-  e_charts(x) %>% 
-  e_scatter(y, z) %>% 
-  e_visual_map(z, scale = e_scale) %>% # scale color
+df |> 
+  e_charts(x) |> 
+  e_scatter(y, z) |> 
+  e_visual_map(z, scale = e_scale) |> # scale color
   e_legend(FALSE) # hide legend
 ```
 
 ## Effect Scatter
 
 ```{r}
-df %>% 
-  head(10) %>% 
-  e_charts(x) %>% 
-  e_effect_scatter(y, z) %>% 
-  e_visual_map(z) %>% # scale color
+df |> 
+  head(10) |> 
+  e_charts(x) |> 
+  e_effect_scatter(y, z) |> 
+  e_visual_map(z) |> # scale color
   e_legend(FALSE) # hide legend
 ```
 
 ## Polar
 
 ```{r}
-df %>% 
-  e_charts(x) %>% 
-  e_polar() %>% 
-  e_angle_axis(x) %>% # angle = x
-  e_radius_axis() %>% 
-  e_bar(y, coord_system = "polar") %>% 
+df |> 
+  e_charts(x) |> 
+  e_polar() |> 
+  e_angle_axis(x) |> # angle = x
+  e_radius_axis() |> 
+  e_bar(y, coord_system = "polar") |> 
   e_scatter(z, coord_system = "polar")
 ```
 
 ## Radial
 
 ```{r}
-df %>% 
-  head(10) %>% 
-  e_charts(x) %>% 
-  e_polar() %>% 
-  e_angle_axis() %>% 
-  e_radius_axis(x) %>% 
-  e_bar(y, coord_system = "polar") %>% 
+df |> 
+  head(10) |> 
+  e_charts(x) |> 
+  e_polar() |> 
+  e_angle_axis() |> 
+  e_radius_axis(x) |> 
+  e_bar(y, coord_system = "polar") |> 
   e_scatter(z, coord_system = "polar")
 ```
 
@@ -115,10 +115,10 @@ GS$date <- row.names(GS)
 ```
 
 ```{r}
-GS %>% 
-  e_charts(date) %>% 
-  e_candle(GS.Open, GS.Close, GS.Low, GS.High, name = "Goldman Sachs") %>% 
-  e_datazoom(type = "slider") %>% 
+GS |> 
+  e_charts(date) |> 
+  e_candle(GS.Open, GS.Close, GS.Low, GS.High, name = "Goldman Sachs") |> 
+  e_datazoom(type = "slider") |> 
   e_title("Candlestick chart", "Quantmod data")
 ```
 
@@ -127,9 +127,9 @@ GS %>%
 ```{r}
 funnel <- data.frame(stage = c("View", "Click", "Purchase"), value = c(80, 30, 20))
 
-funnel %>% 
-  e_charts() %>% 
-  e_funnel(value, stage) %>% 
+funnel |> 
+  e_charts() |> 
+  e_funnel(value, stage) |> 
   e_title("Funnel")
 ```
 
@@ -143,9 +143,9 @@ sankey <- data.frame(
   stringsAsFactors = FALSE
 )
 
-sankey %>% 
-  e_charts() %>% 
-  e_sankey(source, target, value) %>% 
+sankey |> 
+  e_charts() |> 
+  e_sankey(source, target, value) |> 
   e_title("Sankey chart")
 ```
 
@@ -158,15 +158,15 @@ matrix <- data.frame(
   y = sample(v, 300, replace = TRUE), 
   z = rnorm(300, 10, 1),
   stringsAsFactors = FALSE
-) %>% 
-  dplyr::group_by(x, y) %>% 
-  dplyr::summarise(z = sum(z)) %>% 
+) |> 
+  dplyr::group_by(x, y) |> 
+  dplyr::summarise(z = sum(z)) |> 
   dplyr::ungroup()
 
-matrix %>% 
-  e_charts(x) %>% 
-  e_heatmap(y, z) %>% 
-  e_visual_map(z) %>% 
+matrix |> 
+  e_charts(x) |> 
+  e_heatmap(y, z) |> 
+  e_visual_map(z) |> 
   e_title("Heatmap")
 ```
 
@@ -179,41 +179,41 @@ df <- data.frame(
   letter = LETTERS[1:5]
 )
 
-df %>% 
-  e_charts() %>% 
-  e_parallel(price, amount, letter) %>% 
+df |> 
+  e_charts() |> 
+  e_parallel(price, amount, letter) |> 
   e_title("Parallel chart")
 ```
 
 ## Pie
 
 ```{r}
-mtcars %>% 
-  head() %>% 
-  dplyr::mutate(model = row.names(.)) %>% 
-  e_charts(model) %>% 
-  e_pie(carb) %>% 
+mtcars |> 
+  head() |> 
+  tibble::rownames_to_column("model") |> 
+  e_charts(model) |> 
+  e_pie(carb) |> 
   e_title("Pie chart")
 ```
 
 ## Donut
 
 ```{r}
-mtcars %>% 
-  head() %>% 
-  dplyr::mutate(model = row.names(.)) %>% 
-  e_charts(model) %>% 
-  e_pie(carb, radius = c("50%", "70%")) %>% 
+mtcars |> 
+  head() |> 
+  tibble::rownames_to_column("model") |> 
+  e_charts(model) |> 
+  e_pie(carb, radius = c("50%", "70%")) |> 
   e_title("Donut chart")
 ```
 
 ## Rosetype
 
 ```{r}
-mtcars %>% 
-  head() %>% 
-  dplyr::mutate(model = row.names(.)) %>% 
-  e_charts(model) %>% 
+mtcars |> 
+  head() |> 
+  tibble::rownames_to_column("model") |> 
+  e_charts(model) |> 
   e_pie(hp, roseType = "radius")
 ```
 
@@ -230,8 +230,8 @@ df <- data.frame(
 universe <- data.tree::FromDataFrameNetwork(df)
 
 # use it in echarts4r
-universe %>% 
-  e_charts() %>% 
+universe |> 
+  e_charts() |> 
   e_sunburst()
 ```
 
@@ -256,18 +256,18 @@ tree <- tibble(
   )
 )
 
-tree %>% 
-  e_charts() %>% 
-  e_tree() %>% 
+tree |> 
+  e_charts() |> 
+  e_tree() |> 
   e_title("Tree graph")
 ```
 
 ## Treemap
 
 ```{r}
-universe %>% 
-  e_charts() %>% 
-  e_treemap() %>% 
+universe |> 
+  e_charts() |> 
+  e_treemap() |> 
   e_title("Treemap chart")
 ```
 
@@ -283,12 +283,12 @@ river <- data.frame(
   pears = runif(length(dates))
 )
 
-river %>% 
-  e_charts(dates) %>% 
-  e_river(apples) %>% 
-  e_river(bananas) %>% 
-  e_river(pears) %>% 
-  e_tooltip(trigger = "axis") %>% 
+river |> 
+  e_charts(dates) |> 
+  e_river(apples) |> 
+  e_river(bananas) |> 
+  e_river(pears) |> 
+  e_tooltip(trigger = "axis") |> 
   e_title("River charts", "(Streamgraphs)")
 ```
 
@@ -300,34 +300,34 @@ values <- rnorm(length(dates), 20, 6)
 
 year <- data.frame(date = dates, values = values)
 
-year %>% 
-  e_charts(date) %>% 
-  e_calendar(range = "2018") %>% 
-  e_heatmap(values, coord_system = "calendar") %>% 
-  e_visual_map(max = 30) %>% 
+year |> 
+  e_charts(date) |> 
+  e_calendar(range = "2018") |> 
+  e_heatmap(values, coord_system = "calendar") |> 
+  e_visual_map(max = 30) |> 
   e_title("Calendar", "Heatmap")
 ```
 
 For multiple years, lay multiple calendars, group by year.
 
 ```{r}
-year %>% 
-  dplyr::mutate(year = format(date, "%Y")) %>% # get year from date
-  group_by(year) %>% 
-  e_charts(date) %>% 
-  e_calendar(range = "2017",top="40") %>% 
-  e_calendar(range = "2018",top="260") %>% 
-  e_heatmap(values, coord_system = "calendar") %>% 
-  e_visual_map(max = 30) %>% 
-  e_title("Calendar", "Heatmap")%>%
+year |> 
+  dplyr::mutate(year = format(date, "%Y")) |> # get year from date
+  group_by(year) |> 
+  e_charts(date) |> 
+  e_calendar(range = "2017",top="40") |> 
+  e_calendar(range = "2018",top="260") |> 
+  e_heatmap(values, coord_system = "calendar") |> 
+  e_visual_map(max = 30) |> 
+  e_title("Calendar", "Heatmap")|>
   e_tooltip("item") 
 ```
 
 ## Gauge
 
 ```{r}
-e_charts() %>% 
-  e_gauge(41, "PERCENT") %>% 
+e_charts() |> 
+  e_gauge(41, "PERCENT") |> 
   e_title("Gauge")
 ```
 
@@ -340,10 +340,10 @@ df <- data.frame(
   z = runif(5, 3, 7)
 )
 
-df %>% 
-  e_charts(x) %>% 
-  e_radar(y, max = 7, name = "radar") %>%
-  e_radar(z, max = 7, name = "chart") %>%
+df |> 
+  e_charts(x) |> 
+  e_radar(y, max = 7, name = "radar") |>
+  e_radar(z, max = 7, name = "chart") |>
   e_tooltip(trigger = "item")
 ```
 
@@ -356,13 +356,13 @@ words <- function(n = 5000) {
 }
 
 tf <- data.frame(terms = words(100), 
-  freq = rnorm(100, 55, 10)) %>% 
+  freq = rnorm(100, 55, 10)) |> 
   dplyr::arrange(-freq)
 
-tf %>% 
-  e_color_range(freq, color) %>% 
-  e_charts() %>% 
-  e_cloud(terms, freq, color, shape = "circle", sizeRange = c(3, 15)) %>% 
+tf |> 
+  e_color_range(freq, color) |> 
+  e_charts() |> 
+  e_cloud(terms, freq, color, shape = "circle", sizeRange = c(3, 15)) |> 
   e_title("Wordcloud", "Random strings")
 ```
 
@@ -371,7 +371,7 @@ tf %>%
 ```{r}
 liquid <- data.frame(val = c(0.6, 0.5, 0.4))
 
-liquid %>% 
-  e_charts() %>% 
+liquid |> 
+  e_charts() |> 
   e_liquid(val) 
 ```
