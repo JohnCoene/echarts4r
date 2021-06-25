@@ -379,15 +379,15 @@ Only these types of series support it: <code><a href='e_scatter.html'>e_scatter<
   <span class='op'>}</span><span class='op'>)</span>
 
   <span class='va'>output</span><span class='op'>$</span><span class='va'>plot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span><span class='op'>(</span><span class='op'>{</span>
-    <span class='va'>data</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>z</span>, scale <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='va'>data</span> |&gt;
+      <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> |&gt;
+      <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>z</span>, scale <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span> |&gt;
+      <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span> |&gt;
       <span class='fu'><a href='e_brush.html'>e_brush</a></span><span class='op'>(</span><span class='op'>)</span>
   <span class='op'>}</span><span class='op'>)</span>
 
   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>add</span>, <span class='op'>{</span>
-    <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span><span class='op'>(</span><span class='st'>"plot"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span><span class='op'>(</span><span class='st'>"plot"</span><span class='op'>)</span> |&gt;
       <span class='fu'>e_append2_p</span><span class='op'>(</span><span class='fl'>0</span>, <span class='fu'>react</span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>x</span>, <span class='va'>y</span>, <span class='va'>z</span><span class='op'>)</span>
   <span class='op'>}</span><span class='op'>)</span>
 

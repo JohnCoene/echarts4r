@@ -47,7 +47,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
       </span>
     </div>
 
@@ -236,7 +236,7 @@
       <h1 data-toc-skip>Shiny</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2021-01-31</h4>
+            <h4 class="date">2021-06-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JohnCoene/echarts4r/blob/master/vignettes/shiny.Rmd"><code>vignettes/shiny.Rmd</code></a></small>
       <div class="hidden name"><code>shiny.Rmd</code></div>
@@ -342,15 +342,15 @@ sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""</code></p
   <span class="op">}</span><span class="op">)</span>
   
   <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/echarts4r-shiny.html">renderEcharts4r</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="va">data</span> <span class="op">%&gt;%</span> 
-     <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-     <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="op">%&gt;%</span>
-     <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="va">data</span> |&gt; 
+     <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> |&gt; 
+     <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> |&gt;
+     <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span> |&gt; 
      <span class="fu"><a href="../reference/e_brush.html">e_brush</a></span><span class="op">(</span>throttleDelay <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
   
   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">add</span>, <span class="op">{</span>
-    <span class="fu"><a href="../reference/echarts4r-shiny.html">echarts4rProxy</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/echarts4r-shiny.html">echarts4rProxy</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span> |&gt; 
       <span class="fu"><a href="../reference/e_append1_p.html">e_append1_p</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu">react</span><span class="op">(</span><span class="op">)</span>, <span class="va">x</span>, <span class="va">y</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
   
@@ -389,8 +389,8 @@ sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""</code></p
   <span class="op">}</span><span class="op">)</span>
   
   <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/echarts4r-shiny.html">renderEcharts4r</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-      <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="op">)</span> |&gt; 
+      <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> |&gt; 
       <span class="fu"><a href="../reference/e_bar.html">e_bar</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
@@ -410,9 +410,9 @@ sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""</code></p
   <span class="op">}</span><span class="op">)</span>
   
   <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/echarts4r-shiny.html">renderEcharts4r</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-      <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-      <span class="fu"><a href="../reference/e_bar.html">e_bar</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="op">)</span> |&gt; 
+      <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> |&gt; 
+      <span class="fu"><a href="../reference/e_bar.html">e_bar</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> |&gt; 
       <span class="fu"><a href="../reference/e_show_loading.html">e_show_loading</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>

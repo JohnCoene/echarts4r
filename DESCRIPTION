@@ -16,7 +16,6 @@ Encoding: UTF-8
 LazyData: true
 Imports:
   htmlwidgets,
-  magrittr,
   dplyr (>= 0.7.0),
   purrr,
   countrycode,

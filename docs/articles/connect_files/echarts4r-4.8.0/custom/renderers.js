@@ -158,3 +158,21 @@ function renderBand(params, api) {
         })
     };
 }
+
+function renderBarWidth(params, api) {
+    var yValue = api.value(2);
+    var start = api.coord([api.value(0), yValue]);
+    var size = api.size([api.value(1) - api.value(0), yValue]);
+    var style = api.style();
+
+    return {
+        type: 'rect',
+        shape: {
+            x: start[0],
+            y: start[1],
+            width: size[0],
+            height: size[1]
+        },
+        style: style
+    };
+}

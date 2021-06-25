@@ -328,10 +328,10 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 
 <span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='va'>output</span><span class='op'>$</span><span class='va'>chart</span> <span class='op'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span><span class='op'>(</span><span class='op'>{</span>
-    <span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>qsec</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='e_datazoom.html'>e_datazoom</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='va'>mtcars</span> |&gt;
+      <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span><span class='op'>)</span> |&gt;
+      <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>qsec</span><span class='op'>)</span> |&gt;
+      <span class='fu'><a href='e_datazoom.html'>e_datazoom</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
       <span class='fu'>e_capture</span><span class='op'>(</span><span class='st'>"datazoom"</span><span class='op'>)</span>
   <span class='op'>}</span><span class='op'>)</span>
 

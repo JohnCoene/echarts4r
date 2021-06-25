@@ -336,9 +336,9 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='op'>-</span><span class='fl'>6</span><span class='op'>)</span>
 <span class='op'>)</span>
 
-<span class='va'>df</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_boxplot</span><span class='op'>(</span><span class='va'>y</span>, outliers <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>df</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
+  <span class='fu'>e_boxplot</span><span class='op'>(</span><span class='va'>y</span>, outliers <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_boxplot</span><span class='op'>(</span><span class='va'>x</span>, outliers <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div></pre>
   </div>

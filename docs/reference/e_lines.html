@@ -378,9 +378,9 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   <span class='op'>)</span>
 <span class='op'>)</span>
 
-<span class='va'>flights</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_geo.html'>e_geo</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>flights</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_geo.html'>e_geo</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_lines</span><span class='op'>(</span>
     <span class='va'>start_lon</span>,
     <span class='va'>start_lat</span>,
@@ -391,7 +391,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <span class='va'>cnt</span>,
     name <span class='op'>=</span> <span class='st'>"flights"</span>,
     lineStyle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>normal <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>curveness <span class='op'>=</span> <span class='fl'>0.3</span><span class='op'>)</span><span class='op'>)</span>
-  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_tooltip.html'>e_tooltip</a></span><span class='op'>(</span>
     trigger <span class='op'>=</span> <span class='st'>"item"</span>,
     formatter <span class='op'>=</span> <span class='fu'>htmlwidgets</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/htmlwidgets/man/JS.html'>JS</a></span><span class='op'>(</span><span class='st'>"
@@ -408,10 +408,10 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <span class='co'># timeline</span>
 <span class='va'>flights</span><span class='op'>$</span><span class='va'>grp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, <span class='fl'>89</span><span class='op'>)</span>
 
-<span class='va'>flights</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>grp</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span>timeline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_geo.html'>e_geo</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>flights</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>grp</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span>timeline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_geo.html'>e_geo</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_lines</span><span class='op'>(</span>
     <span class='va'>start_lon</span>,
     <span class='va'>start_lat</span>,

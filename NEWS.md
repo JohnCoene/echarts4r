@@ -3,6 +3,7 @@
 - Apply mark to all series in timeline, fixes [#290](https://github.com/JohnCoene/echarts4r/issues/290)
 - Bump ECharts.js
 - Add `e_svg` family of functions to fix [#319](https://github.com/JohnCoene/echarts4r/issues/319)
+- Replaced magrittr pipe `%>%` to R native's `|>`.
 
 # echarts4r 0.4.0
 

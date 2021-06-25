@@ -332,16 +332,16 @@ action API." />
 
 <span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='va'>output</span><span class='op'>$</span><span class='va'>chart</span> <span class='op'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span><span class='op'>(</span><span class='op'>{</span>
-    <span class='va'>cars</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>speed</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>dist</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='va'>cars</span> |&gt;
+      <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>speed</span><span class='op'>)</span> |&gt;
+      <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>dist</span><span class='op'>)</span> |&gt;
       <span class='fu'><a href='e_datazoom.html'>e_datazoom</a></span><span class='op'>(</span><span class='op'>)</span>
   <span class='op'>}</span><span class='op'>)</span>
 
   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span><span class='op'>(</span><span class='op'>{</span>
     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>zoom</span><span class='op'>)</span>
 
-    <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span><span class='op'>(</span><span class='st'>"chart"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span><span class='op'>(</span><span class='st'>"chart"</span><span class='op'>)</span> |&gt;
       <span class='fu'>e_dispatch_action_p</span><span class='op'>(</span><span class='st'>"dataZoom"</span>, startValue <span class='op'>=</span> <span class='fl'>1</span>, endValue <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
   <span class='op'>}</span><span class='op'>)</span>
 <span class='op'>}</span>

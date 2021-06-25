@@ -363,9 +363,9 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   high <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>203.32</span>, <span class='fl'>200.67</span>, <span class='fl'>200.00</span>, <span class='fl'>203.95</span>, <span class='fl'>204.90</span>, <span class='fl'>208.44</span>, <span class='fl'>213.17</span><span class='op'>)</span>
 <span class='op'>)</span>
 
-<span class='va'>stock</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>date</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_candle</span><span class='op'>(</span><span class='va'>opening</span>, <span class='va'>closing</span>, <span class='va'>low</span>, <span class='va'>high</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>stock</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>date</span><span class='op'>)</span> |&gt;
+  <span class='fu'>e_candle</span><span class='op'>(</span><span class='va'>opening</span>, <span class='va'>closing</span>, <span class='va'>low</span>, <span class='va'>high</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_axis.html'>e_y_axis</a></span><span class='op'>(</span>min <span class='op'>=</span> <span class='fl'>190</span>, max <span class='op'>=</span> <span class='fl'>220</span><span class='op'>)</span>
 </div></pre>
   </div>

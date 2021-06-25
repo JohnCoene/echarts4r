@@ -322,14 +322,14 @@
 
 <span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='va'>output</span><span class='op'>$</span><span class='va'>chart</span> <span class='op'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span><span class='op'>(</span><span class='op'>{</span>
-    <span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span>, draw <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>qsec</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='va'>mtcars</span> |&gt;
+      <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span>, draw <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> |&gt;
+      <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>qsec</span><span class='op'>)</span> |&gt;
       <span class='fu'><a href='e_datazoom.html'>e_datazoom</a></span><span class='op'>(</span><span class='op'>)</span>
   <span class='op'>}</span><span class='op'>)</span>
 
   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>draw</span>, <span class='op'>{</span>
-    <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span><span class='op'>(</span><span class='st'>"chart"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span><span class='op'>(</span><span class='st'>"chart"</span><span class='op'>)</span> |&gt;
       <span class='fu'>e_draw_p</span><span class='op'>(</span><span class='op'>)</span>
   <span class='op'>}</span><span class='op'>)</span>
 <span class='op'>}</span>
