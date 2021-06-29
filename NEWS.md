@@ -5,6 +5,7 @@
 - Add `e_svg` family of functions to fix [#319](https://github.com/JohnCoene/echarts4r/issues/319)
 - Replaced magrittr pipe `%>%` to R native's `|>`.
 - Fix `e_map` when used with no data, map was not displayed
+- Fix `e_flip_coords` with boxplots (and other single column series) see [#336](https://github.com/JohnCoene/echarts4r/issues/336)
 
 # echarts4r 0.4.0
 

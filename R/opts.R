@@ -850,8 +850,10 @@ e_flip_coords <- function(e) {
 
     for (i in seq_along(e$x$opts$series)) {
       for (j in 1:length(e$x$opts$series[[i]]$data)) {
-        vals <- e$x$opts$series[[i]]$data[[j]]$value
-        e$x$opts$series[[i]]$data[[j]]$value <- rev(vals)
+        try({
+          vals <- e$x$opts$series[[i]]$data[[j]]$value
+          e$x$opts$series[[i]]$data[[j]]$value <- rev(vals)
+        }, silent = TRUE)
       }
     }
   } else {
@@ -865,8 +867,10 @@ e_flip_coords <- function(e) {
     for (i in 1:length(e$x$opts$options)) {
       for (j in 1:length(e$x$opts$options[[i]]$series)) {
         for (k in 1:length(e$x$opts$options[[i]]$series[[j]]$data)) {
-          vals <- e$x$opts$options[[i]]$series[[j]]$data[[k]]$value
-          e$x$opts$options[[i]]$series[[j]]$data[[k]]$value <- rev(vals)
+          try({
+            vals <- e$x$opts$options[[i]]$series[[j]]$data[[k]]$value
+            e$x$opts$options[[i]]$series[[j]]$data[[k]]$value <- rev(vals)
+          }, silent = TRUE)
         }
       }
     }
