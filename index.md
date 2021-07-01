@@ -30,9 +30,12 @@
 </div>
 </div>
 
-## Note
-
-The Github version is currently going through the update from ECharts.js version 4 to version 5: feel free to test it but there are some issues. Please use the stable CRAN version otherwise.
+<div class="panel panel-default">
+<div class="panel-body">
+You can learn how to build such R packages for interactive 
+visualisations with the book [JavaScript for R](https://javascript-for-r.com/).
+</div>
+</div>
 
 ## Introduction
 
