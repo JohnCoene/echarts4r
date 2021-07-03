@@ -55,7 +55,7 @@
 #' @export
 e_add <- function(e, param, ...) {
   if (missing(e) || missing(param)) {
-    stop("missing e or what", call. = FALSE)
+    stop("missing e or param", call. = FALSE)
   }
 
   for (i in seq_along(e$x$data)) {
@@ -68,7 +68,9 @@ e_add <- function(e, param, ...) {
       if (!e$x$tl) {
         e$x$opts$series[[i]]$data[[j]][[param]] <- data[[j]]
       } else {
-        e$x$opts$options[[i]]$series[[1]]$data[[j]][[param]] <- data[[j]]
+        for(k in seq_along(e$x$opts$options[[i]]$series)){
+          e$x$opts$options[[i]]$series[[k]]$data[[j]][[param]] <- data[[j]]
+        }
       }
     }
   }
