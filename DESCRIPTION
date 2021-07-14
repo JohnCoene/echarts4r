@@ -13,7 +13,6 @@ Description: Easily create interactive charts by leveraging the 'Echarts Javascr
     36 chart types, themes, 'Shiny' proxies and animations.
 License: Apache License (>= 2.0)
 Encoding: UTF-8
-LazyData: true
 Imports:
   htmlwidgets,
   dplyr (>= 0.7.0),
