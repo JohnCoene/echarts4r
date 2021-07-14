@@ -1,4 +1,4 @@
-# echarts4r 0.4.1.9000
+# echarts4r 0.4.1
 
 - Apply mark to all series in timeline, fixes [#290](https://github.com/JohnCoene/echarts4r/issues/290)
 - Bump ECharts.js
