@@ -12,6 +12,9 @@
 #' argument or pass a list specifying the label formatter.
 #' \code{label = list(formatter = "label")}. The former is more convenient
 #' but more limited, e.g.: you cannot specify the placement of the label.
+#' When the \code{e_mark} series function is used with \code{e_timeline} at the 
+#' same time, if the number of marks provided does not match the series, the 
+#' mark information will follow the setting of the previous frame.
 #'
 #' @examples
 #' max <- list(
@@ -45,8 +48,8 @@
 #'     )
 #'   )
 #'
-#' # serie options
-#'
+#' # Serie options, since the mark of "virginica" is not set, the mark setting 
+#' # of the previous frame is used
 #' iris |>
 #'   group_by(Species) |>
 #'   e_charts(Sepal.Length, timeline = TRUE) |>
@@ -58,16 +61,22 @@
 #'       list(text = "virginica")
 #'     )
 #'   ) |>
-#'   e_mark_area(serie = "setosa") |>
+#'   e_mark_area(
+#'     serie = "setosa",
+#'     data = list(
+#'       list(xAxis = 4, yAxis = 2),
+#'       list(xAxis = 6, yAxis = 4.5)
+#'     ),
+#'     itemStyle = list(color = "lightgreen")
+#'   ) |>
 #'   e_mark_area(
 #'     serie = "versicolor",
 #'     data = list(
-#'       list(xAxis = 2),
-#'       list(xAxis = 4)
+#'       list(xAxis = 4.5),
+#'       list(xAxis = 7)
 #'     ),
 #'     itemStyle = list(color = "lightblue")
-#'   ) |>
-#'   e_mark_area(serie = "virginica")
+#'   )
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-line.markPoint}{Additional point arguments},
 #' \href{https://echarts.apache.org/en/option.html#series-line.markLine}{Additional line arguments}
 #'
