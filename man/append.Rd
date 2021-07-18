@@ -76,15 +76,15 @@ server <- function(input, output, session) {
   })
 
   output$plot <- renderEcharts4r({
-    data \%>\%
-      e_charts(x) \%>\%
-      e_scatter(y, z, scale = NULL) \%>\%
-      e_scatter(z) \%>\%
+    data |>
+      e_charts(x) |>
+      e_scatter(y, z, scale = NULL) |>
+      e_scatter(z) |>
       e_brush()
   })
 
   observeEvent(input$add, {
-    echarts4rProxy("plot") \%>\%
+    echarts4rProxy("plot") |>
       e_append2_p(0, react(), x, y, z)
   })
 

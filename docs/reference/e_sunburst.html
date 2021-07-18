@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
       </span>
     </div>
 
@@ -363,7 +363,7 @@ Multiple levels may have the same style, see <code><a href='https://rdrr.io/r/ba
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#series-sunburst'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">
+    <pre class="examples"><div class='input'>
 <span class='co'># json list hierarchical data representation</span>
 <span class='va'>jsonl</span> <span class='op'>&lt;-</span> <span class='fu'>jsonlite</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/jsonlite/man/fromJSON.html'>fromJSON</a></span><span class='op'>(</span><span class='st'>'[
   {"name": "earth", "value": 30,
@@ -392,8 +392,8 @@ Multiple levels may have the same style, see <code><a href='https://rdrr.io/r/ba
   {"name": "venus", "value": 40, "itemStyle": {"color": "blue"} }
 ]'</span>, simplifyDataFrame <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='va'>jsonl</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>jsonl</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_sunburst</span><span class='op'>(</span><span class='op'>)</span> <span class='co'># demo</span>
 
 
@@ -429,9 +429,9 @@ Multiple levels may have the same style, see <code><a href='https://rdrr.io/r/ba
   <span class='op'>)</span>
 <span class='op'>)</span>
 
-<span class='va'>df</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_sunburst</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>df</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
+  <span class='fu'>e_sunburst</span><span class='op'>(</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_theme.html'>e_theme</a></span><span class='op'>(</span><span class='st'>"westeros"</span><span class='op'>)</span>
 
 <span class='co'># with styles</span>
@@ -439,10 +439,10 @@ Multiple levels may have the same style, see <code><a href='https://rdrr.io/r/ba
 <span class='va'>myNames</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"land"</span>, <span class='st'>"river"</span><span class='op'>)</span>, <span class='st'>"crater"</span><span class='op'>)</span> <span class='co'># names to style</span>
 <span class='va'>myLevels</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># hierarchical levels to style</span>
 
-<span class='va'>df</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>df</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_sunburst</span><span class='op'>(</span><span class='va'>myStyles</span>, <span class='va'>myNames</span>, <span class='va'>myLevels</span><span class='op'>)</span>
-</pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

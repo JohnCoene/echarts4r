@@ -27,12 +27,12 @@ e_common(
 Since version `0.2.1` you can also easily format the axis to decimal, percentages or currencies thanks to contribution from [Artem Klevtsov](https://github.com/artemklevtsov).
 
 ```{r}
-cars %>% 
+cars |> 
   dplyr::mutate(
     dist = dist / 120
-  ) %>% 
-  e_charts(speed) %>% 
-  e_scatter(dist, symbol_size = 10) %>% 
+  ) |> 
+  e_charts(speed) |> 
+  e_scatter(dist, symbol_size = 10) |> 
   e_tooltip(
     formatter = e_tooltip_item_formatter("percent")
   )
@@ -45,19 +45,19 @@ cars %>%
 You can display a default tooltip by adding `e_tooltip()` to the code that creates your visualization, such as
 
 ```{r}
-mtcars %>%
-  e_charts(wt) %>%
-  e_scatter(mpg, qsec) %>%
+mtcars |>
+  e_charts(wt) |>
+  e_scatter(mpg, qsec) |>
   e_tooltip(trigger = "item")
 ```
 
 Note that you can change the trigger to `axis`.
 
 ```{r}
-mtcars %>%
-  e_charts(wt) %>%
-  e_line(mpg) %>%
-  e_line(qsec) %>% 
+mtcars |>
+  e_charts(wt) |>
+  e_line(mpg) |>
+  e_line(qsec) |> 
   e_tooltip(trigger = "axis")
 ```
 
@@ -82,9 +82,9 @@ The x-axis variable is params.value[0]. The y-axis variable is params.value[1]. 
 Here's how you might customize a tooltip for a scatter plot of mtcars wt and mpg, in order to show both wt and mpg in the tooltip:
 
 ```{r}
-mtcars %>%
-  e_charts(wt) %>%
-  e_scatter(mpg, qsec) %>%
+mtcars |>
+  e_charts(wt) |>
+  e_scatter(mpg, qsec) |>
   e_tooltip(formatter = htmlwidgets::JS("
       function(params){
         return('wt: ' + params.value[0] + '<br />mpg: ' + params.value[1])
@@ -96,10 +96,10 @@ mtcars %>%
 If you'd like to add information about a data frame column that's not included in the chart, you can pass in that data using the bind argument. As an example, you might want to include the name of the car model in the tooltip. With this particular data set, you'd first need to create that column, which you can do with code such as `mtcars <- tibble::rownames_to_column(mtcars, "model")`. Then, you can pass that column into your scatter plot visualization with `e_scatter(mpg, bind = model)`.
 
 ```{r}
-mtcars %>%  
-  tibble::rownames_to_column("model") %>% 
-  e_charts(wt) %>% 
-  e_scatter(mpg, qsec, bind = model) %>%
+mtcars |>  
+  tibble::rownames_to_column("model") |> 
+  e_charts(wt) |> 
+  e_scatter(mpg, qsec, bind = model) |>
   e_tooltip(
     formatter = htmlwidgets::JS("
       function(params){

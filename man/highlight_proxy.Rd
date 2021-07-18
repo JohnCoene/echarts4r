@@ -47,33 +47,33 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   output$plot <- renderEcharts4r({
-    mtcars \%>\%
-      e_charts(mpg) \%>\%
-      e_line(disp) \%>\%
+    mtcars |>
+      e_charts(mpg) |>
+      e_line(disp) |>
       e_line(hp, name = "HP") # explicitly pass name
   })
 
   # highlight
 
   observeEvent(input$highlightmpg, {
-    echarts4rProxy("plot") \%>\%
+    echarts4rProxy("plot") |>
       e_highlight_p(series_index = 0) # using index
   })
 
   observeEvent(input$highlighthp, {
-    echarts4rProxy("plot") \%>\%
+    echarts4rProxy("plot") |>
       e_highlight_p(series_name = "HP") # using name
   })
 
   # downplay
 
   observeEvent(input$downplaympg, {
-    echarts4rProxy("plot") \%>\%
+    echarts4rProxy("plot") |>
       e_downplay_p(series_name = "disp")
   })
 
   observeEvent(input$downplayhp, {
-    echarts4rProxy("plot") \%>\%
+    echarts4rProxy("plot") |>
       e_downplay_p(series_index = 1)
   })
 }

@@ -10,9 +10,9 @@ test_that("e_map plot has the good data structure and type", {
     value = round(runif(length(cns), 1, 5), 6)
   )
 
-  plot <- cns %>%
-    e_charts(country) %>%
-    e_map(value) %>%
+  plot <- cns |>
+    e_charts(country) |>
+    e_map(value) |>
     e_visual_map(value)
 
   expect_s3_class(plot, "echarts4r")
@@ -41,11 +41,11 @@ test_that("e_lines plot has the good data structure and type", {
       "https://raw.githubusercontent.com/plotly/datasets/",
       "master/2011_february_aa_flight_paths.csv"
     )
-  )
+  )[1:5,]
 
-  plot <- flights[1:5, ] %>%
-    e_charts() %>%
-    e_geo() %>%
+  plot <- flights |>
+    e_charts() |>
+    e_geo() |>
     e_lines(
       start_lon,
       start_lat,
@@ -111,11 +111,11 @@ test_that("e_lines plot has the good data structure and type", {
 #     value = c(1,2, 3)
 #   )
 #
-#   df %>%
-#     e_charts(region) %>%
-#     em_map("India") %>%
-#     e_map(value, map = "India") %>%
-#     e_visual_map(value) %>%
+#   df |>
+#     e_charts(region) |>
+#     em_map("India") |>
+#     e_map(value, map = "India") |>
+#     e_visual_map(value) |>
 #     e_theme("infographic")
 #
 #   expect_s3_class(plot, "echarts4r")
@@ -139,12 +139,11 @@ test_that("e_lines plot has the good data structure and type", {
 test_that("geojson support is functional", {
   json <- jsonlite::read_json("https://raw.githubusercontent.com/shawnbot/topogram/master/data/us-states.geojson")
 
-
-  plot <- USArrests %>%
-    dplyr::mutate(states = row.names(.)) %>%
-    e_charts(states) %>%
-    e_map_register("USA", json) %>%
-    e_map(Murder, map = "USA") %>%
+  plot <- USArrests |>
+    tibble::rownames_to_column("states") |> 
+    e_charts(states) |>
+    e_map_register("USA", json) |>
+    e_map(Murder, map = "USA") |>
     e_visual_map(Murder)
 
   expect_s3_class(plot, "echarts4r")

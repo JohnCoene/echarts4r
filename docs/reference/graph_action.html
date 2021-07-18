@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
       </span>
     </div>
 
@@ -320,7 +320,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='va'>value</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>10</span>, <span class='fl'>2</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='va'>value</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>10</span>, <span class='fl'>2</span><span class='op'>)</span>
 
 <span class='va'>nodes</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
   name <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='va'>LETTERS</span>, <span class='fl'>10</span><span class='op'>)</span>,
@@ -336,15 +336,15 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   stringsAsFactors <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span>
 
-<span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_graph.html'>e_graph</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_graph.html'>e_graph_nodes</a></span><span class='op'>(</span><span class='va'>nodes</span>, <span class='va'>name</span>, <span class='va'>value</span>, <span class='va'>size</span>, <span class='va'>grp</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_graph.html'>e_graph_edges</a></span><span class='op'>(</span><span class='va'>edges</span>, <span class='va'>source</span>, <span class='va'>target</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_graph.html'>e_graph</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_graph.html'>e_graph_nodes</a></span><span class='op'>(</span><span class='va'>nodes</span>, <span class='va'>name</span>, <span class='va'>value</span>, <span class='va'>size</span>, <span class='va'>grp</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_graph.html'>e_graph_edges</a></span><span class='op'>(</span><span class='va'>edges</span>, <span class='va'>source</span>, <span class='va'>target</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_focus_adjacency</span><span class='op'>(</span>
     seriesIndex <span class='op'>=</span> <span class='fl'>0</span>,
     dataIndex <span class='op'>=</span> <span class='fl'>4</span>
   <span class='op'>)</span>
-</pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

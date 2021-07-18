@@ -22,15 +22,15 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Add data zoom.
 }
 \examples{
-USArrests \%>\%
-  e_charts(UrbanPop) \%>\%
-  e_line(Assault) \%>\%
-  e_area(Murder, y_index = 1, x_index = 1) \%>\%
-  e_y_axis(gridIndex = 1) \%>\%
-  e_x_axis(gridIndex = 1) \%>\%
-  e_grid(height = "35\%") \%>\%
-  e_grid(height = "35\%", top = "50\%") \%>\%
-  e_toolbox_feature("dataZoom", title = list(zoom = "zoom", back = "back")) \%>\%
+USArrests |>
+  e_charts(UrbanPop) |>
+  e_line(Assault) |>
+  e_area(Murder, y_index = 1, x_index = 1) |>
+  e_y_axis(gridIndex = 1) |>
+  e_x_axis(gridIndex = 1) |>
+  e_grid(height = "35\%") |>
+  e_grid(height = "35\%", top = "50\%") |>
+  e_toolbox_feature("dataZoom", title = list(zoom = "zoom", back = "back")) |>
   e_datazoom(x_index = c(0, 1))
 }
 \seealso{

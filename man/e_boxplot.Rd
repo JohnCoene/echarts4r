@@ -30,9 +30,9 @@ df <- data.frame(
   y = c(1:10, -6)
 )
 
-df \%>\%
-  e_charts() \%>\%
-  e_boxplot(y, outliers = TRUE) \%>\%
+df |>
+  e_charts() |>
+  e_boxplot(y, outliers = TRUE) |>
   e_boxplot(x, outliers = TRUE)
 }
 \seealso{

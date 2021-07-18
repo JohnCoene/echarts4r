@@ -34,14 +34,14 @@ This is subsequently passed to the \code{setOption} ECharts (JavaScript) functio
 Must be passed as last option.
 }
 \examples{
-p <- cars \%>\%
-  e_charts(dist) \%>\%
+p <- cars |>
+  e_charts(dist) |>
   e_scatter(speed, symbol_size = 10)
 
 p # plot
 
 # extract the JSON
-json <- p \%>\%
+json <- p |>
   e_inspect(
     json = TRUE,
     pretty = TRUE
@@ -51,6 +51,6 @@ json <- p \%>\%
 json
 
 # rebuild plot
-echarts_from_json(json) \%>\%
+echarts_from_json(json) |>
   e_theme("dark") # modify
 }

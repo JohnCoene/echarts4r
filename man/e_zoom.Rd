@@ -18,15 +18,15 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Zoom on a region.
 }
 \examples{
-cars \%>\%
-  e_charts(dist) \%>\%
-  e_scatter(speed) \%>\%
-  e_datazoom() \%>\%
+cars |>
+  e_charts(dist) |>
+  e_scatter(speed) |>
+  e_datazoom() |>
   e_zoom(
     dataZoomIndex = 0,
     start = 20,
     end = 40,
     btn = "BUTTON"
-  ) \%>\%
+  ) |>
   e_button("BUTTON", "Zoom in")
 }

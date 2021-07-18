@@ -45,30 +45,30 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Draw scatter GL.
 }
 \examples{
-quakes \%>\%
-  e_charts(long) \%>\%
+quakes |>
+  e_charts(long) |>
   e_geo(
     roam = TRUE,
     boundingCoords = list(
       c(185, -10),
       c(165, -40)
     )
-  ) \%>\%
+  ) |>
   e_scatter_gl(lat, depth)
 
 # timeline
 quakes$year <- rep(c("2017", "2018"), 500)
 
-quakes \%>\%
-  group_by(year) \%>\%
-  e_charts(long, timeline = TRUE) \%>\%
+quakes |>
+  group_by(year) |>
+  e_charts(long, timeline = TRUE) |>
   e_geo(
     roam = TRUE,
     boundingCoords = list(
       c(185, -10),
       c(165, -40)
     )
-  ) \%>\%
+  ) |>
   e_scatter_gl(lat, depth)
 }
 \seealso{

@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
       </span>
     </div>
 
@@ -298,6 +298,8 @@
 
     <pre class="usage"><span class='fu'>e_map_register</span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>name</span>, <span class='va'>json</span><span class='op'>)</span>
 
+<span class='fu'>e_svg_register</span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>name</span>, <span class='va'>svg</span><span class='op'>)</span>
+
 <span class='fu'>e_map_register_p</span><span class='op'>(</span>
   <span class='va'>name</span>,
   <span class='va'>json</span>,
@@ -319,8 +321,8 @@
       <td><p>Name of map, to use in <code><a href='e_map.html'>e_map</a></code>.</p></td>
     </tr>
     <tr>
-      <th>json</th>
-      <td><p><a href='https://geojson.org/'>Geojson</a>.</p></td>
+      <th>json, svg</th>
+      <td><p><a href='https://geojson.org/'>Geojson</a>, or SVG.</p></td>
     </tr>
     <tr>
       <th>async</th>
@@ -340,18 +342,18 @@ register the map globally in the Shiny UI, not that then <code>json</code> must 
 from the UI (generally www folder).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='va'>json</span> <span class='op'>&lt;-</span> <span class='fu'>jsonlite</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/jsonlite/man/read_json.html'>read_json</a></span><span class='op'>(</span><span class='st'>"https://echarts.apache.org/examples/data/asset/geo/USA.json"</span><span class='op'>)</span>
 
-<span class='va'>USArrests</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>states <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/row.names.html'>row.names</a></span><span class='op'>(</span><span class='va'>.</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>states</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_map_register</span><span class='op'>(</span><span class='st'>"USA"</span>, <span class='va'>json</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_map.html'>e_map</a></span><span class='op'>(</span><span class='va'>Murder</span>, map <span class='op'>=</span> <span class='st'>"USA"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>USArrests</span> |&gt;
+  <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>rownames_to_column</a></span><span class='op'>(</span><span class='st'>"states"</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>states</span><span class='op'>)</span> |&gt;
+  <span class='fu'>e_map_register</span><span class='op'>(</span><span class='st'>"USA"</span>, <span class='va'>json</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_map.html'>e_map</a></span><span class='op'>(</span><span class='va'>Murder</span>, map <span class='op'>=</span> <span class='st'>"USA"</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span><span class='op'>(</span><span class='va'>Murder</span><span class='op'>)</span>
 <span class='op'>}</span>
 
-</pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

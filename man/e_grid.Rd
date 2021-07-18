@@ -18,13 +18,13 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Customise grid.
 }
 \examples{
-USArrests \%>\%
-  e_charts(UrbanPop) \%>\%
-  e_line(Assault, smooth = TRUE) \%>\%
-  e_area(Murder, y.index = 1, x.index = 1) \%>\%
-  e_y_axis(gridIndex = 1) \%>\%
-  e_x_axis(gridIndex = 1) \%>\%
-  e_grid(height = "40\%") \%>\%
+USArrests |>
+  e_charts(UrbanPop) |>
+  e_line(Assault, smooth = TRUE) |>
+  e_area(Murder, y.index = 1, x.index = 1) |>
+  e_y_axis(gridIndex = 1) |>
+  e_x_axis(gridIndex = 1) |>
+  e_grid(height = "40\%") |>
   e_grid(height = "40\%", top = "55\%")
 }
 \seealso{

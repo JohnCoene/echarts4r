@@ -26,14 +26,14 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   output$chart <- renderEcharts4r({
-    mtcars \%>\%
-      e_charts(mpg, draw = FALSE) \%>\%
-      e_scatter(qsec) \%>\%
+    mtcars |>
+      e_charts(mpg, draw = FALSE) |>
+      e_scatter(qsec) |>
       e_datazoom()
   })
 
   observeEvent(input$draw, {
-    echarts4rProxy("chart") \%>\%
+    echarts4rProxy("chart") |>
       e_draw_p()
   })
 }

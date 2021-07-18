@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
       </span>
     </div>
 
@@ -367,19 +367,19 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#series-line'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='va'>CO2</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Plant</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>conc</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_area</span><span class='op'>(</span><span class='va'>uptake</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <pre class="examples"><div class='input'><span class='va'>CO2</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Plant</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>conc</span><span class='op'>)</span> |&gt;
+  <span class='fu'>e_area</span><span class='op'>(</span><span class='va'>uptake</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_tooltip.html'>e_tooltip</a></span><span class='op'>(</span>trigger <span class='op'>=</span> <span class='st'>"axis"</span><span class='op'>)</span>
 
 <span class='co'># timeline</span>
-<span class='va'>iris</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Species</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, timeline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_area</span><span class='op'>(</span><span class='va'>Sepal.Width</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>iris</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Species</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, timeline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> |&gt;
+  <span class='fu'>e_area</span><span class='op'>(</span><span class='va'>Sepal.Width</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_tooltip.html'>e_tooltip</a></span><span class='op'>(</span>trigger <span class='op'>=</span> <span class='st'>"axis"</span><span class='op'>)</span>
-</pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

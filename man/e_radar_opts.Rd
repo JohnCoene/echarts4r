@@ -24,10 +24,10 @@ df <- data.frame(
   z = runif(5, 3, 7)
 )
 
-df \%>\%
-  e_charts(x) \%>\%
-  e_radar(y, max = 7) \%>\%
-  e_radar(z) \%>\%
-  e_radar_opts(center = c("25\%", "25\%")) \%>\%
+df |>
+  e_charts(x) |>
+  e_radar(y, max = 7) |>
+  e_radar(z) |>
+  e_radar_opts(center = c("25\%", "25\%")) |>
   e_tooltip(trigger = "item")
 }

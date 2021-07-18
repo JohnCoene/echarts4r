@@ -47,7 +47,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
       </span>
     </div>
 
@@ -230,13 +230,13 @@
 
       
 
-      </header><script src="graphics_files/htmlwidgets-1.5.3/htmlwidgets.js"></script><script src="graphics_files/echarts4r-4.8.0/echarts-en.min.js"></script><script src="graphics_files/echarts4r-4.8.0/ecStat.min.js"></script><script src="graphics_files/echarts4r-4.8.0/dataTool.min.js"></script><script src="graphics_files/echarts4r-binding-0.4.0.9000/echarts4r.js"></script><div class="row">
+      </header><script src="graphics_files/htmlwidgets-1.5.3/htmlwidgets.js"></script><script src="graphics_files/echarts4r-4.8.0/echarts-en.min.js"></script><script src="graphics_files/echarts4r-4.8.0/ecStat.min.js"></script><script src="graphics_files/echarts4r-4.8.0/dataTool.min.js"></script><script src="graphics_files/echarts4r-binding-0.4.1.9000/echarts4r.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Graphics</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2021-01-31</h4>
+            <h4 class="date">2021-06-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JohnCoene/echarts4r/blob/master/vignettes/graphics.Rmd"><code>vignettes/graphics.Rmd</code></a></small>
       <div class="hidden name"><code>graphics.Rmd</code></div>
@@ -272,21 +272,21 @@
 <a href="#draft" class="anchor"></a>Draft</h2>
 <p>The <code>e_draft</code> helper function is a very simple wrapper aroudn the graphics API and thus a good example of what can be achieved.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cars</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">dist</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">cars</span> |&gt; 
+  <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span> |&gt; 
+  <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">dist</span><span class="op">)</span> |&gt;
   <span class="fu"><a href="../reference/e_draft.html">e_draft</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-ff3dec77b4bc766550a3" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ff3dec77b4bc766550a3">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["dist"]},"series":[{"data":[{"value":[4,2]},{"value":[4,10]},{"value":[7,4]},{"value":[7,22]},{"value":[8,16]},{"value":[9,10]},{"value":[10,18]},{"value":[10,26]},{"value":[10,34]},{"value":[11,17]},{"value":[11,28]},{"value":[12,14]},{"value":[12,20]},{"value":[12,24]},{"value":[12,28]},{"value":[13,26]},{"value":[13,34]},{"value":[13,34]},{"value":[13,46]},{"value":[14,26]},{"value":[14,36]},{"value":[14,60]},{"value":[14,80]},{"value":[15,20]},{"value":[15,26]},{"value":[15,54]},{"value":[16,32]},{"value":[16,40]},{"value":[17,32]},{"value":[17,40]},{"value":[17,50]},{"value":[18,42]},{"value":[18,56]},{"value":[18,76]},{"value":[18,84]},{"value":[19,36]},{"value":[19,46]},{"value":[19,68]},{"value":[20,32]},{"value":[20,48]},{"value":[20,52]},{"value":[20,56]},{"value":[20,64]},{"value":[22,66]},{"value":[23,54]},{"value":[24,70]},{"value":[24,92]},{"value":[24,93]},{"value":[24,120]},{"value":[25,85]}],"name":"dist","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3}],"graphic":{"left":"center","top":"center","z":-1000,"style":{"fill":"#d3d3d3","text":"DRAFT","font":"120px \"STHeiti\", sans-serif","opacity":0.4},"type":"text","left.1":"center","top.1":"center","z.1":-1000,"style.1":{"fill":"#d3d3d3","text":"DRAFT","font":"120px \"STHeiti\", sans-serif","opacity":0.4}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b431cfe2ce38dfb19398" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b431cfe2ce38dfb19398">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["dist"]},"series":[{"data":[{"value":[4,2]},{"value":[4,10]},{"value":[7,4]},{"value":[7,22]},{"value":[8,16]},{"value":[9,10]},{"value":[10,18]},{"value":[10,26]},{"value":[10,34]},{"value":[11,17]},{"value":[11,28]},{"value":[12,14]},{"value":[12,20]},{"value":[12,24]},{"value":[12,28]},{"value":[13,26]},{"value":[13,34]},{"value":[13,34]},{"value":[13,46]},{"value":[14,26]},{"value":[14,36]},{"value":[14,60]},{"value":[14,80]},{"value":[15,20]},{"value":[15,26]},{"value":[15,54]},{"value":[16,32]},{"value":[16,40]},{"value":[17,32]},{"value":[17,40]},{"value":[17,50]},{"value":[18,42]},{"value":[18,56]},{"value":[18,76]},{"value":[18,84]},{"value":[19,36]},{"value":[19,46]},{"value":[19,68]},{"value":[20,32]},{"value":[20,48]},{"value":[20,52]},{"value":[20,56]},{"value":[20,64]},{"value":[22,66]},{"value":[23,54]},{"value":[24,70]},{"value":[24,92]},{"value":[24,93]},{"value":[24,120]},{"value":[25,85]}],"name":"dist","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3}],"graphic":{"left":"center","top":"center","z":-1000,"style":{"fill":"#d3d3d3","text":"DRAFT","font":"120px \"STHeiti\", sans-serif","opacity":0.4},"type":"text","left.1":"center","top.1":"center","z.1":-1000,"style.1":{"fill":"#d3d3d3","text":"DRAFT","font":"120px \"STHeiti\", sans-serif","opacity":0.4}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="image" class="section level2">
 <h2 class="hasAnchor">
 <a href="#image" class="anchor"></a>Image</h2>
 <p>You can add an image for instance.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cars</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">dist</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">cars</span> |&gt; 
+  <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span> |&gt; 
+  <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">dist</span><span class="op">)</span> |&gt;
   <span class="fu"><a href="../reference/e_graphic_g.html">e_image_g</a></span><span class="op">(</span>
     right <span class="op">=</span> <span class="fl">20</span>,
     top <span class="op">=</span> <span class="fl">20</span>,
@@ -298,8 +298,8 @@
       opacity <span class="op">=</span> <span class="fl">.6</span>
     <span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<div id="htmlwidget-cecba7d4bdaebd7614ad" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cecba7d4bdaebd7614ad">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["dist"]},"series":[{"data":[{"value":[4,2]},{"value":[4,10]},{"value":[7,4]},{"value":[7,22]},{"value":[8,16]},{"value":[9,10]},{"value":[10,18]},{"value":[10,26]},{"value":[10,34]},{"value":[11,17]},{"value":[11,28]},{"value":[12,14]},{"value":[12,20]},{"value":[12,24]},{"value":[12,28]},{"value":[13,26]},{"value":[13,34]},{"value":[13,34]},{"value":[13,46]},{"value":[14,26]},{"value":[14,36]},{"value":[14,60]},{"value":[14,80]},{"value":[15,20]},{"value":[15,26]},{"value":[15,54]},{"value":[16,32]},{"value":[16,40]},{"value":[17,32]},{"value":[17,40]},{"value":[17,50]},{"value":[18,42]},{"value":[18,56]},{"value":[18,76]},{"value":[18,84]},{"value":[19,36]},{"value":[19,46]},{"value":[19,68]},{"value":[20,32]},{"value":[20,48]},{"value":[20,52]},{"value":[20,56]},{"value":[20,64]},{"value":[22,66]},{"value":[23,54]},{"value":[24,70]},{"value":[24,92]},{"value":[24,93]},{"value":[24,120]},{"value":[25,85]}],"name":"dist","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3}],"graphic":{"right":20,"top":20,"z":-999,"style":{"image":"https://www.r-project.org/logo/Rlogo.png","width":150,"height":150,"opacity":0.6},"type":"image","right.1":20,"top.1":20,"z.1":-999,"style.1":{"image":"https://www.r-project.org/logo/Rlogo.png","width":150,"height":150,"opacity":0.6}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f1c8d780eefdc65b94d4" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f1c8d780eefdc65b94d4">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["dist"]},"series":[{"data":[{"value":[4,2]},{"value":[4,10]},{"value":[7,4]},{"value":[7,22]},{"value":[8,16]},{"value":[9,10]},{"value":[10,18]},{"value":[10,26]},{"value":[10,34]},{"value":[11,17]},{"value":[11,28]},{"value":[12,14]},{"value":[12,20]},{"value":[12,24]},{"value":[12,28]},{"value":[13,26]},{"value":[13,34]},{"value":[13,34]},{"value":[13,46]},{"value":[14,26]},{"value":[14,36]},{"value":[14,60]},{"value":[14,80]},{"value":[15,20]},{"value":[15,26]},{"value":[15,54]},{"value":[16,32]},{"value":[16,40]},{"value":[17,32]},{"value":[17,40]},{"value":[17,50]},{"value":[18,42]},{"value":[18,56]},{"value":[18,76]},{"value":[18,84]},{"value":[19,36]},{"value":[19,46]},{"value":[19,68]},{"value":[20,32]},{"value":[20,48]},{"value":[20,52]},{"value":[20,56]},{"value":[20,64]},{"value":[22,66]},{"value":[23,54]},{"value":[24,70]},{"value":[24,92]},{"value":[24,93]},{"value":[24,120]},{"value":[25,85]}],"name":"dist","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3}],"graphic":{"right":20,"top":20,"z":-999,"style":{"image":"https://www.r-project.org/logo/Rlogo.png","width":150,"height":150,"opacity":0.6},"type":"image","right.1":20,"top.1":20,"z.1":-999,"style.1":{"image":"https://www.r-project.org/logo/Rlogo.png","width":150,"height":150,"opacity":0.6}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
   </div>
 

@@ -22,10 +22,10 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Highlight series
 }
 \examples{
-iris \%>\%
-  group_by(Species) \%>\%
-  e_charts(Sepal.Length) \%>\%
-  e_line(Sepal.Width) \%>\%
-  e_line(Petal.Length) \%>\%
+iris |>
+  group_by(Species) |>
+  e_charts(Sepal.Length) |>
+  e_line(Sepal.Width) |>
+  e_line(Petal.Length) |>
   e_highlight(series_name = "setosa") # highlight group
 }

@@ -44,10 +44,10 @@ edges <- data.frame(
   stringsAsFactors = FALSE
 )
 
-e_charts() %>% 
-  e_graph() %>% 
-  e_graph_nodes(nodes, name, value, size) %>% 
-  e_graph_edges(edges, source, target) %>% 
+e_charts() |> 
+  e_graph() |> 
+  e_graph_nodes(nodes, name, value, size) |> 
+  e_graph_edges(edges, source, target) |> 
   e_tooltip()
 ```
 
@@ -72,10 +72,10 @@ edges <- data.frame(
   stringsAsFactors = FALSE
 )
 
-e_charts() %>% 
-  e_graph() %>% 
-  e_graph_nodes(nodes, name, value, size, grp) %>% 
-  e_graph_edges(edges, source, target) %>% 
+e_charts() |> 
+  e_graph() |> 
+  e_graph_nodes(nodes, name, value, size, grp) |> 
+  e_graph_edges(edges, source, target) |> 
   e_tooltip()
 ```
 
@@ -102,10 +102,10 @@ edges <- data.frame(
   stringsAsFactors = FALSE
 )
 
-e_charts() %>% 
-  e_graph() %>% 
-  e_graph_nodes(nodes, name, value, size, grp, symbol) %>% 
-  e_graph_edges(edges, source, target) %>% 
+e_charts() |> 
+  e_graph() |> 
+  e_graph_nodes(nodes, name, value, size, grp, symbol) |> 
+  e_graph_edges(edges, source, target) |> 
   e_tooltip()
 ```
 
@@ -117,24 +117,24 @@ Simply use `e_graph_gl` instead of `e_graph`.
 flights <- read.csv(
   paste0("https://raw.githubusercontent.com/plotly/datasets/",
          "master/2011_february_aa_flight_paths.csv")
-) %>% 
+) |> 
   dplyr::select(airport1, airport2)
 
 airports <- read.csv(
   paste0("https://raw.githubusercontent.com/plotly/datasets/",
          "master/2011_february_us_airport_traffic.csv")
-) %>% 
+) |> 
   dplyr::select(iata, cnt)
 
 # remove airports with no flights
 airp <- unique(c(as.character(flights$airport1), as.character(flights$airport2)))
-airports <- airports %>% 
+airports <- airports |> 
   dplyr::filter(iata %in% airp)
 
-e_charts() %>% 
-    e_graph_gl() %>% 
-    e_graph_nodes(airports, iata, cnt) %>% 
-    e_graph_edges(flights, airport1, airport2) %>% 
-    e_modularity() %>% 
+e_charts() |> 
+    e_graph_gl() |> 
+    e_graph_nodes(airports, iata, cnt) |> 
+    e_graph_edges(flights, airport1, airport2) |> 
+    e_modularity() |> 
     e_tooltip()
 ```

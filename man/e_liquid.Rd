@@ -27,9 +27,9 @@ Draw liquid fill.
 \examples{
 df <- data.frame(val = c(0.6, 0.5, 0.4))
 
-df \%>\%
-  e_charts() \%>\%
-  e_liquid(val) \%>\%
+df |>
+  e_charts() |>
+  e_liquid(val) |>
   e_theme("dark")
 }
 \seealso{

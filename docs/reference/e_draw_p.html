@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
       </span>
     </div>
 
@@ -312,7 +312,7 @@
     <p>Useful if you set <code>draw</code> to <code>FALSE</code> in <code><a href='init.html'>e_charts</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
 
 <span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
@@ -322,14 +322,14 @@
 
 <span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='va'>output</span><span class='op'>$</span><span class='va'>chart</span> <span class='op'>&lt;-</span> <span class='fu'><a href='echarts4r-shiny.html'>renderEcharts4r</a></span><span class='op'>(</span><span class='op'>{</span>
-    <span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span>, draw <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>qsec</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='va'>mtcars</span> |&gt;
+      <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span>, draw <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> |&gt;
+      <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>qsec</span><span class='op'>)</span> |&gt;
       <span class='fu'><a href='e_datazoom.html'>e_datazoom</a></span><span class='op'>(</span><span class='op'>)</span>
   <span class='op'>}</span><span class='op'>)</span>
 
   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>draw</span>, <span class='op'>{</span>
-    <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span><span class='op'>(</span><span class='st'>"chart"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='echarts4r-shiny.html'>echarts4rProxy</a></span><span class='op'>(</span><span class='st'>"chart"</span><span class='op'>)</span> |&gt;
       <span class='fu'>e_draw_p</span><span class='op'>(</span><span class='op'>)</span>
   <span class='op'>}</span><span class='op'>)</span>
 <span class='op'>}</span>
@@ -339,7 +339,7 @@
 <span class='op'>}</span>
 <span class='op'>}</span>
 
-</pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

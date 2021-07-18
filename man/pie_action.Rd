@@ -22,10 +22,10 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Actions related to \code{\link{e_pie}}.
 }
 \examples{
-mtcars \%>\%
-  head() \%>\%
-  dplyr::mutate(model = row.names(.)) \%>\%
-  e_charts(model) \%>\%
-  e_pie(carb) \%>\%
+mtcars |>
+  head() |>
+  tibble::rownames_to_column("model") |> 
+  e_charts(model) |>
+  e_pie(carb) |>
   e_pie_select(dataIndex = 0)
 }

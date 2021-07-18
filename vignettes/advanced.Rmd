@@ -41,20 +41,20 @@ All charts on this page will use the `Raleway` font (sourced in CSS from Google 
 The package also understands `dplyr::group_by` in order to avoid having to add many layers manually one by one. `echarts4r` essentially will plot one serie for each group.
 
 ```{r}
-iris %>% 
-  group_by(Species) %>% 
-  e_charts(Sepal.Length) %>% 
-  e_line(Sepal.Width) %>% 
+iris |> 
+  group_by(Species) |> 
+  e_charts(Sepal.Length) |> 
+  e_line(Sepal.Width) |> 
   e_title("Grouped data")
 ```
 
 The above plot one line (`e_line`) for each group (`group_by`). _At one exception_, since `0.2.1`, when `timeline` is set to `TRUE` when the chart is initialised with `e_charts`. In the latter case each group is used as a step of the timeline.
 
 ```{r}
-iris %>% 
-  group_by(Species) %>% 
-  e_charts(Sepal.Length, timeline = TRUE) %>% 
-  e_line(Sepal.Width) %>% 
+iris |> 
+  group_by(Species) |> 
+  e_charts(Sepal.Length, timeline = TRUE) |> 
+  e_line(Sepal.Width) |> 
   e_title("Timeline")
 ```
 
@@ -69,11 +69,11 @@ df <- data.frame(
   d = runif(10)
 )
 
-df %>% 
-  e_charts(x) %>% 
-  e_bar(a, stack = "grp") %>% 
-  e_bar(b, stack = "grp") %>% 
-  e_bar(c, stack = "grp2") %>% 
+df |> 
+  e_charts(x) |> 
+  e_bar(a, stack = "grp") |> 
+  e_bar(b, stack = "grp") |> 
+  e_bar(c, stack = "grp2") |> 
   e_bar(d, stack = "grp2") 
 ```
 
@@ -82,9 +82,9 @@ df %>%
 Since `0.2.0` the `e_scatter` and `e_effect_scatter` functions take a different, much improved `scale` argument which is a scaling function.
 
 ```{r}
-iris %>% 
-    group_by(Species) %>% 
-    e_charts(Sepal.Length) %>% 
+iris |> 
+    group_by(Species) |> 
+    e_charts(Sepal.Length) |> 
     e_scatter(Petal.Length, Sepal.Width)
 ```
 
@@ -95,27 +95,40 @@ my_scale <- function(x){
   scales::rescale(x, to = c(5, 30))
 }
 
-iris %>% 
-    group_by(Species) %>% 
-    e_charts(Sepal.Length) %>% 
+iris |> 
+    group_by(Species) |> 
+    e_charts(Sepal.Length) |> 
     e_scatter(Petal.Length, Sepal.Width, scale = my_scale)
+```
+
+This also works with R 4.1.0 syntax.
+
+```r
+iris |>  
+    group_by(Species) |> 
+    e_charts(Sepal.Length) |> 
+    e_scatter(
+      Petal.Length, 
+      Sepal.Width, 
+      scale = \(x) scales::rescale(x, to = c(5, 30))
+    )
 ```
 
 When `size` is not passed the size of the points are defined by `symbol_size`.
 
 ```{r}
-iris %>% 
-    group_by(Species) %>% 
-    e_charts(Sepal.Length) %>% 
+iris |> 
+    group_by(Species) |> 
+    e_charts(Sepal.Length) |> 
     e_scatter(Petal.Length, symbol_size = 15)
 ```
 
 When `size` is passed `symbol_size` becomes a multiplier executed after the scaling function is run. For instance $\log(1+x)*5$
 
 ```{r}
-iris %>% 
-    group_by(Species) %>% 
-    e_charts(Sepal.Length) %>% 
+iris |> 
+    group_by(Species) |> 
+    e_charts(Sepal.Length) |> 
     e_scatter(Petal.Length, Sepal.Width, scale = log1p, symbol_size = 10)
 ```
 
@@ -124,26 +137,26 @@ This behaviour was added as it is important to be able to scale points within a 
 Note that rescaling the color means you should also rescale the `e_visual_map`, if used.
 
 ```{r}
-echart <- mtcars %>% 
-  e_charts(mpg) %>% 
-  e_scatter(qsec, wt, scale = e_scale) %>% 
+echart <- mtcars |> 
+  e_charts(mpg) |> 
+  e_scatter(qsec, wt, scale = e_scale) |> 
   e_legend(show = FALSE)
 
-echart %>% 
+echart |> 
   e_visual_map(wt, scale = e_scale)
 
 # or 
-# echart %>% 
+# echart |> 
 #   e_visual_map(min = 1, max = 20)
 ```
 
 If you want to keep the original size then you can use `scale_js`, because you might want the `e_visual_map` to remain true to the original data.
 
 ```{r}
-mtcars %>% 
-  e_charts(mpg) %>% 
-  e_scatter(qsec, wt, scale = NULL, scale_js = "function(data){ return data[3] * 3;}") %>% 
-  e_legend(show = FALSE) %>% 
+mtcars |> 
+  e_charts(mpg) |> 
+  e_scatter(qsec, wt, scale = NULL, scale_js = "function(data){ return data[3] * 3;}") |> 
+  e_legend(show = FALSE) |> 
   e_visual_map(wt, scale = NULL)
 ```
 
@@ -154,9 +167,9 @@ This way the bubbles are of an appropriate size but the the range of the visual 
 Since version `0.2.1` you can jitter points with `e_scatter`.
 
 ```{r}
-mtcars %>% 
-  e_charts(cyl) %>% 
-  e_scatter(drat, symbol_size = 4) %>% 
+mtcars |> 
+  e_charts(cyl) |> 
+  e_scatter(drat, symbol_size = 4) |> 
   e_scatter(
     drat, jitter_factor = 2, symbol_size = 6,
     name = "noisy"
@@ -176,14 +189,14 @@ matrix <- data.frame(
   y = sample(v, 300, replace = TRUE), 
   z = rnorm(300, 10, 1),
   stringsAsFactors = FALSE
-) %>% 
-  dplyr::group_by(x, y) %>% 
-  dplyr::summarise(z = sum(z)) %>% 
+) |> 
+  dplyr::group_by(x, y) |> 
+  dplyr::summarise(z = sum(z)) |> 
   dplyr::ungroup()
 
-matrix %>% 
-  e_charts(x) %>% 
-  e_heatmap(y, z) %>% 
+matrix |> 
+  e_charts(x) |> 
+  e_heatmap(y, z) |> 
   e_visual_map(z)
 ```
 
@@ -195,10 +208,10 @@ values <- rnorm(length(dates), 20, 6)
 
 year <- data.frame(date = dates, values = values)
 
-year %>% 
-  e_charts(date) %>% 
-  e_calendar(range = "2018") %>% 
-  e_heatmap(values, coord_system = "calendar") %>% 
+year |> 
+  e_charts(date) |> 
+  e_calendar(range = "2018") |> 
+  e_heatmap(values, coord_system = "calendar") |> 
   e_visual_map(max = 30)
 ```
 
@@ -207,17 +220,17 @@ Another example, using polar coordinates, plot a line on 2D cartesian coordinate
 ```{r}
 df <- data.frame(x = 1:10, y = seq(1, 20, by = 2))
 
-df %>% 
-  e_charts(x) %>% 
+df |> 
+  e_charts(x) |> 
   e_line(y) 
 ```
 
 ```{r}
-df %>% 
-  e_charts(x) %>% 
-  e_polar() %>% 
-  e_angle_axis() %>% 
-  e_radius_axis() %>% 
+df |> 
+  e_charts(x) |> 
+  e_polar() |> 
+  e_angle_axis() |> 
+  e_radius_axis() |> 
   e_line(y, coord_system = "polar", smooth = TRUE) 
 ```
 
@@ -228,10 +241,10 @@ There are numerous coordinate system available in `echarts4r`; `globe`, `cartesi
 Use multiple axis, by speecifying the index of the axis. *Note that JavaScript starts from 0 not 1, so `y_index = 1` is the second axis, `y_index = 0` is the first axis (default)*
 
 ```{r}
-USArrests %>% 
-  e_charts(Assault) %>% 
-  e_line(Murder, smooth = TRUE) %>% 
-  e_line(Rape, y_index = 1) %>%  # add secondary axis
+USArrests |> 
+  e_charts(Assault) |> 
+  e_line(Murder, smooth = TRUE) |> 
+  e_line(Rape, y_index = 1) |>  # add secondary axis
   e_y_axis(splitLine = list(show = FALSE)) # hide split lines on first Y axis
 ```
 
@@ -243,9 +256,9 @@ You can flip coordinates with `e_flip_coords`, note that it will not work if you
 data.frame(
   x = LETTERS[1:5],
   y = runif(5, 1, 15)
-) %>% 
-  e_charts(x) %>% 
-  e_bar(y, name = "flipped") %>% 
+) |> 
+  e_charts(x) |> 
+  e_bar(y, name = "flipped") |> 
   e_flip_coords() # flip axis
 ```
 
@@ -254,15 +267,15 @@ data.frame(
 Highlight points and lines on your plot with the `e_mark` family of functions.
 
 ```{r}
-USArrests %>% 
+USArrests |> 
+  tibble::rownames_to_column("State") |> 
   dplyr::mutate(
-    State = row.names(.),
     Rape = -Rape
-  ) %>% 
-  e_charts(State) %>% 
-  e_area(Murder) %>%
-  e_bar(Rape, name = "Sick basterd", x_index = 1) %>% # second y axis 
-  e_mark_line("Sick basterd", data = list(type = "average")) %>% 
+  ) |> 
+  e_charts(State) |> 
+  e_area(Murder) |>
+  e_bar(Rape, name = "Sick basterd", x_index = 1) |> # second y axis 
+  e_mark_line("Sick basterd", data = list(type = "average")) |> 
   e_mark_point("Murder", data = list(type = "min"))
 ```
 
@@ -288,16 +301,16 @@ df <- tibble(
   )
 )
 
-df %>% 
-  e_charts() %>% 
+df |> 
+  e_charts() |> 
   e_tree()
 ```
 
 to radial:
 
 ```{r}
-df %>% 
-  e_charts() %>% 
+df |> 
+  e_charts() |> 
   e_tree(layout = "radial")
 ```
 
@@ -306,25 +319,21 @@ df %>%
 You can, for most series show labels like so:
 
 ```{r, eval = FALSE}
-USArrests %>% 
-    dplyr::mutate(
-        State = row.names(.)
-    ) %>% 
-    dplyr::slice(1:10) %>% 
-    e_charts(State) %>% 
-    e_area(Murder, label = list(normal = list(show = TRUE))) 
+USArrests |> 
+  tibble::rownames_to_column("State") |> 
+  dplyr::slice(1:10) |> 
+  e_charts(State) |> 
+  e_area(Murder, label = list(normal = list(show = TRUE))) 
 ```
 
 There is also a helper function that provides an easier API
 
 ```{r}
-USArrests %>% 
-  dplyr::mutate(
-      State = row.names(.)
-  ) %>% 
-  dplyr::slice(1:10) %>% 
-  e_charts(State) %>% 
-  e_area(Murder) %>% 
+USArrests |> 
+  tibble::rownames_to_column("State") |> 
+  dplyr::slice(1:10) |> 
+  e_charts(State) |> 
+  e_area(Murder) |> 
   e_labels()
 ```
 
@@ -338,18 +347,18 @@ Let's add some columns to the `iris` dataset which we will use in `e_add` to cus
 
 ```{r}
 # add columns to iris
-iris_dat <- iris %>% 
+iris_dat <- iris |> 
   dplyr::mutate(
     show = TRUE, # to show the labels
     fontSize = exp(Sepal.Length) / 10, # font size will correspond to Sepal.Length
     color = sample(c("red", "black", "blue"), dplyr::n(), replace = TRUE) # assign a random color to the label
   )
 
-iris_dat %>% 
-  dplyr::slice(1:10) %>% # simplify the graph. 
-  e_charts(Sepal.Width) %>% 
-  e_line(Sepal.Length) %>% 
-  e_add("label", show, fontSize, color) %>% # add our columns to "label"
+iris_dat |> 
+  dplyr::slice(1:10) |> # simplify the graph. 
+  e_charts(Sepal.Width) |> 
+  e_line(Sepal.Length) |> 
+  e_add("label", show, fontSize, color) |> # add our columns to "label"
   e_x_axis(min = 2.5)
 ```
 
@@ -362,9 +371,9 @@ funnel <- data.frame(
   color = c("blue", "red", "green")
 )
 
-funnel %>% 
-  e_charts() %>% 
-  e_funnel(value, stage) %>% 
+funnel |> 
+  e_charts() |> 
+  e_funnel(value, stage) |> 
   e_add("itemStyle", color)
 ```
 
@@ -391,7 +400,7 @@ opts <- list(
   )
 )
 
-e_charts() %>% 
+e_charts() |> 
   e_list(opts)
 ```
 

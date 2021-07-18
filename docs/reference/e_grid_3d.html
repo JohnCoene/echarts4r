@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
       </span>
     </div>
 
@@ -321,7 +321,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option-gl.html#grid3D'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># phony data</span>
+    <pre class="examples"><div class='input'><span class='co'># phony data</span>
 <span class='va'>v</span> <span class='op'>&lt;-</span> <span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>
 <span class='va'>matrix</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
   x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='va'>v</span>, <span class='fl'>300</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
@@ -329,23 +329,23 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   z1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span><span class='op'>)</span>,
   z2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span><span class='op'>)</span>,
   stringsAsFactors <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='op'>)</span> |&gt;
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span> |&gt;
   <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span>
     z1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>z1</span><span class='op'>)</span>,
     z2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>z2</span><span class='op'>)</span>
-  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='op'>)</span> |&gt;
   <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span>
-
+</div><div class='output co'>#&gt; <span class='message'>`summarise()` has grouped output by 'x'. You can override using the `.groups` argument.</span></div><div class='input'>
 <span class='va'>trans</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>opacity <span class='op'>=</span> <span class='fl'>0.4</span><span class='op'>)</span> <span class='co'># transparency</span>
 <span class='va'>emphasis</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>itemStyle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"#313695"</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='va'>matrix</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_bar_3d.html'>e_bar_3d</a></span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>z1</span>, stack <span class='op'>=</span> <span class='st'>"stack"</span>, name <span class='op'>=</span> <span class='st'>"Serie 1"</span>, itemStyle <span class='op'>=</span> <span class='va'>trans</span>, emphasis <span class='op'>=</span> <span class='va'>emphasis</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_bar_3d.html'>e_bar_3d</a></span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>z2</span>, stack <span class='op'>=</span> <span class='st'>"stack"</span>, name <span class='op'>=</span> <span class='st'>"Serie 2"</span>, itemStyle <span class='op'>=</span> <span class='va'>trans</span>, emphasis <span class='op'>=</span> <span class='va'>emphasis</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>matrix</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_bar_3d.html'>e_bar_3d</a></span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>z1</span>, stack <span class='op'>=</span> <span class='st'>"stack"</span>, name <span class='op'>=</span> <span class='st'>"Serie 1"</span>, itemStyle <span class='op'>=</span> <span class='va'>trans</span>, emphasis <span class='op'>=</span> <span class='va'>emphasis</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_bar_3d.html'>e_bar_3d</a></span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>z2</span>, stack <span class='op'>=</span> <span class='st'>"stack"</span>, name <span class='op'>=</span> <span class='st'>"Serie 2"</span>, itemStyle <span class='op'>=</span> <span class='va'>trans</span>, emphasis <span class='op'>=</span> <span class='va'>emphasis</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_grid_3d</span><span class='op'>(</span>splitLine <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>lineStyle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

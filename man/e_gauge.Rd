@@ -25,7 +25,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Plot a gauge.
 }
 \examples{
-e_charts() \%>\%
+e_charts() |>
   e_gauge(57, "PERCENT")
 }
 \seealso{

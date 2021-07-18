@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
       </span>
     </div>
 
@@ -466,77 +466,77 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
  <a href='https://echarts.apache.org/en/option.html#series-effectScatter'>Additional arguments for effect scatter</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># scaling</span>
+    <pre class="examples"><div class='input'><span class='co'># scaling</span>
 <span class='fu'>e_scale</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>1000</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+</div><div class='output co'>#&gt; [1]  1 20</div><div class='input'>
+<span class='va'>mtcars</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_scatter</span><span class='op'>(</span><span class='va'>wt</span>, <span class='va'>qsec</span><span class='op'>)</span>
 
 <span class='co'># custom function</span>
-<span class='va'>my_scale</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org//reference/rescale.html'>rescale</a></span><span class='op'>(</span><span class='va'>x</span>, to <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>50</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>my_scale</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/rescale.html'>rescale</a></span><span class='op'>(</span><span class='va'>x</span>, to <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>50</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='va'>echart</span> <span class='op'>&lt;-</span> <span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>echart</span> <span class='op'>&lt;-</span> <span class='va'>mtcars</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_scatter</span><span class='op'>(</span><span class='va'>wt</span>, <span class='va'>qsec</span>, scale <span class='op'>=</span> <span class='va'>my_scale</span><span class='op'>)</span>
 
 <span class='va'>echart</span>
 
 <span class='co'># rescale color too</span>
-<span class='va'>echart</span> <span class='op'>%&gt;%</span>
+<span class='va'>echart</span> |&gt;
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span><span class='op'>(</span><span class='va'>wt</span>, scale <span class='op'>=</span> <span class='va'>my_scale</span><span class='op'>)</span>
 
 <span class='co'># or</span>
-<span class='va'>echart</span> <span class='op'>%&gt;%</span>
+<span class='va'>echart</span> |&gt;
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span><span class='op'>(</span>min <span class='op'>=</span> <span class='fl'>2</span>, max <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span>
 
 <span class='co'># disable scaling</span>
-<span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>qsec</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>mtcars</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>qsec</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_scatter</span><span class='op'>(</span><span class='va'>wt</span>, <span class='va'>mpg</span>, scale <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
 <span class='co'># jitter point</span>
-<span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_scatter</span><span class='op'>(</span><span class='va'>wt</span>, symbol_size <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>mtcars</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>cyl</span><span class='op'>)</span> |&gt;
+  <span class='fu'>e_scatter</span><span class='op'>(</span><span class='va'>wt</span>, symbol_size <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_scatter</span><span class='op'>(</span><span class='va'>wt</span>, jitter_factor <span class='op'>=</span> <span class='fl'>2</span>, legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
 <span class='co'># examples</span>
-<span class='va'>USArrests</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>Assault</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_scatter</span><span class='op'>(</span><span class='va'>Murder</span>, <span class='va'>Rape</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_effect_scatter</span><span class='op'>(</span><span class='va'>Rape</span>, <span class='va'>Murder</span>, y_index <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_grid.html'>e_grid</a></span><span class='op'>(</span>index <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>USArrests</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>Assault</span><span class='op'>)</span> |&gt;
+  <span class='fu'>e_scatter</span><span class='op'>(</span><span class='va'>Murder</span>, <span class='va'>Rape</span><span class='op'>)</span> |&gt;
+  <span class='fu'>e_effect_scatter</span><span class='op'>(</span><span class='va'>Rape</span>, <span class='va'>Murder</span>, y_index <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_grid.html'>e_grid</a></span><span class='op'>(</span>index <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_tooltip.html'>e_tooltip</a></span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='va'>iris</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts_</a></span><span class='op'>(</span><span class='st'>"Sepal.Length"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>iris</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts_</a></span><span class='op'>(</span><span class='st'>"Sepal.Length"</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_scatter_</span><span class='op'>(</span>
     <span class='st'>"Sepal.Width"</span>,
     symbol_size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>8</span>, <span class='fl'>2</span><span class='op'>)</span>,
     symbol <span class='op'>=</span> <span class='st'>"rect"</span>
-  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_axis.html'>e_x_axis</a></span><span class='op'>(</span>min <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
 
-<span class='va'>quakes</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>long</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>quakes</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>long</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_geo.html'>e_geo</a></span><span class='op'>(</span>
     roam <span class='op'>=</span> <span class='cn'>TRUE</span>,
     boundingCoords <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
       <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>185</span>, <span class='op'>-</span><span class='fl'>10</span><span class='op'>)</span>,
       <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>165</span>, <span class='op'>-</span><span class='fl'>40</span><span class='op'>)</span>
     <span class='op'>)</span>
-  <span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_scatter</span><span class='op'>(</span><span class='va'>lat</span>, <span class='va'>mag</span>, coord_system <span class='op'>=</span> <span class='st'>"geo"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='op'>)</span> |&gt;
+  <span class='fu'>e_scatter</span><span class='op'>(</span><span class='va'>lat</span>, <span class='va'>mag</span>, coord_system <span class='op'>=</span> <span class='st'>"geo"</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span><span class='op'>(</span>min <span class='op'>=</span> <span class='fl'>4</span>, max <span class='op'>=</span> <span class='fl'>6.5</span><span class='op'>)</span>
 
 <span class='co'># timeline</span>
-<span class='va'>iris</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Species</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>Petal.Width</span>, timeline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_scatter</span><span class='op'>(</span><span class='va'>Sepal.Width</span>, <span class='va'>Sepal.Length</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>iris</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Species</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>Petal.Width</span>, timeline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> |&gt;
+  <span class='fu'>e_scatter</span><span class='op'>(</span><span class='va'>Sepal.Width</span>, <span class='va'>Sepal.Length</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_tooltip.html'>e_tooltip</a></span><span class='op'>(</span>trigger <span class='op'>=</span> <span class='st'>"axis"</span><span class='op'>)</span>
-</pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

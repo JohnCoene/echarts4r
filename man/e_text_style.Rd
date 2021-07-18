@@ -19,10 +19,10 @@ Define global font style.
 Do not use \code{e_arrange} in R markdown or Shiny.
 }
 \examples{
-cars \%>\%
-  e_charts(dist) \%>\%
-  e_scatter(speed) \%>\%
-  e_labels() \%>\%
+cars |>
+  e_charts(dist) |>
+  e_scatter(speed) |>
+  e_labels() |>
   e_text_style(
     color = "blue",
     fontStyle = "italic"

@@ -22,15 +22,15 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Customise the legend.
 }
 \examples{
-e <- cars \%>\%
-  e_charts(speed) \%>\%
+e <- cars |>
+  e_charts(speed) |>
   e_scatter(dist, symbol_size = 5)
 
 # with legend
 e
 
 # without legend
-e \%>\%
+e |>
   e_legend(show = FALSE)
 
 # with icon
@@ -42,7 +42,7 @@ path <- paste0(
   "-2.724L11.344,5.71z"
 )
 
-e \%>\%
+e |>
   e_legend(
     icons = list(path)
   )

@@ -35,23 +35,23 @@ df <- data.frame(
   y = runif(20, 1, 100) # percentages
 )
 
-df %>% 
-  e_charts(x) %>% 
-  e_line(y) %>% 
-  e_format_x_axis(suffix = "°C") %>% 
+df |> 
+  e_charts(x) |> 
+  e_line(y) |> 
+  e_format_x_axis(suffix = "°C") |> 
   e_legend(FALSE)
 ```
 
 Since version `0.2.1` you can also easily format the axis to decimal, percentages or currencies thanks to contribution from [Artem Klevtsov](https://github.com/artemklevtsov).
 
 ```{r}
-df %>% 
-  dplyr::mutate(y = y / 100) %>% 
-  e_charts(x) %>% 
-  e_line(y, legend = FALSE) %>% 
+df |> 
+  dplyr::mutate(y = y / 100) |> 
+  e_charts(x) |> 
+  e_line(y, legend = FALSE) |> 
   e_x_axis(
     formatter = e_axis_formatter("currency", currency = "GBP")
-  ) %>% 
+  ) |> 
   e_y_axis(
     formatter = e_axis_formatter("decimal", digits = 3)
   )
@@ -70,9 +70,9 @@ df <- data.frame(
   z = runif(20, 25, 75)
 )
 
-df %>% 
-  e_charts(x) %>% 
-  e_line(w) %>% 
+df |> 
+  e_charts(x) |> 
+  e_line(w) |> 
   e_line(z)
 ```
 
@@ -83,9 +83,9 @@ First two plots on the same canvas means multiple axis, so we'll plot each serie
 `echarts4r` is an R API to a JavaScript library, so arrays start at one; `x` and `y` indices default to 0 so we only need to change one of the series' indices to 1. Therefore one serie is plotted on index 0 and the other on index 1 for two `x`and `y` axis.
 
 ```{r}
-df %>% 
-  e_charts(x) %>% 
-  e_line(w) %>% 
+df |> 
+  e_charts(x) |> 
+  e_line(w) |> 
   e_line(z, x_index = 1, y_index = 1)
 ```
 
@@ -94,11 +94,11 @@ Notice how `echarts4r` puts the additional axis on the top and right of the plot
 We use `e_grid` twice for two grids, we define the height of each; `35%` is ideal for stacked grids, you need some margin for the legend, the axis, etc. hence not using `50%`. 
 
 ```{r}
-df %>% 
-  e_charts(x) %>% 
-  e_line(w) %>% 
-  e_line(z, x_index = 1, y_index = 1) %>% 
-  e_grid(height = "35%") %>% # two grids of 35% height
+df |> 
+  e_charts(x) |> 
+  e_line(w) |> 
+  e_line(z, x_index = 1, y_index = 1) |> 
+  e_grid(height = "35%") |> # two grids of 35% height
   e_grid(height = "35%", top = "50%") # this grid is 50% from the top
 ```
 
@@ -110,13 +110,13 @@ However, we still have both line plots on the same grid. Here is how to think ab
 So we have two grids and two axis but the axis are both plotted on the same grid(point #2 above). So we need to move our two additional axis to another grid. Note that grid indices also start at 0 here.
 
 ```{r}
-df %>% 
-  e_charts(x) %>% 
-  e_line(w) %>% 
-  e_line(z, x_index = 1, y_index = 1) %>% 
-  e_grid(height = "35%") %>% 
-  e_grid(height = "35%", top = "50%") %>% 
-  e_y_axis(gridIndex = 1) %>% # put x and y on grid index 1
+df |> 
+  e_charts(x) |> 
+  e_line(w) |> 
+  e_line(z, x_index = 1, y_index = 1) |> 
+  e_grid(height = "35%") |> 
+  e_grid(height = "35%", top = "50%") |> 
+  e_y_axis(gridIndex = 1) |> # put x and y on grid index 1
   e_x_axis(gridIndex = 1)
 ```
 
@@ -125,13 +125,13 @@ There you go!
 You can also have a different grid to put the plots side by side.
 
 ```{r}
-df %>% 
-  e_charts(x) %>% 
-  e_line(w) %>% 
-  e_line(z, x_index = 1, y_index = 1) %>% 
-  e_grid(width = "35%") %>% 
-  e_grid(width = "35%", left = "55%") %>% 
-  e_y_axis(gridIndex = 1) %>% # put x and y on grid index 1
+df |> 
+  e_charts(x) |> 
+  e_line(w) |> 
+  e_line(z, x_index = 1, y_index = 1) |> 
+  e_grid(width = "35%") |> 
+  e_grid(width = "35%", left = "55%") |> 
+  e_y_axis(gridIndex = 1) |> # put x and y on grid index 1
   e_x_axis(gridIndex = 1)
 ```
 
@@ -140,15 +140,15 @@ df %>%
 Well now those charts can share interactions.
 
 ```{r}
-df %>% 
-  e_charts(x) %>% 
-  e_line(w) %>% 
-  e_line(z, x_index = 1, y_index = 1) %>% 
-  e_grid(height = "35%") %>% 
-  e_grid(height = "35%", top = "50%") %>% 
-  e_y_axis(gridIndex = 1) %>% 
-  e_x_axis(gridIndex = 1) %>% 
-  e_tooltip(trigger = "axis") %>% 
+df |> 
+  e_charts(x) |> 
+  e_line(w) |> 
+  e_line(z, x_index = 1, y_index = 1) |> 
+  e_grid(height = "35%") |> 
+  e_grid(height = "35%", top = "50%") |> 
+  e_y_axis(gridIndex = 1) |> 
+  e_x_axis(gridIndex = 1) |> 
+  e_tooltip(trigger = "axis") |> 
   e_datazoom(x_index = c(0, 1)) # add data zoom for for x axis
 ```
 
@@ -163,41 +163,41 @@ df <- data.frame(
   z = runif(10, 5, 20)
 )
 
-df %>% 
-  e_charts(x) %>% 
+df |> 
+  e_charts(x) |> 
   e_bar(y)
 ```
 
 to a polar chart.
 
 ```{r}
-df %>% 
-  e_charts(x) %>% 
-  e_polar() %>% 
-  e_angle_axis(x) %>% # angle = x
-  e_radius_axis() %>% 
+df |> 
+  e_charts(x) |> 
+  e_polar() |> 
+  e_angle_axis(x) |> # angle = x
+  e_radius_axis() |> 
   e_bar(y, coord_system = "polar")
 ```
 
 or a radial chart one.
 
 ```{r}
-df %>% 
-  e_charts(x) %>% 
-  e_polar() %>% 
-  e_angle_axis() %>% 
-  e_radius_axis(x) %>% # radius = x 
+df |> 
+  e_charts(x) |> 
+  e_polar() |> 
+  e_angle_axis() |> 
+  e_radius_axis(x) |> # radius = x 
   e_bar(y, coord_system = "polar")
 ```
 
 This will also work with other chart types.
 
 ```{r}
-df %>% 
-  e_charts(x) %>% 
-  e_polar() %>% 
-  e_angle_axis() %>% 
-  e_radius_axis(x) %>% 
-  e_line(y, coord_system = "polar") %>% 
+df |> 
+  e_charts(x) |> 
+  e_polar() |> 
+  e_angle_axis() |> 
+  e_radius_axis(x) |> 
+  e_line(y, coord_system = "polar") |> 
   e_scatter(z, coord_system = "polar")
 ```

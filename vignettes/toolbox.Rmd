@@ -36,23 +36,23 @@ The toolbox allows you to add neat little interactive functions to your plots.
 ## Save plot
 
 ```{r}
-mtcars %>% 
-  e_charts(qsec) %>% 
+mtcars |> 
+  e_charts(qsec) |> 
   e_line(mpg, smooth = TRUE) -> echart
 
-echart %>% e_toolbox_feature(feature = "saveAsImage") # hit the download button!
+echart |> e_toolbox_feature(feature = "saveAsImage") # hit the download button!
 ```
 
 ## data Zoom
 
 ```{r}
-echart %>% e_toolbox_feature(feature = "dataZoom")
+echart |> e_toolbox_feature(feature = "dataZoom")
 ```
 
 ## data view
 
 ```{r}
-echart %>% e_toolbox_feature(feature = "dataView")
+echart |> e_toolbox_feature(feature = "dataView")
 ```
 
 See the [official documentation](https://echarts.apache.org/en/option.html#toolbox.feature) for the full list.

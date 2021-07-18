@@ -74,8 +74,8 @@ df <- tibble(
   )
 )
 
-df \%>\%
-  e_charts() \%>\%
+df |>
+  e_charts() |>
   e_treemap()
 }
 \seealso{

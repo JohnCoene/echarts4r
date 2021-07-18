@@ -33,9 +33,9 @@ choropleth <- data.frame(
   values = round(runif(9, 10, 25))
 )
 
-choropleth %>% 
-  e_charts(countries) %>% 
-  e_map_3d(values, shading = "lambert") %>% 
+choropleth |> 
+  e_charts(countries) |> 
+  e_map_3d(values, shading = "lambert") |> 
   e_visual_map(values) # scale to values
 ```
 
@@ -44,12 +44,12 @@ choropleth %>%
 ```{r}
 buildings <- jsonlite::read_json("https://echarts.apache.org/examples/data-gl/asset/data/buildings.json")
 
-heights <- purrr::map(buildings$features, "properties") %>% 
-  purrr::map("height") %>% 
+heights <- purrr::map(buildings$features, "properties") |> 
+  purrr::map("height") |> 
   unlist()
   
-names <- purrr::map(buildings$features, "properties") %>% 
-  purrr::map("name") %>% 
+names <- purrr::map(buildings$features, "properties") |> 
+  purrr::map("name") |> 
   unlist()
   
 data <- dplyr::tibble(
@@ -58,10 +58,10 @@ data <- dplyr::tibble(
   height = heights / 10
 )
 
-data %>% 
-  e_charts() %>% 
-  e_map_register("buildings", buildings) %>%
-  e_map_3d_custom(name, value, height) %>% 
+data |> 
+  e_charts() |> 
+  e_map_register("buildings", buildings) |>
+  e_map_3d_custom(name, value, height) |> 
   e_visual_map(
     show = FALSE,
     min = 0.4,
@@ -87,10 +87,10 @@ library(echarts4r.maps)
 
 USArrests$state <- row.names(USArrests) # add states as column
 
-USArrests %>% 
-  e_charts(state) %>%
-  em_map("USA") %>% 
-  e_map_3d(Murder, map = "USA") %>% 
+USArrests |> 
+  e_charts(state) |>
+  em_map("USA") |> 
+  e_map_3d(Murder, map = "USA") |> 
   e_visual_map(Murder)
 ```
 

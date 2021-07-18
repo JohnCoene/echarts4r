@@ -16,10 +16,10 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Restore Toolbox.
 }
 \examples{
-cars \%>\%
-  e_charts(speed) \%>\%
-  e_scatter(dist) \%>\%
-  e_datazoom() \%>\%
-  e_restore("btn") \%>\%
+cars |>
+  e_charts(speed) |>
+  e_scatter(dist) |>
+  e_datazoom() |>
+  e_restore("btn") |>
   e_button("btn", "Reset")
 }

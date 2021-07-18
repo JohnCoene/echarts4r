@@ -1,3 +1,13 @@
+# echarts4r 0.4.1
+
+- Apply mark to all series in timeline, fixes [#290](https://github.com/JohnCoene/echarts4r/issues/290)
+- Bump ECharts.js
+- Add `e_svg` family of functions to fix [#319](https://github.com/JohnCoene/echarts4r/issues/319)
+- Replaced magrittr pipe `%>%` to R native's `|>`.
+- Fix `e_map` when used with no data, map was not displayed
+- Fix `e_flip_coords` with boxplots (and other single column series) see [#336](https://github.com/JohnCoene/echarts4r/issues/336)
+- Fix `e_add` applied to timeline, see [338](https://github.com/JohnCoene/echarts4r/issues/338)
+
 # echarts4r 0.4.0
 
 - Bump ECharts.js updated from version 4 to 5.

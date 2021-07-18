@@ -29,31 +29,31 @@ Since version `0.1.2` you can connect multiple two charts together which might m
 You can link charts together in two different ways, one with `e_connect` by refering other charts's id (`elementId`)
 
 ```{r}
-e1 <- mtcars %>% 
+e1 <- mtcars |> 
   e_charts(
     mpg,
     height = 200,
     elementId = "chart1" # specify id
-  ) %>% 
-  e_scatter(wt) %>% 
+  ) |> 
+  e_scatter(wt) |> 
   e_datazoom(show = FALSE) # hide
 
-e2 <- mtcars %>% 
+e2 <- mtcars |> 
   e_charts(
     wt,
     height = 200,
     elementId = "chart2" # specify id
-  ) %>% 
-  e_scatter(qsec) %>% 
+  ) |> 
+  e_scatter(qsec) |> 
   e_datazoom(show = FALSE) # hide
   
-e3 <- mtcars %>% 
+e3 <- mtcars |> 
   e_charts(
     qsec,
     height = 200
-  ) %>% 
-  e_scatter(hp) %>% 
-  e_datazoom() %>% 
+  ) |> 
+  e_scatter(hp) |> 
+  e_datazoom() |> 
   e_connect(c("chart1", "chart2")) # connect
 ```
 
@@ -67,18 +67,18 @@ The package natively links interactions, therefore, in the following the legend 
 
 ```{r}
 create_chart <- function(data, var){
-  data %>% 
+  data |> 
     e_charts_(
         "mpg",
         height = 200
-    ) %>% 
-    e_scatter_(var, name = "Click me!") %>% 
+    ) |> 
+    e_scatter_(var, name = "Click me!") |> 
     e_group("4charts") # all charts in the same group
 }
 e4 <- create_chart(mtcars, "hp")
 e5 <- create_chart(mtcars, "wt")
 e6 <- create_chart(mtcars, "drat")
-e7 <- create_chart(mtcars, "qsec") %>% 
+e7 <- create_chart(mtcars, "qsec") |> 
   e_connect_group("4charts") # connect charts
 
 e_arrange(e4, e5, e6, e7, rows = 2, cols = 2)
@@ -91,10 +91,10 @@ library(echarts4r.maps)
 
 USArrests$state <- row.names(USArrests)
 
-e8 <- USArrests %>% 
-  e_charts(state, elementId = "US") %>%
-  em_map("USA") %>% 
-  e_map_3d(Murder, map = "USA", name = "Murder", boxWidth = 70) %>% 
+e8 <- USArrests |> 
+  e_charts(state, elementId = "US") |>
+  em_map("USA") |> 
+  e_map_3d(Murder, map = "USA", name = "Murder", boxWidth = 70) |> 
   e_visual_map(Murder)
 
 # this is made up
@@ -103,11 +103,11 @@ UK <- data.frame(
   murder = c(.8, 5, 13.2, 17.4)
 )
 
-e9 <- UK %>% 
-  e_charts(kingdoms) %>%
-  em_map("United_Kingdom") %>% 
-  e_map_3d(murder, map = "United_Kingdom", name = "Murder", boxWidth = 50) %>% 
-  e_visual_map(murder, show = FALSE) %>% 
+e9 <- UK |> 
+  e_charts(kingdoms) |>
+  em_map("United_Kingdom") |> 
+  e_map_3d(murder, map = "United_Kingdom", name = "Murder", boxWidth = 50) |> 
+  e_visual_map(murder, show = FALSE) |> 
   e_connect("US")
 
 e_arrange(e8, e9, cols = 2, rows = 1)
@@ -136,25 +136,25 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   
   output$plot1 <- renderEcharts4r({
-    cars %>% 
+    cars |> 
       e_charts(
         speed,
         height = 200
-      ) %>% 
-      e_scatter(dist, name = "legend") %>% 
-      e_datazoom(show = FALSE, y_index = 0) %>% 
+      ) |> 
+      e_scatter(dist, name = "legend") |> 
+      e_datazoom(show = FALSE, y_index = 0) |> 
       e_group("grp")
   })
   
   output$plot2 <- renderEcharts4r({
-    cars %>% 
+    cars |> 
       e_charts(
         dist,
         height = 200
-      ) %>% 
-      e_scatter(speed, name = "legend") %>% 
-      e_datazoom(y_index = 0) %>% 
-      e_group("grp") %>%  # assign group
+      ) |> 
+      e_scatter(speed, name = "legend") |> 
+      e_datazoom(y_index = 0) |> 
+      e_group("grp") |>  # assign group
       e_connect_group("grp")
   })
   

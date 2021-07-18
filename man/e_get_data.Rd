@@ -17,9 +17,9 @@ A list of data.frames, one for each group.
 Get data passed to \code{\link{e_charts}}.
 }
 \examples{
-echart <- cars \%>\%
-  e_charts(speed) \%>\%
-  e_scatter(dist) \%>\%
+echart <- cars |>
+  e_charts(speed) |>
+  e_scatter(dist) |>
   e_lm(dist ~ speed)
 
 echart

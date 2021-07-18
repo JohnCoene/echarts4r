@@ -52,14 +52,14 @@ e_facet <- function(e, rows = 1, cols = 1) {
       left <- "5%"
     }
 
-    e <- e %>%
+    e <- e |>
       e_grid(
         height = paste0(height, "%"),
         width = paste0(width, "%"),
         top = top,
         left = left
-      ) %>%
-      e_y_axis(gridIndex = i - 1, index = i) %>%
+      ) |>
+      e_y_axis(gridIndex = i - 1, index = i) |>
       e_x_axis(gridIndex = i - 1, index = i)
   }
 

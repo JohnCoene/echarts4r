@@ -27,14 +27,14 @@ e_common(
 ```{r}
 data <- jsonlite::fromJSON("https://echarts.apache.org/examples/data/asset/data/confidence-band.json")
 
-data %>% 
+data |> 
   dplyr::mutate(
     date = as.Date(date, "%Y-%m-%d"),
     l = l + value,
     u = u - value
-  ) %>% 
-  e_charts(date) %>% 
-  e_line(value, symbol = "none") %>% 
+  ) |> 
+  e_charts(date) |> 
+  e_line(value, symbol = "none") |> 
   e_band(
     l, u, 
     areaStyle = list(list(color = "grey"), list(color = "grey"))
@@ -45,22 +45,22 @@ data %>%
 
 ```{r}
 data(EuStockMarkets)
-as.data.frame(EuStockMarkets) %>% dplyr::slice_head(n=200) %>%
-  dplyr::mutate(day=1:dplyr::n()) %>%
-  e_charts(day) %>%
-  e_line(CAC, symbol='none') %>%
-  e_band2(DAX, FTSE, color='lemonchiffon') %>% 
-  e_band2(DAX, SMI, color='lightblue', itemStyle=list(borderWidth=0)) %>%
-  e_y_axis(scale=TRUE) %>%
+as.data.frame(EuStockMarkets) |> dplyr::slice_head(n=200) |>
+  dplyr::mutate(day=1:dplyr::n()) |>
+  e_charts(day) |>
+  e_line(CAC, symbol='none') |>
+  e_band2(DAX, FTSE, color='lemonchiffon') |> 
+  e_band2(DAX, SMI, color='lightblue', itemStyle=list(borderWidth=0)) |>
+  e_y_axis(scale=TRUE) |>
   e_datazoom(start = 50) 
 ```
 
 ## Correlation Matrix
 
 ```{r}
-cor(mtcars) %>% 
-  e_charts() %>% 
-  e_correlations(order = "hclust") %>% 
+cor(mtcars) |> 
+  e_charts() |> 
+  e_correlations(order = "hclust") |> 
   e_tooltip()
 ```
 
@@ -74,9 +74,9 @@ df <- data.frame(
   lower = c(0.8, 4.3)
 )
 
-df %>% 
-  e_charts(x) %>% 
-  e_bar(y) %>% 
+df |> 
+  e_charts(x) |> 
+  e_bar(y) |> 
   e_error_bar(lower, upper)
 ```
 
@@ -96,9 +96,9 @@ df <- data.frame(
   )
 )
 
-df %>% 
-  group_by(grp) %>% 
-  e_charts() %>% 
+df |> 
+  group_by(grp) |> 
+  e_charts() |> 
   e_boxplot(x)
 ```
 
@@ -111,9 +111,9 @@ df <- data.frame(
   y = rnorm(100, 20, 12)
 )
 
-df %>% 
-  e_charts() %>% 
-  e_histogram(y) %>% 
+df |> 
+  e_charts() |> 
+  e_histogram(y) |> 
   e_tooltip()
 ```
 
@@ -122,30 +122,30 @@ df %>%
 Plot the density on a different Y axis as its range differs much from the that of the histogram.
 
 ```{r}
-df %>%
-  e_charts() %>% 
-  e_histogram(y) %>% 
+df |>
+  e_charts() |> 
+  e_histogram(y) |> 
   e_density(y, name = "density", areaStyle = list(opacity = .4), 
-            smooth = TRUE, y_index = 1) %>% 
+            smooth = TRUE, y_index = 1) |> 
   e_tooltip()
 ```
 
 ## Linear
 
 ```{r}
-iris %>% 
-  group_by(Species) %>% 
-  e_charts(Sepal.Length) %>% 
-  e_line(Sepal.Width) %>% 
-  e_lm(Sepal.Width ~ Sepal.Length) %>% 
+iris |> 
+  group_by(Species) |> 
+  e_charts(Sepal.Length) |> 
+  e_line(Sepal.Width) |> 
+  e_lm(Sepal.Width ~ Sepal.Length) |> 
   e_x_axis(min = 4)
 ```
 
 ## Polynomial
 
 ```{r}
-mtcars %>% 
-  e_charts(disp) %>% 
-  e_scatter(mpg, qsec) %>% 
+mtcars |> 
+  e_charts(disp) |> 
+  e_scatter(mpg, qsec) |> 
   e_loess(mpg ~ disp)
 ```

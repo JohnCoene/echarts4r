@@ -31,12 +31,12 @@ data <- jsonlite::fromJSON(url)
 data <- as.data.frame(data)
 names(data) <- c("lon", "lat", "value")
 
-data \%>\%
-  e_charts(lon) \%>\%
+data |>
+  e_charts(lon) |>
   e_globe(
     displacementScale = 0.04
-  ) \%>\%
-  e_bar_3d(lat, value, "globe") \%>\%
+  ) |>
+  e_bar_3d(lat, value, "globe") |>
   e_visual_map(show = FALSE)
 }
 

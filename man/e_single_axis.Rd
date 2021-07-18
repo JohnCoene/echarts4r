@@ -24,9 +24,9 @@ df <- data.frame(
   size = runif(10, 3, 20)
 )
 
-df \%>\%
-  e_charts(axis) \%>\%
-  e_single_axis() \%>\% # add the single axis
+df |>
+  e_charts(axis) |>
+  e_single_axis() |> # add the single axis
   e_scatter(
     value,
     size,

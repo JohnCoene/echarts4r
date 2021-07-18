@@ -48,22 +48,22 @@ between 1 and 20 for that makes for decent sized points on the chart.
 
 \examples{
 # scaled data
-mtcars \%>\%
-  e_charts(mpg) \%>\%
-  e_scatter(wt, qsec, scale = e_scale) \%>\%
+mtcars |>
+  e_charts(mpg) |>
+  e_scatter(wt, qsec, scale = e_scale) |>
   e_visual_map(qsec, scale = e_scale)
 
 # dimension
 # color according to y axis
-mtcars \%>\%
-  e_charts(mpg) \%>\%
-  e_scatter(wt) \%>\%
+mtcars |>
+  e_charts(mpg) |>
+  e_scatter(wt) |>
   e_visual_map(wt, dimension = 1)
 
 # color according to x axis
-mtcars \%>\%
-  e_charts(mpg) \%>\%
-  e_scatter(wt) \%>\%
+mtcars |>
+  e_charts(mpg) |>
+  e_scatter(wt) |>
   e_visual_map(mpg, dimension = 0)
 
 v <- LETTERS[1:10]
@@ -74,25 +74,25 @@ matrix <- data.frame(
   color = rnorm(300, 10, 1),
   size = rnorm(300, 10, 1),
   stringsAsFactors = FALSE
-) \%>\%
-  dplyr::group_by(x, y) \%>\%
+) |>
+  dplyr::group_by(x, y) |>
   dplyr::summarise(
     z = sum(z),
     color = sum(color),
     size = sum(size)
-  ) \%>\%
+  ) |>
   dplyr::ungroup()
 
-matrix \%>\%
-  e_charts(x) \%>\%
-  e_scatter_3d(y, z, color, size) \%>\%
+matrix |>
+  e_charts(x) |>
+  e_scatter_3d(y, z, color, size) |>
   e_visual_map(
     z,
     # scale to z
     inRange = list(symbolSize = c(1, 30)),
     # scale size
     dimension = 3 # third dimension 0 = x, y = 1, z = 2, size = 3
-  ) \%>\%
+  ) |>
   e_visual_map(
     z,
     # scale to z

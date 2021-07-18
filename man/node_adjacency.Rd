@@ -67,14 +67,14 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   output$graph <- renderEcharts4r({
-    e_charts() \%>\%
-      e_graph() \%>\%
-      e_graph_nodes(nodes, name, value, size, grp) \%>\%
+    e_charts() |>
+      e_graph() |>
+      e_graph_nodes(nodes, name, value, size, grp) |>
       e_graph_edges(edges, source, target)
   })
 
   observeEvent(input$focus, {
-    echarts4rProxy("graph") \%>\%
+    echarts4rProxy("graph") |>
       e_focus_adjacency_p(
         seriesIndex = 0,
         index = input$index
@@ -82,7 +82,7 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$unfocus, {
-    echarts4rProxy("graph") \%>\%
+    echarts4rProxy("graph") |>
       e_unfocus_adjacency_p(seriesIndex = 0)
   })
 }

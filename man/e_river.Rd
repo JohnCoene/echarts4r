@@ -28,7 +28,7 @@ Build a theme river.
 }
 \examples{
 dates <- seq.Date(Sys.Date() - 30, Sys.Date(), by = "day")
-grps <- lapply(LETTERS[1:3], rep, 31) \%>\% unlist()
+grps <- lapply(LETTERS[1:3], rep, 31) |> unlist()
 
 df <- data.frame(
   dates = rep(dates, 3),
@@ -36,10 +36,10 @@ df <- data.frame(
   values = runif(length(grps), 1, 50)
 )
 
-df \%>\%
-  group_by(groups) \%>\%
-  e_charts(dates) \%>\%
-  e_river(values) \%>\%
+df |>
+  group_by(groups) |>
+  e_charts(dates) |>
+  e_river(values) |>
   e_tooltip(trigger = "axis")
 }
 \seealso{

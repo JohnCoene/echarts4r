@@ -33,12 +33,12 @@ words <- function(n = 5000) {
 tf <- data.frame(
   terms = words(100),
   freq = rnorm(100, 55, 10)
-) \%>\%
+) |>
   dplyr::arrange(-freq)
 
-tf \%>\%
-  e_color_range(freq, color) \%>\%
-  e_charts() \%>\%
+tf |>
+  e_color_range(freq, color) |>
+  e_charts() |>
   e_cloud(terms, freq, color, shape = "circle", sizeRange = c(3, 15))
 }
 \seealso{

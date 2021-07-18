@@ -34,12 +34,12 @@ df <- data.frame(
   z = y - rnorm(10, 5, 1)
 )
 
-df %>% 
-  e_charts(x) %>% 
-  e_bar(z, barWidth = 10) %>% 
+df |> 
+  e_charts(x) |> 
+  e_bar(z, barWidth = 10) |> 
   e_pictorial(y, symbol = "rect", symbolRepeat = TRUE, z = -1,
-    symbolSize = c(10, 4)) %>% 
-  e_theme("westeros") %>% 
+    symbolSize = c(10, 4)) |> 
+  e_theme("westeros") |> 
   e_title("Built-in symbols")
 ```
 
@@ -50,14 +50,14 @@ df %>%
 ```{r}
 library(echarts4r.assets)
 
-mtcars %>% 
-  e_charts(mpg) %>% 
+mtcars |> 
+  e_charts(mpg) |> 
   e_scatter(
     wt, 
     qsec,
     symbol = ea_icons("trash"),
     name = "Trash"
-  ) %>% 
+  ) |> 
   e_legend(icons = ea_icons("trash"))
 ```
 
@@ -71,11 +71,11 @@ style <- list(
   emphasis = list(opacity = 1) # on hover
 )
 
-df %>% 
-  e_charts(x) %>% 
+df |> 
+  e_charts(x) |> 
   e_pictorial(y, symbol = path, 
               barCategoryGap = "-130%", 
-              itemStyle = style) %>% 
+              itemStyle = style) |> 
   e_title("SVG path")
 ```
 
@@ -99,9 +99,9 @@ data <- data.frame(
     paste0("image://", kili))
 )
 
-data %>% 
-  e_charts(x) %>% 
-  e_pictorial(value, symbol) %>% 
-  e_legend(FALSE) %>% 
+data |> 
+  e_charts(x) |> 
+  e_pictorial(value, symbol) |> 
+  e_legend(FALSE) |> 
   e_title("Images", "Mountains height")
 ```

@@ -12,22 +12,22 @@
 #'
 #' @examples
 #' # scaled data
-#' mtcars %>%
-#'   e_charts(mpg) %>%
-#'   e_scatter(wt, qsec, scale = e_scale) %>%
+#' mtcars |>
+#'   e_charts(mpg) |>
+#'   e_scatter(wt, qsec, scale = e_scale) |>
 #'   e_visual_map(qsec, scale = e_scale)
 #'
 #' # dimension
 #' # color according to y axis
-#' mtcars %>%
-#'   e_charts(mpg) %>%
-#'   e_scatter(wt) %>%
+#' mtcars |>
+#'   e_charts(mpg) |>
+#'   e_scatter(wt) |>
 #'   e_visual_map(wt, dimension = 1)
 #'
 #' # color according to x axis
-#' mtcars %>%
-#'   e_charts(mpg) %>%
-#'   e_scatter(wt) %>%
+#' mtcars |>
+#'   e_charts(mpg) |>
+#'   e_scatter(wt) |>
 #'   e_visual_map(mpg, dimension = 0)
 #'
 #' v <- LETTERS[1:10]
@@ -38,25 +38,25 @@
 #'   color = rnorm(300, 10, 1),
 #'   size = rnorm(300, 10, 1),
 #'   stringsAsFactors = FALSE
-#' ) %>%
-#'   dplyr::group_by(x, y) %>%
+#' ) |>
+#'   dplyr::group_by(x, y) |>
 #'   dplyr::summarise(
 #'     z = sum(z),
 #'     color = sum(color),
 #'     size = sum(size)
-#'   ) %>%
+#'   ) |>
 #'   dplyr::ungroup()
 #'
-#' matrix %>%
-#'   e_charts(x) %>%
-#'   e_scatter_3d(y, z, color, size) %>%
+#' matrix |>
+#'   e_charts(x) |>
+#'   e_scatter_3d(y, z, color, size) |>
 #'   e_visual_map(
 #'     z,
 #'     # scale to z
 #'     inRange = list(symbolSize = c(1, 30)),
 #'     # scale size
 #'     dimension = 3 # third dimension 0 = x, y = 1, z = 2, size = 3
-#'   ) %>%
+#'   ) |>
 #'   e_visual_map(
 #'     z,
 #'     # scale to z
@@ -104,7 +104,7 @@ e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuo
     if (!is.null(scale)) {
       dat <- scale(dat)
     }
-    rng <- range(dat, na.rm = TRUE) %>% .get_validate_range()
+    rng <- range(dat, na.rm = TRUE) |> .get_validate_range()
     vm$min <- rng$min
     vm$max <- rng$max
   }
@@ -142,26 +142,26 @@ e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuo
 #'
 #' @examples
 #' # basic
-#' USArrests %>%
-#'   e_charts(Assault) %>%
-#'   e_scatter(Murder) %>%
+#' USArrests |>
+#'   e_charts(Assault) |>
+#'   e_scatter(Murder) |>
 #'   e_tooltip()
 #'
 #' # formatter
-#' cars %>%
+#' cars |>
 #'   dplyr::mutate(
 #'     dist = dist / 120
-#'   ) %>%
-#'   e_charts(speed) %>%
-#'   e_scatter(dist, symbol_size = 5) %>%
+#'   ) |>
+#'   e_charts(speed) |>
+#'   e_scatter(dist, symbol_size = 5) |>
 #'   e_tooltip(
 #'     formatter = e_tooltip_item_formatter("percent")
 #'   )
 #'
 #' # axis pointer
-#' cars %>%
-#'   e_charts(speed) %>%
-#'   e_scatter(dist, symbol_size = 5) %>%
+#' cars |>
+#'   e_charts(speed) |>
+#'   e_scatter(dist, symbol_size = 5) |>
 #'   e_tooltip(
 #'     formatter = e_tooltip_pointer_formatter("currency"),
 #'     axisPointer = list(
@@ -348,15 +348,15 @@ e_tooltip_pointer_formatter <- function(
 #' @param icons A optional list of icons the same length as there are series, see example.
 #'
 #' @examples
-#' e <- cars %>%
-#'   e_charts(speed) %>%
+#' e <- cars |>
+#'   e_charts(speed) |>
 #'   e_scatter(dist, symbol_size = 5)
 #'
 #' # with legend
 #' e
 #'
 #' # without legend
-#' e %>%
+#' e |>
 #'   e_legend(show = FALSE)
 #'
 #' # with icon
@@ -368,7 +368,7 @@ e_tooltip_pointer_formatter <- function(
 #'   "-2.724L11.344,5.71z"
 #' )
 #'
-#' e %>%
+#' e |>
 #'   e_legend(
 #'     icons = list(path)
 #'   )
@@ -430,17 +430,17 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), icons = NULL, 
 #' }
 #'
 #' @examples
-#' USArrests %>%
-#'   e_charts(UrbanPop) %>%
-#'   e_line(Assault) %>%
-#'   e_area(Murder, y_index = 1, x_index = 1) %>%
+#' USArrests |>
+#'   e_charts(UrbanPop) |>
+#'   e_line(Assault) |>
+#'   e_area(Murder, y_index = 1, x_index = 1) |>
 #'   e_datazoom(x_index = 0)
 #'
-#' mtcars %>%
-#'   dplyr::mutate(model = row.names(.)) %>%
-#'   e_charts(model) %>%
-#'   e_line(qsec) %>%
-#'   e_toolbox() %>%
+#' mtcars |>
+#'   tibble::rownames_to_column("model") |> 
+#'   e_charts(model) |>
+#'   e_line(qsec) |>
+#'   e_toolbox() |>
 #'   e_toolbox_feature(
 #'     feature = "magicType",
 #'     type = list("line", "bar")
@@ -513,15 +513,15 @@ e_toolbox <- function(e, ...) {
 #' @param toolbox Whether to add the toolbox, \code{\link{e_toolbox_feature}}, (\code{e_toolbox_feature(e, "dataZoom")}).
 #'
 #' @examples
-#' USArrests %>%
-#'   e_charts(UrbanPop) %>%
-#'   e_line(Assault) %>%
-#'   e_area(Murder, y_index = 1, x_index = 1) %>%
-#'   e_y_axis(gridIndex = 1) %>%
-#'   e_x_axis(gridIndex = 1) %>%
-#'   e_grid(height = "35%") %>%
-#'   e_grid(height = "35%", top = "50%") %>%
-#'   e_toolbox_feature("dataZoom", title = list(zoom = "zoom", back = "back")) %>%
+#' USArrests |>
+#'   e_charts(UrbanPop) |>
+#'   e_line(Assault) |>
+#'   e_area(Murder, y_index = 1, x_index = 1) |>
+#'   e_y_axis(gridIndex = 1) |>
+#'   e_x_axis(gridIndex = 1) |>
+#'   e_grid(height = "35%") |>
+#'   e_grid(height = "35%", top = "50%") |>
+#'   e_toolbox_feature("dataZoom", title = list(zoom = "zoom", back = "back")) |>
 #'   e_datazoom(x_index = c(0, 1))
 #' @seealso \href{https://echarts.apache.org/en/option.html#dataZoom}{Additional arguments}
 #'
@@ -583,20 +583,20 @@ e_datazoom <- function(e, x_index = NULL, y_index = NULL, toolbox = TRUE, ...) {
 #' }
 #'
 #' @examples
-#' quakes %>%
-#'   e_charts(long) %>%
+#' quakes |>
+#'   e_charts(long) |>
 #'   e_geo(
 #'     boundingCoords = list(
 #'       c(190, -10),
 #'       c(180, -40)
 #'     )
-#'   ) %>%
-#'   e_scatter(lat, mag, stations, coord.system = "geo", name = "mag") %>%
-#'   e_data(quakes, depth) %>%
-#'   e_scatter(mag, mag, stations, name = "mag & depth") %>%
-#'   e_grid(right = 40, top = 100, width = "30%") %>%
-#'   e_y_axis(type = "value", name = "depth", min = 3.5) %>%
-#'   e_brush() %>%
+#'   ) |>
+#'   e_scatter(lat, mag, stations, coord.system = "geo", name = "mag") |>
+#'   e_data(quakes, depth) |>
+#'   e_scatter(mag, mag, stations, name = "mag & depth") |>
+#'   e_grid(right = 40, top = 100, width = "30%") |>
+#'   e_y_axis(type = "value", name = "depth", min = 3.5) |>
+#'   e_brush() |>
 #'   e_theme("dark")
 #' @seealso \href{https://echarts.apache.org/en/option.html#brush}{Additional arguments}
 #'
@@ -652,11 +652,11 @@ e_brush <- function(e, x_index = NULL, y_index = NULL, brush_link = "all", ...) 
 #' @param link,sublink Title and Subtitle link.
 #'
 #' @examples
-#' quakes %>%
-#'   dplyr::mutate(mag = exp(mag) / 60) %>%
-#'   e_charts(stations) %>%
-#'   e_scatter(depth, mag) %>%
-#'   e_visual_map(min = 3, max = 7) %>%
+#' quakes |>
+#'   dplyr::mutate(mag = exp(mag) / 60) |>
+#'   e_charts(stations) |>
+#'   e_scatter(depth, mag) |>
+#'   e_visual_map(min = 3, max = 7) |>
 #'   e_title("Quakes", "Stations and Magnitude")
 #' @seealso \href{https://echarts.apache.org/en/option.html#title}{Additional arguments}
 #'
@@ -691,11 +691,11 @@ e_title <- function(e, text = NULL, subtext = NULL, link = NULL, sublink = NULL,
 #' @examples
 #' df <- data.frame(x = 1:10, y = seq(1, 20, by = 2))
 #'
-#' df %>%
-#'   e_charts(x) %>%
-#'   e_polar() %>%
-#'   e_angle_axis() %>%
-#'   e_radius_axis() %>%
+#' df |>
+#'   e_charts(x) |>
+#'   e_polar() |>
+#'   e_angle_axis() |>
+#'   e_radius_axis() |>
 #'   e_line(y, coord.system = "polar", smooth = TRUE)
 #' @seealso \href{https://echarts.apache.org/en/option.html#polar}{Additional arguments}
 #'
@@ -760,9 +760,9 @@ e_axis_pointer <- function(e, ...) {
 #'
 #'
 #' @examples
-#' mtcars %>%
-#'   e_charts(mpg) %>%
-#'   e_area(drat) %>%
+#' mtcars |>
+#'   e_charts(mpg) |>
+#'   e_area(drat) |>
 #'   e_animation(duration = 10000)
 #' @seealso \href{https://echarts.apache.org/en/option.html#animation}{Additional arguments}
 #'
@@ -831,9 +831,9 @@ e_utc <- function(e) {
 #'   z = runif(5, 3, 10)
 #' )
 #'
-#' df %>%
-#'   e_charts(x) %>%
-#'   e_bar(y) %>%
+#' df |>
+#'   e_charts(x) |>
+#'   e_bar(y) |>
 #'   e_line(z) -> plot
 #'
 #' plot # normal
@@ -850,8 +850,10 @@ e_flip_coords <- function(e) {
 
     for (i in seq_along(e$x$opts$series)) {
       for (j in 1:length(e$x$opts$series[[i]]$data)) {
-        vals <- e$x$opts$series[[i]]$data[[j]]$value
-        e$x$opts$series[[i]]$data[[j]]$value <- rev(vals)
+        try({
+          vals <- e$x$opts$series[[i]]$data[[j]]$value
+          e$x$opts$series[[i]]$data[[j]]$value <- rev(vals)
+        }, silent = TRUE)
       }
     }
   } else {
@@ -865,8 +867,10 @@ e_flip_coords <- function(e) {
     for (i in 1:length(e$x$opts$options)) {
       for (j in 1:length(e$x$opts$options[[i]]$series)) {
         for (k in 1:length(e$x$opts$options[[i]]$series[[j]]$data)) {
-          vals <- e$x$opts$options[[i]]$series[[j]]$data[[k]]$value
-          e$x$opts$options[[i]]$series[[j]]$data[[k]]$value <- rev(vals)
+          try({
+            vals <- e$x$opts$options[[i]]$series[[j]]$data[[k]]$value
+            e$x$opts$options[[i]]$series[[j]]$data[[k]]$value <- rev(vals)
+          }, silent = TRUE)
         }
       }
     }
@@ -886,10 +890,10 @@ e_flip_coords <- function(e) {
 #' @seealso \href{https://echarts.apache.org/en/option.html#textStyle}{official documentation}
 #'
 #' @examples
-#' cars %>%
-#'   e_charts(dist) %>%
-#'   e_scatter(speed) %>%
-#'   e_labels() %>%
+#' cars |>
+#'   e_charts(dist) |>
+#'   e_scatter(speed) |>
+#'   e_labels() |>
 #'   e_text_style(
 #'     color = "blue",
 #'     fontStyle = "italic"
@@ -931,23 +935,23 @@ e_text_style <- function(e, ...) {
 #'
 #' @examples
 #' # linked datazoom
-#' e1 <- cars %>%
+#' e1 <- cars |>
 #'   e_charts(
 #'     speed,
 #'     height = 200
-#'   ) %>%
-#'   e_scatter(dist) %>%
-#'   e_datazoom(show = FALSE) %>%
+#'   ) |>
+#'   e_scatter(dist) |>
+#'   e_datazoom(show = FALSE) |>
 #'   e_group("grp") # assign group
 #'
-#' e2 <- cars %>%
+#' e2 <- cars |>
 #'   e_charts(
 #'     dist,
 #'     height = 200
-#'   ) %>%
-#'   e_scatter(speed) %>%
-#'   e_datazoom() %>%
-#'   e_group("grp") %>% # assign group
+#'   ) |>
+#'   e_scatter(speed) |>
+#'   e_datazoom() |>
+#'   e_group("grp") |> # assign group
 #'   e_connect_group("grp") # connect
 #'
 #' if (interactive()) {

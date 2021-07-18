@@ -15,14 +15,12 @@
 #' @examples
 #' library(dplyr)
 #'
-#' mtcars %>%
-#'   mutate(
-#'     model = row.names(.),
-#'     total = mpg + qsec
-#'   ) %>%
-#'   arrange(desc(total)) %>%
-#'   e_charts(model) %>%
-#'   e_bar(mpg, stack = "grp") %>%
+#' mtcars |>
+#'   tibble::rownames_to_column("model") |> 
+#'   mutate(total = mpg + qsec) |>
+#'   arrange(desc(total)) |>
+#'   e_charts(model) |>
+#'   e_bar(mpg, stack = "grp") |>
 #'   e_bar(qsec, stack = "grp")
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-bar}{Additional arguments}
 #'
@@ -75,17 +73,17 @@ e_bar.echarts4rProxy <- function(e, serie, bind, name = NULL, legend = TRUE, y_i
 #' @param coord_system Coordinate system to plot against.
 #'
 #' @examples
-#' iris %>%
-#'   group_by(Species) %>%
-#'   e_charts(Sepal.Length) %>%
-#'   e_line(Sepal.Width) %>%
+#' iris |>
+#'   group_by(Species) |>
+#'   e_charts(Sepal.Length) |>
+#'   e_line(Sepal.Width) |>
 #'   e_tooltip(trigger = "axis")
 #'
 #' # timeline
-#' iris %>%
-#'   group_by(Species) %>%
-#'   e_charts(Sepal.Length, timeline = TRUE) %>%
-#'   e_line(Sepal.Width) %>%
+#' iris |>
+#'   group_by(Species) |>
+#'   e_charts(Sepal.Length, timeline = TRUE) |>
+#'   e_line(Sepal.Width) |>
 #'   e_tooltip(trigger = "axis")
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-line}{Additional arguments}
 #'
@@ -169,17 +167,17 @@ e_line.echarts4rProxy <- function(
 #' @inheritParams e_bar
 #'
 #' @examples
-#' CO2 %>%
-#'   group_by(Plant) %>%
-#'   e_charts(conc) %>%
-#'   e_area(uptake) %>%
+#' CO2 |>
+#'   group_by(Plant) |>
+#'   e_charts(conc) |>
+#'   e_area(uptake) |>
 #'   e_tooltip(trigger = "axis")
 #'
 #' # timeline
-#' iris %>%
-#'   group_by(Species) %>%
-#'   e_charts(Sepal.Length, timeline = TRUE) %>%
-#'   e_area(Sepal.Width) %>%
+#' iris |>
+#'   group_by(Species) |>
+#'   e_charts(Sepal.Length, timeline = TRUE) |>
+#'   e_area(Sepal.Width) |>
 #'   e_tooltip(trigger = "axis")
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-line}{Additional arguments}
 #'
@@ -265,19 +263,19 @@ e_area.echarts4rProxy <- function(
 #' @param fill Set to fill as area.
 #'
 #' @examples
-#' USArrests %>%
-#'   dplyr::mutate(State = row.names(.)) %>%
-#'   e_charts(State) %>%
-#'   e_step(Murder, name = "Start", step = "start", fill = TRUE) %>%
-#'   e_step(Rape, name = "Middle", step = "middle") %>%
-#'   e_step(Assault, name = "End", step = "end") %>%
+#' USArrests |>
+#'   tibble::rownames_to_column("State") |> 
+#'   e_charts(State) |>
+#'   e_step(Murder, name = "Start", step = "start", fill = TRUE) |>
+#'   e_step(Rape, name = "Middle", step = "middle") |>
+#'   e_step(Assault, name = "End", step = "end") |>
 #'   e_tooltip(trigger = "axis")
 #'
 #' # timeline
-#' iris %>%
-#'   group_by(Species) %>%
-#'   e_charts(Sepal.Length, timeline = TRUE) %>%
-#'   e_step(Sepal.Width) %>%
+#' iris |>
+#'   group_by(Species) |>
+#'   e_charts(Sepal.Length, timeline = TRUE) |>
+#'   e_step(Sepal.Width) |>
 #'   e_tooltip(trigger = "axis")
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-line}{Additional arguments}
 #'
@@ -386,72 +384,72 @@ e_step.echarts4rProxy <- function(
 #' # scaling
 #' e_scale(c(1, 1000))
 #'
-#' mtcars %>%
-#'   e_charts(mpg) %>%
+#' mtcars |>
+#'   e_charts(mpg) |>
 #'   e_scatter(wt, qsec)
 #'
 #' # custom function
 #' my_scale <- function(x) scales::rescale(x, to = c(2, 50))
 #'
-#' echart <- mtcars %>%
-#'   e_charts(mpg) %>%
+#' echart <- mtcars |>
+#'   e_charts(mpg) |>
 #'   e_scatter(wt, qsec, scale = my_scale)
 #'
 #' echart
 #'
 #' # rescale color too
-#' echart %>%
+#' echart |>
 #'   e_visual_map(wt, scale = my_scale)
 #'
 #' # or
-#' echart %>%
+#' echart |>
 #'   e_visual_map(min = 2, max = 50)
 #'
 #' # disable scaling
-#' mtcars %>%
-#'   e_charts(qsec) %>%
+#' mtcars |>
+#'   e_charts(qsec) |>
 #'   e_scatter(wt, mpg, scale = NULL)
 #'
 #' # jitter point
-#' mtcars %>%
-#'   e_charts(cyl) %>%
-#'   e_scatter(wt, symbol_size = 5) %>%
+#' mtcars |>
+#'   e_charts(cyl) |>
+#'   e_scatter(wt, symbol_size = 5) |>
 #'   e_scatter(wt, jitter_factor = 2, legend = FALSE)
 #'
 #' # examples
-#' USArrests %>%
-#'   e_charts(Assault) %>%
-#'   e_scatter(Murder, Rape) %>%
-#'   e_effect_scatter(Rape, Murder, y_index = 1) %>%
-#'   e_grid(index = c(0, 1)) %>%
+#' USArrests |>
+#'   e_charts(Assault) |>
+#'   e_scatter(Murder, Rape) |>
+#'   e_effect_scatter(Rape, Murder, y_index = 1) |>
+#'   e_grid(index = c(0, 1)) |>
 #'   e_tooltip()
 #'
-#' iris %>%
-#'   e_charts_("Sepal.Length") %>%
+#' iris |>
+#'   e_charts_("Sepal.Length") |>
 #'   e_scatter_(
 #'     "Sepal.Width",
 #'     symbol_size = c(8, 2),
 #'     symbol = "rect"
-#'   ) %>%
+#'   ) |>
 #'   e_x_axis(min = 4)
 #'
-#' quakes %>%
-#'   e_charts(long) %>%
+#' quakes |>
+#'   e_charts(long) |>
 #'   e_geo(
 #'     roam = TRUE,
 #'     boundingCoords = list(
 #'       c(185, -10),
 #'       c(165, -40)
 #'     )
-#'   ) %>%
-#'   e_scatter(lat, mag, coord_system = "geo") %>%
+#'   ) |>
+#'   e_scatter(lat, mag, coord_system = "geo") |>
 #'   e_visual_map(min = 4, max = 6.5)
 #'
 #' # timeline
-#' iris %>%
-#'   group_by(Species) %>%
-#'   e_charts(Petal.Width, timeline = TRUE) %>%
-#'   e_scatter(Sepal.Width, Sepal.Length) %>%
+#' iris |>
+#'   group_by(Species) |>
+#'   e_charts(Petal.Width, timeline = TRUE) |>
+#'   e_scatter(Sepal.Width, Sepal.Length) |>
 #'   e_tooltip(trigger = "axis")
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-scatter}{Additional arguments scatter},
 #'  \href{https://echarts.apache.org/en/option.html#series-effectScatter}{Additional arguments for effect scatter}
@@ -774,9 +772,9 @@ e_effect_scatter.echarts4rProxy <- function(
 #'   high = c(203.32, 200.67, 200.00, 203.95, 204.90, 208.44, 213.17)
 #' )
 #'
-#' stock %>%
-#'   e_charts(date) %>%
-#'   e_candle(opening, closing, low, high) %>%
+#' stock |>
+#'   e_charts(date) |>
+#'   e_candle(opening, closing, low, high) |>
 #'   e_y_axis(min = 190, max = 220)
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-candlestick}{Additional arguments}
 #'
@@ -856,10 +854,10 @@ e_candle.echarts4rProxy <- function(e, opening, closing, low, high, bind, name =
 #'   z = runif(5, 3, 7)
 #' )
 #'
-#' df %>%
-#'   e_charts(x) %>%
-#'   e_radar(y, max = 7) %>%
-#'   e_radar(z) %>%
+#' df |>
+#'   e_charts(x) |>
+#'   e_radar(y, max = 7) |>
+#'   e_radar(z) |>
 #'   e_tooltip(trigger = "item")
 #' @rdname e_radar
 #' @export
@@ -918,7 +916,7 @@ e_radar.echarts4rProxy <- function(
 
   serie <- deparse(substitute(serie))
 
-  e$chart <- e_radar_(e, serie, max, name, legend, rm_x, rm_y, ..., radar = radar)
+  e$chart <- e_radar_(e$chart, serie, max, name, legend, rm_x, rm_y, ..., radar = radar)
   return(e)
 }
 
@@ -941,8 +939,8 @@ e_radar.echarts4rProxy <- function(
 #'   value = c(80, 30, 20)
 #' )
 #'
-#' funnel %>%
-#'   e_charts() %>%
+#' funnel |>
+#'   e_charts() |>
 #'   e_funnel(value, stage)
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-funnel}{Additional arguments}
 #'
@@ -1008,8 +1006,8 @@ e_funnel.echarts4rProxy <- function(e, values, labels, name = NULL, legend = TRU
 #'   stringsAsFactors = FALSE
 #' )
 #'
-#' sankey %>%
-#'   e_charts() %>%
+#' sankey |>
+#'   e_charts() |>
 #'   e_sankey(source, target, value)
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-sankey}{Additional arguments}
 #'
@@ -1102,9 +1100,9 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #'   stringsAsFactors = FALSE
 #' )
 #'
-#' e_charts() %>%
-#'   e_graph() %>%
-#'   e_graph_nodes(nodes, name, value, size, grp, symbol) %>%
+#' e_charts() |>
+#'   e_graph() |>
+#'   e_graph_nodes(nodes, name, value, size, grp, symbol) |>
 #'   e_graph_edges(edges, source, target)
 #'
 #' # Use graphGL for larger networks
@@ -1122,9 +1120,9 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #'   stringsAsFactors = FALSE
 #' )
 #'
-#' e_charts() %>%
-#'   e_graph_gl() %>%
-#'   e_graph_nodes(nodes, name, value, size, grp) %>%
+#' e_charts() |>
+#'   e_graph_gl() |>
+#'   e_graph_nodes(nodes, name, value, size, grp) |>
 #'   e_graph_edges(edges, source, target)
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-graph}{Additional arguments},
 #'  \code{\link{e_modularity}}
@@ -1390,14 +1388,14 @@ e_graph_edges.echarts4rProxy <- function(e, edges, source, target) {
 #'   y = sample(v, 300, replace = TRUE),
 #'   z = rnorm(300, 10, 1),
 #'   stringsAsFactors = FALSE
-#' ) %>%
-#'   dplyr::group_by(x, y) %>%
-#'   dplyr::summarise(z = sum(z)) %>%
+#' ) |>
+#'   dplyr::group_by(x, y) |>
+#'   dplyr::summarise(z = sum(z)) |>
 #'   dplyr::ungroup()
 #'
-#' matrix %>%
-#'   e_charts(x) %>%
-#'   e_heatmap(y, z, itemStyle = list(emphasis = list(shadowBlur = 10))) %>%
+#' matrix |>
+#'   e_charts(x) |>
+#'   e_heatmap(y, z, itemStyle = list(emphasis = list(shadowBlur = 10))) |>
 #'   e_visual_map(z)
 #'
 #' # calendar
@@ -1406,38 +1404,38 @@ e_graph_edges.echarts4rProxy <- function(e, edges, source, target) {
 #'
 #' year <- data.frame(date = dates, values = values)
 #'
-#' year %>%
-#'   e_charts(date) %>%
-#'   e_calendar(range = "2018") %>%
-#'   e_heatmap(values, coord_system = "calendar") %>%
+#' year |>
+#'   e_charts(date) |>
+#'   e_calendar(range = "2018") |>
+#'   e_heatmap(values, coord_system = "calendar") |>
 #'   e_visual_map(max = 30)
 #'
 #' # calendar multiple years
-#' year %>%
-#'   dplyr::mutate(year = format(date, "%Y")) %>%
-#'   group_by(year) %>%
-#'   e_charts(date) %>%
-#'   e_calendar(range = "2017", top = 40) %>%
-#'   e_calendar(range = "2018", top = 260) %>%
-#'   e_heatmap(values, coord_system = "calendar") %>%
+#' year |>
+#'   dplyr::mutate(year = format(date, "%Y")) |>
+#'   group_by(year) |>
+#'   e_charts(date) |>
+#'   e_calendar(range = "2017", top = 40) |>
+#'   e_calendar(range = "2018", top = 260) |>
+#'   e_heatmap(values, coord_system = "calendar") |>
 #'   e_visual_map(max = 30)
 #'
 #' # map
-#' quakes %>%
-#'   e_charts(long) %>%
+#' quakes |>
+#'   e_charts(long) |>
 #'   e_geo(
 #'     boundingCoords = list(
 #'       c(190, -10),
 #'       c(180, -40)
 #'     )
-#'   ) %>%
+#'   ) |>
 #'   e_heatmap(
 #'     lat,
 #'     mag,
 #'     coord_system = "geo",
 #'     blurSize = 5,
 #'     pointSize = 3
-#'   ) %>%
+#'   ) |>
 #'   e_visual_map(mag)
 #'
 #' # timeline
@@ -1446,17 +1444,17 @@ e_graph_edges.echarts4rProxy <- function(e, edges, source, target) {
 #' axis <- LETTERS[1:10]
 #' df <- expand.grid(axis, axis)
 #'
-#' bind_rows(df, df) %>%
+#' bind_rows(df, df) |>
 #'   mutate(
 #'     values = runif(n(), 1, 10),
 #'     grp = c(
 #'       rep("A", 100),
 #'       rep("B", 100)
 #'     )
-#'   ) %>%
-#'   group_by(grp) %>%
-#'   e_charts(Var1, timeline = TRUE) %>%
-#'   e_heatmap(Var2, values) %>%
+#'   ) |>
+#'   group_by(grp) |>
+#'   e_charts(Var1, timeline = TRUE) |>
+#'   e_heatmap(Var2, values) |>
 #'   e_visual_map(values)
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-heatmap}{Additional arguments}
 #'
@@ -1560,8 +1558,8 @@ e_heatmap.echarts4rProxy <- function(
 #'   letter = LETTERS[1:5]
 #' )
 #'
-#' df %>%
-#'   e_charts() %>%
+#' df |>
+#'   e_charts() |>
 #'   e_parallel(price, amount, letter, opts = list(smooth = TRUE))
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-parallel}{Additional arguments}
 #'
@@ -1575,8 +1573,8 @@ e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, 
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
-  e$x$data[[1]] %>%
-    dplyr::select(...) -> df
+  df <- e$x$data[[1]] |>
+    dplyr::select(...)
 
   # remove names
   data <- df
@@ -1587,8 +1585,7 @@ e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, 
 
   # remove white spaces (ex: in " 1")
   data <- purrr::map(data, function(x) {
-    x %>%
-      gsub(" ", "", .) %>%
+    gsub(" ", "", x) |>
       as.list()
   })
 
@@ -1633,10 +1630,10 @@ e_parallel.echarts4rProxy <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = T
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #'
 #' @examples
-#' mtcars %>%
-#'   head() %>%
-#'   dplyr::mutate(model = row.names(.)) %>%
-#'   e_charts(model) %>%
+#' mtcars |>
+#'   head() |>
+#'   tibble::rownames_to_column("model") |> 
+#'   e_charts(model) |>
 #'   e_pie(carb)
 #'
 #' # timeline
@@ -1646,9 +1643,9 @@ e_parallel.echarts4rProxy <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = T
 #'   values = runif(6, 1, 5)
 #' )
 #'
-#' df %>%
-#'   group_by(grp) %>%
-#'   e_charts(labels, timeline = TRUE) %>%
+#' df |>
+#'   group_by(grp) |>
+#'   e_charts(labels, timeline = TRUE) |>
 #'   e_pie(values)
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-pie}{Additional arguments}
 #'
@@ -1729,8 +1726,8 @@ e_pie.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, rm_x = TR
 #'   {"name": "venus", "value": 40, "itemStyle": {"color": "blue"} }
 #' ]', simplifyDataFrame = FALSE)
 #'
-#' jsonl %>%
-#'   e_charts() %>%
+#' jsonl |>
+#'   e_charts() |>
 #'   e_sunburst() # demo
 #'
 #'
@@ -1766,9 +1763,9 @@ e_pie.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, rm_x = TR
 #'   )
 #' )
 #'
-#' df %>%
-#'   e_charts() %>%
-#'   e_sunburst() %>%
+#' df |>
+#'   e_charts() |>
+#'   e_sunburst() |>
 #'   e_theme("westeros")
 #'
 #' # with styles
@@ -1776,8 +1773,8 @@ e_pie.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, rm_x = TR
 #' myNames <- list(c("land", "river"), "crater") # names to style
 #' myLevels <- list(2, c(3, 4)) # hierarchical levels to style
 #'
-#' df %>%
-#'   e_charts() %>%
+#' df |>
+#'   e_charts() |>
 #'   e_sunburst(myStyles, myNames, myLevels)
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-sunburst}{Additional arguments}
 #'
@@ -1794,7 +1791,7 @@ e_sunburst.echarts4r <- function(e, styles = NULL, names = NULL, levels = NULL, 
 #' @export
 #' @method e_sunburst echarts4rProxy
 e_sunburst.echarts4rProxy <- function(e, styles = NULL, names = NULL, levels = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
-  e$chart <- e_sunburst_(e, styles, names, levels, rm_x, rm_y, ...)
+  e$chart <- e_sunburst_(e$chart, styles, names, levels, rm_x, rm_y, ...)
 
   return(e)
 }
@@ -1841,8 +1838,8 @@ e_sunburst.echarts4rProxy <- function(e, styles = NULL, names = NULL, levels = N
 #'   )
 #' )
 #'
-#' df %>%
-#'   e_charts() %>%
+#' df |>
+#'   e_charts() |>
 #'   e_treemap()
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-treemap}{Additional arguments}
 #'
@@ -1859,7 +1856,7 @@ e_treemap.echarts4r <- function(e, styles = NULL, names = NULL, levels = NULL, r
 #' @export
 #' @method e_treemap echarts4rProxy
 e_treemap.echarts4rProxy <- function(e, styles = NULL, names = NULL, levels = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
-  e$chart <- e_treemap_(e, styles, names, levels, rm_x, rm_y, ...)
+  e$chart <- e_treemap_(e$chart, styles, names, levels, rm_x, rm_y, ...)
 
   return(e)
 }
@@ -1873,7 +1870,7 @@ e_treemap.echarts4rProxy <- function(e, styles = NULL, names = NULL, levels = NU
 #'
 #' @examples
 #' dates <- seq.Date(Sys.Date() - 30, Sys.Date(), by = "day")
-#' grps <- lapply(LETTERS[1:3], rep, 31) %>% unlist()
+#' grps <- lapply(LETTERS[1:3], rep, 31) |> unlist()
 #'
 #' df <- data.frame(
 #'   dates = rep(dates, 3),
@@ -1881,10 +1878,10 @@ e_treemap.echarts4rProxy <- function(e, styles = NULL, names = NULL, levels = NU
 #'   values = runif(length(grps), 1, 50)
 #' )
 #'
-#' df %>%
-#'   group_by(groups) %>%
-#'   e_charts(dates) %>%
-#'   e_river(values) %>%
+#' df |>
+#'   group_by(groups) |>
+#'   e_charts(dates) |>
+#'   e_river(values) |>
 #'   e_tooltip(trigger = "axis")
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-themeRiver}{Additional arguments}
 #'
@@ -1927,9 +1924,9 @@ e_river.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, rm_x = 
 #'   y = c(1:10, -6)
 #' )
 #'
-#' df %>%
-#'   e_charts() %>%
-#'   e_boxplot(y, outliers = TRUE) %>%
+#' df |>
+#'   e_charts() |>
+#'   e_boxplot(y, outliers = TRUE) |>
 #'   e_boxplot(x, outliers = TRUE)
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-boxplot}{Additional arguments}
 #'
@@ -1962,7 +1959,7 @@ e_boxplot.echarts4rProxy <- function(e, serie, name = NULL, outliers = TRUE, ...
     name <- deparse(substitute(serie))
   }
 
-  e$chart <- e_boxplot_(e, deparse(substitute(serie)), name, outliers, ...)
+  e$chart <- e_boxplot_(e$chart, deparse(substitute(serie)), name, outliers, ...)
   return(e)
 }
 
@@ -2000,8 +1997,8 @@ e_boxplot.echarts4rProxy <- function(e, serie, name = NULL, outliers = TRUE, ...
 #'   )
 #' )
 #'
-#' df %>%
-#'   e_charts() %>%
+#' df |>
+#'   e_charts() |>
 #'   e_tree(initialTreeDepth = 3, label = list(offset = c(0, -11)))
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-tree}{Additional arguments}
 #'
@@ -2032,7 +2029,7 @@ e_tree.echarts4rProxy <- function(e, rm_x = TRUE, rm_y = TRUE, ...) {
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #'
 #' @examples
-#' e_charts() %>%
+#' e_charts() |>
 #'   e_gauge(57, "PERCENT")
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-gauge}{Additional arguments}
 #'
@@ -2102,10 +2099,11 @@ e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
   values <- list()
 
   for (i in seq_along(e$x$data)) {
-    values[[i]] <- .get_data(e, value, i = i) %>%
-      unlist() %>%
-      unname() %>%
-      .[[1]]
+    v <- .get_data(e, value, i = i) |>
+      unlist() |>
+      unname()
+    
+    values[[i]] <- v[[1]]
 
     serie <- list(
       data = list(list(value = values[i], name = name))
@@ -2151,11 +2149,11 @@ e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
 #' # Lines 3D
 #' # Globe
 #' # get tetures: echarts4r-assets.john-coene.com
-#' flights %>%
-#'   e_charts() %>%
+#' flights |>
+#'   e_charts() |>
 #'   e_globe(
 #'     displacementScale = 0.05
-#'   ) %>%
+#'   ) |>
 #'   e_lines_3d(
 #'     start_lon,
 #'     start_lat,
@@ -2163,13 +2161,13 @@ e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
 #'     end_lat,
 #'     name = "flights",
 #'     effect = list(show = TRUE)
-#'   ) %>%
+#'   ) |>
 #'   e_legend(FALSE)
 #'
 #' # Geo 3D
-#' flights %>%
-#'   e_charts() %>%
-#'   e_geo_3d() %>%
+#' flights |>
+#'   e_charts() |>
+#'   e_geo_3d() |>
 #'   e_lines_3d(
 #'     start_lon,
 #'     start_lat,
@@ -2181,10 +2179,10 @@ e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
 #' # groups
 #' flights$grp <- rep(LETTERS[1:2], 89)
 #'
-#' flights %>%
-#'   group_by(grp) %>%
-#'   e_charts() %>%
-#'   e_geo_3d() %>%
+#' flights |>
+#'   group_by(grp) |>
+#'   e_charts() |>
+#'   e_geo_3d() |>
 #'   e_lines_3d(
 #'     start_lon,
 #'     start_lat,
@@ -2200,20 +2198,20 @@ e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
 #'   z = rnorm(100, 100, 50)
 #' )
 #'
-#' df %>%
-#'   e_charts(x) %>%
-#'   e_line_3d(y, z) %>%
-#'   e_visual_map() %>%
+#' df |>
+#'   e_charts(x) |>
+#'   e_line_3d(y, z) |>
+#'   e_visual_map() |>
 #'   e_title("nonsense")
 #'
 #' # timeline
 #' df$grp <- rep(LETTERS[1:5], 20)
 #'
-#' df %>%
-#'   group_by(grp) %>%
-#'   e_charts(x) %>%
-#'   e_line_3d(y, z) %>%
-#'   e_visual_map() %>%
+#' df |>
+#'   group_by(grp) |>
+#'   e_charts(x) |>
+#'   e_line_3d(y, z) |>
+#'   e_visual_map() |>
 #'   e_title("nonsense")
 #' @seealso \href{https://echarts.apache.org/en/option-gl.html#series-lines3D}{Additional arguments for lines 3D},
 #'  \href{https://echarts.apache.org/en/option-gl.html#series-lines3D}{Additional arguments for line 3D}
@@ -2410,15 +2408,15 @@ e_line_3d.echarts4rProxy <- function(e, y, z, name = NULL, coord_system = NULL, 
 #' @examples
 #' \dontrun{
 #' # volcano
-#' volcano %>%
-#'   as.table() %>%
-#'   as.data.frame() %>%
+#' volcano |>
+#'   as.table() |>
+#'   as.data.frame() |>
 #'   dplyr::mutate(
 #'     Var1 = as.integer(Var1),
 #'     Var2 = as.integer(Var2)
-#'   ) %>%
-#'   e_charts(Var1) %>%
-#'   e_bar_3d(Var2, Freq) %>%
+#'   ) |>
+#'   e_charts(Var1) |>
+#'   e_bar_3d(Var2, Freq) |>
 #'   e_visual_map(Freq)
 #'
 #' url <- paste0(
@@ -2430,17 +2428,17 @@ e_line_3d.echarts4rProxy <- function(e, y, z, name = NULL, coord_system = NULL, 
 #' names(data) <- c("lon", "lat", "value")
 #'
 #' # globe
-#' data %>%
-#'   e_charts(lon) %>%
-#'   e_globe() %>%
-#'   e_bar_3d(lat, value, coord_system = "globe") %>%
+#' data |>
+#'   e_charts(lon) |>
+#'   e_globe() |>
+#'   e_bar_3d(lat, value, coord_system = "globe") |>
 #'   e_visual_map()
 #'
 #' # get3d
-#' data %>%
-#'   e_charts(lon) %>%
-#'   e_geo_3d() %>%
-#'   e_bar_3d(lat, value, coord_system = "geo3D") %>%
+#' data |>
+#'   e_charts(lon) |>
+#'   e_geo_3d() |>
+#'   e_bar_3d(lat, value, coord_system = "geo3D") |>
 #'   e_visual_map()
 #'
 #' # stacked
@@ -2451,28 +2449,28 @@ e_line_3d.echarts4rProxy <- function(e, y, z, name = NULL, coord_system = NULL, 
 #'   z1 = rnorm(300, 10, 1),
 #'   z2 = rnorm(300, 10, 1),
 #'   stringsAsFactors = FALSE
-#' ) %>%
-#'   dplyr::group_by(x, y) %>%
+#' ) |>
+#'   dplyr::group_by(x, y) |>
 #'   dplyr::summarise(
 #'     z1 = sum(z1),
 #'     z2 = sum(z2)
-#'   ) %>%
+#'   ) |>
 #'   dplyr::ungroup()
 #'
 #' trans <- list(opacity = 0.4) # transparency
 #' emphasis <- list(itemStyle = list(color = "#313695"))
 #'
-#' matrix %>%
-#'   e_charts(x) %>%
-#'   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) %>%
-#'   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) %>%
+#' matrix |>
+#'   e_charts(x) |>
+#'   e_bar_3d(y, z1, stack = "stack", name = "Serie 1", itemStyle = trans, emphasis = emphasis) |>
+#'   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) |>
 #'   e_legend()
 #'
 #' # timeline
-#' matrix %>%
-#'   group_by(x) %>%
-#'   e_charts(y, timeline = TRUE) %>%
-#'   e_bar_3d(z1, z2) %>%
+#' matrix |>
+#'   group_by(x) |>
+#'   e_charts(y, timeline = TRUE) |>
+#'   e_bar_3d(z1, z2) |>
 #'   e_visual_map(z2)
 #' }
 #'
@@ -2583,9 +2581,9 @@ e_bar_3d.echarts4rProxy <- function(
 #' surface$Var1 <- as.numeric(surface$Var1)
 #' surface$Var2 <- as.numeric(surface$Var2)
 #'
-#' surface %>%
-#'   e_charts(Var1) %>%
-#'   e_surface(Var2, Freq) %>%
+#' surface |>
+#'   e_charts(Var1) |>
+#'   e_surface(Var2, Freq) |>
 #'   e_visual_map(Freq)
 #' @rdname e_surface
 #' @export
@@ -2698,9 +2696,9 @@ e_surface.echarts4rProxy <- function(
 #'   )
 #' )
 #'
-#' flights %>%
-#'   e_charts() %>%
-#'   e_geo() %>%
+#' flights |>
+#'   e_charts() |>
+#'   e_geo() |>
 #'   e_lines(
 #'     start_lon,
 #'     start_lat,
@@ -2711,7 +2709,7 @@ e_surface.echarts4rProxy <- function(
 #'     cnt,
 #'     name = "flights",
 #'     lineStyle = list(normal = list(curveness = 0.3))
-#'   ) %>%
+#'   ) |>
 #'   e_tooltip(
 #'     trigger = "item",
 #'     formatter = htmlwidgets::JS("
@@ -2728,10 +2726,10 @@ e_surface.echarts4rProxy <- function(
 #' # timeline
 #' flights$grp <- rep(LETTERS[1:2], 89)
 #'
-#' flights %>%
-#'   group_by(grp) %>%
-#'   e_charts(timeline = TRUE) %>%
-#'   e_geo() %>%
+#' flights |>
+#'   group_by(grp) |>
+#'   e_charts(timeline = TRUE) |>
+#'   e_geo() |>
 #'   e_lines(
 #'     start_lon,
 #'     start_lat,
@@ -2898,25 +2896,25 @@ e_lines.echarts4rProxy <- function(
 #'   color = rnorm(300, 10, 1),
 #'   size = rnorm(300, 10, 1),
 #'   stringsAsFactors = FALSE
-#' ) %>%
-#'   dplyr::group_by(x, y) %>%
+#' ) |>
+#'   dplyr::group_by(x, y) |>
 #'   dplyr::summarise(
 #'     z = sum(z),
 #'     color = sum(color),
 #'     size = sum(size)
-#'   ) %>%
+#'   ) |>
 #'   dplyr::ungroup()
 #'
-#' matrix %>%
-#'   e_charts(x) %>%
-#'   e_scatter_3d(y, z, size, color) %>%
+#' matrix |>
+#'   e_charts(x) |>
+#'   e_scatter_3d(y, z, size, color) |>
 #'   e_visual_map(
 #'     min = 1,
 #'     max = 100,
 #'     inRange = list(symbolSize = c(1, 30)),
 #'     # scale size
 #'     dimension = 3 # third dimension 0 = x, y = 1, z = 2, size = 3
-#'   ) %>%
+#'   ) |>
 #'   e_visual_map(
 #'     min = 1,
 #'     max = 100,
@@ -2934,22 +2932,22 @@ e_lines.echarts4rProxy <- function(
 #'   )
 #' )
 #'
-#' airports %>%
-#'   e_charts(long) %>%
+#' airports |>
+#'   e_charts(long) |>
 #'   e_globe(
 #'     globeOuterRadius = 100
-#'   ) %>%
-#'   e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = "lighter") %>%
+#'   ) |>
+#'   e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = "lighter") |>
 #'   e_visual_map(inRange = list(symbolSize = c(1, 10)))
 #'
 #' # timeline
-#' airports %>%
-#'   group_by(state) %>%
-#'   e_charts(long, timeline = TRUE) %>%
+#' airports |>
+#'   group_by(state) |>
+#'   e_charts(long, timeline = TRUE) |>
 #'   e_globe(
 #'     globeOuterRadius = 100
-#'   ) %>%
-#'   e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = "lighter") %>%
+#'   ) |>
+#'   e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = "lighter") |>
 #'   e_visual_map(inRange = list(symbolSize = c(1, 10)))
 #' @seealso \href{https://echarts.apache.org/en/option-gl.html#series-scatter3D}{Additional arguments}
 #'
@@ -3099,9 +3097,9 @@ e_scatter_3d.echarts4rProxy <- function(
 #' vectors$sy <- rnorm(100)
 #' vectors$color <- log10(runif(100, 1, 10))
 #'
-#' vectors %>%
-#'   e_charts(x) %>%
-#'   e_flow_gl(y, sx, sy, color) %>%
+#' vectors |>
+#'   e_charts(x) |>
+#'   e_flow_gl(y, sx, sy, color) |>
 #'   e_visual_map(
 #'     min = 0,
 #'     max = 1,
@@ -3125,10 +3123,10 @@ e_scatter_3d.echarts4rProxy <- function(
 #'         "#a50026"
 #'       )
 #'     )
-#'   ) %>%
+#'   ) |>
 #'   e_x_axis(
 #'     splitLine = list(show = FALSE)
-#'   ) %>%
+#'   ) |>
 #'   e_y_axis(
 #'     splitLine = list(show = FALSE)
 #'   )
@@ -3143,9 +3141,9 @@ e_scatter_3d.echarts4rProxy <- function(
 #'
 #' trans <- list(opacity = 0.5) # transparency
 #'
-#' wind %>%
-#'   e_charts(lng, backgroundColor = "#333") %>%
-#'   e_geo() %>%
+#' wind |>
+#'   e_charts(lng, backgroundColor = "#333") |>
+#'   e_geo() |>
 #'   e_flow_gl(
 #'     lat,
 #'     slng,
@@ -3153,7 +3151,7 @@ e_scatter_3d.echarts4rProxy <- function(
 #'     color,
 #'     itemStyle = trans,
 #'     particleSize = 2
-#'   ) %>%
+#'   ) |>
 #'   e_visual_map(
 #'     color,
 #'     # range
@@ -3176,8 +3174,8 @@ e_scatter_3d.echarts4rProxy <- function(
 #'         "#a50026"
 #'       )
 #'     )
-#'   ) %>%
-#'   e_x_axis(show = FALSE) %>%
+#'   ) |>
+#'   e_x_axis(show = FALSE) |>
 #'   e_y_axis(show = FALSE)
 #' @seealso \href{https://echarts.apache.org/en/option-gl.html#series-flowGL}{Additional arguments}
 #'
@@ -3250,30 +3248,30 @@ e_flow_gl.echarts4rProxy <- function(e, y, sx, sy, color, name = NULL, coord_sys
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #'
 #' @examples
-#' quakes %>%
-#'   e_charts(long) %>%
+#' quakes |>
+#'   e_charts(long) |>
 #'   e_geo(
 #'     roam = TRUE,
 #'     boundingCoords = list(
 #'       c(185, -10),
 #'       c(165, -40)
 #'     )
-#'   ) %>%
+#'   ) |>
 #'   e_scatter_gl(lat, depth)
 #'
 #' # timeline
 #' quakes$year <- rep(c("2017", "2018"), 500)
 #'
-#' quakes %>%
-#'   group_by(year) %>%
-#'   e_charts(long, timeline = TRUE) %>%
+#' quakes |>
+#'   group_by(year) |>
+#'   e_charts(long, timeline = TRUE) |>
 #'   e_geo(
 #'     roam = TRUE,
 #'     boundingCoords = list(
 #'       c(185, -10),
 #'       c(165, -40)
 #'     )
-#'   ) %>%
+#'   ) |>
 #'   e_scatter_gl(lat, depth)
 #' @seealso \href{https://echarts.apache.org/en/option-gl.html#series-scatterGL}{Additional arguments}
 #'
@@ -3350,16 +3348,16 @@ e_scatter_gl.echarts4rProxy <- function(e, y, z, name = NULL, coord_system = "ge
 #'   z = y - rnorm(10, 5, 1)
 #' )
 #'
-#' df %>%
-#'   e_charts(x) %>%
-#'   e_bar(z, barWidth = 10) %>%
+#' df |>
+#'   e_charts(x) |>
+#'   e_bar(z, barWidth = 10) |>
 #'   e_pictorial(
 #'     y,
 #'     symbol = "rect",
 #'     symbolRepeat = TRUE,
 #'     z = -1,
 #'     symbolSize = c(10, 4)
-#'   ) %>%
+#'   ) |>
 #'   e_theme("westeros")
 #'
 #' # svg path
@@ -3371,8 +3369,8 @@ e_scatter_gl.echarts4rProxy <- function(e, y, z, name = NULL, coord_system = "ge
 #'   emphasis = list(opacity = 1) # on hover
 #' )
 #'
-#' df %>%
-#'   e_charts(x) %>%
+#' df |>
+#'   e_charts(x) |>
 #'   e_pictorial(
 #'     y,
 #'     symbol = path,
@@ -3402,9 +3400,9 @@ e_scatter_gl.echarts4rProxy <- function(e, y, z, name = NULL, coord_system = "ge
 #'   )
 #' )
 #'
-#' data %>%
-#'   e_charts(x) %>%
-#'   e_pictorial(value, symbol) %>%
+#' data |>
+#'   e_charts(x) |>
+#'   e_pictorial(value, symbol) |>
 #'   e_legend(FALSE)
 #'
 #' # timeline
@@ -3417,9 +3415,9 @@ e_scatter_gl.echarts4rProxy <- function(e, y, z, name = NULL, coord_system = "ge
 #'   )
 #' )
 #'
-#' df %>%
-#'   group_by(year) %>%
-#'   e_charts(x, timeline = TRUE) %>%
+#' df |>
+#'   group_by(year) |>
+#'   e_charts(x, timeline = TRUE) |>
 #'   e_pictorial(
 #'     y,
 #'     symbol = "rect",
@@ -3508,25 +3506,25 @@ e_pictorial.echarts4rProxy <- function(e, serie, symbol, bind, name = NULL, lege
 #' @param ... Additional arguments to pass to \code{\link{e_line}}.
 #'
 #' @examples
-#' iris %>%
-#'   group_by(Species) %>%
-#'   e_charts(Sepal.Length) %>%
-#'   e_scatter(Sepal.Width) %>%
-#'   e_lm(Sepal.Width ~ Sepal.Length) %>%
+#' iris |>
+#'   group_by(Species) |>
+#'   e_charts(Sepal.Length) |>
+#'   e_scatter(Sepal.Width) |>
+#'   e_lm(Sepal.Width ~ Sepal.Length) |>
 #'   e_x_axis(min = 4)
 #'
-#' mtcars %>%
-#'   e_charts(disp) %>%
-#'   e_scatter(mpg, qsec) %>%
+#' mtcars |>
+#'   e_charts(disp) |>
+#'   e_scatter(mpg, qsec) |>
 #'   e_loess(mpg ~ disp, smooth = TRUE, showSymbol = FALSE)
 #'
 #' # timeline
-#' iris %>%
-#'   group_by(Species) %>%
-#'   e_charts(Sepal.Length, timeline = TRUE) %>%
-#'   e_scatter(Sepal.Width) %>%
-#'   e_lm(Sepal.Width ~ Sepal.Length) %>%
-#'   e_x_axis(min = 4, max = 8) %>%
+#' iris |>
+#'   group_by(Species) |>
+#'   e_charts(Sepal.Length, timeline = TRUE) |>
+#'   e_scatter(Sepal.Width) |>
+#'   e_lm(Sepal.Width ~ Sepal.Length) |>
+#'   e_x_axis(min = 4, max = 8) |>
 #'   e_y_axis(max = 5)
 #' @rdname smooth
 #' @export
@@ -3551,7 +3549,7 @@ e_lm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "non
 
     if (!inherits(model, "error")) {
       data <- broom::augment(model)
-      data <- data %>% dplyr::select(-dplyr::one_of(names(model$model)))
+      data <- data |> dplyr::select(-dplyr::one_of(names(model$model)))
 
       e$x$data[[i]] <- dplyr::bind_cols(e$x$data[[i]], data)
 
@@ -3619,7 +3617,7 @@ e_lm.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol =
 
     if (!inherits(model, "error")) {
       data <- broom::augment(model)
-      data <- data %>% dplyr::select(-dplyr::one_of(names(model$model)))
+      data <- data |> dplyr::select(-dplyr::one_of(names(model$model)))
 
       e$chart$x$data[[i]] <- dplyr::bind_cols(e$chart$x$data[[i]], data)
 
@@ -3691,7 +3689,7 @@ e_glm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "no
 
     if (!inherits(model, "error")) {
       data <- broom::augment(model)
-      data <- data %>% dplyr::select(-dplyr::one_of(names(model$model)))
+      data <- data |> dplyr::select(-dplyr::one_of(names(model$model)))
 
       e$x$data[[i]] <- dplyr::bind_cols(e$x$data[[i]], data)
 
@@ -3759,7 +3757,7 @@ e_glm.echarts4rProxy <- function(e, formula, name = NULL, legend = TRUE, symbol 
 
     if (!inherits(model, "error")) {
       data <- broom::augment(model)
-      data <- data %>% dplyr::select(-dplyr::one_of(names(model$model)))
+      data <- data |> dplyr::select(-dplyr::one_of(names(model$model)))
 
       e$chart$x$data[[i]] <- dplyr::bind_cols(e$chart$x$data[[i]], data)
 
@@ -4011,17 +4009,17 @@ e_loess.echarts4rProxy <- function(
 #' @param smooth Whether to use smoothed lines, passed to \code{\link{e_line}}.
 #'
 #' @examples
-#' mtcars %>%
-#'   e_charts() %>%
-#'   e_histogram(mpg, name = "histogram") %>%
-#'   e_density(mpg, areaStyle = list(opacity = .4), smooth = TRUE, name = "density", y_index = 1) %>%
+#' mtcars |>
+#'   e_charts() |>
+#'   e_histogram(mpg, name = "histogram") |>
+#'   e_density(mpg, areaStyle = list(opacity = .4), smooth = TRUE, name = "density", y_index = 1) |>
 #'   e_tooltip(trigger = "axis")
 #'
 #' # timeline
-#' mtcars %>%
-#'   group_by(cyl) %>%
-#'   e_charts(timeline = TRUE) %>%
-#'   e_histogram(mpg, name = "histogram") %>%
+#' mtcars |>
+#'   group_by(cyl) |>
+#'   e_charts(timeline = TRUE) |>
+#'   e_histogram(mpg, name = "histogram") |>
 #'   e_density(mpg, name = "density", y_index = 1)
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-bar}{Additional arguments for histogram},
 #'  \href{https://echarts.apache.org/en/option.html#series-line}{Additional arguments for density}
@@ -4220,15 +4218,15 @@ e_lines_gl.echarts4rProxy <- function(e, data, coord_system = "geo", ...) {
 #' df <- data.frame(
 #'   x = 1:10,
 #'   y = runif(10, 5, 10)
-#' ) %>%
+#' ) |>
 #'   dplyr::mutate(
 #'     lwr = y - runif(10, 1, 3),
 #'     upr = y + runif(10, 2, 4)
 #'   )
 #'
-#' df %>%
-#'   e_charts(x) %>%
-#'   e_line(y) %>%
+#' df |>
+#'   e_charts(x) |>
+#'   e_line(y) |>
 #'   e_band(lwr, upr)
 #' @name band
 #' @export
@@ -4318,12 +4316,12 @@ e_band.echarts4rProxy <- function(
 #' @param ... Any argument to pass to \code{\link{e_heatmap}} and \code{\link{e_visual_map}}.
 #'
 #' @examples
-#' cor(mtcars) %>%
-#'   e_charts() %>%
+#' cor(mtcars) |>
+#'   e_charts() |>
 #'   e_correlations(
 #'     order = "hclust",
 #'     visual_map = FALSE
-#'   ) %>%
+#'   ) |>
 #'   e_visual_map(
 #'     min = -1,
 #'     max = 1
@@ -4349,12 +4347,12 @@ e_correlations.echarts4r <- function(e, order = NULL, visual_map = TRUE, ...) {
   mat <- as.data.frame(as.table(mat))
   names(mat) <- c("x", "y", "correlation")
 
-  e <- e %>%
-    e_data(mat, x) %>%
+  e <- e |>
+    e_data(mat, x) |>
     e_heatmap_("y", "correlation", ...)
 
   if (isTRUE(visual_map)) {
-    e <- e %>% e_visual_map_(min = -1, max = 1, ...)
+    e <- e |> e_visual_map_(min = -1, max = 1, ...)
   }
 
   return(e)
@@ -4378,12 +4376,12 @@ e_correlations.echarts4rProxy <- function(e, order = NULL, visual_map = TRUE, ..
   mat <- as.data.frame(as.table(mat))
   names(mat) <- c("x", "y", "correlation")
 
-  e$chart <- e$chart %>%
-    e_data(mat, x) %>%
+  e$chart <- e$chart |>
+    e_data(mat, x) |>
     e_heatmap_("y", "correlation", ...)
 
   if (isTRUE(visual_map)) {
-    e$chart <- e$chart %>% e_visual_map_(min = -1, max = 1, ...)
+    e$chart <- e$chart |> e_visual_map_(min = -1, max = 1, ...)
   }
 
   return(e)
@@ -4406,9 +4404,9 @@ e_correlations.echarts4rProxy <- function(e, order = NULL, visual_map = TRUE, ..
 #'   lower = c(0.8, 4.6)
 #' )
 #'
-#' df %>%
-#'   e_charts(x) %>%
-#'   e_bar(y) %>%
+#' df |>
+#'   e_charts(x) |>
+#'   e_bar(y) |>
 #'   e_error_bar(lower, upper)
 #'
 #' # timeline
@@ -4420,10 +4418,10 @@ e_correlations.echarts4rProxy <- function(e, order = NULL, visual_map = TRUE, ..
 #'   lower = c(0.8, 4.6, 2.4, 3.6)
 #' )
 #'
-#' df %>%
-#'   group_by(step) %>%
-#'   e_charts(x, timeline = TRUE) %>%
-#'   e_bar(y) %>%
+#' df |>
+#'   group_by(step) |>
+#'   e_charts(x, timeline = TRUE) |>
+#'   e_bar(y) |>
 #'   e_error_bar(lower, upper)
 #' @rdname errorbar
 #' @export
@@ -4522,14 +4520,14 @@ e_error_bar.echarts4rProxy <- function(
 #'
 #' @examples
 #' data(EuStockMarkets)
-#' as.data.frame(EuStockMarkets) %>%
-#'   dplyr::slice_head(n = 200) %>%
-#'   dplyr::mutate(day = 1:dplyr::n()) %>%
-#'   e_charts(day) %>%
-#'   e_line(CAC, symbol = "none") %>%
-#'   e_band2(DAX, FTSE, color = "lemonchiffon") %>%
-#'   e_band2(DAX, SMI, color = "lightblue", itemStyle = list(borderWidth = 0)) %>%
-#'   e_y_axis(scale = TRUE) %>%
+#' as.data.frame(EuStockMarkets) |>
+#'   dplyr::slice_head(n = 200) |>
+#'   dplyr::mutate(day = 1:dplyr::n()) |>
+#'   e_charts(day) |>
+#'   e_line(CAC, symbol = "none") |>
+#'   e_band2(DAX, FTSE, color = "lemonchiffon") |>
+#'   e_band2(DAX, SMI, color = "lightblue", itemStyle = list(borderWidth = 0)) |>
+#'   e_y_axis(scale = TRUE) |>
 #'   e_datazoom(start = 50)
 #' @name band2
 #' @export

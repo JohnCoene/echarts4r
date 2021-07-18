@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
       </span>
     </div>
 
@@ -365,7 +365,7 @@ but more limited, e.g.: you cannot specify the placement of the label.</p>
 <a href='https://echarts.apache.org/en/option.html#series-line.markLine'>Additional line arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='va'>max</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+    <pre class="examples"><div class='input'><span class='va'>max</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
   name <span class='op'>=</span> <span class='st'>"Max"</span>,
   type <span class='op'>=</span> <span class='st'>"max"</span>
 <span class='op'>)</span>
@@ -380,14 +380,14 @@ but more limited, e.g.: you cannot specify the placement of the label.</p>
   name <span class='op'>=</span> <span class='st'>"AVG"</span>
 <span class='op'>)</span>
 
-<span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_line.html'>e_line</a></span><span class='op'>(</span><span class='va'>wt</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_line.html'>e_line</a></span><span class='op'>(</span><span class='va'>drat</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_line.html'>e_line</a></span><span class='op'>(</span><span class='va'>cyl</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_mark_point</span><span class='op'>(</span><span class='st'>"wt"</span>, data <span class='op'>=</span> <span class='va'>max</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_mark_point</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cyl"</span>, <span class='st'>"drat"</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>min</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_mark_line</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>avg</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='co'># applies to all</span>
+<span class='va'>mtcars</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_line.html'>e_line</a></span><span class='op'>(</span><span class='va'>wt</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_line.html'>e_line</a></span><span class='op'>(</span><span class='va'>drat</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_line.html'>e_line</a></span><span class='op'>(</span><span class='va'>cyl</span><span class='op'>)</span> |&gt;
+  <span class='fu'>e_mark_point</span><span class='op'>(</span><span class='st'>"wt"</span>, data <span class='op'>=</span> <span class='va'>max</span><span class='op'>)</span> |&gt;
+  <span class='fu'>e_mark_point</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cyl"</span>, <span class='st'>"drat"</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>min</span><span class='op'>)</span> |&gt;
+  <span class='fu'>e_mark_line</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>avg</span><span class='op'>)</span> |&gt; <span class='co'># applies to all</span>
   <span class='fu'>e_mark_area</span><span class='op'>(</span>
     serie <span class='op'>=</span> <span class='st'>"wt"</span>,
     data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
@@ -398,18 +398,18 @@ but more limited, e.g.: you cannot specify the placement of the label.</p>
 
 <span class='co'># serie options</span>
 
-<span class='va'>iris</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Species</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, timeline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_line.html'>e_line</a></span><span class='op'>(</span><span class='va'>Sepal.Width</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>iris</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Species</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, timeline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_line.html'>e_line</a></span><span class='op'>(</span><span class='va'>Sepal.Width</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='timeline-opts.html'>e_timeline_serie</a></span><span class='op'>(</span>
     title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
       <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"setosa"</span><span class='op'>)</span>,
       <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"versicolor"</span><span class='op'>)</span>,
       <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"virginica"</span><span class='op'>)</span>
     <span class='op'>)</span>
-  <span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_mark_area</span><span class='op'>(</span>serie <span class='op'>=</span> <span class='st'>"setosa"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='op'>)</span> |&gt;
+  <span class='fu'>e_mark_area</span><span class='op'>(</span>serie <span class='op'>=</span> <span class='st'>"setosa"</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_mark_area</span><span class='op'>(</span>
     serie <span class='op'>=</span> <span class='st'>"versicolor"</span>,
     data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
@@ -417,9 +417,9 @@ but more limited, e.g.: you cannot specify the placement of the label.</p>
       <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>xAxis <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
     <span class='op'>)</span>,
     itemStyle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"lightblue"</span><span class='op'>)</span>
-  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='op'>)</span> |&gt;
   <span class='fu'>e_mark_area</span><span class='op'>(</span>serie <span class='op'>=</span> <span class='st'>"virginica"</span><span class='op'>)</span>
-</pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

@@ -47,7 +47,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
       </span>
     </div>
 
@@ -270,7 +270,7 @@
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span><span class="op">{</span>
 
   <span class="va">output</span><span class="op">$</span><span class="va">chart</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/echarts4r-shiny.html">renderEcharts4r</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span><span class="op">)</span> |&gt; 
       <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">z</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 
@@ -303,13 +303,13 @@
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span><span class="op">{</span>
 
   <span class="va">output</span><span class="op">$</span><span class="va">chart</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/echarts4r-shiny.html">renderEcharts4r</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span><span class="op">)</span> |&gt; 
       <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">z</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 
   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">add</span>, <span class="op">{</span>
-    <span class="fu"><a href="../reference/echarts4r-shiny.html">echarts4rProxy</a></span><span class="op">(</span><span class="st">"chart"</span>, data <span class="op">=</span> <span class="va">df</span>, x <span class="op">=</span> <span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span>  <span class="co"># create a proxy</span>
-      <span class="fu"><a href="../reference/e_line.html">e_line</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/echarts4r-shiny.html">echarts4rProxy</a></span><span class="op">(</span><span class="st">"chart"</span>, data <span class="op">=</span> <span class="va">df</span>, x <span class="op">=</span> <span class="va">x</span><span class="op">)</span> |&gt;  <span class="co"># create a proxy</span>
+      <span class="fu"><a href="../reference/e_line.html">e_line</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span> |&gt; 
       <span class="fu"><a href="../reference/e_execute.html">e_execute</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 
@@ -338,18 +338,18 @@
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span><span class="op">{</span>
 
   <span class="va">output</span><span class="op">$</span><span class="va">chart</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/echarts4r-shiny.html">renderEcharts4r</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span><span class="op">)</span> |&gt; 
       <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">z</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 
   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">add</span>, <span class="op">{</span>
-    <span class="fu"><a href="../reference/echarts4r-shiny.html">echarts4rProxy</a></span><span class="op">(</span><span class="st">"chart"</span>, data <span class="op">=</span> <span class="va">df</span>, x <span class="op">=</span> <span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span>  <span class="co"># create a proxy</span>
-      <span class="fu"><a href="../reference/e_line.html">e_line</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/echarts4r-shiny.html">echarts4rProxy</a></span><span class="op">(</span><span class="st">"chart"</span>, data <span class="op">=</span> <span class="va">df</span>, x <span class="op">=</span> <span class="va">x</span><span class="op">)</span> |&gt;  <span class="co"># create a proxy</span>
+      <span class="fu"><a href="../reference/e_line.html">e_line</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span> |&gt; 
       <span class="fu"><a href="../reference/e_execute.html">e_execute</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 
   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">rm</span>, <span class="op">{</span>
-    <span class="fu"><a href="../reference/echarts4r-shiny.html">echarts4rProxy</a></span><span class="op">(</span><span class="st">"chart"</span><span class="op">)</span> <span class="op">%&gt;%</span>  <span class="co"># create a proxy</span>
+    <span class="fu"><a href="../reference/echarts4r-shiny.html">echarts4rProxy</a></span><span class="op">(</span><span class="st">"chart"</span><span class="op">)</span> |&gt;  <span class="co"># create a proxy</span>
       <span class="fu"><a href="../reference/e_remove.html">e_remove_serie</a></span><span class="op">(</span><span class="st">"z"</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 
@@ -379,20 +379,20 @@
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span><span class="op">{</span>
 
   <span class="va">output</span><span class="op">$</span><span class="va">chart</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/echarts4r-shiny.html">renderEcharts4r</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span><span class="op">)</span> |&gt; 
       <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">z</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 
   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">add</span>, <span class="op">{</span>
-    <span class="fu"><a href="../reference/echarts4r-shiny.html">echarts4rProxy</a></span><span class="op">(</span><span class="st">"chart"</span>, data <span class="op">=</span> <span class="va">df</span>, x <span class="op">=</span> <span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span>  <span class="co"># create a proxy</span>
-      <span class="fu"><a href="../reference/e_line.html">e_line</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-      <span class="fu"><a href="../reference/e_lm.html">e_loess</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, name <span class="op">=</span> <span class="st">"fit"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/echarts4r-shiny.html">echarts4rProxy</a></span><span class="op">(</span><span class="st">"chart"</span>, data <span class="op">=</span> <span class="va">df</span>, x <span class="op">=</span> <span class="va">x</span><span class="op">)</span> |&gt;  <span class="co"># create a proxy</span>
+      <span class="fu"><a href="../reference/e_line.html">e_line</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span> |&gt; 
+      <span class="fu"><a href="../reference/e_lm.html">e_loess</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, name <span class="op">=</span> <span class="st">"fit"</span><span class="op">)</span> |&gt; 
       <span class="fu"><a href="../reference/e_execute.html">e_execute</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 
   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">rm</span>, <span class="op">{</span>
-    <span class="fu"><a href="../reference/echarts4r-shiny.html">echarts4rProxy</a></span><span class="op">(</span><span class="st">"chart"</span><span class="op">)</span> <span class="op">%&gt;%</span>  <span class="co"># create a proxy</span>
-      <span class="fu"><a href="../reference/e_remove.html">e_remove_serie</a></span><span class="op">(</span><span class="st">"z"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="../reference/echarts4r-shiny.html">echarts4rProxy</a></span><span class="op">(</span><span class="st">"chart"</span><span class="op">)</span> |&gt;  <span class="co"># create a proxy</span>
+      <span class="fu"><a href="../reference/e_remove.html">e_remove_serie</a></span><span class="op">(</span><span class="st">"z"</span><span class="op">)</span> |&gt; 
       <span class="fu"><a href="../reference/e_remove.html">e_remove_serie</a></span><span class="op">(</span><span class="st">"fit"</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 

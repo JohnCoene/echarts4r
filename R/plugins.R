@@ -16,12 +16,12 @@
 #' tf <- data.frame(
 #'   terms = words(100),
 #'   freq = rnorm(100, 55, 10)
-#' ) %>%
+#' ) |>
 #'   dplyr::arrange(-freq)
 #'
-#' tf %>%
-#'   e_color_range(freq, color) %>%
-#'   e_charts() %>%
+#' tf |>
+#'   e_color_range(freq, color) |>
+#'   e_charts() |>
 #'   e_cloud(terms, freq, color, shape = "circle", sizeRange = c(3, 15))
 #' @seealso \href{https://github.com/ecomfe/echarts-wordcloud}{official documentation}
 #'
@@ -97,9 +97,9 @@ e_cloud_ <- function(e, word, freq, color = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 #' @examples
 #' df <- data.frame(val = c(0.6, 0.5, 0.4))
 #'
-#' df %>%
-#'   e_charts() %>%
-#'   e_liquid(val) %>%
+#' df |>
+#'   e_charts() |>
+#'   e_liquid(val) |>
 #'   e_theme("dark")
 #' @seealso \href{https://github.com/ecomfe/echarts-liquidfill}{official documentation}
 #'
@@ -129,8 +129,8 @@ e_liquid_ <- function(e, serie, color = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
-  data <- .get_data(e, serie) %>%
-    unlist() %>%
+  data <- .get_data(e, serie) |>
+    unlist() |>
     unname()
 
   serie <- list(
@@ -140,8 +140,8 @@ e_liquid_ <- function(e, serie, color = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
   )
 
   if (!is.null(color)) {
-    serie$color <- .get_data(e, color) %>%
-      unlist() %>%
+    serie$color <- .get_data(e, color) |>
+      unlist() |>
       unname()
   }
 
@@ -188,10 +188,10 @@ e_liquid_ <- function(e, serie, color = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
 #'   stringsAsFactors = FALSE
 #' )
 #'
-#' e_charts() %>%
-#'   e_graph() %>%
-#'   e_graph_nodes(nodes, name, value) %>%
-#'   e_graph_edges(edges, source, target) %>%
+#' e_charts() |>
+#'   e_graph() |>
+#'   e_graph_nodes(nodes, name, value) |>
+#'   e_graph_edges(edges, source, target) |>
 #'   e_modularity(
 #'     list(
 #'       resolution = 5,

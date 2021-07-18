@@ -27,10 +27,10 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Draw pie and donut charts.
 }
 \examples{
-mtcars \%>\%
-  head() \%>\%
-  dplyr::mutate(model = row.names(.)) \%>\%
-  e_charts(model) \%>\%
+mtcars |>
+  head() |>
+  tibble::rownames_to_column("model") |> 
+  e_charts(model) |>
   e_pie(carb)
 
 # timeline
@@ -40,9 +40,9 @@ df <- data.frame(
   values = runif(6, 1, 5)
 )
 
-df \%>\%
-  group_by(grp) \%>\%
-  e_charts(labels, timeline = TRUE) \%>\%
+df |>
+  group_by(grp) |>
+  e_charts(labels, timeline = TRUE) |>
   e_pie(values)
 }
 \seealso{

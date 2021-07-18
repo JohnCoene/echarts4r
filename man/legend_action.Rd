@@ -32,15 +32,15 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Legend
 }
 \examples{
-e <- CO2 \%>\%
-  group_by(Type) \%>\%
-  e_charts(conc) \%>\%
+e <- CO2 |>
+  group_by(Type) |>
+  e_charts(conc) |>
   e_scatter(uptake)
 
-e \%>\%
+e |>
   e_legend_unselect("Quebec")
 
-e \%>\%
-  e_legend_unselect("Quebec", btn = "btn") \%>\%
+e |>
+  e_legend_unselect("Quebec", btn = "btn") |>
   e_button("btn", "Quebec")
 }

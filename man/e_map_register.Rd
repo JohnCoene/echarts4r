@@ -2,11 +2,14 @@
 % Please edit documentation in R/map.R
 \name{e_map_register}
 \alias{e_map_register}
+\alias{e_svg_register}
 \alias{e_map_register_p}
 \alias{e_map_register_ui}
 \title{Register map}
 \usage{
 e_map_register(e, name, json)
+
+e_svg_register(e, name, svg)
 
 e_map_register_p(
   name,
@@ -22,7 +25,7 @@ e_map_register_ui(name, json, async = FALSE)
 
 \item{name}{Name of map, to use in \code{\link{e_map}}.}
 
-\item{json}{\href{https://geojson.org/}{Geojson}.}
+\item{json, svg}{\href{https://geojson.org/}{Geojson}, or SVG.}
 
 \item{async}{Whether to read the file asynchronously.}
 
@@ -41,11 +44,11 @@ from the UI (generally www folder).
 \dontrun{
 json <- jsonlite::read_json("https://echarts.apache.org/examples/data/asset/geo/USA.json")
 
-USArrests \%>\%
-  dplyr::mutate(states = row.names(.)) \%>\%
-  e_charts(states) \%>\%
-  e_map_register("USA", json) \%>\%
-  e_map(Murder, map = "USA") \%>\%
+USArrests |>
+  tibble::rownames_to_column("states") |> 
+  e_charts(states) |>
+  e_map_register("USA", json) |>
+  e_map(Murder, map = "USA") |>
   e_visual_map(Murder)
 }
 

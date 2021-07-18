@@ -34,9 +34,9 @@ funnel <- data.frame(
   color = c("blue", "red", "green")
 )
 
-funnel \%>\%
-  e_charts() \%>\%
-  e_funnel(value, stage) \%>\%
+funnel |>
+  e_charts() |>
+  e_funnel(value, stage) |>
   e_add("itemStyle", color)
 
 # Heatmap can take nested label
@@ -47,19 +47,19 @@ matrix <- data.frame(
   y = sample(v, 300, replace = TRUE),
   z = rnorm(300, 10, 1),
   stringsAsFactors = FALSE
-) \%>\%
-  dplyr::group_by(x, y) \%>\%
-  dplyr::summarise(z = sum(z)) \%>\%
-  dplyr::ungroup() \%>\%
+) |>
+  dplyr::group_by(x, y) |>
+  dplyr::summarise(z = sum(z)) |>
+  dplyr::ungroup() |>
   dplyr::mutate(
     show = TRUE,
     fontStyle = round(runif(dplyr::n(), 5, 12))
   )
 
-matrix \%>\%
-  e_charts(x) \%>\%
-  e_heatmap(y, z) \%>\%
-  e_visual_map(z) \%>\%
+matrix |>
+  e_charts(x) |>
+  e_heatmap(y, z) |>
+  e_visual_map(z) |>
   e_add(
     "label",
     show,

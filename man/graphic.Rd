@@ -76,9 +76,9 @@ Some elements, i.e.: \code{e_image_g} may not display in the RStudio browwser bu
 \examples{
 # may not work in RStudio viewer
 # Open in browser
-cars \%>\%
-  e_charts(speed) \%>\%
-  e_scatter(dist) \%>\%
+cars |>
+  e_charts(speed) |>
+  e_scatter(dist) |>
   e_image_g(
     right = 20,
     top = 20,

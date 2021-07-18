@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
       </span>
     </div>
 
@@ -399,7 +399,7 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <p><a href='https://echarts4r-assets.john-coene.com'>https://echarts4r-assets.john-coene.com</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># get data</span>
+    <pre class="examples"><div class='input'><span class='co'># get data</span>
 <span class='va'>flights</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span>
   <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span>
     <span class='st'>"https://raw.githubusercontent.com/plotly/datasets/"</span>,
@@ -410,11 +410,11 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <span class='co'># Lines 3D</span>
 <span class='co'># Globe</span>
 <span class='co'># get tetures: echarts4r-assets.john-coene.com</span>
-<span class='va'>flights</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>flights</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_globe.html'>e_globe</a></span><span class='op'>(</span>
     displacementScale <span class='op'>=</span> <span class='fl'>0.05</span>
-  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='op'>)</span> |&gt;
   <span class='fu'>e_lines_3d</span><span class='op'>(</span>
     <span class='va'>start_lon</span>,
     <span class='va'>start_lat</span>,
@@ -422,13 +422,13 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <span class='va'>end_lat</span>,
     name <span class='op'>=</span> <span class='st'>"flights"</span>,
     effect <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>show <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_legend.html'>e_legend</a></span><span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span>
-
+</div><div class='output co'>#&gt; <span class='message'>`base_texture` is `NULL`, see echarts4r-assets.john-coene.com</span></div><div class='input'>
 <span class='co'># Geo 3D</span>
-<span class='va'>flights</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_geo_3d.html'>e_geo_3d</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>flights</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_geo_3d.html'>e_geo_3d</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_lines_3d</span><span class='op'>(</span>
     <span class='va'>start_lon</span>,
     <span class='va'>start_lat</span>,
@@ -440,10 +440,10 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
 <span class='co'># groups</span>
 <span class='va'>flights</span><span class='op'>$</span><span class='va'>grp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, <span class='fl'>89</span><span class='op'>)</span>
 
-<span class='va'>flights</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>grp</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_geo_3d.html'>e_geo_3d</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>flights</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>grp</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_geo_3d.html'>e_geo_3d</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_lines_3d</span><span class='op'>(</span>
     <span class='va'>start_lon</span>,
     <span class='va'>start_lat</span>,
@@ -459,22 +459,22 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
   z <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>100</span>, <span class='fl'>50</span><span class='op'>)</span>
 <span class='op'>)</span>
 
-<span class='va'>df</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_line_3d</span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>z</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>df</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> |&gt;
+  <span class='fu'>e_line_3d</span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>z</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_title.html'>e_title</a></span><span class='op'>(</span><span class='st'>"nonsense"</span><span class='op'>)</span>
 
 <span class='co'># timeline</span>
 <span class='va'>df</span><span class='op'>$</span><span class='va'>grp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>, <span class='fl'>20</span><span class='op'>)</span>
 
-<span class='va'>df</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>grp</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>e_line_3d</span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>z</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>df</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>grp</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> |&gt;
+  <span class='fu'>e_line_3d</span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>z</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_visual_map.html'>e_visual_map</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_title.html'>e_title</a></span><span class='op'>(</span><span class='st'>"nonsense"</span><span class='op'>)</span>
-</pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

@@ -4,7 +4,7 @@ author: "Pengfei Li"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{GEOJSON_DATA}
+  %\VignetteIndexEntry{GeoJSON data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -47,23 +47,23 @@ library(rmapshaper)
 
 Get India map data from gadm website, this command need network available, it will download the rds data to the current directory.
 
-```{r, cache=TRUE}
-india_sp <- raster::getData('GADM', country = 'INDIA', level = 2) # 
-india_sp %>% 
-  head() %>% 
+```{r}
+india_sp <- raster::getData('GADM', country = 'INDIA', level = 2) 
+india_sp |> 
+  head() |> 
   knitr::kable()
 ```
 
 Note that you can then combine maps with `raster::union(map1, map2)` or with the `em_maps` function from the [echarts4r.maps](https://echarts4r-maps.john-coene.com) package. Then convert the `SpatialPolygonsDataFrame` into `GeoJSON` with `geojsonio`: _this will take a long time as the map is very detailed_.
 
-```{r, cache=TRUE}
+```{r}
 india_json <- geojsonio::geojson_list(india_sp)
 print(object.size(india_json), units = "Mb")
 ```
 
 Therefore we can simplify the map to make it smaller.
 
-```{r, cache=TRUE}
+```{r}
 india_small <- rmapshaper::ms_simplify(india_sp, keep = 0.05) 
 india_json_small <- geojsonio::geojson_list(india_small)
 print(object.size(india_json_small), units = "Mb") 
@@ -73,10 +73,10 @@ The function `raster::getData` gives each polygon a `NAME_*` property (where `*`
 
 Now we can use the `GeoJSON` with `e_map_register`.
 
-```{r, cache=TRUE}
+```{r}
 # plot 
-e_charts() %>%
-  e_map_register("India", india_json_small) %>%
+e_charts() |>
+  e_map_register("India", india_json_small) |>
   e_map(map = "India", nameProperty = "NAME_2")
 ```
 

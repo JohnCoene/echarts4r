@@ -30,10 +30,10 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   output$chart <- renderEcharts4r({
-    mtcars \%>\%
-      e_charts(mpg) \%>\%
-      e_scatter(qsec) \%>\%
-      e_datazoom() \%>\%
+    mtcars |>
+      e_charts(mpg) |>
+      e_scatter(qsec) |>
+      e_datazoom() |>
       e_capture("datazoom")
   })
 

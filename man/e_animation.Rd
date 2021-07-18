@@ -41,9 +41,9 @@ Animation will be disabled when graphic number is larger than threshold.}
 Customise animations.
 }
 \examples{
-mtcars \%>\%
-  e_charts(mpg) \%>\%
-  e_area(drat) \%>\%
+mtcars |>
+  e_charts(mpg) |>
+  e_area(drat) |>
   e_animation(duration = 10000)
 }
 \seealso{

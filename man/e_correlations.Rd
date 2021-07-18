@@ -20,12 +20,12 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Correlation
 }
 \examples{
-cor(mtcars) \%>\%
-  e_charts() \%>\%
+cor(mtcars) |>
+  e_charts() |>
   e_correlations(
     order = "hclust",
     visual_map = FALSE
-  ) \%>\%
+  ) |>
   e_visual_map(
     min = -1,
     max = 1

@@ -46,9 +46,9 @@ Graphic functions end in `_g`
 The `e_draft` helper function is a very simple wrapper aroudn the graphics API and thus a good example of what can be achieved.
 
 ```{r}
-cars %>% 
-  e_charts(speed) %>% 
-  e_scatter(dist) %>%
+cars |> 
+  e_charts(speed) |> 
+  e_scatter(dist) |>
   e_draft()
 ```
 
@@ -57,9 +57,9 @@ cars %>%
 You can add an image for instance.
 
 ```{r}
-cars %>% 
-  e_charts(speed) %>% 
-  e_scatter(dist) %>%
+cars |> 
+  e_charts(speed) |> 
+  e_scatter(dist) |>
   e_image_g(
     right = 20,
     top = 20,

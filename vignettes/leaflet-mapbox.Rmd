@@ -33,10 +33,10 @@ data <- as.data.frame(data)
 names(data) <- c("lon", "lat", "value")
 data$value <- log(data$value)
 
-data %>% 
-  e_charts(lon) %>% 
-  e_leaflet() %>%
-  e_leaflet_tile() %>%  
+data |> 
+  e_charts(lon) |> 
+  e_leaflet() |>
+  e_leaflet_tile() |>  
   e_scatter(lat, size = value, coord_system = "leaflet")
 ```
 
@@ -45,23 +45,23 @@ data %>%
 You will need [mapbox](https://www.mapbox.com/) token.
 
 ```{r, echo = TRUE, eval = FALSE}
-data %>% 
-  e_charts(lon) %>% 
+data |> 
+  e_charts(lon) |> 
   e_mapbox(
     token = "YOUR_TOKEN",
     style = "mapbox://styles/mapbox/dark-v9"
-  ) %>% 
-  e_bar_3d(lat, value, coord_system = "mapbox") %>% 
+  ) |> 
+  e_bar_3d(lat, value, coord_system = "mapbox") |> 
   e_visual_map(value)
 ```
 
 ```{r, echo = FALSE}
-data %>% 
-  e_charts(lon) %>% 
+data |> 
+  e_charts(lon) |> 
   e_mapbox(
     token = "pk.eyJ1IjoiamNvZW5lcCIsImEiOiJjamwyYXJyMjExb2R0M3FxcDlmemg2czFiIn0.OL6qEEADz5qBjhKecwgBdg",
     style = "mapbox://styles/mapbox/dark-v9"
-  ) %>% 
-  e_bar_3d(lat, value, coord_system = "mapbox") %>% 
+  ) |> 
+  e_bar_3d(lat, value, coord_system = "mapbox") |> 
   e_visual_map(value)
 ```

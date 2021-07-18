@@ -16,9 +16,9 @@ Darkmode helps when using dark backgrounds, it'll automatically re-color labels,
 ```{r}
 library(echarts4r)
 
-e_charts(mtcars, qsec, darkMode = TRUE) %>% 
-  e_scatter(mpg, wt) %>% 
-  e_labels() %>% 
+e_charts(mtcars, qsec, darkMode = TRUE) |> 
+  e_scatter(mpg, wt) |> 
+  e_labels() |> 
   e_color(background = "black")
 ```
 
@@ -33,18 +33,18 @@ df <- data.frame(
   grp = rep(c("A", "B"), each = 26)
 )
 
-df %>% 
-  group_by(grp) %>% 
-  e_charts(x) %>% 
-  e_bar(y) %>% 
+df |> 
+  group_by(grp) |> 
+  e_charts(x) |> 
+  e_bar(y) |> 
   e_aria(enabled = TRUE, decal = list(show = TRUE))
 ```
 
 ## Rounded Corners
 
 ```{r}
-head(df, 7) %>% 
-  e_charts(x) %>% 
+head(df, 7) |> 
+  e_charts(x) |> 
   e_pie(
     y,
     radius = c("40%", "70%"),
@@ -61,8 +61,8 @@ head(df, 7) %>%
 Visual improvements to the datazoom feature.
 
 ```{r}
-e_charts(mtcars, qsec) %>% 
-  e_scatter(mpg, wt) %>%
+e_charts(mtcars, qsec) |> 
+  e_scatter(mpg, wt) |>
   e_datazoom(startValue = 14)
 ```
 
@@ -71,9 +71,9 @@ e_charts(mtcars, qsec) %>%
 Many improvements to labels were added.
 
 ```{r}
-mtcars %>%
-  tibble::rownames_to_column("model") %>% 
-  e_charts(model) %>% 
+mtcars |>
+  tibble::rownames_to_column("model") |> 
+  e_charts(model) |> 
   e_bar(
     mpg,
     label = list(
@@ -91,7 +91,7 @@ mtcars %>%
 There are also new options such as `labelLine` and `labelLayout`.
 
 ```{r}
-e_charts(mtcars, mpg) %>% 
+e_charts(mtcars, mpg) |> 
   e_scatter(
     qsec,
     wt,
@@ -111,7 +111,7 @@ e_charts(mtcars, mpg) %>%
     emphasis = list(
       focus = "self"
     )
-  ) %>% 
+  ) |> 
   e_x_axis(min = 9)
 ```
 
@@ -126,8 +126,70 @@ df <- data.frame(
   y = runif(14, 1, 10)
 )
 
-df %>% 
-  group_by(grp) %>% 
-  e_charts(x) %>% 
+df |> 
+  group_by(grp) |> 
+  e_charts(x) |> 
   e_bar(y, emphasis = list(focus = "series"))
+```
+
+## SVG Map
+
+```{r}
+url <- "https://echarts.apache.org/examples/data/asset/geo/Beef_cuts_France.svg"
+
+svg <- url |> 
+  readLines() |> 
+  paste0(collapse = "")
+
+data <- tibble::tibble(
+  name = c(
+    "Queue", 
+    "Langue",
+    "Plat de joue",
+    "Collier",
+    "Rumsteck",
+    "Plat de joue",
+    "Onglet",
+    "Plat de tranche",
+    "Araignée",
+    "Gîte à la noix",
+    "Bavette d'aloyau",
+    "Tende de tranche",
+    "Rond de gîte",
+    "Plat de côtes",
+    "Bavette",
+    "Basses côtes",
+    "Jumeau à biftek",
+    "Jumeau à pot-au-feu",
+    "Paleron",
+    "Macreuse à bifteck",
+    "Macreuse à pot-au-feu",
+    "Tendron Milieu de poitrine",
+    "Flanchet",
+    "Bavettede de flanchet",
+    "Hampe",
+    "Filet",
+    "Aiguillette baronne",
+    "Côtes Entrecôtes",
+    "Faux-filet",
+    "Gîte",
+    "Gros bout de poitrine"
+  ),
+  value = runif(31, 10, 15)
+)
+
+data |> 
+  e_charts(name) |> 
+  e_svg_register("beef", svg) |> 
+  e_svg(
+    value,
+    map = "beef",
+    label = list(
+      show = FALSE
+    )
+  ) |> 
+  e_visual_map(
+    value,
+    orient = "horizontal"
+  )
 ```

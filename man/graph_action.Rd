@@ -38,10 +38,10 @@ edges <- data.frame(
   stringsAsFactors = FALSE
 )
 
-e_charts() \%>\%
-  e_graph() \%>\%
-  e_graph_nodes(nodes, name, value, size, grp) \%>\%
-  e_graph_edges(edges, source, target) \%>\%
+e_charts() |>
+  e_graph() |>
+  e_graph_nodes(nodes, name, value, size, grp) |>
+  e_graph_edges(edges, source, target) |>
   e_focus_adjacency(
     seriesIndex = 0,
     dataIndex = 4

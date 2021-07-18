@@ -75,14 +75,14 @@ avg <- list(
   name = "AVG"
 )
 
-mtcars \%>\%
-  e_charts(mpg) \%>\%
-  e_line(wt) \%>\%
-  e_line(drat) \%>\%
-  e_line(cyl) \%>\%
-  e_mark_point("wt", data = max) \%>\%
-  e_mark_point(c("cyl", "drat"), data = min) \%>\%
-  e_mark_line(data = avg) \%>\% # applies to all
+mtcars |>
+  e_charts(mpg) |>
+  e_line(wt) |>
+  e_line(drat) |>
+  e_line(cyl) |>
+  e_mark_point("wt", data = max) |>
+  e_mark_point(c("cyl", "drat"), data = min) |>
+  e_mark_line(data = avg) |> # applies to all
   e_mark_area(
     serie = "wt",
     data = list(
@@ -93,17 +93,17 @@ mtcars \%>\%
 
 # Serie options, since the mark of "virginica" is not set, the mark setting 
 # of the previous frame is used
-iris \%>\%
-  group_by(Species) \%>\%
-  e_charts(Sepal.Length, timeline = TRUE) \%>\%
-  e_line(Sepal.Width) \%>\%
+iris |>
+  group_by(Species) |>
+  e_charts(Sepal.Length, timeline = TRUE) |>
+  e_line(Sepal.Width) |>
   e_timeline_serie(
     title = list(
       list(text = "setosa"),
       list(text = "versicolor"),
       list(text = "virginica")
     )
-  ) \%>\%
+  ) |>
   e_mark_area(
     serie = "setosa",
     data = list(
@@ -111,7 +111,7 @@ iris \%>\%
       list(xAxis = 6, yAxis = 4.5)
     ),
     itemStyle = list(color = "lightgreen")
-  ) \%>\%
+  ) |>
   e_mark_area(
     serie = "versicolor",
     data = list(

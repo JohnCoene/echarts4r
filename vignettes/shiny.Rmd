@@ -115,15 +115,15 @@ server <- function(input, output, session){
   })
   
   output$plot <- renderEcharts4r({
-    data %>% 
-     e_charts(x) %>% 
-     e_scatter(y) %>%
-     e_scatter(z) %>% 
+    data |> 
+     e_charts(x) |> 
+     e_scatter(y) |>
+     e_scatter(z) |> 
      e_brush(throttleDelay = 1000)
   })
   
   observeEvent(input$add, {
-    echarts4rProxy("plot") %>% 
+    echarts4rProxy("plot") |> 
       e_append1_p(0, react(), x, y)
   })
   
@@ -164,8 +164,8 @@ server <- function(input, output){
   })
   
   output$plot <- renderEcharts4r({
-    data() %>% 
-      e_charts(x) %>% 
+    data() |> 
+      e_charts(x) |> 
       e_bar(y)
   })
 }
@@ -188,9 +188,9 @@ server <- function(input, output){
   })
   
   output$plot <- renderEcharts4r({
-    data() %>% 
-      e_charts(x) %>% 
-      e_bar(y) %>% 
+    data() |> 
+      e_charts(x) |> 
+      e_bar(y) |> 
       e_show_loading()
   })
 }

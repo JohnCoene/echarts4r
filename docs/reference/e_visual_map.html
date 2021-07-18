@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
       </span>
     </div>
 
@@ -354,23 +354,23 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#visualMap'>Additional arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># scaled data</span>
-<span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>wt</span>, <span class='va'>qsec</span>, scale <span class='op'>=</span> <span class='va'>e_scale</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <pre class="examples"><div class='input'><span class='co'># scaled data</span>
+<span class='va'>mtcars</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>wt</span>, <span class='va'>qsec</span>, scale <span class='op'>=</span> <span class='va'>e_scale</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_visual_map</span><span class='op'>(</span><span class='va'>qsec</span>, scale <span class='op'>=</span> <span class='va'>e_scale</span><span class='op'>)</span>
 
 <span class='co'># dimension</span>
 <span class='co'># color according to y axis</span>
-<span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>wt</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>mtcars</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>wt</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_visual_map</span><span class='op'>(</span><span class='va'>wt</span>, dimension <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 
 <span class='co'># color according to x axis</span>
-<span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>wt</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='va'>mtcars</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>mpg</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>wt</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_visual_map</span><span class='op'>(</span><span class='va'>mpg</span>, dimension <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
 
 <span class='va'>v</span> <span class='op'>&lt;-</span> <span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>
@@ -381,25 +381,25 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
   color <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span><span class='op'>)</span>,
   size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>300</span>, <span class='fl'>10</span>, <span class='fl'>1</span><span class='op'>)</span>,
   stringsAsFactors <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='op'>)</span> |&gt;
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span> |&gt;
   <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span>
     z <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span>,
     color <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>color</span><span class='op'>)</span>,
     size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>size</span><span class='op'>)</span>
-  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='op'>)</span> |&gt;
   <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='va'>matrix</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='e_scatter_3d.html'>e_scatter_3d</a></span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>z</span>, <span class='va'>color</span>, <span class='va'>size</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+</div><div class='output co'>#&gt; <span class='message'>`summarise()` has grouped output by 'x'. You can override using the `.groups` argument.</span></div><div class='input'>
+<span class='va'>matrix</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='e_scatter_3d.html'>e_scatter_3d</a></span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>z</span>, <span class='va'>color</span>, <span class='va'>size</span><span class='op'>)</span> |&gt;
   <span class='fu'>e_visual_map</span><span class='op'>(</span>
     <span class='va'>z</span>,
     <span class='co'># scale to z</span>
     inRange <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>symbolSize <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>30</span><span class='op'>)</span><span class='op'>)</span>,
     <span class='co'># scale size</span>
     dimension <span class='op'>=</span> <span class='fl'>3</span> <span class='co'># third dimension 0 = x, y = 1, z = 2, size = 3</span>
-  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='op'>)</span> |&gt;
   <span class='fu'>e_visual_map</span><span class='op'>(</span>
     <span class='va'>z</span>,
     <span class='co'># scale to z</span>
@@ -409,7 +409,7 @@ between 1 and 20 for that makes for decent sized points on the chart.</p>
     <span class='co'># third dimension 0 = x, y = 1, z = 2, size = 3, color = 4</span>
     bottom <span class='op'>=</span> <span class='fl'>300</span> <span class='co'># padding to avoid visual maps overlap</span>
   <span class='op'>)</span>
-</pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

@@ -55,9 +55,9 @@ stock <- data.frame(
   high = c(203.32, 200.67, 200.00, 203.95, 204.90, 208.44, 213.17)
 )
 
-stock \%>\%
-  e_charts(date) \%>\%
-  e_candle(opening, closing, low, high) \%>\%
+stock |>
+  e_charts(date) |>
+  e_candle(opening, closing, low, high) |>
   e_y_axis(min = 190, max = 220)
 }
 \seealso{

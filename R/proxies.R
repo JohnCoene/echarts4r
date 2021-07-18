@@ -34,33 +34,33 @@
 #'
 #' server <- function(input, output, session) {
 #'   output$plot <- renderEcharts4r({
-#'     mtcars %>%
-#'       e_charts(mpg) %>%
-#'       e_line(disp) %>%
+#'     mtcars |>
+#'       e_charts(mpg) |>
+#'       e_line(disp) |>
 #'       e_line(hp, name = "HP") # explicitly pass name
 #'   })
 #'
 #'   # highlight
 #'
 #'   observeEvent(input$highlightmpg, {
-#'     echarts4rProxy("plot") %>%
+#'     echarts4rProxy("plot") |>
 #'       e_highlight_p(series_index = 0) # using index
 #'   })
 #'
 #'   observeEvent(input$highlighthp, {
-#'     echarts4rProxy("plot") %>%
+#'     echarts4rProxy("plot") |>
 #'       e_highlight_p(series_name = "HP") # using name
 #'   })
 #'
 #'   # downplay
 #'
 #'   observeEvent(input$downplaympg, {
-#'     echarts4rProxy("plot") %>%
+#'     echarts4rProxy("plot") |>
 #'       e_downplay_p(series_name = "disp")
 #'   })
 #'
 #'   observeEvent(input$downplayhp, {
-#'     echarts4rProxy("plot") %>%
+#'     echarts4rProxy("plot") |>
 #'       e_downplay_p(series_index = 1)
 #'   })
 #' }
@@ -131,17 +131,17 @@ e_downplay_p <- function(proxy, series_index = NULL, series_name = NULL) {
 #'
 #' server <- function(input, output, session) {
 #'   output$plot <- renderEcharts4r({
-#'     mtcars %>%
-#'       e_charts(mpg) %>%
-#'       e_line(disp, bind = carb, name = "displacement") %>%
-#'       e_line(hp) %>%
-#'       e_x_axis(min = 10) %>%
-#'       e_tooltip(show = FALSE) %>%
+#'     mtcars |>
+#'       e_charts(mpg) |>
+#'       e_line(disp, bind = carb, name = "displacement") |>
+#'       e_line(hp) |>
+#'       e_x_axis(min = 10) |>
+#'       e_tooltip(show = FALSE) |>
 #'       e_theme("westeros")
 #'   })
 #'
 #'   observeEvent(input$show, {
-#'     echarts4rProxy("plot") %>%
+#'     echarts4rProxy("plot") |>
 #'       e_showtip_p(
 #'         name = "displacement",
 #'         position = list(5, 5)
@@ -149,7 +149,7 @@ e_downplay_p <- function(proxy, series_index = NULL, series_name = NULL) {
 #'   })
 #'
 #'   observeEvent(input$hide, {
-#'     echarts4rProxy("plot") %>%
+#'     echarts4rProxy("plot") |>
 #'       e_hidetip_p()
 #'   })
 #'
@@ -260,14 +260,14 @@ e_hidetip_p <- function(proxy) {
 #'
 #' server <- function(input, output, session) {
 #'   output$graph <- renderEcharts4r({
-#'     e_charts() %>%
-#'       e_graph() %>%
-#'       e_graph_nodes(nodes, name, value, size, grp) %>%
+#'     e_charts() |>
+#'       e_graph() |>
+#'       e_graph_nodes(nodes, name, value, size, grp) |>
 #'       e_graph_edges(edges, source, target)
 #'   })
 #'
 #'   observeEvent(input$focus, {
-#'     echarts4rProxy("graph") %>%
+#'     echarts4rProxy("graph") |>
 #'       e_focus_adjacency_p(
 #'         seriesIndex = 0,
 #'         index = input$index
@@ -275,7 +275,7 @@ e_hidetip_p <- function(proxy) {
 #'   })
 #'
 #'   observeEvent(input$unfocus, {
-#'     echarts4rProxy("graph") %>%
+#'     echarts4rProxy("graph") |>
 #'       e_unfocus_adjacency_p(seriesIndex = 0)
 #'   })
 #' }
@@ -367,16 +367,16 @@ e_unfocus_adjacency_p <- function(proxy, ...) {
 #'
 #' server <- function(input, output, session) {
 #'   output$chart <- renderEcharts4r({
-#'     cars %>%
-#'       e_charts(speed) %>%
-#'       e_scatter(dist) %>%
+#'     cars |>
+#'       e_charts(speed) |>
+#'       e_scatter(dist) |>
 #'       e_datazoom()
 #'   })
 #'
 #'   observe({
 #'     req(input$zoom)
 #'
-#'     echarts4rProxy("chart") %>%
+#'     echarts4rProxy("chart") |>
 #'       e_dispatch_action_p("dataZoom", startValue = 1, endValue = 10)
 #'   })
 #' }
@@ -423,10 +423,10 @@ e_dispatch_action_p <- function(proxy, type, ...) {
 #'
 #' server <- function(input, output) {
 #'   output$chart <- renderEcharts4r({
-#'     mtcars %>%
-#'       e_charts(mpg) %>%
-#'       e_scatter(qsec) %>%
-#'       e_datazoom() %>%
+#'     mtcars |>
+#'       e_charts(mpg) |>
+#'       e_scatter(qsec) |>
+#'       e_datazoom() |>
 #'       e_capture("datazoom")
 #'   })
 #'
@@ -463,14 +463,14 @@ e_capture <- function(e, event) {
 #'
 #' server <- function(input, output) {
 #'   output$chart <- renderEcharts4r({
-#'     mtcars %>%
-#'       e_charts(mpg, draw = FALSE) %>%
-#'       e_scatter(qsec) %>%
+#'     mtcars |>
+#'       e_charts(mpg, draw = FALSE) |>
+#'       e_scatter(qsec) |>
 #'       e_datazoom()
 #'   })
 #'
 #'   observeEvent(input$draw, {
-#'     echarts4rProxy("chart") %>%
+#'     echarts4rProxy("chart") |>
 #'       e_draw_p()
 #'   })
 #' }

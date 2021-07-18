@@ -26,9 +26,9 @@
 #' @examples
 #' # may not work in RStudio viewer
 #' # Open in browser
-#' cars %>%
-#'   e_charts(speed) %>%
-#'   e_scatter(dist) %>%
+#' cars |>
+#'   e_charts(speed) |>
+#'   e_scatter(dist) |>
 #'   e_image_g(
 #'     right = 20,
 #'     top = 20,
@@ -187,13 +187,13 @@ e_bezier_curve_g <- function(e, ...) {
 #' @param opacity,color Opacity and color of text.
 #'
 #' @examples
-#' cars %>%
-#'   e_charts(speed) %>%
-#'   e_scatter(dist) %>%
+#' cars |>
+#'   e_charts(speed) |>
+#'   e_scatter(dist) |>
 #'   e_draft()
 #' @export
 e_draft <- function(e, text = "DRAFT", size = "120px", opacity = 0.4, color = "#d3d3d3") {
-  e %>%
+  e |>
     e_text_g(
       left = "center",
       top = "center",

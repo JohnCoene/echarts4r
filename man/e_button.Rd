@@ -22,11 +22,11 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Add a button to your visualisation.
 }
 \examples{
-iris \%>\%
-  group_by(Species) \%>\%
-  e_charts(Sepal.Length) \%>\%
-  e_line(Sepal.Width) \%>\%
-  e_line(Petal.Length) \%>\%
-  e_highlight(series_name = "setosa", btn = "myBtn") \%>\%
+iris |>
+  group_by(Species) |>
+  e_charts(Sepal.Length) |>
+  e_line(Sepal.Width) |>
+  e_line(Petal.Length) |>
+  e_highlight(series_name = "setosa", btn = "myBtn") |>
   e_button("myBtn", "highlight stuff")
 }

@@ -63,8 +63,8 @@ server <- function(input, output) {
   })
 
   output$plot <- renderEcharts4r({
-    data() \%>\%
-      e_charts(x) \%>\%
+    data() |>
+      e_charts(x) |>
       e_bar(y)
   })
 }
@@ -84,9 +84,9 @@ server <- function(input, output) {
   })
 
   output$plot <- renderEcharts4r({
-    data() \%>\%
-      e_charts(x) \%>\%
-      e_bar(y) \%>\%
+    data() |>
+      e_charts(x) |>
+      e_bar(y) |>
       e_show_loading()
   })
 }

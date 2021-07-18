@@ -27,19 +27,19 @@ e_common(
 ## Points
 
 ```{r}
-quakes %>% 
-  e_charts(long) %>% 
+quakes |> 
+  e_charts(long) |> 
   e_geo(
     roam = TRUE,
     boundingCoords = list(
       c(185, - 10),
       c(165, -40)
     )
-  ) %>% 
+  ) |> 
   e_scatter(
     lat, mag, 
     coord_system = "geo"
-  ) %>% 
+  ) |> 
   e_visual_map(mag, scale = e_scale)
 ```
 
@@ -51,9 +51,9 @@ flights <- read.csv(
          "master/2011_february_aa_flight_paths.csv")
 )
 
-flights %>% 
-  e_charts() %>% 
-  e_geo() %>% 
+flights |> 
+  e_charts() |> 
+  e_geo() |> 
   e_lines(
     start_lon, 
     start_lat, 
@@ -67,21 +67,21 @@ flights %>%
 ## Heatmap
 
 ```{r}
-quakes %>%
-  e_charts(long) %>% 
+quakes |>
+  e_charts(long) |> 
   e_geo(
     boundingCoords = list(
       c(190, -10),
       c(180, -40)
    )
-  ) %>% 
+  ) |> 
   e_heatmap(
     lat, 
     mag, 
     coord_system = "geo", 
     blurSize = 5, 
     pointSize = 3
-  ) %>% 
+  ) |> 
   e_visual_map(mag)
 ```
 
@@ -107,10 +107,10 @@ flights <- read.csv(
          "master/2011_february_aa_flight_paths.csv")
 )
 
-flights %>% 
-  e_charts() %>% 
-  em_map("USA") %>%
-  e_geo("USA") %>% 
+flights |> 
+  e_charts() |> 
+  em_map("USA") |>
+  e_geo("USA") |> 
   e_lines(
     start_lon, 
     start_lat, 

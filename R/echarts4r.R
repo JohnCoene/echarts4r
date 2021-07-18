@@ -61,8 +61,8 @@ echarts_build <- function(e) {
 #' }
 #'
 #' @examples
-#' mtcars %>%
-#'   e_charts(qsec) %>%
+#' mtcars |>
+#'   e_charts(qsec) |>
 #'   e_line(mpg)
 #' @import htmlwidgets
 #' @importFrom grDevices boxplot.stats
@@ -343,10 +343,10 @@ e_chart <- e_charts
 #'
 #' @examples
 #' points <- mtcars[1:3, ]
-#' mtcars %>%
-#'   e_charts_("qsec") %>%
-#'   e_line(mpg) %>%
-#'   e_data(points, qsec) %>%
+#' mtcars |>
+#'   e_charts_("qsec") |>
+#'   e_line(mpg) |>
+#'   e_data(points, qsec) |>
 #'   e_scatter(mpg, color = "blue")
 #' @rdname init
 #' @export

@@ -52,8 +52,8 @@ sankey <- data.frame(
   stringsAsFactors = FALSE
 )
 
-sankey \%>\%
-  e_charts() \%>\%
+sankey |>
+  e_charts() |>
   e_sankey(source, target, value)
 }
 \seealso{

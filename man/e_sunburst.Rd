@@ -84,8 +84,8 @@ jsonl <- jsonlite::fromJSON('[
   {"name": "venus", "value": 40, "itemStyle": {"color": "blue"} }
 ]', simplifyDataFrame = FALSE)
 
-jsonl \%>\%
-  e_charts() \%>\%
+jsonl |>
+  e_charts() |>
   e_sunburst() # demo
 
 
@@ -121,9 +121,9 @@ df <- tibble(
   )
 )
 
-df \%>\%
-  e_charts() \%>\%
-  e_sunburst() \%>\%
+df |>
+  e_charts() |>
+  e_sunburst() |>
   e_theme("westeros")
 
 # with styles
@@ -131,8 +131,8 @@ myStyles <- c(list(color = "green"), list(color = "magenta")) # custom styles de
 myNames <- list(c("land", "river"), "crater") # names to style
 myLevels <- list(2, c(3, 4)) # hierarchical levels to style
 
-df \%>\%
-  e_charts() \%>\%
+df |>
+  e_charts() |>
   e_sunburst(myStyles, myNames, myLevels)
 }
 \seealso{

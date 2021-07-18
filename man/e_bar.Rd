@@ -53,14 +53,12 @@ Add bar serie.
 \examples{
 library(dplyr)
 
-mtcars \%>\%
-  mutate(
-    model = row.names(.),
-    total = mpg + qsec
-  ) \%>\%
-  arrange(desc(total)) \%>\%
-  e_charts(model) \%>\%
-  e_bar(mpg, stack = "grp") \%>\%
+mtcars |>
+  tibble::rownames_to_column("model") |> 
+  mutate(total = mpg + qsec) |>
+  arrange(desc(total)) |>
+  e_charts(model) |>
+  e_bar(mpg, stack = "grp") |>
   e_bar(qsec, stack = "grp")
 }
 \seealso{

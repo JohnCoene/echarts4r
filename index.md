@@ -30,15 +30,21 @@
 </div>
 </div>
 
-## Note
-
-The Github version is currently going through the update from ECharts.js version 4 to version 5: feel free to test it but there are some issues. Please use the stable CRAN version otherwise.
-
 ## Introduction
 
 Thanks to [Sharon Machlis](https://twitter.com/sharon000) there is an amazing video and [article](https://www.infoworld.com/article/3607068/plot-in-r-with-echarts4r.html) introducing echarts4r.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/OBJxIWEFHdo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<br />
+
+<div class="panel panel-default">
+<div class="panel-body">
+You can learn how to build such R packages for interactive 
+visualisations with the book [JavaScript for R](https://javascript-for-r.com/).
+</div>
+</div>
+
 
 ## Installation
 

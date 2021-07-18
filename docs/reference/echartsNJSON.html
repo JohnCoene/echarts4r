@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
       </span>
     </div>
 
@@ -335,14 +335,14 @@ This is subsequently passed to the <code>setOption</code> ECharts (JavaScript) f
     <p>Must be passed as last option.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='va'>p</span> <span class='op'>&lt;-</span> <span class='va'>cars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>dist</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <pre class="examples"><div class='input'><span class='va'>p</span> <span class='op'>&lt;-</span> <span class='va'>cars</span> |&gt;
+  <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>dist</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_scatter.html'>e_scatter</a></span><span class='op'>(</span><span class='va'>speed</span>, symbol_size <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
 
 <span class='va'>p</span> <span class='co'># plot</span>
 
 <span class='co'># extract the JSON</span>
-<span class='va'>json</span> <span class='op'>&lt;-</span> <span class='va'>p</span> <span class='op'>%&gt;%</span>
+<span class='va'>json</span> <span class='op'>&lt;-</span> <span class='va'>p</span> |&gt;
   <span class='fu'>e_inspect</span><span class='op'>(</span>
     json <span class='op'>=</span> <span class='cn'>TRUE</span>,
     pretty <span class='op'>=</span> <span class='cn'>TRUE</span>
@@ -350,11 +350,190 @@ This is subsequently passed to the <code>setOption</code> ECharts (JavaScript) f
 
 <span class='co'># print json</span>
 <span class='va'>json</span>
-
+</div><div class='output co'>#&gt; {
+#&gt;   "yAxis": [
+#&gt;     {
+#&gt;       "show": true
+#&gt;     }
+#&gt;   ],
+#&gt;   "xAxis": [
+#&gt;     {
+#&gt;       "type": "value"
+#&gt;     }
+#&gt;   ],
+#&gt;   "legend": {
+#&gt;     "data": [
+#&gt;       "speed"
+#&gt;     ]
+#&gt;   },
+#&gt;   "series": [
+#&gt;     {
+#&gt;       "data": [
+#&gt;         {
+#&gt;           "value": [2, 4]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [4, 7]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [10, 4]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [10, 9]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [14, 12]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [16, 8]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [17, 11]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [18, 10]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [20, 12]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [20, 15]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [22, 7]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [24, 12]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [26, 10]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [26, 13]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [26, 14]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [26, 15]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [28, 11]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [28, 12]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [32, 16]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [32, 17]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [32, 20]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [34, 10]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [34, 13]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [34, 13]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [36, 14]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [36, 19]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [40, 16]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [40, 17]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [42, 18]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [46, 13]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [46, 19]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [48, 20]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [50, 17]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [52, 20]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [54, 15]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [54, 23]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [56, 18]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [56, 20]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [60, 14]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [64, 20]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [66, 22]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [68, 19]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [70, 24]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [76, 18]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [80, 14]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [84, 18]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [85, 25]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [92, 24]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [93, 24]
+#&gt;         },
+#&gt;         {
+#&gt;           "value": [120, 24]
+#&gt;         }
+#&gt;       ],
+#&gt;       "name": "speed",
+#&gt;       "type": "scatter",
+#&gt;       "symbol": null,
+#&gt;       "coordinateSystem": "cartesian2d",
+#&gt;       "yAxisIndex": 0,
+#&gt;       "xAxisIndex": 0,
+#&gt;       "symbolSize": 10
+#&gt;     }
+#&gt;   ]
+#&gt; } </div><div class='input'>
 <span class='co'># rebuild plot</span>
-<span class='fu'>echarts_from_json</span><span class='op'>(</span><span class='va'>json</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'>echarts_from_json</span><span class='op'>(</span><span class='va'>json</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_theme.html'>e_theme</a></span><span class='op'>(</span><span class='st'>"dark"</span><span class='op'>)</span> <span class='co'># modify</span>
-</pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

@@ -9,12 +9,12 @@
 #' @param ... Content of the button, complient with \code{htmltools}.
 #'
 #' @examples
-#' iris %>%
-#'   group_by(Species) %>%
-#'   e_charts(Sepal.Length) %>%
-#'   e_line(Sepal.Width) %>%
-#'   e_line(Petal.Length) %>%
-#'   e_highlight(series_name = "setosa", btn = "myBtn") %>%
+#' iris |>
+#'   group_by(Species) |>
+#'   e_charts(Sepal.Length) |>
+#'   e_line(Sepal.Width) |>
+#'   e_line(Petal.Length) |>
+#'   e_highlight(series_name = "setosa", btn = "myBtn") |>
 #'   e_button("myBtn", "highlight stuff")
 #' @export
 e_button <- function(e, id, ..., position = "top", tag = htmltools::tags$button) {
