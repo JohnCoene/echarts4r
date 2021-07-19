@@ -8,7 +8,7 @@
 \usage{
 e_color(e, color = NULL, background = NULL, append = TRUE)
 
-\method{e_color}{echarts4r}(e, color = NULL, background = NULL)
+\method{e_color}{echarts4r}(e, color = NULL, background = NULL, append = TRUE)
 
 \method{e_color}{echarts4rProxy}(e, color = NULL, background = NULL, append = TRUE)
 }

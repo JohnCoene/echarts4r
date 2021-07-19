@@ -28,7 +28,7 @@ e_color <- function(e, color = NULL, background = NULL, append = TRUE) UseMethod
 
 #' @rdname e_color
 #' @export 
-e_color.echarts4r <- function(e, color = NULL, background = NULL) {
+e_color.echarts4r <- function(e, color = NULL, background = NULL, append = TRUE) {
   if (!e$x$tl) {
     if (!is.null(color)) e$x$opts$color <- as.list(color)
     if (!is.null(background)) e$x$opts$backgroundColor <- background
@@ -36,7 +36,6 @@ e_color.echarts4r <- function(e, color = NULL, background = NULL) {
     if (!is.null(color)) e$x$opts$baseOption$color <- color
     if (!is.null(background)) e$x$opts$baseOption$backgroundColor <- background
   }
-
   e
 }
 
