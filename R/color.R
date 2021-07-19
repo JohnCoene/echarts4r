@@ -5,6 +5,9 @@
 #' @inheritParams e_bar
 #' @param color Vector of colors.
 #' @param background Background color.
+#' @param append Only applicable to `echarts4rProxy`.
+#' Whether to append the `color` to the existing
+#' array (vector) or colors or to replace it.
 #'
 #' @examples
 #' mtcars |>
@@ -21,7 +24,7 @@
 #' 
 #' @name e_color
 #' @export
-e_color <- function(e, color = NULL, background = NULL) UseMethod("e_color")
+e_color <- function(e, color = NULL, background = NULL, append = TRUE) UseMethod("e_color")
 
 #' @rdname e_color
 #' @export 
@@ -39,9 +42,10 @@ e_color.echarts4r <- function(e, color = NULL, background = NULL) {
 
 #' @rdname e_color
 #' @export 
-e_color.echarts4rProxy <- function(e, color = NULL, background = NULL) {
+e_color.echarts4rProxy <- function(e, color = NULL, background = NULL, append = TRUE) {
   if (!is.null(color)) e$chart$x$opts$color <- as.list(color)
   if (!is.null(background)) e$chart$x$opts$backgroundColor <- background
+  e$chart$x$opts$appendColor <- append
 
   e
 }

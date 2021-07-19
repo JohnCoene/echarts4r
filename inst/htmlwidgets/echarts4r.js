@@ -377,10 +377,14 @@ if (HTMLWidgets.shinyMode) {
             opts.series.push(serie);
           });
 
-        if(data.opts.color)
-          data.opts.color.forEach(function(color){
-            opts.color.push(color);
-          });
+        if(data.opts.color){
+          if(data.opts.appendColor)
+            data.opts.color.forEach(function(color){
+              opts.color.push(color);
+            });
+          else 
+            opts.color = data.opts.color;
+        }
         
         if(data.opts.backgroundColor)
           opts.color = data.opts.backgroundColor;
