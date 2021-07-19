@@ -1,3 +1,7 @@
+# echarts4r 0.4.2.9000
+
+- Added proxy method on `e_color`, see [#347](https://github.com/JohnCoene/echarts4r/issues/347)
+
 # echarts4r 0.4.1
 
 - Apply mark to all series in timeline, fixes [#290](https://github.com/JohnCoene/echarts4r/issues/290)

@@ -2,9 +2,15 @@
 % Please edit documentation in R/color.R
 \name{e_color}
 \alias{e_color}
+\alias{e_color.echarts4r}
+\alias{e_color.echarts4rProxy}
 \title{Color}
 \usage{
 e_color(e, color = NULL, background = NULL)
+
+\method{e_color}{echarts4r}(e, color = NULL, background = NULL)
+
+\method{e_color}{echarts4rProxy}(e, color = NULL, background = NULL)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
