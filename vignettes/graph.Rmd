@@ -138,3 +138,45 @@ e_charts() |>
     e_modularity() |> 
     e_tooltip()
 ```
+
+## Les Miserables
+
+The Les Miserables dataset is a popular visualization that demonstrates network graphs. An example of this graph is provided below.
+
+```{r}
+library(echarts4r)
+library(magrittr)
+
+les <- jsonlite::fromJSON("https://gist.githubusercontent.com/tyluRp/0d7a53f2a1f55cb3c6ffe22c67618267/raw/0684a839c3e49dac1157721ddd906eff8f9491d4/les-miserables.json")
+
+e_charts() |> 
+  e_graph(
+    layout = "circular", 
+    circular = list(
+      rotateLabel = TRUE
+    ),
+    roam = TRUE,
+    lineStyle = list(
+      color = "source",
+      curveness = 0.3
+    ),
+    label = list(
+      position = "right",
+      formatter = "{b}"
+    )
+  ) |>
+  e_graph_nodes(
+    nodes = les$nodes, 
+    names = name, 
+    value = value, 
+    size = size, 
+    category = grp
+  ) |> 
+  e_graph_edges(
+    edges = les$edges, 
+    source = from,
+    target = to
+  ) |>
+  e_tooltip()
+```
+
