@@ -1069,8 +1069,8 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #' @param name Name of graph.
 #' @param nodes Data.frame of nodes.
 #' @param names Names of nodes, unique.
-#' @param value values of nodes.
-#' @param size Size of nodes.
+#' @param value Values of nodes.
+#' @param size Size of nodes or width of edges.
 #' @param symbol Symbols of nodes.
 #' @param legend Whether to add serie to legend.
 #' @param category Group of nodes (i.e.: group membership).
@@ -1117,6 +1117,8 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #' edges <- data.frame(
 #'   source = sample(nodes$name, 2000, replace = TRUE),
 #'   target = sample(nodes$name, 2000, replace = TRUE),
+#'   value = rnorm(1000, 10, 2),
+#'   size = rnorm(1000, 10, 2),
 #'   stringsAsFactors = FALSE
 #' )
 #'
@@ -1324,22 +1326,28 @@ e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category,
 
 #' @rdname graph
 #' @export
-e_graph_edges <- function(e, edges, source, target) UseMethod("e_graph_edges")
+e_graph_edges <- function(e, edges, source, target, size) UseMethod("e_graph_edges")
 
 #' @method e_graph_edges echarts4r
 #' @export
-e_graph_edges.echarts4r <- function(e, edges, source, target) {
+e_graph_edges.echarts4r <- function(e, edges, source, target, size) {
   if (missing(edges) || missing(source) || missing(target)) {
     stop("must pass edges, source and target", call. = FALSE)
   }
-
+  
+  if (missing(size)) {
+    size <- NULL
+  }
+  
   source <- dplyr::enquo(source)
   target <- dplyr::enquo(target)
+  size <- dplyr::enquo(size)
 
   data <- .build_graph_edges(
     edges,
     source,
-    target
+    target,
+    size
   )
 
   # build JSON data
@@ -1350,18 +1358,24 @@ e_graph_edges.echarts4r <- function(e, edges, source, target) {
 
 #' @method e_graph_edges echarts4rProxy
 #' @export
-e_graph_edges.echarts4rProxy <- function(e, edges, source, target) {
+e_graph_edges.echarts4rProxy <- function(e, edges, source, target, size) {
   if (missing(edges) || missing(source) || missing(target)) {
     stop("must pass edges, source and target", call. = FALSE)
   }
-
+  
+  if (missing(size)) {
+    size <- 1
+  }
+  
   source <- dplyr::enquo(source)
   target <- dplyr::enquo(target)
-
+  size <- dplyr::enquo(size)
+  
   data <- .build_graph_edges(
     edges,
     source,
-    target
+    target,
+    size
   )
 
   # build JSON data
