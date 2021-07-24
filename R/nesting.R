@@ -4,6 +4,8 @@
 #'
 #' @inheritParams e_bar
 #' @param param The nested parameter to add data to.
+#' @param .serie Serie's index to add the data to, if
+#' `NULL` then it is added to all.
 #'
 #' @details For instance, \code{\link{e_funnel}} lets you pass \code{values} and \code{labels}
 #' (from your initial data.frame) which corresponds to \code{name} and \code{value} in the
@@ -53,7 +55,7 @@
 #'     fontStyle
 #'   )
 #' @export
-e_add <- function(e, param, ...) {
+e_add <- function(e, param, ..., .serie = NULL) {
   if (missing(e) || missing(param)) {
     stop("missing e or param", call. = FALSE)
   }
@@ -65,6 +67,9 @@ e_add <- function(e, param, ...) {
     data <- apply(data, 1, as.list)
 
     for (j in seq_along(data)) {
+      if(!is.null(.serie) && .serie != j)
+        next
+      
       if (!e$x$tl) {
         e$x$opts$series[[i]]$data[[j]][[param]] <- data[[j]]
       } else {
