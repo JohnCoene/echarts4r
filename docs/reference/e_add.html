@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2.9000</span>
       </span>
     </div>
 
@@ -296,7 +296,7 @@
     <p>Utility function to add data where the original JavaScript library expects nested data.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>e_add</span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>param</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>e_add</span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>param</span>, <span class='va'>...</span>, .serie <span class='op'>=</span> <span class='cn'>NULL</span>, .data <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -314,6 +314,16 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
       <th>...</th>
       <td><p>Any other option to pass, check See Also section.</p></td>
     </tr>
+    <tr>
+      <th>.serie</th>
+      <td><p>Serie's index to add the data to, if
+`NULL` then it is added to all.</p></td>
+    </tr>
+    <tr>
+      <th>.data</th>
+      <td><p>A dataset to use, if none are specified than
+the original dataset passed to `e_charts` is used.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -326,7 +336,7 @@ they translate to lists in R and dealing with nested data.frames is not ideal. <
 It allows adding those nested data points, see the examples below.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># funnel can take nested itemStyle</span>
+    <pre class="examples"><span class='co'># funnel can take nested itemStyle</span>
 <span class='co'># https://echarts.apache.org/en/option.html#series-funnel.data</span>
 <span class='va'>funnel</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
   stage <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"View"</span>, <span class='st'>"Click"</span>, <span class='st'>"Purchase"</span><span class='op'>)</span>,
@@ -355,7 +365,7 @@ It allows adding those nested data points, see the examples below.</p>
     show <span class='op'>=</span> <span class='cn'>TRUE</span>,
     fontStyle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>5</span>, <span class='fl'>12</span><span class='op'>)</span><span class='op'>)</span>
   <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>`summarise()` has grouped output by 'x'. You can override using the `.groups` argument.</span></div><div class='input'>
+
 <span class='va'>matrix</span> |&gt;
   <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='e_heatmap.html'>e_heatmap</a></span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>z</span><span class='op'>)</span> |&gt;
@@ -365,7 +375,7 @@ It allows adding those nested data points, see the examples below.</p>
     <span class='va'>show</span>,
     <span class='va'>fontStyle</span>
   <span class='op'>)</span>
-</div></pre>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>

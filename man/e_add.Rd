@@ -4,7 +4,7 @@
 \alias{e_add}
 \title{Add nested data}
 \usage{
-e_add(e, param, ..., .serie = NULL)
+e_add(e, param, ..., .serie = NULL, .data = NULL)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
@@ -16,6 +16,9 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{.serie}{Serie's index to add the data to, if
 `NULL` then it is added to all.}
+
+\item{.data}{A dataset to use, if none are specified than
+the original dataset passed to `e_charts` is used.}
 }
 \description{
 Utility function to add data where the original JavaScript library expects nested data.
