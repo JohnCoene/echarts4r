@@ -1,6 +1,10 @@
 # echarts4r 0.4.2.9000
 
-- Added proxy method on `e_color`, see [#347](https://github.com/JohnCoene/echarts4r/issues/347)
+- Added proxy method on `e_color`, see 
+[#347](https://github.com/JohnCoene/echarts4r/issues/347)
+- Added `.serie` argument to `e_add` to allow adding data to
+a specific serie.
+- Added `.data` argument to `e_add`.
 
 # echarts4r 0.4.1
 

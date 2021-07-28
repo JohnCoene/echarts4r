@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2.9000</span>
       </span>
     </div>
 
@@ -358,14 +358,17 @@ a proxy as returned by <code><a href='echarts4r-shiny.html'>echarts4rProxy</a></
     <p>To set a label you need to either use the <code>title</code>
 argument or pass a list specifying the label formatter.
 <code>label = list(formatter = "label")</code>. The former is more convenient
-but more limited, e.g.: you cannot specify the placement of the label.</p>
+but more limited, e.g.: you cannot specify the placement of the label.
+When the <code>e_mark</code> series function is used with <code>e_timeline</code> at the 
+same time, if the number of marks provided does not match the series, the 
+mark information will follow the setting of the previous frame.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://echarts.apache.org/en/option.html#series-line.markPoint'>Additional point arguments</a>,
 <a href='https://echarts.apache.org/en/option.html#series-line.markLine'>Additional line arguments</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>max</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+    <pre class="examples"><span class='va'>max</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
   name <span class='op'>=</span> <span class='st'>"Max"</span>,
   type <span class='op'>=</span> <span class='st'>"max"</span>
 <span class='op'>)</span>
@@ -396,8 +399,8 @@ but more limited, e.g.: you cannot specify the placement of the label.</p>
     <span class='op'>)</span>
   <span class='op'>)</span>
 
-<span class='co'># serie options</span>
-
+<span class='co'># Serie options, since the mark of "virginica" is not set, the mark setting </span>
+<span class='co'># of the previous frame is used</span>
 <span class='va'>iris</span> |&gt;
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Species</span><span class='op'>)</span> |&gt;
   <span class='fu'><a href='init.html'>e_charts</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, timeline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> |&gt;
@@ -409,17 +412,23 @@ but more limited, e.g.: you cannot specify the placement of the label.</p>
       <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"virginica"</span><span class='op'>)</span>
     <span class='op'>)</span>
   <span class='op'>)</span> |&gt;
-  <span class='fu'>e_mark_area</span><span class='op'>(</span>serie <span class='op'>=</span> <span class='st'>"setosa"</span><span class='op'>)</span> |&gt;
+  <span class='fu'>e_mark_area</span><span class='op'>(</span>
+    serie <span class='op'>=</span> <span class='st'>"setosa"</span>,
+    data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>xAxis <span class='op'>=</span> <span class='fl'>4</span>, yAxis <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>,
+      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>xAxis <span class='op'>=</span> <span class='fl'>6</span>, yAxis <span class='op'>=</span> <span class='fl'>4.5</span><span class='op'>)</span>
+    <span class='op'>)</span>,
+    itemStyle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"lightgreen"</span><span class='op'>)</span>
+  <span class='op'>)</span> |&gt;
   <span class='fu'>e_mark_area</span><span class='op'>(</span>
     serie <span class='op'>=</span> <span class='st'>"versicolor"</span>,
     data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
-      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>xAxis <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>,
-      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>xAxis <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>xAxis <span class='op'>=</span> <span class='fl'>4.5</span><span class='op'>)</span>,
+      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>xAxis <span class='op'>=</span> <span class='fl'>7</span><span class='op'>)</span>
     <span class='op'>)</span>,
     itemStyle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"lightblue"</span><span class='op'>)</span>
-  <span class='op'>)</span> |&gt;
-  <span class='fu'>e_mark_area</span><span class='op'>(</span>serie <span class='op'>=</span> <span class='st'>"virginica"</span><span class='op'>)</span>
-</div></pre>
+  <span class='op'>)</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
