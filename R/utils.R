@@ -260,19 +260,44 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   apply(data, 1, as.list)
 }
 
-.build_graph_edges <- function(edges, source, target) {
+.build_graph_edges <- function(edges, source, target, value, size) {
   row.names(edges) <- NULL
-
-  edges |>
-    dplyr::select(
-      !!source,
-      !!target
-    ) -> data
-
-  names(data) <- c("source", "target")
-
-  apply(data, 1, as.list) -> x
+  
+  if (is.null(size)) {
+    
+    edges |>
+      dplyr::select(
+        source = !!source,
+        target = !!target,
+        value = !!value
+      ) -> data
+    
+    x <- apply(data, 1, as.list)
+    
+  } else {
+    
+    edges |>
+      dplyr::select(
+        source = !!source,
+        target = !!target,
+        value = !!value,
+        size = !!size
+      ) -> data
+    
+    x <- apply(data, 1, function(x) {
+      list(
+        source = unname(x["source"]),
+        target = unname(x["target"]),
+        value = {if (is.null(value)) "" else unname(x["value"])},
+        symbolSize = c(5, 20),
+        lineStyle = list(width = unname(x["size"]))
+      )
+    })
+    
+  }
+  
   x
+  
 }
 
 .build_graph_category <- function(nodes, cat) {

@@ -5,6 +5,7 @@
 - Added `.serie` argument to `e_add` to allow adding data to
 a specific serie.
 - Added `.data` argument to `e_add`.
+- Added `value` and `size` arguments to `e_graph_edges`.
 
 # echarts4r 0.4.1
 
