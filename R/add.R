@@ -1364,7 +1364,7 @@ e_graph_edges.echarts4rProxy <- function(e, edges, source, target, size) {
   }
   
   if (missing(size)) {
-    size <- 1
+    size <- NULL
   }
   
   source <- dplyr::enquo(source)
