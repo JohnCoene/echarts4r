@@ -1097,13 +1097,14 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #' edges <- data.frame(
 #'   source = sample(nodes$name, 20, replace = TRUE),
 #'   target = sample(nodes$name, 20, replace = TRUE),
+#'   size = sample(1:4, 20, replace = TRUE),
 #'   stringsAsFactors = FALSE
 #' )
 #'
 #' e_charts() |>
 #'   e_graph() |>
 #'   e_graph_nodes(nodes, name, value, size, grp, symbol) |>
-#'   e_graph_edges(edges, source, target)
+#'   e_graph_edges(edges, source, target, size)
 #'
 #' # Use graphGL for larger networks
 #' nodes <- data.frame(
@@ -1117,8 +1118,6 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #' edges <- data.frame(
 #'   source = sample(nodes$name, 2000, replace = TRUE),
 #'   target = sample(nodes$name, 2000, replace = TRUE),
-#'   value = rnorm(1000, 10, 2),
-#'   size = rnorm(1000, 10, 2),
 #'   stringsAsFactors = FALSE
 #' )
 #'
