@@ -1069,8 +1069,8 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #' @param name Name of graph.
 #' @param nodes Data.frame of nodes.
 #' @param names Names of nodes, unique.
-#' @param value Values of nodes.
-#' @param size Size of nodes or width of edges.
+#' @param value Values of nodes or edges.
+#' @param size Sizes of nodes or edges.
 #' @param symbol Symbols of nodes.
 #' @param legend Whether to add serie to legend.
 #' @param category Group of nodes (i.e.: group membership).
@@ -1094,17 +1094,20 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #'   stringsAsFactors = FALSE
 #' )
 #'
+#' value_edges <- sample(1:100, 20, replace = TRUE)
 #' edges <- data.frame(
 #'   source = sample(nodes$name, 20, replace = TRUE),
 #'   target = sample(nodes$name, 20, replace = TRUE),
-#'   size = sample(1:4, 20, replace = TRUE),
+#'   value = value_edges,
+#'   size = ceiling(value_edges/20),
 #'   stringsAsFactors = FALSE
 #' )
 #'
 #' e_charts() |>
 #'   e_graph() |>
 #'   e_graph_nodes(nodes, name, value, size, grp, symbol) |>
-#'   e_graph_edges(edges, source, target, size)
+#'   e_graph_edges(edges, source, target, value, size) |>
+#'   e_tooltip()
 #'
 #' # Use graphGL for larger networks
 #' nodes <- data.frame(
@@ -1325,11 +1328,11 @@ e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category,
 
 #' @rdname graph
 #' @export
-e_graph_edges <- function(e, edges, source, target, size) UseMethod("e_graph_edges")
+e_graph_edges <- function(e, edges, source, target, value, size) UseMethod("e_graph_edges")
 
 #' @method e_graph_edges echarts4r
 #' @export
-e_graph_edges.echarts4r <- function(e, edges, source, target, size) {
+e_graph_edges.echarts4r <- function(e, edges, source, target, value, size) {
   if (missing(edges) || missing(source) || missing(target)) {
     stop("must pass edges, source and target", call. = FALSE)
   }
@@ -1338,14 +1341,20 @@ e_graph_edges.echarts4r <- function(e, edges, source, target, size) {
     size <- NULL
   }
   
+  if (missing(value)) {
+    value <- NULL
+  }
+  
   source <- dplyr::enquo(source)
   target <- dplyr::enquo(target)
+  value <- dplyr::enquo(value)
   size <- dplyr::enquo(size)
-
+  
   data <- .build_graph_edges(
     edges,
     source,
     target,
+    value,
     size
   )
 
@@ -1357,7 +1366,7 @@ e_graph_edges.echarts4r <- function(e, edges, source, target, size) {
 
 #' @method e_graph_edges echarts4rProxy
 #' @export
-e_graph_edges.echarts4rProxy <- function(e, edges, source, target, size) {
+e_graph_edges.echarts4rProxy <- function(e, edges, source, target, value, size) {
   if (missing(edges) || missing(source) || missing(target)) {
     stop("must pass edges, source and target", call. = FALSE)
   }
@@ -1368,12 +1377,14 @@ e_graph_edges.echarts4rProxy <- function(e, edges, source, target, size) {
   
   source <- dplyr::enquo(source)
   target <- dplyr::enquo(target)
+  value <- dplyr::enquo(value)
   size <- dplyr::enquo(size)
   
   data <- .build_graph_edges(
     edges,
     source,
     target,
+    value,
     size
   )
 
