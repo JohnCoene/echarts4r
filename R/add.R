@@ -2031,6 +2031,15 @@ e_tree.echarts4rProxy <- function(e, rm_x = TRUE, rm_y = TRUE, ...) {
 #' @examples
 #' e_charts() |>
 #'   e_gauge(57, "PERCENT")
+#' 
+#' # timeline 
+#' data.frame(time = 2015:2017) |> 
+#'   group_by(time) |> 
+#'   e_charts(timeline = TRUE) |>
+#'     e_gauge(
+#'       c(57, 23, 65),
+#'       c("percent", "percentage", "cases")
+#'     )
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-gauge}{Additional arguments}
 #'
 #' @rdname e_gauge
@@ -2044,9 +2053,8 @@ e_gauge.echarts4r <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
     stop("missing e, name, or value", call. = FALSE)
   }
 
-  if (!inherits(value, "numeric")) {
+  if (!inherits(value, "numeric"))
     stop("must pass numeric or integer", call. = FALSE)
-  }
 
   # remove axis
   e <- .rm_axis(e, rm_x, "x")
@@ -2067,8 +2075,11 @@ e_gauge.echarts4r <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
       e$x$opts$series <- append(e$x$opts$series, list(lst))
     } else {
       e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie))
-      e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(opts))
     }
+  }
+
+  if(e$x$tl){
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(opts))
   }
   e
 }

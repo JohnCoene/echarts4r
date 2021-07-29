@@ -286,8 +286,8 @@ e_charts_ <- function(
   x <- list(
     theme = "",
     tl = timeline,
-    renderer = tolower(renderer),
     draw = draw,
+    renderer = tolower(renderer),
     mapping = list(),
     events = list(),
     buttons = list(),
@@ -302,35 +302,104 @@ e_charts_ <- function(
   if (!missing(data)) {
     row.names(data) <- NULL
 
-    if (!is.null(xmap)) {
-      data <- .arrange_data_x(data, xmap)
+    if (!is.null(xmap) && timeline == FALSE) {
+      data <- .arrange_data_x(data, xmap, reorder = reorder)
     }
 
     x$data <- map_grps_(data, timeline)
   }
 
   if (!is.null(xmap)) {
-    x$mapping$x <- xmap
+    x$mapping$x <- xmap[1]
     x$mapping$x_class <- class(data[[xmap]])
     x <- .assign_axis(x, data)
+  }
+
+  if (isTRUE(timeline)) {
+    if (missing(data)) {
+      stop("timeline expects data", call. = FALSE)
+    }
+
+    if (!dplyr::is_grouped_df(data)) {
+      stop("must pass grouped data when timeline = TRUE", call. = FALSE)
+    }
+
+    if (!is.null(xmap)) {
+      x$data <- .arrange_data_by_group(x$data, xmap, reorder = reorder)
+    }
+
+    tl <- list(
+      baseOption = list(
+        yAxis = list(
+          list(show = TRUE)
+        )
+      ),
+      options = purrr::map(1:dplyr::n_groups(data), function(x) list())
+    )
+
+    x$opts <- tl
+
+    x$opts$baseOption$timeline <- list(
+      data = as.list(names(x$data)),
+      axisType = "category",
+      ...
+    )
+
+    if (!is.null(xmap)) {
+      x$mapping$x <- xmap[1]
+      x$mapping$x_class <- class(data[[xmap]])
+
+      x$mapping$include_x <- FALSE
+      cl <- x$mapping$x_class
+      if (cl == "character" || cl == "factor") {
+        labs <- unique(data[[x$mapping$x]])
+
+        if (length(labs) == 1) {
+          labs <- list(labs)
+        }
+
+        x$opts$baseOption$xAxis <- list(list(data = labs, type = "category", boundaryGap = TRUE))
+      } else if (cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
+        labs <- unique(data[[x$mapping$x]])
+
+        if (length(labs) == 1) {
+          labs <- list(labs)
+        }
+
+        x$opts$baseOption$xAxis <- list(list(data = labs, type = "time", boundaryGap = TRUE))
+      } else {
+        x$mapping$include_x <- TRUE
+        x$opts$baseOption$xAxis <- list(list(type = "value"))
+      }
+    }
   }
 
   x$dispose <- dispose
 
   # create widget
-  htmlwidgets::createWidget(
+  widget <- htmlwidgets::createWidget(
     name = "echarts4r",
     x,
     width = width,
     height = height,
     package = "echarts4r",
     elementId = elementId,
+    preRenderHook = echarts_build,
     sizingPolicy = htmlwidgets::sizingPolicy(
       defaultWidth = "100%",
       knitr.figure = FALSE,
-      browser.fill = TRUE
+      browser.fill = TRUE,
+      padding = 0
     )
   )
+
+  #  check for theme
+  theme <- getOption("ECHARTS4R_THEME") #  default theme
+  if (!is.null(theme)) {
+    widget <- e_theme(widget, theme)
+  }
+
+  return(widget)
 }
 
 #' @rdname init
