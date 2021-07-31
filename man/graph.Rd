@@ -30,7 +30,7 @@ e_graph_nodes(
   legend = TRUE
 )
 
-e_graph_edges(e, edges, source, target, size)
+e_graph_edges(e, edges, source, target, value, size)
 }
 \arguments{
 \item{e}{An \code{echarts4} object as returned by \code{e_charts}.}
@@ -50,9 +50,9 @@ graph but is only necessary for GL.}
 
 \item{names}{Names of nodes, unique.}
 
-\item{value}{Values of nodes.}
+\item{value}{Values of nodes or edges.}
 
-\item{size}{Size of nodes or width of edges.}
+\item{size}{Sizes of nodes or edges.}
 
 \item{category}{Group of nodes (i.e.: group membership).}
 
@@ -79,17 +79,20 @@ nodes <- data.frame(
   stringsAsFactors = FALSE
 )
 
+value_edges <- sample(1:100, 20, replace = TRUE)
 edges <- data.frame(
   source = sample(nodes$name, 20, replace = TRUE),
   target = sample(nodes$name, 20, replace = TRUE),
-  size = sample(1:4, 20, replace = TRUE),
+  value = value_edges,
+  size = ceiling(value_edges/20),
   stringsAsFactors = FALSE
 )
 
 e_charts() |>
   e_graph() |>
   e_graph_nodes(nodes, name, value, size, grp, symbol) |>
-  e_graph_edges(edges, source, target, size)
+  e_graph_edges(edges, source, target, value, size) |>
+  e_tooltip()
 
 # Use graphGL for larger networks
 nodes <- data.frame(
