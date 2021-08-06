@@ -11,6 +11,12 @@
 #' @param ... Any other option to pass, check See Also section.
 #' @param x_index,y_index Indexes of x and y axis.
 #' @param coord_system Coordinate system to plot against.
+#' 
+#' @note The bar serie expects the data on the x axis to be
+#' \code{categorical} in R this means a \code{factor} or 
+#' \code{character}. If the data on the x axis is numeric
+#' everything should work well in most cases but strange
+#' behaviour may be observed.
 #'
 #' @examples
 #' library(dplyr)

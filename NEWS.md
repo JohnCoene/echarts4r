@@ -6,6 +6,8 @@
 a specific serie.
 - Added `.data` argument to `e_add`.
 - Added `value` and `size` arguments to `e_graph_edges`.
+- Add note in documentation to clarify x axis type for `e_bar`
+see [#357](https://github.com/JohnCoene/echarts4r/issues/357)
 
 # echarts4r 0.4.1
 
