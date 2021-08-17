@@ -8,6 +8,8 @@ a specific serie.
 - Added `value` and `size` arguments to `e_graph_edges`.
 - Add note in documentation to clarify x axis type for `e_bar`
 see [#357](https://github.com/JohnCoene/echarts4r/issues/357)
+- Update all themes in an attempt to fix [#363](https://github.com/JohnCoene/echarts4r/issues/363)
+- Update base JavaScript version of Echarts.js to v 5.1.2
 
 # echarts4r 0.4.1
 
