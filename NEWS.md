@@ -10,6 +10,8 @@ a specific serie.
 see [#357](https://github.com/JohnCoene/echarts4r/issues/357)
 - Update all themes in an attempt to fix [#363](https://github.com/JohnCoene/echarts4r/issues/363)
 - Update base JavaScript version of Echarts.js to v 5.1.2
+- Fix [#365](https://github.com/JohnCoene/echarts4r/issues/365)
+`e_flip_coords` works with all data formats.
 
 # echarts4r 0.4.1
 
