@@ -850,10 +850,18 @@ e_flip_coords <- function(e) {
 
     for (i in seq_along(e$x$opts$series)) {
       for (j in 1:length(e$x$opts$series[[i]]$data)) {
-        try({
-          vals <- e$x$opts$series[[i]]$data[[j]]$value
-          e$x$opts$series[[i]]$data[[j]]$value <- rev(vals)
-        }, silent = TRUE)
+
+        if(!is.null(names(e$x$opts$series[[i]]$data[[j]]))){
+          try({
+            vals <- e$x$opts$series[[i]]$data[[j]]$value
+            e$x$opts$series[[i]]$data[[j]]$value <- rev(vals)
+          }, silent = TRUE)
+        } else {
+          try({
+            vals <- e$x$opts$series[[i]]$data[[j]]
+            e$x$opts$series[[i]]$data[[j]] <- rev(vals)
+          }, silent = TRUE)
+        }
       }
     }
   } else {
