@@ -12,6 +12,8 @@ see [#357](https://github.com/JohnCoene/echarts4r/issues/357)
 - Update base JavaScript version of Echarts.js to v 5.1.2
 - Fix [#365](https://github.com/JohnCoene/echarts4r/issues/365)
 `e_flip_coords` works with all data formats.
+- Deprecate `e_add` in favour of `e_add_nested` and `e_add_unnested`
+see `?nesting`.
 
 # echarts4r 0.4.1
 

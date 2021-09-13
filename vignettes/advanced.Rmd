@@ -341,9 +341,9 @@ USArrests |>
 
 You might observe in the official documentation that some series can take more _data_ points than just x and y points, like [e_bar](https://echarts.apache.org/en/option.html#series-line.data); In the [official documentation](https://echarts.apache.org/en/option.html) go to "serie", select the one you are interested in (i.e.: bar) then select "data".
 
-`e_bar` lets you pass `serie` (from your initial data.frame) which corresponds to `value` in the [original library](https://echarts.apache.org/en/option.html#series-bar.data). However the latter also takes, `label`, `itemStyle`, and `tooltip` but being JSON arrays they translate to lists in R and dealing with nested data.frames is not ideal. `e_add` remedies to that. It allows adding those nested data points.
+`e_bar` lets you pass `serie` (from your initial data.frame) which corresponds to `value` in the [original library](https://echarts.apache.org/en/option.html#series-bar.data). However the latter also takes, `label`, `itemStyle`, and `tooltip` but being JSON arrays they translate to lists in R and dealing with nested data.frames is not ideal. `e_add_nested` remedies to that. It allows adding those nested data points.
 
-Let's add some columns to the `iris` dataset which we will use in `e_add` to customize the appearance of the [`label`](https://echarts.apache.org/en/option.html#series-bar.data.label).
+Let's add some columns to the `iris` dataset which we will use in `e_add_nested` to customize the appearance of the [`label`](https://echarts.apache.org/en/option.html#series-bar.data.label).
 
 ```{r}
 # add columns to iris
@@ -358,7 +358,7 @@ iris_dat |>
   dplyr::slice(1:10) |> # simplify the graph. 
   e_charts(Sepal.Width) |> 
   e_line(Sepal.Length) |> 
-  e_add("label", show, fontSize, color) |> # add our columns to "label"
+  e_add_nested("label", show, fontSize, color) |> # add our columns to "label"
   e_x_axis(min = 2.5)
 ```
 
@@ -374,7 +374,7 @@ funnel <- data.frame(
 funnel |> 
   e_charts() |> 
   e_funnel(value, stage) |> 
-  e_add("itemStyle", color)
+  e_add_nested("itemStyle", color)
 ```
 
 ## List

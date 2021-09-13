@@ -502,7 +502,7 @@ e_scatter_ <- function(
     } else {
       size_total <- sum(symbol_size)
 
-      if (size_total == 1) {
+      if (size_total == 1 || size_total == 0) {
         symbol_size <- 3
       }
 
