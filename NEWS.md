@@ -13,7 +13,7 @@ see [#357](https://github.com/JohnCoene/echarts4r/issues/357)
 - Fix [#365](https://github.com/JohnCoene/echarts4r/issues/365)
 `e_flip_coords` works with all data formats.
 - Deprecate `e_add` in favour of `e_add_nested` and `e_add_unnested`
-see `?nesting`.
+see `?nesting`, see [#371](https://github.com/JohnCoene/echarts4r/issues/371)
 
 # echarts4r 0.4.1
 
