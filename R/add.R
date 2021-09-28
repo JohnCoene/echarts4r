@@ -3577,7 +3577,7 @@ e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth
 e_lm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, model_args = list(), ...) {
   form <- as.formula(formula)
 
-  if(length(name) != length(e$x$data))
+  if(!is.null(name) && length(name) != length(e$x$data))
     stop("More groups than names", call. = FALSE)
 
   for (i in seq_along(e$x$data)) {
