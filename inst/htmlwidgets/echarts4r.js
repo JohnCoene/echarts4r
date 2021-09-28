@@ -56,7 +56,7 @@ HTMLWidgets.widget({
           mapboxgl.accessToken = x.mapboxToken;
         }
         
-        chart = echarts.init(document.getElementById(el.id), x.theme, {renderer: x.renderer});
+        chart = echarts.init(document.getElementById(el.id), x.theme, x.mainOpts);
         
         opts = evalFun(x.opts);
         

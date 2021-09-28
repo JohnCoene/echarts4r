@@ -1067,3 +1067,19 @@ e_arrange <- function(..., rows = NULL, cols = NULL, width = "xs", title = NULL)
     }
   }
 }
+
+#' Dimensions
+#' 
+#' Sets the dimensions of the chart _internally._
+#' This will only affect the dimensions of the
+#' chart within its parent container.
+#' Use the `height` and `width` arguments of 
+#' [e_charts] if you want to change the dimensions
+#' of said parent (recommended).
+#' 
+#' @export 
+e_dims <- function(e, height = "auto", width = "auto") {
+  e$x$mainOpts$width <- width
+  e$x$mainOpts$height <- height
+  return(e)
+}

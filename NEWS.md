@@ -14,6 +14,7 @@ see [#357](https://github.com/JohnCoene/echarts4r/issues/357)
 `e_flip_coords` works with all data formats.
 - Deprecate `e_add` in favour of `e_add_nested` and `e_add_unnested`
 see `?nesting`, see [#371](https://github.com/JohnCoene/echarts4r/issues/371)
+- Allow passing multiple names (vector) to `e_lm`, one for each group.
 
 # echarts4r 0.4.1
 

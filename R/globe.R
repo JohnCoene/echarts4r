@@ -38,7 +38,7 @@ e_globe <- function(e, environment = NULL, base_texture = NULL, height_texture =
     message("`base_texture` is `NULL`, see echarts4r-assets.john-coene.com")
   }
 
-  e$x$renderer <- "webgl"
+  e$x$mainOpts$renderer <- "webgl"
 
   ls <- list(
     environment = environment,

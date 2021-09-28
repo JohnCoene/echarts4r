@@ -3577,6 +3577,9 @@ e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth
 e_lm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, model_args = list(), ...) {
   form <- as.formula(formula)
 
+  if(length(name) != length(e$x$data))
+    stop("More groups than names", call. = FALSE)
+
   for (i in seq_along(e$x$data)) {
     e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
 
@@ -3610,7 +3613,7 @@ e_lm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "non
         if (is.null(name)) {
           nm <- paste0(names(e$x$data[[i]])[i], "-lm")
         } else {
-          nm <- name
+          nm <- name[i]
         }
 
         l$name <- nm

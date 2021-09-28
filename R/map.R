@@ -294,7 +294,7 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
     stop("not map registered, see e_map_register", call. = FALSE)
   }
 
-  e$x$renderer <- "webgl" # 'canvas' works also, maybe even more efficient
+  e$x$mainOpts$renderer <- "webgl" # 'canvas' works also, maybe even more efficient
 
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")

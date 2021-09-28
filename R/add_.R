@@ -1830,7 +1830,7 @@ e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = N
     stop("must pass e", call. = FALSE)
   }
 
-  e$x$renderer <- "webgl"
+  e$x$mainOpts$renderer <- "webgl"
 
   if (missing(y) || missing(sx) || missing(sy)) {
     stop("must pass y, sx, and sy", call. = FALSE)
@@ -1878,7 +1878,7 @@ e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRU
     stop("must pass e", call. = FALSE)
   }
 
-  e$x$renderer <- "webgl"
+  e$x$mainOpts$renderer <- "webgl"
 
   if (missing(y) || missing(z)) {
     stop("must pass y and z", call. = FALSE)

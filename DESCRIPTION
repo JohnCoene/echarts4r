@@ -36,6 +36,6 @@ Suggests:
   leaflet,
   tibble
 Depends: R (>= 4.1.0)  
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 URL: https://echarts4r.john-coene.com/, https://github.com/JohnCoene/echarts4r
 BugReports: https://github.com/JohnCoene/echarts4r/issues/
