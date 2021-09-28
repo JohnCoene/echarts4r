@@ -6,6 +6,12 @@
 \usage{
 e_dims(e, height = "auto", width = "auto")
 }
+\arguments{
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
+a proxy as returned by \code{\link{echarts4rProxy}}.}
+
+\item{height, width}{Dimensions in pixels, percentage or string.}
+}
 \description{
 Sets the dimensions of the chart _internally._
 This will only affect the dimensions of the

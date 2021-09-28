@@ -1077,6 +1077,9 @@ e_arrange <- function(..., rows = NULL, cols = NULL, width = "xs", title = NULL)
 #' [e_charts] if you want to change the dimensions
 #' of said parent (recommended).
 #' 
+#' @inheritParams e_bar
+#' @param height,width Dimensions in pixels, percentage or string.
+#' 
 #' @export 
 e_dims <- function(e, height = "auto", width = "auto") {
   e$x$mainOpts$width <- width
