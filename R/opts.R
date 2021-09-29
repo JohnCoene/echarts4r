@@ -1086,3 +1086,56 @@ e_dims <- function(e, height = "auto", width = "auto") {
   e$x$mainOpts$height <- height
   return(e)
 }
+
+#' Locale
+#' 
+#' Change the locale to auto-translate
+#' days of the week, etc.
+#' 
+#' @section Locales:
+#' - CS
+#' - DE
+#' - EN
+#' - ES
+#' - FI
+#' - FR
+#' - JA
+#' - PT (brazil)
+#' - SI
+#' - TH
+#' - ZH
+#' 
+#' @examples
+#' # top right corner zoom is in 
+#' # Portuguese
+#' cars |> 
+#'  e_charts(speed) |> 
+#'  e_scatter(dist) |> 
+#'  e_datazoom() |> 
+#'  e_locale("PT")
+#' 
+#' @inheritParams e_bar
+#' @param locale Locale to set to.
+#' 
+#' @export 
+e_locale <- function(e, locale){
+  if(missing(locale))
+    stop("Missing locale", call. = FALSE)
+
+  locale <- toupper(locale)
+
+  if(!locale %in% c("ZH", "EN")){
+    dep <- htmltools::htmlDependency(
+      name = sprintf("%s-echarts4r-locale", locale),
+      version = utils::packageVersion("echarts4r"),
+      src = "htmlwidgets/lib/echarts-4.8.0/i18n",
+      package = "echarts4r",
+      script = sprintf("lang%s.js", locale)
+    )
+
+    e$dependencies <- append(e$dependencies, list(dep))
+  }
+
+  e$x$mainOpts$locale <- locale
+  return(e)
+}

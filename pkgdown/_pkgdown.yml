@@ -155,6 +155,8 @@ reference:
       - e_add
       - e_list
       - e_inspect
+      - e_dims
+      - e_locale
 
 navbar:
   title: "echarts4r"

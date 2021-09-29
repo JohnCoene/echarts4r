@@ -15,6 +15,8 @@ see [#357](https://github.com/JohnCoene/echarts4r/issues/357)
 - Deprecate `e_add` in favour of `e_add_nested` and `e_add_unnested`
 see `?nesting`, see [#371](https://github.com/JohnCoene/echarts4r/issues/371)
 - Allow passing multiple names (vector) to `e_lm`, one for each group.
+- Bring support for locales [#372](https://github.com/JohnCoene/echarts4r/issues/372) so one can automatically translate part
+of plots.
 
 # echarts4r 0.4.1
 
@@ -24,7 +26,7 @@ see `?nesting`, see [#371](https://github.com/JohnCoene/echarts4r/issues/371)
 - Replaced magrittr pipe `%>%` to R native's `|>`.
 - Fix `e_map` when used with no data, map was not displayed
 - Fix `e_flip_coords` with boxplots (and other single column series) see [#336](https://github.com/JohnCoene/echarts4r/issues/336)
-- Fix `e_add` applied to timeline, see [338](https://github.com/JohnCoene/echarts4r/issues/338)
+- Fix `e_add` applied to timeline, see [#338](https://github.com/JohnCoene/echarts4r/issues/338)
 
 # echarts4r 0.4.0
 
