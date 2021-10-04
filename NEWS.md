@@ -1,4 +1,4 @@
-# echarts4r 0.4.2.9000
+# echarts4r 0.4.2
 
 - Added proxy method on `e_color`, see 
 [#347](https://github.com/JohnCoene/echarts4r/issues/347)
