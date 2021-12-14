@@ -80,7 +80,7 @@ HTMLWidgets.widget({
           });
           
           chart.on("globalout", function(e){
-            Shiny.onInputChange(el.id + '_global_out' + ":echarts4rParse", e);
+            Shiny.onInputChange(el.id + '_global_out' + ":echarts4rParse", e, {priority: 'event'});
           });
           
           if(x.hasOwnProperty('capture')){
