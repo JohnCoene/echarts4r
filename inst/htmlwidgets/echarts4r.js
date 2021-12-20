@@ -82,6 +82,10 @@ HTMLWidgets.widget({
           chart.on("globalout", function(e){
             Shiny.onInputChange(el.id + '_global_out' + ":echarts4rParse", e, {priority: 'event'});
           });
+
+          chart.getZr().on("click", function(e){
+            Shiny.setInputValue(el.id + '_clicked_zr' + ":echarts4rParse", e);
+          });
           
           if(x.hasOwnProperty('capture')){
             chart.on(x.capture, function(e){

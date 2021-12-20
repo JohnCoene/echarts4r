@@ -1,3 +1,9 @@
+# echarts4r 0.4.2.9000
+
+- Bump echarts.js to version 5.2.2
+- Support click on plot background 
+[#394](https://github.com/JohnCoene/echarts4r/issues/394)
+
 # echarts4r 0.4.2
 
 - Added proxy method on `e_color`, see 
