@@ -4,6 +4,9 @@
 - Support click on plot background 
 [#394](https://github.com/JohnCoene/echarts4r/issues/394)
 with `e_get_zr`.
+- `e_facet` function completed 
+[#396](https://github.com/JohnCoene/echarts4r/issues/396)
+thanks to [Robert Koetsier](https://github.com/robert-koetsier)
 
 # echarts4r 0.4.2
 

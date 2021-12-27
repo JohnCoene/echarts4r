@@ -5,10 +5,10 @@ Version: 0.4.2.9000
 Authors@R: c(
   person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cre", "cph")), 
   person(given = "Wei", family = "Su", email = "swsoyee@gmail.com", role = "ctb"),
-  person(family = "Helgasoft", email="contact@helgasoft.com", role = "ctb"),
+  person(family = "Helgasoft", email = "contact@helgasoft.com", role = "ctb"),
   person("Xianying", "Tan", email = "shrektan@126.com", role = "ctb", comment = c(ORCID = "0000-0002-6072-3521")),
   person("Robin", "Cura", email = "robin.cura@gmail.com", role = "ctb", comment = c(ORCID = "0000-0001-5926-1828")),
-  person("Mathida", "Chuk", email="mathidachuk@gmail.com", role = "ctb")
+  person("Mathida", "Chuk", email = "mathidachuk@gmail.com", role = "ctb")
   )
 Description: Easily create interactive charts by leveraging the 'Echarts Javascript' library which includes
     36 chart types, themes, 'Shiny' proxies and animations.
