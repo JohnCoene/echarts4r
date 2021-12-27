@@ -60,3 +60,17 @@ e_off <- function(e, query, handler, event = "click") {
 
   e
 }
+
+
+#' Blank Area
+#' 
+#' Use this function to capture a click on a
+#' blank area of the canvas.
+#' Note that this may stops other "click" events
+#' from working.
+#' 
+#' @export 
+e_get_zr <- function(){
+  e$x$zr <- TRUE
+  e
+}

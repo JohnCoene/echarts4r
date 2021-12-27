@@ -3,6 +3,7 @@
 - Bump echarts.js to version 5.2.2
 - Support click on plot background 
 [#394](https://github.com/JohnCoene/echarts4r/issues/394)
+with `e_get_zr`.
 
 # echarts4r 0.4.2
 
