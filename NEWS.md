@@ -1,4 +1,4 @@
-# echarts4r 0.4.2.9000
+# echarts4r 0.4.3
 
 - Bump echarts.js to version 5.2.2
 - Support click on plot background 
