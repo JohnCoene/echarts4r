@@ -36,10 +36,10 @@ df <- tibble(
           name = c("fish", "kelp"),
           children = list(
             tibble(
-              name = c("shark", "tuna"),
+              name = c("shark", "tuna")
+              ),
               # 4th level
               NULL # kelp
-            )
           )
         )
       )
