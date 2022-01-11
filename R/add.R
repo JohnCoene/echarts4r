@@ -2016,10 +2016,10 @@ e_boxplot.echarts4rProxy <- function(e, serie, name = NULL, outliers = TRUE, ...
 #'           name = c("fish", "kelp"),
 #'           children = list(
 #'             tibble(
-#'               name = c("shark", "tuna"),
+#'               name = c("shark", "tuna")
+#'               ),
 #'               # 4th level
 #'               NULL # kelp
-#'             )
 #'           )
 #'         )
 #'       )
