@@ -6,7 +6,15 @@
 \alias{e_theme_register}
 \title{Themes}
 \usage{
-e_theme(e, name)
+e_theme(
+  e,
+  name = c("auritus", "azul", "bee-inspired", "blue", "caravan", "carp", "chalk",
+    "cool", "dark-blue", "dark-bold", "dark-digerati", "dark-fresh-cut", "dark-mushroom",
+    "dark", "eduardo", "essos", "forest", "fresh-cut", "fruit", "gray", "green",
+    "halloween", "helianthus", "infographic", "inspired", "jazz", "london", "macarons",
+    "macarons2", "mint", "purple-passion", "red-velvet", "red", "roma", "royal",
+    "sakura", "shine", "tech-blue", "vintage", "walden", "westeros", "wonderland")
+)
 
 e_theme_custom(e, theme, name = "custom")
 
@@ -34,56 +42,6 @@ theme every time and is more computationally expensive.
  \item{\code{e_theme} - Use a default theme by name.}
  \item{\code{e_theme_custom} - Use a custom theme.}
  \item{\code{e_theme_register} - Register a theme globally in shiny or R markdown.}
-}
-}
-
-\section{Theme names}{
-
-\itemize{
-  \item{\code{default}}
-  \item{\code{dark}}
-  \item{\code{vintage}}
-  \item{\code{westeros}}
-  \item{\code{essos}}
-  \item{\code{wonderland}}
-  \item{\code{walden}}
-  \item{\code{chalk}}
-  \item{\code{infographic}}
-  \item{\code{macarons}}
-  \item{\code{roma}}
-  \item{\code{shine}}
-  \item{\code{purple-passion}}
-  \item{\code{halloween}}
-  \item{\code{auritus}}
-  \item{\code{azul}}
-  \item{\code{bee-insipired}}
-  \item{\code{blue}}
-  \item{\code{caravan}}
-  \item{\code{carp}}
-  \item{\code{cool}}
-  \item{\code{dark-blue}}
-  \item{\code{dark-bold}}
-  \item{\code{dark-digerati}}
-  \item{\code{dark-fresh-cut}}
-  \item{\code{dark-mushroom}}
-  \item{\code{eduardo}}
-  \item{\code{forest}}
-  \item{\code{fresh-cut}}
-  \item{\code{fruit}}
-  \item{\code{gray}}
-  \item{\code{green}}
-  \item{\code{helianthus}}
-  \item{\code{inspired}}
-  \item{\code{jazz}}
-  \item{\code{london}}
-  \item{\code{macarons}}
-  \item{\code{macarons2}}
-  \item{\code{mint}}
-  \item{\code{red}}
-  \item{\code{red-velvet}}
-  \item{\code{royal}}
-  \item{\code{sakura}}
-  \item{\code{tech-blue}}
 }
 }
 

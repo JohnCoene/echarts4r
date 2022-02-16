@@ -17,54 +17,6 @@
 #' in R markdown or shiny (UI). This is useful because 1) the \code{e_theme_custom} registers the
 #' theme every time and is more computationally expensive.
 #'
-#' @section Theme names:
-#' \itemize{
-#'   \item{\code{default}}
-#'   \item{\code{dark}}
-#'   \item{\code{vintage}}
-#'   \item{\code{westeros}}
-#'   \item{\code{essos}}
-#'   \item{\code{wonderland}}
-#'   \item{\code{walden}}
-#'   \item{\code{chalk}}
-#'   \item{\code{infographic}}
-#'   \item{\code{macarons}}
-#'   \item{\code{roma}}
-#'   \item{\code{shine}}
-#'   \item{\code{purple-passion}}
-#'   \item{\code{halloween}}
-#'   \item{\code{auritus}}
-#'   \item{\code{azul}}
-#'   \item{\code{bee-insipired}}
-#'   \item{\code{blue}}
-#'   \item{\code{caravan}}
-#'   \item{\code{carp}}
-#'   \item{\code{cool}}
-#'   \item{\code{dark-blue}}
-#'   \item{\code{dark-bold}}
-#'   \item{\code{dark-digerati}}
-#'   \item{\code{dark-fresh-cut}}
-#'   \item{\code{dark-mushroom}}
-#'   \item{\code{eduardo}}
-#'   \item{\code{forest}}
-#'   \item{\code{fresh-cut}}
-#'   \item{\code{fruit}}
-#'   \item{\code{gray}}
-#'   \item{\code{green}}
-#'   \item{\code{helianthus}}
-#'   \item{\code{inspired}}
-#'   \item{\code{jazz}}
-#'   \item{\code{london}}
-#'   \item{\code{macarons}}
-#'   \item{\code{macarons2}}
-#'   \item{\code{mint}}
-#'   \item{\code{red}}
-#'   \item{\code{red-velvet}}
-#'   \item{\code{royal}}
-#'   \item{\code{sakura}}
-#'   \item{\code{tech-blue}}
-#' }
-#'
 #' @examples
 #' mtcars |>
 #'   e_charts(mpg) |>
@@ -78,10 +30,54 @@
 #'
 #' @rdname theme
 #' @export
-e_theme <- function(e, name) {
-  if (missing(name)) {
-    stop("must pass name", call. = FALSE)
-  }
+e_theme <- function(
+  e, 
+  name = c(
+    "auritus", 
+    "azul", 
+    "bee-inspired", 
+    "blue", 
+    "caravan", 
+    "carp", 
+    "chalk", 
+    "cool", 
+    "dark-blue", 
+    "dark-bold", 
+    "dark-digerati", 
+    "dark-fresh-cut", 
+    "dark-mushroom", 
+    "dark", 
+    "eduardo", 
+    "essos", 
+    "forest", 
+    "fresh-cut", 
+    "fruit", 
+    "gray", 
+    "green", 
+    "halloween", 
+    "helianthus", 
+    "infographic", 
+    "inspired", 
+    "jazz", 
+    "london", 
+    "macarons", 
+    "macarons2", 
+    "mint", 
+    "purple-passion", 
+    "red-velvet", 
+    "red", 
+    "roma", 
+    "royal", 
+    "sakura", 
+    "shine", 
+    "tech-blue", 
+    "vintage", 
+    "walden", 
+    "westeros", 
+    "wonderland"
+  )
+) {
+  name <- match.arg(name)
 
   # add name to register
   e$x$theme <- name
