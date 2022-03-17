@@ -352,11 +352,11 @@ if (HTMLWidgets.shinyMode) {
     function(data) {
       if (typeof chart != 'undefined') {
         $.ajax({ 
-          url: x.geoJSON, 
+          url: data.geoJSON, 
           dataType: 'json', 
-          async: x.mapAsync,
+          async: data.mapAsync,
           success: function(json){ 
-            echarts.registerMap(x.mapName, json);
+            echarts.registerMap(data.mapName, json);
           } 
         });
         

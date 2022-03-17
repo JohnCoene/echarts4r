@@ -35,6 +35,8 @@
 </script><!-- Place this tag in your head or just before your close body tag. --><script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -47,7 +49,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.3.9000</span>
       </span>
     </div>
 
@@ -55,25 +57,25 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa-home"></span>
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
 <li>
   <a href="../LICENSE.html">
-    <span class="fas fa-balance-scale"></span>
+    <span class="fa fa-balance-scale"></span>
      
   </a>
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fas fa-newspaper"></span>
+    <span class="fa fa-newspaper"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/">
-    <span class="fas fa-code"></span>
+    <span class="fa fa-code"></span>
      
   </a>
 </li>
@@ -209,7 +211,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/JohnCoene/echarts4r">
+  <a href="https://github.com/JohnCoene/echarts4r" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -230,15 +232,15 @@
 
       
 
-      </header><script src="actions-buttons_files/htmlwidgets-1.5.3/htmlwidgets.js"></script><script src="actions-buttons_files/echarts4r-4.8.0/echarts-en.min.js"></script><script src="actions-buttons_files/echarts4r-4.8.0/ecStat.min.js"></script><script src="actions-buttons_files/echarts4r-4.8.0/dataTool.min.js"></script><script src="actions-buttons_files/echarts4r-binding-0.4.1.9000/echarts4r.js"></script><script src="actions-buttons_files/echarts-graph-modularity-1.1.0/echarts-graph-modularity.min.js"></script><div class="row">
+      </header><script src="actions-buttons_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="actions-buttons_files/echarts4r-4.8.0/echarts-en.min.js"></script><script src="actions-buttons_files/echarts4r-4.8.0/ecStat.min.js"></script><script src="actions-buttons_files/echarts4r-4.8.0/dataTool.min.js"></script><script src="actions-buttons_files/echarts4r-binding-0.4.3.9000/echarts4r.js"></script><script src="actions-buttons_files/echarts-graph-modularity-1.1.0/echarts-graph-modularity.min.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Actions &amp; Buttons</h1>
                         <h4 class="author">John Coene</h4>
             
-            <h4 class="date">2021-06-25</h4>
+            <h4 class="date">2022-03-07</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/JohnCoene/echarts4r/blob/master/vignettes/actions-buttons.Rmd"><code>vignettes/actions-buttons.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/JohnCoene/echarts4r/blob/HEAD/vignettes/actions-buttons.Rmd" class="external-link"><code>vignettes/actions-buttons.Rmd</code></a></small>
       <div class="hidden name"><code>actions-buttons.Rmd</code></div>
 
     </div>
@@ -246,31 +248,31 @@
     
     
 <p>Since version <code>1.2.0</code> one can add actions and optionally tie them to buttons.</p>
-<div id="actions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#actions" class="anchor"></a>Actions</h2>
+<div class="section level2">
+<h2 id="actions">Actions<a class="anchor" aria-label="anchor" href="#actions"></a>
+</h2>
 <p>For instance once can use the <code>e_zoom</code> action to zoom on the graph (requires <code>e_datazoom</code> initialised).</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cars</span> |&gt; 
   <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">dist</span><span class="op">)</span> |&gt; 
-  <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span> |&gt; 
+  <span class="fu"><a href="../reference/scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span> |&gt; 
   <span class="fu"><a href="../reference/e_datazoom.html">e_datazoom</a></span><span class="op">(</span><span class="op">)</span> |&gt; 
   <span class="fu"><a href="../reference/e_zoom.html">e_zoom</a></span><span class="op">(</span>
     dataZoomIndex <span class="op">=</span> <span class="fl">0</span>,
     start <span class="op">=</span> <span class="fl">20</span>,
     end <span class="op">=</span> <span class="fl">40</span>
   <span class="op">)</span> </code></pre></div>
-<div id="htmlwidget-63f88c75dd364187639f" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-63f88c75dd364187639f">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[{"data":{"type":"dataZoom","dataZoomIndex":0,"start":20,"end":40}}],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["speed"]},"series":[{"data":[{"value":[2,4]},{"value":[4,7]},{"value":[10,4]},{"value":[10,9]},{"value":[14,12]},{"value":[16,8]},{"value":[17,11]},{"value":[18,10]},{"value":[20,12]},{"value":[20,15]},{"value":[22,7]},{"value":[24,12]},{"value":[26,10]},{"value":[26,13]},{"value":[26,14]},{"value":[26,15]},{"value":[28,11]},{"value":[28,12]},{"value":[32,16]},{"value":[32,17]},{"value":[32,20]},{"value":[34,10]},{"value":[34,13]},{"value":[34,13]},{"value":[36,14]},{"value":[36,19]},{"value":[40,16]},{"value":[40,17]},{"value":[42,18]},{"value":[46,13]},{"value":[46,19]},{"value":[48,20]},{"value":[50,17]},{"value":[52,20]},{"value":[54,15]},{"value":[54,23]},{"value":[56,18]},{"value":[56,20]},{"value":[60,14]},{"value":[64,20]},{"value":[66,22]},{"value":[68,19]},{"value":[70,24]},{"value":[76,18]},{"value":[80,14]},{"value":[84,18]},{"value":[85,25]},{"value":[92,24]},{"value":[93,24]},{"value":[120,24]}],"name":"speed","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3}],"dataZoom":[[]],"toolbox":{"feature":{"dataZoom":[]}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-35519f509f7afc924aed" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-35519f509f7afc924aed">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[{"data":{"type":"dataZoom","dataZoomIndex":0,"start":20,"end":40}}],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["speed"]},"series":[{"data":[{"value":[2,4]},{"value":[4,7]},{"value":[10,4]},{"value":[10,9]},{"value":[14,12]},{"value":[16,8]},{"value":[17,11]},{"value":[18,10]},{"value":[20,12]},{"value":[20,15]},{"value":[22,7]},{"value":[24,12]},{"value":[26,10]},{"value":[26,13]},{"value":[26,14]},{"value":[26,15]},{"value":[28,11]},{"value":[28,12]},{"value":[32,16]},{"value":[32,17]},{"value":[32,20]},{"value":[34,10]},{"value":[34,13]},{"value":[34,13]},{"value":[36,14]},{"value":[36,19]},{"value":[40,16]},{"value":[40,17]},{"value":[42,18]},{"value":[46,13]},{"value":[46,19]},{"value":[48,20]},{"value":[50,17]},{"value":[52,20]},{"value":[54,15]},{"value":[54,23]},{"value":[56,18]},{"value":[56,20]},{"value":[60,14]},{"value":[64,20]},{"value":[66,22]},{"value":[68,19]},{"value":[70,24]},{"value":[76,18]},{"value":[80,14]},{"value":[84,18]},{"value":[85,25]},{"value":[92,24]},{"value":[93,24]},{"value":[120,24]}],"name":"speed","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3}],"dataZoom":[[]],"toolbox":{"feature":{"dataZoom":[]}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
-<div id="buttons" class="section level2">
-<h2 class="hasAnchor">
-<a href="#buttons" class="anchor"></a>Buttons</h2>
+<div class="section level2">
+<h2 id="buttons">Buttons<a class="anchor" aria-label="anchor" href="#buttons"></a>
+</h2>
 <p>Add a button to let the user trigger that action. We add a button with <code>e_button</code> and specify the id of our button in the action (<code>e_zoom</code>) so that the button knows which action to trigger.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cars</span> |&gt; 
   <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">dist</span><span class="op">)</span> |&gt; 
-  <span class="fu"><a href="../reference/e_scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span> |&gt; 
+  <span class="fu"><a href="../reference/scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span> |&gt; 
   <span class="fu"><a href="../reference/e_datazoom.html">e_datazoom</a></span><span class="op">(</span><span class="op">)</span> |&gt; 
   <span class="fu"><a href="../reference/e_zoom.html">e_zoom</a></span><span class="op">(</span>
     dataZoomIndex <span class="op">=</span> <span class="fl">0</span>,
@@ -280,7 +282,7 @@
   <span class="op">)</span> |&gt; 
   <span class="fu"><a href="../reference/e_button.html">e_button</a></span><span class="op">(</span>
     id <span class="op">=</span> <span class="st">"BUTTON"</span>, 
-    <span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">tags</a></span><span class="op">$</span><span class="fu">i</span><span class="op">(</span>class <span class="op">=</span> <span class="st">"fa fa-search"</span><span class="op">)</span>, <span class="co"># passed to the button</span>
+    <span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">i</span><span class="op">(</span>class <span class="op">=</span> <span class="st">"fa fa-search"</span><span class="op">)</span>, <span class="co"># passed to the button</span>
     class <span class="op">=</span> <span class="st">"btn btn-default"</span>,
     <span class="st">"Zoom in"</span>
   <span class="op">)</span></code></pre></div>
@@ -288,39 +290,39 @@
 <i class="fa fa-search"></i>
 Zoom in
 </button>
-<div id="htmlwidget-7c25d3dd64cb8043bf20" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7c25d3dd64cb8043bf20">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":{"BUTTON":[{"data":{"type":"dataZoom","dataZoomIndex":0,"start":20,"end":40}}]},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["speed"]},"series":[{"data":[{"value":[2,4]},{"value":[4,7]},{"value":[10,4]},{"value":[10,9]},{"value":[14,12]},{"value":[16,8]},{"value":[17,11]},{"value":[18,10]},{"value":[20,12]},{"value":[20,15]},{"value":[22,7]},{"value":[24,12]},{"value":[26,10]},{"value":[26,13]},{"value":[26,14]},{"value":[26,15]},{"value":[28,11]},{"value":[28,12]},{"value":[32,16]},{"value":[32,17]},{"value":[32,20]},{"value":[34,10]},{"value":[34,13]},{"value":[34,13]},{"value":[36,14]},{"value":[36,19]},{"value":[40,16]},{"value":[40,17]},{"value":[42,18]},{"value":[46,13]},{"value":[46,19]},{"value":[48,20]},{"value":[50,17]},{"value":[52,20]},{"value":[54,15]},{"value":[54,23]},{"value":[56,18]},{"value":[56,20]},{"value":[60,14]},{"value":[64,20]},{"value":[66,22]},{"value":[68,19]},{"value":[70,24]},{"value":[76,18]},{"value":[80,14]},{"value":[84,18]},{"value":[85,25]},{"value":[92,24]},{"value":[93,24]},{"value":[120,24]}],"name":"speed","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3}],"dataZoom":[[]],"toolbox":{"feature":{"dataZoom":[]}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>You can also create the button elsewhere on the document, as long as the <code>id</code> matches the <code>btn</code>.</p>
+<div id="htmlwidget-deffe095f52aeea38a9d" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-deffe095f52aeea38a9d">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":{"BUTTON":[{"data":{"type":"dataZoom","dataZoomIndex":0,"start":20,"end":40}}]},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["speed"]},"series":[{"data":[{"value":[2,4]},{"value":[4,7]},{"value":[10,4]},{"value":[10,9]},{"value":[14,12]},{"value":[16,8]},{"value":[17,11]},{"value":[18,10]},{"value":[20,12]},{"value":[20,15]},{"value":[22,7]},{"value":[24,12]},{"value":[26,10]},{"value":[26,13]},{"value":[26,14]},{"value":[26,15]},{"value":[28,11]},{"value":[28,12]},{"value":[32,16]},{"value":[32,17]},{"value":[32,20]},{"value":[34,10]},{"value":[34,13]},{"value":[34,13]},{"value":[36,14]},{"value":[36,19]},{"value":[40,16]},{"value":[40,17]},{"value":[42,18]},{"value":[46,13]},{"value":[46,19]},{"value":[48,20]},{"value":[50,17]},{"value":[52,20]},{"value":[54,15]},{"value":[54,23]},{"value":[56,18]},{"value":[56,20]},{"value":[60,14]},{"value":[64,20]},{"value":[66,22]},{"value":[68,19]},{"value":[70,24]},{"value":[76,18]},{"value":[80,14]},{"value":[84,18]},{"value":[85,25]},{"value":[92,24]},{"value":[93,24]},{"value":[120,24]}],"name":"speed","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3}],"dataZoom":[[]],"toolbox":{"feature":{"dataZoom":[]}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>You can also create the button elsewhere on the document, as long as the <code>id</code> matches the <code>btn</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span>
 
-<span class="va">nodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
-  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">LETTERS</span>, <span class="fl">10</span><span class="op">)</span>,
+<span class="va">nodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
+  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">LETTERS</span>, <span class="fl">10</span><span class="op">)</span>,
   value <span class="op">=</span> <span class="va">value</span>,
   size <span class="op">=</span> <span class="va">value</span>,
-  grp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"grp1"</span>, <span class="st">"grp2"</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span>,
+  grp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grp1"</span>, <span class="st">"grp2"</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span>,
   stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span>
 
-<span class="va">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
-  source <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">$</span><span class="va">name</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-  target <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">$</span><span class="va">name</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+<span class="va">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
+  source <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">$</span><span class="va">name</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+  target <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">$</span><span class="va">name</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
   stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span>
 
 <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="op">)</span> |&gt; 
-  <span class="fu"><a href="../reference/e_graph.html">e_graph</a></span><span class="op">(</span><span class="op">)</span> |&gt; 
-  <span class="fu"><a href="../reference/e_graph.html">e_graph_nodes</a></span><span class="op">(</span><span class="va">nodes</span>, <span class="va">name</span>, <span class="va">value</span>, <span class="va">size</span>, <span class="va">grp</span><span class="op">)</span> |&gt; 
-  <span class="fu"><a href="../reference/e_graph.html">e_graph_edges</a></span><span class="op">(</span><span class="va">edges</span>, <span class="va">source</span>, <span class="va">target</span><span class="op">)</span> |&gt; 
+  <span class="fu"><a href="../reference/graph.html">e_graph</a></span><span class="op">(</span><span class="op">)</span> |&gt; 
+  <span class="fu"><a href="../reference/graph.html">e_graph_nodes</a></span><span class="op">(</span><span class="va">nodes</span>, <span class="va">name</span>, <span class="va">value</span>, <span class="va">size</span>, <span class="va">grp</span><span class="op">)</span> |&gt; 
+  <span class="fu"><a href="../reference/graph.html">e_graph_edges</a></span><span class="op">(</span><span class="va">edges</span>, <span class="va">source</span>, <span class="va">target</span><span class="op">)</span> |&gt; 
   <span class="fu"><a href="../reference/graph_action.html">e_focus_adjacency</a></span><span class="op">(</span>
     seriesIndex <span class="op">=</span> <span class="fl">0</span>,
     dataIndex <span class="op">=</span> <span class="fl">4</span>,
     btn <span class="op">=</span> <span class="st">"graphButton"</span>
   <span class="op">)</span> </code></pre></div>
-<div id="htmlwidget-5867d76ca2149e79ac1a" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5867d76ca2149e79ac1a">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":{"graphButton":[{"id":"graphButton","data":{"type":"focusNodeAdjacency","seriesIndex":0,"dataIndex":4}}]},"opts":{"series":[{"name":null,"type":"graph","layout":"force","categories":[{"name":"grp1"},{"name":"grp2"}],"data":[{"name":"Y","value":"10.362071","symbolSize":"10.362071","category":"grp1"},{"name":"H","value":" 5.795620","symbolSize":" 5.795620","category":"grp2"},{"name":"X","value":"12.454098","symbolSize":"12.454098","category":"grp1"},{"name":"M","value":"14.011749","symbolSize":"14.011749","category":"grp2"},{"name":"C","value":"11.936543","symbolSize":"11.936543","category":"grp1"},{"name":"U","value":"10.324279","symbolSize":"10.324279","category":"grp2"},{"name":"W","value":" 8.131598","symbolSize":" 8.131598","category":"grp1"},{"name":"G","value":" 6.079117","symbolSize":" 6.079117","category":"grp2"},{"name":"Q","value":" 9.515544","symbolSize":" 9.515544","category":"grp1"},{"name":"K","value":"11.222469","symbolSize":"11.222469","category":"grp2"}],"links":[{"source":"Y","target":"H"},{"source":"X","target":"K"},{"source":"W","target":"X"},{"source":"C","target":"W"},{"source":"G","target":"C"},{"source":"Q","target":"X"},{"source":"C","target":"Y"},{"source":"M","target":"M"},{"source":"X","target":"U"},{"source":"K","target":"M"},{"source":"X","target":"W"},{"source":"Q","target":"U"},{"source":"W","target":"W"},{"source":"Q","target":"U"},{"source":"W","target":"C"},{"source":"G","target":"K"},{"source":"U","target":"M"},{"source":"W","target":"C"},{"source":"C","target":"U"},{"source":"Q","target":"G"}]}],"legend":{"data":["grp1","grp2"]},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>Then create the button with id matching our event (<code>graphButton</code>).</p>
+<div id="htmlwidget-291897e50f897d058be3" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-291897e50f897d058be3">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":{"graphButton":[{"id":"graphButton","data":{"type":"focusNodeAdjacency","seriesIndex":0,"dataIndex":4}}]},"opts":{"series":[{"name":null,"type":"graph","layout":"force","categories":[{"name":"grp1"},{"name":"grp2"}],"data":[{"name":"J","value":"11.751479","symbolSize":"11.751479","category":"grp1"},{"name":"Y","value":"11.103640","symbolSize":"11.103640","category":"grp2"},{"name":"X","value":" 8.666317","symbolSize":" 8.666317","category":"grp1"},{"name":"F","value":"11.398186","symbolSize":"11.398186","category":"grp2"},{"name":"P","value":" 7.672216","symbolSize":" 7.672216","category":"grp1"},{"name":"Z","value":" 8.417068","symbolSize":" 8.417068","category":"grp2"},{"name":"W","value":" 9.401312","symbolSize":" 9.401312","category":"grp1"},{"name":"L","value":" 7.772183","symbolSize":" 7.772183","category":"grp2"},{"name":"D","value":"11.250555","symbolSize":"11.250555","category":"grp1"},{"name":"U","value":"11.034041","symbolSize":"11.034041","category":"grp2"}],"links":[{"source":"L","target":"D","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"W","target":"U","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"L","target":"J","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"X","target":"Z","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"L","target":"D","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"U","target":"J","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"F","target":"Y","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"Z","target":"Z","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"L","target":"J","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"W","target":"U","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"J","target":"D","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"U","target":"P","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"Z","target":"X","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"Z","target":"D","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"J","target":"P","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"Y","target":"W","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"P","target":"X","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"L","target":"P","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"D","target":"U","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}},{"source":"W","target":"W","value":null,"symbolSize":[5,20],"lineStyle":{"width":null}}]}],"legend":{"data":["grp1","grp2"]},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script><p>Then create the button with id matching our event (<code>graphButton</code>).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># create the button</span>
-<span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">tags</a></span><span class="op">$</span><span class="fu">a</span><span class="op">(</span>
+<span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">a</span><span class="op">(</span>
   id <span class="op">=</span> <span class="st">"graphButton"</span>,
   class <span class="op">=</span> <span class="st">"btn btn-primary"</span>,
   <span class="st">"Highlight node #4"</span>
@@ -330,7 +332,7 @@ Zoom in
 <p>You can also pass multiple buttons and change their positions.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">iris</span> |&gt; 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> |&gt; 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> |&gt; 
   <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">Sepal.Length</span><span class="op">)</span> |&gt; 
   <span class="fu"><a href="../reference/e_line.html">e_line</a></span><span class="op">(</span><span class="va">Petal.Length</span><span class="op">)</span> |&gt; 
   <span class="fu"><a href="../reference/e_datazoom.html">e_datazoom</a></span><span class="op">(</span><span class="op">)</span> |&gt; 
@@ -353,14 +355,14 @@ Zoom in
     class <span class="op">=</span> <span class="st">"btn btn-default"</span>,
     <span class="st">"highlight"</span>
   <span class="op">)</span></code></pre></div>
-<div id="htmlwidget-7d33e63c50ea40a296c4" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<div id="htmlwidget-29e7b6ad777bd237e933" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
 <button id="zoomBtn" class="btn btn-primary">Zoom</button>
 <button id="highlightButton" class="btn btn-default">highlight</button>
-<script type="application/json" data-for="htmlwidget-7d33e63c50ea40a296c4">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":{"highlightButton":[{"data":{"type":"highlight","seriesName":["setosa"]}}],"zoomBtn":[{"data":{"type":"dataZoom","dataZoomIndex":0,"startValue":4,"endValue":6}}]},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["setosa","versicolor","virginica"]},"series":[{"data":[{"value":[4.3,1.1]},{"value":[4.4,1.4]},{"value":[4.4,1.3]},{"value":[4.4,1.3]},{"value":[4.5,1.3]},{"value":[4.6,1.5]},{"value":[4.6,1.4]},{"value":[4.6,1]},{"value":[4.6,1.4]},{"value":[4.7,1.3]},{"value":[4.7,1.6]},{"value":[4.8,1.6]},{"value":[4.8,1.4]},{"value":[4.8,1.9]},{"value":[4.8,1.6]},{"value":[4.8,1.4]},{"value":[4.9,1.4]},{"value":[4.9,1.5]},{"value":[4.9,1.5]},{"value":[4.9,1.4]},{"value":[5,1.4]},{"value":[5,1.5]},{"value":[5,1.6]},{"value":[5,1.6]},{"value":[5,1.2]},{"value":[5,1.3]},{"value":[5,1.6]},{"value":[5,1.4]},{"value":[5.1,1.4]},{"value":[5.1,1.4]},{"value":[5.1,1.5]},{"value":[5.1,1.5]},{"value":[5.1,1.7]},{"value":[5.1,1.5]},{"value":[5.1,1.9]},{"value":[5.1,1.6]},{"value":[5.2,1.5]},{"value":[5.2,1.4]},{"value":[5.2,1.5]},{"value":[5.3,1.5]},{"value":[5.4,1.7]},{"value":[5.4,1.5]},{"value":[5.4,1.3]},{"value":[5.4,1.7]},{"value":[5.4,1.5]},{"value":[5.5,1.4]},{"value":[5.5,1.3]},{"value":[5.7,1.5]},{"value":[5.7,1.7]},{"value":[5.8,1.2]}],"yAxisIndex":0,"xAxisIndex":0,"name":"setosa","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[4.9,3.3]},{"value":[5,3.5]},{"value":[5,3.3]},{"value":[5.1,3]},{"value":[5.2,3.9]},{"value":[5.4,4.5]},{"value":[5.5,4]},{"value":[5.5,3.8]},{"value":[5.5,3.7]},{"value":[5.5,4]},{"value":[5.5,4.4]},{"value":[5.6,3.6]},{"value":[5.6,4.5]},{"value":[5.6,3.9]},{"value":[5.6,4.1]},{"value":[5.6,4.2]},{"value":[5.7,4.5]},{"value":[5.7,3.5]},{"value":[5.7,4.2]},{"value":[5.7,4.2]},{"value":[5.7,4.1]},{"value":[5.8,4.1]},{"value":[5.8,3.9]},{"value":[5.8,4]},{"value":[5.9,4.2]},{"value":[5.9,4.8]},{"value":[6,4]},{"value":[6,4.5]},{"value":[6,5.1]},{"value":[6,4.5]},{"value":[6.1,4.7]},{"value":[6.1,4]},{"value":[6.1,4.7]},{"value":[6.1,4.6]},{"value":[6.2,4.5]},{"value":[6.2,4.3]},{"value":[6.3,4.7]},{"value":[6.3,4.9]},{"value":[6.3,4.4]},{"value":[6.4,4.5]},{"value":[6.4,4.3]},{"value":[6.5,4.6]},{"value":[6.6,4.6]},{"value":[6.6,4.4]},{"value":[6.7,4.4]},{"value":[6.7,5]},{"value":[6.7,4.7]},{"value":[6.8,4.8]},{"value":[6.9,4.9]},{"value":[7,4.7]}],"yAxisIndex":0,"xAxisIndex":0,"name":"versicolor","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[4.9,4.5]},{"value":[5.6,4.9]},{"value":[5.7,5]},{"value":[5.8,5.1]},{"value":[5.8,5.1]},{"value":[5.8,5.1]},{"value":[5.9,5.1]},{"value":[6,5]},{"value":[6,4.8]},{"value":[6.1,4.9]},{"value":[6.1,5.6]},{"value":[6.2,4.8]},{"value":[6.2,5.4]},{"value":[6.3,6]},{"value":[6.3,5.6]},{"value":[6.3,4.9]},{"value":[6.3,5.1]},{"value":[6.3,5.6]},{"value":[6.3,5]},{"value":[6.4,5.3]},{"value":[6.4,5.3]},{"value":[6.4,5.6]},{"value":[6.4,5.6]},{"value":[6.4,5.5]},{"value":[6.5,5.8]},{"value":[6.5,5.1]},{"value":[6.5,5.5]},{"value":[6.5,5.2]},{"value":[6.7,5.8]},{"value":[6.7,5.7]},{"value":[6.7,5.6]},{"value":[6.7,5.7]},{"value":[6.7,5.2]},{"value":[6.8,5.5]},{"value":[6.8,5.9]},{"value":[6.9,5.7]},{"value":[6.9,5.4]},{"value":[6.9,5.1]},{"value":[7.1,5.9]},{"value":[7.2,6.1]},{"value":[7.2,6]},{"value":[7.2,5.8]},{"value":[7.3,6.3]},{"value":[7.4,6.1]},{"value":[7.6,6.6]},{"value":[7.7,6.7]},{"value":[7.7,6.9]},{"value":[7.7,6.7]},{"value":[7.7,6.1]},{"value":[7.9,6.4]}],"yAxisIndex":0,"xAxisIndex":0,"name":"virginica","type":"line","coordinateSystem":"cartesian2d"}],"dataZoom":[[]],"toolbox":{"feature":{"dataZoom":[]}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-29e7b6ad777bd237e933">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":{"highlightButton":[{"data":{"type":"highlight","seriesName":["setosa"]}}],"zoomBtn":[{"data":{"type":"dataZoom","dataZoomIndex":0,"startValue":4,"endValue":6}}]},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["setosa","versicolor","virginica"]},"series":[{"data":[{"value":[4.3,1.1]},{"value":[4.4,1.4]},{"value":[4.4,1.3]},{"value":[4.4,1.3]},{"value":[4.5,1.3]},{"value":[4.6,1.5]},{"value":[4.6,1.4]},{"value":[4.6,1]},{"value":[4.6,1.4]},{"value":[4.7,1.3]},{"value":[4.7,1.6]},{"value":[4.8,1.6]},{"value":[4.8,1.4]},{"value":[4.8,1.9]},{"value":[4.8,1.6]},{"value":[4.8,1.4]},{"value":[4.9,1.4]},{"value":[4.9,1.5]},{"value":[4.9,1.5]},{"value":[4.9,1.4]},{"value":[5,1.4]},{"value":[5,1.5]},{"value":[5,1.6]},{"value":[5,1.6]},{"value":[5,1.2]},{"value":[5,1.3]},{"value":[5,1.6]},{"value":[5,1.4]},{"value":[5.1,1.4]},{"value":[5.1,1.4]},{"value":[5.1,1.5]},{"value":[5.1,1.5]},{"value":[5.1,1.7]},{"value":[5.1,1.5]},{"value":[5.1,1.9]},{"value":[5.1,1.6]},{"value":[5.2,1.5]},{"value":[5.2,1.4]},{"value":[5.2,1.5]},{"value":[5.3,1.5]},{"value":[5.4,1.7]},{"value":[5.4,1.5]},{"value":[5.4,1.3]},{"value":[5.4,1.7]},{"value":[5.4,1.5]},{"value":[5.5,1.4]},{"value":[5.5,1.3]},{"value":[5.7,1.5]},{"value":[5.7,1.7]},{"value":[5.8,1.2]}],"yAxisIndex":0,"xAxisIndex":0,"name":"setosa","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[4.9,3.3]},{"value":[5,3.5]},{"value":[5,3.3]},{"value":[5.1,3]},{"value":[5.2,3.9]},{"value":[5.4,4.5]},{"value":[5.5,4]},{"value":[5.5,3.8]},{"value":[5.5,3.7]},{"value":[5.5,4]},{"value":[5.5,4.4]},{"value":[5.6,3.6]},{"value":[5.6,4.5]},{"value":[5.6,3.9]},{"value":[5.6,4.1]},{"value":[5.6,4.2]},{"value":[5.7,4.5]},{"value":[5.7,3.5]},{"value":[5.7,4.2]},{"value":[5.7,4.2]},{"value":[5.7,4.1]},{"value":[5.8,4.1]},{"value":[5.8,3.9]},{"value":[5.8,4]},{"value":[5.9,4.2]},{"value":[5.9,4.8]},{"value":[6,4]},{"value":[6,4.5]},{"value":[6,5.1]},{"value":[6,4.5]},{"value":[6.1,4.7]},{"value":[6.1,4]},{"value":[6.1,4.7]},{"value":[6.1,4.6]},{"value":[6.2,4.5]},{"value":[6.2,4.3]},{"value":[6.3,4.7]},{"value":[6.3,4.9]},{"value":[6.3,4.4]},{"value":[6.4,4.5]},{"value":[6.4,4.3]},{"value":[6.5,4.6]},{"value":[6.6,4.6]},{"value":[6.6,4.4]},{"value":[6.7,4.4]},{"value":[6.7,5]},{"value":[6.7,4.7]},{"value":[6.8,4.8]},{"value":[6.9,4.9]},{"value":[7,4.7]}],"yAxisIndex":0,"xAxisIndex":0,"name":"versicolor","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[4.9,4.5]},{"value":[5.6,4.9]},{"value":[5.7,5]},{"value":[5.8,5.1]},{"value":[5.8,5.1]},{"value":[5.8,5.1]},{"value":[5.9,5.1]},{"value":[6,5]},{"value":[6,4.8]},{"value":[6.1,4.9]},{"value":[6.1,5.6]},{"value":[6.2,4.8]},{"value":[6.2,5.4]},{"value":[6.3,6]},{"value":[6.3,5.6]},{"value":[6.3,4.9]},{"value":[6.3,5.1]},{"value":[6.3,5.6]},{"value":[6.3,5]},{"value":[6.4,5.3]},{"value":[6.4,5.3]},{"value":[6.4,5.6]},{"value":[6.4,5.6]},{"value":[6.4,5.5]},{"value":[6.5,5.8]},{"value":[6.5,5.1]},{"value":[6.5,5.5]},{"value":[6.5,5.2]},{"value":[6.7,5.8]},{"value":[6.7,5.7]},{"value":[6.7,5.6]},{"value":[6.7,5.7]},{"value":[6.7,5.2]},{"value":[6.8,5.5]},{"value":[6.8,5.9]},{"value":[6.9,5.7]},{"value":[6.9,5.4]},{"value":[6.9,5.1]},{"value":[7.1,5.9]},{"value":[7.2,6.1]},{"value":[7.2,6]},{"value":[7.2,5.8]},{"value":[7.3,6.3]},{"value":[7.4,6.1]},{"value":[7.6,6.6]},{"value":[7.7,6.7]},{"value":[7.7,6.9]},{"value":[7.7,6.7]},{"value":[7.7,6.1]},{"value":[7.9,6.4]}],"yAxisIndex":0,"xAxisIndex":0,"name":"virginica","type":"line","coordinateSystem":"cartesian2d"}],"dataZoom":[[]],"toolbox":{"feature":{"dataZoom":[]}},"textStyle":{"fontFamily":"Raleway"}},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </div>
-<div id="all" class="section level2">
-<h2 class="hasAnchor">
-<a href="#all" class="anchor"></a>All</h2>
+<div class="section level2">
+<h2 id="all">All<a class="anchor" aria-label="anchor" href="#all"></a>
+</h2>
 <p>Actions (all can be tied to buttons):</p>
 <ul>
 <li>
@@ -388,7 +390,7 @@ Zoom in
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&amp;placement=echarts4rjohn-coenecom" id="_carbonads_js"></script><br><nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav><a class="github-button" href="https://github.com/sponsors/JohnCoene" data-icon="octicon-heart" aria-label="Sponsor @JohnCoene on GitHub">Sponsor</a>
+    </nav><a class="external-link github-button" href="https://github.com/sponsors/JohnCoene" data-icon="octicon-heart" aria-label="Sponsor @JohnCoene on GitHub">Sponsor</a>
   </div>
 
 </div>
@@ -396,11 +398,11 @@ Zoom in
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="http://john-coene.com">John Coene</a>.</p>
+  <p>Developed by .</p>
 </div>
 
 <p style="text-align: center;">
-  <br><style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&amp;subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/JohnCoene"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+  <br><style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&amp;subset=latin,latin-ext" rel="stylesheet"><a class="external-link bmc-button" target="_blank" href="https://www.buymeacoffee.com/JohnCoene"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
 </p>
 
 <div class="pkgdown">

@@ -35,6 +35,8 @@
 </script><!-- Place this tag in your head or just before your close body tag. --><script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -47,7 +49,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echarts4r</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.3.9000</span>
       </span>
     </div>
 
@@ -55,25 +57,25 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa-home"></span>
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
 <li>
   <a href="../LICENSE.html">
-    <span class="fas fa-balance-scale"></span>
+    <span class="fa fa-balance-scale"></span>
      
   </a>
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fas fa-newspaper"></span>
+    <span class="fa fa-newspaper"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/">
-    <span class="fas fa-code"></span>
+    <span class="fa fa-code"></span>
      
   </a>
 </li>
@@ -209,7 +211,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/JohnCoene/echarts4r">
+  <a href="https://github.com/JohnCoene/echarts4r" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -236,24 +238,24 @@
       <h1 data-toc-skip>boxes</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/JohnCoene/echarts4r/blob/master/vignettes/boxes.Rmd"><code>vignettes/boxes.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/JohnCoene/echarts4r/blob/HEAD/vignettes/boxes.Rmd" class="external-link"><code>vignettes/boxes.Rmd</code></a></small>
       <div class="hidden name"><code>boxes.Rmd</code></div>
 
     </div>
 
     
     
-<p>The latest version of echarts4r comes with “boxes,” these are similar to <a href="https://rmarkdown.rstudio.com/flexdashboard/index.html">flexdashboard</a> <code>valuebox</code>. They work very much like any other echarts4r charts within shiny.</p>
+<p>The latest version of echarts4r comes with “boxes,” these are similar to <a href="https://rmarkdown.rstudio.com/flexdashboard/index.html" class="external-link">flexdashboard</a> <code>valuebox</code>. They work very much like any other echarts4r charts within shiny.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://echarts4r.john-coene.com/">echarts4r</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://echarts4r.john-coene.com/" class="external-link">echarts4r</a></span><span class="op">)</span>
 
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidRow</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html">column</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="../reference/echarts4rBoxOutput.html">echarts4rBoxOutput</a></span><span class="op">(</span><span class="st">"box1"</span><span class="op">)</span><span class="op">)</span>,
-    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html">column</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="../reference/echarts4rBoxOutput.html">echarts4rBoxOutput</a></span><span class="op">(</span><span class="st">"box2"</span><span class="op">)</span><span class="op">)</span>,
-    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html">column</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="../reference/echarts4rBoxOutput.html">echarts4rBoxOutput</a></span><span class="op">(</span><span class="st">"box3"</span><span class="op">)</span><span class="op">)</span>,
-    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html">column</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="../reference/echarts4rBoxOutput.html">echarts4rBoxOutput</a></span><span class="op">(</span><span class="st">"box4"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="../reference/echarts4rBoxOutput.html">echarts4rBoxOutput</a></span><span class="op">(</span><span class="st">"box1"</span><span class="op">)</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="../reference/echarts4rBoxOutput.html">echarts4rBoxOutput</a></span><span class="op">(</span><span class="st">"box2"</span><span class="op">)</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="../reference/echarts4rBoxOutput.html">echarts4rBoxOutput</a></span><span class="op">(</span><span class="st">"box3"</span><span class="op">)</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="../reference/echarts4rBoxOutput.html">echarts4rBoxOutput</a></span><span class="op">(</span><span class="st">"box4"</span><span class="op">)</span><span class="op">)</span>
   <span class="op">)</span>
 <span class="op">)</span>
 
@@ -271,17 +273,17 @@
   <span class="op">}</span><span class="op">)</span>
 
   <span class="va">output</span><span class="op">$</span><span class="va">box4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/renderEcharts4rBox.html">renderEcharts4rBox</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="../reference/echarts4rBox.html">echarts4rBox</a></span><span class="op">(</span><span class="va">cars</span>, <span class="va">dist</span>, <span class="va">speed</span>, <span class="st">"Misc"</span>, type <span class="op">=</span> <span class="st">"scatter"</span>, title_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>left <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="../reference/echarts4rBox.html">echarts4rBox</a></span><span class="op">(</span><span class="va">cars</span>, <span class="va">dist</span>, <span class="va">speed</span>, <span class="st">"Misc"</span>, type <span class="op">=</span> <span class="st">"scatter"</span>, title_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>left <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p><img src="boxes.png"></p>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     
-    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&amp;placement=echarts4rjohn-coenecom" id="_carbonads_js"></script><br><a class="github-button" href="https://github.com/sponsors/JohnCoene" data-icon="octicon-heart" aria-label="Sponsor @JohnCoene on GitHub">Sponsor</a>
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&amp;placement=echarts4rjohn-coenecom" id="_carbonads_js"></script><br><a class="external-link github-button" href="https://github.com/sponsors/JohnCoene" data-icon="octicon-heart" aria-label="Sponsor @JohnCoene on GitHub">Sponsor</a>
   </div>
 
 </div>
@@ -289,11 +291,11 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="http://john-coene.com">John Coene</a>.</p>
+  <p>Developed by .</p>
 </div>
 
 <p style="text-align: center;">
-  <br><style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&amp;subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/JohnCoene"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
+  <br><style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#000000 !important;background-color:#FFFFFF !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 0px 9px !important;font-size: 17px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#000000 !important;}</style><link href="https://fonts.googleapis.com/css?family=Lato&amp;subset=latin,latin-ext" rel="stylesheet"><a class="external-link bmc-button" target="_blank" href="https://www.buymeacoffee.com/JohnCoene"><img src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
 </p>
 
 <div class="pkgdown">
