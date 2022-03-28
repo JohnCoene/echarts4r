@@ -56,6 +56,10 @@ HTMLWidgets.widget({
           mapboxgl.accessToken = x.mapboxToken;
         }
         
+        if(!x.mainOpts)
+          x.mainOpts = [];
+        x.mainOpts.renderer = x.renderer;
+
         chart = echarts.init(document.getElementById(el.id), x.theme, x.mainOpts);
         
         opts = evalFun(x.opts);

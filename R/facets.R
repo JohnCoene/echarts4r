@@ -14,10 +14,10 @@
 #'                  "temperature" = runif(group_size * n_groups, 10, 40),
 #'                  "location" = rep(LETTERS[1:n_groups], each=group_size))
 #' 
-#' df %>% 
-#'   group_by(location) %>% 
-#'   e_charts(day) %>% 
-#'   e_line(temperature) %>% 
+#' df |> 
+#'   group_by(location) |> 
+#'   e_charts(day) |> 
+#'   e_line(temperature) |> 
 #'   e_facet(rows = 4, cols=4, legend_pos = "top", legend_space = 12) 
 #'
 #' @details Each serie, i.e.: \code{\link{e_bar}} will be plotted against a facet.

@@ -13,7 +13,8 @@ e_theme(
     "dark", "eduardo", "essos", "forest", "fresh-cut", "fruit", "gray", "green",
     "halloween", "helianthus", "infographic", "inspired", "jazz", "london", "macarons",
     "macarons2", "mint", "purple-passion", "red-velvet", "red", "roma", "royal",
-    "sakura", "shine", "tech-blue", "vintage", "walden", "westeros", "wonderland")
+    "sakura", "shine", "tech-blue", "vintage", "walden", "wef", "weforum", "westeros",
+    "wonderland")
 )
 
 e_theme_custom(e, theme, name = "custom")

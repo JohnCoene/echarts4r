@@ -124,12 +124,6 @@ p |> e_theme("halloween")
 p |> e_theme("azul")
 ```
 
-## bee-insipired
-
-```{r}
-p |> e_theme("bee-insipired")
-```
-
 ## blue
 
 ```{r}
