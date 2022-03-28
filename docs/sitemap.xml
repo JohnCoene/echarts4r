@@ -1,7 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://echarts4r.john-coene.com/404.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/actions-buttons.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/advanced.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/boxes.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/brush.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/chart_types.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/connect.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/geo.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/geo3d.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/get_started.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/gl.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/globe.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/graph.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/graphics.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/grid.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/leaflet-mapbox.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/make-geo-json.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/map.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/map3d.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/mark.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/pictorial.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/proxies.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/shiny.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/stats.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/themes.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/threeD.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/timeline.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/toolbox.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/tooltip.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/articles/v5.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/authors.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/index.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/news/index.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/angle_axis.html</loc>
@@ -29,9 +134,6 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e-tooltip.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/reference/e_add.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_animation.html</loc>
@@ -97,6 +199,9 @@
     <loc>http://echarts4r.john-coene.com/reference/e_datazoom.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_dims.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/e_dispatch_action_p.html</loc>
   </url>
   <url>
@@ -107,6 +212,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_execute.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_facet.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_flip_coords.html</loc>
@@ -128,6 +236,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_get_data.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_get_zr.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_globe.html</loc>
@@ -164,6 +275,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_list.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/e_locale.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/e_map_register.html</loc>
@@ -289,6 +403,9 @@
     <loc>http://echarts4r.john-coene.com/reference/histogram.html</loc>
   </url>
   <url>
+    <loc>http://echarts4r.john-coene.com/reference/index.html</loc>
+  </url>
+  <url>
     <loc>http://echarts4r.john-coene.com/reference/init.html</loc>
   </url>
   <url>
@@ -314,6 +431,9 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/mark.html</loc>
+  </url>
+  <url>
+    <loc>http://echarts4r.john-coene.com/reference/nesting.html</loc>
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/node_adjacency.html</loc>
@@ -350,92 +470,5 @@
   </url>
   <url>
     <loc>http://echarts4r.john-coene.com/reference/tooltip_proxy.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/actions-buttons.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/advanced.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/boxes.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/brush.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/chart_types.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/connect.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/geo.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/geo3d.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/get_started.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/gl.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/globe.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/graph.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/graphics.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/grid.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/leaflet-mapbox.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/make-geo-json.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/map.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/map3d.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/mark.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/pictorial.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/proxies.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/shiny.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/stats.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/themes.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/threeD.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/timeline.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/toolbox.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/tooltip.html</loc>
-  </url>
-  <url>
-    <loc>http://echarts4r.john-coene.com/articles/v5.html</loc>
   </url>
 </urlset>

@@ -56,6 +56,10 @@ HTMLWidgets.widget({
           mapboxgl.accessToken = x.mapboxToken;
         }
         
+        if(!x.mainOpts)
+          x.mainOpts = [];
+        x.mainOpts.renderer = x.renderer;
+
         chart = echarts.init(document.getElementById(el.id), x.theme, x.mainOpts);
         
         opts = evalFun(x.opts);
@@ -352,11 +356,11 @@ if (HTMLWidgets.shinyMode) {
     function(data) {
       if (typeof chart != 'undefined') {
         $.ajax({ 
-          url: x.geoJSON, 
+          url: data.geoJSON, 
           dataType: 'json', 
-          async: x.mapAsync,
+          async: data.mapAsync,
           success: function(json){ 
-            echarts.registerMap(x.mapName, json);
+            echarts.registerMap(data.mapName, json);
           } 
         });
         

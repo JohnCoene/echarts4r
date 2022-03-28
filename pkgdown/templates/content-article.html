@@ -1,17 +1,18 @@
-$for(header-includes)$
+{{^as_is}}$for(header-includes)$
 $header-includes$
-$endfor$
+$endfor${{/as_is}}
 
 <div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>$title$</h1>
+  <main id="main" $if(toc)$class="col-md-9"$endif$>
+    <div class="page-header">
+      {{#logo}}<img src="{{logo.src}}" class="logo" alt="" >{{/logo}}
+      <h1>{{{pagetitle}}}</h1>
       $if(subtitle)$
-      <h3 class="subtitle">$subtitle$</h3>
+      <h3 data-toc-skip class="subtitle">$subtitle$</h3>
       $endif$
       $for(author)$
       $if(author.name)$
-      <h4 class="author">$author.name$</h4>
+      <h4 data-toc-skip class="author">$author.name$</h4>
       $if(author.affiliation)$
       <address class="author_afil">
       $author.affiliation$<br>$endif$
@@ -20,17 +21,16 @@ $endfor$
       </address>
       $endif$
       $else$
-      <h4 class="author">$author$</h4>
+      <h4 data-toc-skip class="author">$author$</h4>
       $endif$
       $endfor$
 
       $if(date)$
-      <h4 class="date">$date$</h4>
+      <h4 data-toc-skip class="date">$date$</h4>
       $endif$
 
       {{#source}}<small class="dont-index">{{{.}}}</small>{{/source}}
-      <div class="hidden name"><code>{{filename}}</code></div>
-
+      <div class="d-none name"><code>{{filename}}</code></div>
     </div>
 
     $for(include-before)$
@@ -45,24 +45,15 @@ $endfor$
     $endif$
 
 $body$
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    
-    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
-
-    <br />
-    {{#sidebar}}
-    {{{.}}}
-    {{/sidebar}}
-
-    $if(toc)$
-    <nav id="toc" data-toggle="toc">
-      <h2 data-toc-skip>Contents</h2>
+  </main>
+ $if(toc)$
+  <aside class="col-md-3">
+    <nav id="toc">
+      <h2>{{#translate}}{{on_this_page}}{{/translate}}</h2>
     </nav>
-    $endif$
-    <a class="github-button" href="https://github.com/sponsors/JohnCoene" data-icon="octicon-heart" aria-label="Sponsor @JohnCoene on GitHub">Sponsor</a>
-  </div>
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
+  </aside>
+  $endif$
 
 </div>
 

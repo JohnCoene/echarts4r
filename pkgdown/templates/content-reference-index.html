@@ -1,42 +1,29 @@
 <div class="row">
-  <div class="contents col-md-9">
+  <main id="main" class="col-md-9">
     <div class="page-header">
-      <h1>Reference</h1>
+      {{#logo}}<img src="{{logo.src}}" class="logo" alt="" >{{/logo}}
+      <h1>{{{pagetitle}}}</h1>
     </div>
 
-    <table class="ref-index{{#has_icons}} ref-index-icons{{/has_icons}}">
+    {{#rows}}<div id="{{slug}}" class="section level2">
+      {{#title}}<h2>{{.}}</h2>{{/title}}
+      {{#subtitle}}<h3>{{.}}</h3>{{/subtitle}}
+      {{#desc}}<p class="section-desc">{{{desc}}}</p>{{/desc}}
 
-    <colgroup>
-      {{#has_icons}}<col class="icon" />{{/has_icons}}
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+      {{#topics}}<dl>
+        <dt>
+          {{#has_icons}}{{#icon}}<a class="icon" href="{{path}}"><img src="icons/{{{.}}}" alt=""/></a>{{/icon}}{{/has_icons}}
+          {{#aliases}}<code><a href="{{path}}">{{{.}}}</a></code> {{/aliases}}
+        </dt>
+        <dd>{{{title}}}</dd>
+      </dl>{{/topics}}
+    </div>{{/rows}}
+  </main>
 
-    {{#rows}}<tbody>
-      {{#title}}<tr>
-        <th colspan="{{#has_icons}}3{{/has_icons}}{{^has_icons}}2{{/has_icons}}">
-          <h2 id="{{slug}}" class="hasAnchor"><a href="#{{slug}}" class="anchor"></a>{{title}}</h2>
-          <p class="section-desc">{{{desc}}}</p>
-        </th>
-      </tr>{{/title}}
-      {{#subtitle}}<tr>
-        <th colspan="{{#has_icons}}3{{/has_icons}}{{^has_icons}}2{{/has_icons}}">
-          <h3 id="{{slug}}" class="hasAnchor"><a href="#{{slug}}" class="anchor"></a>{{subtitle}}</h3>
-          <p class="section-desc">{{{desc}}}</p>
-        </th>
-      </tr>{{/subtitle}}
-      {{#topics}}<tr>
-        {{#has_icons}}<td>{{#icon}}<a href="{{path}}"><img src="icons/{{{.}}}" width="30" height="30" alt="" /></a>{{/icon}}</td>{{/has_icons}}
-        <td>
-          <p>{{#aliases}}<code><a href="{{path}}">{{{.}}}</a></code> {{/aliases}}</p>
-        </td>
-        <td><p>{{{title}}}</p></td>
-      </tr>{{/topics}}
-    </tbody>{{/rows}}
-    </table>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+  <aside class="col-md-3">
+    <nav id="toc">
+      <h2>{{#translate}}{{on_this_page}}{{/translate}}</h2>
+    </nav>
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&placement=echarts4rjohn-coenecom" id="_carbonads_js"></script>
-  </div>
+  </aside>
 </div>
