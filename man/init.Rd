@@ -152,5 +152,5 @@ mtcars |>
   e_charts_("qsec") |>
   e_line(mpg) |>
   e_data(points, qsec) |>
-  e_scatter(mpg, color = "blue")
+  e_scatter(mpg, color = "red", symbol_size = 20)
 }
