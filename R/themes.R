@@ -42,7 +42,8 @@ e_theme <- function(
     "westeros", "wonderland"
   )
 ) {
-  name <- match.arg(name)
+  # cannot match.arg we need to support custom themes
+  name <- name[1]
 
   # add name to register
   e$x$theme <- name
