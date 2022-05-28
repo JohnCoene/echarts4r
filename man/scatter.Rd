@@ -119,9 +119,7 @@ of the same length. You can disable the scaling by setting it to \code{NULL}.}
 
 \item{legend}{Whether to add serie to legend.}
 
-\item{y_index}{Indexes of x and y axis.}
-
-\item{x_index}{Indexes of x and y axis.}
+\item{x_index, y_index}{Indexes of x and y axis.}
 
 \item{rm_x, rm_y}{Whether to remove x and y axis, only applies if \code{coord_system} is not
 set to \code{cartesian2d}.}

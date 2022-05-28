@@ -49,9 +49,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{legend}{Whether to add serie to legend.}
 
-\item{y_index}{Indexes of x and y axis.}
-
-\item{x_index}{Indexes of x and y axis.}
+\item{x_index, y_index}{Indexes of x and y axis.}
 
 \item{coord_system}{Coordinate system to plot against.}
 

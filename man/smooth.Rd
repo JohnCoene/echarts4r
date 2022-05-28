@@ -59,9 +59,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{...}{Additional arguments to pass to \code{\link{e_line}}.}
 
-\item{x_index}{Indexes of x and y axis.}
-
-\item{y_index}{Indexes of x and y axis.}
+\item{x_index, y_index}{Indexes of x and y axis.}
 }
 \description{
 Plot formulas.

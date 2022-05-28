@@ -69,9 +69,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{bar_width}{Width of bars.}
 
-\item{x_index}{Indexes of x and y axis.}
-
-\item{y_index}{Indexes of x and y axis.}
+\item{x_index, y_index}{Indexes of x and y axis.}
 
 \item{...}{Any other option to pass, check See Also section.}
 
