@@ -248,9 +248,9 @@ tree <- tibble(
          tibble(name = c("forest", "river")),   # 3rd level 
          tibble(name = c("fish", "kelp"),
             children = list(
-               tibble(name = c("shark", "tuna"),  # 4th level 
+               tibble(name = c("shark", "tuna")),  # 4th level 
                NULL  # kelp
-            ))
+            )
          )
        ))
   )
