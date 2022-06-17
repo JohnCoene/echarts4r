@@ -63,6 +63,10 @@ HTMLWidgets.widget({
         chart = echarts.init(document.getElementById(el.id), x.theme, x.mainOpts);
         
         opts = evalFun(x.opts);
+
+        if(x.morphed){
+          opts = x.opts[0][x.morphed.default]   
+        }
         
         if(x.draw === true)
           chart.setOption(opts);
@@ -198,6 +202,13 @@ HTMLWidgets.widget({
         
         if(x.hasOwnProperty('groupDisconnect')){
           echarts.disconnect(x.groupDisconnect);
+        }
+        
+        if(x.morphed){
+          opts = x.opts[0];
+          console.log(x.morphed);
+          let fn = eval(x.morphed.callback);
+          fn();
         }
 
       },
