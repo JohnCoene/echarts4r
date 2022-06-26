@@ -2,6 +2,7 @@
 
 - Better checks on theme names [#407](https://github.com/JohnCoene/echarts4r/issues/407)
 - Update to echarts.js 5.3.2
+- Added `e_morph`
 
 # echarts4r 0.4.3
 
