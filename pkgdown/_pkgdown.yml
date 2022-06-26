@@ -159,6 +159,7 @@ reference:
       - e_inspect
       - e_dims
       - e_locale
+      - e_morph
 
 navbar:
   title: "echarts4r"

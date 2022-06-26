@@ -10,7 +10,7 @@ days of the week, etc."><meta property="og:image" content="http://echarts4r.john
   gtag('js', new Date());
 
   gtag('config', 'UA-74544116-1');
-</script><!-- dependencies from examples --><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/echarts4r-4.8.0/echarts-en.min.js"></script><script src="libs/echarts4r-4.8.0/ecStat.min.js"></script><script src="libs/echarts4r-4.8.0/dataTool.min.js"></script><script src="libs/echarts4r-binding-0.4.3.9000/echarts4r.js"></script><script src="libs/PT-echarts4r-locale-0.4.3.9000/langPT.js"></script></head><body>
+</script><!-- dependencies from examples --><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/echarts4r-4.8.0/echarts-en.min.js"></script><script src="libs/echarts4r-4.8.0/ecStat.min.js"></script><script src="libs/echarts4r-4.8.0/dataTool.min.js"></script><script src="libs/echarts4r-binding-0.4.4/echarts4r.js"></script><script src="libs/FR-echarts4r-locale-0.4.4/langFR.js"></script></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
@@ -18,7 +18,7 @@ days of the week, etc."><meta property="og:image" content="http://echarts4r.john
     
     <a class="navbar-brand me-2" href="../index.html">echarts4r</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -133,7 +133,9 @@ days of the week, etc.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">e_locale</span><span class="op">(</span><span class="va">e</span>, <span class="va">locale</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">e_locale</span><span class="op">(</span><span class="va">e</span>, <span class="va">locale</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">e_locale_manual</span><span class="op">(</span><span class="va">e</span>, <span class="va">locale</span>, <span class="va">path</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -141,9 +143,24 @@ days of the week, etc.</p>
     <dl><dt>e</dt>
 <dd><p>An <code>echarts4r</code> object as returned by <code><a href="init.html">e_charts</a></code> or
 a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></code>.</p></dd>
+
+
 <dt>locale</dt>
 <dd><p>Locale to set to.</p></dd>
+
+
+<dt>path</dt>
+<dd><p>Path to the local file to use.</p></dd>
+
 </dl></div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>The "manual" function expects a file
+to use for translations.
+You can browse the `.js` files
+[here](https://github.com/apache/echarts/tree/master/i18n)
+to have an idea of what they should look like.</p>
+    </div>
     <div class="section level2">
     <h2 id="locales">Locales<a class="anchor" aria-label="anchor" href="#locales"></a></h2>
     
@@ -163,15 +180,15 @@ a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># top right corner zoom is in </span></span>
-<span class="r-in"><span class="co"># Portuguese</span></span>
-<span class="r-in"><span class="va">cars</span> |&gt; </span>
-<span class="r-in"> <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span> |&gt; </span>
-<span class="r-in"> <span class="fu"><a href="scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">dist</span><span class="op">)</span> |&gt; </span>
-<span class="r-in"> <span class="fu"><a href="e_datazoom.html">e_datazoom</a></span><span class="op">(</span><span class="op">)</span> |&gt; </span>
-<span class="r-in"> <span class="fu">e_locale</span><span class="op">(</span><span class="st">"PT"</span><span class="op">)</span></span>
-<div id="htmlwidget-14b48d6b0356cda6451b" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-14b48d6b0356cda6451b">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["dist"]},"series":[{"data":[{"value":[4,2]},{"value":[4,10]},{"value":[7,4]},{"value":[7,22]},{"value":[8,16]},{"value":[9,10]},{"value":[10,18]},{"value":[10,26]},{"value":[10,34]},{"value":[11,17]},{"value":[11,28]},{"value":[12,14]},{"value":[12,20]},{"value":[12,24]},{"value":[12,28]},{"value":[13,26]},{"value":[13,34]},{"value":[13,34]},{"value":[13,46]},{"value":[14,26]},{"value":[14,36]},{"value":[14,60]},{"value":[14,80]},{"value":[15,20]},{"value":[15,26]},{"value":[15,54]},{"value":[16,32]},{"value":[16,40]},{"value":[17,32]},{"value":[17,40]},{"value":[17,50]},{"value":[18,42]},{"value":[18,56]},{"value":[18,76]},{"value":[18,84]},{"value":[19,36]},{"value":[19,46]},{"value":[19,68]},{"value":[20,32]},{"value":[20,48]},{"value":[20,52]},{"value":[20,56]},{"value":[20,64]},{"value":[22,66]},{"value":[23,54]},{"value":[24,70]},{"value":[24,92]},{"value":[24,93]},{"value":[24,120]},{"value":[25,85]}],"name":"dist","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3}],"dataZoom":[[]],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true,"mainOpts":{"locale":"PT"}},"evals":[],"jsHooks":[]}</script><span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># top right corner zoom is in </span></span></span>
+<span class="r-in"><span><span class="co"># French</span></span></span>
+<span class="r-in"><span><span class="va">cars</span> <span class="op">|&gt;</span> </span></span>
+<span class="r-in"><span> <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span> <span class="op">|&gt;</span> </span></span>
+<span class="r-in"><span> <span class="fu"><a href="scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">dist</span><span class="op">)</span> <span class="op">|&gt;</span> </span></span>
+<span class="r-in"><span> <span class="fu"><a href="e_datazoom.html">e_datazoom</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span></span>
+<span class="r-in"><span> <span class="fu">e_locale</span><span class="op">(</span><span class="st">"FR"</span><span class="op">)</span></span></span>
+<div id="htmlwidget-fcbe8c6ab5add1319663" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fcbe8c6ab5add1319663">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["dist"]},"series":[{"data":[{"value":[4,2]},{"value":[4,10]},{"value":[7,4]},{"value":[7,22]},{"value":[8,16]},{"value":[9,10]},{"value":[10,18]},{"value":[10,26]},{"value":[10,34]},{"value":[11,17]},{"value":[11,28]},{"value":[12,14]},{"value":[12,20]},{"value":[12,24]},{"value":[12,28]},{"value":[13,26]},{"value":[13,34]},{"value":[13,34]},{"value":[13,46]},{"value":[14,26]},{"value":[14,36]},{"value":[14,60]},{"value":[14,80]},{"value":[15,20]},{"value":[15,26]},{"value":[15,54]},{"value":[16,32]},{"value":[16,40]},{"value":[17,32]},{"value":[17,40]},{"value":[17,50]},{"value":[18,42]},{"value":[18,56]},{"value":[18,76]},{"value":[18,84]},{"value":[19,36]},{"value":[19,46]},{"value":[19,68]},{"value":[20,32]},{"value":[20,48]},{"value":[20,52]},{"value":[20,56]},{"value":[20,64]},{"value":[22,66]},{"value":[23,54]},{"value":[24,70]},{"value":[24,92]},{"value":[24,93]},{"value":[24,120]},{"value":[25,85]}],"name":"dist","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3}],"dataZoom":[[]],"toolbox":{"feature":{"dataZoom":[]}}},"dispose":true,"mainOpts":{"locale":"FR"}},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -183,7 +200,7 @@ a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

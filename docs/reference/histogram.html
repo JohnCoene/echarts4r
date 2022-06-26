@@ -8,7 +8,7 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-74544116-1');
-</script><!-- dependencies from examples --><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/echarts4r-4.8.0/echarts-en.min.js"></script><script src="libs/echarts4r-4.8.0/ecStat.min.js"></script><script src="libs/echarts4r-4.8.0/dataTool.min.js"></script><script src="libs/echarts4r-binding-0.4.3.9000/echarts4r.js"></script></head><body>
+</script><!-- dependencies from examples --><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/echarts4r-4.8.0/echarts-en.min.js"></script><script src="libs/echarts4r-4.8.0/ecStat.min.js"></script><script src="libs/echarts4r-4.8.0/dataTool.min.js"></script><script src="libs/echarts4r-binding-0.4.4/echarts4r.js"></script></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">echarts4r</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -130,53 +130,53 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">e_histogram</span><span class="op">(</span>
-  <span class="va">e</span>,
-  <span class="va">serie</span>,
-  breaks <span class="op">=</span> <span class="st">"Sturges"</span>,
-  name <span class="op">=</span> <span class="cn">NULL</span>,
-  legend <span class="op">=</span> <span class="cn">TRUE</span>,
-  bar_width <span class="op">=</span> <span class="st">"99%"</span>,
-  x_index <span class="op">=</span> <span class="fl">0</span>,
-  y_index <span class="op">=</span> <span class="fl">0</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">e_density</span><span class="op">(</span>
-  <span class="va">e</span>,
-  <span class="va">serie</span>,
-  breaks <span class="op">=</span> <span class="st">"Sturges"</span>,
-  name <span class="op">=</span> <span class="cn">NULL</span>,
-  legend <span class="op">=</span> <span class="cn">TRUE</span>,
-  x_index <span class="op">=</span> <span class="fl">0</span>,
-  y_index <span class="op">=</span> <span class="fl">0</span>,
-  smooth <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">e_histogram_</span><span class="op">(</span>
-  <span class="va">e</span>,
-  <span class="va">serie</span>,
-  breaks <span class="op">=</span> <span class="st">"Sturges"</span>,
-  name <span class="op">=</span> <span class="cn">NULL</span>,
-  legend <span class="op">=</span> <span class="cn">TRUE</span>,
-  bar_width <span class="op">=</span> <span class="st">"90%"</span>,
-  x_index <span class="op">=</span> <span class="fl">0</span>,
-  y_index <span class="op">=</span> <span class="fl">0</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">e_density_</span><span class="op">(</span>
-  <span class="va">e</span>,
-  <span class="va">serie</span>,
-  breaks <span class="op">=</span> <span class="st">"Sturges"</span>,
-  name <span class="op">=</span> <span class="cn">NULL</span>,
-  legend <span class="op">=</span> <span class="cn">TRUE</span>,
-  x_index <span class="op">=</span> <span class="fl">0</span>,
-  y_index <span class="op">=</span> <span class="fl">0</span>,
-  smooth <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">e_histogram</span><span class="op">(</span></span>
+<span>  <span class="va">e</span>,</span>
+<span>  <span class="va">serie</span>,</span>
+<span>  breaks <span class="op">=</span> <span class="st">"Sturges"</span>,</span>
+<span>  name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  bar_width <span class="op">=</span> <span class="st">"99%"</span>,</span>
+<span>  x_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  y_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">e_density</span><span class="op">(</span></span>
+<span>  <span class="va">e</span>,</span>
+<span>  <span class="va">serie</span>,</span>
+<span>  breaks <span class="op">=</span> <span class="st">"Sturges"</span>,</span>
+<span>  name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  x_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  y_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  smooth <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">e_histogram_</span><span class="op">(</span></span>
+<span>  <span class="va">e</span>,</span>
+<span>  <span class="va">serie</span>,</span>
+<span>  breaks <span class="op">=</span> <span class="st">"Sturges"</span>,</span>
+<span>  name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  bar_width <span class="op">=</span> <span class="st">"90%"</span>,</span>
+<span>  x_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  y_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">e_density_</span><span class="op">(</span></span>
+<span>  <span class="va">e</span>,</span>
+<span>  <span class="va">serie</span>,</span>
+<span>  breaks <span class="op">=</span> <span class="st">"Sturges"</span>,</span>
+<span>  name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  x_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  y_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  smooth <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -184,24 +184,39 @@
     <dl><dt>e</dt>
 <dd><p>An <code>echarts4r</code> object as returned by <code><a href="init.html">e_charts</a></code> or
 a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></code>.</p></dd>
+
+
 <dt>serie</dt>
 <dd><p>Column name of serie to plot.</p></dd>
+
+
 <dt>breaks</dt>
 <dd><p>Passed to <code><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></code>.</p></dd>
+
+
 <dt>name</dt>
 <dd><p>name of the serie.</p></dd>
+
+
 <dt>legend</dt>
 <dd><p>Whether to add serie to legend.</p></dd>
+
+
 <dt>bar_width</dt>
 <dd><p>Width of bars.</p></dd>
-<dt>x_index</dt>
+
+
+<dt>x_index, y_index</dt>
 <dd><p>Indexes of x and y axis.</p></dd>
-<dt>y_index</dt>
-<dd><p>Indexes of x and y axis.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Any other option to pass, check See Also section.</p></dd>
+
+
 <dt>smooth</dt>
 <dd><p>Whether to use smoothed lines, passed to <code><a href="e_line.html">e_line</a></code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -211,21 +226,21 @@ a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">mtcars</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu">e_histogram</span><span class="op">(</span><span class="va">mpg</span>, name <span class="op">=</span> <span class="st">"histogram"</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu">e_density</span><span class="op">(</span><span class="va">mpg</span>, areaStyle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>opacity <span class="op">=</span> <span class="fl">.4</span><span class="op">)</span>, smooth <span class="op">=</span> <span class="cn">TRUE</span>, name <span class="op">=</span> <span class="st">"density"</span>, y_index <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="e-tooltip.html">e_tooltip</a></span><span class="op">(</span>trigger <span class="op">=</span> <span class="st">"axis"</span><span class="op">)</span></span>
-<div id="htmlwidget-93911d10ab5d8570ae0a" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-93911d10ab5d8570ae0a">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true},{"type":"value"}],"xAxis":[{"type":"value","scale":true}],"legend":{"data":["histogram","density"]},"series":[{"data":[[12.5,6],[17.5,12],[22.5,8],[27.5,2],[32.5,4]],"name":"histogram","type":"bar","barWidth":"99%","yAxisIndex":0,"xAxisIndex":0,"stack":"stackedHistogram"},{"name":"density","type":"line","yAxisIndex":1,"xAxisIndex":0,"smooth":true,"areaStyle":{"opacity":0.4},"data":[[12.5,0.0375],[17.5,0.075],[22.5,0.05],[27.5,0.0125],[32.5,0.025]]}],"tooltip":{"trigger":"axis"}},"dispose":true},"evals":[],"jsHooks":[]}</script><span class="r-in"></span>
-<span class="r-in"><span class="co"># timeline</span></span>
-<span class="r-in"><span class="va">mtcars</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span>timeline <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu">e_histogram</span><span class="op">(</span><span class="va">mpg</span>, name <span class="op">=</span> <span class="st">"histogram"</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu">e_density</span><span class="op">(</span><span class="va">mpg</span>, name <span class="op">=</span> <span class="st">"density"</span>, y_index <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<div id="htmlwidget-5655ccefc4b584017e88" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5655ccefc4b584017e88">{"x":{"theme":"","tl":true,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"baseOption":{"yAxis":[{"show":true},{"type":"value"}],"timeline":{"data":["4","6","8"],"axisType":"category"},"xAxis":[{"type":"value","scale":true}],"legend":{"data":["histogram","density"]},"series":[{"name":"histogram","type":"bar","barWidth":"99%","yAxisIndex":0,"xAxisIndex":0,"stack":"stackedHistogram"},{"name":"density","type":"line","yAxisIndex":1,"xAxisIndex":0,"smooth":true,"areaStyle":[]}]},"options":[{"series":[{"data":[[21,2],[23,2],[25,2],[27,1],[29,0],[31,2],[33,2]]},{"data":[[21,0.0909090909090909],[23,0.0909090909090909],[25,0.0909090909090909],[27,0.0454545454545455],[29,0],[31,0.0909090909090909],[33,0.0909090909090909]]}]},{"series":[{"data":[[17.5,1],[18.5,1],[19.5,2],[20.5,2],[21.5,1]]},{"data":[[17.5,0.142857142857143],[18.5,0.142857142857143],[19.5,0.285714285714286],[20.5,0.285714285714286],[21.5,0.142857142857143]]}]},{"series":[{"data":[[11,2],[13,1],[15,7],[17,2],[19,2]]},{"data":[[11,0.0714285714285714],[13,0.0357142857142857],[15,0.25],[17,0.0714285714285714],[19,0.0714285714285714]]}]}]},"dispose":true},"evals":[],"jsHooks":[]}</script></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">mtcars</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">e_histogram</span><span class="op">(</span><span class="va">mpg</span>, name <span class="op">=</span> <span class="st">"histogram"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">e_density</span><span class="op">(</span><span class="va">mpg</span>, areaStyle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>opacity <span class="op">=</span> <span class="fl">.4</span><span class="op">)</span>, smooth <span class="op">=</span> <span class="cn">TRUE</span>, name <span class="op">=</span> <span class="st">"density"</span>, y_index <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="e-tooltip.html">e_tooltip</a></span><span class="op">(</span>trigger <span class="op">=</span> <span class="st">"axis"</span><span class="op">)</span></span></span>
+<div id="htmlwidget-619691c350d6ede4e9d2" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-619691c350d6ede4e9d2">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true},{"type":"value"}],"xAxis":[{"type":"value","scale":true}],"legend":{"data":["histogram","density"]},"series":[{"data":[[12.5,6],[17.5,12],[22.5,8],[27.5,2],[32.5,4]],"name":"histogram","type":"bar","barWidth":"99%","yAxisIndex":0,"xAxisIndex":0,"stack":"stackedHistogram"},{"name":"density","type":"line","yAxisIndex":1,"xAxisIndex":0,"smooth":true,"areaStyle":{"opacity":0.4},"data":[[12.5,0.0375],[17.5,0.075],[22.5,0.05],[27.5,0.0125],[32.5,0.025]]}],"tooltip":{"trigger":"axis"}},"dispose":true},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># timeline</span></span></span>
+<span class="r-in"><span><span class="va">mtcars</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span>timeline <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">e_histogram</span><span class="op">(</span><span class="va">mpg</span>, name <span class="op">=</span> <span class="st">"histogram"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">e_density</span><span class="op">(</span><span class="va">mpg</span>, name <span class="op">=</span> <span class="st">"density"</span>, y_index <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<div id="htmlwidget-71ed89e1f6ca71e4bc89" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-71ed89e1f6ca71e4bc89">{"x":{"theme":"","tl":true,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"baseOption":{"yAxis":[{"show":true},{"type":"value"}],"timeline":{"data":["4","6","8"],"axisType":"category"},"xAxis":[{"type":"value","scale":true}],"legend":{"data":["histogram","density"]},"series":[{"name":"histogram","type":"bar","barWidth":"99%","yAxisIndex":0,"xAxisIndex":0,"stack":"stackedHistogram"},{"name":"density","type":"line","yAxisIndex":1,"xAxisIndex":0,"smooth":true,"areaStyle":[]}]},"options":[{"series":[{"data":[[21,2],[23,2],[25,2],[27,1],[29,0],[31,2],[33,2]]},{"data":[[21,0.0909090909090909],[23,0.0909090909090909],[25,0.0909090909090909],[27,0.0454545454545455],[29,0],[31,0.0909090909090909],[33,0.0909090909090909]]}]},{"series":[{"data":[[17.5,1],[18.5,1],[19.5,2],[20.5,2],[21.5,1]]},{"data":[[17.5,0.142857142857143],[18.5,0.142857142857143],[19.5,0.285714285714286],[20.5,0.285714285714286],[21.5,0.142857142857143]]}]},{"series":[{"data":[[11,2],[13,1],[15,7],[17,2],[19,2]]},{"data":[[11,0.0714285714285714],[13,0.0357142857142857],[15,0.25],[17,0.0714285714285714],[19,0.0714285714285714]]}]}]},"dispose":true},"evals":[],"jsHooks":[]}</script></code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav><script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&amp;placement=echarts4rjohn-coenecom" id="_carbonads_js"></script></aside></div>
@@ -236,7 +251,7 @@ a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

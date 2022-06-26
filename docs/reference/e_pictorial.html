@@ -10,7 +10,7 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-74544116-1');
-</script><!-- dependencies from examples --><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/echarts4r-4.8.0/echarts-en.min.js"></script><script src="libs/echarts4r-4.8.0/ecStat.min.js"></script><script src="libs/echarts4r-4.8.0/dataTool.min.js"></script><script src="libs/echarts4r-binding-0.4.3.9000/echarts4r.js"></script><script src="libs/westeros-1.0.0/westeros.js"></script></head><body>
+</script><!-- dependencies from examples --><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/echarts4r-4.8.0/echarts-en.min.js"></script><script src="libs/echarts4r-4.8.0/ecStat.min.js"></script><script src="libs/echarts4r-4.8.0/dataTool.min.js"></script><script src="libs/echarts4r-binding-0.4.4/echarts4r.js"></script><script src="libs/westeros-1.0.0/westeros.js"></script></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
@@ -18,7 +18,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">echarts4r</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -133,29 +133,29 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">e_pictorial</span><span class="op">(</span>
-  <span class="va">e</span>,
-  <span class="va">serie</span>,
-  <span class="va">symbol</span>,
-  <span class="va">bind</span>,
-  name <span class="op">=</span> <span class="cn">NULL</span>,
-  legend <span class="op">=</span> <span class="cn">TRUE</span>,
-  y_index <span class="op">=</span> <span class="fl">0</span>,
-  x_index <span class="op">=</span> <span class="fl">0</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">e_pictorial_</span><span class="op">(</span>
-  <span class="va">e</span>,
-  <span class="va">serie</span>,
-  <span class="va">symbol</span>,
-  bind <span class="op">=</span> <span class="cn">NULL</span>,
-  name <span class="op">=</span> <span class="cn">NULL</span>,
-  legend <span class="op">=</span> <span class="cn">TRUE</span>,
-  y_index <span class="op">=</span> <span class="fl">0</span>,
-  x_index <span class="op">=</span> <span class="fl">0</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">e_pictorial</span><span class="op">(</span></span>
+<span>  <span class="va">e</span>,</span>
+<span>  <span class="va">serie</span>,</span>
+<span>  <span class="va">symbol</span>,</span>
+<span>  <span class="va">bind</span>,</span>
+<span>  name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  y_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  x_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">e_pictorial_</span><span class="op">(</span></span>
+<span>  <span class="va">e</span>,</span>
+<span>  <span class="va">serie</span>,</span>
+<span>  <span class="va">symbol</span>,</span>
+<span>  bind <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  y_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  x_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -163,22 +163,35 @@
     <dl><dt>e</dt>
 <dd><p>An <code>echarts4r</code> object as returned by <code><a href="init.html">e_charts</a></code> or
 a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></code>.</p></dd>
+
+
 <dt>serie</dt>
 <dd><p>Column name of serie to plot.</p></dd>
+
+
 <dt>symbol</dt>
 <dd><p>Symbol to plot.</p></dd>
+
+
 <dt>bind</dt>
 <dd><p>Binding between datasets, namely for use of <code><a href="e_brush.html">e_brush</a></code>.</p></dd>
+
+
 <dt>name</dt>
 <dd><p>name of the serie.</p></dd>
+
+
 <dt>legend</dt>
 <dd><p>Whether to add serie to legend.</p></dd>
-<dt>y_index</dt>
+
+
+<dt>x_index, y_index</dt>
 <dd><p>Indexes of x and y axis.</p></dd>
-<dt>x_index</dt>
-<dd><p>Indexes of x and y axis.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Any other option to pass, check See Also section.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="symbols">Symbols<a class="anchor" aria-label="anchor" href="#symbols"></a></h2>
@@ -196,96 +209,96 @@ a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># built-in symbols</span></span>
-<span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span class="r-in">  x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,</span>
-<span class="r-in">  y <span class="op">=</span> <span class="va">y</span>,</span>
-<span class="r-in">  z <span class="op">=</span> <span class="va">y</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">df</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="e_bar.html">e_bar</a></span><span class="op">(</span><span class="va">z</span>, barWidth <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu">e_pictorial</span><span class="op">(</span></span>
-<span class="r-in">    <span class="va">y</span>,</span>
-<span class="r-in">    symbol <span class="op">=</span> <span class="st">"rect"</span>,</span>
-<span class="r-in">    symbolRepeat <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">    z <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span>
-<span class="r-in">    symbolSize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">4</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="theme.html">e_theme</a></span><span class="op">(</span><span class="st">"westeros"</span><span class="op">)</span></span>
-<div id="htmlwidget-9489d51b5d3fc852ac11" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9489d51b5d3fc852ac11">{"x":{"theme":"westeros","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["z","y"]},"series":[{"data":[{"value":[1,4.22319712776159]},{"value":[2,6.46906997699906]},{"value":[3,6.0815732134891]},{"value":[4,3.3464116451449]},{"value":[5,0.0685551980279655]},{"value":[6,5.93720527501204]},{"value":[7,6.79284094804039]},{"value":[8,3.54857253387211]},{"value":[9,5.01254764411411]},{"value":[10,4.26650338698169]}],"name":"z","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","barWidth":10},{"data":[{"value":[1,8.5783335886386]},{"value":[2,11.0240260118049]},{"value":[3,11.0403909817622]},{"value":[4,9.45237986518231]},{"value":[5,6.68624957877926]},{"value":[6,11.3106229155364]},{"value":[7,10.2388814761651]},{"value":[8,9.40317681736098]},{"value":[9,11.3385784836913]},{"value":[10,9.23658361911367]}],"name":"y","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0,"symbolRepeat":true,"z":-1,"symbolSize":[10,4],"symbol":"rect"}]},"dispose":true},"evals":[],"jsHooks":[]}</script><span class="r-in"></span>
-<span class="r-in"><span class="co"># svg path</span></span>
-<span class="r-in"><span class="va">path</span> <span class="op">&lt;-</span> <span class="st">"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">style</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span class="r-in">  normal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>opacity <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
-<span class="r-in">  <span class="co"># normal</span></span>
-<span class="r-in">  emphasis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>opacity <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># on hover</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">df</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu">e_pictorial</span><span class="op">(</span></span>
-<span class="r-in">    <span class="va">y</span>,</span>
-<span class="r-in">    symbol <span class="op">=</span> <span class="va">path</span>,</span>
-<span class="r-in">    barCategoryGap <span class="op">=</span> <span class="st">"-130%"</span>,</span>
-<span class="r-in">    itemStyle <span class="op">=</span> <span class="va">style</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<div id="htmlwidget-8eb38e87503a15fb6e1f" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8eb38e87503a15fb6e1f">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["y"]},"series":[{"data":[{"value":[1,8.5783335886386]},{"value":[2,11.0240260118049]},{"value":[3,11.0403909817622]},{"value":[4,9.45237986518231]},{"value":[5,6.68624957877926]},{"value":[6,11.3106229155364]},{"value":[7,10.2388814761651]},{"value":[8,9.40317681736098]},{"value":[9,11.3385784836913]},{"value":[10,9.23658361911367]}],"name":"y","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0,"barCategoryGap":"-130%","itemStyle":{"normal":{"opacity":0.5},"emphasis":{"opacity":1}},"symbol":"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"}]},"dispose":true},"evals":[],"jsHooks":[]}</script><span class="r-in"></span>
-<span class="r-in"><span class="co"># image</span></span>
-<span class="r-in"><span class="co"># might not work in RStudio viewer</span></span>
-<span class="r-in"><span class="co"># open in browser</span></span>
-<span class="r-in"><span class="va">qomo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="st">"https://ecomfe.github.io/echarts-examples/public/"</span>,</span>
-<span class="r-in">  <span class="st">"data/asset/img/hill-Qomolangma.png"</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">kili</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="st">"https://ecomfe.github.io/echarts-examples/public/"</span>,</span>
-<span class="r-in">  <span class="st">"data/asset/img/hill-Kilimanjaro.png"</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span class="r-in">  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Qomolangma"</span>, <span class="st">"Kilimanjaro"</span><span class="op">)</span>,</span>
-<span class="r-in">  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8844</span>, <span class="fl">5895</span><span class="op">)</span>,</span>
-<span class="r-in">  symbol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"image://"</span>, <span class="va">qomo</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"image://"</span>, <span class="va">kili</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">data</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu">e_pictorial</span><span class="op">(</span><span class="va">value</span>, <span class="va">symbol</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="e_legend.html">e_legend</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<div id="htmlwidget-a85d983a3df7262025c8" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a85d983a3df7262025c8">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["Qomolangma","Kilimanjaro"],"type":"category","boundaryGap":true}],"legend":{"data":["value"],"show":false,"type":"plain"},"series":[{"data":[{"value":["Qomolangma","8844"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Qomolangma.png"},{"value":["Kilimanjaro","5895"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Kilimanjaro.png"}],"name":"value","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0}]},"dispose":true},"evals":[],"jsHooks":[]}</script><span class="r-in"></span>
-<span class="r-in"><span class="co"># timeline</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span class="r-in">  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">2</span><span class="op">)</span>,</span>
-<span class="r-in">  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>,</span>
-<span class="r-in">  year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">2017</span>, <span class="fl">5</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">2018</span>, <span class="fl">5</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">df</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span>, timeline <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu">e_pictorial</span><span class="op">(</span></span>
-<span class="r-in">    <span class="va">y</span>,</span>
-<span class="r-in">    symbol <span class="op">=</span> <span class="st">"rect"</span>,</span>
-<span class="r-in">    symbolRepeat <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">    z <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span>
-<span class="r-in">    symbolSize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">4</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<div id="htmlwidget-5d096d992988d4fa32bb" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5d096d992988d4fa32bb">{"x":{"theme":"","tl":true,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"baseOption":{"yAxis":[{"show":true}],"timeline":{"data":["2017","2018"],"axisType":"category"},"xAxis":[{"type":"value"}],"legend":{"data":["y"]},"series":[{"name":"y","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0,"symbolRepeat":true,"z":-1,"symbolSize":[10,4]}]},"options":[{"series":[{"data":[{"value":[1,5.27325008157641]},{"value":[2,8.03545394353569]},{"value":[3,5.11770154093392]},{"value":[4,4.11994710611179]},{"value":[5,4.93245498067699]}]}]},{"series":[{"data":[{"value":[1,7.30789352068678]},{"value":[2,2.48116526287049]},{"value":[3,4.12025111564435]},{"value":[4,2.13329980452545]},{"value":[5,8.30087228445336]}]}]}]},"dispose":true},"evals":[],"jsHooks":[]}</script></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># built-in symbols</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,</span></span>
+<span class="r-in"><span>  y <span class="op">=</span> <span class="va">y</span>,</span></span>
+<span class="r-in"><span>  z <span class="op">=</span> <span class="va">y</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="e_bar.html">e_bar</a></span><span class="op">(</span><span class="va">z</span>, barWidth <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">e_pictorial</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va">y</span>,</span></span>
+<span class="r-in"><span>    symbol <span class="op">=</span> <span class="st">"rect"</span>,</span></span>
+<span class="r-in"><span>    symbolRepeat <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>    z <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span></span>
+<span class="r-in"><span>    symbolSize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="theme.html">e_theme</a></span><span class="op">(</span><span class="st">"westeros"</span><span class="op">)</span></span></span>
+<div id="htmlwidget-6b2e8f1ccf707fa128bd" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6b2e8f1ccf707fa128bd">{"x":{"theme":"westeros","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["z","y"]},"series":[{"data":[{"value":[1,3.35396427558793]},{"value":[2,9.04484952192773]},{"value":[3,3.24654846494288]},{"value":[4,2.03545720356395]},{"value":[5,5.7261359519303]},{"value":[6,6.46041343913273]},{"value":[7,2.60936647227422]},{"value":[8,7.91026673473042]},{"value":[9,0.992404215809829]},{"value":[10,4.86893954882542]}],"name":"z","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","barWidth":10},{"data":[{"value":[1,7.87982642828504]},{"value":[2,13.1341790001279]},{"value":[3,9.55567649553327]},{"value":[4,7.61519691026274]},{"value":[5,9.94899773744178]},{"value":[6,11.7741548170018]},{"value":[7,7.54756174819981]},{"value":[8,12.2860794242379]},{"value":[9,7.01690850355897]},{"value":[10,8.79743450250115]}],"name":"y","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0,"symbolRepeat":true,"z":-1,"symbolSize":[10,4],"symbol":"rect"}]},"dispose":true},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># svg path</span></span></span>
+<span class="r-in"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="st">"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">style</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  normal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>opacity <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="co"># normal</span></span></span>
+<span class="r-in"><span>  emphasis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>opacity <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># on hover</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">e_pictorial</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va">y</span>,</span></span>
+<span class="r-in"><span>    symbol <span class="op">=</span> <span class="va">path</span>,</span></span>
+<span class="r-in"><span>    barCategoryGap <span class="op">=</span> <span class="st">"-130%"</span>,</span></span>
+<span class="r-in"><span>    itemStyle <span class="op">=</span> <span class="va">style</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<div id="htmlwidget-031e9be963e2faaf9c9f" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-031e9be963e2faaf9c9f">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["y"]},"series":[{"data":[{"value":[1,7.87982642828504]},{"value":[2,13.1341790001279]},{"value":[3,9.55567649553327]},{"value":[4,7.61519691026274]},{"value":[5,9.94899773744178]},{"value":[6,11.7741548170018]},{"value":[7,7.54756174819981]},{"value":[8,12.2860794242379]},{"value":[9,7.01690850355897]},{"value":[10,8.79743450250115]}],"name":"y","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0,"barCategoryGap":"-130%","itemStyle":{"normal":{"opacity":0.5},"emphasis":{"opacity":1}},"symbol":"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"}]},"dispose":true},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># image</span></span></span>
+<span class="r-in"><span><span class="co"># might not work in RStudio viewer</span></span></span>
+<span class="r-in"><span><span class="co"># open in browser</span></span></span>
+<span class="r-in"><span><span class="va">qomo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="st">"https://ecomfe.github.io/echarts-examples/public/"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"data/asset/img/hill-Qomolangma.png"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">kili</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="st">"https://ecomfe.github.io/echarts-examples/public/"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"data/asset/img/hill-Kilimanjaro.png"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Qomolangma"</span>, <span class="st">"Kilimanjaro"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8844</span>, <span class="fl">5895</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  symbol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"image://"</span>, <span class="va">qomo</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"image://"</span>, <span class="va">kili</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">e_pictorial</span><span class="op">(</span><span class="va">value</span>, <span class="va">symbol</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="e_legend.html">e_legend</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<div id="htmlwidget-18fe0042b5f2d302cebc" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-18fe0042b5f2d302cebc">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["Qomolangma","Kilimanjaro"],"type":"category","boundaryGap":true}],"legend":{"data":["value"],"show":false,"type":"plain"},"series":[{"data":[{"value":["Qomolangma","8844"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Qomolangma.png"},{"value":["Kilimanjaro","5895"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Kilimanjaro.png"}],"name":"value","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0}]},"dispose":true},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># timeline</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">2017</span>, <span class="fl">5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">2018</span>, <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span>, timeline <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">e_pictorial</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va">y</span>,</span></span>
+<span class="r-in"><span>    symbol <span class="op">=</span> <span class="st">"rect"</span>,</span></span>
+<span class="r-in"><span>    symbolRepeat <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>    z <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span></span>
+<span class="r-in"><span>    symbolSize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<div id="htmlwidget-6f9c5468d7b78f83113a" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6f9c5468d7b78f83113a">{"x":{"theme":"","tl":true,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"baseOption":{"yAxis":[{"show":true}],"timeline":{"data":["2017","2018"],"axisType":"category"},"xAxis":[{"type":"value"}],"legend":{"data":["y"]},"series":[{"name":"y","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0,"symbolRepeat":true,"z":-1,"symbolSize":[10,4]}]},"options":[{"series":[{"data":[{"value":[1,6.64237058488652]},{"value":[2,8.19441248546354]},{"value":[3,6.41561491647735]},{"value":[4,9.3467611623928]},{"value":[5,9.62526217475533]}]}]},{"series":[{"data":[{"value":[1,8.89183403202333]},{"value":[2,2.64914022223093]},{"value":[3,3.61584609281272]},{"value":[4,4.07950022397563]},{"value":[5,6.84547283058055]}]}]}]},"dispose":true},"evals":[],"jsHooks":[]}</script></code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav><script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&amp;placement=echarts4rjohn-coenecom" id="_carbonads_js"></script></aside></div>
@@ -296,7 +309,7 @@ a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

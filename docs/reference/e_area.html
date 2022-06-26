@@ -8,7 +8,7 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-74544116-1');
-</script><!-- dependencies from examples --><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/echarts4r-4.8.0/echarts-en.min.js"></script><script src="libs/echarts4r-4.8.0/ecStat.min.js"></script><script src="libs/echarts4r-4.8.0/dataTool.min.js"></script><script src="libs/echarts4r-binding-0.4.3.9000/echarts4r.js"></script></head><body>
+</script><!-- dependencies from examples --><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/echarts4r-4.8.0/echarts-en.min.js"></script><script src="libs/echarts4r-4.8.0/ecStat.min.js"></script><script src="libs/echarts4r-4.8.0/dataTool.min.js"></script><script src="libs/echarts4r-binding-0.4.4/echarts4r.js"></script></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">echarts4r</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -130,29 +130,29 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">e_area</span><span class="op">(</span>
-  <span class="va">e</span>,
-  <span class="va">serie</span>,
-  <span class="va">bind</span>,
-  name <span class="op">=</span> <span class="cn">NULL</span>,
-  legend <span class="op">=</span> <span class="cn">TRUE</span>,
-  y_index <span class="op">=</span> <span class="fl">0</span>,
-  x_index <span class="op">=</span> <span class="fl">0</span>,
-  coord_system <span class="op">=</span> <span class="st">"cartesian2d"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">e_area_</span><span class="op">(</span>
-  <span class="va">e</span>,
-  <span class="va">serie</span>,
-  bind <span class="op">=</span> <span class="cn">NULL</span>,
-  name <span class="op">=</span> <span class="cn">NULL</span>,
-  legend <span class="op">=</span> <span class="cn">TRUE</span>,
-  y_index <span class="op">=</span> <span class="fl">0</span>,
-  x_index <span class="op">=</span> <span class="fl">0</span>,
-  coord_system <span class="op">=</span> <span class="st">"cartesian2d"</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">e_area</span><span class="op">(</span></span>
+<span>  <span class="va">e</span>,</span>
+<span>  <span class="va">serie</span>,</span>
+<span>  <span class="va">bind</span>,</span>
+<span>  name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  y_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  x_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  coord_system <span class="op">=</span> <span class="st">"cartesian2d"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">e_area_</span><span class="op">(</span></span>
+<span>  <span class="va">e</span>,</span>
+<span>  <span class="va">serie</span>,</span>
+<span>  bind <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  y_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  x_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  coord_system <span class="op">=</span> <span class="st">"cartesian2d"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -160,22 +160,35 @@
     <dl><dt>e</dt>
 <dd><p>An <code>echarts4r</code> object as returned by <code><a href="init.html">e_charts</a></code> or
 a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></code>.</p></dd>
+
+
 <dt>serie</dt>
 <dd><p>Column name of serie to plot.</p></dd>
+
+
 <dt>bind</dt>
 <dd><p>Binding between datasets, namely for use of <code><a href="e_brush.html">e_brush</a></code>.</p></dd>
+
+
 <dt>name</dt>
 <dd><p>name of the serie.</p></dd>
+
+
 <dt>legend</dt>
 <dd><p>Whether to add serie to legend.</p></dd>
-<dt>y_index</dt>
+
+
+<dt>x_index, y_index</dt>
 <dd><p>Indexes of x and y axis.</p></dd>
-<dt>x_index</dt>
-<dd><p>Indexes of x and y axis.</p></dd>
+
+
 <dt>coord_system</dt>
 <dd><p>Coordinate system to plot against.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Any other option to pass, check See Also section.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -184,21 +197,21 @@ a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">CO2</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Plant</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">conc</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu">e_area</span><span class="op">(</span><span class="va">uptake</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="e-tooltip.html">e_tooltip</a></span><span class="op">(</span>trigger <span class="op">=</span> <span class="st">"axis"</span><span class="op">)</span></span>
-<div id="htmlwidget-0eae5a7d81a1d61742f6" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0eae5a7d81a1d61742f6">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["Qn1","Qn2","Qn3","Qc1","Qc3","Qc2","Mn3","Mn2","Mn1","Mc2","Mc3","Mc1"]},"series":[{"data":[{"value":[95,16]},{"value":[175,30.4]},{"value":[250,34.8]},{"value":[350,37.2]},{"value":[500,35.3]},{"value":[675,39.2]},{"value":[1000,39.7]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Qn1","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,13.6]},{"value":[175,27.3]},{"value":[250,37.1]},{"value":[350,41.8]},{"value":[500,40.6]},{"value":[675,41.4]},{"value":[1000,44.3]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Qn2","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,16.2]},{"value":[175,32.4]},{"value":[250,40.3]},{"value":[350,42.1]},{"value":[500,42.9]},{"value":[675,43.9]},{"value":[1000,45.5]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Qn3","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,14.2]},{"value":[175,24.1]},{"value":[250,30.3]},{"value":[350,34.6]},{"value":[500,32.5]},{"value":[675,35.4]},{"value":[1000,38.7]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Qc1","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,15.1]},{"value":[175,21]},{"value":[250,38.1]},{"value":[350,34]},{"value":[500,38.9]},{"value":[675,39.6]},{"value":[1000,41.4]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Qc3","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,9.3]},{"value":[175,27.3]},{"value":[250,35]},{"value":[350,38.8]},{"value":[500,38.6]},{"value":[675,37.5]},{"value":[1000,42.4]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Qc2","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,11.3]},{"value":[175,19.4]},{"value":[250,25.8]},{"value":[350,27.9]},{"value":[500,28.5]},{"value":[675,28.1]},{"value":[1000,27.8]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Mn3","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,12]},{"value":[175,22]},{"value":[250,30.6]},{"value":[350,31.8]},{"value":[500,32.4]},{"value":[675,31.1]},{"value":[1000,31.5]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Mn2","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,10.6]},{"value":[175,19.2]},{"value":[250,26.2]},{"value":[350,30]},{"value":[500,30.9]},{"value":[675,32.4]},{"value":[1000,35.5]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Mn1","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,7.7]},{"value":[175,11.4]},{"value":[250,12.3]},{"value":[350,13]},{"value":[500,12.5]},{"value":[675,13.7]},{"value":[1000,14.4]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Mc2","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,10.6]},{"value":[175,18]},{"value":[250,17.9]},{"value":[350,17.9]},{"value":[500,17.9]},{"value":[675,18.9]},{"value":[1000,19.9]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Mc3","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,10.5]},{"value":[175,14.9]},{"value":[250,18.1]},{"value":[350,18.9]},{"value":[500,19.5]},{"value":[675,22.2]},{"value":[1000,21.9]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Mc1","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]}],"tooltip":{"trigger":"axis"}},"dispose":true},"evals":[],"jsHooks":[]}</script><span class="r-in"></span>
-<span class="r-in"><span class="co"># timeline</span></span>
-<span class="r-in"><span class="va">iris</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">Sepal.Length</span>, timeline <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu">e_area</span><span class="op">(</span><span class="va">Sepal.Width</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="e-tooltip.html">e_tooltip</a></span><span class="op">(</span>trigger <span class="op">=</span> <span class="st">"axis"</span><span class="op">)</span></span>
-<div id="htmlwidget-5f50bf975579ae243716" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5f50bf975579ae243716">{"x":{"theme":"","tl":true,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"baseOption":{"yAxis":[{"show":true}],"timeline":{"data":["setosa","versicolor","virginica"],"axisType":"category"},"xAxis":[{"type":"value"}],"legend":{"data":["Sepal.Width"]},"series":[{"name":"Sepal.Width","type":"line","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","areaStyle":[]}],"tooltip":{"trigger":"axis"}},"options":[{"series":[{"data":[{"value":[4.3,3]},{"value":[4.4,2.9]},{"value":[4.4,3]},{"value":[4.4,3.2]},{"value":[4.5,2.3]},{"value":[4.6,3.1]},{"value":[4.6,3.4]},{"value":[4.6,3.6]},{"value":[4.6,3.2]},{"value":[4.7,3.2]},{"value":[4.7,3.2]},{"value":[4.8,3.4]},{"value":[4.8,3]},{"value":[4.8,3.4]},{"value":[4.8,3.1]},{"value":[4.8,3]},{"value":[4.9,3]},{"value":[4.9,3.1]},{"value":[4.9,3.1]},{"value":[4.9,3.6]},{"value":[5,3.6]},{"value":[5,3.4]},{"value":[5,3]},{"value":[5,3.4]},{"value":[5,3.2]},{"value":[5,3.5]},{"value":[5,3.5]},{"value":[5,3.3]},{"value":[5.1,3.5]},{"value":[5.1,3.5]},{"value":[5.1,3.8]},{"value":[5.1,3.7]},{"value":[5.1,3.3]},{"value":[5.1,3.4]},{"value":[5.1,3.8]},{"value":[5.1,3.8]},{"value":[5.2,3.5]},{"value":[5.2,3.4]},{"value":[5.2,4.1]},{"value":[5.3,3.7]},{"value":[5.4,3.9]},{"value":[5.4,3.7]},{"value":[5.4,3.9]},{"value":[5.4,3.4]},{"value":[5.4,3.4]},{"value":[5.5,4.2]},{"value":[5.5,3.5]},{"value":[5.7,4.4]},{"value":[5.7,3.8]},{"value":[5.8,4]}],"yAxisIndex":0,"xAxisIndex":0}]},{"series":[{"data":[{"value":[4.9,2.4]},{"value":[5,2]},{"value":[5,2.3]},{"value":[5.1,2.5]},{"value":[5.2,2.7]},{"value":[5.4,3]},{"value":[5.5,2.3]},{"value":[5.5,2.4]},{"value":[5.5,2.4]},{"value":[5.5,2.5]},{"value":[5.5,2.6]},{"value":[5.6,2.9]},{"value":[5.6,3]},{"value":[5.6,2.5]},{"value":[5.6,3]},{"value":[5.6,2.7]},{"value":[5.7,2.8]},{"value":[5.7,2.6]},{"value":[5.7,3]},{"value":[5.7,2.9]},{"value":[5.7,2.8]},{"value":[5.8,2.7]},{"value":[5.8,2.7]},{"value":[5.8,2.6]},{"value":[5.9,3]},{"value":[5.9,3.2]},{"value":[6,2.2]},{"value":[6,2.9]},{"value":[6,2.7]},{"value":[6,3.4]},{"value":[6.1,2.9]},{"value":[6.1,2.8]},{"value":[6.1,2.8]},{"value":[6.1,3]},{"value":[6.2,2.2]},{"value":[6.2,2.9]},{"value":[6.3,3.3]},{"value":[6.3,2.5]},{"value":[6.3,2.3]},{"value":[6.4,3.2]},{"value":[6.4,2.9]},{"value":[6.5,2.8]},{"value":[6.6,2.9]},{"value":[6.6,3]},{"value":[6.7,3.1]},{"value":[6.7,3]},{"value":[6.7,3.1]},{"value":[6.8,2.8]},{"value":[6.9,3.1]},{"value":[7,3.2]}],"yAxisIndex":0,"xAxisIndex":0}]},{"series":[{"data":[{"value":[4.9,2.5]},{"value":[5.6,2.8]},{"value":[5.7,2.5]},{"value":[5.8,2.7]},{"value":[5.8,2.8]},{"value":[5.8,2.7]},{"value":[5.9,3]},{"value":[6,2.2]},{"value":[6,3]},{"value":[6.1,3]},{"value":[6.1,2.6]},{"value":[6.2,2.8]},{"value":[6.2,3.4]},{"value":[6.3,3.3]},{"value":[6.3,2.9]},{"value":[6.3,2.7]},{"value":[6.3,2.8]},{"value":[6.3,3.4]},{"value":[6.3,2.5]},{"value":[6.4,2.7]},{"value":[6.4,3.2]},{"value":[6.4,2.8]},{"value":[6.4,2.8]},{"value":[6.4,3.1]},{"value":[6.5,3]},{"value":[6.5,3.2]},{"value":[6.5,3]},{"value":[6.5,3]},{"value":[6.7,2.5]},{"value":[6.7,3.3]},{"value":[6.7,3.1]},{"value":[6.7,3.3]},{"value":[6.7,3]},{"value":[6.8,3]},{"value":[6.8,3.2]},{"value":[6.9,3.2]},{"value":[6.9,3.1]},{"value":[6.9,3.1]},{"value":[7.1,3]},{"value":[7.2,3.6]},{"value":[7.2,3.2]},{"value":[7.2,3]},{"value":[7.3,2.9]},{"value":[7.4,2.8]},{"value":[7.6,3]},{"value":[7.7,3.8]},{"value":[7.7,2.6]},{"value":[7.7,2.8]},{"value":[7.7,3]},{"value":[7.9,3.8]}],"yAxisIndex":0,"xAxisIndex":0}]}]},"dispose":true},"evals":[],"jsHooks":[]}</script></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">CO2</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Plant</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">conc</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">e_area</span><span class="op">(</span><span class="va">uptake</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="e-tooltip.html">e_tooltip</a></span><span class="op">(</span>trigger <span class="op">=</span> <span class="st">"axis"</span><span class="op">)</span></span></span>
+<div id="htmlwidget-fe522c749c8b62711914" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fe522c749c8b62711914">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["Qn1","Qn2","Qn3","Qc1","Qc3","Qc2","Mn3","Mn2","Mn1","Mc2","Mc3","Mc1"]},"series":[{"data":[{"value":[95,16]},{"value":[175,30.4]},{"value":[250,34.8]},{"value":[350,37.2]},{"value":[500,35.3]},{"value":[675,39.2]},{"value":[1000,39.7]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Qn1","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,13.6]},{"value":[175,27.3]},{"value":[250,37.1]},{"value":[350,41.8]},{"value":[500,40.6]},{"value":[675,41.4]},{"value":[1000,44.3]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Qn2","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,16.2]},{"value":[175,32.4]},{"value":[250,40.3]},{"value":[350,42.1]},{"value":[500,42.9]},{"value":[675,43.9]},{"value":[1000,45.5]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Qn3","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,14.2]},{"value":[175,24.1]},{"value":[250,30.3]},{"value":[350,34.6]},{"value":[500,32.5]},{"value":[675,35.4]},{"value":[1000,38.7]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Qc1","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,15.1]},{"value":[175,21]},{"value":[250,38.1]},{"value":[350,34]},{"value":[500,38.9]},{"value":[675,39.6]},{"value":[1000,41.4]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Qc3","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,9.3]},{"value":[175,27.3]},{"value":[250,35]},{"value":[350,38.8]},{"value":[500,38.6]},{"value":[675,37.5]},{"value":[1000,42.4]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Qc2","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,11.3]},{"value":[175,19.4]},{"value":[250,25.8]},{"value":[350,27.9]},{"value":[500,28.5]},{"value":[675,28.1]},{"value":[1000,27.8]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Mn3","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,12]},{"value":[175,22]},{"value":[250,30.6]},{"value":[350,31.8]},{"value":[500,32.4]},{"value":[675,31.1]},{"value":[1000,31.5]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Mn2","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,10.6]},{"value":[175,19.2]},{"value":[250,26.2]},{"value":[350,30]},{"value":[500,30.9]},{"value":[675,32.4]},{"value":[1000,35.5]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Mn1","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,7.7]},{"value":[175,11.4]},{"value":[250,12.3]},{"value":[350,13]},{"value":[500,12.5]},{"value":[675,13.7]},{"value":[1000,14.4]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Mc2","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,10.6]},{"value":[175,18]},{"value":[250,17.9]},{"value":[350,17.9]},{"value":[500,17.9]},{"value":[675,18.9]},{"value":[1000,19.9]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Mc3","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]},{"data":[{"value":[95,10.5]},{"value":[175,14.9]},{"value":[250,18.1]},{"value":[350,18.9]},{"value":[500,19.5]},{"value":[675,22.2]},{"value":[1000,21.9]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Mc1","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]}],"tooltip":{"trigger":"axis"}},"dispose":true},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># timeline</span></span></span>
+<span class="r-in"><span><span class="va">iris</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">Sepal.Length</span>, timeline <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">e_area</span><span class="op">(</span><span class="va">Sepal.Width</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="e-tooltip.html">e_tooltip</a></span><span class="op">(</span>trigger <span class="op">=</span> <span class="st">"axis"</span><span class="op">)</span></span></span>
+<div id="htmlwidget-541a65099d050d3bf27d" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-541a65099d050d3bf27d">{"x":{"theme":"","tl":true,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"baseOption":{"yAxis":[{"show":true}],"timeline":{"data":["setosa","versicolor","virginica"],"axisType":"category"},"xAxis":[{"type":"value"}],"legend":{"data":["Sepal.Width"]},"series":[{"name":"Sepal.Width","type":"line","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","areaStyle":[]}],"tooltip":{"trigger":"axis"}},"options":[{"series":[{"data":[{"value":[4.3,3]},{"value":[4.4,2.9]},{"value":[4.4,3]},{"value":[4.4,3.2]},{"value":[4.5,2.3]},{"value":[4.6,3.1]},{"value":[4.6,3.4]},{"value":[4.6,3.6]},{"value":[4.6,3.2]},{"value":[4.7,3.2]},{"value":[4.7,3.2]},{"value":[4.8,3.4]},{"value":[4.8,3]},{"value":[4.8,3.4]},{"value":[4.8,3.1]},{"value":[4.8,3]},{"value":[4.9,3]},{"value":[4.9,3.1]},{"value":[4.9,3.1]},{"value":[4.9,3.6]},{"value":[5,3.6]},{"value":[5,3.4]},{"value":[5,3]},{"value":[5,3.4]},{"value":[5,3.2]},{"value":[5,3.5]},{"value":[5,3.5]},{"value":[5,3.3]},{"value":[5.1,3.5]},{"value":[5.1,3.5]},{"value":[5.1,3.8]},{"value":[5.1,3.7]},{"value":[5.1,3.3]},{"value":[5.1,3.4]},{"value":[5.1,3.8]},{"value":[5.1,3.8]},{"value":[5.2,3.5]},{"value":[5.2,3.4]},{"value":[5.2,4.1]},{"value":[5.3,3.7]},{"value":[5.4,3.9]},{"value":[5.4,3.7]},{"value":[5.4,3.9]},{"value":[5.4,3.4]},{"value":[5.4,3.4]},{"value":[5.5,4.2]},{"value":[5.5,3.5]},{"value":[5.7,4.4]},{"value":[5.7,3.8]},{"value":[5.8,4]}],"yAxisIndex":0,"xAxisIndex":0}]},{"series":[{"data":[{"value":[4.9,2.4]},{"value":[5,2]},{"value":[5,2.3]},{"value":[5.1,2.5]},{"value":[5.2,2.7]},{"value":[5.4,3]},{"value":[5.5,2.3]},{"value":[5.5,2.4]},{"value":[5.5,2.4]},{"value":[5.5,2.5]},{"value":[5.5,2.6]},{"value":[5.6,2.9]},{"value":[5.6,3]},{"value":[5.6,2.5]},{"value":[5.6,3]},{"value":[5.6,2.7]},{"value":[5.7,2.8]},{"value":[5.7,2.6]},{"value":[5.7,3]},{"value":[5.7,2.9]},{"value":[5.7,2.8]},{"value":[5.8,2.7]},{"value":[5.8,2.7]},{"value":[5.8,2.6]},{"value":[5.9,3]},{"value":[5.9,3.2]},{"value":[6,2.2]},{"value":[6,2.9]},{"value":[6,2.7]},{"value":[6,3.4]},{"value":[6.1,2.9]},{"value":[6.1,2.8]},{"value":[6.1,2.8]},{"value":[6.1,3]},{"value":[6.2,2.2]},{"value":[6.2,2.9]},{"value":[6.3,3.3]},{"value":[6.3,2.5]},{"value":[6.3,2.3]},{"value":[6.4,3.2]},{"value":[6.4,2.9]},{"value":[6.5,2.8]},{"value":[6.6,2.9]},{"value":[6.6,3]},{"value":[6.7,3.1]},{"value":[6.7,3]},{"value":[6.7,3.1]},{"value":[6.8,2.8]},{"value":[6.9,3.1]},{"value":[7,3.2]}],"yAxisIndex":0,"xAxisIndex":0}]},{"series":[{"data":[{"value":[4.9,2.5]},{"value":[5.6,2.8]},{"value":[5.7,2.5]},{"value":[5.8,2.7]},{"value":[5.8,2.8]},{"value":[5.8,2.7]},{"value":[5.9,3]},{"value":[6,2.2]},{"value":[6,3]},{"value":[6.1,3]},{"value":[6.1,2.6]},{"value":[6.2,2.8]},{"value":[6.2,3.4]},{"value":[6.3,3.3]},{"value":[6.3,2.9]},{"value":[6.3,2.7]},{"value":[6.3,2.8]},{"value":[6.3,3.4]},{"value":[6.3,2.5]},{"value":[6.4,2.7]},{"value":[6.4,3.2]},{"value":[6.4,2.8]},{"value":[6.4,2.8]},{"value":[6.4,3.1]},{"value":[6.5,3]},{"value":[6.5,3.2]},{"value":[6.5,3]},{"value":[6.5,3]},{"value":[6.7,2.5]},{"value":[6.7,3.3]},{"value":[6.7,3.1]},{"value":[6.7,3.3]},{"value":[6.7,3]},{"value":[6.8,3]},{"value":[6.8,3.2]},{"value":[6.9,3.2]},{"value":[6.9,3.1]},{"value":[6.9,3.1]},{"value":[7.1,3]},{"value":[7.2,3.6]},{"value":[7.2,3.2]},{"value":[7.2,3]},{"value":[7.3,2.9]},{"value":[7.4,2.8]},{"value":[7.6,3]},{"value":[7.7,3.8]},{"value":[7.7,2.6]},{"value":[7.7,2.8]},{"value":[7.7,3]},{"value":[7.9,3.8]}],"yAxisIndex":0,"xAxisIndex":0}]}]},"dispose":true},"evals":[],"jsHooks":[]}</script></code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav><script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&amp;placement=echarts4rjohn-coenecom" id="_carbonads_js"></script></aside></div>
@@ -209,7 +222,7 @@ a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

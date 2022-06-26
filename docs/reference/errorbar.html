@@ -8,7 +8,7 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-74544116-1');
-</script><!-- dependencies from examples --><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/echarts4r-4.8.0/echarts-en.min.js"></script><script src="libs/echarts4r-4.8.0/ecStat.min.js"></script><script src="libs/echarts4r-4.8.0/dataTool.min.js"></script><script src="libs/echarts4r-binding-0.4.3.9000/echarts4r.js"></script><script src="libs/echarts-renderers-1.0.2/renderers.js"></script></head><body>
+</script><!-- dependencies from examples --><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/echarts4r-4.8.0/echarts-en.min.js"></script><script src="libs/echarts4r-4.8.0/ecStat.min.js"></script><script src="libs/echarts4r-4.8.0/dataTool.min.js"></script><script src="libs/echarts4r-binding-0.4.4/echarts4r.js"></script><script src="libs/echarts-renderers-1.0.2/renderers.js"></script></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">echarts4r</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -130,31 +130,31 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">e_error_bar</span><span class="op">(</span>
-  <span class="va">e</span>,
-  <span class="va">lower</span>,
-  <span class="va">upper</span>,
-  name <span class="op">=</span> <span class="cn">NULL</span>,
-  legend <span class="op">=</span> <span class="cn">FALSE</span>,
-  y_index <span class="op">=</span> <span class="fl">0</span>,
-  x_index <span class="op">=</span> <span class="fl">0</span>,
-  coord_system <span class="op">=</span> <span class="st">"cartesian2d"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">e_error_bar_</span><span class="op">(</span>
-  <span class="va">e</span>,
-  <span class="va">lower</span>,
-  <span class="va">upper</span>,
-  name <span class="op">=</span> <span class="cn">NULL</span>,
-  legend <span class="op">=</span> <span class="cn">FALSE</span>,
-  y_index <span class="op">=</span> <span class="fl">0</span>,
-  x_index <span class="op">=</span> <span class="fl">0</span>,
-  coord_system <span class="op">=</span> <span class="st">"cartesian2d"</span>,
-  itemStyle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>borderWidth <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span>,
-  renderer <span class="op">=</span> <span class="st">"renderErrorBar2"</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">e_error_bar</span><span class="op">(</span></span>
+<span>  <span class="va">e</span>,</span>
+<span>  <span class="va">lower</span>,</span>
+<span>  <span class="va">upper</span>,</span>
+<span>  name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  legend <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  y_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  x_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  coord_system <span class="op">=</span> <span class="st">"cartesian2d"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">e_error_bar_</span><span class="op">(</span></span>
+<span>  <span class="va">e</span>,</span>
+<span>  <span class="va">lower</span>,</span>
+<span>  <span class="va">upper</span>,</span>
+<span>  name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  legend <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  y_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  x_index <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  coord_system <span class="op">=</span> <span class="st">"cartesian2d"</span>,</span>
+<span>  itemStyle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>borderWidth <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span>,</span>
+<span>  renderer <span class="op">=</span> <span class="st">"renderErrorBar2"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -162,57 +162,72 @@
     <dl><dt>e</dt>
 <dd><p>An <code>echarts4r</code> object as returned by <code><a href="init.html">e_charts</a></code> or
 a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></code>.</p></dd>
+
+
 <dt>lower, upper</dt>
 <dd><p>Lower and upper error bands.</p></dd>
+
+
 <dt>name</dt>
 <dd><p>name of the serie.</p></dd>
+
+
 <dt>legend</dt>
 <dd><p>Whether to add serie to legend.</p></dd>
-<dt>y_index</dt>
+
+
+<dt>x_index, y_index</dt>
 <dd><p>Indexes of x and y axis.</p></dd>
-<dt>x_index</dt>
-<dd><p>Indexes of x and y axis.</p></dd>
+
+
 <dt>coord_system</dt>
 <dd><p>Coordinate system to plot against.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Any other option to pass, check See Also section.</p></dd>
+
+
 <dt>itemStyle</dt>
 <dd><p>mostly used for borderWidth, default 1.5</p></dd>
+
+
 <dt>renderer</dt>
 <dd><p>mame of render function from renderers.js</p></dd>
+
 </dl></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span class="r-in">  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span>,</span>
-<span class="r-in">  upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.1</span>, <span class="fl">5.3</span><span class="op">)</span>,</span>
-<span class="r-in">  lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">4.6</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">df</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="e_bar.html">e_bar</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu">e_error_bar</span><span class="op">(</span><span class="va">lower</span>, <span class="va">upper</span><span class="op">)</span></span>
-<div id="htmlwidget-290fca9be47a44b8a9cf" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-290fca9be47a44b8a9cf">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["1","2"],"type":"category","boundaryGap":true}],"legend":{"data":["y"]},"series":[{"data":[{"value":["1","1"]},{"value":["2","5"]}],"name":"y","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d"},{"data":[{"value":["1","0.8","1.1"]},{"value":["2","4.6","5.3"]}],"name":"y","type":"custom","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","itemStyle":{"borderWidth":1.5},"renderItem":"sessionStorage.setItem('ErrorBar.oss','[\"\",\"\",\"1\"]'); renderErrorBar2","encode":{"x":0,"y":[1,2]},"z":3,"color":"black"}]},"dispose":true},"evals":["opts.series.1.renderItem"],"jsHooks":[]}</script><span class="r-in"></span>
-<span class="r-in"><span class="co"># timeline</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span class="r-in">  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>,</span>
-<span class="r-in">  step <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">  upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.1</span>, <span class="fl">5.3</span>, <span class="fl">3.3</span>, <span class="fl">4.2</span><span class="op">)</span>,</span>
-<span class="r-in">  lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">4.6</span>, <span class="fl">2.4</span>, <span class="fl">3.6</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">df</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">step</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span>, timeline <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="e_bar.html">e_bar</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu">e_error_bar</span><span class="op">(</span><span class="va">lower</span>, <span class="va">upper</span><span class="op">)</span></span>
-<div id="htmlwidget-f73bede0428b8d0dd491" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f73bede0428b8d0dd491">{"x":{"theme":"","tl":true,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"baseOption":{"yAxis":[{"show":true}],"timeline":{"data":["1","2"],"axisType":"category"},"xAxis":[{"data":["1","2"],"type":"category","boundaryGap":true}],"legend":{"data":["y"]},"series":[{"name":"y","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d"},{"type":"custom","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","itemStyle":{"borderWidth":1.5},"renderItem":"sessionStorage.setItem('ErrorBar.oss','[\"\",\"\",\"1\"]'); renderErrorBar2","encode":{"x":0,"y":[1,2]},"name":"y","z":3,"color":"black"}]},"options":[{"series":[{"data":[{"value":["1","1"]},{"value":["2","3"]}]},{"data":[{"value":["1","0.8","1.1"]},{"value":["2","2.4","3.3"]}]}]},{"series":[{"data":[{"value":["1","5"]},{"value":["2","4"]}]},{"data":[{"value":["1","4.6","5.3"]},{"value":["2","3.6","4.2"]}]}]}],"legend":{"data":[null,null]}},"dispose":true},"evals":["opts.baseOption.series.1.renderItem"],"jsHooks":[]}</script></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.1</span>, <span class="fl">5.3</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">4.6</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="e_bar.html">e_bar</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">e_error_bar</span><span class="op">(</span><span class="va">lower</span>, <span class="va">upper</span><span class="op">)</span></span></span>
+<div id="htmlwidget-c9d211da2085819c563c" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c9d211da2085819c563c">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["1","2"],"type":"category","boundaryGap":true}],"legend":{"data":["y"]},"series":[{"data":[{"value":["1","1"]},{"value":["2","5"]}],"name":"y","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d"},{"data":[{"value":["1","0.8","1.1"]},{"value":["2","4.6","5.3"]}],"name":"y","type":"custom","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","itemStyle":{"borderWidth":1.5},"renderItem":"sessionStorage.setItem('ErrorBar.oss','[\"\",\"\",\"1\"]'); renderErrorBar2","encode":{"x":0,"y":[1,2]},"z":3,"color":"black"}]},"dispose":true},"evals":["opts.series.1.renderItem"],"jsHooks":[]}</script><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># timeline</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  step <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.1</span>, <span class="fl">5.3</span>, <span class="fl">3.3</span>, <span class="fl">4.2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">4.6</span>, <span class="fl">2.4</span>, <span class="fl">3.6</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">step</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">x</span>, timeline <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="e_bar.html">e_bar</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">e_error_bar</span><span class="op">(</span><span class="va">lower</span>, <span class="va">upper</span><span class="op">)</span></span></span>
+<div id="htmlwidget-c951aa2faba80db4aa09" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c951aa2faba80db4aa09">{"x":{"theme":"","tl":true,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"baseOption":{"yAxis":[{"show":true}],"timeline":{"data":["1","2"],"axisType":"category"},"xAxis":[{"data":["1","2"],"type":"category","boundaryGap":true}],"legend":{"data":["y"]},"series":[{"name":"y","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d"},{"type":"custom","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","itemStyle":{"borderWidth":1.5},"renderItem":"sessionStorage.setItem('ErrorBar.oss','[\"\",\"\",\"1\"]'); renderErrorBar2","encode":{"x":0,"y":[1,2]},"name":"y","z":3,"color":"black"}]},"options":[{"series":[{"data":[{"value":["1","1"]},{"value":["2","3"]}]},{"data":[{"value":["1","0.8","1.1"]},{"value":["2","2.4","3.3"]}]}]},{"series":[{"data":[{"value":["1","5"]},{"value":["2","4"]}]},{"data":[{"value":["1","4.6","5.3"]},{"value":["2","3.6","4.2"]}]}]}],"legend":{"data":[null,null]}},"dispose":true},"evals":["opts.baseOption.series.1.renderItem"],"jsHooks":[]}</script></code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav><script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&amp;placement=echarts4rjohn-coenecom" id="_carbonads_js"></script></aside></div>
@@ -223,7 +238,7 @@ a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

@@ -8,7 +8,7 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-74544116-1');
-</script><!-- dependencies from examples --><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/echarts4r-4.8.0/echarts-en.min.js"></script><script src="libs/echarts4r-4.8.0/ecStat.min.js"></script><script src="libs/echarts4r-4.8.0/dataTool.min.js"></script><script src="libs/echarts4r-binding-0.4.3.9000/echarts4r.js"></script></head><body>
+</script><!-- dependencies from examples --><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/echarts4r-4.8.0/echarts-en.min.js"></script><script src="libs/echarts4r-4.8.0/ecStat.min.js"></script><script src="libs/echarts4r-4.8.0/dataTool.min.js"></script><script src="libs/echarts4r-binding-0.4.4/echarts4r.js"></script></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">echarts4r</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -130,7 +130,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">e_datazoom</span><span class="op">(</span><span class="va">e</span>, x_index <span class="op">=</span> <span class="cn">NULL</span>, y_index <span class="op">=</span> <span class="cn">NULL</span>, toolbox <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">e_datazoom</span><span class="op">(</span><span class="va">e</span>, x_index <span class="op">=</span> <span class="cn">NULL</span>, y_index <span class="op">=</span> <span class="cn">NULL</span>, toolbox <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -138,14 +138,19 @@
     <dl><dt>e</dt>
 <dd><p>An <code>echarts4r</code> object as returned by <code><a href="init.html">e_charts</a></code> or
 a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></code>.</p></dd>
-<dt>x_index</dt>
+
+
+<dt>x_index, y_index</dt>
 <dd><p>Indexes of x and y axis.</p></dd>
-<dt>y_index</dt>
-<dd><p>Indexes of x and y axis.</p></dd>
+
+
 <dt>toolbox</dt>
 <dd><p>Whether to add the toolbox, <code><a href="toolbox.html">e_toolbox_feature</a></code>, (<code>e_toolbox_feature(e, "dataZoom")</code>).</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Any other option to pass, check See Also section.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -154,18 +159,18 @@ a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">USArrests</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">UrbanPop</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="e_line.html">e_line</a></span><span class="op">(</span><span class="va">Assault</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="e_area.html">e_area</a></span><span class="op">(</span><span class="va">Murder</span>, y_index <span class="op">=</span> <span class="fl">1</span>, x_index <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="axis.html">e_y_axis</a></span><span class="op">(</span>gridIndex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="axis.html">e_x_axis</a></span><span class="op">(</span>gridIndex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="e_grid.html">e_grid</a></span><span class="op">(</span>height <span class="op">=</span> <span class="st">"35%"</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="e_grid.html">e_grid</a></span><span class="op">(</span>height <span class="op">=</span> <span class="st">"35%"</span>, top <span class="op">=</span> <span class="st">"50%"</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="toolbox.html">e_toolbox_feature</a></span><span class="op">(</span><span class="st">"dataZoom"</span>, title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>zoom <span class="op">=</span> <span class="st">"zoom"</span>, back <span class="op">=</span> <span class="st">"back"</span><span class="op">)</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu">e_datazoom</span><span class="op">(</span>x_index <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<div id="htmlwidget-705cc07e95ef77d295c5" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-705cc07e95ef77d295c5">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"gridIndex":1},{"type":"value"}],"xAxis":[{"type":"value","gridIndex":1},{"type":"value"}],"legend":{"data":["Assault","Murder"]},"series":[{"data":[{"value":[32,48]},{"value":[39,81]},{"value":[44,259]},{"value":[44,45]},{"value":[45,337]},{"value":[45,86]},{"value":[48,263]},{"value":[48,279]},{"value":[50,190]},{"value":[51,83]},{"value":[52,109]},{"value":[53,109]},{"value":[54,120]},{"value":[56,57]},{"value":[57,56]},{"value":[58,236]},{"value":[59,188]},{"value":[60,211]},{"value":[60,161]},{"value":[62,102]},{"value":[63,156]},{"value":[65,113]},{"value":[66,115]},{"value":[66,249]},{"value":[66,72]},{"value":[66,53]},{"value":[67,300]},{"value":[67,159]},{"value":[68,151]},{"value":[70,178]},{"value":[70,285]},{"value":[72,238]},{"value":[72,106]},{"value":[73,145]},{"value":[74,255]},{"value":[75,120]},{"value":[77,110]},{"value":[78,204]},{"value":[80,294]},{"value":[80,335]},{"value":[80,201]},{"value":[80,120]},{"value":[81,252]},{"value":[83,46]},{"value":[83,249]},{"value":[85,149]},{"value":[86,254]},{"value":[87,174]},{"value":[89,159]},{"value":[91,276]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Assault","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[32,2.2]},{"value":[39,5.7]},{"value":[44,16.1]},{"value":[44,0.8]},{"value":[45,13]},{"value":[45,3.8]},{"value":[48,10]},{"value":[48,14.4]},{"value":[50,8.8]},{"value":[51,2.1]},{"value":[52,9.7]},{"value":[53,6]},{"value":[54,2.6]},{"value":[56,2.1]},{"value":[57,2.2]},{"value":[58,13.2]},{"value":[59,13.2]},{"value":[60,17.4]},{"value":[60,6.8]},{"value":[62,4.3]},{"value":[63,8.5]},{"value":[65,7.2]},{"value":[66,6]},{"value":[66,15.4]},{"value":[66,2.7]},{"value":[66,2.6]},{"value":[67,11.3]},{"value":[67,4.9]},{"value":[68,6.6]},{"value":[70,9]},{"value":[70,11.4]},{"value":[72,5.9]},{"value":[72,6.3]},{"value":[73,4]},{"value":[74,12.1]},{"value":[75,7.3]},{"value":[77,3.3]},{"value":[78,7.9]},{"value":[80,8.1]},{"value":[80,15.4]},{"value":[80,12.7]},{"value":[80,3.2]},{"value":[81,12.2]},{"value":[83,5.3]},{"value":[83,10.4]},{"value":[85,4.4]},{"value":[86,11.1]},{"value":[87,3.4]},{"value":[89,7.4]},{"value":[91,9]}],"yAxisIndex":1,"xAxisIndex":1,"name":"Murder","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]}],"grid":[{"height":"35%"},{"height":"35%","top":"50%"}],"toolbox":{"feature":{"dataZoom":{"title":{"zoom":"zoom","back":"back"}}}},"dataZoom":[{"xAxisIndex":[0,1]}]},"dispose":true},"evals":[],"jsHooks":[]}</script></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">USArrests</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="init.html">e_charts</a></span><span class="op">(</span><span class="va">UrbanPop</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="e_line.html">e_line</a></span><span class="op">(</span><span class="va">Assault</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="e_area.html">e_area</a></span><span class="op">(</span><span class="va">Murder</span>, y_index <span class="op">=</span> <span class="fl">1</span>, x_index <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="axis.html">e_y_axis</a></span><span class="op">(</span>gridIndex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="axis.html">e_x_axis</a></span><span class="op">(</span>gridIndex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="e_grid.html">e_grid</a></span><span class="op">(</span>height <span class="op">=</span> <span class="st">"35%"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="e_grid.html">e_grid</a></span><span class="op">(</span>height <span class="op">=</span> <span class="st">"35%"</span>, top <span class="op">=</span> <span class="st">"50%"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="toolbox.html">e_toolbox_feature</a></span><span class="op">(</span><span class="st">"dataZoom"</span>, title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>zoom <span class="op">=</span> <span class="st">"zoom"</span>, back <span class="op">=</span> <span class="st">"back"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">e_datazoom</span><span class="op">(</span>x_index <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
+<div id="htmlwidget-7ea40b6b577ae8689845" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7ea40b6b577ae8689845">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"gridIndex":1},{"type":"value"}],"xAxis":[{"type":"value","gridIndex":1},{"type":"value"}],"legend":{"data":["Assault","Murder"]},"series":[{"data":[{"value":[32,48]},{"value":[39,81]},{"value":[44,259]},{"value":[44,45]},{"value":[45,337]},{"value":[45,86]},{"value":[48,263]},{"value":[48,279]},{"value":[50,190]},{"value":[51,83]},{"value":[52,109]},{"value":[53,109]},{"value":[54,120]},{"value":[56,57]},{"value":[57,56]},{"value":[58,236]},{"value":[59,188]},{"value":[60,211]},{"value":[60,161]},{"value":[62,102]},{"value":[63,156]},{"value":[65,113]},{"value":[66,115]},{"value":[66,249]},{"value":[66,72]},{"value":[66,53]},{"value":[67,300]},{"value":[67,159]},{"value":[68,151]},{"value":[70,178]},{"value":[70,285]},{"value":[72,238]},{"value":[72,106]},{"value":[73,145]},{"value":[74,255]},{"value":[75,120]},{"value":[77,110]},{"value":[78,204]},{"value":[80,294]},{"value":[80,335]},{"value":[80,201]},{"value":[80,120]},{"value":[81,252]},{"value":[83,46]},{"value":[83,249]},{"value":[85,149]},{"value":[86,254]},{"value":[87,174]},{"value":[89,159]},{"value":[91,276]}],"yAxisIndex":0,"xAxisIndex":0,"name":"Assault","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[32,2.2]},{"value":[39,5.7]},{"value":[44,16.1]},{"value":[44,0.8]},{"value":[45,13]},{"value":[45,3.8]},{"value":[48,10]},{"value":[48,14.4]},{"value":[50,8.8]},{"value":[51,2.1]},{"value":[52,9.7]},{"value":[53,6]},{"value":[54,2.6]},{"value":[56,2.1]},{"value":[57,2.2]},{"value":[58,13.2]},{"value":[59,13.2]},{"value":[60,17.4]},{"value":[60,6.8]},{"value":[62,4.3]},{"value":[63,8.5]},{"value":[65,7.2]},{"value":[66,6]},{"value":[66,15.4]},{"value":[66,2.7]},{"value":[66,2.6]},{"value":[67,11.3]},{"value":[67,4.9]},{"value":[68,6.6]},{"value":[70,9]},{"value":[70,11.4]},{"value":[72,5.9]},{"value":[72,6.3]},{"value":[73,4]},{"value":[74,12.1]},{"value":[75,7.3]},{"value":[77,3.3]},{"value":[78,7.9]},{"value":[80,8.1]},{"value":[80,15.4]},{"value":[80,12.7]},{"value":[80,3.2]},{"value":[81,12.2]},{"value":[83,5.3]},{"value":[83,10.4]},{"value":[85,4.4]},{"value":[86,11.1]},{"value":[87,3.4]},{"value":[89,7.4]},{"value":[91,9]}],"yAxisIndex":1,"xAxisIndex":1,"name":"Murder","type":"line","coordinateSystem":"cartesian2d","areaStyle":[]}],"grid":[{"height":"35%"},{"height":"35%","top":"50%"}],"toolbox":{"feature":{"dataZoom":{"title":{"zoom":"zoom","back":"back"}}}},"dataZoom":[{"xAxisIndex":[0,1]}]},"dispose":true},"evals":[],"jsHooks":[]}</script></code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav><script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&amp;placement=echarts4rjohn-coenecom" id="_carbonads_js"></script></aside></div>
@@ -176,7 +181,7 @@ a proxy as returned by <code><a href="echarts4r-shiny.html">echarts4rProxy</a></
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

@@ -8,7 +8,7 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-74544116-1');
-</script><!-- dependencies from examples --><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/echarts4r-4.8.0/echarts-en.min.js"></script><script src="libs/echarts4r-4.8.0/ecStat.min.js"></script><script src="libs/echarts4r-4.8.0/dataTool.min.js"></script><script src="libs/echarts4r-binding-0.4.3.9000/echarts4r.js"></script></head><body>
+</script><!-- dependencies from examples --><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/echarts4r-4.8.0/echarts-en.min.js"></script><script src="libs/echarts4r-4.8.0/ecStat.min.js"></script><script src="libs/echarts4r-4.8.0/dataTool.min.js"></script><script src="libs/echarts4r-binding-0.4.4/echarts4r.js"></script></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">echarts4r</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -130,107 +130,128 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">e_charts</span><span class="op">(</span>
-  <span class="va">data</span>,
-  <span class="va">x</span>,
-  width <span class="op">=</span> <span class="cn">NULL</span>,
-  height <span class="op">=</span> <span class="cn">NULL</span>,
-  elementId <span class="op">=</span> <span class="cn">NULL</span>,
-  dispose <span class="op">=</span> <span class="cn">TRUE</span>,
-  draw <span class="op">=</span> <span class="cn">TRUE</span>,
-  renderer <span class="op">=</span> <span class="st">"canvas"</span>,
-  timeline <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">...</span>,
-  reorder <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for default</span>
-<span class="fu">e_charts</span><span class="op">(</span>
-  <span class="va">data</span>,
-  <span class="va">x</span>,
-  width <span class="op">=</span> <span class="cn">NULL</span>,
-  height <span class="op">=</span> <span class="cn">NULL</span>,
-  elementId <span class="op">=</span> <span class="cn">NULL</span>,
-  dispose <span class="op">=</span> <span class="cn">TRUE</span>,
-  draw <span class="op">=</span> <span class="cn">TRUE</span>,
-  renderer <span class="op">=</span> <span class="st">"canvas"</span>,
-  timeline <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">...</span>,
-  reorder <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for Node</span>
-<span class="fu">e_charts</span><span class="op">(</span>
-  <span class="va">data</span>,
-  <span class="va">x</span>,
-  width <span class="op">=</span> <span class="cn">NULL</span>,
-  height <span class="op">=</span> <span class="cn">NULL</span>,
-  elementId <span class="op">=</span> <span class="cn">NULL</span>,
-  dispose <span class="op">=</span> <span class="cn">TRUE</span>,
-  draw <span class="op">=</span> <span class="cn">TRUE</span>,
-  renderer <span class="op">=</span> <span class="st">"canvas"</span>,
-  timeline <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">...</span>,
-  reorder <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span>
-
-<span class="fu">e_charts_</span><span class="op">(</span>
-  <span class="va">data</span>,
-  x <span class="op">=</span> <span class="cn">NULL</span>,
-  width <span class="op">=</span> <span class="cn">NULL</span>,
-  height <span class="op">=</span> <span class="cn">NULL</span>,
-  elementId <span class="op">=</span> <span class="cn">NULL</span>,
-  dispose <span class="op">=</span> <span class="cn">TRUE</span>,
-  draw <span class="op">=</span> <span class="cn">TRUE</span>,
-  renderer <span class="op">=</span> <span class="st">"canvas"</span>,
-  timeline <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">...</span>,
-  reorder <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span>
-
-<span class="fu">e_chart</span><span class="op">(</span>
-  <span class="va">data</span>,
-  <span class="va">x</span>,
-  width <span class="op">=</span> <span class="cn">NULL</span>,
-  height <span class="op">=</span> <span class="cn">NULL</span>,
-  elementId <span class="op">=</span> <span class="cn">NULL</span>,
-  dispose <span class="op">=</span> <span class="cn">TRUE</span>,
-  draw <span class="op">=</span> <span class="cn">TRUE</span>,
-  renderer <span class="op">=</span> <span class="st">"canvas"</span>,
-  timeline <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">...</span>,
-  reorder <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span>
-
-<span class="fu">e_data</span><span class="op">(</span><span class="va">e</span>, <span class="va">data</span>, <span class="va">x</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">e_charts</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  <span class="va">x</span>,</span>
+<span>  width <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  height <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  elementId <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  dispose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  draw <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  renderer <span class="op">=</span> <span class="st">"canvas"</span>,</span>
+<span>  timeline <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  reorder <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for default</span></span>
+<span><span class="fu">e_charts</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  <span class="va">x</span>,</span>
+<span>  width <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  height <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  elementId <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  dispose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  draw <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  renderer <span class="op">=</span> <span class="st">"canvas"</span>,</span>
+<span>  timeline <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  reorder <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for Node</span></span>
+<span><span class="fu">e_charts</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  <span class="va">x</span>,</span>
+<span>  width <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  height <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  elementId <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  dispose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  draw <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  renderer <span class="op">=</span> <span class="st">"canvas"</span>,</span>
+<span>  timeline <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  reorder <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">e_charts_</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  x <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  width <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  height <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  elementId <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  dispose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  draw <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  renderer <span class="op">=</span> <span class="st">"canvas"</span>,</span>
+<span>  timeline <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  reorder <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">e_chart</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  <span class="va">x</span>,</span>
+<span>  width <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  height <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  elementId <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  dispose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  draw <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  renderer <span class="op">=</span> <span class="st">"canvas"</span>,</span>
+<span>  timeline <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  reorder <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">e_data</span><span class="op">(</span><span class="va">e</span>, <span class="va">data</span>, <span class="va">x</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
 <dd><p>A <code>data.frame</code>.</p></dd>
+
+
 <dt>x</dt>
 <dd><p>Column name containing x axis.</p></dd>
+
+
 <dt>width, height</dt>
 <dd><p>Must be a valid CSS unit (like <code>'100%'</code>,
 <code>'400px'</code>, <code>'auto'</code>) or a number, which will be coerced to a
 string and have <code>'px'</code> appended.</p></dd>
+
+
 <dt>elementId</dt>
 <dd><p>Id of element.</p></dd>
+
+
 <dt>dispose</dt>
 <dd><p>Set to <code>TRUE</code> to force redraw of chart, set to <code>FALSE</code> to update.</p></dd>
+
+
 <dt>draw</dt>
 <dd><p>Whether to draw the chart, intended to be used with <code><a href="e_draw_p.html">e_draw_p</a></code>.</p></dd>
+
+
 <dt>renderer</dt>
 <dd><p>Renderer, takes <code>canvas</code> (default) or <code>svg</code>.</p></dd>
+
+
 <dt>timeline</dt>
 <dd><p>Set to <code>TRUE</code> to build a timeline, see timeline section.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Any other argument.</p></dd>
+
+
 <dt>reorder</dt>
 <dd><p>Set the <code>FALSE</code> to not reorder numeric x axis values.</p></dd>
+
+
 <dt>e</dt>
 <dd><p>An object of class <code>echarts4r</code> as returned by <code>e_charts</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="timeline">Timeline<a class="anchor" aria-label="anchor" href="#timeline"></a></h2>
@@ -266,18 +287,18 @@ string and have <code>'px'</code> appended.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">mtcars</span> |&gt;</span>
-<span class="r-in">  <span class="fu">e_charts</span><span class="op">(</span><span class="va">qsec</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="e_line.html">e_line</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span></span>
-<div id="htmlwidget-7219a5dabb2bbca495f6" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7219a5dabb2bbca495f6">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["mpg"]},"series":[{"data":[{"value":[14.5,15.8]},{"value":[14.6,15]},{"value":[15.41,13.3]},{"value":[15.5,19.7]},{"value":[15.84,14.3]},{"value":[16.46,21]},{"value":[16.7,26]},{"value":[16.87,15.5]},{"value":[16.9,30.4]},{"value":[17.02,21]},{"value":[17.02,18.7]},{"value":[17.05,19.2]},{"value":[17.3,15.2]},{"value":[17.4,16.4]},{"value":[17.42,14.7]},{"value":[17.6,17.3]},{"value":[17.82,10.4]},{"value":[17.98,10.4]},{"value":[18,15.2]},{"value":[18.3,19.2]},{"value":[18.52,30.4]},{"value":[18.6,21.4]},{"value":[18.61,22.8]},{"value":[18.9,17.8]},{"value":[18.9,27.3]},{"value":[19.44,21.4]},{"value":[19.47,32.4]},{"value":[19.9,33.9]},{"value":[20,24.4]},{"value":[20.01,21.5]},{"value":[20.22,18.1]},{"value":[22.9,22.8]}],"yAxisIndex":0,"xAxisIndex":0,"name":"mpg","type":"line","coordinateSystem":"cartesian2d"}]},"dispose":true},"evals":[],"jsHooks":[]}</script><span class="r-in"><span class="va">points</span> <span class="op">&lt;-</span> <span class="va">mtcars</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span></span>
-<span class="r-in"><span class="va">mtcars</span> |&gt;</span>
-<span class="r-in">  <span class="fu">e_charts_</span><span class="op">(</span><span class="st">"qsec"</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="e_line.html">e_line</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu">e_data</span><span class="op">(</span><span class="va">points</span>, <span class="va">qsec</span><span class="op">)</span> |&gt;</span>
-<span class="r-in">  <span class="fu"><a href="scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">mpg</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
-<div id="htmlwidget-19802bc1163164976e12" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-19802bc1163164976e12">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["mpg","mpg"]},"series":[{"data":[{"value":[14.5,15.8]},{"value":[14.6,15]},{"value":[15.41,13.3]},{"value":[15.5,19.7]},{"value":[15.84,14.3]},{"value":[16.46,21]},{"value":[16.7,26]},{"value":[16.87,15.5]},{"value":[16.9,30.4]},{"value":[17.02,21]},{"value":[17.02,18.7]},{"value":[17.05,19.2]},{"value":[17.3,15.2]},{"value":[17.4,16.4]},{"value":[17.42,14.7]},{"value":[17.6,17.3]},{"value":[17.82,10.4]},{"value":[17.98,10.4]},{"value":[18,15.2]},{"value":[18.3,19.2]},{"value":[18.52,30.4]},{"value":[18.6,21.4]},{"value":[18.61,22.8]},{"value":[18.9,17.8]},{"value":[18.9,27.3]},{"value":[19.44,21.4]},{"value":[19.47,32.4]},{"value":[19.9,33.9]},{"value":[20,24.4]},{"value":[20.01,21.5]},{"value":[20.22,18.1]},{"value":[22.9,22.8]}],"yAxisIndex":0,"xAxisIndex":0,"name":"mpg","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[16.46,21]},{"value":[17.02,21]},{"value":[18.61,22.8]}],"name":"mpg","type":"scatter","symbol":null,"color":"blue","coordinateSystem":"cartesian2d","color.1":"blue","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3}]},"dispose":true},"evals":[],"jsHooks":[]}</script></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">mtcars</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">e_charts</span><span class="op">(</span><span class="va">qsec</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="e_line.html">e_line</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span></span></span>
+<div id="htmlwidget-f3e9d287f1fd3c21f172" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f3e9d287f1fd3c21f172">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["mpg"]},"series":[{"data":[{"value":[14.5,15.8]},{"value":[14.6,15]},{"value":[15.41,13.3]},{"value":[15.5,19.7]},{"value":[15.84,14.3]},{"value":[16.46,21]},{"value":[16.7,26]},{"value":[16.87,15.5]},{"value":[16.9,30.4]},{"value":[17.02,21]},{"value":[17.02,18.7]},{"value":[17.05,19.2]},{"value":[17.3,15.2]},{"value":[17.4,16.4]},{"value":[17.42,14.7]},{"value":[17.6,17.3]},{"value":[17.82,10.4]},{"value":[17.98,10.4]},{"value":[18,15.2]},{"value":[18.3,19.2]},{"value":[18.52,30.4]},{"value":[18.6,21.4]},{"value":[18.61,22.8]},{"value":[18.9,17.8]},{"value":[18.9,27.3]},{"value":[19.44,21.4]},{"value":[19.47,32.4]},{"value":[19.9,33.9]},{"value":[20,24.4]},{"value":[20.01,21.5]},{"value":[20.22,18.1]},{"value":[22.9,22.8]}],"yAxisIndex":0,"xAxisIndex":0,"name":"mpg","type":"line","coordinateSystem":"cartesian2d"}]},"dispose":true},"evals":[],"jsHooks":[]}</script><span class="r-in"><span><span class="va">points</span> <span class="op">&lt;-</span> <span class="va">mtcars</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">mtcars</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">e_charts_</span><span class="op">(</span><span class="st">"qsec"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="e_line.html">e_line</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">e_data</span><span class="op">(</span><span class="va">points</span>, <span class="va">qsec</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="scatter.html">e_scatter</a></span><span class="op">(</span><span class="va">mpg</span>, color <span class="op">=</span> <span class="st">"red"</span>, symbol_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></span>
+<div id="htmlwidget-88133bfec2e2bd953eb8" style="width:700px;height:432.632880098888px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-88133bfec2e2bd953eb8">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["mpg","mpg"]},"series":[{"data":[{"value":[14.5,15.8]},{"value":[14.6,15]},{"value":[15.41,13.3]},{"value":[15.5,19.7]},{"value":[15.84,14.3]},{"value":[16.46,21]},{"value":[16.7,26]},{"value":[16.87,15.5]},{"value":[16.9,30.4]},{"value":[17.02,21]},{"value":[17.02,18.7]},{"value":[17.05,19.2]},{"value":[17.3,15.2]},{"value":[17.4,16.4]},{"value":[17.42,14.7]},{"value":[17.6,17.3]},{"value":[17.82,10.4]},{"value":[17.98,10.4]},{"value":[18,15.2]},{"value":[18.3,19.2]},{"value":[18.52,30.4]},{"value":[18.6,21.4]},{"value":[18.61,22.8]},{"value":[18.9,17.8]},{"value":[18.9,27.3]},{"value":[19.44,21.4]},{"value":[19.47,32.4]},{"value":[19.9,33.9]},{"value":[20,24.4]},{"value":[20.01,21.5]},{"value":[20.22,18.1]},{"value":[22.9,22.8]}],"yAxisIndex":0,"xAxisIndex":0,"name":"mpg","type":"line","coordinateSystem":"cartesian2d"},{"data":[{"value":[16.46,21]},{"value":[17.02,21]},{"value":[18.61,22.8]}],"name":"mpg","type":"scatter","symbol":null,"color":"red","coordinateSystem":"cartesian2d","color.1":"red","yAxisIndex":0,"xAxisIndex":0,"symbolSize":20}]},"dispose":true},"evals":[],"jsHooks":[]}</script></code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav><script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7I52Q7&amp;placement=echarts4rjohn-coenecom" id="_carbonads_js"></script></aside></div>
@@ -288,7 +309,7 @@ string and have <code>'px'</code> appended.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>
