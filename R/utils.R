@@ -260,40 +260,130 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   apply(data, 1, as.list)
 }
 
-.build_graph_edges <- function(edges, source, target, value, size) {
+.build_graph_edges <- function(edges, source, target, value, size, symbolSource, symbolTarget, symbolSizeSource, symbolSizeTarget) {
   row.names(edges) <- NULL
   
+  if (missing(size)) {
+    size <- NULL
+  }
+  
+  if (missing(value)) {
+    value <- NULL
+  }
+  
+  if (missing(symbolSource)) {
+    symbolSource <- NULL
+  }
+  
+  if (missing(symbolTarget)) {
+    symbolTarget <- NULL
+  }
+  
+  if (missing(symbolSizeSource)) {
+    symbolSizeSource <- NULL
+  }
+  
+  if (missing(symbolSizeTarget)) {
+    symbolSizeTarget <- NULL
+  }
+  
+  source <- dplyr::enquo(source)
+  target <- dplyr::enquo(target)
+  value <- dplyr::enquo(value)
+  size <- dplyr::enquo(size)
+  symbolSource <- dplyr::enquo(symbolSource)
+  symbolTarget <- dplyr::enquo(symbolTarget)
+  symbolSizeSource <- dplyr::enquo(symbolSizeSource)
+  symbolSizeTarget <- dplyr::enquo(symbolSizeTarget)
+  
+  edges |>
+    dplyr::select(
+      source = !!source,
+      target = !!target
+    ) -> data
+  
+  if(!is.null(size)){
+    data = data |>
+      dplyr::bind_cols(
+        edges |>
+          dplyr::select(
+            size = !!size
+          )
+      )
+  }
+  
+  if(!is.null(value)){
+    data = data |>
+      dplyr::bind_cols(
+        edges |>
+          dplyr::select(
+            value = !!value
+          )
+      )
+  }
+  
+  if(!is.null(symbolSource)){
+    data = data |>
+      dplyr::bind_cols(
+        edges |>
+          dplyr::select(
+            symbolSource = !!symbolSource
+          )
+      )
+  }
+  
+  if(!is.null(symbolTarget)){
+    data = data |>
+      dplyr::bind_cols(
+        edges |>
+          dplyr::select(
+            symbolTarget = !!symbolTarget
+          )
+      )
+  }
+  
+  if(!is.null(symbolSizeSource)){
+    data = data |>
+      dplyr::bind_cols(
+        edges |>
+          dplyr::select(
+            symbolSizeSource = !!symbolSizeSource
+          )
+      )
+  }
+  
+  if(!is.null(symbolSizeTarget)){
+    data = data |>
+      dplyr::bind_cols(
+        edges |>
+          dplyr::select(
+            symbolSizeTarget = !!symbolSizeTarget
+          )
+      )
+  }
+  
   if (is.null(size)) {
-    
-    edges |>
-      dplyr::select(
-        source = !!source,
-        target = !!target,
-        value = !!value
-      ) -> data
-    
-    x <- apply(data, 1, as.list)
-    
-  } else {
-    
-    edges |>
-      dplyr::select(
-        source = !!source,
-        target = !!target,
-        value = !!value,
-        size = !!size
-      ) -> data
-    
-    x <- apply(data, 1, function(x) {
+    x <- apply(edges, 1, function(x) {
       list(
         source = unname(x["source"]),
         target = unname(x["target"]),
         value = {if (is.null(value)) "" else unname(x["value"])},
-        symbolSize = c(5, 20),
-        lineStyle = list(width = unname(x["size"]))
+        symbol = list({if (is.null(unname(x["symbolSource"]))) 'none' else unname(x["symbolSource"])}, {if (is.null(unname(x["symbolTarget"]))) NULL else unname(x["symbolTarget"])}),
+        symbolSize = list({if (is.null(unname(x["symbolSizeSource"]))) NULL else unname(x["symbolSizeSource"])}, {if (is.null(unname(x["symbolSizeTarget"]))) NULL else unname(x["symbolSizeTarget"])})
       )
     })
     
+  } else {
+    x <- apply(edges, 1, function(x) {
+      list(
+        source = unname(x["source"]),
+        target = unname(x["target"]),
+        value = {if (is.null(value)) "" else unname(x["value"])},
+        symbol = list({if (is.null(unname(x["symbolSource"]))) 'none' else unname(x["symbolSource"])}, {if (is.null(unname(x["symbolTarget"]))) NULL else unname(x["symbolTarget"])}),
+        symbolSize = list({if (is.null(unname(x["symbolSizeSource"]))) NULL else unname(x["symbolSizeSource"])}, {if (is.null(unname(x["symbolSizeTarget"]))) NULL else unname(x["symbolSizeTarget"])}),
+        lineStyle = list(width = unname(x["size"]))
+      )
+    }) 
   }
   
   x

@@ -1334,11 +1334,11 @@ e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category,
 
 #' @rdname graph
 #' @export
-e_graph_edges <- function(e, edges, source, target, value, size) UseMethod("e_graph_edges")
+e_graph_edges <- function(e, edges, source, target, value, size, symbolSource, symbolTarget, symbolSizeSource, symbolSizeTarget) UseMethod("e_graph_edges")
 
 #' @method e_graph_edges echarts4r
 #' @export
-e_graph_edges.echarts4r <- function(e, edges, source, target, value, size) {
+e_graph_edges.echarts4r <- function(e, edges, source, target, value, size, symbolSource, symbolTarget, symbolSizeSource, symbolSizeTarget) {
   if (missing(edges) || missing(source) || missing(target)) {
     stop("must pass edges, source and target", call. = FALSE)
   }
@@ -1351,17 +1351,41 @@ e_graph_edges.echarts4r <- function(e, edges, source, target, value, size) {
     value <- NULL
   }
   
+  if (missing(symbolSource)) {
+    symbolSource <- NULL
+  }
+  
+  if (missing(symbolTarget)) {
+    symbolTarget <- NULL
+  }
+  
+  if (missing(symbolSizeSource)) {
+    symbolSizeSource <- NULL
+  }
+  
+  if (missing(symbolSizeTarget)) {
+    symbolSizeTarget <- NULL
+  }
+  
   source <- dplyr::enquo(source)
   target <- dplyr::enquo(target)
   value <- dplyr::enquo(value)
   size <- dplyr::enquo(size)
+  symbolSource <- dplyr::enquo(symbolSource)
+  symbolTarget <- dplyr::enquo(symbolTarget)
+  symbolSizeSource <- dplyr::enquo(symbolSizeSource)
+  symbolSizeTarget <- dplyr::enquo(symbolSizeTarget)
   
   data <- .build_graph_edges(
     edges,
     source,
     target,
     value,
-    size
+    size,
+    symbolSource,
+    symbolTarget,
+    symbolSizeSource,
+    symbolSizeTarget
   )
 
   # build JSON data
@@ -1372,7 +1396,7 @@ e_graph_edges.echarts4r <- function(e, edges, source, target, value, size) {
 
 #' @method e_graph_edges echarts4rProxy
 #' @export
-e_graph_edges.echarts4rProxy <- function(e, edges, source, target, value, size) {
+e_graph_edges.echarts4rProxy <- function(e, edges, source, target, value, size, symbolSource = "none", symbolTarget = "none", symbolSizeSource = 0, symbolSizeTarget = 0) {
   if (missing(edges) || missing(source) || missing(target)) {
     stop("must pass edges, source and target", call. = FALSE)
   }
@@ -1380,18 +1404,45 @@ e_graph_edges.echarts4rProxy <- function(e, edges, source, target, value, size) 
   if (missing(size)) {
     size <- NULL
   }
+  if (missing(value)) {
+    value <- NULL
+  }
+  
+  if (missing(symbolSource)) {
+    symbolSource <- NULL
+  }
+  
+  if (missing(symbolTarget)) {
+    symbolTarget <- NULL
+  }
+  
+  if (missing(symbolSizeSource)) {
+    symbolSizeSource <- NULL
+  }
+  
+  if (missing(symbolSizeTarget)) {
+    symbolSizeTarget <- NULL
+  }
   
   source <- dplyr::enquo(source)
   target <- dplyr::enquo(target)
   value <- dplyr::enquo(value)
   size <- dplyr::enquo(size)
+  symbolSource <- dplyr::enquo(symbolSource)
+  symbolTarget <- dplyr::enquo(symbolTarget)
+  symbolSizeSource <- dplyr::enquo(symbolSizeSource)
+  symbolSizeTarget <- dplyr::enquo(symbolSizeTarget)
   
   data <- .build_graph_edges(
     edges,
     source,
     target,
     value,
-    size
+    size,
+    symbolSource,
+    symbolTarget,
+    symbolSizeSource,
+    symbolSizeTarget
   )
 
   # build JSON data
