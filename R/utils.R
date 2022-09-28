@@ -263,39 +263,6 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 .build_graph_edges <- function(edges, source, target, value, size, symbolSource, symbolTarget, symbolSizeSource, symbolSizeTarget) {
   row.names(edges) <- NULL
   
-  if (missing(size)) {
-    size <- NULL
-  }
-  
-  if (missing(value)) {
-    value <- NULL
-  }
-  
-  if (missing(symbolSource)) {
-    symbolSource <- NULL
-  }
-  
-  if (missing(symbolTarget)) {
-    symbolTarget <- NULL
-  }
-  
-  if (missing(symbolSizeSource)) {
-    symbolSizeSource <- NULL
-  }
-  
-  if (missing(symbolSizeTarget)) {
-    symbolSizeTarget <- NULL
-  }
-  
-  source <- dplyr::enquo(source)
-  target <- dplyr::enquo(target)
-  value <- dplyr::enquo(value)
-  size <- dplyr::enquo(size)
-  symbolSource <- dplyr::enquo(symbolSource)
-  symbolTarget <- dplyr::enquo(symbolTarget)
-  symbolSizeSource <- dplyr::enquo(symbolSizeSource)
-  symbolSizeTarget <- dplyr::enquo(symbolSizeTarget)
-  
   edges |>
     dplyr::select(
       source = !!source,
