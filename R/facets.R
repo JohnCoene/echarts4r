@@ -3,9 +3,20 @@
 #' Create facets for multiple plots.
 #'
 #' @inheritParams e_bar
-#' @param rows,cols Number of rows and columns.
-#' @param legend_pos Position of the legend. One of "top", "right", "bottom", "left".
-#' @param legend_space Space between legend and plot area. The entered number will be used as percentage".
+#' @param rows,cols Number of rows and columns. If both are `NULL` the number of rows and columns
+#'     will be determined automatically. 
+#' @param legend_pos Position of the legend. One of "top", "right", "bottom", "left". Determines 
+#'     to which side the `legend_space` argument applies. 
+#' @param legend_space Space between legend and plot area. The entered number will be used 
+#'     as percentage.
+#' @param margin_trbl Adjusts the size of the outside margin around the plotting area. Default is
+#'     `c(t = 2, r = 2, b = 5, l = 2)`. Numbers are used as percentage of total plotting area. To
+#'     change only e.g. two sides `c("r" = 8, "l" = 8)` could be used, other sides will use 
+#'     defaults. 
+#' @param h_panel_space,v_panel_space Horizontal and vertical spacing between the individual grid
+#'     elements. Expects numeric input, which will be used as percentage of total plotting area.
+#'     Default `NULL` will automatically add some panel spacing for low dimensional grids. 
+#' 
 #' 
 #' @examples
 #' group_size <- 20
@@ -24,27 +35,33 @@
 #'
 #' @export 
 e_facet <- function(e, 
-                    rows = 1, 
-                    cols = 1, 
+                    rows = NULL, 
+                    cols = NULL, 
                     legend_pos = "top", 
                     legend_space = 10,
                     margin_trbl = c(t = 2, r = 2, b = 5, l = 2),
                     h_panel_space = NULL,
                     v_panel_space = NULL) {
     
-    # TODO 
-    # * complete docs
-    # * integrate n2mfrow
     
-    # Validate input ------------------------------------------------------------------------------
+    # Generate default values ---------------------------------------------------------------------
     
     # number of series
     nseries <- length(e$x$opts$series)
-    
-    # Do series match the grid?
-    if (nseries > rows * cols) {
-        warning(paste0(nseries, " series exceed the number of panels created by ",
-                       rows, " rows and ", cols, " columns."))
+
+    if (is.null(rows) && is.null(cols)) {
+        # Automatically generate grid dimensions
+        dims <- n2mfrow(nseries)
+        rows <- dims[2]
+        cols <- dims[1]
+    } else if (is.null(rows) || is.null(cols)) {
+        stop("Must provide both the number of rows and columns.")
+    } else {
+        # Do series match the grid?
+        if (nseries > rows * cols) {
+            warning(paste0(nseries, " series exceed the number of panels created by ",
+                           rows, " rows and ", cols, " columns."))
+        }
     }
     
     # Specified margins
