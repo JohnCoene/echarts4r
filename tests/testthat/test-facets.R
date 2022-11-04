@@ -3,7 +3,7 @@ test_that("pie charts can be visualized with e_facet", {
     
     test_call <- deparse(sys.calls()[[1]][1])
     skip_if_not(test_call == "test_that()",
-                message = "test of visualization must be run individually")
+                message = "test of visualizations must be run individually")
     
     n_groups <- 12
     get_letters <- function(n) sample(x  = LETTERS, size = sample(5:8, 1))
