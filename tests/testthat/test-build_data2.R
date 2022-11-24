@@ -9,11 +9,14 @@ test_that("build_data2 needs a dataframe or tibble as data input", {
   expect_error(.build_data2())
 })
 
-test_that("build_data2 needs a (vector of) quoted or unquoted character or a numeric as other input", {
+test_that("build_data2 needs a (vector of) character or a numeric as other input", {
   x <- mtcars
-
+  a <- "mpg"
+  b <- "cyl"
   expect_silent(.build_data2(x, c("mpg", "cyl")))
-  expect_silent(.build_data2(x, c(mpg, cyl)))
+  expect_error(.build_data2(x, c(mpg, cyl)))
+  expect_silent(.build_data2(x, a, b))
+
   expect_silent(.build_data2(x, c(1, 2)))
 
   expect_equal(
