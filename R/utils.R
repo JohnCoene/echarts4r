@@ -66,9 +66,9 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 }
 
 .build_data <- function(e, ...) {
-  data <- e$x$data[[1]] |>
-    dplyr::select(...)
-  
+  data <- e$x$data[[1]] # |>
+    # dplyr::select(...)
+  data <- data[, c(...), drop = FALSE]
   data <- unname(data)
 
   apply(data, 1, function(x) {
@@ -131,9 +131,9 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 
 .build_data2 <- function(data, ...) {
   row.names(data) <- NULL
-  data <- data |>
-    dplyr::select(...)
-  
+  # data <- data |>
+  #  dplyr::select(...)
+  data <- data[, c(...), drop = FALSE]
   data <- unname(data)
 
   apply(data, 1, function(x) {
