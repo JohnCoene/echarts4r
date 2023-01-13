@@ -1,7 +1,7 @@
 .Rproj.user
 .Rhistory
 .RData
-echarts4.Rproj
+*.Rproj
 usa.json
 inst/doc
 *.vs/
