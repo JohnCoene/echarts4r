@@ -700,7 +700,7 @@ e_candle_ <- function(e, opening, closing, low, high, bind = NULL, name = NULL, 
   }
 
   for (i in seq_along(e$x$data)) {
-    data <- .build_data2(e$x$data[[i]], opening, closing, low, high)
+    data <- .build_data2(e$x$data[[i]], closing, opening, low, high)
 
     if (!is.null(bind)) {
       data <- .add_bind2(e, data, bind, i = i)
