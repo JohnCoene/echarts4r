@@ -1,4 +1,8 @@
-# echarts4r 0.4.3.9000
+# echarts4r 0.4.5
+
+- Update dependencies to `5.4.2`
+
+# echarts4r 0.4.4
 
 - Better checks on theme names [#407](https://github.com/JohnCoene/echarts4r/issues/407)
 - Update to echarts.js 5.3.2
