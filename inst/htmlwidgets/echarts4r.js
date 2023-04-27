@@ -48,7 +48,10 @@ HTMLWidgets.widget({
 
         if(x.hasOwnProperty('registerMap')){
           for( var map = 0; map < x.registerMap.length; map++){
-            echarts.registerMap(x.registerMap[map].mapName, x.registerMap[map].geoJSON);
+            if(x.registerMap[map].extra)
+              echarts.registerMap(x.registerMap[map].mapName, x.registerMap[map].geoJSON, x.registerMap[map].extra);
+            else
+              echarts.registerMap(x.registerMap[map].mapName, x.registerMap[map].geoJSON);
           }
         }
         

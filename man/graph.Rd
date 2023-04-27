@@ -30,7 +30,18 @@ e_graph_nodes(
   legend = TRUE
 )
 
-e_graph_edges(e, edges, source, target, value, size, symbolSource, symbolTarget, symbolSizeSource, symbolSizeTarget)
+e_graph_edges(
+  e,
+  edges,
+  source,
+  target,
+  value,
+  size,
+  symbolSource,
+  symbolTarget,
+  symbolSizeSource,
+  symbolSizeTarget
+)
 }
 \arguments{
 \item{e}{An \code{echarts4} object as returned by \code{e_charts}.}
@@ -64,9 +75,7 @@ graph but is only necessary for GL.}
 
 \item{source, target}{Column names of source and target.}
 
-\item{symbolSource, symbolTarget}{Column names of source symbol and target symbol.}
-
-\item{symbolSizeSource, symbolSizeTarget}{Column names of source symbol size and target symbol size.}
+\item{symbolSource, symbolTarget, symbolSizeSource, symbolSizeTarget}{Edges symbols.}
 }
 \description{
 Create a graph.

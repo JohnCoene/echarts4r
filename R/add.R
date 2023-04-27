@@ -1086,6 +1086,7 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #' @param rm_x,rm_y Whether to remove the x and y axis, defaults to \code{TRUE}.
 #' @param itemStyle This option is available for for GL and canvas
 #' graph but is only necessary for GL.
+#' @param symbolSource,symbolTarget,symbolSizeSource,symbolSizeTarget Edges symbols.
 #' @param ... Any other parameter.
 #'
 #' @examples

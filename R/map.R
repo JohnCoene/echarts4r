@@ -347,6 +347,7 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
 #' @param json,svg \href{https://geojson.org/}{Geojson}, or SVG.
 #' @param async Whether to read the file asynchronously.
 #' @param session A valid Shiny session.
+#' @param ... Additional options passed to \href{https://echarts.apache.org/en/api.html#echarts.registerMap}{registerMap}.
 #'
 #' @details \code{e_map_register_p} is not truly a proxy as it does not require
 #' a chart to function. While the function \code{e_map_register_ui} is meant to
@@ -367,11 +368,11 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
 #'
 #' @rdname e_map_register
 #' @export
-e_map_register <- function(e, name, json) UseMethod("e_map_register")
+e_map_register <- function(e, name, json, ...) UseMethod("e_map_register")
 
 #' @export
 #' @method e_map_register echarts4r
-e_map_register.echarts4r <- function(e, name, json) {
+e_map_register.echarts4r <- function(e, name, json, ...) {
   if (!length(e$x$registerMap)) {
     e$x$registerMap <- list()
   }
@@ -380,6 +381,10 @@ e_map_register.echarts4r <- function(e, name, json) {
     mapName = name,
     geoJSON = json
   )
+
+  extra <- list(...)
+  if(length(extra) > 0)
+    opts$extra <- extra
 
   e$x$registerMap <- append(e$x$registerMap, list(opts))
   e

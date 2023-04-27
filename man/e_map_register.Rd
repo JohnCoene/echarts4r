@@ -7,7 +7,7 @@
 \alias{e_map_register_ui}
 \title{Register map}
 \usage{
-e_map_register(e, name, json)
+e_map_register(e, name, json, ...)
 
 e_svg_register(e, name, svg)
 
@@ -26,6 +26,8 @@ e_map_register_ui(name, json, async = FALSE)
 \item{name}{Name of map, to use in \code{\link{e_map}}.}
 
 \item{json, svg}{\href{https://geojson.org/}{Geojson}, or SVG.}
+
+\item{...}{Additional options passed to \href{https://echarts.apache.org/en/api.html#echarts.registerMap}{registerMap}.}
 
 \item{async}{Whether to read the file asynchronously.}
 
