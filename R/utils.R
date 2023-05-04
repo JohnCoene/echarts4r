@@ -29,7 +29,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 .assign_axis <- function(x, data) {
   x$mapping$include_x <- FALSE
   cl <- x$mapping$x_class
-  if (cl == "character" || cl == "factor") {
+  if (any(c("factor", "character") %in% cl)) {
     labs <- unique(data[[x$mapping$x]])
 
     if (length(labs) == 1) {
@@ -37,7 +37,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
     }
 
     x$opts$xAxis <- list(list(data = labs, type = "category", boundaryGap = TRUE))
-  } else if (cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
+  } else if (any(c("POSIXct", "POSIXlt", "Date") %in% cl)) {
     labs <- unique(data[[x$mapping$x]])
 
     if (length(labs) == 1) {
