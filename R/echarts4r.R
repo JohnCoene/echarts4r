@@ -178,7 +178,7 @@ e_charts.default <- function(
 
       x$mapping$include_x <- FALSE
       cl <- x$mapping$x_class
-      if (cl == "character" || cl == "factor") {
+      if (any(c("character", "factor") %in% cl)) {
         labs <- unique(data[[x$mapping$x]])
 
         if (length(labs) == 1) {
@@ -186,7 +186,7 @@ e_charts.default <- function(
         }
 
         x$opts$baseOption$xAxis <- list(list(data = labs, type = "category", boundaryGap = TRUE))
-      } else if (cl == "POSIXct" || cl == "POSIXlt" || cl == "Date") {
+      } else if (any(c("POSIXct", "POSIXlt", "Date") %in% cl)) {
         labs <- unique(data[[x$mapping$x]])
 
         if (length(labs) == 1) {
