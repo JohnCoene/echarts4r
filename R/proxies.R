@@ -288,6 +288,7 @@ e_hidetip_p <- function(proxy) {
 #' @rdname node_adjacency
 #' @export
 e_focus_adjacency_p <- function(proxy, index, ...) {
+  .Deprecated("Dropped in v5 use: emphasis = list(focus = 'adjacency')")
   if (!"echarts4rProxy" %in% class(proxy)) {
     stop("must pass echarts4rProxy object", call. = FALSE)
   }
@@ -319,6 +320,7 @@ e_focus_adjacency_p <- function(proxy, index, ...) {
 #' @rdname node_adjacency
 #' @export
 e_unfocus_adjacency_p <- function(proxy, ...) {
+  .Deprecated("Dropped in v5 use: emphasis = list(focus = 'adjacency')")
   if (!"echarts4rProxy" %in% class(proxy)) {
     stop("must pass echarts4rProxy object", call. = FALSE)
   }

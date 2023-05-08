@@ -340,6 +340,7 @@ if (HTMLWidgets.shinyMode) {
   
   Shiny.addCustomMessageHandler('e_focus_node_adjacency_p',
     function(data) {
+      console.log(data);
       var chart = get_e_charts(data[0].id);
       if (typeof chart != 'undefined') {
         data.forEach(function(highlight){
