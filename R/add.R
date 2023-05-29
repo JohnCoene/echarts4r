@@ -168,7 +168,9 @@ e_line.echarts4rProxy <- function(
 
 #' Area
 #'
-#' Add area serie.
+#' Add area serie. Note that this is NOT an unique series type. Rather, this
+#' function is a shorthand for using `e_bar()` with `areaStyle = list()`
+#' enabled.
 #'
 #' @inheritParams e_bar
 #'
