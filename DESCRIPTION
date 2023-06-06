@@ -4,7 +4,7 @@ Date: 2022-05-28
 Version: 0.4.5
 Authors@R: c(
   person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cph")),
-  person("David", "Munoz Tord", email = "david.munoztord@mailbox.org", role = c("cre")) comment = c(ORCID = "0000-0001-7954-8295"),
+  person("David", "Munoz Tord", email = "david.munoztord@mailbox.org", role = c("cre")), comment = c(ORCID = "0000-0001-7954-8295"),
   person(given = "Wei", family = "Su", email = "swsoyee@gmail.com", role = "ctb"),
   person(family = "Helgasoft", email = "contact@helgasoft.com", role = "ctb"),
   person("Xianying", "Tan", email = "shrektan@126.com", role = "ctb", comment = c(ORCID = "0000-0002-6072-3521")),
