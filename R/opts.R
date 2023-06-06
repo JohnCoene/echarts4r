@@ -123,7 +123,7 @@ e_visual_map_ <- function(e, serie = NULL, calculable = TRUE, type = c("continuo
 #' Customise tooltip
 #'
 #' @inheritParams e_bar
-#' @param trigger What triggers the tooltip, one of \code{item} or \code{item}.
+#' @param trigger What triggers the tooltip, one of \code{item} or \code{axis}.
 #' @param formatter Item and Pointer formatter as returned
 #' by \code{\link{e_tooltip_item_formatter}}, \code{\link{e_tooltip_pointer_formatter}},
 #' \code{\link{e_tooltip_pie_formatter}}.
