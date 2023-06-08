@@ -48,7 +48,9 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{
-Add area serie.
+Add area serie. Note that this is NOT an unique series type. Rather, this
+function is a shorthand for using `e_bar()` with `areaStyle = list()`
+enabled.
 }
 \examples{
 CO2 |>

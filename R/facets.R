@@ -34,6 +34,7 @@
 #' @details Each serie, i.e.: \code{\link{e_bar}} will be plotted against a facet.
 #'
 #' @export 
+#' @importFrom  grDevices n2mfrow
 e_facet <- function(e, 
                     rows = NULL, 
                     cols = NULL, 
