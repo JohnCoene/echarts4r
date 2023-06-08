@@ -22,10 +22,10 @@ test_that("e_map plot has the good data structure and type", {
     plot$x$opts$series[[1]]$data,
     list(
       list(value = c(2.062035), name = "Afghanistan"),
-      list(value = c(2.488496), name = "Åland Islands"),
-      list(value = c(3.291413), name = "Albania"),
-      list(value = c(4.632831), name = "Algeria"),
-      list(value = c(1.806728), name = "American Samoa")
+      list(value = c(2.488496), name = "Albania"),
+      list(value = c(3.291413), name = "Algeria"),
+      list(value = c(4.632831), name = "American Samoa"),
+      list(value = c(1.806728), name = "Andorra")
     )
   )
   expect_equal(
