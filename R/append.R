@@ -6,6 +6,8 @@
 #' @param series_index Index of serie to append to (starts from 0).
 #' @param data Data.frame containing data to append.
 #' @param x,y,z Columns names to plot.
+#' @param name if using `bind` with e.g `e_scatter` this can be used to supply the colname for
+#' the name attribute bind is mapping to
 #' @param scale A scaling function as passed to \code{\link{e_scatter}}.
 #' @param symbol_size Multiplier of scaling function as in \code{\link{e_scatter}}.
 #'
@@ -61,25 +63,31 @@
 #'
 #' @rdname append
 #' @export
-e_append1_p <- function(proxy, series_index = NULL, data, x, y) {
+e_append1_p <- function(proxy, series_index = NULL, data, x, y, name = NULL) {
   if (!"echarts4rProxy" %in% class(proxy)) {
     stop("must pass echarts4rProxy object", call. = FALSE)
   }
 
-  e_append1_p_(proxy, series_index, data, deparse(substitute(x)), deparse(substitute(y)))
+  e_append1_p_(proxy, series_index, data, deparse(substitute(x)), deparse(substitute(y)), deparse(substitute(name)))
 }
 
 #' @rdname append
 #' @export
-e_append1_p_ <- function(proxy, series_index = NULL, data, x, y) {
+e_append1_p_ <- function(proxy, series_index = NULL, data, x, y, name = NULL) {
   if (!"echarts4rProxy" %in% class(proxy)) {
     stop("must pass echarts4rProxy object", call. = FALSE)
   }
 
   dlist <- data |>
-    dplyr::select(x, y) |>
+    dplyr::select(x, y,name) |>
     unname() |>
-    apply(1, as.list)
+    apply(1, function(row){
+      if(!is.null(name)){
+        list(value=as.numeric(row[1:2]),name=row[3])
+      } else {
+        list(value=as.numeric(row[1:2]))
+      }
+    })
 
   opts <- list(id = proxy$id, seriesIndex = series_index, data = dlist)
 
