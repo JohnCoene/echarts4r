@@ -43,7 +43,7 @@ e_tooltip_pointer_formatter(
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{trigger}{What triggers the tooltip, one of \code{item} or \code{item}.}
+\item{trigger}{What triggers the tooltip, one of \code{item} or \code{axis}.}
 
 \item{formatter}{Item and Pointer formatter as returned
 by \code{\link{e_tooltip_item_formatter}}, \code{\link{e_tooltip_pointer_formatter}},

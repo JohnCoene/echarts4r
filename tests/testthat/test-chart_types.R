@@ -227,7 +227,14 @@ test_that("e_candle plot has the good data structure and type", {
 
   expect_equal(
     plot$x$opts$series[[1]]$data,
-    list(list(value = c(200.60, 200.72, 197.82, 203.32)), list(value = c(200.22, 198.85, 198.07, 200.67)), list(value = c(198.43, 199.05, 197.90, 200.00)), list(value = c(199.05, 203.73, 198.10, 203.95)), list(value = c(203.54, 204.08, 202.00, 204.90)), list(value = c(203.40, 208.11, 201.50, 208.44)), list(value = c(208.34, 211.88, 207.60, 213.17)))
+    list(
+      list(value = c(200.72, 200.60, 197.82, 203.32)),
+      list(value = c(198.85, 200.22,  198.07, 200.67)),
+      list(value = c(199.05, 198.43, 197.90, 200.00)),
+      list(value = c(203.73, 199.05,  198.10, 203.95)),
+      list(value = c(204.08, 203.54,  202.00, 204.90)),
+      list(value = c(208.11, 203.40,  201.50, 208.44)),
+      list(value = c(211.88, 208.34,  207.60, 213.17)))
   )
   expect_equal(
     plot$x$opts$series[[1]]$type,
