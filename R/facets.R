@@ -38,6 +38,7 @@
 #' 
 #' 
 #' @export 
+#' @importFrom  grDevices n2mfrow
 
 e_facet <- function(e, 
                     rows = NULL, 
