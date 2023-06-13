@@ -146,7 +146,8 @@ The Les Miserables dataset is a popular visualization that demonstrates network 
 ```{r}
 library(echarts4r)
 
-les <- jsonlite::fromJSON("https://gist.githubusercontent.com/tyluRp/0d7a53f2a1f55cb3c6ffe22c67618267/raw/0684a839c3e49dac1157721ddd906eff8f9491d4/les-miserables.json")
+les <- jsonlite::fromJSON("https://gist.githubusercontent.com/tylerlittlefield/0d7a53f2a1f55cb3c6ffe22c67618267/raw/0684a839c3e49dac1157721ddd906eff8f9491d4/les-miserables.json")
+
 
 e_charts() |> 
   e_graph(

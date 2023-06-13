@@ -75,7 +75,7 @@ reference:
       - e_axis_pointer
       - tooltip_action
   - title: "Aesthetics"
-    desc: "Customise the aestethics of the chart"
+    desc: "Customise the aesthetics of the chart"
     contents:
       - starts_with("e_theme")
       - e_common
@@ -118,7 +118,7 @@ reference:
       - legend_action
   - title: "Shiny"
     desc: "Functions relevant to using echarts4r with Shiny."
-    contents: 
+    contents:
       - ends_with("_p")
       - e_resize
       - callbacks
@@ -134,21 +134,21 @@ reference:
       - echarts4rBoxOutput
   - title: "Graphics"
     desc: "Add graphics to charts."
-    contents: 
+    contents:
       - ends_with("_g")
       - e_draft
   - title: "Connect"
     desc: "Connect charts and their interactions."
-    contents: 
+    contents:
       - connections
       - e_facet
   - title: "Timeline"
     desc: "Function to customise the chart timeline."
-    contents: 
+    contents:
       - matches("timeline")
   - title: "Misc"
     desc: "Other functions to improve your charts."
-    contents: 
+    contents:
       - e_utc
       - e_aria
       - e_get_data
@@ -173,7 +173,7 @@ navbar:
     - icon: fa-code
       href: "reference/"
     - text: "Guide"
-      menu: 
+      menu:
         - text: "Get Started"
           href: articles/get_started.html
         - text: "Advanced"
@@ -228,15 +228,15 @@ navbar:
           href: articles/mark.html
         - text: "Themes"
           href: articles/themes.html
-    - text: "Shiny" 
+    - text: "Shiny"
       menu:
-        - text: 'Basics' 
+        - text: 'Basics'
           href: articles/shiny.html
-        - text: 'Boxes' 
+        - text: 'Boxes'
           href: articles/boxes.html
-        - text: 'Proxies' 
+        - text: 'Proxies'
           href: articles/proxies.html
-    - text: "Timeline" 
+    - text: "Timeline"
       href: articles/timeline.html
   right:
     - icon: fab fa-github fa-lg
@@ -245,3 +245,5 @@ navbar:
 authors:
   John Coene:
     href: http://john-coene.com
+  David Munoz Tord:
+    href: http://david-munoztord.com
