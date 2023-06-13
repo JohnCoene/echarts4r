@@ -7,9 +7,9 @@
 \alias{e_append2_p_}
 \title{Append Proxy}
 \usage{
-e_append1_p(proxy, series_index = NULL, data, x, y)
+e_append1_p(proxy, series_index = NULL, data, x, y, name = NULL)
 
-e_append1_p_(proxy, series_index = NULL, data, x, y)
+e_append1_p_(proxy, series_index = NULL, data, x, y, name = NULL)
 
 e_append2_p(
   proxy,
@@ -41,6 +41,9 @@ e_append2_p_(
 \item{data}{Data.frame containing data to append.}
 
 \item{x, y, z}{Columns names to plot.}
+
+\item{name}{if using `bind` with e.g `e_scatter` this can be used to supply the colname for
+the name attribute bind is mapping to}
 
 \item{scale}{A scaling function as passed to \code{\link{e_scatter}}.}
 

@@ -4,17 +4,38 @@
 \alias{e_facet}
 \title{Facet}
 \usage{
-e_facet(e, rows = 1, cols = 1, legend_pos = "top", legend_space = 10)
+e_facet(
+  e,
+  rows = NULL,
+  cols = NULL,
+  legend_pos = "top",
+  legend_space = 10,
+  margin_trbl = c(t = 2, r = 2, b = 5, l = 2),
+  h_panel_space = NULL,
+  v_panel_space = NULL
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{rows, cols}{Number of rows and columns.}
+\item{rows, cols}{Number of rows and columns. If both are `NULL` the number of rows and columns
+will be determined automatically.}
 
-\item{legend_pos}{Position of the legend}
+\item{legend_pos}{Position of the legend. One of "top", "right", "bottom", "left". Determines 
+to which side the `legend_space` argument applies.}
 
-\item{legend_space}{Space between legend and plot area.}
+\item{legend_space}{Space between legend and plot area. The entered number will be used 
+as percentage.}
+
+\item{margin_trbl}{Adjusts the size of the outside margin around the plotting area. Default is
+`c(t = 2, r = 2, b = 5, l = 2)`. Numbers are used as percentage of total plotting area. To
+change only e.g. two sides `c("r" = 8, "l" = 8)` could be used, other sides will use 
+defaults.}
+
+\item{h_panel_space, v_panel_space}{Horizontal and vertical spacing between the individual grid
+elements. Expects numeric input, which will be used as percentage of total plotting area.
+Default `NULL` will automatically add some panel spacing for low dimensional grids.}
 }
 \description{
 Create facets for multiple plots.
