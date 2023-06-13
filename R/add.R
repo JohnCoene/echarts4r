@@ -1069,6 +1069,8 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
   return(e)
 }
 
+
+
 #' Graph
 #'
 #' Create a graph.
@@ -1088,7 +1090,6 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #' @param rm_x,rm_y Whether to remove the x and y axis, defaults to \code{TRUE}.
 #' @param itemStyle This option is available for for GL and canvas
 #' graph but is only necessary for GL.
-#' @param symbolSource,symbolTarget,symbolSizeSource,symbolSizeTarget Edges symbols.
 #' @param ... Any other parameter.
 #'
 #' @examples
@@ -1337,11 +1338,11 @@ e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category,
 
 #' @rdname graph
 #' @export
-e_graph_edges <- function(e, edges, source, target, value, size, symbolSource, symbolTarget, symbolSizeSource, symbolSizeTarget) UseMethod("e_graph_edges")
+e_graph_edges <- function(e, edges, source, target, value, size) UseMethod("e_graph_edges")
 
 #' @method e_graph_edges echarts4r
 #' @export
-e_graph_edges.echarts4r <- function(e, edges, source, target, value, size, symbolSource, symbolTarget, symbolSizeSource, symbolSizeTarget) {
+e_graph_edges.echarts4r <- function(e, edges, source, target, value, size) {
   if (missing(edges) || missing(source) || missing(target)) {
     stop("must pass edges, source and target", call. = FALSE)
   }
@@ -1354,41 +1355,17 @@ e_graph_edges.echarts4r <- function(e, edges, source, target, value, size, symbo
     value <- NULL
   }
   
-  if (missing(symbolSource)) {
-    symbolSource <- NULL
-  }
-  
-  if (missing(symbolTarget)) {
-    symbolTarget <- NULL
-  }
-  
-  if (missing(symbolSizeSource)) {
-    symbolSizeSource <- NULL
-  }
-  
-  if (missing(symbolSizeTarget)) {
-    symbolSizeTarget <- NULL
-  }
-  
   source <- dplyr::enquo(source)
   target <- dplyr::enquo(target)
   value <- dplyr::enquo(value)
   size <- dplyr::enquo(size)
-  symbolSource <- dplyr::enquo(symbolSource)
-  symbolTarget <- dplyr::enquo(symbolTarget)
-  symbolSizeSource <- dplyr::enquo(symbolSizeSource)
-  symbolSizeTarget <- dplyr::enquo(symbolSizeTarget)
   
   data <- .build_graph_edges(
     edges,
     source,
     target,
     value,
-    size,
-    symbolSource,
-    symbolTarget,
-    symbolSizeSource,
-    symbolSizeTarget
+    size
   )
 
   # build JSON data
@@ -1399,7 +1376,7 @@ e_graph_edges.echarts4r <- function(e, edges, source, target, value, size, symbo
 
 #' @method e_graph_edges echarts4rProxy
 #' @export
-e_graph_edges.echarts4rProxy <- function(e, edges, source, target, value, size, symbolSource = "none", symbolTarget = "none", symbolSizeSource = 0, symbolSizeTarget = 0) {
+e_graph_edges.echarts4rProxy <- function(e, edges, source, target, value, size) {
   if (missing(edges) || missing(source) || missing(target)) {
     stop("must pass edges, source and target", call. = FALSE)
   }
@@ -1407,51 +1384,25 @@ e_graph_edges.echarts4rProxy <- function(e, edges, source, target, value, size, 
   if (missing(size)) {
     size <- NULL
   }
-  if (missing(value)) {
-    value <- NULL
-  }
-  
-  if (missing(symbolSource)) {
-    symbolSource <- NULL
-  }
-  
-  if (missing(symbolTarget)) {
-    symbolTarget <- NULL
-  }
-  
-  if (missing(symbolSizeSource)) {
-    symbolSizeSource <- NULL
-  }
-  
-  if (missing(symbolSizeTarget)) {
-    symbolSizeTarget <- NULL
-  }
   
   source <- dplyr::enquo(source)
   target <- dplyr::enquo(target)
   value <- dplyr::enquo(value)
   size <- dplyr::enquo(size)
-  symbolSource <- dplyr::enquo(symbolSource)
-  symbolTarget <- dplyr::enquo(symbolTarget)
-  symbolSizeSource <- dplyr::enquo(symbolSizeSource)
-  symbolSizeTarget <- dplyr::enquo(symbolSizeTarget)
   
   data <- .build_graph_edges(
     edges,
     source,
     target,
     value,
-    size,
-    symbolSource,
-    symbolTarget,
-    symbolSizeSource,
-    symbolSizeTarget
+    size
   )
 
   # build JSON data
   e$chart$x$opts$series[[length(e$chart$x$opts$series)]]$links <- data
   e
 }
+
 
 #' Heatmap
 #'
