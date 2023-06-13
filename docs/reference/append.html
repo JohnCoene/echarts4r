@@ -130,9 +130,9 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">e_append1_p</span><span class="op">(</span><span class="va">proxy</span>, series_index <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">data</span>, <span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">e_append1_p</span><span class="op">(</span><span class="va">proxy</span>, series_index <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">data</span>, <span class="va">x</span>, <span class="va">y</span>, name <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">e_append1_p_</span><span class="op">(</span><span class="va">proxy</span>, series_index <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">data</span>, <span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
+<span><span class="fu">e_append1_p_</span><span class="op">(</span><span class="va">proxy</span>, series_index <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">data</span>, <span class="va">x</span>, <span class="va">y</span>, name <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">e_append2_p</span><span class="op">(</span></span>
 <span>  <span class="va">proxy</span>,</span>
@@ -173,6 +173,11 @@
 
 <dt>x, y, z</dt>
 <dd><p>Columns names to plot.</p></dd>
+
+
+<dt>name</dt>
+<dd><p>if using `bind` with e.g `e_scatter` this can be used to supply the colname for
+the name attribute bind is mapping to</p></dd>
 
 
 <dt>scale</dt>
