@@ -7,7 +7,7 @@
 \usage{
 e_inspect(e, json = FALSE, ...)
 
-echarts_from_json(txt)
+echarts_from_json(txt, jswrapper = FALSE)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
@@ -18,6 +18,8 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{...}{Additional options to pass to \link[=jsonlite]{toJSON}.}
 
 \item{txt}{JSON character string, url, or file.}
+
+\item{jswrapper}{Whether to wrap pure JS functions in \code{htmlwidgets::JS}, Default is FALSE.}
 }
 \value{
 \code{e_inspect} Returns a \code{list} if \code{json} is \code{FALSE} and a
