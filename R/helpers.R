@@ -304,6 +304,7 @@ e_aria <- function(e, enabled = TRUE, ...) {
 #' @inheritParams e_bar
 #' @param json Whether to return the JSON, otherwise returns a \code{list}.
 #' @param txt JSON character string, url, or file.
+#' @param jswrapper Whether to wrap pure JS functions in \code{htmlwidgets::JS}, Default is FALSE.
 #' @param ... Additional options to pass to \link[=jsonlite]{toJSON}.
 #'
 #' @details \code{txt} should contain the full list of options required to build a chart.
@@ -348,10 +349,21 @@ e_inspect <- function(e, json = FALSE, ...) {
 
 #' @rdname echartsNJSON
 #' @export
-echarts_from_json <- function(txt) {
+echarts_from_json <- function(txt, jswrapper = FALSE) {
   json <- jsonlite::fromJSON(txt, simplifyVector = FALSE)
 
   e_charts() -> e
   e$x$opts <- json
+  if (isTRUE(jswrapper)) {
+      for (i in seq_along(e$x$opts$tooltip)) {
+
+        if (is.character(e$x$opts$tooltip[[i]]) && startsWith(e$x$opts$tooltip[[i]], "function")) {
+          # Wrap pure JS functions in htmlwidgets::JS
+          e$x$opts$tooltip[[i]] <- htmlwidgets::JS(e$x$opts$tooltip[[i]])
+        }
+
+      }
+  }
+
   e
 }
