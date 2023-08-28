@@ -27,7 +27,7 @@ echarts_build <- function(e) {
 #' @param renderer Renderer, takes \code{canvas} (default) or \code{svg}.
 #' @param timeline Set to \code{TRUE} to build a timeline, see timeline section.
 #' @param ... Any other argument.
-#' @param reorder Set the \code{FALSE} to not reorder numeric x axis values.
+#' @param reorder Set to \code{FALSE} to not reorder numeric x axis values.
 #'
 #' @section Timeline:
 #' The timeline feature currently supports the following chart types.
