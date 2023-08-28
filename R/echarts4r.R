@@ -29,8 +29,8 @@ echarts_build <- function(e) {
 #' @param ... Any other argument.
 #' @param reorder Set to \code{FALSE} to not reorder numeric x axis values.
 #'
-#' @section Details: The chart is created inside a parent *<div>* element, the
-#'   dimensions of which are controlled by the \code{'width'} and
+#' @section Details: The chart is created inside a parent \code{'<div>'}
+#'   element, the dimensions of which are controlled by the \code{'width'} and
 #'   \code{'height'} arguments. When these dimensions are small, it is possible
 #'   that the chart \code{'grid'} resizes to a size larger than the parent,
 #'   which might result in unexpected size given the input arguments. To disable
@@ -472,8 +472,8 @@ e_data <- function(e, data, x) {
 #' @param id Target chart id.
 #' @param session Shiny session.
 #'
-#' @section Details: The chart is created inside a parent *<div>* element, the
-#'   dimensions of which are controlled by the \code{'width'} and
+#' @section Details: The chart is created inside a parent \code{'<div>'}
+#'   element, the dimensions of which are controlled by the \code{'width'} and
 #'   \code{'height'} arguments. When these dimensions are small, it is possible
 #'   that the chart \code{'grid'} resizes to a size larger than the parent,
 #'   which might result in unexpected size given the input arguments. To disable
