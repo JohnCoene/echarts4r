@@ -29,8 +29,17 @@ echarts_build <- function(e) {
 #' @param ... Any other argument.
 #' @param reorder Set to \code{FALSE} to not reorder numeric x axis values.
 #'
-#' @section Timeline:
-#' The timeline feature currently supports the following chart types.
+#' @section Details: The chart is created inside a parent *<div>* element, the
+#'   dimensions of which are controlled by the \code{'width'} and
+#'   \code{'height'} arguments. When these dimensions are small, it is possible
+#'   that the chart \code{'grid'} resizes to a size larger than the parent,
+#'   which might result in unexpected size given the input arguments. To disable
+#'   this automatic readjustment, define a static \code{\link{e_grid}} like the
+#'   following: \code{'e_grid(e = current_chart, top = 0, left = 20, right = 0,
+#'   bottom = 20)'}.
+#'
+#' @section Timeline: The timeline feature currently supports the following
+#'   chart types.
 #' \itemize{
 #'   \item{\code{\link{e_bar}}}
 #'   \item{\code{\link{e_line}}}
