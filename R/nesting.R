@@ -80,26 +80,30 @@ e_add_nested <- function(e, param, ..., .serie = NULL, .data = NULL) {
   if (missing(e) || missing(param)) {
     stop("missing e or param", call. = FALSE)
   }
-
+  
   if(is.null(.data))
     ds <- e$x$data
   else
     ds <- map_grps_(.data, e$x$tl)
-
+  
   for (i in seq_along(ds)) {
     data <- ds[[i]] |>
       dplyr::select(...)
-
+    
     data <- apply(data, 1, as.list)
-
+    
     for (j in seq_along(data)) {
-      if(!is.null(.serie) && .serie != j)
-        next
       
       if (!e$x$tl) {
-        e$x$opts$series[[i]]$data[[j]][[param]] <- data[[j]]
+        for(k in seq_along(e$x$opts$series)){
+          if(!is.null(.serie) && .serie != k)
+            next
+        e$x$opts$series[[k]]$data[[j]][[param]] <- data[[j]]
+        }
       } else {
         for(k in seq_along(e$x$opts$options[[i]]$series)){
+          if(!is.null(.serie) && .serie != k) 
+            next
           e$x$opts$options[[i]]$series[[k]]$data[[j]][[param]] <- data[[j]]
         }
       }
