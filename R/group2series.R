@@ -8,6 +8,12 @@ map_grps_ <- function(data, timeline = FALSE) {
     splat <- purrr::map(splat, as.data.frame)
     names(splat) <- keys
     data <- splat
+  } else if (inherits(data, "grouped_tt")) {
+    splat <- split(data, factor(data[[attr(data, "groups")]]))
+    keys <- names(splat)
+    splat <- purrr::map(splat, as.data.frame)
+    names(splat) <- keys
+    data <- splat
   } else {
     if (inherits(data, "data.frame")) {
       data <- as.data.frame(data)
