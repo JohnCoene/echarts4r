@@ -1236,11 +1236,11 @@ e_graph_gl.echarts4rProxy <- function(e, layout = "force", name = NULL, rm_x = T
 
 #' @rdname graph
 #' @export
-e_graph_nodes <- function(e, nodes, names, value, size, category, symbol = NULL, legend = TRUE) UseMethod("e_graph_nodes")
+e_graph_nodes <- function(e, nodes, names, value, size, category, symbol = NULL, legend = TRUE, xpos = NULL, ypos = NULL) UseMethod("e_graph_nodes")
 
 #' @export
 #' @method e_graph_nodes echarts4r
-e_graph_nodes.echarts4r <- function(e, nodes, names, value, size, category, symbol = NULL, legend = TRUE) {
+e_graph_nodes.echarts4r <- function(e, nodes, names, value, size, category, symbol = NULL, legend = TRUE, xpos = NULL, ypos = NULL) {
   if (missing(nodes) || missing(names) || missing(value)) {
     stop("missing arguments", call. = FALSE)
   }
@@ -1249,6 +1249,9 @@ e_graph_nodes.echarts4r <- function(e, nodes, names, value, size, category, symb
   symbolSize <- dplyr::enquo(size)
   symbol <- dplyr::enquo(symbol)
   names <- dplyr::enquo(names)
+  xpos <- dplyr::enquo(xpos)
+  ypos <- dplyr::enquo(ypos)
+
 
   if (!missing(category) && !missing(size)) {
     e$x$opts$series[[length(e$x$opts$series)]]$categories <- .build_graph_category(nodes, dplyr::enquo(category))
@@ -1263,7 +1266,9 @@ e_graph_nodes.echarts4r <- function(e, nodes, names, value, size, category, symb
       value,
       symbolSize,
       dplyr::enquo(category),
-      symbol
+      symbol,
+      xpos,
+      ypos
     )
   } else if (missing(category) && !missing(size)) {
     nodes <- .build_graph_nodes_no_cat(
@@ -1271,14 +1276,18 @@ e_graph_nodes.echarts4r <- function(e, nodes, names, value, size, category, symb
       names,
       value,
       symbolSize,
-      symbol
+      symbol,
+      xpos,
+      ypos
     )
   } else if (missing(category) && missing(size)) {
     nodes <- .build_graph_nodes_no_size(
       nodes,
       names,
       value,
-      symbol
+      symbol,
+      xpos,
+      ypos
     )
   }
 
@@ -1289,7 +1298,7 @@ e_graph_nodes.echarts4r <- function(e, nodes, names, value, size, category, symb
 
 #' @export
 #' @method e_graph_nodes echarts4rProxy
-e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category, symbol = NULL, legend = TRUE) {
+e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category, symbol = NULL, legend = TRUE, xpos = NULL, ypos = NULL) {
   if (missing(nodes) || missing(names) || missing(value)) {
     stop("missing arguments", call. = FALSE)
   }
@@ -1298,6 +1307,8 @@ e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category,
   symbolSize <- dplyr::enquo(size)
   symbol <- dplyr::enquo(symbol)
   names <- dplyr::enquo(names)
+  xpos <- dplyr::enquo(xpos)
+  ypos <- dplyr::enquo(ypos)
 
   if (!missing(category) && !missing(size)) {
     e$chart$x$opts$series[[length(e$chart$x$opts$series)]]$categories <- .build_graph_category(nodes, dplyr::enquo(category))
@@ -1312,7 +1323,9 @@ e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category,
       value,
       symbolSize,
       symbol,
-      dplyr::enquo(category)
+      dplyr::enquo(category),
+      xpos,
+      ypos
     )
   } else if (missing(category) && !missing(size)) {
     nodes <- .build_graph_nodes_no_cat(
@@ -1320,14 +1333,18 @@ e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category,
       names,
       value,
       symbolSize,
-      symbol
+      symbol,
+      xpos,
+      ypos
     )
   } else if (missing(category) && missing(size)) {
     nodes <- .build_graph_nodes_no_size(
       nodes,
       names,
       value,
-      symbol
+      symbol,
+      xpos,
+      ypos
     )
   }
 
