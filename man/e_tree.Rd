@@ -37,9 +37,9 @@ df <- tibble(
           children = list(
             tibble(
               name = c("shark", "tuna")
-              ),
-              # 4th level
-              NULL # kelp
+            ),
+            # 4th level
+            NULL # kelp
           )
         )
       )

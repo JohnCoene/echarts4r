@@ -52,7 +52,7 @@ Add bar serie.
 }
 \note{
 The bar serie expects the data on the x axis to be
-\code{categorical} in R this means a \code{factor} or 
+\code{categorical} in R this means a \code{factor} or
 \code{character}. If the data on the x axis is numeric
 everything should work well in most cases but strange
 behaviour may be observed.
@@ -61,7 +61,7 @@ behaviour may be observed.
 library(dplyr)
 
 mtcars |>
-  tibble::rownames_to_column("model") |> 
+  tibble::rownames_to_column("model") |>
   mutate(total = mpg + qsec) |>
   arrange(desc(total)) |>
   e_charts(model) |>

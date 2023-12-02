@@ -27,7 +27,9 @@ e_graph_nodes(
   size,
   category,
   symbol = NULL,
-  legend = TRUE
+  legend = TRUE,
+  xpos = NULL,
+  ypos = NULL
 )
 
 e_graph_edges(e, edges, source, target, value, size)
@@ -60,6 +62,8 @@ graph but is only necessary for GL.}
 
 \item{legend}{Whether to add serie to legend.}
 
+\item{xpos, ypos}{X and Y coordinates for nodes. Valid when \code{layout = "none"}}
+
 \item{edges}{Data.frame of edges.}
 
 \item{source, target}{Column names of source and target.}
@@ -84,7 +88,7 @@ edges <- data.frame(
   source = sample(nodes$name, 20, replace = TRUE),
   target = sample(nodes$name, 20, replace = TRUE),
   value = value_edges,
-  size = ceiling(value_edges/20),
+  size = ceiling(value_edges / 20),
   stringsAsFactors = FALSE
 )
 
@@ -113,6 +117,27 @@ e_charts() |>
   e_graph_gl() |>
   e_graph_nodes(nodes, name, value, size, grp) |>
   e_graph_edges(edges, source, target)
+
+# Fixed node positions
+nodes <- data.frame(
+  name = c("A", "B", "C", "D", "E"),
+  value = c("A", "B", "C", "D", "E"),
+  group = c("gr1", "gr1", "gr2", "gr2", "gr3"),
+  size = 3:7 * 10,
+  x = c(0, 200, 400, 600, 800),
+  y = c(100, 100, 200, 200, 0)
+)
+
+edges <- data.frame(
+  source = c("A", "B", "C", "D", "E"),
+  target = c("B", "C", "D", "E", "D")
+)
+
+e_charts() |>
+  e_graph(layout = "none", autoCurveness = TRUE) |>
+  e_graph_nodes(nodes, name, value, size, category = group, xpos = x, ypos = y) |>
+  e_graph_edges(edges, source, target) |>
+  e_tooltip()
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-graph}{Additional arguments},
