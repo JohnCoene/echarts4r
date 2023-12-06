@@ -29,7 +29,7 @@ Draw pie and donut charts.
 \examples{
 mtcars |>
   head() |>
-  tibble::rownames_to_column("model") |> 
+  tibble::rownames_to_column("model") |>
   e_charts(model) |>
   e_pie(carb)
 

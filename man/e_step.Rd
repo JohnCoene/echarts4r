@@ -60,7 +60,7 @@ Add step serie.
 }
 \examples{
 USArrests |>
-  tibble::rownames_to_column("State") |> 
+  tibble::rownames_to_column("State") |>
   e_charts(State) |>
   e_step(Murder, name = "Start", step = "start", fill = TRUE) |>
   e_step(Rape, name = "Middle", step = "middle") |>

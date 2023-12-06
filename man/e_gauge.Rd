@@ -28,14 +28,14 @@ Plot a gauge.
 e_charts() |>
   e_gauge(57, "PERCENT")
 
-# timeline 
-data.frame(time = 2015:2017) |> 
-  group_by(time) |> 
+# timeline
+data.frame(time = 2015:2017) |>
+  group_by(time) |>
   e_charts(timeline = TRUE) |>
-    e_gauge(
-      c(57, 23, 65),
-      c("percent", "percentage", "cases")
-    )
+  e_gauge(
+    c(57, 23, 65),
+    c("percent", "percentage", "cases")
+  )
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-gauge}{Additional arguments}

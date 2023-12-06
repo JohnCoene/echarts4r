@@ -4,7 +4,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   vect <- data[[x]]
 
   if (reorder) {
-    if (any(c(inherits(vect, "numeric"),inherits(vect, "integer")))) {
+    if (any(c(inherits(vect, "numeric"), inherits(vect, "integer")))) {
       data <- data[order(data[[x]]), ]
     }
   }
@@ -66,8 +66,8 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 }
 
 .build_data <- function(e, ...) {
-  data <- e$x$data[[1]]  |>
-     dplyr::select(...)
+  data <- e$x$data[[1]] |>
+    dplyr::select(...)
   # data <- data[, c(...), drop = FALSE]
   data <- unname(data)
 
@@ -104,7 +104,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
       x = .jitter(x, factor, amount),
       y = .jitter(y, factor, amount)
     )
-  
+
   data <- unname(data)
 
   apply(data, 1, function(x) {
@@ -114,15 +114,15 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 
 .build_data_jitter <- function(data, x, y, factor = 0, amount = NULL) {
   row.names(data) <- NULL
-  
+
   data <- data |>
     dplyr::select(x = x, y = y) |>
     dplyr::mutate(
       x = .jitter(x, factor, amount),
       y = .jitter(y, factor, amount)
-    ) 
-    
-    data <- unname(data)
+    )
+
+  data <- unname(data)
 
   apply(data, 1, function(x) {
     list(value = unlist(x, use.names = FALSE))
@@ -212,92 +212,89 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   apply(edges, 1, as.list)
 }
 
-.build_graph_nodes <- function(nodes, names, value, symbolSize, category, symbol) {
+.build_graph_nodes <- function(nodes, names, value, symbolSize, category, symbol, xpos, ypos) {
   row.names(nodes) <- NULL
 
-  nodes |>
+  data <- nodes |>
     dplyr::select(
-      !!names,
-      !!value,
-      !!symbolSize,
-      !!category,
-      !!symbol,
-    ) -> data
-
-  names(data) <- c("name", "value", "symbolSize", "category", "symbol")[1:ncol(data)]
+      name = !!names,
+      value = !!value,
+      symbolSize = !!symbolSize,
+      category = !!category,
+      symbol = !!symbol,
+      x = !!xpos,
+      y = !!ypos
+    )
 
   apply(data, 1, as.list)
 }
 
-.build_graph_nodes_no_size <- function(nodes, names, value, symbol) {
+.build_graph_nodes_no_size <- function(nodes, names, value, symbol, xpos, ypos) {
   row.names(nodes) <- NULL
 
-  nodes |>
+  data <- nodes |>
     dplyr::select(
-      !!names,
-      !!value,
-      !!symbol,
-    ) -> data
-
-  names(data) <- c("name", "value", "symbol")[1:ncol(data)]
+      name = !!names,
+      value = !!value,
+      symbol = !!symbol,
+      x = !!xpos,
+      y = !!ypos
+    )
 
   apply(data, 1, as.list)
 }
 
-.build_graph_nodes_no_cat <- function(nodes, names, value, symbolSize, symbol) {
+.build_graph_nodes_no_cat <- function(nodes, names, value, symbolSize, symbol, xpos, ypos) {
   row.names(nodes) <- NULL
 
-  nodes |>
+  data <- nodes |>
     dplyr::select(
-      !!names,
-      !!value,
-      !!symbolSize,
-      !!symbol
-    ) -> data
-
-  names(data) <- c("name", "value", "symbolSize", "symbol")[1:ncol(data)]
+      name = !!names,
+      value = !!value,
+      symbolSize = !!symbolSize,
+      symbol = !!symbol,
+      x = !!xpos,
+      y = !!ypos
+    )
 
   apply(data, 1, as.list)
 }
 
 .build_graph_edges <- function(edges, source, target, value, size) {
   row.names(edges) <- NULL
-  
+
   if (is.null(size)) {
-    
-    edges |>
+    data <- edges |>
       dplyr::select(
         source = !!source,
         target = !!target,
         value = !!value
-      ) -> data
-    
+      )
+
     x <- apply(data, 1, as.list)
-    
   } else {
-    
-    edges |>
+    data <- edges |>
       dplyr::select(
         source = !!source,
         target = !!target,
         value = !!value,
         size = !!size
-      ) -> data
-    
+      )
+
     x <- apply(data, 1, function(x) {
       list(
         source = unname(x["source"]),
         target = unname(x["target"]),
-        value = {if (is.null(value)) "" else unname(x["value"])},
+        value = {
+          if (is.null(value)) "" else unname(x["value"])
+        },
         symbolSize = c(5, 20),
         lineStyle = list(width = unname(x["size"]))
       )
     })
-    
   }
-  
+
   x
-  
 }
 
 .build_graph_category <- function(nodes, cat) {
@@ -374,7 +371,6 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 #' @noRd
 #' @keywords internal
 .build_sun <- function(e, styles = NULL, names = NULL, levels = NULL) {
-
   #' recursive json-list traversal, append style on matching level and/or name
   recu <- function(chld, level) {
     if (!is.null(levels)) {
@@ -456,7 +452,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   data <- e$x$data[[i]] |>
     dplyr::select(serie) |>
     unname()
-  
+
   data[[1]]
 }
 
@@ -576,7 +572,6 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 
 
 .build_height <- function(e, serie, color, j) {
-
   # data <- .build_data(e, e$x$mapping$x, serie, names = c("name", "height"))
   e$x$data[[j]] |>
     dplyr::select(
@@ -695,8 +690,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
     if (length(e$x$opts$graphic) == 0) {
       e$x$opts$graphic <- list(...)
     }
-  } else
-  if (length(e$x$opts$baseOption$graphic) == 0) {
+  } else if (length(e$x$opts$baseOption$graphic) == 0) {
     e$x$opts$baseOption$graphic <- list(...)
   }
 

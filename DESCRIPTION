@@ -11,7 +11,8 @@ Authors@R: c(
   person("Robin", "Cura", email = "robin.cura@gmail.com", role = "ctb", comment = c(ORCID = "0000-0001-5926-1828")),
   person("Mathida", "Chuk", email = "mathidachuk@gmail.com", role = "ctb"),
   person("Robert", "Koetsier", email = "rk8roko@gmail.com ", role = "ctb", comment = c(ORCID = "0000-0002-4477-5401")),
-  person("Jelle", "Geertsma", email = "rdatasculptor@gmail.com", role = "ctb")
+  person("Jelle", "Geertsma", email = "rdatasculptor@gmail.com", role = "ctb"),
+  person("Teofil", "Nakov", email = "teofiln@gmail.com", role = "ctb")
   )
 Description: Easily create interactive charts by leveraging the 'Echarts Javascript' library which includes
     36 chart types, themes, 'Shiny' proxies and animations.

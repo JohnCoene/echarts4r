@@ -54,12 +54,23 @@ is useful if you want to save an expression in a variable.}
 
 \item{session}{Shiny session.}
 
-\item{reorder}{Set the \code{FALSE} to not reorder numeric x axis values.}
+\item{reorder}{Set to \code{FALSE} to not reorder numeric x axis values.}
 }
 \description{
 Output and render functions for using echarts4r within Shiny
 applications and interactive Rmd documents.
 }
+\section{Details}{
+ The chart is created inside a parent \code{'<div>'}
+  element, the dimensions of which are controlled by the \code{'width'} and
+  \code{'height'} arguments. When these dimensions are small, it is possible
+  that the chart \code{'grid'} resizes to a size larger than the parent,
+  which might result in unexpected size given the input arguments. To disable
+  this automatic readjustment, define a static \code{\link{e_grid}} like the
+  following: \code{'e_grid(e = current_chart, top = 0, left = 20, right = 0,
+  bottom = 20)'}.
+}
+
 \section{Callbacks}{
 
 \itemize{
