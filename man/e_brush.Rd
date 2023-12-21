@@ -37,7 +37,7 @@ quakes |>
       c(180, -40)
     )
   ) |>
-  e_scatter(lat, mag, stations, coord.system = "geo", name = "mag") |>
+  e_scatter(lat, mag, stations, coord_system = "geo", name = "mag") |>
   e_data(quakes, depth) |>
   e_scatter(mag, mag, stations, name = "mag & depth") |>
   e_grid(right = 40, top = 100, width = "30\%") |>

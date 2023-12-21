@@ -31,7 +31,7 @@ df |>
   e_polar() |>
   e_angle_axis() |>
   e_radius_axis(x) |>
-  e_bar(y, coord.system = "polar")
+  e_bar(y, coord_system = "polar")
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#radiusAxis}{Additional arguments}

@@ -31,7 +31,7 @@ df |>
   e_polar(FALSE) |>
   e_angle_axis(FALSE) |>
   e_radius_axis(FALSE) |>
-  e_line(y, coord.system = "polar", smooth = TRUE) |>
+  e_line(y, coord_system = "polar", smooth = TRUE) |>
   e_legend(show = FALSE)
 
 df <- data.frame(x = LETTERS[1:5], y = runif(5))
@@ -41,7 +41,7 @@ df |>
   e_polar() |>
   e_angle_axis(x) |>
   e_radius_axis() |>
-  e_line(y, coord.system = "polar", smooth = TRUE)
+  e_line(y, coord_system = "polar", smooth = TRUE)
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#angleAxis}{Additional arguments}

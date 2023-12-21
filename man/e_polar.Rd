@@ -25,7 +25,7 @@ df |>
   e_polar() |>
   e_angle_axis() |>
   e_radius_axis() |>
-  e_line(y, coord.system = "polar", smooth = TRUE)
+  e_line(y, coord_system = "polar", smooth = TRUE)
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#polar}{Additional arguments}
