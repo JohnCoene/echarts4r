@@ -2035,7 +2035,7 @@ e_histogram_ <- function(
   e,
   serie,
   breaks = "Sturges",
-  name = NULL,
+  name = "histogram",
   legend = TRUE,
   bar_width = "90%",
   x_index = 0,
