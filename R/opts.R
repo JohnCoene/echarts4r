@@ -595,7 +595,7 @@ e_datazoom <- function(e, x_index = NULL, y_index = NULL, toolbox = TRUE, ...) {
 #'       c(180, -40)
 #'     )
 #'   ) |>
-#'   e_scatter(lat, mag, stations, coord.system = "geo", name = "mag") |>
+#'   e_scatter(lat, mag, stations, coord_system = "geo", name = "mag") |>
 #'   e_data(quakes, depth) |>
 #'   e_scatter(mag, mag, stations, name = "mag & depth") |>
 #'   e_grid(right = 40, top = 100, width = "30%") |>
@@ -700,7 +700,7 @@ e_title <- function(e, text = NULL, subtext = NULL, link = NULL, sublink = NULL,
 #'   e_polar() |>
 #'   e_angle_axis() |>
 #'   e_radius_axis() |>
-#'   e_line(y, coord.system = "polar", smooth = TRUE)
+#'   e_line(y, coord_system = "polar", smooth = TRUE)
 #' @seealso \href{https://echarts.apache.org/en/option.html#polar}{Additional arguments}
 #'
 #' @export

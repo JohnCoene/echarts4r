@@ -313,7 +313,7 @@ e_grid <- function(e, index = NULL, ...) {
 #'   e_polar() |>
 #'   e_angle_axis() |>
 #'   e_radius_axis(x) |>
-#'   e_bar(y, coord.system = "polar")
+#'   e_bar(y, coord_system = "polar")
 #' @seealso \href{https://echarts.apache.org/en/option.html#radiusAxis}{Additional arguments}
 #'
 #' @export
@@ -390,7 +390,7 @@ e_radius_axis_ <- function(e, serie = NULL, show = TRUE, ...) {
 #'   e_polar(FALSE) |>
 #'   e_angle_axis(FALSE) |>
 #'   e_radius_axis(FALSE) |>
-#'   e_line(y, coord.system = "polar", smooth = TRUE) |>
+#'   e_line(y, coord_system = "polar", smooth = TRUE) |>
 #'   e_legend(show = FALSE)
 #'
 #' df <- data.frame(x = LETTERS[1:5], y = runif(5))
@@ -400,7 +400,7 @@ e_radius_axis_ <- function(e, serie = NULL, show = TRUE, ...) {
 #'   e_polar() |>
 #'   e_angle_axis(x) |>
 #'   e_radius_axis() |>
-#'   e_line(y, coord.system = "polar", smooth = TRUE)
+#'   e_line(y, coord_system = "polar", smooth = TRUE)
 #' @seealso \href{https://echarts.apache.org/en/option.html#angleAxis}{Additional arguments}
 #'
 #' @name angle_axis

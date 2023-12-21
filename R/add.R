@@ -4078,30 +4078,32 @@ e_loess.echarts4rProxy <- function(
 #' @rdname histogram
 #' @export
 e_histogram <- function(
-    e,
-    serie,
-    breaks = "Sturges",
-    name = NULL,
-    legend = TRUE,
-    bar_width = "99%",
-    x_index = 0,
-    y_index = 0,
-    ...) {
+  e,
+  serie,
+  breaks = "Sturges",
+  name = "histogram",
+  legend = TRUE,
+  bar_width = "99%",
+  x_index = 0,
+  y_index = 0,
+  ...
+) {
   UseMethod("e_histogram")
 }
 
 #' @export
 #' @method e_histogram echarts4r
 e_histogram.echarts4r <- function(
-    e,
-    serie,
-    breaks = "Sturges",
-    name = NULL,
-    legend = TRUE,
-    bar_width = "99%",
-    x_index = 0,
-    y_index = 0,
-    ...) {
+  e,
+  serie,
+  breaks = "Sturges",
+  name = "histogram",
+  legend = TRUE,
+  bar_width = "99%",
+  x_index = 0,
+  y_index = 0,
+  ...
+) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
@@ -4116,15 +4118,16 @@ e_histogram.echarts4r <- function(
 #' @export
 #' @method e_histogram echarts4rProxy
 e_histogram.echarts4rProxy <- function(
-    e,
-    serie,
-    breaks = "Sturges",
-    name = NULL,
-    legend = TRUE,
-    bar_width = "99%",
-    x_index = 0,
-    y_index = 0,
-    ...) {
+  e,
+  serie,
+  breaks = "Sturges",
+  name = "histogram",
+  legend = TRUE,
+  bar_width = "99%",
+  x_index = 0,
+  y_index = 0,
+  ...
+) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
