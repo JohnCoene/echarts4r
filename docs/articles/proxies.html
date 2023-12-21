@@ -177,7 +177,7 @@ much slicker Shiny charts.</p>
 <p>Below is a basic Shiny application that uses echarts4r. We’ll
 afterwards add to the app the ability to add and remove a serie.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://echarts4r.john-coene.com/" class="external-link">echarts4r</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># phoney data</span></span>
@@ -215,7 +215,7 @@ function is used to actually send the the updates to the front end and
 have the chart updated, this allows batching updates, e.g.: add a
 scatter plot and a line at once.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://echarts4r.john-coene.com/" class="external-link">echarts4r</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># phoney data</span></span>
@@ -246,12 +246,12 @@ scatter plot and a line at once.</p>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
-<p><img src="https://echarts4r.john-coene.com/articles/echarts4r-add1.gif" class="img-responsive responsive-img"></p>
+<p><img src="echarts4r-add1.gif" class="img-responsive responsive-img"></p>
 <p>We can then add another button to remove the serie with
 <code>e_remove_serie</code> which does not require the use of
 <code>e_execute</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://echarts4r.john-coene.com/" class="external-link">echarts4r</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># phoney data</span></span>
@@ -292,7 +292,7 @@ scatter plot and a line at once.</p>
 <p>We can now demonstrate how to add multiple series, and the useful of
 <code>e_execute</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://echarts4r.john-coene.com/" class="external-link">echarts4r</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># phoney data</span></span>

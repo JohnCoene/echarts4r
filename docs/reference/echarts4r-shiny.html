@@ -202,9 +202,20 @@ is useful if you want to save an expression in a variable.</p></dd>
 
 
 <dt>reorder</dt>
-<dd><p>Set the <code>FALSE</code> to not reorder numeric x axis values.</p></dd>
+<dd><p>Set to <code>FALSE</code> to not reorder numeric x axis values.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>The chart is created inside a parent <code>'&lt;div&gt;'</code>
+  element, the dimensions of which are controlled by the <code>'width'</code> and
+  <code>'height'</code> arguments. When these dimensions are small, it is possible
+  that the chart <code>'grid'</code> resizes to a size larger than the parent,
+  which might result in unexpected size given the input arguments. To disable
+  this automatic readjustment, define a static <code><a href="e_grid.html">e_grid</a></code> like the
+  following: <code>'e_grid(e = current_chart, top = 0, left = 20, right = 0,
+  bottom = 20)'</code>.</p>
+    </div>
     <div class="section level2">
     <h2 id="callbacks">Callbacks<a class="anchor" aria-label="anchor" href="#callbacks"></a></h2>
     
