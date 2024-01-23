@@ -1069,6 +1069,7 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #' @param xpos,ypos X and Y coordinates for nodes. Valid when \code{layout = "none"}
 #' @param edges Data.frame of edges.
 #' @param source,target Column names of source and target.
+#' @param color Variable to map to the color of the edges.
 #' @param layout Layout, one of \code{force}, \code{none} or \code{circular}.
 #' @param rm_x,rm_y Whether to remove the x and y axis, defaults to \code{TRUE}.
 #' @param itemStyle This option is available for for GL and canvas
@@ -1122,7 +1123,7 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #'   e_graph_nodes(nodes, name, value, size, grp) |>
 #'   e_graph_edges(edges, source, target)
 #'
-#' # Fixed node positions
+#' # Fixed node positions, and edge color by variable
 #' nodes <- data.frame(
 #'   name = c("A", "B", "C", "D", "E"),
 #'   value = c("A", "B", "C", "D", "E"),
@@ -1134,13 +1135,15 @@ e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", r
 #'
 #' edges <- data.frame(
 #'   source = c("A", "B", "C", "D", "E"),
-#'   target = c("B", "C", "D", "E", "D")
+#'   target = c("B", "C", "D", "E", "D"),
+#'   size = rep(3, 5),
+#'   color = c("red", "green", "blue", "yellow", "black")
 #' )
 #'
 #' e_charts() |>
 #'   e_graph(layout = "none", autoCurveness = TRUE) |>
 #'   e_graph_nodes(nodes, name, value, size, category = group, xpos = x, ypos = y) |>
-#'   e_graph_edges(edges, source, target) |>
+#'   e_graph_edges(edges, source, target, size = size, color = color) |>
 #'   e_tooltip()
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-graph}{Additional arguments},
 #'  \code{\link{e_modularity}}
@@ -1359,11 +1362,11 @@ e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category,
 
 #' @rdname graph
 #' @export
-e_graph_edges <- function(e, edges, source, target, value, size) UseMethod("e_graph_edges")
+e_graph_edges <- function(e, edges, source, target, value, size, color) UseMethod("e_graph_edges")
 
 #' @method e_graph_edges echarts4r
 #' @export
-e_graph_edges.echarts4r <- function(e, edges, source, target, value, size) {
+e_graph_edges.echarts4r <- function(e, edges, source, target, value, size, color) {
   if (missing(edges) || missing(source) || missing(target)) {
     stop("must pass edges, source and target", call. = FALSE)
   }
@@ -1376,17 +1379,23 @@ e_graph_edges.echarts4r <- function(e, edges, source, target, value, size) {
     value <- NULL
   }
 
+  if (missing(color)) {
+    color <- NULL
+  }
+
   source <- dplyr::enquo(source)
   target <- dplyr::enquo(target)
   value <- dplyr::enquo(value)
   size <- dplyr::enquo(size)
+  color <- dplyr::enquo(color)
 
   data <- .build_graph_edges(
     edges,
     source,
     target,
     value,
-    size
+    size,
+    color
   )
 
   # build JSON data
@@ -1397,7 +1406,7 @@ e_graph_edges.echarts4r <- function(e, edges, source, target, value, size) {
 
 #' @method e_graph_edges echarts4rProxy
 #' @export
-e_graph_edges.echarts4rProxy <- function(e, edges, source, target, value, size) {
+e_graph_edges.echarts4rProxy <- function(e, edges, source, target, value, size, color) {
   if (missing(edges) || missing(source) || missing(target)) {
     stop("must pass edges, source and target", call. = FALSE)
   }
@@ -1406,17 +1415,23 @@ e_graph_edges.echarts4rProxy <- function(e, edges, source, target, value, size) 
     size <- NULL
   }
 
+  if (missing(color)) {
+    color <- NULL
+  }
+
   source <- dplyr::enquo(source)
   target <- dplyr::enquo(target)
   value <- dplyr::enquo(value)
   size <- dplyr::enquo(size)
+  color <- dplyr::enquo(color)
 
   data <- .build_graph_edges(
     edges,
     source,
     target,
     value,
-    size
+    size,
+    color
   )
 
   # build JSON data
