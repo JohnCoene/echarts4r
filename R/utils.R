@@ -260,10 +260,10 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   apply(data, 1, as.list)
 }
 
-.build_graph_edges <- function(edges, source, target, value, size) {
+.build_graph_edges <- function(edges, source, target, value, size, color) {
   row.names(edges) <- NULL
 
-  if (is.null(size)) {
+  if (is.null(size) && is.null(color)) {
     data <- edges |>
       dplyr::select(
         source = !!source,
@@ -272,7 +272,9 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
       )
 
     x <- apply(data, 1, as.list)
-  } else {
+  }
+  
+  if (!is.null(size) && is.null(color)) {
     data <- edges |>
       dplyr::select(
         source = !!source,
@@ -290,6 +292,53 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
         },
         symbolSize = c(5, 20),
         lineStyle = list(width = unname(x["size"]))
+      )
+    })
+  }
+
+  if (!is.null(color) && is.null(size)) {
+    data <- edges |>
+      dplyr::select(
+        source = !!source,
+        target = !!target,
+        value = !!value,
+        color = !!color
+      )
+
+    x <- apply(data, 1, function(x) {
+      list(
+        source = unname(x["source"]),
+        target = unname(x["target"]),
+        value = {
+          if (is.null(value)) "" else unname(x["value"])
+        },
+        lineStyle = list(color = unname(x["color"]))
+      )
+    })
+  }
+
+  if (!is.null(size) && !is.null(color)) {
+    data <- edges |>
+      dplyr::select(
+        source = !!source,
+        target = !!target,
+        value = !!value,
+        size = !!size,
+        color = !!color
+      )
+
+    x <- apply(data, 1, function(x) {
+      list(
+        source = unname(x["source"]),
+        target = unname(x["target"]),
+        value = {
+          if (is.null(value)) "" else unname(x["value"])
+        },
+        symbolSize = c(5, 20),
+        lineStyle = list(
+          width = unname(x["size"]),
+          color = unname(x["color"])
+        )
       )
     })
   }
