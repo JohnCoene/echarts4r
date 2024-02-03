@@ -1,7 +1,7 @@
 Package: echarts4r
 Title: Create Interactive Graphs with 'Echarts JavaScript' Version 5
 Date: 2023-06-08
-Version: 0.4.5
+Version: 0.4.5.9000
 Authors@R: c(
   person("John", "Coene", email = "jcoenep@gmail.com", role = c("aut", "cph")),
   person("David", "Munoz Tord", email = "david.munoztord@mailbox.org", role = c("cre", "ctb"), comment = c(ORCID = "0000-0001-7954-8295")),

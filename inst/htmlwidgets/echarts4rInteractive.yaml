@@ -1,0 +1,8 @@
+dependencies:
+ - name: echarts4rInteractive
+   version: 4.8.0
+   src: htmlwidgets/lib/echarts-4.8.0
+   script: 
+      - echarts-en.min.js
+      - ecStat.min.js
+      - dataTool.min.js
