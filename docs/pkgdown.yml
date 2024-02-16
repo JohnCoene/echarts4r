@@ -1,4 +1,4 @@
-pandoc: 3.1.1
+pandoc: 3.1.11.1
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
@@ -31,7 +31,7 @@ articles:
   toolbox: toolbox.html
   tooltip: tooltip.html
   v5: v5.html
-last_built: 2023-12-21T12:12Z
+last_built: 2024-02-16T14:23Z
 urls:
   reference: http://echarts4r.john-coene.com/reference
   article: http://echarts4r.john-coene.com/articles
