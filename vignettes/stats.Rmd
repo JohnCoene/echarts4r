@@ -113,7 +113,7 @@ df <- data.frame(
 
 df |> 
   e_charts() |> 
-  e_histogram(y) |> 
+  e_histogram(y, name = "histogram") |> 
   e_tooltip()
 ```
 
