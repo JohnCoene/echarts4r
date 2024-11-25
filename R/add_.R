@@ -1253,7 +1253,7 @@ e_boxplot_ <- function(e, serie, name = NULL, outliers = TRUE, ...) {
 
 #' @rdname e_boxplot_group
 #' @export
-e_boxplot_group <- function(e, serie, name = NULL, outliers = TRUE, ...) {
+e_boxplot_group_ <- function(e, serie, name = NULL, outliers = TRUE, ...) {
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
