@@ -31,7 +31,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{rows, cols}{Number of rows and columns.}
 
-\item{width}{Wdith of columns, one of \code{xs}, \code{md}, \code{lg}.}
+\item{width}{Width of columns, one of \code{xs}, \code{md}, \code{lg}.}
 
 \item{title}{Title of charts.}
 }

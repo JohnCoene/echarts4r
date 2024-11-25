@@ -1251,6 +1251,68 @@ e_boxplot_ <- function(e, serie, name = NULL, outliers = TRUE, ...) {
   e
 }
 
+#' @rdname e_boxplot_group
+#' @export
+e_boxplot_group <- function(e, serie, name = NULL, outliers = TRUE, ...) {
+  if (missing(serie)) {
+    stop("must pass serie", call. = FALSE)
+  }
+  
+  # Prepare group names if available
+  group_names <- if (!is.null(name)) name else names(e$x$data)
+  
+  # Reset series to ensure clean rendering
+  e$x$opts$series <- list()
+  
+  # Iterate through grouped data
+  for (i in seq_along(e$x$data)) {
+    # Extract data for current group
+    current_data <- e$x$data[[i]]
+    
+    # Compute boxplot statistics for each category if there are multiple categories
+    if(is.null(e$x$mapping$x)) {
+      categories <- serie
+      category_boxplots <- list(boxplot.stats(current_data[[serie]])$stats)
+    } else {
+      categories <- unique(current_data[[e$x$mapping$x]])
+      
+      category_boxplots <- lapply(categories, function(cat) {
+        cat_data <- current_data[current_data[[e$x$mapping$x]] == cat, ]
+        boxplot.stats(cat_data[[serie]])$stats
+      })
+    }
+    
+    # Create series for each group
+    series_item <- list(
+      name = group_names[i],
+      type = "boxplot",
+      data = category_boxplots
+    )
+    
+    # Add series
+    e$x$opts$series[[i]] <- series_item
+    
+    # Add outliers if requested 
+    
+    if (isTRUE(outliers)) {
+      e <- .add_outliers(e, serie, i)
+    }
+
+  }
+  
+  # Set x-axis with all categories
+
+    e$x$opts$xAxis[[1]]$data <- categories
+    e$x$opts$xAxis[[1]]$type <- "category"
+
+  
+  # Add legend
+  e$x$opts$legend$data <- as.list(group_names)
+  e$x$opts$legend$show <- TRUE
+  
+  e
+}
+
 #' @rdname e_tree
 #' @export
 e_tree_ <- function(e, rm_x = TRUE, rm_y = TRUE, ...) {
