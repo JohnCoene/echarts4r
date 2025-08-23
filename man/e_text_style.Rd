@@ -15,9 +15,6 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \description{
 Define global font style.
 }
-\note{
-Do not use \code{e_arrange} in R markdown or Shiny.
-}
 \examples{
 cars |>
   e_charts(dist) |>

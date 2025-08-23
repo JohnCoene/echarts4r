@@ -21,7 +21,7 @@ Customise grid.
 USArrests |>
   e_charts(UrbanPop) |>
   e_line(Assault, smooth = TRUE) |>
-  e_area(Murder, y.index = 1, x.index = 1) |>
+  e_area(Murder, y_index = 1, x_index = 1) |>
   e_y_axis(gridIndex = 1) |>
   e_x_axis(gridIndex = 1) |>
   e_grid(height = "40\%") |>
