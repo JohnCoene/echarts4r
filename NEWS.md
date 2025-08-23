@@ -1,7 +1,11 @@
-# echarts4r 0.4.5.9000
+# echarts4r 0.4.6
 
+- Fix missing package anchors in Rd files for CRAN HTML documentation
+- Fix lost braces issues in `e_pictorial.Rd` and `nesting.Rd` documentation
 - Bump to echarts.js 5.4.3
 - Fix themes [#615](https://github.com/JohnCoene/echarts4r/issues/615)
+- Fix documentation mismatch for `e_graph_edges` function by adding missing `color` parameter
+- Add missing package anchor for `hist` function in `histogram.Rd`
 
 # echarts4r 0.4.5
 
@@ -310,4 +314,3 @@ Initial version with chart types:
 * Flow GL
 * Graph GL
 * Scatter GL
-

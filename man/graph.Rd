@@ -32,7 +32,7 @@ e_graph_nodes(
   ypos = NULL
 )
 
-e_graph_edges(e, edges, source, target, value, size)
+e_graph_edges(e, edges, source, target, value, size, color)
 }
 \arguments{
 \item{e}{An \code{echarts4} object as returned by \code{e_charts}.}
@@ -67,6 +67,8 @@ graph but is only necessary for GL.}
 \item{edges}{Data.frame of edges.}
 
 \item{source, target}{Column names of source and target.}
+
+\item{color}{Variable to map to the color of the edges.}
 }
 \description{
 Create a graph.
@@ -118,7 +120,7 @@ e_charts() |>
   e_graph_nodes(nodes, name, value, size, grp) |>
   e_graph_edges(edges, source, target)
 
-# Fixed node positions
+# Fixed node positions, and edge color by variable
 nodes <- data.frame(
   name = c("A", "B", "C", "D", "E"),
   value = c("A", "B", "C", "D", "E"),
@@ -130,13 +132,15 @@ nodes <- data.frame(
 
 edges <- data.frame(
   source = c("A", "B", "C", "D", "E"),
-  target = c("B", "C", "D", "E", "D")
+  target = c("B", "C", "D", "E", "D"),
+  size = rep(3, 5),
+  color = c("red", "green", "blue", "yellow", "black")
 )
 
 e_charts() |>
   e_graph(layout = "none", autoCurveness = TRUE) |>
   e_graph_nodes(nodes, name, value, size, category = group, xpos = x, ypos = y) |>
-  e_graph_edges(edges, source, target) |>
+  e_graph_edges(edges, source, target, size = size, color = color) |>
   e_tooltip()
 }
 \seealso{
