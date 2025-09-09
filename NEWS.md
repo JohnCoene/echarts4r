@@ -6,7 +6,7 @@
 - Fix themes [#615](https://github.com/JohnCoene/echarts4r/issues/615)
 - Fix documentation mismatch for `e_graph_edges` function by adding missing `color` parameter
 - Add missing package anchor for `hist` function in `histogram.Rd`
-~~~~
+
 # echarts4r 0.4.5
 
 - Update dependencies to `5.4.2`

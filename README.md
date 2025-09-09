@@ -11,8 +11,8 @@
 [Apache ECharts](https://echarts.apache.org/en/) version __5__ for R.
 
 [Website](https://echarts4r.john-coene.com) |
-[Shiny Demo](https://shiny.john-coene.com/echarts4rShiny/) | [Get
-Started](https://echarts4r.john-coene.com/articles/get_started.html)
+<!--[Shiny Demo](https://shiny.john-coene.com/echarts4rShiny/) -->
+[Get Started](https://echarts4r.john-coene.com/articles/get_started.html)
 
 </div>
 
