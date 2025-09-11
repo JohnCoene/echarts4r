@@ -53,7 +53,7 @@ Pictorial bar chart is a type of bar chart that custimzed glyph
 }
 \section{Symbols}{
 
-\itemize{
+\describe{
   \item{Built-in}{ \code{circle}, \code{rect}, \code{roundRect}, \code{triangle}, \code{diamond},
   \code{pin}, \code{arrow}.}
   \item{SVG Path}{ Path data for SVG graphics.}

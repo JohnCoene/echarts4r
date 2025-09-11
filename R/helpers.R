@@ -305,7 +305,7 @@ e_aria <- function(e, enabled = TRUE, ...) {
 #' @param json Whether to return the JSON, otherwise returns a \code{list}.
 #' @param txt JSON character string, url, or file.
 #' @param jswrapper Whether to wrap pure JS functions in \code{htmlwidgets::JS}, Default is FALSE.
-#' @param ... Additional options to pass to \link[=jsonlite]{toJSON}.
+#' @param ... Additional options to pass to \link[jsonlite]{toJSON}.
 #'
 #' @details \code{txt} should contain the full list of options required to build a chart.
 #' This is subsequently passed to the \code{setOption} ECharts (JavaScript) function.
