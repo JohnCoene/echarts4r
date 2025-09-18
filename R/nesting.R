@@ -14,10 +14,10 @@
 #' 
 #' - `e_add_nested`: Adds nested data, e.g.: 
 #' `e_add_nested("itemStyle", color, fontBold)` creates
-#' `{itemStyle: {color: 'red', fontBold: 'bold'}}`.
+#' `\{itemStyle: \{color: 'red', fontBold: 'bold'\}\}`.
 #' - `e_add_unnested`: Adds unnested data, e.g.:
 #' `e_add_unnested("symbolSize", size)` creates
-#' `{symbolSize: 4}`.
+#' `\{symbolSize: 4\}`.
 #'
 #' @details For instance, \code{\link{e_funnel}} lets you pass \code{values} and \code{labels}
 #' (from your initial data.frame) which corresponds to \code{name} and \code{value} in the
@@ -80,20 +80,20 @@ e_add_nested <- function(e, param, ..., .serie = NULL, .data = NULL) {
   if (missing(e) || missing(param)) {
     stop("missing e or param", call. = FALSE)
   }
-  
+
   if(is.null(.data))
     ds <- e$x$data
   else
     ds <- map_grps_(.data, e$x$tl)
-  
+
   for (i in seq_along(ds)) {
     data <- ds[[i]] |>
       dplyr::select(...)
-    
+
     data <- apply(data, 1, as.list)
-    
+
     for (j in seq_along(data)) {
-      
+
       if (!e$x$tl) {
         for(k in seq_along(e$x$opts$series)){
           if(!is.null(.serie) && .serie != k)
@@ -132,7 +132,7 @@ e_add_unnested <- function(e, param, value, .serie = NULL, .data = NULL) {
     for (j in seq_along(data)) {
       if(!is.null(.serie) && .serie != j)
         next
-      
+
       if (!e$x$tl) {
         e$x$opts$series[[i]]$data[[j]][[param]] <- data[j]
       } else {

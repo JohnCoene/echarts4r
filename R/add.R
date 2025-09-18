@@ -3397,10 +3397,10 @@ e_scatter_gl.echarts4rProxy <- function(e, y, z, name = NULL, coord_system = "ge
 #' @param symbol Symbol to plot.
 #'
 #' @section Symbols:
-#' \itemize{
+#' \describe{
 #'   \item{Built-in}{ \code{circle}, \code{rect}, \code{roundRect}, \code{triangle}, \code{diamond},
 #'   \code{pin}, \code{arrow}.}
-#'   \item{SVG Path}
+#'   \item{SVG Path}{ Path data for SVG graphics.}
 #'   \item{Images}{ Path to image, don't forget to precede it with \code{image://}, see examples.}
 #' }
 #'
