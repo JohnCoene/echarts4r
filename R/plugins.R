@@ -224,7 +224,7 @@ e_modularity <- function(e, modularity = TRUE) {
   e
 }
 
-# TODO do we want to use snake_case to be consistent?
+# TODO do we want to use snake_case or use names used in echarts?
 
 #' Segmented Doughnut
 #'
