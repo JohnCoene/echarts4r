@@ -1617,7 +1617,7 @@ e_surface_ <- function(e, y, z, bind = NULL, name = NULL, rm_x = TRUE, rm_y = TR
 
     data <- e$x$data[[i]] |>
       dplyr::select(e$x$mapping$x, y, z)
-    
+
     data <- unname(data)
 
     data <- apply(data, 1, as.list)
@@ -2563,23 +2563,23 @@ e_chord_ <- function(e, source, target, value, rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(source) || missing(target) || missing(value)) {
     stop("missing source, target or values", call. = FALSE)
   }
-  
+
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
-  
+
   # build JSON data
   nodes <- .build_sankey_nodes(e$x$data[[1]], source, target)
-  
+
   # build JSON data
   links <- .build_sankey_edges(e$x$data[[1]], source, target, value)
-  
+
   serie <- list(
     type = "chord",
     data = nodes,
     links = links,
     ...
   )
-  
+
   e$x$opts$series <- append(e$x$opts$series, list(serie))
   e
 }

@@ -14,7 +14,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{start, end}{Start and End point for boundary of zigzag. Also supports vectors for generating multiple breaks. Can also support time values.}
 
-\item{gap}{Determines the visual size of the axis break area. 
+\item{gap}{Determines the visual size of the axis break area.
 Supports Percentage(String) as proportional value relative to axis. Supports Absolute value(numeric) which refers to literal values in the axis similar to start,end (Not a pixel value).}
 
 \item{zigzagAmplitude}{Amplitude of zigzag. Unit is pixels.}
@@ -35,11 +35,11 @@ df |>
   e_charts(x) |>
   e_bar(y) |>
   e_zigzag(axis = 'y', start = 400, end = 500)
-  
+
 df |>
   e_charts(x) |>
   e_bar(y) |>
-  e_zigzag(axis = 'y', start = c(125,400), end = c(150,500))   
+  e_zigzag(axis = 'y', start = c(125,400), end = c(150,500))
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#series-bar}{Additional arguments}

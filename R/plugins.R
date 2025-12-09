@@ -224,6 +224,7 @@ e_modularity <- function(e, modularity = TRUE) {
   e
 }
 
+# TODO do we want to use snake_case to be consistent?
 
 #' Segmented Doughnut
 #'
@@ -237,40 +238,40 @@ e_modularity <- function(e, modularity = TRUE) {
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #'
 #' @examples
-#' 
+#'
 #'
 #' e_chart() |> e_doughnut(numerator = 3, denominator = 6)
-#' 
+#'
 #' @seealso \href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/segmentedDoughnut}{official documentation}
 #'
 #' @rdname e_doughnut
 #' @export
-e_doughnut <- function(e, 
-                        numerator = NULL, 
+e_doughnut <- function(e,
+                        numerator = NULL,
                         denominator = NULL,
                         formatter = "{c}/{b}",
                         fontSize = "10em",
                         fontColor = "#555",
-                        center = c("50%","50%"), 
-                        radius = c("50%","65%"), 
-                        rm_x = TRUE, 
-                        rm_y = TRUE, 
+                        center = c("50%","50%"),
+                        radius = c("50%","65%"),
+                        rm_x = TRUE,
+                        rm_y = TRUE,
                         ...) {
-  
+
   if (missing(e)) {
     stop("missing e", call. = FALSE)
   }
-  
+
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
-  
+
   serie <- list(
     type = "custom",
     renderItem = "segmentedDoughnut",
     coordinateSystem = "none",
     itemPayload = list(center = as.list(center),
                        radius = as.list(radius),
-                       segmentCount = denominator, 
+                       segmentCount = denominator,
                        label = list(
                          show = TRUE,
                          formatter = formatter,
@@ -281,9 +282,9 @@ e_doughnut <- function(e,
     data = list(numerator),
     ...
   )
-  
+
   e$x$opts$series <- append(e$x$opts$series, list(serie))
-  
+
   # add dependency
   path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
   dep <- htmltools::htmlDependency(
@@ -291,8 +292,108 @@ e_doughnut <- function(e,
     version = "1.0.0",
     src = c(file = path),
     script = "echarts-doughnut.js")
-  
+
   e$dependencies <- append(e$dependencies, list(dep))
-  
+
+  e
+}
+
+# TODO document more
+#' Violin chart
+#'
+#' Draw a violin chart with scattered dots.
+#'
+#' @param e
+#' @param data
+#' @param x
+#' @param y
+#' @param show_scatter TRUE/FALSE to show scatter dots
+#' @param violin_color violin color
+#' @param violin_opacity opacity of the violin, between 0-1.
+#' @param scatter_color scatter color
+#' @param scatter_size size of scatter dots
+#' @param bin_count Count of bins the data is divided into when calculating the distribution.
+#' @param bandwidth_scale smoothness of the violin's shape by adjusting the kernel density estimation (KDE) bandwidth. A higher value smoothes the shape.
+#' @param ...
+#'
+#' @seealso \href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/segmentedDoughnut}{official documentation}
+#'
+#' @rdname e_violin
+#' @export
+#' @examples
+#' e_chart() |> e_violin(data = iris, x =  "Species", y = "Sepal.Length") |> e_jitter(jitter = 100)
+#'
+e_violin <- function(e,
+                     data,
+                     x,
+                     y,
+                     show_scatter = TRUE,
+                     violin_color = NULL,
+                     violin_opacity = 0.8,
+                     scatter_color = NULL,
+                     scatter_size = 6,
+                     bin_count = 20,
+                     bandwidth_scale = 1.5,
+                       ...) {
+
+  if (missing(e)) {
+    stop("missing e", call. = FALSE)
+  }
+
+  e <- e_chart()
+
+  xData = data[[x]]
+
+  # Get unique values for x-axis
+  xData <- unique(data[[x]]) |> as.character()
+
+  # Create dataSource with header
+  dataSource <- list(c(x, y))  # Start with header row
+
+  # Add all data points
+  for (i in 1:nrow(data)) {
+    dataSource <- append(dataSource, list(c(as.character(data[[x]][i]), data[[y]][i])))
+  }
+
+  e$x$opts$xAxis = list(type = 'category')
+
+  e$x$opts$dataset <- list(source = dataSource)
+
+  violin <- list(
+    color = violin_color,
+    type = "custom",
+    renderItem = 'violin',
+    colorBy = 'item',
+    silent = TRUE,
+    itemPayload = list(
+      areaOpacity = violin_opacity,
+      binCount = bin_count,
+      bandWidthScale = bandwidth_scale
+    ))
+
+  if(show_scatter){
+
+    scatter <- list(
+      color = scatter_color,
+      type = "scatter",
+      colorBy = 'item',
+      silent = TRUE,
+      symbolSize = scatter_size
+    )} else {
+    scatter <- NULL
+    }
+
+  e$x$opts$series <- list(violin, scatter)
+
+  # add dependency
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-violin",
+    version = "1.0.0",
+    src = c(file = path),
+    script = "echarts-violin.js")
+
+  e$dependencies <- append(e$dependencies, list(dep))
+
   e
 }

@@ -19,7 +19,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{jitterMargin}{When you have jitter and jiterOverlap is FALSE, this is the minimum distance in pixels between two data points.}
 }
 \description{
-helper function for generating jitter between points in a scatter plot. This is only applicable to e_Scatter().
+helper function for generating jitter between points in a scatter plot. This is only applicable to e_scatter().
 }
 \examples{
 
@@ -30,7 +30,7 @@ value = c(rnorm(50, mean = 5, sd = 1),
          group = rep(c("Group A", "Group B", "Group C"), each = 50)
           )
 
-df |> e_charts(group) |> e_scatter(value) |> e_jitter()  
+df |> e_charts(group) |> e_scatter(value) |> e_jitter()
 }
 \seealso{
 \href{https://echarts.apache.org/en/option.html#yAxis.jitter}{Additional arguments}

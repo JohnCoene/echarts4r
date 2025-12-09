@@ -375,13 +375,13 @@ echarts_from_json <- function(txt, jswrapper = FALSE) {
 #' @inheritParams e_bar
 #' @param axis Axis to apply formatter to. Supports x and y axis
 #' @param start,end Start and End point for boundary of zigzag. Also supports vectors for generating multiple breaks. Can also support time values.
-#' @param gap Determines the visual size of the axis break area. 
+#' @param gap Determines the visual size of the axis break area.
 #' Supports Percentage(String) as proportional value relative to axis. Supports Absolute value(numeric) which refers to literal values in the axis similar to start,end (Not a pixel value).
-#' @param zigzagAmplitude Amplitude of zigzag. Unit is pixels. 
+#' @param zigzagAmplitude Amplitude of zigzag. Unit is pixels.
 #' @param ... Any other arguments to pass to breakArea argument.
 #'
 #' @examples
-#' 
+#'
 #' df <- data.frame(
 #'               x = c("a", "b", "c", "d", "c"),
 #'               y = c(100, 200, 200, 700, 300)
@@ -391,40 +391,40 @@ echarts_from_json <- function(txt, jswrapper = FALSE) {
 #'   e_charts(x) |>
 #'   e_bar(y) |>
 #'   e_zigzag(axis = 'y', start = 400, end = 500)
-#'   
+#'
 #' df |>
 #'   e_charts(x) |>
 #'   e_bar(y) |>
-#'   e_zigzag(axis = 'y', start = c(125,400), end = c(150,500))   
-#' @seealso \href{https://echarts.apache.org/en/option.html#series-bar}{Additional arguments}  
-#'    
+#'   e_zigzag(axis = 'y', start = c(125,400), end = c(150,500))
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-bar}{Additional arguments}
+#'
 #' @rdname e_zigzag
 #' @export
 e_zigzag <- function(e, axis = 'y', start, end, gap = "3%", zigzagAmplitude = 10, ...){
   if (missing(e)) {
     stop("must pass echart into function", call. = FALSE)
   }
-  
+
   if (missing(axis)) {
     stop("must indicate which axis to zigzag. e.g. 'x' or 'y'", call. = FALSE)
   }
-  
+
   if (missing(start) | missing(end)) {
     stop("must provide start and end values")
   }
-  
+
   data <- data.frame("starts" = start, "ends" = end, "gap" = gap)
   b <- .build_zigzags(data, starts, ends, gap)
-  
+
   bA <- list(
     zigzagAmplitude = zigzagAmplitude,
     ...
   )
-  
+
   if(axis == 'y'){
     e <- e |> e_y_axis(breaks = b, breakArea = bA)
   }
-  
+
   if(axis == 'x'){
     e <- e |> e_x_axis(breaks = b, breakArea = bA)
   }
@@ -434,16 +434,16 @@ e_zigzag <- function(e, axis = 'y', start, end, gap = "3%", zigzagAmplitude = 10
 
 #' Axis Jitter
 #'
-#' helper function for generating jitter between points in a scatter plot. This is only applicable to e_Scatter().
+#' helper function for generating jitter between points in a scatter plot. This is only applicable to e_scatter().
 #'
 #' @inheritParams e_bar
 #' @param axis Axis to apply formatter to. Supports x and y axis
-#' @param jitter Pixel units indicating the amount of random noise to add to each data point position. 
-#' @param jitterOverlap Boolean allowing overlap between data points. If false, overlap will not be allowed. For some cases, scatters may still overlap if there is no reasonable way to avoid. 
+#' @param jitter Pixel units indicating the amount of random noise to add to each data point position.
+#' @param jitterOverlap Boolean allowing overlap between data points. If false, overlap will not be allowed. For some cases, scatters may still overlap if there is no reasonable way to avoid.
 #' @param jitterMargin When you have jitter and jiterOverlap is FALSE, this is the minimum distance in pixels between two data points.
 #'
 #' @examples
-#' 
+#'
 #' df <- data.frame(
 #' value = c(rnorm(50, mean = 5, sd = 1),
 #'          rnorm(50, mean = 10, sd = 1),
@@ -451,29 +451,28 @@ e_zigzag <- function(e, axis = 'y', start, end, gap = "3%", zigzagAmplitude = 10
 #'          group = rep(c("Group A", "Group B", "Group C"), each = 50)
 #'           )
 #'
-#' df |> e_charts(group) |> e_scatter(value) |> e_jitter()  
-#' @seealso \href{https://echarts.apache.org/en/option.html#yAxis.jitter}{Additional arguments}  
-#'    
+#' df |> e_charts(group) |> e_scatter(value) |> e_jitter()
+#' @seealso \href{https://echarts.apache.org/en/option.html#yAxis.jitter}{Additional arguments}
+#'
 #' @rdname e_jitter
 #' @export
 e_jitter <- function(e, axis = 'x', jitter = 20, jitterOverlap = FALSE, jitterMargin = 5){
   if(missing(e)) {
     stop("must pass echart into function", call. = FALSE)
   }
-  
+
   if(is.null(axis)) {
     stop("must indicate which axis to apply jitter. e.g. 'x' or 'y'", call. = FALSE)
   }
-  
-  
-  if(e$x$opts$series[[1]]$type != 'scatter'){
-    stop("jitter is only supported with scatter plots")
+
+  if(e$x$opts$series[[1]]$type != 'scatter' & e$x$opts$series[[1]]$renderItem[[1]] != 'violin'){
+    stop("jitter is only supported with scatter plots or violin plots")
   }
-  
+
   if(axis == 'x'){
     e <- e |> e_x_axis(jitter = jitter, jitterOverlap = jitterOverlap, jitterMargin = jitterMargin)
   }
-  
+
   if(axis == 'y'){
     e <- e |> e_y_axis(jitter = jitter, jitterOverlap = jitterOverlap, jitterMargin = jitterMargin)
   }
