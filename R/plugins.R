@@ -297,10 +297,11 @@ e_doughnut <- function(e,
 
   e
 }
+
 # TODO document more
 #' Violin chart
 #'
-#' Draw a violin chart with scattered.
+#' Draw a violin chart with scattered dots.
 #'
 #' @param e
 #' @param data
@@ -308,9 +309,9 @@ e_doughnut <- function(e,
 #' @param y
 #' @param show_scatter TRUE/FALSE to show scatter dots
 #' @param violin_color violin color
+#' @param violin_opacity opacity of the violin, between 0-1.
 #' @param scatter_color scatter color
 #' @param scatter_size size of scatter dots
-#' @param violin_opacity opacity of the violin, between 0-1.
 #' @param bin_count Count of bins the data is divided into when calculating the distribution.
 #' @param bandwidth_scale smoothness of the violin's shape by adjusting the kernel density estimation (KDE) bandwidth. A higher value smoothes the shape.
 #' @param ...
@@ -328,9 +329,9 @@ e_violin <- function(e,
                      y,
                      show_scatter = TRUE,
                      violin_color = NULL,
+                     violin_opacity = 0.8,
                      scatter_color = NULL,
-                     symbol_size = 6,
-                     area_opacity = 0.8,
+                     scatter_size = 6,
                      bin_count = 20,
                      bandwidth_scale = 1.5,
                        ...) {
@@ -342,6 +343,7 @@ e_violin <- function(e,
   e <- e_chart()
 
   xData = data[[x]]
+
   # Get unique values for x-axis
   xData <- unique(data[[x]]) |> as.character()
 
