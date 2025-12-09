@@ -11,9 +11,9 @@ e_violin(
   y,
   show_scatter = TRUE,
   violin_color = NULL,
+  violin_opacity = 0.8,
   scatter_color = NULL,
-  symbol_size = 6,
-  area_opacity = 0.8,
+  scatter_size = 6,
   bin_count = 20,
   bandwidth_scale = 1.5,
   ...
@@ -24,20 +24,20 @@ e_violin(
 
 \item{violin_color}{violin color}
 
+\item{violin_opacity}{opacity of the violin, between 0-1.}
+
 \item{scatter_color}{scatter color}
+
+\item{scatter_size}{size of scatter dots}
 
 \item{bin_count}{Count of bins the data is divided into when calculating the distribution.}
 
 \item{bandwidth_scale}{smoothness of the violin's shape by adjusting the kernel density estimation (KDE) bandwidth. A higher value smoothes the shape.}
 
 \item{...}{}
-
-\item{scatter_size}{size of scatter dots}
-
-\item{violin_opacity}{opacity of the violin, between 0-1.}
 }
 \description{
-Draw a violin chart with scattered.
+Draw a violin chart with scattered dots.
 }
 \examples{
 e_chart() |> e_violin(data = iris, x =  "Species", y = "Sepal.Length") |> e_jitter(jitter = 100)

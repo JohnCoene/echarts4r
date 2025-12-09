@@ -465,8 +465,8 @@ e_jitter <- function(e, axis = 'x', jitter = 20, jitterOverlap = FALSE, jitterMa
     stop("must indicate which axis to apply jitter. e.g. 'x' or 'y'", call. = FALSE)
   }
 
-  if(e$x$opts$series[[1]]$type != 'scatter' & e$x$opts$series[[1]]$renderItem[[1]] != 'violin'){
-    stop("jitter is only supported with scatter plots or violin plots")
+  if(e$x$opts$series[[1]]$type != 'scatter'){
+    stop("jitter is only supported with scatter plots")
   }
 
   if(axis == 'x'){

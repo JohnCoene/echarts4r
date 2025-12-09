@@ -397,3 +397,85 @@ e_violin <- function(e,
 
   e
 }
+
+
+
+
+#' Violin chart
+#'
+#' Draw a violin chart with scattered dots.
+#'
+#' @inheritParams e_bar
+#' @param symbolSize overall size of symbol.
+#' @param areaOpacity opacity of violin area. 
+#' @param bandWidthScale scale for the amplitude of violin area
+#' @param binCount number of bins for violin plot. More bins will provide a more detailed version of the plot,
+#'
+#' @examples
+#'
+#'
+#' PlantGrowth |> e_charts(group) |> e_scatter(weight) |> e_violin2(binCount = 200)
+#'
+#' @seealso \href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/violin}{official documentation}
+#'
+#' @rdname e_violin2
+#' @export
+e_violin2 <- function(e,
+                      symbolSize = 10,
+                      areaOpacity = 0.5,
+                      binCount = 100,
+                      bandWidthScale = 1,
+                      legend = TRUE,
+                      name = "Violin",
+                      ...){
+  
+  if (missing(e)) {
+    stop("missing e", call. = FALSE)
+  }
+  
+  if(e$x$opts$series[[1]]$type != 'scatter'){
+    stop("violin is only supported with scatter plots")
+  }
+  
+  # adjust scatter data to necessary format for violin polygons
+  data <- list()
+  for(i in 1:length(e$x$opts$series[[1]]$data)){
+    data <- append(data,list(as.list(e$x$opts$series[[1]]$data[[i]]$value)))
+  }
+  
+  
+  e$x$opts$dataset <- list(source = data)
+  
+  # generate series list
+  violin <- list(
+    type = "custom",
+    renderItem = 'violin',
+    silent = TRUE,
+    itemPayload = list(
+      symbolSize = symbolSize,
+      areaOpacity = areaOpacity,
+      binCount = binCount,
+      bandWidthScale = bandWidthScale
+    ),
+    ...
+  )
+  
+  e$x$opts$series <- append(e$x$opts$series, list(violin))
+  
+  if(legend){
+    e$x$opts$series[[2]]$name = name
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  }
+  
+  # add dependency
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-violin",
+    version = "1.0.0",
+    src = c(file = path),
+    script = "echarts-violin.js")
+  
+  e$dependencies <- append(e$dependencies, list(dep))
+  
+  e
+}
