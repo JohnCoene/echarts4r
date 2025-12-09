@@ -224,8 +224,6 @@ e_modularity <- function(e, modularity = TRUE) {
   e
 }
 
-# TODO do we want to use snake_case or use names used in echarts?
-
 #' Segmented Doughnut
 #'
 #' Draw segmented doughnut.
@@ -298,129 +296,28 @@ e_doughnut <- function(e,
   e
 }
 
-# TODO document more
-#' Violin chart
-#'
-#' Draw a violin chart with scattered dots.
-#'
-#' @param e
-#' @param data
-#' @param x
-#' @param y
-#' @param show_scatter TRUE/FALSE to show scatter dots
-#' @param violin_color violin color
-#' @param violin_opacity opacity of the violin, between 0-1.
-#' @param scatter_color scatter color
-#' @param scatter_size size of scatter dots
-#' @param bin_count Count of bins the data is divided into when calculating the distribution.
-#' @param bandwidth_scale smoothness of the violin's shape by adjusting the kernel density estimation (KDE) bandwidth. A higher value smoothes the shape.
-#' @param ...
-#'
-#' @seealso \href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/segmentedDoughnut}{official documentation}
-#'
-#' @rdname e_violin
-#' @export
-#' @examples
-#' e_chart() |> e_violin(data = iris, x =  "Species", y = "Sepal.Length") |> e_jitter(jitter = 100)
-#'
-e_violin <- function(e,
-                     data,
-                     x,
-                     y,
-                     show_scatter = TRUE,
-                     violin_color = NULL,
-                     violin_opacity = 0.8,
-                     scatter_color = NULL,
-                     scatter_size = 6,
-                     bin_count = 20,
-                     bandwidth_scale = 1.5,
-                       ...) {
-
-  if (missing(e)) {
-    stop("missing e", call. = FALSE)
-  }
-
-  e <- e_chart()
-
-  xData = data[[x]]
-
-  # Get unique values for x-axis
-  xData <- unique(data[[x]]) |> as.character()
-
-  # Create dataSource with header
-  dataSource <- list(c(x, y))  # Start with header row
-
-  # Add all data points
-  for (i in 1:nrow(data)) {
-    dataSource <- append(dataSource, list(c(as.character(data[[x]][i]), data[[y]][i])))
-  }
-
-  e$x$opts$xAxis = list(type = 'category')
-
-  e$x$opts$dataset <- list(source = dataSource)
-
-  violin <- list(
-    color = violin_color,
-    type = "custom",
-    renderItem = 'violin',
-    colorBy = 'item',
-    silent = TRUE,
-    itemPayload = list(
-      areaOpacity = violin_opacity,
-      binCount = bin_count,
-      bandWidthScale = bandwidth_scale
-    ))
-
-  if(show_scatter){
-
-    scatter <- list(
-      color = scatter_color,
-      type = "scatter",
-      colorBy = 'item',
-      silent = TRUE,
-      symbolSize = scatter_size
-    )} else {
-    scatter <- NULL
-    }
-
-  e$x$opts$series <- list(violin, scatter)
-
-  # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
-  dep <- htmltools::htmlDependency(
-    name = "echarts-violin",
-    version = "1.0.0",
-    src = c(file = path),
-    script = "echarts-violin.js")
-
-  e$dependencies <- append(e$dependencies, list(dep))
-
-  e
-}
-
-
-
-
 #' Violin chart
 #'
 #' Draw a violin chart with scattered dots.
 #'
 #' @inheritParams e_bar
 #' @param symbolSize overall size of symbol.
-#' @param areaOpacity opacity of violin area. 
+#' @param areaOpacity opacity of violin area.
 #' @param bandWidthScale scale for the amplitude of violin area
 #' @param binCount number of bins for violin plot. More bins will provide a more detailed version of the plot,
 #'
 #' @examples
 #'
-#'
-#' PlantGrowth |> e_charts(group) |> e_scatter(weight) |> e_violin2(binCount = 200)
+#' PlantGrowth |>
+#'   e_charts(group) |>
+#'   e_scatter(weight) |>
+#'   e_violin(binCount = 200)
 #'
 #' @seealso \href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/violin}{official documentation}
 #'
-#' @rdname e_violin2
+#' @rdname e_violin
 #' @export
-e_violin2 <- function(e,
+e_violin <- function(e,
                       symbolSize = 10,
                       areaOpacity = 0.5,
                       binCount = 100,
@@ -428,24 +325,23 @@ e_violin2 <- function(e,
                       legend = TRUE,
                       name = "Violin",
                       ...){
-  
+
   if (missing(e)) {
     stop("missing e", call. = FALSE)
   }
-  
+
   if(e$x$opts$series[[1]]$type != 'scatter'){
     stop("violin is only supported with scatter plots")
   }
-  
+
   # adjust scatter data to necessary format for violin polygons
   data <- list()
   for(i in 1:length(e$x$opts$series[[1]]$data)){
     data <- append(data,list(as.list(e$x$opts$series[[1]]$data[[i]]$value)))
   }
-  
-  
+
   e$x$opts$dataset <- list(source = data)
-  
+
   # generate series list
   violin <- list(
     type = "custom",
@@ -459,14 +355,14 @@ e_violin2 <- function(e,
     ),
     ...
   )
-  
+
   e$x$opts$series <- append(e$x$opts$series, list(violin))
-  
+
   if(legend){
     e$x$opts$series[[2]]$name = name
     e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   }
-  
+
   # add dependency
   path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
   dep <- htmltools::htmlDependency(
@@ -474,8 +370,8 @@ e_violin2 <- function(e,
     version = "1.0.0",
     src = c(file = path),
     script = "echarts-violin.js")
-  
+
   e$dependencies <- append(e$dependencies, list(dep))
-  
+
   e
 }

@@ -6,43 +6,44 @@
 \usage{
 e_violin(
   e,
-  data,
-  x,
-  y,
-  show_scatter = TRUE,
-  violin_color = NULL,
-  violin_opacity = 0.8,
-  scatter_color = NULL,
-  scatter_size = 6,
-  bin_count = 20,
-  bandwidth_scale = 1.5,
+  symbolSize = 10,
+  areaOpacity = 0.5,
+  binCount = 100,
+  bandWidthScale = 1,
+  legend = TRUE,
+  name = "Violin",
   ...
 )
 }
 \arguments{
-\item{show_scatter}{TRUE/FALSE to show scatter dots}
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
+a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{violin_color}{violin color}
+\item{symbolSize}{overall size of symbol.}
 
-\item{violin_opacity}{opacity of the violin, between 0-1.}
+\item{areaOpacity}{opacity of violin area.}
 
-\item{scatter_color}{scatter color}
+\item{binCount}{number of bins for violin plot. More bins will provide a more detailed version of the plot,}
 
-\item{scatter_size}{size of scatter dots}
+\item{bandWidthScale}{scale for the amplitude of violin area}
 
-\item{bin_count}{Count of bins the data is divided into when calculating the distribution.}
+\item{legend}{Whether to add serie to legend.}
 
-\item{bandwidth_scale}{smoothness of the violin's shape by adjusting the kernel density estimation (KDE) bandwidth. A higher value smoothes the shape.}
+\item{name}{name of the serie.}
 
-\item{...}{}
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Draw a violin chart with scattered dots.
 }
 \examples{
-e_chart() |> e_violin(data = iris, x =  "Species", y = "Sepal.Length") |> e_jitter(jitter = 100)
+
+PlantGrowth |>
+  e_charts(group) |>
+  e_scatter(weight) |>
+  e_violin(binCount = 200)
 
 }
 \seealso{
-\href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/segmentedDoughnut}{official documentation}
+\href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/violin}{official documentation}
 }
