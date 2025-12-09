@@ -266,7 +266,7 @@ e_doughnut <- function(e,
   
   serie <- list(
     type = "custom",
-    renderItem = htmlwidgets::JS("renderItem"),
+    renderItem = "segmentedDoughnut",
     coordinateSystem = "none",
     itemPayload = list(center = as.list(center),
                        radius = as.list(radius),
