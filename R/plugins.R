@@ -364,7 +364,6 @@ e_violin <- function(e,
     type = "custom",
     renderItem = 'violin',
     colorBy = 'item',
-
     silent = TRUE,
     itemPayload = list(
       areaOpacity = violin_opacity,
