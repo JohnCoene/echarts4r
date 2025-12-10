@@ -330,7 +330,7 @@ e_violin <- function(e,
     stop("missing e", call. = FALSE)
   }
 
-  if(e$x$opts$series[[1]]$type != 'scatter'){
+  if(e$x$opts$series[[1]]$type != 'scatter' || is.null(e$x$opts$series[[1]]$type)){
     stop("violin is only supported with scatter plots")
   }
 
@@ -358,6 +358,7 @@ e_violin <- function(e,
 
   e$x$opts$series <- append(e$x$opts$series, list(violin))
 
+  # This assumes the 2nd trace contains the legend for this name
   if(legend){
     e$x$opts$series[[2]]$name = name
     e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
@@ -370,6 +371,92 @@ e_violin <- function(e,
     version = "1.0.0",
     src = c(file = path),
     script = "echarts-violin.js")
+
+  e$dependencies <- append(e$dependencies, list(dep))
+
+  e
+}
+
+#' Bar range chart
+#'
+#' Draw a bar range plot with labels on each end.
+#'
+#' @inheritParams e_bar
+#' @param serie_min Column name of minimum value in the serie.
+#' @param serie_max Column name of maximum value in the serie.
+#' @param barWidth width of each bar
+#' @param borderRadius roundness of the bar ends
+#' @param margin space between the text labels and the bar
+#' @param textSymbol string for the label to end with
+#'
+#' @examples
+#'
+#' df <- iris |>
+#'   dplyr::group_by(Species) |>
+#'   dplyr::summarise(min_length = min(Sepal.Length),
+#'                    max_length = max(Sepal.Length))
+#'
+#' df |> e_chart(Species) |>
+#'   e_barRange(serie_min="min_length",
+#'              serie_max="max_length",
+#'              textSymbol = '"'
+#'   )
+#' @seealso \href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/barRange}{official documentation}
+#'
+#' @rdname e_barRange
+#' @export
+e_barRange <- function(e,
+                       serie_min,
+                       serie_max,
+                       barWidth = 10,
+                       borderRadius = 5,
+                       margin = 10,
+                       textSymbol = "°F",
+                       legend = TRUE,
+                       name = "barRange",
+                       ...){
+
+  if (missing(e)) {
+    stop("missing e", call. = FALSE)
+  }
+
+  # Needs to start at index 0.
+  data <- e$x$data[[1]] |> dplyr::mutate(index = dplyr::row_number() - 1)
+  data <- .build_data2(data, "index", serie_min, serie_max)
+
+  # generate series list
+  serie <- list(
+    type = "custom",
+    renderItem = 'barRange',
+    encode = list(x= 0,
+                  y = c(1,2),
+                  tooltip = c(1,2)),
+    data = data,
+    itemPayload = list(
+      textSymbol = textSymbol,
+      barWidth = barWidth,
+      borderRadius = borderRadius,
+      margin = margin
+    ),
+     ...
+  )
+
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+
+  # This assumes the 1st trace contains the legend for this name
+  if (isTRUE(legend)) {
+    e$x$opts$series[[1]]$name = name
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  }
+
+  # In the js I replaced "°C" with 't.itemPayload.textSymbol' since the symbol
+  # was hard-coded
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-barRange",
+    version = "1.0.0",
+    src = c(file = path),
+    script = "echarts-barRange.js")
 
   e$dependencies <- append(e$dependencies, list(dep))
 
