@@ -6,8 +6,8 @@
 \usage{
 e_barRange(
   e,
-  serie_min,
-  serie_max,
+  min,
+  max,
   barWidth = 10,
   borderRadius = 5,
   margin = 10,
@@ -21,9 +21,7 @@ e_barRange(
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{serie_min}{Column name of minimum value in the serie.}
-
-\item{serie_max}{Column name of maximum value in the serie.}
+\item{min, max}{series.}
 
 \item{barWidth}{width of each bar}
 
@@ -50,8 +48,8 @@ df <- iris |>
                    max_length = max(Sepal.Length))
 
 df |> e_chart(Species) |>
-  e_barRange(serie_min="min_length",
-             serie_max="max_length",
+  e_barRange(min="min_length",
+             max="max_length",
              textSymbol = '"'
   )
 }

@@ -382,8 +382,7 @@ e_violin <- function(e,
 #' Draw a bar range plot with labels on each end.
 #'
 #' @inheritParams e_bar
-#' @param serie_min Column name of minimum value in the serie.
-#' @param serie_max Column name of maximum value in the serie.
+#' @inheritParams e_band_
 #' @param barWidth width of each bar
 #' @param borderRadius roundness of the bar ends
 #' @param margin space between the text labels and the bar
@@ -397,8 +396,8 @@ e_violin <- function(e,
 #'                    max_length = max(Sepal.Length))
 #'
 #' df |> e_chart(Species) |>
-#'   e_barRange(serie_min="min_length",
-#'              serie_max="max_length",
+#'   e_barRange(min="min_length",
+#'              max="max_length",
 #'              textSymbol = '"'
 #'   )
 #' @seealso \href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/barRange}{official documentation}
@@ -406,8 +405,8 @@ e_violin <- function(e,
 #' @rdname e_barRange
 #' @export
 e_barRange <- function(e,
-                       serie_min,
-                       serie_max,
+                       min,
+                       max,
                        barWidth = 10,
                        borderRadius = 5,
                        margin = 10,
@@ -422,7 +421,7 @@ e_barRange <- function(e,
 
   # Needs to start at index 0.
   data <- e$x$data[[1]] |> dplyr::mutate(index = dplyr::row_number() - 1)
-  data <- .build_data2(data, "index", serie_min, serie_max)
+  data <- .build_data2(data, "index", min, max)
 
   # generate series list
   serie <- list(
