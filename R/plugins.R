@@ -442,9 +442,9 @@ e_barRange <- function(e,
 
   e$x$opts$series <- append(e$x$opts$series, list(serie))
 
-  # This assumes the 1st trace contains the legend for this name
   if (isTRUE(legend)) {
-    e$x$opts$series[[1]]$name = name
+    current_trace <- length(e$x$opts$series)
+    e$x$opts$series[[current_trace]]$name = name
     e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   }
 
