@@ -5,8 +5,8 @@ test_that("e_barRange works", {
                      max_length = max(Sepal.Length))
 
   e <- df |> e_chart(Species) |>
-    e_barRange(serie_min="min_length",
-               serie_max="max_length",
+    e_barRange(min="min_length",
+               max="max_length",
                textSymbol = 'NEWSYMBOL'
     )
 

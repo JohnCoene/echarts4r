@@ -358,9 +358,9 @@ e_violin <- function(e,
 
   e$x$opts$series <- append(e$x$opts$series, list(violin))
 
-  # This assumes the 2nd trace contains the legend for this name
-  if(legend){
-    e$x$opts$series[[2]]$name = name
+  if (isTRUE(legend)) {
+    current_trace <- length(e$x$opts$series)
+    e$x$opts$series[[current_trace]]$name = name
     e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
   }
 
@@ -461,3 +461,91 @@ e_barRange <- function(e,
 
   e
 }
+
+#' Contour chart
+#'
+#' Draw a contour plot. x and y must each be numbers.
+#'
+#' @inheritParams e_bar
+#' @param thresholds contour density
+#' @param bandwidth the size of the contours
+#' @param lineStyle list of properties of the line
+#' @param contourOpacity opacity of the countours
+#' @param contourColors colors used for the contours
+#'
+#' @examples
+#'
+#' mtcars |>
+#'  e_charts(mpg) |>
+#'  e_contour(serie = mpg)
+#' @seealso \href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/contour}{official documentation}
+#'
+#' @rdname e_contour
+#' @export
+e_contour <- function(e,
+                      serie,
+                      legend = TRUE,
+                      name = "contour",
+                      thresholds = 8,
+                      bandwidth = 20,
+                      lineStyle = list(opacity = 0.3, color = "grey20", width=1),
+                      contourOpacity = 0.8,
+                      contourColors = list('#5470c6', '#91cc75', '#fac858', '#ee6666'),
+                       ...){
+
+  if (missing(e)) {
+    stop("missing e", call. = FALSE)
+  }
+
+  .build_data2(e$x$data[[1]], e$x$mapping$x, deparse(substitute(serie))) -> data
+
+  e <- e |> e_axis(type = 'value')
+
+  # generate series list
+  serie <- list(
+    type = "custom",
+    renderItem = 'contour',
+    encode = list(x= 0,
+                  y = 1,
+                  tooltip = 2),
+    data = data,
+    name = name,
+    itemPayload = list(
+      thresholds = thresholds,
+      bandwidth = bandwidth,
+      lineStyle = lineStyle,
+      itemStyle = list(opacity = contourOpacity,
+        color = contourColors)
+    ),
+     ...
+  )
+
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+
+  if (isTRUE(legend)) {
+    current_trace <- length(e$x$opts$series)
+    e$x$opts$series[[current_trace]]$name = name
+    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+  }
+
+  path_d3 <- system.file("htmlwidgets/lib/d3", package = "echarts4r")
+  dep_d3 <- htmltools::htmlDependency(
+    name = "d3",
+    version = "7.9.0",
+    src = c(file = path_d3),
+    script = "d3.min.js")
+
+  e$dependencies <- append(e$dependencies, list(dep_d3))
+
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-contour",
+    version = "1.0.0",
+    src = c(file = path),
+    script = "echarts-contour.js")
+
+  e$dependencies <- append(e$dependencies, list(dep))
+
+  e
+}
+
