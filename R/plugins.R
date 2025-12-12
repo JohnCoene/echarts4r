@@ -420,8 +420,8 @@ e_barRange <- function(e,
   }
 
   # Needs to start at index 0.
-  data <- e$x$data[[1]] |> dplyr::mutate(index = dplyr::row_number() - 1)
-  data <- .build_data2(data, "index", min, max)
+  data <- e$x$data[[1]] #|> dplyr::mutate(index = dplyr::row_number() - 1)
+  data <- .build_data2(data, e$x$mapping$x,, min, max)
 
   # generate series list
   serie <- list(
@@ -488,7 +488,7 @@ e_contour <- function(e,
                       name = "contour",
                       thresholds = 8,
                       bandwidth = 20,
-                      lineStyle = list(opacity = 0.3, color = "grey20", width=1),
+                      lineStyle = list(opacity = 0.3, color = "black", width=1),
                       contourOpacity = 0.8,
                       contourColors = list('#5470c6', '#91cc75', '#fac858', '#ee6666'),
                        ...){
@@ -548,4 +548,146 @@ e_contour <- function(e,
 
   e
 }
+
+df <- iris |>
+  dplyr::group_by(Species) |>
+  dplyr::summarise(lower = min(Sepal.Length),
+                   upper = max(Sepal.Length))
+df |>
+  e_chart(Species) |>
+  e_line(lower) |>
+  e_lineRange(lower = lower, upper = upper, y_index = 20)
+# TODO legend color not changing, what is x and y index?
+#' Title
+#'
+#' @inheritParams e_band2
+#' @param lineStyle properties of the border lines
+#' @param areaStyle properties of the area between the lines
+#' @param ...
+#'
+#' @returns
+#' @export
+#'
+#' @examples
+e_lineRange <- function(e,
+                       lower,
+                       upper,
+                       name = "lineRange",
+                       legend = TRUE,
+                       y_index = 0,
+                       x_index = 0,
+                       coord_system = "cartesian2d",
+                       lineStyle = list(opacity = 0.3, color = "black", width=1),
+                       areaStyle = list(opacity = 0.3, color = "red", width=1),
+                       ...){
+
+  if (missing(e)) {
+    stop("missing e", call. = FALSE)
+  }
+  if (missing(lower) || missing(upper)) {
+    stop("must pass lower, or upper", call. = FALSE)
+  }
+  if (coord_system != "cartesian2d") {
+    stop("only cartesian2d supported", call. = FALSE)
+  }
+
+  for (i in seq_along(e$x$data)) {
+    vector <- .build_data2(
+      e$x$data[[i]],
+      e$x$mapping$x,
+      deparse(substitute(lower)),
+      deparse(substitute(upper))
+    )
+    e_serie <- list(data = vector)
+
+    if (y_index != 0) {
+      e <- .set_y_axis(e, substitute(upper), y_index, i)
+    }
+    if (x_index != 0) {
+      e <- .set_x_axis(e, x_index, i)
+    }
+
+    nm <- name
+
+    if (!e$x$tl) {
+      serie <- list(
+        type = "custom",
+        name = name,
+        renderItem = 'lineRange',
+        encode = list(x= 0,
+                      y = c(1,2),
+                      tooltip = c(1,2)),
+        data = vector,
+        itemPayload = list(
+          areaStyle = areaStyle,
+          lineStyle = lineStyle
+        ),
+         ...
+      )
+
+      e$x$opts$series <- append(e$x$opts$series, list(serie))
+
+      if (isTRUE(legend)) {
+        # browser()
+        # current_trace <- length(e$x$opts$series)
+        # e$x$opts$series[[current_trace]]$name = name
+        # e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+      }
+      # e$x$opts$series <- append(e$x$opts$series, list(e_serie))
+    }
+    else {
+      if (isTRUE(legend)) {
+        e$x$opts$legend$data <- append(
+          e$x$opts$legend$data,
+          list(nm)
+        )
+      }
+      e$x$opts$options[[i]]$series <- append(
+        e$x$opts$options[[i]]$series,
+        list(e_serie)
+      )
+    }
+  }
+  if (isTRUE(e$x$tl)) {
+    # generate series list
+    serie <- list(
+      type = "custom",
+      name = name,
+      renderItem = 'lineRange',
+      encode = list(x= 0,
+                    y = c(1,2),
+                    tooltip = c(1,2)),
+      data = vector,
+      itemPayload = list(
+        areaStyle = areaStyle,
+        lineStyle = lineStyle
+      ),
+      ...
+    )
+
+    e$x$opts$series <- append(e$x$opts$series, list(serie))
+
+    if (isTRUE(legend)) {
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+    }
+    e$x$opts$baseOption$series <- append(
+      e$x$opts$baseOption$series,
+      list(series_opts)
+    )
+  }
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-lineRange",
+    version = "1.0.0",
+    src = c(file = path),
+    script = "echarts-lineRange.js")
+
+  e$dependencies <- append(e$dependencies, list(dep))
+
+  e
+}
+
+
 
