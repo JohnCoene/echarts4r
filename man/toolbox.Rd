@@ -39,7 +39,7 @@ USArrests |>
   e_datazoom(x_index = 0)
 
 mtcars |>
-  tibble::rownames_to_column("model") |> 
+  tibble::rownames_to_column("model") |>
   e_charts(model) |>
   e_line(qsec) |>
   e_toolbox() |>

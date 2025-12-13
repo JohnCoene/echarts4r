@@ -16,7 +16,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Sets the dimensions of the chart _internally._
 This will only affect the dimensions of the
 chart within its parent container.
-Use the `height` and `width` arguments of 
+Use the `height` and `width` arguments of
 [e_charts] if you want to change the dimensions
 of said parent (recommended).
 }

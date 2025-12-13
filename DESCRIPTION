@@ -32,7 +32,7 @@ Imports:
   rstudioapi
 Suggests:
   tidyr,
-  testthat,
+  testthat (>= 3.0.0),
   knitr,
   rmarkdown,
   covr,
@@ -41,5 +41,6 @@ Suggests:
   tibble
 Depends: R (>= 4.1.0)  
 RoxygenNote: 7.3.3
+Config/testthat/edition: 3
 URL: https://echarts4r.john-coene.com/, https://github.com/JohnCoene/echarts4r
 BugReports: https://github.com/JohnCoene/echarts4r/issues/

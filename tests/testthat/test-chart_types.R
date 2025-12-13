@@ -358,7 +358,7 @@ test_that("e_parallel plot has the good data structure and type", {
 test_that("e_pie plot has the good data structure and type", {
   plot <- mtcars |>
     head(5) |>
-    tibble::rownames_to_column("model") |> 
+    tibble::rownames_to_column("model") |>
     e_charts(model) |>
     e_pie(carb) |>
     e_title("Pie chart")
@@ -380,7 +380,7 @@ test_that("e_pie plot has the good data structure and type", {
 test_that("e_donut plot has the good data structure and type", {
   plot <- mtcars |>
     head(5) |>
-    tibble::rownames_to_column("model") |> 
+    tibble::rownames_to_column("model") |>
     e_charts(model) |>
     e_pie(carb, radius = c("50%", "70%")) |>
     e_title("Donut chart")
@@ -402,7 +402,7 @@ test_that("e_donut plot has the good data structure and type", {
 test_that("e_rosetype plot has the good data structure and type", {
   plot <- mtcars |>
     head(5) |>
-    tibble::rownames_to_column("model") |> 
+    tibble::rownames_to_column("model") |>
     e_charts(model) |>
     e_pie(hp, roseType = "radius")
 
@@ -696,11 +696,10 @@ test_that("e_liquid plot has the good data structure and type", {
 })
 
 test_that("e_mark_p has good data structure", {
-  library(dplyr)
   data(EuStockMarkets)
   dd <- as.data.frame(EuStockMarkets) |>
-    slice_head(n = 50) |>
-    mutate(day = 1:n())
+    dplyr::slice_head(n = 50) |>
+    dplyr::mutate(day = 1:dplyr::n())
 
   plot <- dd |>
     e_charts(day) |>
@@ -722,4 +721,58 @@ test_that("e_mark_p has good data structure", {
     plot$x$opts$series[[1]]$markLine$data[[1]][[1]]$yAxis,
     1716.3
   )
+})
+
+test_that("e_modularity has good data structure", {
+  nodes <- data.frame(
+    name = paste0(LETTERS, 1:100),
+    value = rnorm(100, 10, 2),
+    stringsAsFactors = FALSE
+  )
+
+  edges <- data.frame(
+    source = sample(nodes$name, 200, replace = TRUE),
+    target = sample(nodes$name, 200, replace = TRUE),
+    stringsAsFactors = FALSE
+  )
+
+  plot <- e_charts() |>
+    e_graph() |>
+    e_modularity(
+      list(
+        resolution = 5,
+        sort = TRUE
+      )
+    )
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+
+  # Inputs are as expected
+  expect_equal(
+    plot$x$opts$series[[1]]$modularity$modularity$resolution, 5)
+  expect_true(
+    plot$x$opts$series[[1]]$modularity$modularity$sort)
+
+})
+
+test_that("e_doughnut has good data structure", {
+
+  plot <- e_charts() |>
+    e_doughnut(numerator = 3, denominator = 6, fontSize = "11px")
+
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+
+  # THe numerator
+  expect_equal(
+    plot$x$opts$series[[1]]$data[[1]], 3)
+
+  # The denominator
+  expect_equal(
+    plot$x$opts$series[[1]]$itemPayload$segmentCount, 6)
+
+  # Font size
+  expect_equal(plot$x$opts$series[[1]]$itemPayload$label$fontSize, "11px")
+
+  expect_snapshot(plot$x$opts)
 })

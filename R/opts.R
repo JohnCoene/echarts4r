@@ -394,7 +394,7 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), icons = NULL, 
       )
     }
 
-    
+
     for (i in seq_along(e$x$opts$legend$data)) {
       e$x$opts$legend$data[[i]] <- list(name = e$x$opts$legend$data[[i]])
       e$x$opts$legend$data[[i]]$icon <- icons[[i]]
@@ -441,7 +441,7 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), icons = NULL, 
 #'   e_datazoom(x_index = 0)
 #'
 #' mtcars |>
-#'   tibble::rownames_to_column("model") |> 
+#'   tibble::rownames_to_column("model") |>
 #'   e_charts(model) |>
 #'   e_line(qsec) |>
 #'   e_toolbox() |>
@@ -1072,18 +1072,18 @@ e_arrange <- function(..., rows = NULL, cols = NULL, width = "xs", title = NULL)
 }
 
 #' Dimensions
-#' 
+#'
 #' Sets the dimensions of the chart _internally._
 #' This will only affect the dimensions of the
 #' chart within its parent container.
-#' Use the `height` and `width` arguments of 
+#' Use the `height` and `width` arguments of
 #' [e_charts] if you want to change the dimensions
 #' of said parent (recommended).
-#' 
+#'
 #' @inheritParams e_bar
 #' @param height,width Dimensions in pixels, percentage or string.
-#' 
-#' @export 
+#'
+#' @export
 e_dims <- function(e, height = "auto", width = "auto") {
   e$x$mainOpts$width <- width
   e$x$mainOpts$height <- height
@@ -1091,10 +1091,10 @@ e_dims <- function(e, height = "auto", width = "auto") {
 }
 
 #' Locale
-#' 
+#'
 #' Change the locale to auto-translate
 #' days of the week, etc.
-#' 
+#'
 #' @section Locales:
 #' - CS
 #' - DE
@@ -1107,28 +1107,28 @@ e_dims <- function(e, height = "auto", width = "auto") {
 #' - SI
 #' - TH
 #' - ZH
-#' 
+#'
 #' @examples
-#' # top right corner zoom is in 
+#' # top right corner zoom is in
 #' # French
-#' cars |> 
-#'  e_charts(speed) |> 
-#'  e_scatter(dist) |> 
-#'  e_datazoom() |> 
+#' cars |>
+#'  e_charts(speed) |>
+#'  e_scatter(dist) |>
+#'  e_datazoom() |>
 #'  e_locale("FR")
-#' 
+#'
 #' @inheritParams e_bar
 #' @param locale Locale to set to.
 #' @param path Path to the local file to use.
-#' 
+#'
 #' @details The "manual" function expects a file
 #' to use for translations.
 #' You can browse the `.js` files
 #' [here](https://github.com/apache/echarts/tree/master/i18n)
 #' to have an idea of what they should look like.
-#' 
+#'
 #' @name e_locale
-#' @export 
+#' @export
 e_locale <- function(e, locale){
   if(missing(locale))
     stop("Missing locale", call. = FALSE)
@@ -1139,7 +1139,7 @@ e_locale <- function(e, locale){
     dep <- htmltools::htmlDependency(
       name = sprintf("%s-echarts4r-locale", locale),
       version = utils::packageVersion("echarts4r"),
-      src = "htmlwidgets/lib/echarts-4.8.0/i18n",
+      src = "htmlwidgets/lib/echarts-6.0.0/i18n",
       package = "echarts4r",
       script = sprintf("lang%s.js", locale)
     )
@@ -1152,7 +1152,7 @@ e_locale <- function(e, locale){
 }
 
 #' @rdname e_locale
-#' @export 
+#' @export
 e_locale_manual <- function(e, locale, path){
   if(missing(locale))
     stop("Missing locale", call. = FALSE)

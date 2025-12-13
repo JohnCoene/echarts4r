@@ -47,7 +47,7 @@ from the UI (generally www folder).
 json <- jsonlite::read_json("https://echarts.apache.org/examples/data/asset/geo/USA.json")
 
 USArrests |>
-  tibble::rownames_to_column("states") |> 
+  tibble::rownames_to_column("states") |>
   e_charts(states) |>
   e_map_register("USA", json) |>
   e_map(Murder, map = "USA") |>
