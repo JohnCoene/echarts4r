@@ -1039,7 +1039,7 @@ e_parallel_ <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = li
 
 #' @rdname e_pie
 #' @export
-e_pie_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...) {
+e_pie_ <- function(e, serie, name = NULL, legend = TRUE,  coord_system = "", rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
@@ -1050,6 +1050,11 @@ e_pie_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRU
 
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
+  
+  if(coord_system == "matrix"){
+    e <- e |> e_matrix_pie(e$x$mapping$x, serie, legend, ...)
+    return(e)
+  }
 
   for (i in seq_along(e$x$data)) {
 

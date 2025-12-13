@@ -801,6 +801,8 @@ check_installed <- function(pkg) {
 }
 
 
+<<<<<<< HEAD
+=======
 .get_base_nodes <- function(x) {
   get_base_nodes <- NULL
   found_values <- list()
@@ -824,3 +826,4 @@ check_installed <- function(pkg) {
   }
   return(found_values)
 }
+>>>>>>> d62d71287f4a491fad2e15bdb1724bbef238144d

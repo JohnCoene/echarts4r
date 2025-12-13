@@ -1734,26 +1734,26 @@ e_parallel.echarts4rProxy <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = T
 #'
 #' @rdname e_pie
 #' @export
-e_pie <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...) UseMethod("e_pie")
+e_pie <- function(e, serie, name = NULL, legend = TRUE, coord_system = "", rm_x = TRUE, rm_y = TRUE, ...) UseMethod("e_pie")
 
 #' @export
 #' @method e_pie echarts4r
-e_pie.echarts4r <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...) {
+e_pie.echarts4r <- function(e, serie, name = NULL, legend = TRUE, coord_system = "", rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
 
-  e_pie_(e, deparse(substitute(serie)), name, legend, rm_x, rm_y, ...)
+  e_pie_(e, deparse(substitute(serie)), name, legend, coord_system, rm_x, rm_y, ...)
 }
 
 #' @export
 #' @method e_pie echarts4rProxy
-e_pie.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...) {
+e_pie.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, coord_system = "", rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
 
-  e$chart <- e_pie_(e$chart, deparse(substitute(serie)), name, legend, rm_x, rm_y, ...)
+  e$chart <- e_pie_(e$chart, deparse(substitute(serie)), name, legend, coord_system, rm_x, rm_y, ...)
   return(e)
 }
 
