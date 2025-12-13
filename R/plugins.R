@@ -238,7 +238,8 @@ e_modularity <- function(e, modularity = TRUE) {
 #' @examples
 #'
 #'
-#' e_chart() |> e_doughnut(numerator = 3, denominator = 6)
+#' e_chart() |>
+#'  e_doughnut(numerator = 3, denominator = 6)
 #'
 #' @seealso \href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/segmentedDoughnut}{official documentation}
 #'
