@@ -804,156 +804,159 @@ e_lineRange <- function(e,
 }
 
 #######
-#
-# e_stage <- function(e,
-#                       serie,
-#                       legend = TRUE,
-#                       name = "contour",
-#                       thresholds = 8,
-#                       bandwidth = 20,
-#                       lineStyle = list(opacity = 0.3, color = "black", width=1),
-#                       contourOpacity = 0.8,
-#                       contourColors = list('#5470c6', '#91cc75', '#fac858', '#ee6666'),
-#                       ...){
-#
-#   if (missing(e)) {
-#     stop("missing e", call. = FALSE)
-#   }
-#
-#   data <- data.frame(
-#     start = as.POSIXct(c(
-#       "2024-09-07 06:12", "2024-09-07 06:15", "2024-09-07 08:59",
-#       "2024-09-07 05:45", "2024-09-07 07:37", "2024-09-07 08:56",
-#       "2024-09-07 09:08", "2024-09-07 05:45",
-#       "2024-09-07 03:12", "2024-09-07 04:02", "2024-09-07 04:40",
-#       "2024-09-07 04:57", "2024-09-07 06:12", "2024-09-07 06:18",
-#       "2024-09-07 07:56", "2024-09-07 09:00", "2024-09-07 09:29",
-#       "2024-09-07 03:27", "2024-09-07 04:36", "2024-09-07 04:48"
-#     ), tz = "UTC"),
-#
-#     end = as.POSIXct(c(
-#       "2024-09-07 06:12", "2024-09-07 06:18", "2024-09-07 09:00",
-#       "2024-09-07 06:12", "2024-09-07 07:56", "2024-09-07 08:59",
-#       "2024-09-07 09:29", "2024-09-07 06:12",
-#       "2024-09-07 03:27", "2024-09-07 04:36", "2024-09-07 04:48",
-#       "2024-09-07 05:45", "2024-09-07 06:15", "2024-09-07 07:37",
-#       "2024-09-07 08:56", "2024-09-07 09:08", "2024-09-07 10:41",
-#       "2024-09-07 04:02", "2024-09-07 04:40", "2024-09-07 04:57"
-#     ), tz = "UTC"),
-#
-#     stage = c(
-#       "Awake", "Awake", "Awake",
-#       "REM", "REM", "REM", "REM", "REM",
-#       "Core", "Core", "Core", "Core", "Core", "Core", "Core", "Core", "Core",
-#       "Deep", "Deep", "Deep"
-#     ),
-#     stringsAsFactors = FALSE
-#   )
-#
-#   e <- data |> e_charts()
-#   i = 1
-#
-#    .get_data(e, stage) |>
-#     unlist() |>
-#     unname()
-#
-#   for (i in seq_along(e$x$data)) { # TODO
-#
-#     vector <-   .build_data(e, start, end, stage)
-#     e_serie <- list(data = vector)
-#
-#     # e <- e |> e_axis(type = 'time', axis = "x")
-#     # e <- e |> e_axis(type = 'category', axis = "y", serie = stage)
-#
-#     # if (y_index != 0) {
-#     #   e <- .set_y_axis(e, substitute(upper), y_index, i)
-#     # }
-#     # if (x_index != 0) {
-#     #   e <- .set_x_axis(e, x_index, i)
-#     # }
-#
-#     if (!e$x$tl) {
-#       opts <- list(
-#         type = "custom",
-#         renderItem = 'stage',
-#         colorBy = 'data',
-#         # encode = list(x= 0,
-#         #               y = 1,
-#         #               tooltip = 2),
-#         # data = vector
-#         # name = name,
-#         itemPayload = list(
-#           envelope = list()
-#         )
-#         # ...
-#       )
-#
-#       e$x$opts$series <- append(e$x$opts$series, list(opts))
-#       # e_serie <- append(opts, e_serie) # data after renderItem, data used for Y-sizing only
-#
-#       # if (isTRUE(legend)) {
-#       #
-#       #   # current_trace <- length(e$x$opts$series)
-#       #   # e$x$opts$series[[current_trace]]$name = name
-#       #
-#       #   e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-#       # }
-#
-#       e$x$opts$dataset <- list(source = vector)
-#
-#     }
-#     # else {
-#     #   if (isTRUE(legend)) {
-#     #     e$x$opts$legend$data <- append(
-#     #       e$x$opts$legend$data,
-#     #       list(name)
-#     #     )
-#     #   }
-#     #   e$x$opts$options[[i]]$series <- append(
-#     #     e$x$opts$options[[i]]$series,
-#     #     list(e_serie)
-#     #   )
-#     # }
-#   }
-#   # if (isTRUE(e$x$tl)) {
-#   #   # generate series list
-#   #   series_opts <- list(
-#   #     type = "custom",
-#   #     renderItem = 'contour',
-#   #     encode = list(x= 0,
-#   #                   y = 1,
-#   #                   tooltip = 2),
-#   #     data = vector,
-#   #     name = name,
-#   #     itemPayload = list(
-#   #       thresholds = thresholds,
-#   #       bandwidth = bandwidth,
-#   #       lineStyle = lineStyle,
-#   #       itemStyle = list(opacity = contourOpacity,
-#   #                        color = contourColors)
-#   #     ),
-#   #     ...
-#   #   )
-#   #
-#   #   if (isTRUE(legend)) {
-#   #     e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
-#   #   }
-#   #   e$x$opts$baseOption$series <- append(
-#   #     e$x$opts$baseOption$series,
-#   #     list(series_opts)
-#   #   )
-#   # }
-#
-#   path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
-#   dep <- htmltools::htmlDependency(
-#     name = "echarts-stage",
-#     version = "1.0.0",
-#     src = c(file = path),
-#     script = "echarts-stage.js")
-#
-#   e$dependencies <- append(e$dependencies, list(dep))
-#
-#   e
-# }
+
+e_stage <- function(e,
+                      serie,
+                      legend = TRUE,
+                      name = "contour",
+                      thresholds = 8,
+                      bandwidth = 20,
+                      lineStyle = list(opacity = 0.3, color = "black", width=1),
+                      contourOpacity = 0.8,
+                      contourColors = list('#5470c6', '#91cc75', '#fac858', '#ee6666'),
+                      ...){
+
+  if (missing(e)) {
+    stop("missing e", call. = FALSE)
+  }
+
+  df <- data.frame(
+    start = as.POSIXct(c(
+      "2024-09-07 06:12", "2024-09-07 06:15", "2024-09-07 08:59",
+      "2024-09-07 05:45", "2024-09-07 07:37", "2024-09-07 08:56",
+      "2024-09-07 09:08", "2024-09-07 05:45",
+      "2024-09-07 03:12", "2024-09-07 04:02", "2024-09-07 04:40",
+      "2024-09-07 04:57", "2024-09-07 06:12", "2024-09-07 06:18",
+      "2024-09-07 07:56", "2024-09-07 09:00", "2024-09-07 09:29",
+      "2024-09-07 03:27", "2024-09-07 04:36", "2024-09-07 04:48"
+    )),
+
+    end = as.POSIXct(c(
+      "2024-09-07 06:12", "2024-09-07 06:18", "2024-09-07 09:00",
+      "2024-09-07 06:12", "2024-09-07 07:56", "2024-09-07 08:59",
+      "2024-09-07 09:29", "2024-09-07 06:12",
+      "2024-09-07 03:27", "2024-09-07 04:36", "2024-09-07 04:48",
+      "2024-09-07 05:45", "2024-09-07 06:15", "2024-09-07 07:37",
+      "2024-09-07 08:56", "2024-09-07 09:08", "2024-09-07 10:41",
+      "2024-09-07 04:02", "2024-09-07 04:40", "2024-09-07 04:57"
+    )),
+
+    stage = c(
+      "Awake", "Awake", "Awake",
+      "REM", "REM", "REM", "REM", "REM",
+      "Core", "Core", "Core", "Core", "Core", "Core", "Core", "Core", "Core",
+      "Deep", "Deep", "Deep"
+    ),
+    stringsAsFactors = FALSE
+  )
+
+  e <- data |> e_charts()
+  i = 1
+
+  for (i in seq_along(e$x$data)) { # TODO
+
+    vector <- lapply(1:nrow(df), function(i) {
+      list(
+        (df[["start"]][i]),  # Convert to milliseconds
+        (df[["end"]][i]),
+        df[["stage"]][i]
+      )
+    })
+
+    e <- e |> e_axis(type = 'time', axis = "x")
+    e <- e |> e_axis(type = 'category', axis = "y") #, serie = stage)
+
+    # if (y_index != 0) {
+    #   e <- .set_y_axis(e, substitute(upper), y_index, i)
+    # }
+    # if (x_index != 0) {
+    #   e <- .set_x_axis(e, x_index, i)
+    # }
+
+    if (!e$x$tl) {
+      opts <- list(
+        type = "custom",
+        renderItem = 'stage',
+        colorBy = 'data',
+        encode = list(
+          x = c(0, 1),
+          y = 2,
+          tooltip = c(0, 1)
+        ),
+        # data = vector
+        # name = name,
+        itemPayload = list(
+          envelope = list()
+        )
+        # ...
+      )
+
+      e$x$opts$series <- append(e$x$opts$series, list(opts))
+      # e_serie <- append(opts, e_serie) # data after renderItem, data used for Y-sizing only
+
+      # if (isTRUE(legend)) {
+      #
+      #   # current_trace <- length(e$x$opts$series)
+      #   # e$x$opts$series[[current_trace]]$name = name
+      #
+      #   e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+      # }
+
+      e$x$opts$dataset <- list(source = vector)
+
+    }
+    # else {
+    #   if (isTRUE(legend)) {
+    #     e$x$opts$legend$data <- append(
+    #       e$x$opts$legend$data,
+    #       list(name)
+    #     )
+    #   }
+    #   e$x$opts$options[[i]]$series <- append(
+    #     e$x$opts$options[[i]]$series,
+    #     list(e_serie)
+    #   )
+    # }
+  }
+  # if (isTRUE(e$x$tl)) {
+  #   # generate series list
+  #   series_opts <- list(
+  #     type = "custom",
+  #     renderItem = 'contour',
+  #     encode = list(x= 0,
+  #                   y = 1,
+  #                   tooltip = 2),
+  #     data = vector,
+  #     name = name,
+  #     itemPayload = list(
+  #       thresholds = thresholds,
+  #       bandwidth = bandwidth,
+  #       lineStyle = lineStyle,
+  #       itemStyle = list(opacity = contourOpacity,
+  #                        color = contourColors)
+  #     ),
+  #     ...
+  #   )
+  #
+  #   if (isTRUE(legend)) {
+  #     e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+  #   }
+  #   e$x$opts$baseOption$series <- append(
+  #     e$x$opts$baseOption$series,
+  #     list(series_opts)
+  #   )
+  # }
+
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+  dep <- htmltools::htmlDependency(
+    name = "echarts-stage",
+    version = "1.0.0",
+    src = c(file = path),
+    script = "echarts-stage.js")
+
+  e$dependencies <- append(e$dependencies, list(dep))
+
+  e
+}
 
 
