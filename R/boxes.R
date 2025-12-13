@@ -121,7 +121,7 @@ renderEcharts4rBox <- function(expr, env = parent.frame(), quoted = FALSE) {
   function() {
     val <- func()
 
-    path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+    path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
 
     deps <- htmltools::htmlDependency(
       name = "countup",

@@ -137,7 +137,7 @@ e_map_ <- function(e, serie = NULL, map = "world", name = NULL, rm_x = TRUE, rm_
       data <- .build_data2(e$x$data[[i]], serie)
       data <- .add_bind2(e, data, e$x$mapping$x, i = i)
       app_data <- list(data = data)
-    } 
+    }
 
     if (!e$x$tl) {
       if (is.null(name) && !is.null(serie)) {
@@ -168,7 +168,7 @@ e_map_ <- function(e, serie = NULL, map = "world", name = NULL, rm_x = TRUE, rm_
 
   if (map == "world") {
     # add dependency
-    path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+    path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
     dep <- htmltools::htmlDependency(
       name = "echarts-world",
       version = "1.0.0",
@@ -252,7 +252,7 @@ e_map_3d_ <- function(e, serie = NULL, map = "world", name = NULL, coord_system 
 
   if (map == "world") {
     # add dependency
-    path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+    path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
     dep <- htmltools::htmlDependency(
       name = "echarts-world",
       version = "1.0.0",
@@ -264,7 +264,7 @@ e_map_3d_ <- function(e, serie = NULL, map = "world", name = NULL, coord_system 
   }
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-gl",
     version = "1.1.2",
@@ -326,7 +326,7 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
   e$x$opts$series <- append(e$x$opts$series, list(app))
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-gl",
     version = "1.1.2",
@@ -359,7 +359,7 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
 #' json <- jsonlite::read_json("https://echarts.apache.org/examples/data/asset/geo/USA.json")
 #'
 #' USArrests |>
-#'   tibble::rownames_to_column("states") |> 
+#'   tibble::rownames_to_column("states") |>
 #'   e_charts(states) |>
 #'   e_map_register("USA", json) |>
 #'   e_map(Murder, map = "USA") |>
@@ -428,13 +428,13 @@ e_map_register_p <- function(name, json, async = FALSE, session = shiny::getDefa
 e_map_register_ui <- function(name, json, async = FALSE) {
   async <- paste0(tolower(async))
   script <- paste0("
-    $.ajax({ 
-        url: '", json, "', 
-        dataType: 'json', 
+    $.ajax({
+        url: '", json, "',
+        dataType: 'json',
         async: ", async, ",
-        success: function(map){ 
+        success: function(map){
           echarts.registerMap('", name, "', map);
-        } 
+        }
       });")
   shiny::tags$script(
     script

@@ -1363,7 +1363,7 @@ e_lines_3d_ <- function(
   }
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-gl",
     version = "1.1.2",
@@ -1461,7 +1461,7 @@ e_line_3d_ <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, r
   }
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-gl",
     version = "1.1.2",
@@ -1568,7 +1568,7 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
   }
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-gl",
     version = "1.1.2",
@@ -1634,7 +1634,7 @@ e_surface_ <- function(e, y, z, bind = NULL, name = NULL, rm_x = TRUE, rm_y = TR
   }
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-gl",
     version = "1.1.2",
@@ -1810,7 +1810,7 @@ e_scatter_3d_ <- function(
   }
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-gl",
     version = "1.1.2",
@@ -1858,7 +1858,7 @@ e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = N
   e$x$opts$series <- append(e$x$opts$series, list(serie))
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-gl",
     version = "1.1.2",
@@ -1942,7 +1942,7 @@ e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRU
   }
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-gl",
     version = "1.1.2",
@@ -2387,7 +2387,7 @@ e_band2_ <- function(
       list(series_opts)
     )
   }
-  path <- system.file("htmlwidgets/lib/echarts-4.8.0/custom", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0/custom", package = "echarts4r")
   dep <- htmltools::htmlDependency(name = "echarts-renderers", version = "1.0.2", src = c(file = path), script = "renderers.js")
 
   e$dependencies <- append(e$dependencies, list(dep))
@@ -2548,7 +2548,7 @@ e_error_bar_ <- function(
       list(series_opts)
     )
   }
-  path <- system.file("htmlwidgets/lib/echarts-4.8.0/custom", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0/custom", package = "echarts4r")
   dep <- htmltools::htmlDependency(name = "echarts-renderers", version = "1.0.2", src = c(file = path), script = "renderers.js")
 
   e$dependencies <- append(e$dependencies, list(dep))

@@ -373,7 +373,7 @@ e_step.echarts4rProxy <- function(
 #' @param rm_x,rm_y Whether to remove x and y axis, only applies if \code{coord_system} is not
 #' set to \code{cartesian2d}.
 #' @param x A vector of integers or numeric.
-#' @param jitter_factor,jitter_amount Jitter points, passed to \code{jitter}. This is now deprecated since the upgrade to echarts v6. 
+#' @param jitter_factor,jitter_amount Jitter points, passed to \code{jitter}. This is now deprecated since the upgrade to echarts v6.
 #' Recommend using e_jitter().
 #' @param scale_js the JavaScript scaling function.
 #'
@@ -1173,7 +1173,7 @@ e_graph.echarts4r <- function(e, layout = "force", name = NULL, rm_x = TRUE, rm_
   e$x$opts$series <- append(e$x$opts$series, list(serie))
 
   # dependency
-  path <- system.file("htmlwidgets/lib/echarts-4.8.0/plugins", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-graph-modularity",
     version = "1.1.0",
@@ -1212,7 +1212,7 @@ e_graph_gl.echarts4r <- function(e, layout = "force", name = NULL, rm_x = TRUE, 
   )
 
   # add dependencies
-  path <- system.file("htmlwidgets/lib/echarts-4.8.0", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
   dep_gl <- htmltools::htmlDependency(
     name = "echarts-gl",
     version = "1.1.2",
@@ -1220,7 +1220,7 @@ e_graph_gl.echarts4r <- function(e, layout = "force", name = NULL, rm_x = TRUE, 
     script = "echarts-gl.min.js"
   )
 
-  path <- system.file("htmlwidgets/lib/echarts-4.8.0/plugins", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
   dep_modularity <- htmltools::htmlDependency(
     name = "echarts-graph-modularity",
     version = "1.1.0",
@@ -4662,10 +4662,10 @@ e_chord.echarts4r <- function(e, source, target, value, rm_x = TRUE, rm_y = TRUE
   if (missing(source) || missing(target) || missing(value)) {
     stop("missing source, target or values", call. = FALSE)
   }
-  
+
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
-  
+
   e_chord_(
     e,
     deparse(substitute(source)),
@@ -4683,10 +4683,10 @@ e_chord.echarts4rProxy <- function(e, source, target, value, rm_x = TRUE, rm_y =
   if (missing(source) || missing(target) || missing(value)) {
     stop("missing source, target or values", call. = FALSE)
   }
-  
+
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
-  
+
   e$chart <- e_chord_(
     e$chart,
     deparse(substitute(source)),
@@ -4696,6 +4696,6 @@ e_chord.echarts4rProxy <- function(e, source, target, value, rm_x = TRUE, rm_y =
     rm_y,
     ...
   )
-  
+
   return(e)
 }
