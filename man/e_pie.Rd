@@ -5,9 +5,27 @@
 \alias{e_pie_}
 \title{Pie}
 \usage{
-e_pie(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...)
+e_pie(
+  e,
+  serie,
+  name = NULL,
+  legend = TRUE,
+  coord_system = "",
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 
-e_pie_(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...)
+e_pie_(
+  e,
+  serie,
+  name = NULL,
+  legend = TRUE,
+  coord_system = "",
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
@@ -18,6 +36,8 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{name}{name of the serie.}
 
 \item{legend}{Whether to add serie to legend.}
+
+\item{coord_system}{Coordinate system to plot against.}
 
 \item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 
