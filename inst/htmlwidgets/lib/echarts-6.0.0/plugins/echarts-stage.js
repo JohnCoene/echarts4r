@@ -1,0 +1,22 @@
+/*
+* Licensed to the Apache Software Foundation (ASF) under one
+* or more contributor license agreements.  See the NOTICE file
+* distributed with this work for additional information
+* regarding copyright ownership.  The ASF licenses this file
+* to you under the Apache License, Version 2.0 (the
+* "License"); you may not use this file except in compliance
+* with the License.  You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing,
+* software distributed under the License is distributed on an
+* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+* KIND, either express or implied.  See the License for the
+* specific language governing permissions and limitations
+* under the License.
+*/
+this.stageCustomSeriesInstaller=function(t){"use strict";function e(t){var e=Object.create(null);return t&&Object.keys(t).forEach((function(a){if("default"!==a){var c=Object.getOwnPropertyDescriptor(t,a);Object.defineProperty(e,a,c.get?c:{enumerable:!0,get:function(){return t[a]}})}})),e.default=t,Object.freeze(e)}var a=e(t),c=function(e,c){var o,i=c.value(0),n=c.value(1),r=c.value(2),h=c.coord([i,r]),l=c.coord([n,r]),s=c.coord([0,0])[1]-c.coord([0,1])[1],d=c.visual("color"),p=e.itemPayload,x=p.itemStyle||{},u=x.borderRadius||8,y=t.zrUtil.retrieve2(null===(o=p.envelope)||void 0===o?void 0:o.externalRadius,6),f=t.zrUtil.retrieve2(x.verticalMargin,8),g=t.zrUtil.retrieve2(x.minHorizontalSize,3),v=[],w=e.context.boxes||[],m=l[0]-h[0],M=Math.max(m,g),b={x:h[0]-(M-m)/2,y:h[1]-s/2+5+14+f,width:M,height:s-14-5-2*f};v.push({type:"rect",shape:{x:b.x,y:b.y,width:b.width,height:b.height,r:u},style:{fill:d},z2:10}),w.push(b),e.context.boxes=w,e.context.renderedStages||(e.context.renderedStages=[]);var L=e.context.renderedStages;if(!L[r]){var z=p.axisLabel||{},S=c.ordinalRawValue(2);"function"==typeof z.formatter&&(S=z.formatter(S,r)),v.push({type:"text",style:{x:e.coordSys.x+5,y:h[1]-s/2+5+14,fill:z.color||"#8A8A8A",text:S,verticalAlign:"bottom"},z2:20}),L[r]=!0}if(e.dataIndex===e.dataInsideLength-1){for(var A=[],O=0;O<e.dataInsideLength;O++){var j=c.visual("color",O);A.indexOf(j)<0&&A.push(j)}var D=p.envelope||{};if(!1!==D.show&&w.length>1){var I=[],U=a.zrUtil.retrieve2(D.margin,2);w.sort((function(t,e){return t.x-e.x||t.y-e.y}));var P=D.color||"#888";if(A.length>0&&!D.color){var Z=[];for(O=0;O<A.length;O++)Z.push({offset:(2*O+1)/(2*A.length),color:A[O]});P={type:"linear",x:0,y:0,x2:0,y2:1,global:!1,colorStops:Z}}var C=t.zrUtil.retrieve2(D.opacity,.25);for(O=0;O<w.length;O++){var R=w[O];if(I.push({type:"rect",shape:{x:R.x-U,y:R.y-U,width:R.width+2*U,height:R.height+2*U,r:Math.min(u,R.width/2)+U}}),O>0){var k=w[O-1],E=k.y>R.y+R.height,H=E?k.y-R.y-R.height+2*u:R.y-k.y-k.height+2*u,V=E?R.y+R.height-u:k.y+k.height-u;if(R.x-U>=k.x+k.width+U)continue;if(E){if(R.x-U-k.x>0){var q=Math.ceil(R.x-U),B=k.y-U,F=Math.min((R.x-U-k.x)/2,y);I.push({type:"path",shape:{pathData:"M".concat(q-F," ").concat(B,"A").concat(F," ").concat(F," 0 0 0 ").concat(q," ").concat(B-F,"L").concat(q,",").concat(B+U,"L").concat(q-F,",").concat(B,"Z")}})}if(R.x+R.width-k.x-k.width-U>0){var G=R.y+R.height+U,J=Math.floor(k.x+k.width+U);F=Math.min((R.x+R.width-k.x-k.width-U)/2,y);I.push({type:"path",shape:{pathData:"M".concat(J+F," ").concat(G,"A").concat(F," ").concat(F," 0 0 0 ").concat(J," ").concat(G+F,"L").concat(J,",").concat(G-U,"L").concat(J+F,",").concat(G,"Z")}})}}else{if(R.x-U-k.x>0){q=Math.ceil(R.x-U);var K=k.y+k.height+U;F=Math.min((R.x-U-k.x)/2,y);I.push({type:"path",shape:{pathData:"M".concat(q," ").concat(K+F,"A").concat(F," ").concat(F," 0 0 0 ").concat(q-F," ").concat(K,"L").concat(q,",").concat(K-U,"L").concat(q,",").concat(K+F,"Z")}})}if(R.x+R.width-k.x-k.width-U>0){B=R.y-U,J=Math.floor(k.x+k.width+U),F=Math.min((R.x+R.width-k.x-k.width-U)/2,y);I.push({type:"path",shape:{pathData:"M".concat(J," ").concat(B-F,"A").concat(F," ").concat(F," 0 0 0 ").concat(J+F," ").concat(B,"L").concat(J,",").concat(B+U,"L").concat(J,",").concat(B-F,"Z")}})}}I.push({type:"rect",shape:{x:k.x+k.width+U,y:V+H,width:R.x-k.x-k.width-2*U,height:-H}})}}v.push({type:"compoundPath",shape:{paths:I},style:{fill:P,opacity:C},silent:!0})}}return{type:"group",children:v}};return{install:function(t){t.registerCustomSeries("stage",c)}}}(echarts),
+// Automatically register the custom series
+"undefined"!=typeof window&&window.echarts&&window.echarts.use(window.stageCustomSeriesInstaller);
+//# sourceMappingURL=index.auto.min.js.map

@@ -44,12 +44,12 @@ to have an idea of what they should look like.
 }
 
 \examples{
-# top right corner zoom is in 
+# top right corner zoom is in
 # French
-cars |> 
- e_charts(speed) |> 
- e_scatter(dist) |> 
- e_datazoom() |> 
+cars |>
+ e_charts(speed) |>
+ e_scatter(dist) |>
+ e_datazoom() |>
  e_locale("FR")
 
 }

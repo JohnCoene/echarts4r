@@ -315,9 +315,9 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
 
   data <- e$x$data[[1]] |>
     dplyr::select(
-      name = !!name_quo,
+      c(name = !!name_quo,
       value = !!value_quo,
-      height = !!height_quo
+      height = !!height_quo)
     ) |>
     apply(1, as.list)
 

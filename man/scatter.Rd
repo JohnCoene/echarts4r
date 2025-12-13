@@ -115,7 +115,7 @@ of the same length. You can disable the scaling by setting it to \code{NULL}.}
 
 \item{coord_system}{Coordinate system to plot against, see examples.}
 
-\item{jitter_factor, jitter_amount}{Jitter points, passed to \code{jitter}. This is now deprecated since the upgrade to echarts v6. 
+\item{jitter_factor, jitter_amount}{Jitter points, passed to \code{jitter}. This is now deprecated since the upgrade to echarts v6.
 Recommend using e_jitter().}
 
 \item{legend}{Whether to add serie to legend.}

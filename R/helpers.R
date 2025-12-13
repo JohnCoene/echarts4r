@@ -401,6 +401,7 @@ echarts_from_json <- function(txt, jswrapper = FALSE) {
 #' @rdname e_zigzag
 #' @export
 e_zigzag <- function(e, axis = 'y', start, end, gap = "3%", zigzagAmplitude = 10, ...){
+
   if (missing(e)) {
     stop("must pass echart into function", call. = FALSE)
   }
@@ -413,8 +414,8 @@ e_zigzag <- function(e, axis = 'y', start, end, gap = "3%", zigzagAmplitude = 10
     stop("must provide start and end values")
   }
 
-  data <- data.frame("starts" = start, "ends" = end, "gap" = gap)
-  b <- .build_zigzags(data, starts, ends, gap)
+  df <- data.frame("starts" = start, "ends" = end, "gap" = gap)
+  b <- .build_zigzags(df, starts = "starts", ends = "ends", gap = "gap")
 
   bA <- list(
     zigzagAmplitude = zigzagAmplitude,
@@ -493,7 +494,7 @@ e_jitter <- function(e, axis = 'x', jitter = 20, jitterOverlap = FALSE, jitterMa
 #' "Females" = sample(1:10,9))
 #'
 #' df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade")
-#' 
+#'
 #' @seealso \href{https://echarts.apache.org/en/option.html#matrix}{Additional arguments}
 #'
 #' @rdname e_matrix
@@ -502,18 +503,18 @@ e_matrix <- function(e, xAxis, yAxis){
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-  
-  
+
+
   if (missing(xAxis) | missing(yAxis)) {
     stop("must provide both x and y values", call. = FALSE)
   }
-  
+
   e$x$opts$matrix <- append(e$x$opts$matrix, list(x = list(data = as.list(unique(e$x$data[[1]][[xAxis]])), name = xAxis)))
-  
+
   e$x$opts$matrix <- append(e$x$opts$matrix, list(y = list(data = as.list(unique(e$x$data[[1]][[yAxis]])), name = yAxis)))
-  
-  
-  e 
+
+
+  e
 }
 
 
@@ -532,10 +533,10 @@ e_matrix <- function(e, xAxis, yAxis){
 #' "Males" = sample(1:10, 9),
 #' "Females" = sample(1:10,9))
 #'
-#' df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |> 
-#' e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |> 
+#' df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |>
+#' e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |>
 #' e_matrix_parent(value = "High", children = "Class3")
-#' 
+#'
 #' @seealso \href{https://echarts.apache.org/en/option.html#matrix.x.data}{Additional arguments}
 #'
 #' @rdname e_matrix_parent
@@ -544,11 +545,11 @@ e_matrix_parent <- function(e, axis = "x", value, children){
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-  
+
   if(axis=="x"){
-    
+
     child_ndx <- which(e$x$opts$matrix$x$data %in% children)
-    
+
     if(length(child_ndx)==0){
       for(i in 1:length(e$x$opts$matrix$x$data )){
         if(e$x$opts$matrix$x$data[[i]]$value %in% children){
@@ -559,17 +560,17 @@ e_matrix_parent <- function(e, axis = "x", value, children){
         stop("No children found in the data")
       }
     }
-    
+
     new_node <- list(value = value, children = e$x$opts$matrix$x$data[child_ndx])
-    
+
     e$x$opts$matrix$x$data <- append(e$x$opts$matrix$x$data, list(new_node))
     e$x$opts$matrix$x$data <- e$x$opts$matrix$x$data[-child_ndx]
   }
-  
+
   if(axis=="y"){
-    
+
     child_ndx <- which(e$x$opts$matrix$y$data %in% children)
-    
+
     if(length(child_ndx)==0){
       for(i in 1:length(e$x$opts$matrix$y$data )){
         if(e$x$opts$matrix$y$data[[i]]$value %in% children){
@@ -580,15 +581,15 @@ e_matrix_parent <- function(e, axis = "x", value, children){
         stop("No children found in the data")
       }
     }
-    
+
     new_node <- list(value = value, children = e$x$opts$matrix$y$data[child_ndx])
-    
+
     e$x$opts$matrix$y$data <- append(e$x$opts$matrix$y$data, list(new_node))
     e$x$opts$matrix$y$data <- e$x$opts$matrix$y$data[-child_ndx]
   }
-  
+
   e
-  
+
 }
 
 #' Fill Matrix Axis Corner
@@ -599,7 +600,8 @@ e_matrix_parent <- function(e, axis = "x", value, children){
 #' @param coord corner cell coordinate location
 #' @param value text to display in corner cell
 #' @param mergeCells whether the body cells and corner cells can be merged
-#' @param coordClamp determines whether null values can be used to indicate an entire row/column
+#' @param coordClamp determines whether null values can be used to indicate an
+#'   entire row/column
 #' @examples
 #'
 #' df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
@@ -610,8 +612,9 @@ e_matrix_parent <- function(e, axis = "x", value, children){
 #' df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |>
 #' e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |>
 #' e_matrix_parent(value = "High", children = "Class3") |>
-#' e_matrix_corner(value = "All School", label = list(fontSize = 24, color = "#555", position = "inside"))
-#' 
+#' e_matrix_corner(value = "All School", label = list(
+#'    fontSize = 24, color = "#555", position = "inside"))
+#'
 #' @seealso \href{https://echarts.apache.org/en/option.html#matrix.corner}{Additional arguments}
 #'
 #' @rdname e_matrix_corner
@@ -620,11 +623,11 @@ e_matrix_corner <- function(e, coord = c(-1,-1), value, mergeCells = TRUE, coord
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-  
+
   data <- list(coord = coord, value = value, mergeCells = mergeCells, coordClamp = coordClamp)
   l <- list(data = list(data), ...)
-  
+
   e$x$opts$matrix$corner <- append(e$x$opts$matrix$corner, l)
-  
+
   e
 }

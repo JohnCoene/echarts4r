@@ -15,7 +15,7 @@ e_barRange(
   barWidth = 10,
   borderRadius = 5,
   margin = 10,
-  textSymbol = "°F",
+  textSymbol = "F",
   ...
 )
 }

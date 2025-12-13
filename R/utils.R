@@ -99,7 +99,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   }
 
   data <- data |>
-    dplyr::select(x = x, y = y, size, "sizeECHARTS") |>
+    dplyr::select(dplyr::all_of(c(x = x, y = y, size, "sizeECHARTS"))) |>
     dplyr::mutate(
       x = .jitter(x, factor, amount),
       y = .jitter(y, factor, amount)
@@ -116,7 +116,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   row.names(data) <- NULL
 
   data <- data |>
-    dplyr::select(x = {{x}}, y = {{y}}) |>
+    dplyr::select(dplyr::all_of(c(x = x, y = y))) |>
     dplyr::mutate(
       x = .jitter(x, factor, amount),
       y = .jitter(y, factor, amount)
@@ -143,7 +143,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 
 .add_bind2 <- function(e, l, bind, col = "name", i) {
   e$x$data[[i]] |>
-    dplyr::select(bind) |>
+    dplyr::select(dplyr::all_of(c(bind))) |>
     unname() |>
     unlist() -> bind
 
@@ -155,7 +155,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 
 .add_bind <- function(e, l, bind, col = "name") {
   e$x$data[[1]] |>
-    dplyr::select(bind) |>
+    dplyr::select(dplyr::all_of(c(bind))) |>
     unname() |>
     unlist() -> bind
 
@@ -205,7 +205,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 
 .build_sankey_edges <- function(data, source, target, values) {
   data |>
-    dplyr::select(source, target, values) -> edges
+    dplyr::select(dplyr::all_of(c(source, target, values))) -> edges
 
   names(edges) <- c("source", "target", "value")
 
@@ -217,13 +217,13 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 
   data <- nodes |>
     dplyr::select(
-      name = !!names,
+      c(name = !!names,
       value = !!value,
       symbolSize = !!symbolSize,
       category = !!category,
       symbol = !!symbol,
       x = !!xpos,
-      y = !!ypos
+      y = !!ypos)
     )
 
   apply(data, 1, as.list)
@@ -234,11 +234,11 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 
   data <- nodes |>
     dplyr::select(
-      name = !!names,
+     c( name = !!names,
       value = !!value,
       symbol = !!symbol,
       x = !!xpos,
-      y = !!ypos
+      y = !!ypos)
     )
 
   apply(data, 1, as.list)
@@ -249,12 +249,12 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 
   data <- nodes |>
     dplyr::select(
-      name = !!names,
+      c(name = !!names,
       value = !!value,
       symbolSize = !!symbolSize,
       symbol = !!symbol,
       x = !!xpos,
-      y = !!ypos
+      y = !!ypos)
     )
 
   apply(data, 1, as.list)
@@ -266,21 +266,21 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   if (is.null(size) && is.null(color)) {
     data <- edges |>
       dplyr::select(
-        source = !!source,
+        c(source = !!source,
         target = !!target,
         value = !!value
-      )
+      ))
 
     x <- apply(data, 1, as.list)
   }
-  
+
   if (!is.null(size) && is.null(color)) {
     data <- edges |>
       dplyr::select(
-        source = !!source,
+       c( source = !!source,
         target = !!target,
         value = !!value,
-        size = !!size
+        size = !!size)
       )
 
     x <- apply(data, 1, function(x) {
@@ -299,10 +299,10 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   if (!is.null(color) && is.null(size)) {
     data <- edges |>
       dplyr::select(
-        source = !!source,
+        c(source = !!source,
         target = !!target,
         value = !!value,
-        color = !!color
+        color = !!color)
       )
 
     x <- apply(data, 1, function(x) {
@@ -320,11 +320,11 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   if (!is.null(size) && !is.null(color)) {
     data <- edges |>
       dplyr::select(
-        source = !!source,
+        c(source = !!source,
         target = !!target,
         value = !!value,
         size = !!size,
-        color = !!color
+        color = !!color)
       )
 
     x <- apply(data, 1, function(x) {
@@ -473,7 +473,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   label <- rep(label, length(x))
 
   e$x$data[[i]] |>
-    dplyr::select(serie) -> data
+    dplyr::select(dplyr::all_of(c(serie))) -> data
 
   data <- cbind(x, data, label)
   row.names(data) <- NULL
@@ -499,7 +499,7 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 
 .get_data <- function(e, serie, i = 1) {
   data <- e$x$data[[i]] |>
-    dplyr::select(serie) |>
+    dplyr::select(dplyr::all_of(c(serie))) |>
     unname()
 
   data[[1]]
@@ -580,12 +580,12 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
 
 .map_lines <- function(e, source.lon, source.lat, target.lon, target.lat, source.name, target.name, value, i) {
   data <- e$x$data[[i]] |>
-    dplyr::select(
-      source.lon,
+    dplyr::select(dplyr::all_of(
+      c(source.lon,
       source.lat,
       target.lon,
-      target.lat
-    ) |>
+      target.lat)
+    )) |>
     apply(1, function(x) {
       x <- unname(x)
       list(
@@ -624,8 +624,8 @@ globalVariables(c("x", "e", ".", "acc", "epoch", "loss", "size", "val_acc", "val
   # data <- .build_data(e, e$x$mapping$x, serie, names = c("name", "height"))
   e$x$data[[j]] |>
     dplyr::select(
-      name = e$x$mapping$x,
-      height = serie
+      c(name = e$x$mapping$x,
+      height = serie)
     ) -> data
 
   names(data) <- c("name", "height")
@@ -793,31 +793,32 @@ check_installed <- function(pkg) {
 
 .build_zigzags <- function(data, starts, ends, gap) {
   data |>
-    dplyr::select(starts, ends, gap) -> zigzags
-  
+    dplyr::select(dplyr::all_of(c(starts, ends, gap))) -> zigzags
+
   names(zigzags) <- c("start", "end", "gap")
-  
+
   apply(zigzags, 1, as.list)
 }
 
 
 .get_base_nodes <- function(x) {
-  found_values <- list() 
-  
+  get_base_nodes <- NULL
+  found_values <- list()
+
   if (is.list(x) && !is.data.frame(x)) {
     current_names <- names(x)
-    
+
     for (i in seq_along(x)) {
       element <- x[[i]]
-      
+
       is_unnamed <- is.null(current_names) || current_names[i] == ""
-      
+
       is_atomic_data <- !is.list(element) || is.data.frame(element)
-      
+
       if (is_unnamed && is_atomic_data) {
         found_values <- c(found_values, list(element))
       }
-      
+
       found_values <- c(found_values, get_base_nodes(element))
     }
   }

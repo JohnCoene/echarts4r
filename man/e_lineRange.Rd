@@ -33,7 +33,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{areaStyle}{properties of the area between the lines}
 
-\item{...}{}
+\item{...}{additional options}
 }
 \description{
 Draw a line range area plot.
@@ -46,7 +46,7 @@ df <- iris |>
                    upper = max(Sepal.Length))
 df |>
   e_chart(Species) |>
-  e_lineRange(lower = lower, upper = upper, y_index = 20)
+  e_lineRange(lower = lower, upper = upper)
 }
 \seealso{
 \href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/lineRange}{official documentation}
