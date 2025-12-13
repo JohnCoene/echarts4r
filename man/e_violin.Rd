@@ -6,18 +6,26 @@
 \usage{
 e_violin(
   e,
+  name = "barRange",
+  legend = TRUE,
+  y_index = 0,
+  x_index = 0,
   symbolSize = 10,
   areaOpacity = 0.5,
   binCount = 100,
   bandWidthScale = 1,
-  legend = TRUE,
-  name = "Violin",
   ...
 )
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
+
+\item{name}{name of the serie.}
+
+\item{legend}{Whether to add serie to legend.}
+
+\item{x_index, y_index}{Indexes of x and y axis.}
 
 \item{symbolSize}{overall size of symbol.}
 
@@ -27,11 +35,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{bandWidthScale}{scale for the amplitude of violin area}
 
-\item{legend}{Whether to add serie to legend.}
-
-\item{name}{name of the serie.}
-
-\item{...}{Any other option to pass, check See Also section.}
+\item{...}{additional options}
 }
 \description{
 Draw a violin chart with scattered dots.

@@ -300,7 +300,7 @@ e_doughnut <- function(e,
 #'
 #' Draw a violin chart with scattered dots.
 #'
-#' @inheritParams e_bar
+#' @inheritParams e_band2_
 #' @param symbolSize overall size of symbol.
 #' @param areaOpacity opacity of violin area.
 #' @param bandWidthScale scale for the amplitude of violin area
@@ -318,13 +318,15 @@ e_doughnut <- function(e,
 #' @rdname e_violin
 #' @export
 e_violin <- function(e,
-                      symbolSize = 10,
-                      areaOpacity = 0.5,
-                      binCount = 100,
-                      bandWidthScale = 1,
-                      legend = TRUE,
-                      name = "Violin",
-                      ...){
+                     name = "barRange",
+                     legend = TRUE,
+                     y_index = 0,
+                     x_index = 0,
+                     symbolSize = 10,
+                     areaOpacity = 0.5,
+                     binCount = 100,
+                     bandWidthScale = 1,
+                     ...){
 
   if (missing(e)) {
     stop("missing e", call. = FALSE)
@@ -334,70 +336,99 @@ e_violin <- function(e,
     stop("violin is only supported with scatter plots")
   }
 
+ for (i in seq_along(e$x$opts$series)) {
+
   # adjust scatter data to necessary format for violin polygons
-  data <- list()
-  for(i in 1:length(e$x$opts$series[[1]]$data)){
-    data <- append(data,list(as.list(e$x$opts$series[[1]]$data[[i]]$value)))
+    vector <- list()
+    for(j in 1:length(e$x$opts$series[[i]]$data)){
+      vector <- append(vector,list(as.list(e$x$opts$series[[i]]$data[[j]]$value)))
+    }
+    e_serie <- list(data = vector)
+
+    if (y_index != 0) {
+      e <- .set_y_axis(e, substitute(upper), y_index, i)
+    }
+    if (x_index != 0) {
+      e <- .set_x_axis(e, x_index, i)
+    }
+
+    # if (!e$x$tl) {
+      # generate series list
+      serie <- list(
+        type = "custom",
+        renderItem = 'violin',
+        silent = TRUE,
+        itemPayload = list(
+          symbolSize = symbolSize,
+          areaOpacity = areaOpacity,
+          binCount = binCount,
+          bandWidthScale = bandWidthScale
+        ),
+        ...
+      )
+
+      e$x$opts$series <- append(e$x$opts$series, list(serie))
+
+      if (isTRUE(legend)) {
+        # Adding these 2 lines and legend is added
+        current_trace <- length(e$x$opts$series)
+        e$x$opts$series[[current_trace]]$name = name
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+      }
+      e$x$opts$dataset <- list(source = vector)
+
+    # }
   }
 
-  e$x$opts$dataset <- list(source = data)
+    # add dependency
+    path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+    dep <- htmltools::htmlDependency(
+      name = "echarts-violin",
+      version = "1.0.0",
+      src = c(file = path),
+      script = "echarts-violin.js")
 
-  # generate series list
-  violin <- list(
-    type = "custom",
-    renderItem = 'violin',
-    silent = TRUE,
-    itemPayload = list(
-      symbolSize = symbolSize,
-      areaOpacity = areaOpacity,
-      binCount = binCount,
-      bandWidthScale = bandWidthScale
-    ),
-    ...
-  )
+    e$dependencies <- append(e$dependencies, list(dep))
 
-  e$x$opts$series <- append(e$x$opts$series, list(violin))
-
-  if (isTRUE(legend)) {
-    current_trace <- length(e$x$opts$series)
-    e$x$opts$series[[current_trace]]$name = name
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-  }
-
-  # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
-  dep <- htmltools::htmlDependency(
-    name = "echarts-violin",
-    version = "1.0.0",
-    src = c(file = path),
-    script = "echarts-violin.js")
-
-  e$dependencies <- append(e$dependencies, list(dep))
-
-  e
+    e
 }
+
+# WORKS WITH TIMELINE
+# df <- iris |>
+#   dplyr::group_by(Species) |>
+#   dplyr::summarise(min_length = min(Sepal.Length),
+#                    max_length = max(Sepal.Length))
+# df |> dplyr::group_by(Species) |> e_chart(Species, timeline = TRUE) |>
+#   e_barRange(lower = min_length,
+#              upper = max_length,
+#              textSymbol = '"'
+#   ) |> e_timeline_serie(
+#     title = list(
+#       list(text = "setosa"),
+#       list(text = "versicolor"),
+#       list(text = "virginica")
+#     )
+#   )
 
 #' Bar range chart
 #'
 #' Draw a bar range plot with labels on each end.
 #'
-#' @inheritParams e_bar
-#' @inheritParams e_band_
+#' @inheritParams e_band2_
 #' @param barWidth width of each bar
 #' @param borderRadius roundness of the bar ends
 #' @param margin space between the text labels and the bar
 #' @param textSymbol string for the label to end with
 #'
 #' @examples
-#'
 #' df <- iris |>
 #'   dplyr::group_by(Species) |>
 #'   dplyr::summarise(min_length = min(Sepal.Length),
 #'                    max_length = max(Sepal.Length))
 #'
 #' df |> e_chart(Species) |>
-#'   e_barRange(min="min_length",
-#'              max="max_length",
+#'   e_barRange(lower = min_length,
+#'              upper = max_length,
 #'              textSymbol = '"'
 #'   )
 #' @seealso \href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/barRange}{official documentation}
@@ -405,47 +436,104 @@ e_violin <- function(e,
 #' @rdname e_barRange
 #' @export
 e_barRange <- function(e,
-                       min,
-                       max,
+                       lower,
+                       upper,
+                       name = "barRange",
+                       legend = TRUE,
+                       y_index = 0,
+                       x_index = 0,
                        barWidth = 10,
                        borderRadius = 5,
                        margin = 10,
                        textSymbol = "°F",
-                       legend = TRUE,
-                       name = "barRange",
                        ...){
 
   if (missing(e)) {
     stop("missing e", call. = FALSE)
   }
 
-  # Needs to start at index 0.
-  data <- e$x$data[[1]] #|> dplyr::mutate(index = dplyr::row_number() - 1)
-  data <- .build_data2(data, e$x$mapping$x,, min, max)
+  for (i in seq_along(e$x$data)) {
 
-  # generate series list
-  serie <- list(
-    type = "custom",
-    renderItem = 'barRange',
-    encode = list(x= 0,
-                  y = c(1,2),
-                  tooltip = c(1,2)),
-    data = data,
-    itemPayload = list(
-      textSymbol = textSymbol,
-      barWidth = barWidth,
-      borderRadius = borderRadius,
-      margin = margin
-    ),
-     ...
-  )
+    vector <- .build_data2(
+      e$x$data[[i]],
+      e$x$mapping$x,
+      deparse(substitute(lower)),
+      deparse(substitute(upper))
+    )
+    e_serie <- list(data = vector)
 
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
+    if (y_index != 0) {
+      e <- .set_y_axis(e, substitute(upper), y_index, i)
+    }
+    if (x_index != 0) {
+      e <- .set_x_axis(e, x_index, i)
+    }
 
-  if (isTRUE(legend)) {
-    current_trace <- length(e$x$opts$series)
-    e$x$opts$series[[current_trace]]$name = name
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+    if (!e$x$tl) {
+      # generate series list
+      serie <- list(
+        type = "custom",
+        renderItem = 'barRange',
+        encode = list(x= 0,
+                      y = c(1,2),
+                      tooltip = c(1,2)),
+        data = vector,
+        itemPayload = list(
+          textSymbol = textSymbol,
+          barWidth = barWidth,
+          borderRadius = borderRadius,
+          margin = margin
+        ),
+        ...
+      )
+      e$x$opts$series <- append(e$x$opts$series, list(serie))
+
+      if (isTRUE(legend)) {
+        # Adding these 2 lines and legend is added
+        current_trace <- length(e$x$opts$series)
+        e$x$opts$series[[current_trace]]$name = name
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+      }
+      e$x$opts$series <- append(e$x$opts$series, list(e_serie))
+    }
+    else {
+      if (isTRUE(legend)) {
+        e$x$opts$legend$data <- append(
+          e$x$opts$legend$data,
+          list(name)
+        )
+      }
+
+      e$x$opts$options[[i]]$series <- append(
+        e$x$opts$options[[i]]$series,
+        list(e_serie)
+      )
+    }
+  }
+  if (isTRUE(e$x$tl)) {
+    series_opts <- list(
+      type = "custom",
+      renderItem = 'barRange',
+      encode = list(x= 0,
+                    y = c(1,2),
+                    tooltip = c(1,2)),
+      data = vector,
+      itemPayload = list(
+        textSymbol = textSymbol,
+        barWidth = barWidth,
+        borderRadius = borderRadius,
+        margin = margin
+      ),
+      ...
+    )
+
+    if (isTRUE(legend)) {
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+    }
+    e$x$opts$baseOption$series <- append(
+      e$x$opts$baseOption$series,
+      list(series_opts)
+    )
   }
 
   # In the js I replaced "°C" with 't.itemPayload.textSymbol' since the symbol
@@ -461,6 +549,18 @@ e_barRange <- function(e,
 
   e
 }
+
+# timeline works
+# mtcars |>
+#   dplyr::group_by(vs) |>
+#   e_charts(mpg, timeline = TRUE) |>
+#   e_contour(serie = mpg) |>
+#   e_timeline_serie(
+#         title = list(
+#           list(text = "a"),
+#           list(text = "b")
+#         )
+#   )
 
 #' Contour chart
 #'
@@ -497,35 +597,91 @@ e_contour <- function(e,
     stop("missing e", call. = FALSE)
   }
 
-  .build_data2(e$x$data[[1]], e$x$mapping$x, deparse(substitute(serie))) -> data
+  for (i in seq_along(e$x$data)) {
+    vector <-   .build_data2(e$x$data[[i]], e$x$mapping$x, deparse(substitute(serie)))
 
-  e <- e |> e_axis(type = 'value')
+    e_serie <- list(data = vector)
 
-  # generate series list
-  serie <- list(
-    type = "custom",
-    renderItem = 'contour',
-    encode = list(x= 0,
-                  y = 1,
-                  tooltip = 2),
-    data = data,
-    name = name,
-    itemPayload = list(
-      thresholds = thresholds,
-      bandwidth = bandwidth,
-      lineStyle = lineStyle,
-      itemStyle = list(opacity = contourOpacity,
-        color = contourColors)
-    ),
-     ...
-  )
+    e <- e |> e_axis(type = 'value')
 
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
+    if (y_index != 0) {
+      e <- .set_y_axis(e, substitute(upper), y_index, i)
+    }
+    if (x_index != 0) {
+      e <- .set_x_axis(e, x_index, i)
+    }
 
-  if (isTRUE(legend)) {
-    current_trace <- length(e$x$opts$series)
-    e$x$opts$series[[current_trace]]$name = name
-    e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+    if (!e$x$tl) {
+      opts <- list(
+        type = "custom",
+        renderItem = 'contour',
+        encode = list(x= 0,
+                      y = 1,
+                      tooltip = 2),
+        data = vector,
+        name = name,
+        itemPayload = list(
+          thresholds = thresholds,
+          bandwidth = bandwidth,
+          lineStyle = lineStyle,
+          itemStyle = list(opacity = contourOpacity,
+                           color = contourColors)
+        ),
+        ...
+      )
+
+      e_serie <- append(opts, e_serie) # data after renderItem, data used for Y-sizing only
+
+      if (isTRUE(legend)) {
+
+        # current_trace <- length(e$x$opts$series)
+        # e$x$opts$series[[current_trace]]$name = name
+
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+      }
+      e$x$opts$series <- append(e$x$opts$series, list(e_serie))
+
+    }
+    else {
+      if (isTRUE(legend)) {
+        e$x$opts$legend$data <- append(
+          e$x$opts$legend$data,
+          list(name)
+        )
+      }
+      e$x$opts$options[[i]]$series <- append(
+        e$x$opts$options[[i]]$series,
+        list(e_serie)
+      )
+    }
+  }
+  if (isTRUE(e$x$tl)) {
+    # generate series list
+    series_opts <- list(
+      type = "custom",
+      renderItem = 'contour',
+      encode = list(x= 0,
+                    y = 1,
+                    tooltip = 2),
+      data = vector,
+      name = name,
+      itemPayload = list(
+        thresholds = thresholds,
+        bandwidth = bandwidth,
+        lineStyle = lineStyle,
+        itemStyle = list(opacity = contourOpacity,
+                         color = contourColors)
+      ),
+      ...
+    )
+
+    if (isTRUE(legend)) {
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+    }
+    e$x$opts$baseOption$series <- append(
+      e$x$opts$baseOption$series,
+      list(series_opts)
+    )
   }
 
   path_d3 <- system.file("htmlwidgets/lib/d3", package = "echarts4r")
@@ -549,26 +705,29 @@ e_contour <- function(e,
   e
 }
 
-df <- iris |>
-  dplyr::group_by(Species) |>
-  dplyr::summarise(lower = min(Sepal.Length),
-                   upper = max(Sepal.Length))
-df |>
-  e_chart(Species) |>
-  e_line(lower) |>
-  e_lineRange(lower = lower, upper = upper, y_index = 20)
-# TODO legend color not changing, what is x and y index?
-#' Title
+# TODO legend color not changing
+#' Line range chart
 #'
-#' @inheritParams e_band2
+#' Draw a line range area plot.
+#'
+#' @inheritParams e_band2_
 #' @param lineStyle properties of the border lines
 #' @param areaStyle properties of the area between the lines
 #' @param ...
 #'
-#' @returns
-#' @export
-#'
 #' @examples
+#'
+#' df <- iris |>
+#'   dplyr::group_by(Species) |>
+#'   dplyr::summarise(lower = min(Sepal.Length),
+#'                    upper = max(Sepal.Length))
+#' df |>
+#'   e_chart(Species) |>
+#'   e_lineRange(lower = lower, upper = upper, y_index = 20)
+#' @seealso \href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/lineRange}{official documentation}
+#'
+#' @rdname e_lineRange
+#' @export
 e_lineRange <- function(e,
                        lower,
                        upper,
@@ -576,7 +735,6 @@ e_lineRange <- function(e,
                        legend = TRUE,
                        y_index = 0,
                        x_index = 0,
-                       coord_system = "cartesian2d",
                        lineStyle = list(opacity = 0.3, color = "black", width=1),
                        areaStyle = list(opacity = 0.3, color = "red", width=1),
                        ...){
@@ -587,8 +745,9 @@ e_lineRange <- function(e,
   if (missing(lower) || missing(upper)) {
     stop("must pass lower, or upper", call. = FALSE)
   }
-  if (coord_system != "cartesian2d") {
-    stop("only cartesian2d supported", call. = FALSE)
+
+  if (e$x$tl) {
+    stop("timeline not supported", call. = FALSE)
   }
 
   for (i in seq_along(e$x$data)) {
@@ -607,10 +766,7 @@ e_lineRange <- function(e,
       e <- .set_x_axis(e, x_index, i)
     }
 
-    nm <- name
-
-    if (!e$x$tl) {
-      serie <- list(
+      opts <- list(
         type = "custom",
         name = name,
         renderItem = 'lineRange',
@@ -625,57 +781,17 @@ e_lineRange <- function(e,
          ...
       )
 
-      e$x$opts$series <- append(e$x$opts$series, list(serie))
+      e_serie <- append(opts, e_serie) # data after renderItem, data used for Y-sizing only
 
       if (isTRUE(legend)) {
-        # browser()
+
         # current_trace <- length(e$x$opts$series)
         # e$x$opts$series[[current_trace]]$name = name
-        # e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
 
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(nm))
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
       }
-      # e$x$opts$series <- append(e$x$opts$series, list(e_serie))
-    }
-    else {
-      if (isTRUE(legend)) {
-        e$x$opts$legend$data <- append(
-          e$x$opts$legend$data,
-          list(nm)
-        )
-      }
-      e$x$opts$options[[i]]$series <- append(
-        e$x$opts$options[[i]]$series,
-        list(e_serie)
-      )
-    }
-  }
-  if (isTRUE(e$x$tl)) {
-    # generate series list
-    serie <- list(
-      type = "custom",
-      name = name,
-      renderItem = 'lineRange',
-      encode = list(x= 0,
-                    y = c(1,2),
-                    tooltip = c(1,2)),
-      data = vector,
-      itemPayload = list(
-        areaStyle = areaStyle,
-        lineStyle = lineStyle
-      ),
-      ...
-    )
+      e$x$opts$series <- append(e$x$opts$series, list(e_serie))
 
-    e$x$opts$series <- append(e$x$opts$series, list(serie))
-
-    if (isTRUE(legend)) {
-      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
-    }
-    e$x$opts$baseOption$series <- append(
-      e$x$opts$baseOption$series,
-      list(series_opts)
-    )
   }
   path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
   dep <- htmltools::htmlDependency(
