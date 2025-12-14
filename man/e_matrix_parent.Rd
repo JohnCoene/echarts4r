@@ -4,7 +4,7 @@
 \alias{e_matrix_parent}
 \title{Generate Matrix Axis Parents}
 \usage{
-e_matrix_parent(e, axis = "x", value, children)
+e_matrix_parent(e, axis = "x", value, children, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
@@ -15,6 +15,8 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{value}{text for the new parent header cell}
 
 \item{children}{vector containing values for which current header cells will be children for the new parent cell}
+
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 helper function for generating parent values for x or y axis headers
@@ -23,8 +25,8 @@ helper function for generating parent values for x or y axis headers
 
 df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
 "Grade" = c("Grade1","Grade2", "Grade3"),
-"Males" = sample(1:10, 9),
-"Females" = sample(1:10,9))
+"A" = sample(1:10, 9),
+"B" = sample(1:10,9))
 
 df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |> 
 e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |> 

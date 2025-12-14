@@ -1,24 +1,4 @@
-.get_base_nodes <- function(x) {
-  found_values <- list() 
-  
-  if (is.list(x) && !is.data.frame(x)) {
-    current_names <- names(x)
-    
-    for (i in seq_along(x)) {
-      element <- x[[i]]
-      
-      is_unnamed <- is.null(current_names) || current_names[i] == ""
-      is_atomic_data <- !is.list(element) || is.data.frame(element)
-      
-      if (is_unnamed && is_atomic_data) {
-        found_values <- c(found_values, list(element))
-      }
-      
-      found_values <- c(found_values, get_base_nodes(element))
-    }
-  }
-  return(found_values)
-}
+
 
 #' Generate Matrix
 #'
@@ -30,8 +10,8 @@
 #'
 #' df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
 #' "Grade" = c("Grade1","Grade2", "Grade3"),
-#' "Males" = sample(1:10, 9),
-#' "Females" = sample(1:10,9))
+#' "A" = sample(1:10, 9),
+#' "B" = sample(1:10,9))
 #'
 #' df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade")
 #' 
@@ -71,8 +51,8 @@ e_matrix <- function(e, xAxis, yAxis, ...){
 #'
 #' df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
 #' "Grade" = c("Grade1","Grade2", "Grade3"),
-#' "Males" = sample(1:10, 9),
-#' "Females" = sample(1:10,9))
+#' "A" = sample(1:10, 9),
+#' "B" = sample(1:10,9))
 #'
 #' df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |> 
 #' e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |> 
@@ -146,8 +126,8 @@ e_matrix_parent <- function(e, axis = "x", value, children, ...){
 #'
 #' df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
 #' "Grade" = c("Grade1","Grade2", "Grade3"),
-#' "Males" = sample(1:10, 9),
-#' "Females" = sample(1:10,9))
+#' "A" = sample(1:10, 9),
+#' "B" = sample(1:10,9))
 #'
 #' df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |>
 #' e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |>
@@ -176,15 +156,15 @@ e_matrix_corner <- function(e, coord = c(-1,-1), value, mergeCells = TRUE, coord
 #' helper function for formatting the x and y axes for a matrix grid.
 #'
 #' @inheritParams e_bar
-#' @param xAxis,yAxis provide column name of dataframe to generate X-axis and Y-axis header cells
+#' @param axis indicate which axis shoud be adjusted
 #' @examples
 #'
 #' df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
 #' "Grade" = c("Grade1","Grade2", "Grade3"),
-#' "Males" = sample(1:10, 9),
-#' "Females" = sample(1:10,9))
+#' "A" = sample(1:10, 9),
+#' "B" = sample(1:10,9))
 #'
-#' df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade")
+#' df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |> e_format_matrix_axis(axis = "x", label = list(color = "red"))
 #' 
 #' @seealso \href{https://echarts.apache.org/en/option.html#matrix}{Additional arguments}
 #'
@@ -211,6 +191,7 @@ e_format_matrix_axis <- function(e, axis = "x", ...){
   e 
 }
 
+
 #' Generate pie chart for matrix
 #'
 #' Draw pie or donut chart in matrix coordinate system
@@ -223,7 +204,8 @@ e_format_matrix_axis <- function(e, axis = "x", ...){
 #' df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
 #'                    "Grade" = c("Grade1","Grade2", "Grade3"),
 #'                   "A" = sample(1:10, 9),
-#'                   "B" = sample(1:10,9))
+#'                   "B" = sample(1:10,9),
+#'                   "C" = sample(1:10,9))
 #'
 #' df |> e_chart(x = A) |> 
 #'  e_matrix(xAxis = "Class", yAxis = "Grade") |>
@@ -234,12 +216,21 @@ e_format_matrix_axis <- function(e, axis = "x", ...){
 #'  e_tooltip(trigger = "item") |>
 #'  e_legend()
 #'  
+#'  df |> e_chart() |>
+#'   e_matrix(xAxis = "Class", yAxis = "Grade") |>
+#'   e_pie_(serie = c("A","B","C"), coord_system = "matrix", label = list(show = FALSE)) |>
+#'   e_tooltip(trigger = "item") |>
+#'   e_legend()
+#'  
+#'  df |> e_chart() |>
+#'  e_matrix(xAxis = "Class", yAxis = "Grade") |>
+#'  e_pie_matrix(x = "A", y = c( "B", "C"))
 #' 
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-pie}{Additional arguments}
 #'
-#' @rdname e_matrix_pie
+#' @rdname e_pie_matrix
 #' @export
-e_matrix_pie <- function(e, x, y, legend = TRUE, ...){
+e_pie_matrix <- function(e, x, y, legend = TRUE, ...){
   
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
@@ -248,9 +239,11 @@ e_matrix_pie <- function(e, x, y, legend = TRUE, ...){
   if(is.null(e$x$opts$matrix)){
     stop("Matrix coordinate system must be built before adding data. e.g. e_matrix()")
   }
+  e <- .rm_axis(e, TRUE, "x")
+  e <- .rm_axis(e, TRUE, "y")
   
-  base_nodes_x <- .get_base_nodes(e$x$opts$matrix$x$data)
-  base_nodes_y <- .get_base_nodes(e$x$opts$matrix$y$data)
+  base_nodes_x <- get_base_nodes(e$x$opts$matrix$x$data)
+  base_nodes_y <- get_base_nodes(e$x$opts$matrix$y$data)
   
   for(i in 1:length(base_nodes_x)){
     for(j in 1:length(base_nodes_y)){
@@ -285,3 +278,136 @@ e_matrix_pie <- function(e, x, y, legend = TRUE, ...){
   e
 }
 
+#' Generate scatter point for matrix
+#'
+#' Draw scatter points chart in matrix coordinate system
+#'
+#' @inheritParams e_bar
+#' @param z Column name for data to be used for scatter points
+#' @examples
+#'
+#' df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
+#'                    "Grade" = c("Grade1","Grade2", "Grade3"),
+#'                   "A" = sample(1:10, 9))
+#'
+#' df |> e_chart() |> 
+#'  e_matrix(xAxis = "Class", yAxis = "Grade") |>
+#'  e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |>
+#'  e_matrix_parent(value = "High", children = "Class3") |>
+#'  e_matrix_corner(coord = c(-2,-2), value = "All School", label = list(fontSize = 24, color = "#555", position = "inside")) |>
+#'  e_scatter(A, coord_system = "matrix", symbolSize = 0) |>
+#'  e_labels(position = "inside", 
+#'           formatter = htmlwidgets::JS('function(params){return(params.value[2]);}'),
+#'           color = "#555", 
+#'           fontWeight = "bold")
+#'           
+#' df |> e_chart() |> 
+#'  e_matrix(xAxis = "Class", yAxis = "Grade") |>
+#'  e_scatter_matrix("A") |>
+#'  e_labels(position = "inside", 
+#'           formatter = htmlwidgets::JS('function(params){return(params.value[2]);}'),
+#'           color = "#555", 
+#'           fontWeight = "bold") |>
+#'  e_visual_map(A, inRange = list(symbolSize = c(1,50)))
+#'  
+#' 
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-scatter}{Additional arguments}
+#'
+#' @rdname e_scatter_matrix
+#' @export
+e_scatter_matrix <- function(e, z, ...){
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+  
+  if(is.null(e$x$opts$matrix)){
+    stop("Matrix coordinate system must be built before adding data. e.g. e_matrix()")
+  }
+  e <- .rm_axis(e, TRUE, "x")
+  e <- .rm_axis(e, TRUE, "y")
+  
+  base_nodes_x <- get_base_nodes(e$x$opts$matrix$x$data)
+  base_nodes_y <- get_base_nodes(e$x$opts$matrix$y$data)
+  
+  all_data <- list()
+  for(i in 1:length(base_nodes_x)){
+    for(j in 1:length(base_nodes_y)){
+      center <- c(base_nodes_x[[i]], base_nodes_y[[j]])
+      data <- e$x$data[[1]] |> dplyr::filter(.data[[e$x$opts$matrix$x$name]] == center[[1]] & .data[[e$x$opts$matrix$y$name]] == center[[2]]) |> dplyr::select(dplyr::all_of(c(z)))
+      serie <- list(center[[1]], center[[2]], data[[1]])
+      all_data <- append(all_data, list(serie))
+    }
+  }
+  
+  serie <- list(type = "scatter", coordinateSystem = "matrix", data = all_data, ...)
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
+  e
+}
+
+
+#' Generate heatmap for matrix
+#'
+#' Draw heatmap chart in matrix coordinate system
+#'
+#' @inheritParams e_bar
+#' @param z Column name for data to be used for heatmap
+#' @examples
+#'
+#' df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
+#'                    "Grade" = c("Grade1","Grade2", "Grade3"),
+#'                   "A" = sample(1:10, 9))
+#'
+#' df |> e_chart() |> 
+#'  e_matrix(xAxis = "Class", yAxis = "Grade") |>
+#'  e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |>
+#'  e_matrix_parent(value = "High", children = "Class3") |>
+#'  e_matrix_corner(coord = c(-2,-2), value = "All School", label = list(fontSize = 24, color = "#555", position = "inside")) |>
+#'  e_heatmap(A, coord_system = "matrix") |>
+#'  e_labels(position = "inside", 
+#'           formatter = htmlwidgets::JS('function(params){return(params.value[2]);}'),
+#'           color = "#555", 
+#'           fontWeight = "bold")
+#'           
+#' df |> e_chart() |> 
+#'  e_matrix(xAxis = "Class", yAxis = "Grade") |>
+#'  e_heatmap_matrix("A") |>
+#'  e_labels(position = "inside", 
+#'           formatter = htmlwidgets::JS('function(params){return(params.value[2]);}'),
+#'           fontWeight = "bold") |>
+#'  e_visual_map(A, inRange = list(color = c("#bf444c", "#d88273", "#f6efa6")))
+#'  
+#' 
+#' @seealso \href{https://echarts.apache.org/en/option.html#series-scatter}{Additional arguments}
+#'
+#' @rdname e_heatmap_matrix
+#' @export
+e_heatmap_matrix <- function(e, z, ...){
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+  
+  if(is.null(e$x$opts$matrix)){
+    stop("Matrix coordinate system must be built before adding data. e.g. e_matrix()")
+  }
+  e <- .rm_axis(e, TRUE, "x")
+  e <- .rm_axis(e, TRUE, "y")
+  
+  base_nodes_x <- get_base_nodes(e$x$opts$matrix$x$data)
+  base_nodes_y <- get_base_nodes(e$x$opts$matrix$y$data)
+  
+  all_data <- list()
+  for(i in 1:length(base_nodes_x)){
+    for(j in 1:length(base_nodes_y)){
+      center <- c(base_nodes_x[[i]], base_nodes_y[[j]])
+      data <- e$x$data[[1]] |> dplyr::filter(.data[[e$x$opts$matrix$x$name]] == center[[1]] & .data[[e$x$opts$matrix$y$name]] == center[[2]]) |> dplyr::select(dplyr::all_of(c(z)))
+      serie <- list(center[[1]], center[[2]], data[[1]])
+      all_data <- append(all_data, list(serie))
+    }
+  }
+  
+  serie <- list(type = "heatmap", coordinateSystem = "matrix", data = all_data, ...)
+  e$x$opts$series <- append(e$x$opts$series, list(serie))
+  
+  e
+}

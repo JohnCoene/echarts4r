@@ -2,9 +2,12 @@
 % Please edit documentation in R/matrix.R
 \name{e_matrix}
 \alias{e_matrix}
+\alias{e_format_matrix_axis}
 \title{Generate Matrix}
 \usage{
 e_matrix(e, xAxis, yAxis, ...)
+
+e_format_matrix_axis(e, axis = "x", ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
@@ -13,20 +16,34 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{xAxis, yAxis}{provide column name of dataframe to generate X-axis and Y-axis header cells}
 
 \item{...}{Any other option to pass, check See Also section.}
+
+\item{axis}{indicate which axis shoud be adjusted}
 }
 \description{
 helper function for generating the x and y axes for a matrix grid.
+
+helper function for formatting the x and y axes for a matrix grid.
 }
 \examples{
 
 df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
 "Grade" = c("Grade1","Grade2", "Grade3"),
-"Males" = sample(1:10, 9),
-"Females" = sample(1:10,9))
+"A" = sample(1:10, 9),
+"B" = sample(1:10,9))
 
 df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade")
 
+
+df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
+"Grade" = c("Grade1","Grade2", "Grade3"),
+"A" = sample(1:10, 9),
+"B" = sample(1:10,9))
+
+df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |> e_format_matrix_axis(axis = "x", label = list(color = "red"))
+
 }
 \seealso{
+\href{https://echarts.apache.org/en/option.html#matrix}{Additional arguments}
+
 \href{https://echarts.apache.org/en/option.html#matrix}{Additional arguments}
 }
