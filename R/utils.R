@@ -799,31 +799,3 @@ check_installed <- function(pkg) {
 
   apply(zigzags, 1, as.list)
 }
-
-
-<<<<<<< HEAD
-=======
-.get_base_nodes <- function(x) {
-  get_base_nodes <- NULL
-  found_values <- list()
-
-  if (is.list(x) && !is.data.frame(x)) {
-    current_names <- names(x)
-
-    for (i in seq_along(x)) {
-      element <- x[[i]]
-
-      is_unnamed <- is.null(current_names) || current_names[i] == ""
-
-      is_atomic_data <- !is.list(element) || is.data.frame(element)
-
-      if (is_unnamed && is_atomic_data) {
-        found_values <- c(found_values, list(element))
-      }
-
-      found_values <- c(found_values, get_base_nodes(element))
-    }
-  }
-  return(found_values)
-}
->>>>>>> d62d71287f4a491fad2e15bdb1724bbef238144d

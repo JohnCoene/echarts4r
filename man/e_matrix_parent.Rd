@@ -26,8 +26,8 @@ df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
 "Males" = sample(1:10, 9),
 "Females" = sample(1:10,9))
 
-df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |>
-e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |>
+df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |> 
+e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |> 
 e_matrix_parent(value = "High", children = "Class3")
 
 }

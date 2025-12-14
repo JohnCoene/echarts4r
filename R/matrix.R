@@ -39,7 +39,7 @@
 #'
 #' @rdname e_matrix
 #' @export
-e_matrix <- function(e, xAxis, yAxis){
+e_matrix <- function(e, xAxis, yAxis, ...){
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
@@ -53,6 +53,7 @@ e_matrix <- function(e, xAxis, yAxis){
   
   e$x$opts$matrix <- append(e$x$opts$matrix, list(y = list(data = as.list(unique(e$x$data[[1]][[yAxis]])), name = yAxis)))
   
+  e$x$opts$matrix <- append(e$x$opts$matrix, list(...))
   
   e 
 }

@@ -4,13 +4,15 @@
 \alias{e_matrix}
 \title{Generate Matrix}
 \usage{
-e_matrix(e, xAxis, yAxis)
+e_matrix(e, xAxis, yAxis, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{xAxis, yAxis}{provide column name of dataframe to generate X-axis and Y-axis header cells}
+
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 helper function for generating the x and y axes for a matrix grid.
