@@ -82,7 +82,7 @@ e_matrix <- function(e, xAxis, yAxis, ...){
 #'
 #' @rdname e_matrix_parent
 #' @export
-e_matrix_parent <- function(e, axis = "x", value, children){
+e_matrix_parent <- function(e, axis = "x", value, children, ...){
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
@@ -102,7 +102,7 @@ e_matrix_parent <- function(e, axis = "x", value, children){
       }
     }
     
-    new_node <- list(value = value, children = e$x$opts$matrix$x$data[child_ndx])
+    new_node <- list(value = value, children = e$x$opts$matrix$x$data[child_ndx], ...)
     
     e$x$opts$matrix$x$data <- append(e$x$opts$matrix$x$data, list(new_node))
     e$x$opts$matrix$x$data <- e$x$opts$matrix$x$data[-child_ndx]
@@ -123,7 +123,7 @@ e_matrix_parent <- function(e, axis = "x", value, children){
       }
     }
     
-    new_node <- list(value = value, children = e$x$opts$matrix$y$data[child_ndx])
+    new_node <- list(value = value, children = e$x$opts$matrix$y$data[child_ndx], ...)
     
     e$x$opts$matrix$y$data <- append(e$x$opts$matrix$y$data, list(new_node))
     e$x$opts$matrix$y$data <- e$x$opts$matrix$y$data[-child_ndx]
@@ -169,6 +169,46 @@ e_matrix_corner <- function(e, coord = c(-1,-1), value, mergeCells = TRUE, coord
   e$x$opts$matrix$corner <- append(e$x$opts$matrix$corner, l)
   
   e
+}
+
+#' Format Matrix Axis
+#'
+#' helper function for formatting the x and y axes for a matrix grid.
+#'
+#' @inheritParams e_bar
+#' @param xAxis,yAxis provide column name of dataframe to generate X-axis and Y-axis header cells
+#' @examples
+#'
+#' df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
+#' "Grade" = c("Grade1","Grade2", "Grade3"),
+#' "Males" = sample(1:10, 9),
+#' "Females" = sample(1:10,9))
+#'
+#' df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade")
+#' 
+#' @seealso \href{https://echarts.apache.org/en/option.html#matrix}{Additional arguments}
+#'
+#' @rdname e_matrix
+#' @export
+e_format_matrix_axis <- function(e, axis = "x", ...){
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+  
+  
+  if (missing(axis)) {
+    stop("must specify which axis", call. = FALSE)
+  }
+  
+  if(axis == "x"){
+    e$x$opts$matrix$x <- append(e$x$opts$matrix$x, list(...))
+  }
+  
+  if(axis == "y"){
+    e$x$opts$matrix$y <- append(e$x$opts$matrix$y, list(...))
+  }
+  
+  e 
 }
 
 #' Generate pie chart for matrix
