@@ -1,15 +1,15 @@
 ### Tests of the functions in the tab "Chart types"
 ### https://echarts4r.john-coene.com/articles/chart_types.html
 
-
-df <- data.frame(
-  x = seq(3),
-  y = c(1, 3, 9),
-  z = c(2, 5, 4),
-  w = c(3, 4, 3)
-)
-
 test_that("e_line plot has the good data structure and type", {
+
+  df <- data.frame(
+    x = seq(3),
+    y = c(1, 3, 9),
+    z = c(2, 5, 4),
+    w = c(3, 4, 3)
+  )
+
   plot <- df |>
     e_charts(x) |>
     e_line(z)
@@ -27,7 +27,21 @@ test_that("e_line plot has the good data structure and type", {
   )
 })
 
+test_that("e_line and e_line_ expects error when missing e or serie", {
+  iris |> e_charts() |> e_line() |> expect_error("must pass serie")
+  e_line() |> expect_error("must pass e")
+
+  iris |> e_charts() |> e_line_() |> expect_error("must pass serie")
+  e_line_() |> expect_error("must pass e")
+})
+
 test_that("e_area plot has the good data structure and type", {
+  df <- data.frame(
+    x = seq(3),
+    y = c(1, 3, 9),
+    z = c(2, 5, 4),
+    w = c(3, 4, 3)
+  )
   plot <- df |>
     e_charts(x) |>
     e_area(w)
@@ -45,7 +59,21 @@ test_that("e_area plot has the good data structure and type", {
   )
 })
 
+test_that("e_area and e_area_ expects error when missing e or serie", {
+  iris |> e_charts() |> e_area() |> expect_error("must pass serie")
+  e_area() |> expect_error("must pass e")
+
+  iris |> e_charts() |> e_area_() |> expect_error("must pass serie")
+  e_area_() |> expect_error("must pass e")
+})
+
 test_that("e_bar plot has the good data structure and type", {
+  df <- data.frame(
+    x = seq(3),
+    y = c(1, 3, 9),
+    z = c(2, 5, 4),
+    w = c(3, 4, 3)
+  )
   plot <- df |>
     e_charts(x) |>
     e_bar(y, name = "Serie 1")
@@ -63,8 +91,21 @@ test_that("e_bar plot has the good data structure and type", {
   )
 })
 
+test_that("e_bar and e_bar_ expects error when missing e or serie", {
+  iris |> e_charts() |> e_bar() |> expect_error("must pass serie")
+  e_bar() |> expect_error("must pass e")
+
+  iris |> e_charts() |> e_bar_() |> expect_error("must pass serie")
+  e_bar_() |> expect_error("must pass e")
+})
 
 test_that("e_step plot has the good data structure and type", {
+  df <- data.frame(
+    x = seq(3),
+    y = c(1, 3, 9),
+    z = c(2, 5, 4),
+    w = c(3, 4, 3)
+  )
   plot <- df |>
     e_charts(x) |>
     e_step(z, name = "Serie 2")
@@ -82,8 +123,23 @@ test_that("e_step plot has the good data structure and type", {
   )
 })
 
+test_that("e_step and e_step_ expects error when missing e or serie or wrong step", {
+  iris |> e_charts() |> e_step() |> expect_error("must pass serie")
+  e_step() |> expect_error("must pass e")
+  iris |> e_charts() |> e_step(serie = Sepal.Length, step = "WRONG") |> expect_error("wrong step")
+
+  iris |> e_charts() |> e_step_() |> expect_error("must pass serie")
+  e_step_() |> expect_error("must pass e")
+  iris |> e_charts() |> e_step_(serie = "Sepal.Length", step = "WRONG") |> expect_error("wrong step")
+})
 
 test_that("e_scatter plot has the good data structure and type", {
+  df <- data.frame(
+    x = seq(3),
+    y = c(1, 3, 9),
+    z = c(2, 5, 4),
+    w = c(3, 4, 3)
+  )
   plot <- df |>
     e_charts(x) |>
     e_scatter(y)
@@ -121,6 +177,12 @@ test_that("e_scatter plot has the good data structure and type", {
 
 
 test_that("e_effect_scatter plot has the good data structure and type", {
+  df <- data.frame(
+    x = seq(3),
+    y = c(1, 3, 9),
+    z = c(2, 5, 4),
+    w = c(3, 4, 3)
+  )
   plot <- df |>
     e_charts(x) |>
     e_effect_scatter(y)
@@ -157,6 +219,12 @@ test_that("e_effect_scatter plot has the good data structure and type", {
 })
 
 test_that("e_polar plot has the good data structure and type", {
+  df <- data.frame(
+    x = seq(3),
+    y = c(1, 3, 9),
+    z = c(2, 5, 4),
+    w = c(3, 4, 3)
+  )
   plot <- df |>
     e_charts(x) |>
     e_polar() |>
@@ -179,6 +247,12 @@ test_that("e_polar plot has the good data structure and type", {
 })
 
 # test_that("e_radius plot has the good data structure and type", {
+df <- data.frame(
+  x = seq(3),
+  y = c(1, 3, 9),
+  z = c(2, 5, 4),
+  w = c(3, 4, 3)
+)
 #   plot <- df |>
 #     head(10) |>
 #     e_charts(x) |>
@@ -584,6 +658,33 @@ test_that("e_calendar plot has the good data structure and type", {
     plot$x$opts$series[[1]]$type,
     "heatmap"
   )
+})
+
+test_that("e_calendar plot works with timeline", {
+  set.seed(1)
+  dates <- seq.Date(as.Date("2017-01-01"), as.Date("2017-01-05"), by = "day")
+  values <- rnorm(length(dates), 20, 6)
+
+  year <- data.frame(date = dates, values = values)
+
+  plot <- year |>
+    dplyr::group_by(date) |>
+    e_charts(date, timeline = TRUE) |>
+    e_calendar(range = "2017")
+
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+
+  # Matches range
+  expect_equal(
+    plot$x$opts$baseOption$calendar[[1]][[1]],
+    "2017"
+  )
+})
+
+test_that("e_calendar expects error when missing e or range", {
+  iris |> e_charts() |> e_calendar() |> expect_error("missing e or range")
+  e_calendar() |> expect_error("missing e or range")
 })
 
 test_that("e_gauge plot has the good data structure and type", {

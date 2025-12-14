@@ -1,5 +1,6 @@
 # group2series
 map_grps_ <- function(data, timeline = FALSE) {
+
   row.names(data) <- NULL
 
   if (dplyr::is.grouped_df(data)) {
@@ -7,6 +8,7 @@ map_grps_ <- function(data, timeline = FALSE) {
     keys <- dplyr::group_keys(data)[[1]]
     splat <- purrr::map(splat, as.data.frame)
     names(splat) <- keys
+
     data <- splat
   } else if (inherits(data, "grouped_tt")) {
     splat <- split(data, factor(data[[attr(data, "groups")]]))
@@ -22,6 +24,7 @@ map_grps_ <- function(data, timeline = FALSE) {
     data <- list(data)
   }
 
+  # Remove row names and now row.names is just the index
   .no_nm <- function(x) {
     row.names(x) <- NULL
     return(x)

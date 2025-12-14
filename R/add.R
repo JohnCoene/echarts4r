@@ -32,7 +32,12 @@
 #'
 #' @rdname e_bar
 #' @export
-e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, coord_system = "cartesian2d", ...) UseMethod("e_bar")
+e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, coord_system = "cartesian2d", ...){
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+UseMethod("e_bar")
+  }
 
 #' @method e_bar echarts4r
 #' @export
@@ -105,6 +110,9 @@ e_line <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   UseMethod("e_line")
 }
 
@@ -198,6 +206,9 @@ e_area <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   UseMethod("e_area")
 }
 
@@ -295,6 +306,9 @@ e_step <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   UseMethod("e_step")
 }
 
