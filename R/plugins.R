@@ -804,7 +804,7 @@ e_lineRange <- function(e,
 }
 
 #######
-
+# TODO look at .get_index to replace current_trace
 e_stage <- function(e,
                       serie,
                       legend = TRUE,

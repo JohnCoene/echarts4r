@@ -6,7 +6,18 @@
 \alias{e_band2_}
 \title{Area bands}
 \usage{
-e_band2(e, lower, upper, ...)
+e_band2(
+  e,
+  lower,
+  upper,
+  name = NULL,
+  legend = TRUE,
+  y_index = 0,
+  x_index = 0,
+  coord_system = "cartesian2d",
+  itemStyle = list(borderWidth = 0.5),
+  ...
+)
 
 e_band2_(
   e,
@@ -27,8 +38,6 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{lower, upper}{series of lower and upper borders of the band}
 
-\item{...}{additional options}
-
 \item{name}{name of the serie.}
 
 \item{legend}{Whether to add serie to legend.}
@@ -38,6 +47,8 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{coord_system}{Coordinate system to plot against.}
 
 \item{itemStyle}{mostly used for borderWidth, default 0.5}
+
+\item{...}{additional options}
 }
 \description{
 Add area bands

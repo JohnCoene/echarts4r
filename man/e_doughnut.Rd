@@ -40,7 +40,8 @@ Draw segmented doughnut.
 \examples{
 
 
-e_chart() |> e_doughnut(numerator = 3, denominator = 6)
+e_chart() |>
+ e_doughnut(numerator = 3, denominator = 6)
 
 }
 \seealso{

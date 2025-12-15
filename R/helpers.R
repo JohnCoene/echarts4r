@@ -480,8 +480,6 @@ e_jitter <- function(e, axis = 'x', jitter = 20, jitterOverlap = FALSE, jitterMa
   e
 }
 
-<<<<<<< HEAD
-=======
 #' Generate Matrix
 #'
 #' helper function for generating the x and y axes for a matrix grid.
@@ -633,4 +631,3 @@ e_matrix_corner <- function(e, coord = c(-1,-1), value, mergeCells = TRUE, coord
 
   e
 }
->>>>>>> d62d71287f4a491fad2e15bdb1724bbef238144d

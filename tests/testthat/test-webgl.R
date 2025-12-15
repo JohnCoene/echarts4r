@@ -19,7 +19,13 @@ test_that("e_surface plot has the good data structure and type", {
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
 })
+test_that("e_surface and e_surface_ expects error when missing e and y, z", {
+  iris |> e_charts() |> e_surface() |> expect_error("must pass y and z")
+  e_surface() |> expect_error("must pass e")
 
+  iris |> e_charts() |> e_surface_() |> expect_error("must pass y and z")
+  e_surface_() |> expect_error("must pass e")
+})
 
 test_that("e_scatter_gl plot has the good data structure and type", {
   plot <- quakes[1:5, ] |>
@@ -53,6 +59,13 @@ test_that("e_scatter_gl plot has the good data structure and type", {
   )
 })
 
+test_that("e_scatter_gl and e_scatter_gl_ expects error when missing e and y,z", {
+  iris |> e_charts() |> e_scatter_gl() |> expect_error("must pass y and z")
+  e_scatter_gl() |> expect_error("must pass e")
+
+  iris |> e_charts() |> e_scatter_gl_() |> expect_error("must pass y and z")
+  e_scatter_gl_() |> expect_error("must pass e")
+})
 
 # couldn't visualize the plot so no possibility to check it's fine
 test_that("e_graph_gl plot has the good data structure and type", {
@@ -78,7 +91,6 @@ test_that("e_graph_gl plot has the good data structure and type", {
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
 })
-
 
 test_that("e_flow_gl plot has the good data structure and type", {
   set.seed(1)
@@ -218,4 +230,12 @@ test_that("e_flow_gl plot has the good data structure and type", {
     plot$x$opts$series[[1]]$type,
     "flowGL"
   )
+})
+
+test_that("e_flow_gl and e_flow_gl_ expects error when missing e and y,sx,sy", {
+  iris |> e_charts() |> e_flow_gl() |> expect_error("must pass y, sx, and sy")
+  e_flow_gl() |> expect_error("must pass e")
+
+  iris |> e_charts() |> e_flow_gl_() |> expect_error("must pass y, sx, and sy")
+  e_flow_gl_() |> expect_error("must pass e")
 })

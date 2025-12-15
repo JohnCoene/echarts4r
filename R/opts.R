@@ -379,12 +379,8 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), icons = NULL, 
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-
   if (!is.null(icons)) {
-    if (length(icons) == 1) {
-      e$x$opts$legend$icon <- icons
-      icons <- NULL
-    } else if (length(icons) < length(e$x$opts$legend$data)) {
+   if (length(icons) < length(e$x$opts$legend$data)) {
       stop(
         "invalid number of icons; ",
         length(icons),
@@ -392,7 +388,10 @@ e_legend <- function(e, show = TRUE, type = c("plain", "scroll"), icons = NULL, 
         length(e$x$opts$legend$data),
         " legend items."
       )
-    }
+   } else if (length(icons) == 1) {
+     e$x$opts$legend$icon <- icons
+     icons <- NULL
+   }
 
 
     for (i in seq_along(e$x$opts$legend$data)) {

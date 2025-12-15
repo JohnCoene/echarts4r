@@ -99,6 +99,13 @@ test_that("e_lines plot has the good data structure and type", {
     "lines"
   )
 })
+test_that("e_lines and e_lines_ expects error when missing e and coordinates", {
+  iris |> e_charts() |> e_lines() |> expect_error("missing coordinates")
+  e_lines() |> expect_error("must pass e")
+
+  iris |> e_charts() |> e_lines_() |> expect_error("missing coordinates")
+  e_lines_() |> expect_error("must pass e")
+})
 
 
 ### Either need to put echarts4r.maps in imports, or to find another way without importing it
@@ -140,7 +147,7 @@ test_that("geojson support is functional", {
   json <- jsonlite::read_json("https://raw.githubusercontent.com/shawnbot/topogram/master/data/us-states.geojson")
 
   plot <- USArrests |>
-    tibble::rownames_to_column("states") |> 
+    tibble::rownames_to_column("states") |>
     e_charts(states) |>
     e_map_register("USA", json) |>
     e_map(Murder, map = "USA") |>

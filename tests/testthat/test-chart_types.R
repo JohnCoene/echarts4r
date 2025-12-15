@@ -175,6 +175,14 @@ test_that("e_scatter plot has the good data structure and type", {
   )
 })
 
+test_that("e_scatter and e_scatter_ expects error when missing e", {
+  iris |> e_charts() |> e_scatter() |> expect_error("must pass serie")
+  e_scatter() |> expect_error("must pass e")
+
+  iris |> e_charts() |> e_scatter_() |> expect_error("must pass serie")
+  e_scatter_() |> expect_error("must pass e")
+})
+
 
 test_that("e_effect_scatter plot has the good data structure and type", {
   df <- data.frame(
@@ -216,6 +224,14 @@ test_that("e_effect_scatter plot has the good data structure and type", {
     plot2$x$opts$series[[1]]$type,
     "effectScatter"
   )
+})
+
+test_that("e_effect_scatter and e_effect_scatter_ expects error when missing e", {
+  iris |> e_charts() |> e_effect_scatter() |> expect_error("must pass serie")
+  e_effect_scatter() |> expect_error("must pass e")
+
+  iris |> e_charts() |> e_effect_scatter_() |> expect_error("must pass serie")
+  e_effect_scatter_() |> expect_error("must pass e")
 })
 
 test_that("e_polar plot has the good data structure and type", {
@@ -317,6 +333,14 @@ test_that("e_candle plot has the good data structure and type", {
   )
 })
 
+test_that("e_candle and e_candle_ expects error when missing e and an input", {
+  iris |> e_charts() |> e_candle() |> expect_error("missing inputs")
+  e_candle() |> expect_error("must pass e")
+
+  iris |> e_charts() |> e_candle_() |> expect_error("missing inputs")
+  e_candle_() |> expect_error("must pass e")
+})
+
 test_that("e_funnel plot has the good data structure and type", {
   funnel <- data.frame(stage = c("View", "Click", "Purchase"), value = c(80, 30, 20))
 
@@ -336,6 +360,14 @@ test_that("e_funnel plot has the good data structure and type", {
     plot$x$opts$series[[1]]$type,
     "funnel"
   )
+})
+
+test_that("e_funnel and e_funnel_ expects error when missing e and values/labels", {
+  iris |> e_charts() |> e_funnel() |> expect_error("missing values or labels")
+  e_funnel() |> expect_error("must pass e")
+
+  iris |> e_charts() |> e_funnel_() |> expect_error("missing values or labels")
+  e_funnel_() |> expect_error("must pass e")
 })
 
 
@@ -365,6 +397,13 @@ test_that("e_sankey plot has the good data structure and type", {
   )
 })
 
+test_that("e_sankey and e_sankey_ expects error when missing e and values/labels", {
+  iris |> e_charts() |> e_sankey() |> expect_error("missing source, target or values")
+  e_sankey() |> expect_error("must pass e")
+
+  iris |> e_charts() |> e_sankey_() |> expect_error("missing source, target or values")
+  e_sankey_() |> expect_error("must pass e")
+})
 
 ### Careful : heatmap not full to reduce the data to write in expect_equal
 
@@ -401,6 +440,13 @@ test_that("e_heatmap plot has the good data structure and type", {
     "heatmap"
   )
 })
+test_that("e_heatmap and e_heatmap_ expects error when missing e and y", {
+  iris |> e_charts() |> e_heatmap() |> expect_error("must pass y")
+  e_heatmap() |> expect_error("must pass e")
+
+  iris |> e_charts() |> e_heatmap_() |> expect_error("must pass y")
+  e_heatmap_() |> expect_error("must pass e")
+})
 
 
 test_that("e_parallel plot has the good data structure and type", {
@@ -427,6 +473,10 @@ test_that("e_parallel plot has the good data structure and type", {
     "parallel"
   )
 })
+test_that("e_parallel and e_parallel_ expects error when missing e", {
+  e_parallel() |> expect_error("must pass e")
+  e_parallel_() |> expect_error("must pass e")
+})
 
 
 test_that("e_pie plot has the good data structure and type", {
@@ -448,6 +498,14 @@ test_that("e_pie plot has the good data structure and type", {
     plot$x$opts$series[[1]]$type,
     "pie"
   )
+})
+
+test_that("e_pie and e_pie_ expects error when missing e and serie", {
+  iris |> e_charts() |> e_pie() |> expect_error("must pass serie")
+  e_pie() |> expect_error("must pass e")
+
+  iris |> e_charts() |> e_pie_() |> expect_error("must pass serie")
+  e_pie_() |> expect_error("must pass e")
 })
 
 
@@ -495,7 +553,7 @@ test_that("e_rosetype plot has the good data structure and type", {
 
 
 
-### make the equivalent of plot$x$opts$series[[1]]$data in expect_equal()
+### TODO make the equivalent of plot$x$opts$series[[1]]$data in expect_equal()
 
 
 
@@ -536,7 +594,12 @@ test_that("e_rosetype plot has the good data structure and type", {
 #   )
 # })
 #
-#
+
+test_that("e_sunburst and e_sunburst_ expects error when missing e", {
+  e_sunburst() |> expect_error("must pass e")
+  e_sunburst_() |> expect_error("must pass e")
+})
+
 # test_that("e_tree plot has the good data structure and type", {
 #   tree <- dplyr::tibble(
 #     name = "earth",        # 1st level
@@ -562,7 +625,11 @@ test_that("e_rosetype plot has the good data structure and type", {
 #   expect_s3_class(plot, "echarts4r")
 #   expect_s3_class(plot, "htmlwidget")
 # })
-#
+test_that("e_tree and e_tree_ expects error when missing e", {
+  e_tree() |> expect_error("must pass e")
+  e_tree_() |> expect_error("must pass e")
+})
+
 # test_that("e_treemap plot has the good data structure and type", {
 #   df <- dplyr::tibble(
 #     name = c("earth", "mars", "venus"), value = c(30, 40, 30),        # 1st level
@@ -629,6 +696,13 @@ test_that("e_river plot has the good data structure and type", {
     plot$x$opts$series[[1]]$type,
     "themeRiver"
   )
+})
+test_that("e_river and e_river_ expects error when missing e and serie", {
+  iris |> e_charts() |> e_river() |> expect_error("must pass serie")
+  e_river() |> expect_error("must pass e")
+
+  iris |> e_charts() |> e_river_() |> expect_error("must pass serie")
+  e_river_() |> expect_error("must pass e")
 })
 
 
@@ -734,6 +808,14 @@ test_that("e_radar plot has the good data structure and type", {
     plot$x$opts$series[[1]]$type,
     "radar"
   )
+})
+
+test_that("e_radar and e_radar_ expects error when missing e and serie", {
+  iris |> e_charts() |> e_radar() |> expect_error("must pass serie")
+  e_radar() |> expect_error("must pass e")
+
+  iris |> e_charts() |> e_radar_() |> expect_error("must pass serie")
+  e_radar_() |> expect_error("must pass e")
 })
 
 test_that("e_cloud plot has the good data structure and type", {

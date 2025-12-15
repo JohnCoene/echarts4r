@@ -441,6 +441,10 @@ e_scatter_ <- function(
   rm_y = TRUE,
   ...
 ) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -583,6 +587,10 @@ e_effect_scatter_ <- function(
   rm_y = TRUE,
   ...
 ) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -695,6 +703,10 @@ e_effect_scatter_ <- function(
 #' @rdname e_candle
 #' @export
 e_candle_ <- function(e, opening, closing, low, high, bind = NULL, name = NULL, legend = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   if (missing(opening) || missing(closing) || missing(low) || missing(high)) {
     stop("missing inputs", call. = FALSE)
   }
@@ -816,6 +828,10 @@ e_radar_ <- function(
 #' @rdname e_funnel
 #' @export
 e_funnel_ <- function(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   if (missing(values) || missing(labels)) {
     stop("missing values or labels", call. = FALSE)
   }
@@ -873,6 +889,9 @@ e_funnel_ <- function(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE
 #' @rdname e_sankey
 #' @export
 e_sankey_ <- function(e, source, target, value, layout = "none", rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(source) || missing(target) || missing(value)) {
     stop("missing source, target or values", call. = FALSE)
   }
@@ -912,6 +931,9 @@ e_heatmap_ <- function(
   calendar = NULL,
   ...
 ) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(y)) {
     stop("must pass y", call. = FALSE)
   }
@@ -1050,7 +1072,7 @@ e_pie_ <- function(e, serie, name = NULL, legend = TRUE,  coord_system = "", rm_
 
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
-  
+
   if(coord_system == "matrix"){
     e <- e |> e_matrix_pie(e$x$mapping$x, serie, legend, ...)
     return(e)
@@ -1199,6 +1221,9 @@ e_river_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = T
 #' @rdname e_boxplot
 #' @export
 e_boxplot_ <- function(e, serie, name = NULL, outliers = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -2313,7 +2338,7 @@ e_band2_ <- function(
     stop("must pass e", call. = FALSE)
   }
   if (missing(lower) || missing(upper)) {
-    stop("must pass lower, or upper", call. = FALSE)
+    stop("must pass lower and upper", call. = FALSE)
   }
   if (coord_system != "cartesian2d") {
     stop("only cartesian2d supported", call. = FALSE)
