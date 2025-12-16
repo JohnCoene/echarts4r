@@ -27,12 +27,12 @@ test_that("e_line plot has the good data structure and type", {
   )
 })
 
-test_that("e_line and e_line_ expects error when missing e or serie", {
-  iris |> e_charts() |> e_line() |> expect_error("must pass serie")
-  e_line() |> expect_error("must pass e")
+test_that("e_line.echarts4r and e_line_ expects error when missing e or serie", {
+  expect_error(iris |> e_charts() |> e_line.echarts4r(), "must pass serie")
+  expect_error(e_line.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_line_() |> expect_error("must pass serie")
-  e_line_() |> expect_error("must pass e")
+  expect_error(iris |> e_charts() |> e_line_(), "must pass serie")
+  expect_error( e_line_(), "must pass e")
 })
 
 test_that("e_area plot has the good data structure and type", {
@@ -59,12 +59,12 @@ test_that("e_area plot has the good data structure and type", {
   )
 })
 
-test_that("e_area and e_area_ expects error when missing e or serie", {
-  iris |> e_charts() |> e_area() |> expect_error("must pass serie")
-  e_area() |> expect_error("must pass e")
+test_that("e_area.echarts4r and e_area_ expects error when missing e or serie", {
+  expect_error(iris |> e_charts() |> e_area.echarts4r() , "must pass serie")
+  expect_error(e_area.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_area_() |> expect_error("must pass serie")
-  e_area_() |> expect_error("must pass e")
+  expect_error(iris |> e_charts() |> e_area_(), "must pass serie")
+  expect_error( e_area_(), "must pass e")
 })
 
 test_that("e_bar plot has the good data structure and type", {
@@ -91,12 +91,19 @@ test_that("e_bar plot has the good data structure and type", {
   )
 })
 
-test_that("e_bar and e_bar_ expects error when missing e or serie", {
-  iris |> e_charts() |> e_bar() |> expect_error("must pass serie")
-  e_bar() |> expect_error("must pass e")
+test_that("e_bar.echarts4r and e_bar_ expects error when missing e or serie", {
+  expect_error(iris |> e_charts() |> e_bar.echarts4r(),
+    "must pass serie")
 
-  iris |> e_charts() |> e_bar_() |> expect_error("must pass serie")
-  e_bar_() |> expect_error("must pass e")
+  expect_error(e_bar.echarts4rProxy (), "must pass e")
+
+  expect_error(iris |> e_charts() |> e_bar.echarts4rProxy(),
+               "must pass serie")
+
+  expect_error(e_bar.echarts4r(), "must pass e")
+
+  expect_error(iris |> e_charts() |> e_bar_(), "must pass serie")
+  expect_error(e_bar_(), "must pass e")
 })
 
 test_that("e_step plot has the good data structure and type", {
@@ -123,14 +130,14 @@ test_that("e_step plot has the good data structure and type", {
   )
 })
 
-test_that("e_step and e_step_ expects error when missing e or serie or wrong step", {
-  iris |> e_charts() |> e_step() |> expect_error("must pass serie")
-  e_step() |> expect_error("must pass e")
-  iris |> e_charts() |> e_step(serie = Sepal.Length, step = "WRONG") |> expect_error("wrong step")
+test_that("e_step.echarts4r and e_step_ expects error when missing e or serie or wrong step", {
+  expect_error(iris |> e_charts() |> e_step.echarts4r(), "must pass serie")
+  expect_error(e_step.echarts4r(), "must pass e")
+  expect_error(  iris |> e_charts() |> e_step.echarts4r(serie = Sepal.Length, step = "WRONG"), "wrong step")
 
-  iris |> e_charts() |> e_step_() |> expect_error("must pass serie")
-  e_step_() |> expect_error("must pass e")
-  iris |> e_charts() |> e_step_(serie = "Sepal.Length", step = "WRONG") |> expect_error("wrong step")
+  expect_error(iris |> e_charts() |> e_step_() , "must pass serie")
+  expect_error(e_step_(), "must pass e")
+  expect_error( iris |> e_charts() |> e_step_(serie = "Sepal.Length", step = "WRONG"), "wrong step")
 })
 
 test_that("e_scatter plot has the good data structure and type", {
@@ -175,12 +182,12 @@ test_that("e_scatter plot has the good data structure and type", {
   )
 })
 
-test_that("e_scatter and e_scatter_ expects error when missing e", {
-  iris |> e_charts() |> e_scatter() |> expect_error("must pass serie")
-  e_scatter() |> expect_error("must pass e")
+test_that("e_scatter.echarts4r and e_scatter_ expects error when missing e", {
+  expect_error(iris |> e_charts() |> e_scatter.echarts4r(), "must pass serie")
+  expect_error(e_scatter.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_scatter_() |> expect_error("must pass serie")
-  e_scatter_() |> expect_error("must pass e")
+  expect_error(iris |> e_charts() |> e_scatter_() , "must pass serie")
+  expect_error(e_scatter_(), "must pass e")
 })
 
 
@@ -226,12 +233,13 @@ test_that("e_effect_scatter plot has the good data structure and type", {
   )
 })
 
-test_that("e_effect_scatter and e_effect_scatter_ expects error when missing e", {
-  iris |> e_charts() |> e_effect_scatter() |> expect_error("must pass serie")
-  e_effect_scatter() |> expect_error("must pass e")
+test_that("e_effect_scatter.echarts4r and e_effect_scatter_ expects error when missing e", {
+  expect_error(iris |> e_charts() |> e_effect_scatter.echarts4r(), "must pass serie")
+  expect_error(e_effect_scatter.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_effect_scatter_() |> expect_error("must pass serie")
-  e_effect_scatter_() |> expect_error("must pass e")
+  expect_error(iris |> e_charts() |> e_effect_scatter_(),
+               "must pass serie")
+  expect_error( e_effect_scatter_(), "must pass e")
 })
 
 test_that("e_polar plot has the good data structure and type", {
@@ -263,12 +271,12 @@ test_that("e_polar plot has the good data structure and type", {
 })
 
 # test_that("e_radius plot has the good data structure and type", {
-df <- data.frame(
-  x = seq(3),
-  y = c(1, 3, 9),
-  z = c(2, 5, 4),
-  w = c(3, 4, 3)
-)
+# df <- data.frame(
+#   x = seq(3),
+#   y = c(1, 3, 9),
+#   z = c(2, 5, 4),
+#   w = c(3, 4, 3)
+# )
 #   plot <- df |>
 #     head(10) |>
 #     e_charts(x) |>
@@ -333,12 +341,12 @@ test_that("e_candle plot has the good data structure and type", {
   )
 })
 
-test_that("e_candle and e_candle_ expects error when missing e and an input", {
-  iris |> e_charts() |> e_candle() |> expect_error("missing inputs")
-  e_candle() |> expect_error("must pass e")
+test_that("e_candle.echarts4r and e_candle_ expects error when missing e and an input", {
+  expect_error(iris |> e_charts() |> e_candle.echarts4r(), "missing inputs")
+  expect_error(e_candle.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_candle_() |> expect_error("missing inputs")
-  e_candle_() |> expect_error("must pass e")
+  expect_error(iris |> e_charts() |> e_candle_() , "missing inputs")
+  expect_error(e_candle_() , "must pass e")
 })
 
 test_that("e_funnel plot has the good data structure and type", {
@@ -362,12 +370,12 @@ test_that("e_funnel plot has the good data structure and type", {
   )
 })
 
-test_that("e_funnel and e_funnel_ expects error when missing e and values/labels", {
-  iris |> e_charts() |> e_funnel() |> expect_error("missing values or labels")
-  e_funnel() |> expect_error("must pass e")
+test_that("e_funnel.echarts4r and e_funnel_ expects error when missing e and values/labels", {
+  expect_error(iris |> e_charts() |> e_funnel.echarts4r(), "missing values or labels")
+  expect_error(e_funnel.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_funnel_() |> expect_error("missing values or labels")
-  e_funnel_() |> expect_error("must pass e")
+  expect_error(iris |> e_charts() |> e_funnel_(), "missing values or labels")
+  expect_error( e_funnel_(), "must pass e")
 })
 
 
@@ -397,12 +405,12 @@ test_that("e_sankey plot has the good data structure and type", {
   )
 })
 
-test_that("e_sankey and e_sankey_ expects error when missing e and values/labels", {
-  iris |> e_charts() |> e_sankey() |> expect_error("missing source, target or values")
-  e_sankey() |> expect_error("must pass e")
+test_that("e_sankey.echarts4r and e_sankey_ expects error when missing e and values/labels", {
+  expect_error(iris |> e_charts() |> e_sankey.echarts4r() , "missing source, target or values")
+ expect_error( e_sankey.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_sankey_() |> expect_error("missing source, target or values")
-  e_sankey_() |> expect_error("must pass e")
+ expect_error( iris |> e_charts() |> e_sankey_() , "missing source, target or values")
+ expect_error( e_sankey_(), "must pass e")
 })
 
 ### Careful : heatmap not full to reduce the data to write in expect_equal
@@ -440,12 +448,12 @@ test_that("e_heatmap plot has the good data structure and type", {
     "heatmap"
   )
 })
-test_that("e_heatmap and e_heatmap_ expects error when missing e and y", {
-  iris |> e_charts() |> e_heatmap() |> expect_error("must pass y")
-  e_heatmap() |> expect_error("must pass e")
+test_that("e_heatmap.echarts4r and e_heatmap_ expects error when missing e and y", {
+  expect_error(iris |> e_charts() |> e_heatmap.echarts4r(), "must pass y")
+  expect_error( e_heatmap.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_heatmap_() |> expect_error("must pass y")
-  e_heatmap_() |> expect_error("must pass e")
+  expect_error(iris |> e_charts() |> e_heatmap_(), "must pass y")
+  expect_error(e_heatmap_(), "must pass e")
 })
 
 
@@ -473,9 +481,9 @@ test_that("e_parallel plot has the good data structure and type", {
     "parallel"
   )
 })
-test_that("e_parallel and e_parallel_ expects error when missing e", {
-  e_parallel() |> expect_error("must pass e")
-  e_parallel_() |> expect_error("must pass e")
+test_that("e_parallel.echarts4r and e_parallel_ expects error when missing e", {
+   expect_error(e_parallel.echarts4r(), "must pass e")
+   expect_error(e_parallel_(), "must pass e")
 })
 
 
@@ -500,12 +508,12 @@ test_that("e_pie plot has the good data structure and type", {
   )
 })
 
-test_that("e_pie and e_pie_ expects error when missing e and serie", {
-  iris |> e_charts() |> e_pie() |> expect_error("must pass serie")
-  e_pie() |> expect_error("must pass e")
+test_that("e_pie.echarts4r.echarts4r and e_pie_ expects error when missing e and serie", {
+   expect_error(iris |> e_charts() |> e_pie.echarts4r(), "must pass serie")
+   expect_error(e_pie.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_pie_() |> expect_error("must pass serie")
-  e_pie_() |> expect_error("must pass e")
+   expect_error(iris |> e_charts() |> e_pie_() , "must pass serie")
+   expect_error(e_pie_(), "must pass e")
 })
 
 
@@ -557,107 +565,163 @@ test_that("e_rosetype plot has the good data structure and type", {
 
 
 
-# test_that("e_sunburst plot has the good data structure and type", {
-#   df <- dplyr::tibble(
-#     name = c("earth", "mars", "venus"), value = c(30, 40, 30),        # 1st level
-#     itemStyle = dplyr::tibble(color = c(NA, 'red', 'blue')),
-#     children = list(
-#       dplyr::tibble(name = c("land", "ocean"), value = c(10,20),             # 2nd level
-#              children = list(
-#                dplyr::tibble(name = c("forest", "river"), value = c(3,7)),   # 3rd level
-#                dplyr::tibble(name = c("fish", "kelp"), value = c(10,5),
-#                       children = list(
-#                         dplyr::tibble(name = c("shark", "tuna"), value = c(2,6)),  # 4th level
-#                         NULL  # kelp
-#                       ))
-#              )),
-#       dplyr::tibble(name = c("crater", "valley"), value = c(20,20)),
-#       NULL  # venus
-#     )
-#   )
-#
-#   plot <- df |>
-#     e_charts() |>
-#     e_sunburst() |>
-#     e_title("Sunburst")
-#
-#   expect_s3_class(plot, "echarts4r")
-#   expect_s3_class(plot, "htmlwidget")
-#
-#   expect_equal(
-#     plot$x$opts$series[[1]]$data,
-#     list(list(value = c(110), name = c("Mazda RX4")), list(value = c(110), name = c("Mazda RX4 Wag")), list(value = c(93), name = c("Datsun 710")), list(value = c(110), name = c("Hornet 4 Drive")), list(value = c(175), name = c("Hornet Sportabout")))
-#   )
-#   expect_equal(
-#     plot$x$opts$series[[1]]$type,
-#     "sunburst"
-#   )
-# })
-#
+test_that("e_sunburst plot has the good data structure and type", {
+  df <- dplyr::tibble(
+    name = c("earth", "mars", "venus"), value = c(30, 40, 30),        # 1st level
+    itemStyle = dplyr::tibble(color = c(NA, 'red', 'blue')),
+    children = list(
+      dplyr::tibble(name = c("land", "ocean"), value = c(10,20),             # 2nd level
+             children = list(
+               dplyr::tibble(name = c("forest", "river"), value = c(3,7)),   # 3rd level
+               dplyr::tibble(name = c("fish", "kelp"), value = c(10,5),
+                      children = list(
+                        dplyr::tibble(name = c("shark", "tuna"), value = c(2,6)),  # 4th level
+                        NULL  # kelp
+                      ))
+             )),
+      dplyr::tibble(name = c("crater", "valley"), value = c(20,20)),
+      NULL  # venus
+    )
+  )
 
-test_that("e_sunburst and e_sunburst_ expects error when missing e", {
-  e_sunburst() |> expect_error("must pass e")
-  e_sunburst_() |> expect_error("must pass e")
+  plot <- df |>
+    e_charts() |>
+    e_sunburst() |>
+    e_title("Sunburst")
+
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+
+  level_one <- plot$x$opts$series[[1]]$data
+  level_one_names <- lapply(1:length(level_one), \(x) level_one[[x]]$name) |> unlist()
+  expect_equal(level_one_names,  c("earth", "mars", "venus"))
+
+
+  level_two <- plot$x$opts$series[[1]]$data[[1]]$children
+  level_two_names <-
+    lapply(1:length(level_two), \(x) level_two[[x]]$name) |> unlist()
+  expect_equal(level_two_names,  c("land", "ocean"))
+
+  level_three <- plot$x$opts$series[[1]]$data[[1]]$children[[1]]$children
+  level_three_names <-
+    lapply(1:length(level_three), \(x) level_three[[x]]$name) |> unlist()
+  expect_equal(level_three_names,  c("forest", "river"))
+
+  expect_equal(
+    plot$x$opts$series[[1]]$type,
+    "sunburst"
+  )
 })
 
-# test_that("e_tree plot has the good data structure and type", {
-#   tree <- dplyr::tibble(
-#     name = "earth",        # 1st level
-#     children = list(
-#       dplyr::tibble(name = c("land", "ocean"),             # 2nd level
-#              children = list(
-#                dplyr::tibble(name = c("forest", "river")),   # 3rd level
-#                dplyr::tibble(name = c("fish", "kelp"),
-#                       children = list(
-#                         dplyr::tibble(name = c("shark", "tuna"),  # 4th level
-#                                NULL  # kelp
-#                         ))
-#                )
-#              ))
-#     )
-#   )
-#
-#   plot <- tree |>
-#     e_charts() |>
-#     e_tree() |>
-#     e_title("Tree graph")
-#
-#   expect_s3_class(plot, "echarts4r")
-#   expect_s3_class(plot, "htmlwidget")
-# })
-test_that("e_tree and e_tree_ expects error when missing e", {
-  e_tree() |> expect_error("must pass e")
-  e_tree_() |> expect_error("must pass e")
+
+test_that("e_sunburst.echarts4r and e_sunburst_ expects error when missing e", {
+   expect_error(e_sunburst.echarts4r(), "must pass e")
+   expect_error(e_sunburst_(), "must pass e")
 })
 
-# test_that("e_treemap plot has the good data structure and type", {
-#   df <- dplyr::tibble(
-#     name = c("earth", "mars", "venus"), value = c(30, 40, 30),        # 1st level
-#     itemStyle = dplyr::tibble(color = c(NA, 'red', 'blue')),
-#     children = list(
-#       dplyr::tibble(name = c("land", "ocean"), value = c(10,20),             # 2nd level
-#              children = list(
-#                dplyr::tibble(name = c("forest", "river"), value = c(3,7)),   # 3rd level
-#                dplyr::tibble(name = c("fish", "kelp"), value = c(10,5),
-#                       children = list(
-#                         dplyr::tibble(name = c("shark", "tuna"), value = c(2,6)),  # 4th level
-#                         NULL  # kelp
-#                       ))
-#              )),
-#       dplyr::tibble(name = c("crater", "valley"), value = c(20,20)),
-#       NULL  # venus
-#     )
-#   )
-#
-#   plot <- df |>
-#     e_charts() |>
-#     e_treemap() |>
-#     e_title("Treemap chart")
-#
-#   expect_s3_class(plot, "echarts4r")
-#   expect_s3_class(plot, "htmlwidget")
-# })
+test_that("e_tree plot has the good data structure and type", {
+  tree <- dplyr::tibble(
+    name = "earth",        # 1st level
+    children = list(
+      dplyr::tibble(name = c("land", "ocean"),             # 2nd level
+             children = list(
+               dplyr::tibble(name = c("forest", "river")),   # 3rd level
+               dplyr::tibble(name = c("fish", "kelp"),
+                      children = list(
+                        dplyr::tibble(name = c("shark", "tuna"),  # 4th level
+                               NULL  # kelp
+                        ))
+               )
+             ))
+    )
+  )
 
+  plot <- tree |>
+    e_charts() |>
+    e_tree() |>
+    e_title("Tree graph")
+
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+
+  level_one <- plot$x$opts$series[[1]]$data
+  level_one_names <- lapply(1:length(level_one), \(x) level_one[[x]]$name) |> unlist()
+  expect_equal(level_one_names,  c("earth"))
+
+
+  level_two <- plot$x$opts$series[[1]]$data[[1]]$children
+  level_two_names <-
+    lapply(1:length(level_two), \(x) level_two[[x]]$name) |> unlist()
+  expect_equal(level_two_names,  c("land", "ocean"))
+
+  level_three <- plot$x$opts$series[[1]]$data[[1]]$children[[1]]$children
+  level_three_names <-
+    lapply(1:length(level_three), \(x) level_three[[x]]$name) |> unlist()
+  expect_equal(level_three_names,  c("forest", "river"))
+
+  expect_equal(
+    plot$x$opts$series[[1]]$type,
+    "tree"
+  )
+})
+
+test_that("e_tree.echarts4r and e_tree_ expects error when missing e", {
+  expect_error(e_tree.echarts4r() , "must pass e")
+  expect_error(e_tree_(), "must pass e")
+})
+
+test_that("e_treemap plot has the good data structure and type", {
+  df <- dplyr::tibble(
+    name = c("earth", "mars", "venus"), value = c(30, 40, 30),        # 1st level
+    itemStyle = dplyr::tibble(color = c(NA, 'red', 'blue')),
+    children = list(
+      dplyr::tibble(name = c("land", "ocean"), value = c(10,20),             # 2nd level
+             children = list(
+               dplyr::tibble(name = c("forest", "river"), value = c(3,7)),   # 3rd level
+               dplyr::tibble(name = c("fish", "kelp"), value = c(10,5),
+                      children = list(
+                        dplyr::tibble(name = c("shark", "tuna"), value = c(2,6)),  # 4th level
+                        NULL  # kelp
+                      ))
+             )),
+      dplyr::tibble(name = c("crater", "valley"), value = c(20,20)),
+      NULL  # venus
+    )
+  )
+
+  plot <- df |>
+    e_charts() |>
+    e_treemap() |>
+    e_title("Treemap chart")
+
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+
+  level_one <- plot$x$opts$series[[1]]$data
+  level_one_names <- lapply(1:length(level_one), \(x) level_one[[x]]$name) |> unlist()
+  expect_equal(level_one_names,  c("earth", "mars", "venus"))
+
+
+  level_two <- plot$x$opts$series[[1]]$data[[1]]$children
+  level_two_names <-
+    lapply(1:length(level_two), \(x) level_two[[x]]$name) |> unlist()
+  expect_equal(level_two_names,  c("land", "ocean"))
+
+  level_three <- plot$x$opts$series[[1]]$data[[1]]$children[[1]]$children
+  level_three_names <-
+    lapply(1:length(level_three), \(x) level_three[[x]]$name) |> unlist()
+  expect_equal(level_three_names,  c("forest", "river"))
+
+  expect_equal(
+    plot$x$opts$series[[1]]$type,
+    "treemap"
+  )
+})
+
+test_that("e_treemap.echarts4r and e_treemap_ expects error when missing e", {
+  expect_error(e_treemap.echarts4r() , "must pass e")
+  expect_error(e_treemap_(), "must pass e")
+})
 
 test_that("e_river plot has the good data structure and type", {
   set.seed(1)
@@ -697,12 +761,12 @@ test_that("e_river plot has the good data structure and type", {
     "themeRiver"
   )
 })
-test_that("e_river and e_river_ expects error when missing e and serie", {
-  iris |> e_charts() |> e_river() |> expect_error("must pass serie")
-  e_river() |> expect_error("must pass e")
+test_that("e_river.echarts4r and e_river_ expects error when missing e and serie", {
+  expect_error(iris |> e_charts() |> e_river.echarts4r(), "must pass serie")
+  expect_error(e_river.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_river_() |> expect_error("must pass serie")
-  e_river_() |> expect_error("must pass e")
+  expect_error( iris |> e_charts() |> e_river_(), "must pass serie")
+  expect_error(e_river_(), "must pass e")
 })
 
 
@@ -757,8 +821,8 @@ test_that("e_calendar plot works with timeline", {
 })
 
 test_that("e_calendar expects error when missing e or range", {
-  iris |> e_charts() |> e_calendar() |> expect_error("missing e or range")
-  e_calendar() |> expect_error("missing e or range")
+  expect_error(iris |> e_charts() |> e_calendar() , "missing e or range")
+  expect_error(e_calendar(), "missing e or range")
 })
 
 test_that("e_gauge plot has the good data structure and type", {
@@ -777,6 +841,11 @@ test_that("e_gauge plot has the good data structure and type", {
     plot$x$opts$series[[1]]$type,
     "gauge"
   )
+})
+
+test_that("e_gauge expects error when missing e or range", {
+  expect_error(iris |> e_charts() |> e_gauge.echarts4r() , "missing e, name, or value")
+  expect_error(e_gauge_(), "missing e, name, or value")
 })
 
 test_that("e_radar plot has the good data structure and type", {
@@ -810,12 +879,12 @@ test_that("e_radar plot has the good data structure and type", {
   )
 })
 
-test_that("e_radar and e_radar_ expects error when missing e and serie", {
-  iris |> e_charts() |> e_radar() |> expect_error("must pass serie")
-  e_radar() |> expect_error("must pass e")
+test_that("e_radar.echarts4r and e_radar_ expects error when missing e and serie", {
+  expect_error(iris |> e_charts() |> e_radar.echarts4r() , "must pass serie")
+  expect_error(e_radar.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_radar_() |> expect_error("must pass serie")
-  e_radar_() |> expect_error("must pass e")
+  expect_error(iris |> e_charts() |> e_radar_(), "must pass serie")
+  expect_error(e_radar_(), "must pass e")
 })
 
 test_that("e_cloud plot has the good data structure and type", {

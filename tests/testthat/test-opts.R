@@ -1,7 +1,7 @@
 # e_tooltip ---------------------------------------------------------------
 
 test_that("e_tooltip errors informatively without e", {
-  e_tooltip() |> expect_error("must pass e")
+  expect_error(e_tooltip(), "must pass e")
 })
 
 test_that("e_tooltip sets tooltip with default trigger", {
@@ -60,7 +60,7 @@ test_that("e_tooltip_pointer_formatter sets formatter for item_formatter", {
 
 # e_legend ----------------------------------------------------------------
 test_that("e_legend errors informatively without e", {
-  e_tooltip() |> expect_error("must pass e")
+  expect_error(e_tooltip(), "must pass e")
 })
 
 test_that("e_legend sets legend with default show", {

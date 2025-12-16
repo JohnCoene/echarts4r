@@ -2092,11 +2092,12 @@ e_histogram_ <- function(
     hist <- apply(unname(hist), 1, as.list)
 
     if (y_index != 0) {
-      e <- .set_y_axis(e, serie, y_index)
+      e <- .set_y_axis(e, serie, y_index, i)
     }
 
     if (x_index != 0) {
-      e <- .set_x_axis(e, x_index)
+      # TODO e$x$mapping$x is NULL
+      e <- .set_x_axis(e, x_index, i)
     }
 
     serie_data <- list(data = hist)

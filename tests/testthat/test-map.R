@@ -99,12 +99,13 @@ test_that("e_lines plot has the good data structure and type", {
     "lines"
   )
 })
-test_that("e_lines and e_lines_ expects error when missing e and coordinates", {
-  iris |> e_charts() |> e_lines() |> expect_error("missing coordinates")
-  e_lines() |> expect_error("must pass e")
 
-  iris |> e_charts() |> e_lines_() |> expect_error("missing coordinates")
-  e_lines_() |> expect_error("must pass e")
+test_that("e_lines.echarts4r and e_lines_ expects error when missing e and coordinates", {
+  expect_error(iris |> e_charts() |> e_lines.echarts4r(), "missing coordinates")
+  expect_error(e_lines.echarts4r(), "must pass e")
+
+  expect_error(iris |> e_charts() |> e_lines_(), "missing coordinates")
+  expect_error(e_lines_() , "must pass e")
 })
 
 

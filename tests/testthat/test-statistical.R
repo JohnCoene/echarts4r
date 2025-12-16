@@ -38,12 +38,12 @@ test_that("e_band plot has the good data structure and type", {
   )
 })
 
-test_that("e_band and e_band_ expects error when missing e and min,max", {
-  iris |> e_charts() |> e_band() |> expect_error("must pass min and max")
-  e_band() |> expect_error("must pass e")
+test_that("e_band.echarts4r and e_band_ expects error when missing e and min,max", {
+  expect_error(iris |> e_charts() |> e_band.echarts4r(), "must pass min and max")
+ expect_error(e_band.echarts4r() , "must pass e")
 
-  iris |> e_charts() |> e_band_() |> expect_error("must pass min and max")
-  e_band_() |> expect_error("must pass e")
+ expect_error( iris |> e_charts() |> e_band_(), "must pass min and max")
+  expect_error(e_band_(), "must pass e")
 })
 
 test_that("e_band2 plot has good data structure and type", {
@@ -65,14 +65,17 @@ test_that("e_band2 plot has good data structure and type", {
   )
 })
 
-test_that("e_band2 and e_band2_ expects error when missing e and lower,upper and chech coord_system", {
-  iris |> e_charts() |> e_band2() |> expect_error("must pass lower and upper")
-  iris |> e_charts() |> e_band2(lower = Sepal.Length, upper = Sepal.Length, coord_system = "ERROR") |> expect_error("only cartesian2d supported")
-  e_band2() |> expect_error("must pass e")
+test_that("e_band2.echarts4r and e_band2_ expects error when missing e and lower,upper and chech coord_system", {
+  expect_error(iris |> e_charts() |> e_band2.echarts4r(),
+               "must pass lower and upper")
+  expect_error(iris |> e_charts() |> e_band2.echarts4r(lower = Sepal.Length, upper = Sepal.Length, coord_system = "ERROR"),
+               "only cartesian2d supported")
+  expect_error(e_band2.echarts4r(),"must pass e")
 
-  iris |> e_charts() |> e_band2_() |> expect_error("must pass lower and upper")
-  iris |> e_charts() |> e_band2_(lower = "Sepal.Length", upper = "Sepal.Length", coord_system = "ERROR") |> expect_error("only cartesian2d supported")
-  e_band2_() |> expect_error("must pass e")
+ expect_error( iris |> e_charts() |> e_band2_(), "must pass lower and upper")
+ expect_error( iris |> e_charts() |> e_band2_(lower = "Sepal.Length", upper = "Sepal.Length", coord_system = "ERROR") ,
+               "only cartesian2d supported")
+ expect_error( e_band2_(), "must pass e")
 })
 
 test_that("e_correlations plot has the good data structure and type", {
@@ -103,6 +106,9 @@ test_that("e_correlations plot has the good data structure and type", {
     plot$x$opts$series[[1]]$type,
     "heatmap"
   )
+})
+test_that("e_correlations.echarts4r() expects error when missing e", {
+  expect_error(e_correlations.echarts4r(),"must pass e")
 })
 
 test_that("e_error_bar plot has the good data structure and type", {
@@ -138,12 +144,15 @@ test_that("e_error_bar plot has the good data structure and type", {
   )
 })
 
-test_that("e_error_bar and e_error_bar_ expects error when missing e and serie", {
-  iris |> e_charts() |> e_error_bar() |> expect_error("must pass lower and upper")
-  e_error_bar() |> expect_error("must pass e")
+test_that("e_error_bar.echarts4r and e_error_bar_ expects error when missing e and serie", {
+  expect_error( iris |> e_charts() |> e_error_bar.echarts4r() ,
+                  "must pass lower and upper")
+  expect_error(e_error_bar.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_error_bar_() |> expect_error("must pass lower and upper")
-  e_error_bar_() |> expect_error("must pass e")
+  expect_error(iris |> e_charts() |> e_error_bar_(),
+               "must pass lower and upper")
+  expect_error(e_error_bar_(),
+               "must pass e")
 })
 
 
@@ -194,12 +203,14 @@ test_that("e_boxplot plot has the good data structure and type", {
   )
 })
 
-test_that("e_boxplot and e_boxplot_ expects error when missing e and serie", {
-  iris |> e_charts() |> e_boxplot() |> expect_error("must pass serie")
-  e_boxplot() |> expect_error("must pass e")
+test_that("e_boxplot.echarts4r and e_boxplot_ expects error when missing e and serie", {
+  expect_error(iris |> e_charts() |> e_boxplot.echarts4r(),
+               "must pass serie")
+  expect_error(e_boxplot.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_boxplot_() |> expect_error("must pass serie")
-  e_boxplot_() |> expect_error("must pass e")
+  expect_error( iris |> e_charts() |> e_boxplot_(),
+                "must pass serie")
+  expect_error(e_boxplot_(), "must pass e")
 })
 
 test_that("e_histogram plot has the good data structure and type", {
@@ -234,12 +245,12 @@ test_that("e_histogram plot has the good data structure and type", {
     "bar"
   )
 })
-test_that("e_histogram and e_histogram_ expects error when missing e and serie", {
-  iris |> e_charts() |> e_histogram() |> expect_error("must pass serie")
-  e_histogram() |> expect_error("must pass e")
+test_that("e_histogram.echarts4r.echarts4r and e_histogram_ expects error when missing e and serie", {
+   expect_error(iris |> e_charts() |> e_histogram.echarts4r(), "must pass serie")
+   expect_error(e_histogram.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_histogram_() |> expect_error("must pass serie")
-  e_histogram_() |> expect_error("must pass e")
+  expect_error(iris |> e_charts() |> e_histogram_(), "must pass serie")
+  expect_error(e_histogram_(), "must pass e")
 })
 
 
@@ -283,12 +294,12 @@ test_that("e_density plot has the good data structure and type", {
   )
 })
 
-test_that("e_density and e_density_ expects error when missing e and serie", {
-  iris |> e_charts() |> e_density() |> expect_error("must pass serie")
-  e_density() |> expect_error("must pass e")
+test_that("e_density.echarts4r and e_density_ expects error when missing e and serie", {
+   expect_error(iris |> e_charts() |> e_density.echarts4r(), "must pass serie")
+   expect_error(e_density.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_density_() |> expect_error("must pass serie")
-  e_density_() |> expect_error("must pass e")
+   expect_error(iris |> e_charts() |> e_density_(), "must pass serie")
+   expect_error(e_density_() , "must pass e")
 })
 
 test_that("e_lm plot has the good data structure and type", {
@@ -316,13 +327,17 @@ test_that("e_lm plot has the good data structure and type", {
   )
 })
 
+test_that("e_lm.echarts4r expects error when missing e and serie", {
+  expect_error(iris |> e_charts() |> e_lm.echarts4r("Sepal.Length" ~ "Sepal.Length", name = c("one", "two")), "More groups than names")
+  expect_error(e_lm.echarts4r(), "must pass e")
+})
 
 
 test_that("e_loess plot has the good data structure and type", {
   plot <- mtcars[1:7, ] |>
     e_charts(disp) |>
     e_scatter(mpg, qsec) |>
-    e_loess(mpg ~ disp)
+    e_loess(mpg ~ disp, y_index = 50, name = "TEST")
 
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
@@ -373,4 +388,8 @@ test_that("e_loess plot has the good data structure and type", {
     plot$x$opts$series[[1]]$type,
     "scatter"
   )
+})
+
+test_that("e_loess.echarts4r expects error when missing e", {
+  expect_error(e_loess.echarts4r(), "must pass e")
 })

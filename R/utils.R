@@ -824,3 +824,21 @@ check_installed <- function(pkg) {
   }
   return(found_values)
 }
+
+.get_bind <- function(bind){
+  if (bind == "") {
+    bd <- NULL
+  } else {
+    bd <- bind
+  }
+  return(bd)
+}
+
+.get_size <- function(size){
+  if (size == "") {
+    bd <- NULL
+  } else {
+    bd <- size
+  }
+  return(bd)
+}

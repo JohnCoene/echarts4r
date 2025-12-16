@@ -22,11 +22,11 @@ test_that("echarts_build does not apply font family when option is NULL", {
 # e_charts ----------------------------------------------------------------
 
 test_that("e_charts and e_charts_ expects errors", {
-   e_charts(timeline = TRUE) |> expect_error("timeline expects data")
-  iris |> e_charts(timeline = TRUE) |> expect_error("must pass grouped data when timeline = TRUE")
+   expect_error(e_charts(timeline = TRUE), "timeline expects data")
+   expect_error(iris |> e_charts(timeline = TRUE), "must pass grouped data when timeline = TRUE")
 
-  e_charts_(timeline = TRUE) |> expect_error("timeline expects data")
-  iris |> e_charts_(timeline = TRUE) |> expect_error("must pass grouped data when timeline = TRUE")
+   expect_error(e_charts_(timeline = TRUE), "timeline expects data")
+   expect_error(iris |> e_charts_(timeline = TRUE), "must pass grouped data when timeline = TRUE")
 })
 
 test_that("e_charts and e_charts_ expects theme is applied", {
@@ -51,11 +51,11 @@ test_that("e_charts sets mapping when x provided", {
 })
 
 test_that("e_charts errors informatively with timeline but no data", {
-  e_charts(timeline = TRUE) |> expect_error("timeline expects data")
+  expect_error(e_charts(timeline = TRUE), "timeline expects data")
 })
 
 test_that("e_charts errors informatively with timeline and ungrouped data", {
-  e_charts(mtcars, mpg, timeline = TRUE) |> expect_error("must pass grouped data when timeline = TRUE")
+  expect_error(e_charts(mtcars, mpg, timeline = TRUE), "must pass grouped data when timeline = TRUE")
 })
 
 test_that("e_charts works with grouped data and timeline", {
@@ -99,11 +99,11 @@ test_that("e_charts_ sets mapping when x provided", {
 })
 
 test_that("e_charts_ errors informatively with timeline but no data", {
-  e_charts_(timeline = TRUE) |> expect_error("timeline expects data")
+  expect_error(e_charts_(timeline = TRUE), "timeline expects data")
 })
 
 test_that("e_charts_ errors informatively with timeline and ungrouped data", {
-  e_charts_(mtcars, "mpg", timeline = TRUE) |> expect_error("must pass grouped data when timeline = TRUE")
+  expect_error(e_charts_(mtcars, "mpg", timeline = TRUE), "must pass grouped data when timeline = TRUE")
 })
 
 test_that("e_charts_ works with grouped data and timeline", {
@@ -210,11 +210,11 @@ test_that("echarts4rProxy sets mapping when x provided", {
 })
 
 test_that("echarts4rProxy errors informatively with timeline but no data", {
-  echarts4rProxy("myChart", timeline = TRUE) |> expect_error("timeline expects data")
+  expect_error(echarts4rProxy("myChart", timeline = TRUE), "timeline expects data")
 })
 
 test_that("echarts4rProxy errors informatively with timeline and ungrouped data", {
-  echarts4rProxy("myChart", mtcars, mpg, timeline = TRUE) |> expect_error("must pass grouped data when timeline = TRUE")
+  expect_error(echarts4rProxy("myChart", mtcars, mpg, timeline = TRUE) , "must pass grouped data when timeline = TRUE")
 })
 
 test_that("echarts4rProxy works with grouped data and timeline", {

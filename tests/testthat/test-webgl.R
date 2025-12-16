@@ -19,12 +19,13 @@ test_that("e_surface plot has the good data structure and type", {
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
 })
-test_that("e_surface and e_surface_ expects error when missing e and y, z", {
-  iris |> e_charts() |> e_surface() |> expect_error("must pass y and z")
-  e_surface() |> expect_error("must pass e")
+test_that("e_surface.echarts4r and e_surface_ expects error when missing e and y, z", {
+  expect_error(iris |> e_charts() |> e_surface.echarts4r(), "must pass y and z")
+  expect_error(e_surface.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_surface_() |> expect_error("must pass y and z")
-  e_surface_() |> expect_error("must pass e")
+  expect_error(iris |> e_charts() |> e_surface_(),
+   "must pass y and z")
+  expect_error(e_surface_(), "must pass e")
 })
 
 test_that("e_scatter_gl plot has the good data structure and type", {
@@ -59,12 +60,16 @@ test_that("e_scatter_gl plot has the good data structure and type", {
   )
 })
 
-test_that("e_scatter_gl and e_scatter_gl_ expects error when missing e and y,z", {
-  iris |> e_charts() |> e_scatter_gl() |> expect_error("must pass y and z")
-  e_scatter_gl() |> expect_error("must pass e")
+test_that("e_scatter_gl.echarts4r and e_scatter_gl_ expects error when missing e and y,z", {
+  expect_error(iris |> e_charts() |> e_scatter_gl.echarts4r(),
+                   "must pass y and z")
+  expect_error( e_scatter_gl.echarts4r(),
+                   "must pass e")
 
-  iris |> e_charts() |> e_scatter_gl_() |> expect_error("must pass y and z")
-  e_scatter_gl_() |> expect_error("must pass e")
+   expect_error(iris |> e_charts() |> e_scatter_gl_(),
+                   "must pass y and z")
+   expect_error(e_scatter_gl_(),
+                   "must pass e")
 })
 
 # couldn't visualize the plot so no possibility to check it's fine
@@ -90,6 +95,15 @@ test_that("e_graph_gl plot has the good data structure and type", {
 
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
+})
+
+test_that("e_graph.echarts4r and e_graph_nodes expects error when missing e ", {
+  expect_error(e_graph.echarts4r(), "must pass e")
+  expect_error(e_graph_nodes.echarts4r(), "must pass e")
+  expect_error(iris |> e_charts() |> e_graph_nodes.echarts4r(), "missing arguments")
+
+  expect_error(e_graph_edges.echarts4r(), "must pass e")
+  expect_error(iris |> e_charts() |> e_graph_edges.echarts4r(), "must pass edges, source and target")
 })
 
 test_that("e_flow_gl plot has the good data structure and type", {
@@ -232,10 +246,11 @@ test_that("e_flow_gl plot has the good data structure and type", {
   )
 })
 
-test_that("e_flow_gl and e_flow_gl_ expects error when missing e and y,sx,sy", {
-  iris |> e_charts() |> e_flow_gl() |> expect_error("must pass y, sx, and sy")
-  e_flow_gl() |> expect_error("must pass e")
+test_that("e_flow_gl.echarts4r and e_flow_gl_ expects error when missing e and y,sx,sy", {
+  expect_error(iris |> e_charts() |> e_flow_gl.echarts4r(),
+               "must pass y, sx, and sy")
+  expect_error(e_flow_gl.echarts4r(), "must pass e")
 
-  iris |> e_charts() |> e_flow_gl_() |> expect_error("must pass y, sx, and sy")
-  e_flow_gl_() |> expect_error("must pass e")
+  expect_error(iris |> e_charts() |> e_flow_gl_(), "must pass y, sx, and sy")
+  expect_error(e_flow_gl_() , "must pass e")
 })

@@ -804,7 +804,8 @@ e_lineRange <- function(e,
 }
 
 #######
-# TODO look at .get_index to replace current_trace
+# TODO look at .get_index to replace current_trace.
+# Do we want to make _ versions, too?
 e_stage <- function(e,
                       serie,
                       legend = TRUE,

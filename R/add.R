@@ -32,25 +32,22 @@
 #'
 #' @rdname e_bar
 #' @export
-e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, coord_system = "cartesian2d", ...){
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
-UseMethod("e_bar")
-  }
+e_bar <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, coord_system = "cartesian2d", ...) UseMethod("e_bar")
+
 
 #' @method e_bar echarts4r
 #' @export
 e_bar.echarts4r <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, coord_system = "cartesian2d", ...) {
+
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
 
-  if (missing(bind)) {
-    bd <- NULL
-  } else {
-    bd <- deparse(substitute(bind))
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
   sr <- deparse(substitute(serie))
 
@@ -60,15 +57,14 @@ e_bar.echarts4r <- function(e, serie, bind, name = NULL, legend = TRUE, y_index 
 #' @method e_bar echarts4rProxy
 #' @export
 e_bar.echarts4rProxy <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, coord_system = "cartesian2d", ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
 
-  if (missing(bind)) {
-    bd <- NULL
-  } else {
-    bd <- deparse(substitute(bind))
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
   sr <- deparse(substitute(serie))
 
@@ -109,12 +105,7 @@ e_line <- function(
     y_index = 0,
     x_index = 0,
     coord_system = "cartesian2d",
-    ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
-  UseMethod("e_line")
-}
+    ...) UseMethod("e_line")
 
 #' @export
 #' @method e_line echarts4r
@@ -128,17 +119,16 @@ e_line.echarts4r <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
 
   serie <- deparse(substitute(serie))
 
-  if (missing(bind)) {
-    bd <- NULL
-  } else {
-    bd <- deparse(substitute(bind))
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e_line_(e, serie, bd, name, legend, y_index, x_index, coord_system, ...)
 }
@@ -155,17 +145,16 @@ e_line.echarts4rProxy <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
 
   serie <- deparse(substitute(serie))
 
-  if (missing(bind)) {
-    bd <- NULL
-  } else {
-    bd <- deparse(substitute(bind))
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e$chart <- e_line_(e$chart, serie, bd, name, legend, y_index, x_index, coord_system, ...)
   return(e)
@@ -205,12 +194,7 @@ e_area <- function(
     y_index = 0,
     x_index = 0,
     coord_system = "cartesian2d",
-    ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
-  UseMethod("e_area")
-}
+    ...) UseMethod("e_area")
 
 #' @export
 #' @method e_area echarts4r
@@ -224,17 +208,16 @@ e_area.echarts4r <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
 
   serie <- deparse(substitute(serie))
 
-  if (missing(bind)) {
-    bd <- NULL
-  } else {
-    bd <- deparse(substitute(bind))
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e_area_(e, serie, bd, name, legend, y_index, x_index, coord_system, ...)
 }
@@ -251,17 +234,16 @@ e_area.echarts4rProxy <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
 
   serie <- deparse(substitute(serie))
 
-  if (missing(bind)) {
-    bd <- NULL
-  } else {
-    bd <- deparse(substitute(bind))
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e$chart <- e_area_(e$chart, serie, bd, name, legend, y_index, x_index, coord_system, ...)
   return(e)
@@ -306,9 +288,6 @@ e_step <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_step")
 }
 
@@ -326,17 +305,16 @@ e_step.echarts4r <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
 
   serie <- deparse(substitute(serie))
 
-  if (missing(bind)) {
-    bd <- NULL
-  } else {
-    bd <- deparse(substitute(bind))
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e_step_(e, serie, bd, step, fill, name, legend, y_index, x_index, coord_system = "cartesian2d", ...)
 }
@@ -355,17 +333,16 @@ e_step.echarts4rProxy <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
 
   serie <- deparse(substitute(serie))
 
-  if (missing(bind)) {
-    bd <- NULL
-  } else {
-    bd <- deparse(substitute(bind))
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e$chart <- e_step_(e$chart, serie, bd, step, fill, name, legend, y_index, x_index, coord_system = "cartesian2d", ...)
   return(e)
@@ -489,9 +466,6 @@ e_scatter <- function(
     rm_x = TRUE,
     rm_y = TRUE,
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_scatter")
 }
 
@@ -516,28 +490,21 @@ e_scatter.echarts4r <- function(
     rm_x = TRUE,
     rm_y = TRUE,
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
 
   serie <- deparse(substitute(serie))
-
-  if (missing(size)) {
-    size <- NULL
-  } else {
-    size <- deparse(substitute(size))
-  }
-
-  if (missing(bind)) {
-    bd <- NULL
-  } else {
-    bd <- deparse(substitute(bind))
-  }
+  sz <- .get_size(deparse(substitute(size)))
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e_scatter_(
     e = e,
     serie = serie,
-    size = size,
+    size = sz,
     bind = bd,
     symbol = symbol,
     symbol_size = symbol_size,
@@ -577,28 +544,22 @@ e_scatter.echarts4rProxy <- function(
     rm_x = TRUE,
     rm_y = TRUE,
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
 
   serie <- deparse(substitute(serie))
 
-  if (missing(size)) {
-    size <- NULL
-  } else {
-    size <- deparse(substitute(size))
-  }
-
-  if (missing(bind)) {
-    bd <- NULL
-  } else {
-    bd <- deparse(substitute(bind))
-  }
+  sz <- .get_size(deparse(substitute(size)))
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e$chart <- e_scatter_(
     e = e$chart,
     serie = serie,
-    size = size,
+    size = sz,
     bind = bd,
     symbol = symbol,
     symbol_size = symbol_size,
@@ -638,9 +599,6 @@ e_effect_scatter <- function(
     rm_x = TRUE,
     rm_y = TRUE,
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_effect_scatter")
 }
 
@@ -663,28 +621,22 @@ e_effect_scatter.echarts4r <- function(
     rm_x = TRUE,
     rm_y = TRUE,
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
 
   serie <- deparse(substitute(serie))
 
-  if (missing(size)) {
-    size <- NULL
-  } else {
-    size <- deparse(substitute(size))
-  }
-
-  if (missing(bind)) {
-    bd <- NULL
-  } else {
-    bd <- deparse(substitute(bind))
-  }
+  sz <- .get_size(deparse(substitute(size)))
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e_effect_scatter_(
     e,
     serie = serie,
-    size = size,
+    size = sz,
     bind = bd,
     symbol = symbol,
     symbol_size = symbol_size,
@@ -720,28 +672,22 @@ e_effect_scatter.echarts4rProxy <- function(
     rm_x = TRUE,
     rm_y = TRUE,
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
 
   serie <- deparse(substitute(serie))
 
-  if (missing(size)) {
-    size <- NULL
-  } else {
-    size <- deparse(substitute(size))
-  }
-
-  if (missing(bind)) {
-    bd <- NULL
-  } else {
-    bd <- deparse(substitute(bind))
-  }
+  sz <- .get_size(deparse(substitute(size)))
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e$chart <- e_effect_scatter_(
     e$chart,
     serie = serie,
-    size = size,
+    size = sz,
     bind = bd,
     symbol = symbol,
     symbol_size = symbol_size,
@@ -795,9 +741,6 @@ e_effect_scatter.echarts4rProxy <- function(
 #' @rdname e_candle
 #' @export
 e_candle <- function(e, opening, closing, low, high, bind, name = NULL, legend = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_candle")
   }
 
@@ -805,15 +748,15 @@ e_candle <- function(e, opening, closing, low, high, bind, name = NULL, legend =
 #' @method e_candle echarts4r
 e_candle.echarts4r <- function(e, opening, closing, low, high, bind, name = NULL, legend = TRUE, ...) {
 
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   if (missing(opening) || missing(closing) || missing(low) || missing(high)) {
     stop("missing inputs", call. = FALSE)
   }
 
-  if (!missing(bind)) {
-    bind <- deparse(substitute(bind))
-  } else {
-    bind <- NULL
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e_candle_(
     e,
@@ -821,7 +764,7 @@ e_candle.echarts4r <- function(e, opening, closing, low, high, bind, name = NULL
     deparse(substitute(closing)),
     deparse(substitute(low)),
     deparse(substitute(high)),
-    bind,
+    bd,
     name,
     legend,
     ...
@@ -831,15 +774,15 @@ e_candle.echarts4r <- function(e, opening, closing, low, high, bind, name = NULL
 #' @export
 #' @method e_candle echarts4rProxy
 e_candle.echarts4rProxy <- function(e, opening, closing, low, high, bind, name = NULL, legend = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   if (missing(opening) || missing(closing) || missing(low) || missing(high)) {
     stop("missing inputs", call. = FALSE)
   }
 
-  if (!missing(bind)) {
-    bind <- deparse(substitute(bind))
-  } else {
-    bind <- NULL
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e$chart <- e_candle_(
     e$chart,
@@ -891,9 +834,6 @@ e_radar <- function(
     rm_y = TRUE,
     ...,
     radar = list()) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_radar")
 }
 
@@ -909,6 +849,9 @@ e_radar.echarts4r <- function(
     rm_y = TRUE,
     ...,
     radar = list()) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
 
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
@@ -931,6 +874,9 @@ e_radar.echarts4rProxy <- function(
     rm_y = TRUE,
     ...,
     radar = list()) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -968,14 +914,14 @@ e_radar.echarts4rProxy <- function(
 #' @rdname e_funnel
 #' @export
 e_funnel <- function(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...){
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
-  UseMethod("e_funnel")
+   UseMethod("e_funnel")
 }
 #' @export
 #' @method e_funnel echarts4r
 e_funnel.echarts4r <- function(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(values) || missing(labels)) {
     stop("missing values or labels", call. = FALSE)
   }
@@ -995,6 +941,9 @@ e_funnel.echarts4r <- function(e, values, labels, name = NULL, legend = TRUE, rm
 #' @export
 #' @method e_funnel echarts4rProxy
 e_funnel.echarts4rProxy <- function(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(values) || missing(labels)) {
     stop("missing values or labels", call. = FALSE)
   }
@@ -1039,15 +988,15 @@ e_funnel.echarts4rProxy <- function(e, values, labels, name = NULL, legend = TRU
 #' @rdname e_sankey
 #' @export
 e_sankey <- function(e, source, target, value, layout = "none", rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_sankey")
   }
 
 #' @export
 #' @method e_sankey echarts4r
 e_sankey.echarts4r <- function(e, source, target, value, layout = "none", rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(source) || missing(target) || missing(value)) {
     stop("missing source, target or values", call. = FALSE)
   }
@@ -1071,6 +1020,9 @@ e_sankey.echarts4r <- function(e, source, target, value, layout = "none", rm_x =
 #' @method e_sankey echarts4rProxy
 e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(source) || missing(target) || missing(value)) {
+    if (missing(e)) {
+      stop("must pass e", call. = FALSE)
+    }
     stop("missing source, target or values", call. = FALSE)
   }
 
@@ -1228,6 +1180,9 @@ e_graph.echarts4r <- function(e, layout = "force", name = NULL, rm_x = TRUE, rm_
 #' @export
 #' @method e_graph echarts4rProxy
 e_graph.echarts4rProxy <- function(e, layout = "force", name = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   e$chart <- e_graph(e$chart, layout, name, rm_x, rm_y, ...)
   return(e)
 }
@@ -1239,6 +1194,9 @@ e_graph_gl <- function(e, layout = "force", name = NULL, rm_x = TRUE, rm_y = TRU
 #' @export
 #' @method e_graph_gl echarts4r
 e_graph_gl.echarts4r <- function(e, layout = "force", name = NULL, rm_x = TRUE, rm_y = TRUE, ..., itemStyle = list(opacity = 1)) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
@@ -1277,6 +1235,9 @@ e_graph_gl.echarts4r <- function(e, layout = "force", name = NULL, rm_x = TRUE, 
 #' @export
 #' @method e_graph_gl echarts4rProxy
 e_graph_gl.echarts4rProxy <- function(e, layout = "force", name = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   e$chart <- e_graph_gl(e$chart, layout, name, rm_x, rm_y, ...)
   return(e)
 }
@@ -1288,6 +1249,9 @@ e_graph_nodes <- function(e, nodes, names, value, size, category, symbol = NULL,
 #' @export
 #' @method e_graph_nodes echarts4r
 e_graph_nodes.echarts4r <- function(e, nodes, names, value, size, category, symbol = NULL, legend = TRUE, xpos = NULL, ypos = NULL) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(nodes) || missing(names) || missing(value)) {
     stop("missing arguments", call. = FALSE)
   }
@@ -1346,6 +1310,9 @@ e_graph_nodes.echarts4r <- function(e, nodes, names, value, size, category, symb
 #' @export
 #' @method e_graph_nodes echarts4rProxy
 e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category, symbol = NULL, legend = TRUE, xpos = NULL, ypos = NULL) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(nodes) || missing(names) || missing(value)) {
     stop("missing arguments", call. = FALSE)
   }
@@ -1407,6 +1374,9 @@ e_graph_edges <- function(e, edges, source, target, value, size, color) UseMetho
 #' @method e_graph_edges echarts4r
 #' @export
 e_graph_edges.echarts4r <- function(e, edges, source, target, value, size, color) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(edges) || missing(source) || missing(target)) {
     stop("must pass edges, source and target", call. = FALSE)
   }
@@ -1447,6 +1417,11 @@ e_graph_edges.echarts4r <- function(e, edges, source, target, value, size, color
 #' @method e_graph_edges echarts4rProxy
 #' @export
 e_graph_edges.echarts4rProxy <- function(e, edges, source, target, value, size, color) {
+
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   if (missing(edges) || missing(source) || missing(target)) {
     stop("must pass edges, source and target", call. = FALSE)
   }
@@ -1582,9 +1557,6 @@ e_heatmap <- function(
     rm_y = TRUE,
     calendar = NULL,
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_heatmap")
 }
 
@@ -1601,6 +1573,10 @@ e_heatmap.echarts4r <- function(
     rm_y = TRUE,
     calendar = NULL,
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   if (missing(y)) {
     stop("must pass y", call. = FALSE)
   }
@@ -1611,13 +1587,9 @@ e_heatmap.echarts4r <- function(
     z <- NULL
   }
 
-  if (!missing(bind)) {
-    bind <- deparse(substitute(bind))
-  } else {
-    bind <- NULL
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
-  e_heatmap_(e, deparse(substitute(y)), z, bind, name, coord_system, rm_x, rm_y, calendar, ...)
+  e_heatmap_(e, deparse(substitute(y)), z, bd, name, coord_system, rm_x, rm_y, calendar, ...)
 }
 
 #' @export
@@ -1633,6 +1605,10 @@ e_heatmap.echarts4rProxy <- function(
     rm_y = TRUE,
     calendar = NULL,
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   if (missing(y)) {
     stop("must pass y", call. = FALSE)
   }
@@ -1677,14 +1653,15 @@ e_heatmap.echarts4rProxy <- function(
 #' @rdname e_parallel
 #' @export
 e_parallel <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = list()) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_parallel")}
 
 #' @export
 #' @method e_parallel echarts4r
 e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = list()) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
@@ -1733,6 +1710,9 @@ e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, 
 #' @export
 #' @method e_parallel echarts4rProxy
 e_parallel.echarts4rProxy <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   e$chart <- e_parallel(e$chart, ..., name = name, rm_x = rm_x, rm_y = rm_y)
   return(e)
 }
@@ -1766,16 +1746,14 @@ e_parallel.echarts4rProxy <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = T
 #'
 #' @rdname e_pie
 #' @export
-e_pie <- function(e, serie, name = NULL, legend = TRUE, coord_system = "", rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
-  UseMethod("e_pie")
-  }
+e_pie <- function(e, serie, name = NULL, legend = TRUE, coord_system = "", rm_x = TRUE, rm_y = TRUE, ...) UseMethod("e_pie")
 
 #' @export
 #' @method e_pie echarts4r
 e_pie.echarts4r <- function(e, serie, name = NULL, legend = TRUE, coord_system = "", rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -1901,20 +1879,23 @@ e_pie.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, coord_sys
 #' @rdname e_sunburst
 #' @export
 e_sunburst <- function(e, styles = NULL, names = NULL, levels = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_sunburst")}
 
 #' @export
 #' @method e_sunburst echarts4r
 e_sunburst.echarts4r <- function(e, styles = NULL, names = NULL, levels = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   e_sunburst_(e, styles, names, levels, rm_x, rm_y, ...)
 }
 
 #' @export
 #' @method e_sunburst echarts4rProxy
 e_sunburst.echarts4rProxy <- function(e, styles = NULL, names = NULL, levels = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   e$chart <- e_sunburst_(e$chart, styles, names, levels, rm_x, rm_y, ...)
 
   return(e)
@@ -1970,20 +1951,23 @@ e_sunburst.echarts4rProxy <- function(e, styles = NULL, names = NULL, levels = N
 #' @rdname e_treemap
 #' @export
 e_treemap <- function(e, styles = NULL, names = NULL, levels = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_treemap")}
 
 #' @export
 #' @method e_treemap echarts4r
 e_treemap.echarts4r <- function(e, styles = NULL, names = NULL, levels = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   e_treemap_(e, styles, names, levels, rm_x, rm_y, ...)
 }
 
 #' @export
 #' @method e_treemap echarts4rProxy
 e_treemap.echarts4rProxy <- function(e, styles = NULL, names = NULL, levels = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   e$chart <- e_treemap_(e$chart, styles, names, levels, rm_x, rm_y, ...)
 
   return(e)
@@ -2016,15 +2000,15 @@ e_treemap.echarts4rProxy <- function(e, styles = NULL, names = NULL, levels = NU
 #' @rdname e_river
 #' @export
 e_river <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_river")
   }
 
 #' @export
 #' @method e_river echarts4r
 e_river.echarts4r <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -2035,6 +2019,9 @@ e_river.echarts4r <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE,
 #' @export
 #' @method e_river echarts4rProxy
 e_river.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -2066,15 +2053,16 @@ e_river.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, rm_x = 
 #' @rdname e_boxplot
 #' @export
 e_boxplot <- function(e, serie, name = NULL, outliers = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_boxplot")
   }
 
 #' @export
 #' @method e_boxplot echarts4r
 e_boxplot.echarts4r <- function(e, serie, name = NULL, outliers = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -2089,6 +2077,9 @@ e_boxplot.echarts4r <- function(e, serie, name = NULL, outliers = TRUE, ...) {
 #' @export
 #' @method e_boxplot echarts4rProxy
 e_boxplot.echarts4rProxy <- function(e, serie, name = NULL, outliers = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -2143,20 +2134,25 @@ e_boxplot.echarts4rProxy <- function(e, serie, name = NULL, outliers = TRUE, ...
 #' @rdname e_tree
 #' @export
 e_tree <- function(e, rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_tree")}
 
 #' @export
 #' @method e_tree echarts4r
 e_tree.echarts4r <- function(e, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   e_tree_(e, rm_x, rm_y, ...)
 }
 
 #' @export
 #' @method e_tree echarts4rProxy
 e_tree.echarts4rProxy <- function(e, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   e$chart <- e_tree_(e$chart, rm_x, rm_y, ...)
   return(e)
 }
@@ -2191,6 +2187,7 @@ e_gauge <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) UseMethod("e_
 #' @export
 #' @method e_gauge echarts4r
 e_gauge.echarts4r <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
+
   if (missing(e) || missing(value) || missing(name)) {
     stop("missing e, name, or value", call. = FALSE)
   }
@@ -2407,6 +2404,9 @@ e_lines_3d.echarts4r <- function(
     rm_x = TRUE,
     rm_y = TRUE,
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(source_lat) || missing(source_lon) || missing(target_lat) || missing(target_lon)) {
     stop("missing coordinates", call. = FALSE)
   }
@@ -2654,15 +2654,15 @@ e_bar_3d.echarts4r <- function(
     rm_x = TRUE,
     rm_y = TRUE,
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   if (missing(y) || missing(z)) {
     stop("must pass y and z", call. = FALSE)
   }
 
-  if (missing(bind)) {
-    bd <- NULL
-  } else {
-    bd <- deparse(substitute(bind))
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e_bar_3d_(
     e,
@@ -2693,11 +2693,7 @@ e_bar_3d.echarts4rProxy <- function(
     stop("must pass y and z", call. = FALSE)
   }
 
-  if (missing(bind)) {
-    bd <- NULL
-  } else {
-    bd <- deparse(substitute(bind))
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e$chart <- e_bar_3d_(
     e$chart,
@@ -2744,9 +2740,6 @@ e_surface <- function(
     rm_x = TRUE,
     rm_y = TRUE,
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_surface")
 }
 
@@ -2761,16 +2754,15 @@ e_surface.echarts4r <- function(
     rm_x = TRUE,
     rm_y = TRUE,
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
 
   if (missing(y) || missing(z)) {
     stop("must pass y and z", call. = FALSE)
   }
 
-  if (missing(bind)) {
-    bd <- NULL
-  } else {
-    bd <- deparse(substitute(bind))
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e_surface_(
     e,
@@ -2803,11 +2795,7 @@ e_surface.echarts4rProxy <- function(
     stop("must pass y and z", call. = FALSE)
   }
 
-  if (missing(bind)) {
-    bd <- NULL
-  } else {
-    bd <- deparse(substitute(bind))
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e$chart <- e_surface_(
     e$chart,
@@ -2901,9 +2889,6 @@ e_lines <- function(
     rm_x = TRUE,
     rm_y = TRUE,
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
 
   UseMethod("e_lines")
 }
@@ -2924,6 +2909,9 @@ e_lines.echarts4r <- function(
     rm_x = TRUE,
     rm_y = TRUE,
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
 
   if (missing(source_lat) || missing(source_lon) || missing(target_lat) || missing(target_lon)) {
     stop("missing coordinates", call. = FALSE)
@@ -3127,6 +3115,9 @@ e_scatter_3d.echarts4r <- function(
     rm_y = TRUE,
     legend = FALSE,
     ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(y) || missing(z)) {
     stop("must pass y and z", call. = FALSE)
   }
@@ -3137,17 +3128,8 @@ e_scatter_3d.echarts4r <- function(
     colour <- NULL
   }
 
-  if (!missing(size)) {
-    sz <- deparse(substitute(size))
-  } else {
-    sz <- NULL
-  }
-
-  if (!missing(bind)) {
-    bd <- deparse(substitute(bind))
-  } else {
-    bd <- NULL
-  }
+  sz <- .get_size(deparse(substitute(size)))
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e_scatter_3d_(
     e,
@@ -3190,17 +3172,8 @@ e_scatter_3d.echarts4rProxy <- function(
     colour <- NULL
   }
 
-  if (!missing(size)) {
-    sz <- deparse(substitute(size))
-  } else {
-    sz <- NULL
-  }
-
-  if (!missing(bind)) {
-    bd <- deparse(substitute(bind))
-  } else {
-    bd <- NULL
-  }
+  sz <- .get_size(deparse(substitute(size)))
+  bd <- .get_bind(deparse(substitute(bind)))
 
   e$chart <- e_scatter_3d_(
     e$chart,
@@ -3322,14 +3295,15 @@ e_scatter_3d.echarts4rProxy <- function(
 #' @rdname e_flow_gl
 #' @export
 e_flow_gl <- function(e, y, sx, sy, color, name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_flow_gl")}
 
 #' @export
 #' @method e_flow_gl echarts4r
 e_flow_gl.echarts4r <- function(e, y, sx, sy, color, name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   if (missing(y) || missing(sx) || missing(sy)) {
     stop("must pass y, sx, and sy", call. = FALSE)
   }
@@ -3422,14 +3396,15 @@ e_flow_gl.echarts4rProxy <- function(e, y, sx, sy, color, name = NULL, coord_sys
 #' @rdname e_scatter_gl
 #' @export
 e_scatter_gl <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_scatter_gl")}
 
 #' @export
 #' @method e_scatter_gl echarts4r
 e_scatter_gl.echarts4r <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   if (missing(y) || missing(z)) {
     stop("must pass y and z", call. = FALSE)
   }
@@ -3582,15 +3557,14 @@ e_pictorial <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y_in
 #' @export
 #' @method e_pictorial echarts4r
 e_pictorial.echarts4r <- function(e, serie, symbol, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie) || missing(symbol)) {
     stop("must pass serie and symbol", call. = FALSE)
   }
 
-  if (!missing(bind)) {
-    bd <- deparse(substitute(bind))
-  } else {
-    bd <- NULL
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
   # only deparse if it is a column name
   if (deparse(substitute(symbol)) %in% colnames(e$x$data[[1]])) {
@@ -3617,11 +3591,7 @@ e_pictorial.echarts4rProxy <- function(e, serie, symbol, bind, name = NULL, lege
     stop("must pass serie and symbol", call. = FALSE)
   }
 
-  if (!missing(bind)) {
-    bd <- deparse(substitute(bind))
-  } else {
-    bd <- NULL
-  }
+  bd <- .get_bind(deparse(substitute(bind)))
 
   # only deparse if it is a column name
   if (deparse(substitute(symbol)) %in% colnames(e$chart$x$data[[1]])) {
@@ -3682,6 +3652,10 @@ e_lm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth
 #' @method e_lm echarts4r
 #' @importFrom stats complete.cases
 e_lm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, model_args = list(), ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   form <- as.formula(formula)
 
   if (!is.null(name) && length(name) != length(e$x$data)) {
@@ -3826,6 +3800,10 @@ e_glm <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smoot
 #' @method e_glm echarts4r
 #' @importFrom stats complete.cases
 e_glm.echarts4r <- function(e, formula, name = NULL, legend = TRUE, symbol = "none", smooth = TRUE, model_args = list(), ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   form <- as.formula(formula)
 
   for (i in seq_along(e$x$data)) {
@@ -3988,6 +3966,11 @@ e_loess.echarts4r <- function(
     y_index = 0,
     model_args = list(),
     ...) {
+
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   for (i in seq_along(e$x$data)) {
     e$x$data[[i]] <- e$x$data[[i]][stats::complete.cases(e$x$data[[i]]), ]
 
@@ -4019,7 +4002,7 @@ e_loess.echarts4r <- function(
         name = name,
         ...
       )
-
+      # TODO name is NULL
       if (y_index != 0) {
         e <- .set_y_axis(e, name, y_index)
       }
@@ -4106,7 +4089,7 @@ e_loess.echarts4rProxy <- function(
         name = name,
         ...
       )
-
+      # TODO name is NULL
       if (y_index != 0) {
         e <- .set_y_axis(e, name, y_index)
       }
@@ -4186,9 +4169,6 @@ e_histogram <- function(
   y_index = 0,
   ...
 ) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_histogram")
 }
 
@@ -4205,6 +4185,9 @@ e_histogram.echarts4r <- function(
   y_index = 0,
   ...
 ) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -4249,9 +4232,6 @@ e_density <- function(
     y_index = 0,
     smooth = TRUE,
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_density")
 }
 
@@ -4267,6 +4247,10 @@ e_density.echarts4r <- function(
     y_index = 0,
     smooth = TRUE,
     ...) {
+
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
 
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
@@ -4313,6 +4297,10 @@ e_lines_gl <- function(e, data, coord_system = "geo", ...) UseMethod("e_lines_gl
 #' @export
 #' @method e_lines_gl echarts4r
 e_lines_gl.echarts4r <- function(e, data, coord_system = "geo", ...) {
+
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(data) || missing(e)) {
     stop("missing e or data", call. = FALSE)
   }
@@ -4384,9 +4372,7 @@ e_band <- function(
     areaStyle = list(list(color = "rgba(0,0,0,0)"), list()),
     legend = list(FALSE, FALSE),
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
+
   UseMethod("e_band")
 }
 
@@ -4402,6 +4388,9 @@ e_band.echarts4r <- function(
     legend = list(FALSE, FALSE),
     ...) {
 
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
 
   if (missing(min) || missing(max)) {
     stop("must pass min and max", call. = FALSE)
@@ -4476,7 +4465,7 @@ e_correlations <- function(e, order = NULL, visual_map = TRUE, ...) UseMethod("e
 #' @method e_correlations echarts4r
 e_correlations.echarts4r <- function(e, order = NULL, visual_map = TRUE, ...) {
   if (missing(e)) {
-    stop("missing e", call. = FALSE)
+    stop("must pass e", call. = FALSE)
   }
 
   mat <- e$x$data[[1]]
@@ -4578,9 +4567,6 @@ e_error_bar <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_error_bar")
 }
 
@@ -4596,6 +4582,10 @@ e_error_bar.echarts4r <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
+
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
 
   if (missing(lower) || missing(upper)) {
     stop("must pass lower and upper", call. = FALSE)
@@ -4678,9 +4668,6 @@ e_band2 <- function(e, lower, upper,   name = NULL,
                     coord_system = "cartesian2d",
                     itemStyle = list(borderWidth = 0.5),
                     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   UseMethod("e_band2")
 }
 
@@ -4692,6 +4679,10 @@ e_band2.echarts4r <- function(e, lower, upper,  name = NULL,
                               x_index = 0,
                               coord_system = "cartesian2d",
                               itemStyle = list(borderWidth = 0.5), ...) {
+
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
 
   if (missing(lower) || missing(upper)) {
     stop("must pass lower and upper", call. = FALSE)
@@ -4760,6 +4751,10 @@ e_chord <- function(e, source, target, value, rm_x = TRUE, rm_y = TRUE, ...) Use
 #' @export
 #' @method e_chord echarts4r
 e_chord.echarts4r <- function(e, source, target, value, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+
   if (missing(source) || missing(target) || missing(value)) {
     stop("missing source, target or values", call. = FALSE)
   }
