@@ -791,6 +791,7 @@ check_installed <- function(pkg) {
   }
 }
 
+
 .build_zigzags <- function(data, starts, ends, gap) {
   data |>
     dplyr::select(dplyr::all_of(c(starts, ends, gap))) -> zigzags
@@ -812,7 +813,6 @@ check_installed <- function(pkg) {
       element <- x[[i]]
 
       is_unnamed <- is.null(current_names) || current_names[i] == ""
-
       is_atomic_data <- !is.list(element) || is.data.frame(element)
 
       if (is_unnamed && is_atomic_data) {

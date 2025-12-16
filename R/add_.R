@@ -448,6 +448,11 @@ e_scatter_ <- function(
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
+  
+  if(coord_system == "matrix"){
+    e <- e_scatter_matrix(e, z = serie, ...)
+    return(e)
+  }
 
   for (i in seq_along(e$x$data)) {
     if (y_index != 0) {
@@ -530,7 +535,7 @@ e_scatter_ <- function(
       e.serie <- append(e.serie, add_opts)
       e.serie <- append(e.serie, opts)
 
-      if (!coord_system %in% c("cartesian2d", "singleAxis", "polar")) {
+      if (!coord_system %in% c("cartesian2d", "singleAxis", "polar", "matrix")) {
         e <- .rm_axis(e, rm_x, "x")
         e <- .rm_axis(e, rm_y, "y")
       }
@@ -663,7 +668,7 @@ e_effect_scatter_ <- function(
       e.serie <- append(e.serie, add_opts)
       e.serie <- append(e.serie, opts)
 
-      if (!coord_system %in% c("cartesian2d", "singleAxis", "polar")) {
+      if (!coord_system %in% c("cartesian2d", "singleAxis", "polar", "matrix")) {
         e <- .rm_axis(e, rm_x, "x")
         e <- .rm_axis(e, rm_y, "y")
       }
@@ -938,6 +943,11 @@ e_heatmap_ <- function(
     stop("must pass y", call. = FALSE)
   }
 
+  if(coord_system == "matrix"){
+    e <- e |> e_heatmap_matrix(y)
+    return(e)
+  }
+  
   for (i in seq_along(e$x$data)) {
     if (!is.null(z)) {
       xyz <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
@@ -1074,7 +1084,7 @@ e_pie_ <- function(e, serie, name = NULL, legend = TRUE,  coord_system = "", rm_
   e <- .rm_axis(e, rm_y, "y")
 
   if(coord_system == "matrix"){
-    e <- e |> e_matrix_pie(e$x$mapping$x, serie, legend, ...)
+    e <- e |> e_pie_matrix(e$x$mapping$x, serie, legend, ...)
     return(e)
   }
 
