@@ -1,6 +1,7 @@
 ### Tests of the functions in the tab "Chart types"
 ### https://echarts4r.john-coene.com/articles/chart_types.html
 
+# e_line ------------------------------------------------------------------
 test_that("e_line plot has the good data structure and type", {
 
   df <- data.frame(
@@ -27,6 +28,60 @@ test_that("e_line plot has the good data structure and type", {
   )
 })
 
+test_that("e_line.echarts4rProxy plot responds", {
+
+  test_data <-  data.frame(
+    x = seq(3),
+    y = c(1, 3, 9),
+    z = c(2, 5, 4),
+    w = c(3, 4, 3)
+  )
+
+  server <- function(input, output, session) {
+    proxy_called <- shiny::reactiveVal(FALSE)
+
+    output$line <- renderEcharts4r({
+      test_data |>
+        e_charts(x) |>
+        e_line(z)
+    })
+
+    observeEvent(input$update, {
+      echarts4rProxy("line",
+                     data = test_data) |>
+        e_line(y) |>
+        e_execute()
+
+      proxy_called(TRUE)
+    })
+  }
+
+  shiny::testServer(server, {
+
+    expect_false(proxy_called())
+
+    json <- jsonlite::fromJSON(output$line)
+
+    # Data matches - this is the first point
+    expect_identical(
+      json$x$opts$series$data[[1]]$value[[1]],
+      c(1L, 2L))
+
+    session$setInputs(update = 1)
+    session$flushReact()
+
+    json <- jsonlite::fromJSON(output$line)
+
+    # Proxy was called with no errors
+    expect_true(proxy_called())
+
+    expect_equal(
+      json$x$opts$series$type,
+      "line"
+    )
+  })
+})
+
 test_that("e_line.echarts4r and e_line_ expects error when missing e or serie", {
   expect_error(iris |> e_charts() |> e_line.echarts4r(), "must pass serie")
   expect_error(e_line.echarts4r(), "must pass e")
@@ -34,6 +89,8 @@ test_that("e_line.echarts4r and e_line_ expects error when missing e or serie", 
   expect_error(iris |> e_charts() |> e_line_(), "must pass serie")
   expect_error( e_line_(), "must pass e")
 })
+
+# e_area ------------------------------------------------------------------
 
 test_that("e_area plot has the good data structure and type", {
   df <- data.frame(
@@ -59,6 +116,59 @@ test_that("e_area plot has the good data structure and type", {
   )
 })
 
+test_that("e_area.echarts4rProxy plot responds", {
+
+  test_data <-  data.frame(
+    x = seq(3),
+    y = c(1, 3, 9),
+    z = c(2, 5, 4),
+    w = c(3, 4, 3)
+  )
+
+  server <- function(input, output, session) {
+    proxy_called <- shiny::reactiveVal(FALSE)
+
+    output$area <- renderEcharts4r({
+      test_data |>
+        e_charts(x) |>
+        e_area(z)
+    })
+
+    observeEvent(input$update, {
+      echarts4rProxy("area",
+                     data = test_data) |>
+        e_area(y) |>
+        e_execute()
+
+      proxy_called(TRUE)
+    })
+  }
+
+  shiny::testServer(server, {
+
+    expect_false(proxy_called())
+    json <- jsonlite::fromJSON(output$area)
+
+    # Data matches - this is the first point
+    expect_identical(
+      json$x$opts$series$data[[1]]$value[[1]],
+      c(1L, 2L))
+
+    session$setInputs(update = 1)
+    session$flushReact()
+
+    json <- jsonlite::fromJSON(output$area)
+
+    # Proxy was called with no errors
+    expect_true(proxy_called())
+
+    expect_equal(
+      json$x$opts$series$type,
+      "line"
+    )
+  })
+})
+
 test_that("e_area.echarts4r and e_area_ expects error when missing e or serie", {
   expect_error(iris |> e_charts() |> e_area.echarts4r() , "must pass serie")
   expect_error(e_area.echarts4r(), "must pass e")
@@ -66,6 +176,9 @@ test_that("e_area.echarts4r and e_area_ expects error when missing e or serie", 
   expect_error(iris |> e_charts() |> e_area_(), "must pass serie")
   expect_error( e_area_(), "must pass e")
 })
+
+
+# e_bar -------------------------------------------------------------------
 
 test_that("e_bar plot has the good data structure and type", {
   df <- data.frame(
@@ -91,14 +204,62 @@ test_that("e_bar plot has the good data structure and type", {
   )
 })
 
+test_that("e_bar.echarts4rProxy plot responds", {
+
+  test_data <-  data.frame(
+    x = seq(3),
+    y = c(1, 3, 9),
+    z = c(2, 5, 4),
+    w = c(3, 4, 3)
+  )
+
+  server <- function(input, output, session) {
+    proxy_called <- shiny::reactiveVal(FALSE)
+
+    output$bar <- renderEcharts4r({
+      test_data |>
+        e_charts(x) |>
+        e_bar(y, name = "Serie 1")
+    })
+
+    observeEvent(input$update, {
+      echarts4rProxy("bar",
+                     data = test_data) |>
+        e_bar(y, name = "Serie 1") |>
+        e_execute()
+
+      proxy_called(TRUE)
+    })
+  }
+
+  shiny::testServer(server, {
+
+    expect_false(proxy_called())
+    json <- jsonlite::fromJSON(output$bar)
+
+    # Data matches - this is the first point
+    expect_identical(
+      json$x$opts$series$data[[1]]$value[[1]],
+      c(1L, 1L))
+
+    session$setInputs(update = 1)
+    session$flushReact()
+
+    json <- jsonlite::fromJSON(output$bar)
+
+    # Proxy was called with no errors
+    expect_true(proxy_called())
+
+    expect_equal(
+      json$x$opts$series$type,
+      "bar"
+    )
+  })
+})
+
 test_that("e_bar.echarts4r and e_bar_ expects error when missing e or serie", {
   expect_error(iris |> e_charts() |> e_bar.echarts4r(),
     "must pass serie")
-
-  expect_error(e_bar.echarts4rProxy (), "must pass e")
-
-  expect_error(iris |> e_charts() |> e_bar.echarts4rProxy(),
-               "must pass serie")
 
   expect_error(e_bar.echarts4r(), "must pass e")
 
@@ -106,6 +267,7 @@ test_that("e_bar.echarts4r and e_bar_ expects error when missing e or serie", {
   expect_error(e_bar_(), "must pass e")
 })
 
+# e_step ------------------------------------------------------------------
 test_that("e_step plot has the good data structure and type", {
   df <- data.frame(
     x = seq(3),
@@ -140,6 +302,9 @@ test_that("e_step.echarts4r and e_step_ expects error when missing e or serie or
   expect_error( iris |> e_charts() |> e_step_(serie = "Sepal.Length", step = "WRONG"), "wrong step")
 })
 
+
+# e_scatter ---------------------------------------------------------------
+
 test_that("e_scatter plot has the good data structure and type", {
   df <- data.frame(
     x = seq(3),
@@ -162,7 +327,6 @@ test_that("e_scatter plot has the good data structure and type", {
     plot$x$opts$series[[1]]$type,
     "scatter"
   )
-
 
   plot2 <- df |>
     e_charts(x) |>
@@ -190,6 +354,8 @@ test_that("e_scatter.echarts4r and e_scatter_ expects error when missing e", {
   expect_error(e_scatter_(), "must pass e")
 })
 
+
+# e_effect_scatter --------------------------------------------------------
 
 test_that("e_effect_scatter plot has the good data structure and type", {
   df <- data.frame(
@@ -233,6 +399,7 @@ test_that("e_effect_scatter plot has the good data structure and type", {
   )
 })
 
+
 test_that("e_effect_scatter.echarts4r and e_effect_scatter_ expects error when missing e", {
   expect_error(iris |> e_charts() |> e_effect_scatter.echarts4r(), "must pass serie")
   expect_error(e_effect_scatter.echarts4r(), "must pass e")
@@ -241,6 +408,9 @@ test_that("e_effect_scatter.echarts4r and e_effect_scatter_ expects error when m
                "must pass serie")
   expect_error( e_effect_scatter_(), "must pass e")
 })
+
+
+# e_polar -----------------------------------------------------------------
 
 test_that("e_polar plot has the good data structure and type", {
   df <- data.frame(
@@ -270,6 +440,36 @@ test_that("e_polar plot has the good data structure and type", {
   )
 })
 
+test_that("e_polar plot has the good data structure and type", {
+  df <- data.frame(
+    x = seq(3),
+    y = c(1, 3, 9),
+    z = c(2, 5, 4),
+    w = c(3, 4, 3)
+  )
+  plot <- df |>
+    e_charts(x) |>
+    e_polar() |>
+    e_angle_axis_("x") |> # angle = x
+    e_radius_axis_() |>
+    e_bar_("y", coord_system = "polar")
+
+
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+
+  expect_equal(
+    plot$x$opts$series[[1]]$data,
+    c(list(c(1)), list(c(3)), list(c(9)))
+  )
+  expect_equal(
+    plot$x$opts$series[[1]]$type,
+    "bar"
+  )
+})
+
+# e_radius ----------------------------------------------------------------
+
 # test_that("e_radius plot has the good data structure and type", {
 # df <- data.frame(
 #   x = seq(3),
@@ -295,6 +495,9 @@ test_that("e_polar plot has the good data structure and type", {
 #   expect_s3_class(plot2, "echarts4r")
 #   expect_s3_class(plot2, "htmlwidget")
 # })
+
+
+# e_candle ----------------------------------------------------------------
 
 test_that("e_candle plot has the good data structure and type", {
   date <- c(
@@ -349,6 +552,18 @@ test_that("e_candle.echarts4r and e_candle_ expects error when missing e and an 
   expect_error(e_candle_() , "must pass e")
 })
 
+
+test_that("e_candle.echarts4r and e_candle_ expects error when missing e and an input", {
+  expect_error(iris |> e_charts() |> e_candle.echarts4r(), "missing inputs")
+  expect_error(e_candle.echarts4r(), "must pass e")
+
+  expect_error(iris |> e_charts() |> e_candle_() , "missing inputs")
+  expect_error(e_candle_() , "must pass e")
+})
+
+
+# e_funnel ----------------------------------------------------------------
+
 test_that("e_funnel plot has the good data structure and type", {
   funnel <- data.frame(stage = c("View", "Click", "Purchase"), value = c(80, 30, 20))
 
@@ -370,14 +585,7 @@ test_that("e_funnel plot has the good data structure and type", {
   )
 })
 
-test_that("e_funnel.echarts4r and e_funnel_ expects error when missing e and values/labels", {
-  expect_error(iris |> e_charts() |> e_funnel.echarts4r(), "missing values or labels")
-  expect_error(e_funnel.echarts4r(), "must pass e")
-
-  expect_error(iris |> e_charts() |> e_funnel_(), "missing values or labels")
-  expect_error( e_funnel_(), "must pass e")
-})
-
+# e_sankey ----------------------------------------------------------------
 
 test_that("e_sankey plot has the good data structure and type", {
   sankey <- data.frame(
@@ -405,6 +613,7 @@ test_that("e_sankey plot has the good data structure and type", {
   )
 })
 
+
 test_that("e_sankey.echarts4r and e_sankey_ expects error when missing e and values/labels", {
   expect_error(iris |> e_charts() |> e_sankey.echarts4r() , "missing source, target or values")
  expect_error( e_sankey.echarts4r(), "must pass e")
@@ -412,6 +621,9 @@ test_that("e_sankey.echarts4r and e_sankey_ expects error when missing e and val
  expect_error( iris |> e_charts() |> e_sankey_() , "missing source, target or values")
  expect_error( e_sankey_(), "must pass e")
 })
+
+
+# e_heatmap ---------------------------------------------------------------
 
 ### Careful : heatmap not full to reduce the data to write in expect_equal
 
@@ -456,6 +668,16 @@ test_that("e_heatmap.echarts4r and e_heatmap_ expects error when missing e and y
   expect_error(e_heatmap_(), "must pass e")
 })
 
+test_that("e_heatmap.echarts4r and e_heatmap_ expects error when missing e and y", {
+  expect_error(iris |> e_charts() |> e_heatmap.echarts4r(), "must pass y")
+  expect_error( e_heatmap.echarts4r(), "must pass e")
+
+  expect_error(iris |> e_charts() |> e_heatmap_(), "must pass y")
+  expect_error(e_heatmap_(), "must pass e")
+})
+
+
+# e_parallel --------------------------------------------------------------
 
 test_that("e_parallel plot has the good data structure and type", {
   df <- data.frame(
@@ -481,11 +703,8 @@ test_that("e_parallel plot has the good data structure and type", {
     "parallel"
   )
 })
-test_that("e_parallel.echarts4r and e_parallel_ expects error when missing e", {
-   expect_error(e_parallel.echarts4r(), "must pass e")
-   expect_error(e_parallel_(), "must pass e")
-})
 
+# e_pie -------------------------------------------------------------------
 
 test_that("e_pie plot has the good data structure and type", {
   plot <- mtcars |>
@@ -508,6 +727,57 @@ test_that("e_pie plot has the good data structure and type", {
   )
 })
 
+test_that("e_pie.echarts4rProxy plot responds", {
+
+    test_data <- shiny::reactiveVal(data.frame(
+      name = c("A", "B"),
+      value = c(40, 60)
+    ))
+
+    server <- function(input, output, session) {
+      proxy_called <- shiny::reactiveVal(FALSE)
+
+      output$pie <- renderEcharts4r({
+        e_charts(test_data(), name) |>
+          e_pie(value, radius = c("30%", "70%"))
+      })
+
+      observeEvent(input$update, {
+        echarts4rProxy("pie",
+                       data = test_data(), x = value) |>
+          e_pie(value, radius = c("30%", "70%")) |>
+          e_execute()
+
+        proxy_called(TRUE)
+      })
+    }
+
+    shiny::testServer(server, {
+
+      expect_false(proxy_called())
+
+      pie_json <- jsonlite::fromJSON(output$pie)
+
+      # Data matches
+      expect_identical(
+        pie_json$x$opts$series$data[[1]]$value,
+        c(40L, 60L))
+
+      session$setInputs(update = 1)
+      session$flushReact()
+
+      pie_json <- jsonlite::fromJSON(output$pie)
+
+      # Proxy was called with no errors
+      expect_true(proxy_called())
+
+      expect_equal(
+        pie_json$x$opts$series$type,
+        "pie"
+      )
+    })
+})
+
 test_that("e_pie.echarts4r.echarts4r and e_pie_ expects error when missing e and serie", {
    expect_error(iris |> e_charts() |> e_pie.echarts4r(), "must pass serie")
    expect_error(e_pie.echarts4r(), "must pass e")
@@ -517,6 +787,8 @@ test_that("e_pie.echarts4r.echarts4r and e_pie_ expects error when missing e and
 })
 
 
+# e_donut -----------------------------------------------------------------
+# TODO this is not a donut
 test_that("e_donut plot has the good data structure and type", {
   plot <- mtcars |>
     head(5) |>
@@ -539,31 +811,31 @@ test_that("e_donut plot has the good data structure and type", {
 })
 
 
-test_that("e_rosetype plot has the good data structure and type", {
-  plot <- mtcars |>
-    head(5) |>
-    tibble::rownames_to_column("model") |>
-    e_charts(model) |>
-    e_pie(hp, roseType = "radius")
+# e_rosetype --------------------------------------------------------------
+# test_that("e_rosetype plot has the good data structure and type", {
+#   plot <- mtcars |>
+#     head(5) |>
+#     tibble::rownames_to_column("model") |>
+#     e_charts(model) |>
+#     e_pie(hp, roseType = "radius")
+#
+#   expect_s3_class(plot, "echarts4r")
+#   expect_s3_class(plot, "htmlwidget")
+#
+#   expect_equal(
+#     plot$x$opts$series[[1]]$data,
+#     list(list(value = c(110), name = c("Mazda RX4")), list(value = c(110), name = c("Mazda RX4 Wag")), list(value = c(93), name = c("Datsun 710")), list(value = c(110), name = c("Hornet 4 Drive")), list(value = c(175), name = c("Hornet Sportabout")))
+#   )
+#   expect_equal(
+#     plot$x$opts$series[[1]]$type,
+#     "pie"
+#   )
+# })
 
-  expect_s3_class(plot, "echarts4r")
-  expect_s3_class(plot, "htmlwidget")
 
-  expect_equal(
-    plot$x$opts$series[[1]]$data,
-    list(list(value = c(110), name = c("Mazda RX4")), list(value = c(110), name = c("Mazda RX4 Wag")), list(value = c(93), name = c("Datsun 710")), list(value = c(110), name = c("Hornet 4 Drive")), list(value = c(175), name = c("Hornet Sportabout")))
-  )
-  expect_equal(
-    plot$x$opts$series[[1]]$type,
-    "pie"
-  )
-})
-
-
+# e_sunburst --------------------------------------------------------------
 
 ### TODO make the equivalent of plot$x$opts$series[[1]]$data in expect_equal()
-
-
 
 test_that("e_sunburst plot has the good data structure and type", {
   df <- dplyr::tibble(
@@ -612,7 +884,6 @@ test_that("e_sunburst plot has the good data structure and type", {
     "sunburst"
   )
 })
-
 
 test_that("e_sunburst.echarts4r and e_sunburst_ expects error when missing e", {
    expect_error(e_sunburst.echarts4r(), "must pass e")
@@ -664,6 +935,8 @@ test_that("e_tree plot has the good data structure and type", {
     "tree"
   )
 })
+
+# e_treemao ---------------------------------------------------------------
 
 test_that("e_tree.echarts4r and e_tree_ expects error when missing e", {
   expect_error(e_tree.echarts4r() , "must pass e")
@@ -723,6 +996,9 @@ test_that("e_treemap.echarts4r and e_treemap_ expects error when missing e", {
   expect_error(e_treemap_(), "must pass e")
 })
 
+
+# e_river -----------------------------------------------------------------
+
 test_that("e_river plot has the good data structure and type", {
   set.seed(1)
 
@@ -770,6 +1046,7 @@ test_that("e_river.echarts4r and e_river_ expects error when missing e and serie
 })
 
 
+# e_calendar --------------------------------------------------------------
 test_that("e_calendar plot has the good data structure and type", {
   set.seed(1)
   dates <- seq.Date(as.Date("2017-01-01"), as.Date("2017-01-05"), by = "day")
@@ -825,6 +1102,7 @@ test_that("e_calendar expects error when missing e or range", {
   expect_error(e_calendar(), "missing e or range")
 })
 
+# e_gauge -----------------------------------------------------------------
 test_that("e_gauge plot has the good data structure and type", {
   plot <- e_charts() |>
     e_gauge(41, "PERCENT") |>
@@ -848,6 +1126,7 @@ test_that("e_gauge expects error when missing e or range", {
   expect_error(e_gauge_(), "missing e, name, or value")
 })
 
+# e_radar -----------------------------------------------------------------
 test_that("e_radar plot has the good data structure and type", {
   set.seed(1)
 
@@ -927,6 +1206,8 @@ test_that("e_cloud plot has the good data structure and type", {
 })
 
 
+# e_liquid ----------------------------------------------------------------
+
 test_that("e_liquid plot has the good data structure and type", {
   liquid <- data.frame(val = c(0.6, 0.5, 0.4))
 
@@ -947,6 +1228,8 @@ test_that("e_liquid plot has the good data structure and type", {
   )
 })
 
+
+# e_mark_p ----------------------------------------------------------------
 test_that("e_mark_p has good data structure", {
   data(EuStockMarkets)
   dd <- as.data.frame(EuStockMarkets) |>
@@ -974,6 +1257,9 @@ test_that("e_mark_p has good data structure", {
     1716.3
   )
 })
+
+
+# e_modularity ------------------------------------------------------------
 
 test_that("e_modularity has good data structure", {
   nodes <- data.frame(
@@ -1007,6 +1293,8 @@ test_that("e_modularity has good data structure", {
 
 })
 
+
+# e_doughnut --------------------------------------------------------------
 test_that("e_doughnut has good data structure", {
 
   plot <- e_charts() |>

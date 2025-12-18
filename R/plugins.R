@@ -807,7 +807,10 @@ e_lineRange <- function(e,
 # TODO look at .get_index to replace current_trace.
 # Do we want to make _ versions, too?
 e_stage <- function(e,
-                      serie,
+                      time_start,
+                      time_end,
+                      stage,
+                      stage_order,
                       legend = TRUE,
                       name = "contour",
                       thresholds = 8,
@@ -820,52 +823,28 @@ e_stage <- function(e,
   if (missing(e)) {
     stop("missing e", call. = FALSE)
   }
+# browser()
+  data = e$x$data
 
-  df <- data.frame(
-    start = as.POSIXct(c(
-      "2024-09-07 06:12", "2024-09-07 06:15", "2024-09-07 08:59",
-      "2024-09-07 05:45", "2024-09-07 07:37", "2024-09-07 08:56",
-      "2024-09-07 09:08", "2024-09-07 05:45",
-      "2024-09-07 03:12", "2024-09-07 04:02", "2024-09-07 04:40",
-      "2024-09-07 04:57", "2024-09-07 06:12", "2024-09-07 06:18",
-      "2024-09-07 07:56", "2024-09-07 09:00", "2024-09-07 09:29",
-      "2024-09-07 03:27", "2024-09-07 04:36", "2024-09-07 04:48"
-    )),
+  for (i in seq_along(data)) { # TODO
 
-    end = as.POSIXct(c(
-      "2024-09-07 06:12", "2024-09-07 06:18", "2024-09-07 09:00",
-      "2024-09-07 06:12", "2024-09-07 07:56", "2024-09-07 08:59",
-      "2024-09-07 09:29", "2024-09-07 06:12",
-      "2024-09-07 03:27", "2024-09-07 04:36", "2024-09-07 04:48",
-      "2024-09-07 05:45", "2024-09-07 06:15", "2024-09-07 07:37",
-      "2024-09-07 08:56", "2024-09-07 09:08", "2024-09-07 10:41",
-      "2024-09-07 04:02", "2024-09-07 04:40", "2024-09-07 04:57"
-    )),
-
-    stage = c(
-      "Awake", "Awake", "Awake",
-      "REM", "REM", "REM", "REM", "REM",
-      "Core", "Core", "Core", "Core", "Core", "Core", "Core", "Core", "Core",
-      "Deep", "Deep", "Deep"
-    ),
-    stringsAsFactors = FALSE
-  )
-
-  e <- data |> e_charts()
-  i = 1
-
-  for (i in seq_along(e$x$data)) { # TODO
-
-    vector <- lapply(1:nrow(df), function(i) {
+    df = data[[i]]
+    vector <- lapply(1:nrow(df), function(j) {
       list(
-        (df[["start"]][i]),  # Convert to milliseconds
-        (df[["end"]][i]),
-        df[["stage"]][i]
+        df[["start"]][j],
+        df[["end"]][j],
+        df[["stage"]][j]
       )
+      #
+      # list(
+      #   data[[i]][[deparse(substitute(time_start))]],
+      #   data[[i]][[deparse(substitute(time_end))]],
+      #   data[[i]][[deparse(substitute(stage))]]
+      # )
     })
 
     e <- e |> e_axis(type = 'time', axis = "x")
-    e <- e |> e_axis(type = 'category', axis = "y") #, serie = stage)
+    e <- e |> e_axis(type = 'category', axis = "y")# data = list(stage_order)) #, serie = stage)
 
     # if (y_index != 0) {
     #   e <- .set_y_axis(e, substitute(upper), y_index, i)
@@ -960,4 +939,39 @@ e_stage <- function(e,
   e
 }
 
+df <- data.frame(
+  start = as.POSIXct(c(
+    "2024-09-07 06:12", "2024-09-07 06:15", "2024-09-07 08:59",
+    "2024-09-07 05:45", "2024-09-07 07:37", "2024-09-07 08:56",
+    "2024-09-07 09:08", "2024-09-07 05:45",
+    "2024-09-07 03:12", "2024-09-07 04:02", "2024-09-07 04:40",
+    "2024-09-07 04:57", "2024-09-07 06:12", "2024-09-07 06:18",
+    "2024-09-07 07:56", "2024-09-07 09:00", "2024-09-07 09:29",
+    "2024-09-07 03:27", "2024-09-07 04:36", "2024-09-07 04:48"
+  )),
 
+  end = as.POSIXct(c(
+    "2024-09-07 06:12", "2024-09-07 06:18", "2024-09-07 09:00",
+    "2024-09-07 06:12", "2024-09-07 07:56", "2024-09-07 08:59",
+    "2024-09-07 09:29", "2024-09-07 06:12",
+    "2024-09-07 03:27", "2024-09-07 04:36", "2024-09-07 04:48",
+    "2024-09-07 05:45", "2024-09-07 06:15", "2024-09-07 07:37",
+    "2024-09-07 08:56", "2024-09-07 09:08", "2024-09-07 10:41",
+    "2024-09-07 04:02", "2024-09-07 04:40", "2024-09-07 04:57"
+  )),
+
+  stage = c(
+    "Awake", "Awake", "Awake",
+    "REM", "REM", "REM", "REM", "REM",
+    "Core", "Core", "Core", "Core", "Core", "Core", "Core", "Core", "Core",
+    "Deep", "Deep", "Deep"
+  ),
+  stringsAsFactors = FALSE
+)
+
+
+# e <- df |> e_charts()
+# e |> e_stage(time_start = start, time_end = end, stage = stage, stage_order = c( "Deep", "Core","REM", "Awake"))
+#
+# e <- e |> e_axis(type = 'category', axis = "y", data = list( "Deep", "Core","REM", "Awake"), splitLine = list(show = TRUE), axisLabel = list(show = FALSE))
+#

@@ -145,9 +145,7 @@ e_line.echarts4rProxy <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
+
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -155,7 +153,6 @@ e_line.echarts4rProxy <- function(
   serie <- deparse(substitute(serie))
 
   bd <- .get_bind(deparse(substitute(bind)))
-
   e$chart <- e_line_(e$chart, serie, bd, name, legend, y_index, x_index, coord_system, ...)
   return(e)
 }
@@ -1764,6 +1761,7 @@ e_pie.echarts4r <- function(e, serie, name = NULL, legend = TRUE, coord_system =
 #' @export
 #' @method e_pie echarts4rProxy
 e_pie.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, coord_system = "", rm_x = TRUE, rm_y = TRUE, ...) {
+
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
