@@ -27,7 +27,7 @@ df |> e_chart() |>
  e_matrix(xAxis = "Class", yAxis = "Grade") |>
  e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |>
  e_matrix_parent(value = "High", children = "Class3") |>
- e_matrix_corner(coord = c(-2,-2), value = "All School", label = list(fontSize = 24, color = "#555", position = "inside")) |>
+ e_matrix_corner(value = "All School", label = list(fontSize = 24, color = "#555", position = "inside")) |>
  e_heatmap(A, coord_system = "matrix") |>
  e_labels(position = "inside", 
           formatter = htmlwidgets::JS('function(params){return(params.value[2]);}'),
