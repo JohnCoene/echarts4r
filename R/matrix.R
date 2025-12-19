@@ -20,6 +20,7 @@ get_base_nodes <- function(x) {
   return(found_values)
 }
 
+
 #' Generate Matrix
 #'
 #' helper function for generating the x and y axes for a matrix grid.
@@ -56,6 +57,35 @@ e_matrix <- function(e, xAxis, yAxis, ...){
   e$x$opts$matrix <- append(e$x$opts$matrix, list(...))
   
   e 
+}
+
+#' Generate Matrix
+#'
+#' helper function for generating default
+#'
+#' @inheritParams e_bar
+#' @param rows,cols provide integer values for the number of rows and columns in the matrix grid
+#' @examples
+#'
+#' e_matrix_raw(rows = 3, cols = 3, backgroundStyle=list(borderWidth=0))
+#' 
+#' e_matrix_raw(rows = 3, cols = 3, body = list(itemStyle = list(borderWidth = 0)))
+#' 
+#' @seealso \href{https://echarts.apache.org/en/option.html#matrix}{Additional arguments}
+#'
+#' @rdname e_matrix_raw
+#' @export
+e_matrix_raw <- function(rows = NULL, cols = NULL, ...){
+  if(is.null(rows) || is.null(cols)) {
+    stop("Must provide both the number of rows and columns.")
+  }
+  
+  e <- e_chart()
+  e$x$opts$yAxis <- NULL
+  e$x$opts$matrix <- list(x = list(data = rep(list(NA), rows), show = FALSE), 
+                          y = list(data = rep(list(NA),cols), show = FALSE), 
+                          ...)
+  e
 }
 
 
@@ -211,6 +241,121 @@ e_format_matrix_axis <- function(e, axis = "x", ...){
   e 
 }
 
+#' Add new chart to matrix chart
+#'
+#' Adds an already existing echart to your new matrix chart
+#'
+#' @inheritParams e_bar
+#' @param chart An existing echart that you want to attach to your new matrix chart
+#' @param coord X,Y Coordinate of matrix to place your new chart. Charts can cover multiple coordinates such as `list(c(0,1),0)`.
+#'     See \href{https://echarts.apache.org/en/option.html#matrix.body.data.coord}{Matrix Coordinates} for more information on matrix coordinates.
+#' @param id Unique id value that will be added when chart is placed in the matrix. Defaults to `"chart1"`
+#' @param legend Whether chart contains a legend. Defaults to \code{TRUE}.
+#' @param legend_pos Position of the legend. One of "top", "right", "bottom", "left". Determines 
+#'     to which side the `legend_space` argument applies. 
+#' @param legend_space Space between legend and plot area. Supports integers(pixels) or strings(percent of parent cell).
+#' @param margin_trbl Adjusts the size of the outside margin around the plotting area. Default is
+#'     `c(t = "15%", r = "5%", b = "5%", l = "5%")`. Supports integers(pixels) or strings(percent of parent cell) To
+#'     change only e.g. two sides `c("r" = 8, "l" = 8)` could be used, other sides will use 
+#'     defaults. 
+#' @param h_panel_space,v_panel_space Horizontal and vertical spacing between the individual grid
+#'     elements. Expects numeric input, which will be used as percentage of total plotting area.
+#'     Default `NULL` will automatically add some panel spacing for low dimensional grids. 
+#' 
+#' 
+#' @examples
+#' echart <- iris |>
+#' group_by(Species) |>
+#'   e_charts(Sepal.Length) |>
+#'   e_line(Sepal.Width) |>
+#'   e_tooltip(trigger = "axis")
+#'   
+#' e_matrix_raw(rows = 3, cols = 3, body = list(itemStyle = list(borderWidth = 0))) |> e_matrix_addChart(echart, coord = list(c(0,2),0), margin_trbl = c("b" = "20%"))
+#'
+#' 
+#' @rdname e_matrix_addChart
+#' @export
+e_matrix_addChart <- function(e, 
+                              chart, 
+                              coord, 
+                              id = "chart1",
+                              legend = TRUE,
+                              legend_pos = "bottom", 
+                              legend_space = "0%",
+                              margin_trbl = c(t = "5%", r = "5%", b = "15%", l = "5%")
+){
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+  if (missing(chart)) {
+    stop("must provide an echart to add into matrix grid", call. = FALSE)
+  }
+  if (!("echarts4r" %in% class(chart))) {
+    stop("the provided chart must be an echart", call. = FALSE)
+  }
+  if (missing(coord)) {
+    stop("must provide coordinates for chart locations in matrix grid", call. = FALSE)
+  }
+  # ID Check
+  if(!is.null(e$x$opts$yAxis)){
+    for(i in 1:length(e$x$opts$yAxis)){
+      if(e$x$opts$yAxis[[i]]$id == id){
+        stop("Chart id has already been used. Please supply a different id value")
+      }
+    }
+  }
+  
+  # Specified margins
+  spec_margin <- c("t", "r", "b", "l") %in% names(margin_trbl) # see which elements are present
+  margin_trbl <- c(margin_trbl, # add missing elements
+                   c(t = 5, r = 5, b = 5, l = 5)[!spec_margin])
+  
+  # add new data into matrix chart
+  e$x$data <- append(e$x$data, chart$x$data)
+  
+  # add IDs for grid and matrix based on supplied id
+  chart <- chart |> e_axis(axis = "x", id = id, gridID = id) |> e_axis(axis = "y", id = id, gridID = id)
+  
+  for(i in 1:length(chart$x$opts$series)){
+    chart$x$opts$series[[i]]$xAxisID <- id
+    chart$x$opts$series[[i]]$yAxisID <- id
+  }
+  
+  # Attach series and axis information to the matrix chart
+  e$x$opts$yAxis <- append(e$x$opts$yAxis, chart$x$opts$yAxis)
+  e$x$opts$xAxis <- append(e$x$opts$xAxis, chart$x$opts$xAxis)
+  e$x$opts$series <- append(e$x$opts$series, chart$x$opts$series)
+  
+  # Generate and link grid
+  e$x$opts$grid <- append(e$x$opts$grid, list(list(id = id, coordinateSystem = "matrix", coord = coord
+                                                   , left = margin_trbl[["l"]]
+                                                   , top = margin_trbl[["t"]]
+                                                   , right = margin_trbl[["r"]]
+                                                   , bottom = margin_trbl[["b"]]
+  )
+  )
+  )
+  
+  # Update and add legend
+  if(legend){
+    chart$x$opts$legend$coordinateSystem <- "matrix"
+    chart$x$opts$legend$coord <- coord
+    if(legend_pos == "top"){
+      chart$x$opts$legend$top <- legend_space
+    } else if(legend_pos == "right"){
+      chart$x$opts$legend$right <- legend_space
+    } else if(legend_pos == "left"){
+      chart$x$opts$legend$left <- legend_space
+    } else if(legend_pos == "bottom"){
+      chart$x$opts$legend$bottom <- legend_space
+    }
+    e$x$opts$legend <- append(e$x$opts$legend, list(chart$x$opts$legend))
+  }
+  
+  
+  e
+}
+
 
 #' Generate pie chart for matrix
 #'
@@ -297,6 +442,7 @@ e_pie_matrix <- function(e, x, y, legend = TRUE, ...){
   
   e
 }
+
 
 #' Generate scatter point for matrix
 #'
