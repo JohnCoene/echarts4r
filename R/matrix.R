@@ -267,10 +267,6 @@ e_format_matrix_axis <- function(e, axis = "x", ...){
 #'   area. Default is `c(t = "15%", r = "5%", b = "5%", l = "5%")`. Supports
 #'   integers(pixels) or strings(percent of parent cell) To change only e.g. two
 #'   sides `c("r" = 8, "l" = 8)` could be used, other sides will use defaults.
-#' @param h_panel_space,v_panel_space Horizontal and vertical spacing between
-#'   the individual grid elements. Expects numeric input, which will be used as
-#'   percentage of total plotting area. Default `NULL` will automatically add
-#'   some panel spacing for low dimensional grids.
 #'
 #'
 #' @examples
@@ -318,6 +314,8 @@ e_matrix_addChart <- function(e,
     }
   }
 
+  # Get count of existing charts in matrix for future ids 
+  chart_count <- length(e$x$opts$xAxis)
   # Specified margins
   spec_margin <- c("t", "r", "b", "l") %in% names(margin_trbl) # see which elements are present
   margin_trbl <- c(margin_trbl, # add missing elements
@@ -327,11 +325,13 @@ e_matrix_addChart <- function(e,
   e$x$data <- append(e$x$data, chart$x$data)
 
   # add IDs for grid and matrix based on supplied id
-  chart <- chart |> e_axis(axis = "x", id = id, gridID = id) |> e_axis(axis = "y", id = id, gridID = id)
+  chart <- chart |> e_axis(axis = "x", id = id, gridId = id) |> e_axis(axis = "y", id = id, gridId = id)
 
   for(i in 1:length(chart$x$opts$series)){
-    chart$x$opts$series[[i]]$xAxisID <- id
-    chart$x$opts$series[[i]]$yAxisID <- id
+    chart$x$opts$series[[i]]$xAxisId <- id
+    chart$x$opts$series[[i]]$yAxisId <- id
+    chart$x$opts$series[[i]]$xAxisIndex <- chart_count
+    chart$x$opts$series[[i]]$yAxisIndex <- chart_count
   }
 
   # Attach series and axis information to the matrix chart

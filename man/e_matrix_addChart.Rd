@@ -42,11 +42,6 @@ integers(pixels) or strings(percent of parent cell).}
 area. Default is `c(t = "15%", r = "5%", b = "5%", l = "5%")`. Supports
 integers(pixels) or strings(percent of parent cell) To change only e.g. two
 sides `c("r" = 8, "l" = 8)` could be used, other sides will use defaults.}
-
-\item{h_panel_space, v_panel_space}{Horizontal and vertical spacing between
-the individual grid elements. Expects numeric input, which will be used as
-percentage of total plotting area. Default `NULL` will automatically add
-some panel spacing for low dimensional grids.}
 }
 \description{
 Adds an already existing echart to your new matrix chart
