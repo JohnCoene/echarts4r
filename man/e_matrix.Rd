@@ -13,7 +13,8 @@ e_format_matrix_axis(e, axis = "x", ...)
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{xAxis, yAxis}{provide column name of dataframe to generate X-axis and Y-axis header cells}
+\item{xAxis, yAxis}{provide column name of dataframe to generate X-axis and
+Y-axis header cells}
 
 \item{...}{Any other option to pass, check See Also section.}
 
@@ -43,7 +44,8 @@ df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |> e_format_matri
 
 }
 \seealso{
-\href{https://echarts.apache.org/en/option.html#matrix}{Additional arguments}
+\href{https://echarts.apache.org/en/option.html#matrix}{Additional
+  arguments}
 
 \href{https://echarts.apache.org/en/option.html#matrix}{Additional arguments}
 }

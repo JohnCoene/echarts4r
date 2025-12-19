@@ -26,7 +26,8 @@ get_base_nodes <- function(x) {
 #' helper function for generating the x and y axes for a matrix grid.
 #'
 #' @inheritParams e_bar
-#' @param xAxis,yAxis provide column name of dataframe to generate X-axis and Y-axis header cells
+#' @param xAxis,yAxis provide column name of dataframe to generate X-axis and
+#'   Y-axis header cells
 #' @examples
 #'
 #' df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
@@ -35,8 +36,9 @@ get_base_nodes <- function(x) {
 #' "B" = sample(1:10,9))
 #'
 #' df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade")
-#' 
-#' @seealso \href{https://echarts.apache.org/en/option.html#matrix}{Additional arguments}
+#'
+#' @seealso \href{https://echarts.apache.org/en/option.html#matrix}{Additional
+#'   arguments}
 #'
 #' @rdname e_matrix
 #' @export
@@ -44,19 +46,19 @@ e_matrix <- function(e, xAxis, yAxis, ...){
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-  
-  
+
+
   if (missing(xAxis) | missing(yAxis)) {
     stop("must provide both x and y values", call. = FALSE)
   }
-  
+
   e$x$opts$matrix <- append(e$x$opts$matrix, list(x = list(data = as.list(unique(e$x$data[[1]][[xAxis]])), name = xAxis)))
-  
+
   e$x$opts$matrix <- append(e$x$opts$matrix, list(y = list(data = as.list(unique(e$x$data[[1]][[yAxis]])), name = yAxis)))
-  
+
   e$x$opts$matrix <- append(e$x$opts$matrix, list(...))
-  
-  e 
+
+  e
 }
 
 #' Generate Matrix
@@ -68,9 +70,9 @@ e_matrix <- function(e, xAxis, yAxis, ...){
 #' @examples
 #'
 #' e_matrix_raw(rows = 3, cols = 3, backgroundStyle=list(borderWidth=0))
-#' 
+#'
 #' e_matrix_raw(rows = 3, cols = 3, body = list(itemStyle = list(borderWidth = 0)))
-#' 
+#'
 #' @seealso \href{https://echarts.apache.org/en/option.html#matrix}{Additional arguments}
 #'
 #' @rdname e_matrix_raw
@@ -79,11 +81,11 @@ e_matrix_raw <- function(rows = NULL, cols = NULL, ...){
   if(is.null(rows) || is.null(cols)) {
     stop("Must provide both the number of rows and columns.")
   }
-  
+
   e <- e_chart()
   e$x$opts$yAxis <- NULL
-  e$x$opts$matrix <- list(x = list(data = rep(list(NA), rows), show = FALSE), 
-                          y = list(data = rep(list(NA),cols), show = FALSE), 
+  e$x$opts$matrix <- list(x = list(data = rep(list(NA), rows), show = FALSE),
+                          y = list(data = rep(list(NA),cols), show = FALSE),
                           ...)
   e
 }
@@ -104,10 +106,10 @@ e_matrix_raw <- function(rows = NULL, cols = NULL, ...){
 #' "A" = sample(1:10, 9),
 #' "B" = sample(1:10,9))
 #'
-#' df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |> 
-#' e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |> 
+#' df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |>
+#' e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |>
 #' e_matrix_parent(value = "High", children = "Class3")
-#' 
+#'
 #' @seealso \href{https://echarts.apache.org/en/option.html#matrix.x.data}{Additional arguments}
 #'
 #' @rdname e_matrix_parent
@@ -116,11 +118,11 @@ e_matrix_parent <- function(e, axis = "x", value, children, ...){
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-  
+
   if(axis=="x"){
-    
+
     child_ndx <- which(e$x$opts$matrix$x$data %in% children)
-    
+
     if(length(child_ndx)==0){
       for(i in 1:length(e$x$opts$matrix$x$data )){
         if(e$x$opts$matrix$x$data[[i]]$value %in% children){
@@ -131,17 +133,17 @@ e_matrix_parent <- function(e, axis = "x", value, children, ...){
         stop("No children found in the data")
       }
     }
-    
+
     new_node <- list(value = value, children = e$x$opts$matrix$x$data[child_ndx], ...)
-    
+
     e$x$opts$matrix$x$data <- append(e$x$opts$matrix$x$data, list(new_node))
     e$x$opts$matrix$x$data <- e$x$opts$matrix$x$data[-child_ndx]
   }
-  
+
   if(axis=="y"){
-    
+
     child_ndx <- which(e$x$opts$matrix$y$data %in% children)
-    
+
     if(length(child_ndx)==0){
       for(i in 1:length(e$x$opts$matrix$y$data )){
         if(e$x$opts$matrix$y$data[[i]]$value %in% children){
@@ -152,15 +154,15 @@ e_matrix_parent <- function(e, axis = "x", value, children, ...){
         stop("No children found in the data")
       }
     }
-    
+
     new_node <- list(value = value, children = e$x$opts$matrix$y$data[child_ndx], ...)
-    
+
     e$x$opts$matrix$y$data <- append(e$x$opts$matrix$y$data, list(new_node))
     e$x$opts$matrix$y$data <- e$x$opts$matrix$y$data[-child_ndx]
   }
-  
+
   e
-  
+
 }
 
 #' Fill Matrix Axis Corner
@@ -182,8 +184,9 @@ e_matrix_parent <- function(e, axis = "x", value, children, ...){
 #' df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |>
 #' e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |>
 #' e_matrix_parent(value = "High", children = "Class3") |>
-#' e_matrix_corner(value = "All School", label = list(fontSize = 24, color = "#555", position = "inside"))
-#' 
+#' e_matrix_corner(value = "All School",
+#' label = list(fontSize = 24, color = "#555", position = "inside"))
+#'
 #' @seealso \href{https://echarts.apache.org/en/option.html#matrix.corner}{Additional arguments}
 #'
 #' @rdname e_matrix_corner
@@ -192,12 +195,12 @@ e_matrix_corner <- function(e, coord = c(-1,-1), value, mergeCells = TRUE, coord
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-  
+
   data <- list(coord = coord, value = value, mergeCells = mergeCells, coordClamp = coordClamp)
   l <- list(data = list(data), ...)
-  
+
   e$x$opts$matrix$corner <- append(e$x$opts$matrix$corner, l)
-  
+
   e
 }
 
@@ -214,8 +217,9 @@ e_matrix_corner <- function(e, coord = c(-1,-1), value, mergeCells = TRUE, coord
 #' "A" = sample(1:10, 9),
 #' "B" = sample(1:10,9))
 #'
-#' df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |> e_format_matrix_axis(axis = "x", label = list(color = "red"))
-#' 
+#' df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |>
+#' e_format_matrix_axis(axis = "x", label = list(color = "red"))
+#'
 #' @seealso \href{https://echarts.apache.org/en/option.html#matrix}{Additional arguments}
 #'
 #' @rdname e_matrix
@@ -224,21 +228,21 @@ e_format_matrix_axis <- function(e, axis = "x", ...){
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-  
-  
+
+
   if (missing(axis)) {
     stop("must specify which axis", call. = FALSE)
   }
-  
+
   if(axis == "x"){
     e$x$opts$matrix$x <- append(e$x$opts$matrix$x, list(...))
   }
-  
+
   if(axis == "y"){
     e$x$opts$matrix$y <- append(e$x$opts$matrix$y, list(...))
   }
-  
-  e 
+
+  e
 }
 
 #' Add new chart to matrix chart
@@ -246,41 +250,50 @@ e_format_matrix_axis <- function(e, axis = "x", ...){
 #' Adds an already existing echart to your new matrix chart
 #'
 #' @inheritParams e_bar
-#' @param chart An existing echart that you want to attach to your new matrix chart
-#' @param coord X,Y Coordinate of matrix to place your new chart. Charts can cover multiple coordinates such as `list(c(0,1),0)`.
-#'     See \href{https://echarts.apache.org/en/option.html#matrix.body.data.coord}{Matrix Coordinates} for more information on matrix coordinates.
-#' @param id Unique id value that will be added when chart is placed in the matrix. Defaults to `"chart1"`
+#' @param chart An existing echart that you want to attach to your new matrix
+#'   chart
+#' @param coord X,Y Coordinate of matrix to place your new chart. Charts can
+#'   cover multiple coordinates such as `list(c(0,1),0)`. See
+#'   \href{https://echarts.apache.org/en/option.html#matrix.body.data.coord}{Matrix
+#'   Coordinates} for more information on matrix coordinates.
+#' @param id Unique id value that will be added when chart is placed in the
+#'   matrix. Defaults to `"chart1"`
 #' @param legend Whether chart contains a legend. Defaults to \code{TRUE}.
-#' @param legend_pos Position of the legend. One of "top", "right", "bottom", "left". Determines 
-#'     to which side the `legend_space` argument applies. 
-#' @param legend_space Space between legend and plot area. Supports integers(pixels) or strings(percent of parent cell).
-#' @param margin_trbl Adjusts the size of the outside margin around the plotting area. Default is
-#'     `c(t = "15%", r = "5%", b = "5%", l = "5%")`. Supports integers(pixels) or strings(percent of parent cell) To
-#'     change only e.g. two sides `c("r" = 8, "l" = 8)` could be used, other sides will use 
-#'     defaults. 
-#' @param h_panel_space,v_panel_space Horizontal and vertical spacing between the individual grid
-#'     elements. Expects numeric input, which will be used as percentage of total plotting area.
-#'     Default `NULL` will automatically add some panel spacing for low dimensional grids. 
-#' 
-#' 
+#' @param legend_pos Position of the legend. One of "top", "right", "bottom",
+#'   "left". Determines to which side the `legend_space` argument applies.
+#' @param legend_space Space between legend and plot area. Supports
+#'   integers(pixels) or strings(percent of parent cell).
+#' @param margin_trbl Adjusts the size of the outside margin around the plotting
+#'   area. Default is `c(t = "15%", r = "5%", b = "5%", l = "5%")`. Supports
+#'   integers(pixels) or strings(percent of parent cell) To change only e.g. two
+#'   sides `c("r" = 8, "l" = 8)` could be used, other sides will use defaults.
+#' @param h_panel_space,v_panel_space Horizontal and vertical spacing between
+#'   the individual grid elements. Expects numeric input, which will be used as
+#'   percentage of total plotting area. Default `NULL` will automatically add
+#'   some panel spacing for low dimensional grids.
+#'
+#'
 #' @examples
 #' echart <- iris |>
 #' group_by(Species) |>
 #'   e_charts(Sepal.Length) |>
 #'   e_line(Sepal.Width) |>
 #'   e_tooltip(trigger = "axis")
-#'   
-#' e_matrix_raw(rows = 3, cols = 3, body = list(itemStyle = list(borderWidth = 0))) |> e_matrix_addChart(echart, coord = list(c(0,2),0), margin_trbl = c("b" = "20%"))
 #'
-#' 
+#' e_matrix_raw(rows = 3, cols = 3, body = list(
+#' itemStyle = list(borderWidth = 0))) |>
+#' e_matrix_addChart(echart, coord = list(
+#'    c(0,2),0), margin_trbl = c("b" = "20%"))
+#'
+#'
 #' @rdname e_matrix_addChart
 #' @export
-e_matrix_addChart <- function(e, 
-                              chart, 
-                              coord, 
+e_matrix_addChart <- function(e,
+                              chart,
+                              coord,
                               id = "chart1",
                               legend = TRUE,
-                              legend_pos = "bottom", 
+                              legend_pos = "bottom",
                               legend_space = "0%",
                               margin_trbl = c(t = "5%", r = "5%", b = "15%", l = "5%")
 ){
@@ -304,28 +317,28 @@ e_matrix_addChart <- function(e,
       }
     }
   }
-  
+
   # Specified margins
   spec_margin <- c("t", "r", "b", "l") %in% names(margin_trbl) # see which elements are present
   margin_trbl <- c(margin_trbl, # add missing elements
                    c(t = 5, r = 5, b = 5, l = 5)[!spec_margin])
-  
+
   # add new data into matrix chart
   e$x$data <- append(e$x$data, chart$x$data)
-  
+
   # add IDs for grid and matrix based on supplied id
   chart <- chart |> e_axis(axis = "x", id = id, gridID = id) |> e_axis(axis = "y", id = id, gridID = id)
-  
+
   for(i in 1:length(chart$x$opts$series)){
     chart$x$opts$series[[i]]$xAxisID <- id
     chart$x$opts$series[[i]]$yAxisID <- id
   }
-  
+
   # Attach series and axis information to the matrix chart
   e$x$opts$yAxis <- append(e$x$opts$yAxis, chart$x$opts$yAxis)
   e$x$opts$xAxis <- append(e$x$opts$xAxis, chart$x$opts$xAxis)
   e$x$opts$series <- append(e$x$opts$series, chart$x$opts$series)
-  
+
   # Generate and link grid
   e$x$opts$grid <- append(e$x$opts$grid, list(list(id = id, coordinateSystem = "matrix", coord = coord
                                                    , left = margin_trbl[["l"]]
@@ -335,7 +348,7 @@ e_matrix_addChart <- function(e,
   )
   )
   )
-  
+
   # Update and add legend
   if(legend){
     chart$x$opts$legend$coordinateSystem <- "matrix"
@@ -351,8 +364,8 @@ e_matrix_addChart <- function(e,
     }
     e$x$opts$legend <- append(e$x$opts$legend, list(chart$x$opts$legend))
   }
-  
-  
+
+
   e
 }
 
@@ -372,48 +385,51 @@ e_matrix_addChart <- function(e,
 #'                   "B" = sample(1:10,9),
 #'                   "C" = sample(1:10,9))
 #'
-#' df |> e_chart(x = A) |> 
+#' df |> e_chart(x = A) |>
 #'  e_matrix(xAxis = "Class", yAxis = "Grade") |>
 #'  e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |>
 #'  e_matrix_parent(value = "High", children = "Class3") |>
-#'  e_matrix_corner(value = "All School", label = list(fontSize = 24, color = "#555", position = "inside")) |>
+#'  e_matrix_corner(value = "All School",
+#'    label = list(fontSize = 24, color = "#555", position = "inside")) |>
 #'  e_pie(B, coord_system = "matrix", label = list(show = FALSE)) |>
 #'  e_tooltip(trigger = "item") |>
 #'  e_legend()
-#'  
+#'
 #'  df |> e_chart() |>
 #'   e_matrix(xAxis = "Class", yAxis = "Grade") |>
-#'   e_pie_(serie = c("A","B","C"), coord_system = "matrix", label = list(show = FALSE)) |>
+#'   e_pie_(serie = c("A","B","C"),
+#'    coord_system = "matrix",
+#'      label = list(show = FALSE)) |>
 #'   e_tooltip(trigger = "item") |>
 #'   e_legend()
-#'  
+#'
 #'  df |> e_chart() |>
 #'  e_matrix(xAxis = "Class", yAxis = "Grade") |>
 #'  e_pie_matrix(x = "A", y = c( "B", "C"))
-#' 
+#'
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-pie}{Additional arguments}
 #'
 #' @rdname e_pie_matrix
 #' @export
 e_pie_matrix <- function(e, x, y, legend = TRUE, ...){
-  
+
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-  
+
   if(is.null(e$x$opts$matrix)){
     stop("Matrix coordinate system must be built before adding data. e.g. e_matrix()")
   }
   e <- .rm_axis(e, TRUE, "x")
   e <- .rm_axis(e, TRUE, "y")
-  
+
   base_nodes_x <- get_base_nodes(e$x$opts$matrix$x$data)
   base_nodes_y <- get_base_nodes(e$x$opts$matrix$y$data)
-  
+
   for(i in 1:length(base_nodes_x)){
     for(j in 1:length(base_nodes_y)){
       center <- c(base_nodes_x[[i]], base_nodes_y[[j]])
-      data <- e$x$data[[1]] |> dplyr::filter(.data[[e$x$opts$matrix$x$name]] == center[[1]] & .data[[e$x$opts$matrix$y$name]] == center[[2]]) |> dplyr::select(dplyr::all_of(c(x,y))) 
+      data <- e$x$data[[1]] |> dplyr::filter(.data[[e$x$opts$matrix$x$name]] == center[[1]] & .data[[e$x$opts$matrix$y$name]] == center[[2]]) |> dplyr::select(dplyr::all_of(c(x,y)))
       l_data <- list()
       for(k in 1:length(col(data))){
         l <- list(name = colnames(data)[k], value = data[,k])
@@ -428,7 +444,7 @@ e_pie_matrix <- function(e, x, y, legend = TRUE, ...){
       e$x$opts$series <- append(e$x$opts$series, list(serie))
     }
   }
-  
+
   if (isTRUE(e$x$tl)) {
     if (isTRUE(legend)) {
       e$x$opts$baseOption$legend$data <- append(
@@ -439,7 +455,7 @@ e_pie_matrix <- function(e, x, y, legend = TRUE, ...){
       )
     }
   }
-  
+
   e
 }
 
@@ -456,27 +472,29 @@ e_pie_matrix <- function(e, x, y, legend = TRUE, ...){
 #'                    "Grade" = c("Grade1","Grade2", "Grade3"),
 #'                   "A" = sample(1:10, 9))
 #'
-#' df |> e_chart() |> 
+#' df |> e_chart() |>
 #'  e_matrix(xAxis = "Class", yAxis = "Grade") |>
 #'  e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |>
 #'  e_matrix_parent(value = "High", children = "Class3") |>
-#'  e_matrix_corner(value = "All School", label = list(fontSize = 24, color = "#555", position = "inside")) |>
+#'  e_matrix_corner(value = "All School",
+#'    label = list(fontSize = 24, color = "#555", position = "inside")) |>
 #'  e_scatter(A, coord_system = "matrix", symbolSize = 0) |>
-#'  e_labels(position = "inside", 
-#'           formatter = htmlwidgets::JS('function(params){return(params.value[2]);}'),
-#'           color = "#555", 
+#'  e_labels(position = "inside",
+#'           formatter = htmlwidgets::JS(
+#'            'function(params){return(params.value[2]);}'),
+#'           color = "#555",
 #'           fontWeight = "bold")
-#'           
-#' df |> e_chart() |> 
+#'
+#' df |> e_chart() |>
 #'  e_matrix(xAxis = "Class", yAxis = "Grade") |>
 #'  e_scatter_matrix("A") |>
-#'  e_labels(position = "inside", 
+#'  e_labels(position = "inside",
 #'           formatter = htmlwidgets::JS('function(params){return(params.value[2]);}'),
-#'           color = "#555", 
+#'           color = "#555",
 #'           fontWeight = "bold") |>
 #'  e_visual_map(A, inRange = list(symbolSize = c(1,50)))
-#'  
-#' 
+#'
+#'
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-scatter}{Additional arguments}
 #'
 #' @rdname e_scatter_matrix
@@ -485,16 +503,16 @@ e_scatter_matrix <- function(e, z, ...){
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-  
+
   if(is.null(e$x$opts$matrix)){
     stop("Matrix coordinate system must be built before adding data. e.g. e_matrix()")
   }
   e <- .rm_axis(e, TRUE, "x")
   e <- .rm_axis(e, TRUE, "y")
-  
+
   base_nodes_x <- get_base_nodes(e$x$opts$matrix$x$data)
   base_nodes_y <- get_base_nodes(e$x$opts$matrix$y$data)
-  
+
   all_data <- list()
   for(i in 1:length(base_nodes_x)){
     for(j in 1:length(base_nodes_y)){
@@ -504,10 +522,10 @@ e_scatter_matrix <- function(e, z, ...){
       all_data <- append(all_data, list(serie))
     }
   }
-  
+
   serie <- list(type = "scatter", coordinateSystem = "matrix", data = all_data, ...)
   e$x$opts$series <- append(e$x$opts$series, list(serie))
-  
+
   e
 }
 
@@ -524,26 +542,28 @@ e_scatter_matrix <- function(e, z, ...){
 #'                    "Grade" = c("Grade1","Grade2", "Grade3"),
 #'                   "A" = sample(1:10, 9))
 #'
-#' df |> e_chart() |> 
+#' df |> e_chart() |>
 #'  e_matrix(xAxis = "Class", yAxis = "Grade") |>
 #'  e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |>
 #'  e_matrix_parent(value = "High", children = "Class3") |>
-#'  e_matrix_corner(value = "All School", label = list(fontSize = 24, color = "#555", position = "inside")) |>
+#'  e_matrix_corner(value = "All School", label = list(
+#'    fontSize = 24, color = "#555", position = "inside")) |>
 #'  e_heatmap(A, coord_system = "matrix") |>
-#'  e_labels(position = "inside", 
-#'           formatter = htmlwidgets::JS('function(params){return(params.value[2]);}'),
-#'           color = "#555", 
+#'  e_labels(position = "inside",
+#'           formatter = htmlwidgets::JS(
+#'             'function(params){return(params.value[2]);}'),
+#'           color = "#555",
 #'           fontWeight = "bold")
-#'           
-#' df |> e_chart() |> 
+#'
+#' df |> e_chart() |>
 #'  e_matrix(xAxis = "Class", yAxis = "Grade") |>
 #'  e_heatmap_matrix("A") |>
-#'  e_labels(position = "inside", 
-#'           formatter = htmlwidgets::JS('function(params){return(params.value[2]);}'),
+#'  e_labels(position = "inside",
+#'           formatter = htmlwidgets::JS(
+#'             'function(params){return(params.value[2]);}'),
 #'           fontWeight = "bold") |>
 #'  e_visual_map(A, inRange = list(color = c("#bf444c", "#d88273", "#f6efa6")))
-#'  
-#' 
+#'
 #' @seealso \href{https://echarts.apache.org/en/option.html#series-scatter}{Additional arguments}
 #'
 #' @rdname e_heatmap_matrix
@@ -552,16 +572,16 @@ e_heatmap_matrix <- function(e, z, ...){
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-  
+
   if(is.null(e$x$opts$matrix)){
     stop("Matrix coordinate system must be built before adding data. e.g. e_matrix()")
   }
   e <- .rm_axis(e, TRUE, "x")
   e <- .rm_axis(e, TRUE, "y")
-  
+
   base_nodes_x <- get_base_nodes(e$x$opts$matrix$x$data)
   base_nodes_y <- get_base_nodes(e$x$opts$matrix$y$data)
-  
+
   all_data <- list()
   for(i in 1:length(base_nodes_x)){
     for(j in 1:length(base_nodes_y)){
@@ -571,9 +591,9 @@ e_heatmap_matrix <- function(e, z, ...){
       all_data <- append(all_data, list(serie))
     }
   }
-  
+
   serie <- list(type = "heatmap", coordinateSystem = "matrix", data = all_data, ...)
   e$x$opts$series <- append(e$x$opts$series, list(serie))
-  
+
   e
 }

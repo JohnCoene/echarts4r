@@ -40,7 +40,8 @@ df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
 df |> e_charts() |> e_matrix(xAxis = "Class", yAxis = "Grade") |>
 e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |>
 e_matrix_parent(value = "High", children = "Class3") |>
-e_matrix_corner(value = "All School", label = list(fontSize = 24, color = "#555", position = "inside"))
+e_matrix_corner(value = "All School",
+label = list(fontSize = 24, color = "#555", position = "inside"))
 
 }
 \seealso{
