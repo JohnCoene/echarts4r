@@ -463,14 +463,12 @@ e_geoFacet <- function(e,
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-  if(typeof(grid)=="character" | !is.data.frame(grid)){
+  if(typeof(grid) !="character" & !is.data.frame(grid)){
     stop("must provide valid grid. Either name of geofacet grid object or custom dataframe grid", call. = FALSE)
   }
   
   if(typeof(grid)=="character"){
-    e <- new.env()
-    data(list = grid, package = "geofacet", envir = e)
-    grid <- get(grid, envir = e)
+    grid <- geofacet:::get_grid(grid)
   }
   
   if(missing(rows) || missing(cols)){
