@@ -473,7 +473,7 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
   label <- rep(label, length(x))
 
   e$x$data[[i]] |>
-    dplyr::select(serie) -> data
+    dplyr::select(dplyr::all_of(serie)) -> data
 
   data <- cbind(x, data, label)
   row.names(data) <- NULL
@@ -499,7 +499,7 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 
 .get_data <- function(e, serie, i = 1) {
   data <- e$x$data[[i]] |>
-    dplyr::select(serie) |>
+    dplyr::select(dplyr::all_of(serie)) |>
     unname()
 
   data[[1]]
