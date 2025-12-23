@@ -60,6 +60,10 @@ echarts4rBox <- function(
   # override area
   if (type %in% c("area", "step")) type <- "line"
 
+  # Make sure x and y are strings
+  x <- toString(substitute(x))
+  y <- toString(substitute(y))
+  
   # build expected data format
   data <- .build_data2(data, {{ x }}, {{ y }})
 

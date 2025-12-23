@@ -23,6 +23,7 @@ Imports:
   dplyr (>= 0.7.0),
   purrr,
   countrycode,
+  geofacet,
   broom,
   shiny,
   scales,

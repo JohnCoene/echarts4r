@@ -9,6 +9,7 @@ inst/doc
 GADM_2.8_IND_adm2.rds
 make-geo-json_cache/
 test.R
+advanced_plots.R
 .vscode
 .DS_Store
 .vscode

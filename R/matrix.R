@@ -84,8 +84,8 @@ e_matrix_raw <- function(rows = NULL, cols = NULL, ...){
 
   e <- e_chart()
   e$x$opts$yAxis <- NULL
-  e$x$opts$matrix <- list(x = list(data = rep(list(NA), rows), show = FALSE),
-                          y = list(data = rep(list(NA),cols), show = FALSE),
+  e$x$opts$matrix <- list(x = list(data = rep(list(NA), cols), show = FALSE),
+                          y = list(data = rep(list(NA),rows), show = FALSE),
                           ...)
   e
 }
@@ -222,7 +222,7 @@ e_matrix_corner <- function(e, coord = c(-1,-1), value, mergeCells = TRUE, coord
 #'
 #' @seealso \href{https://echarts.apache.org/en/option.html#matrix}{Additional arguments}
 #'
-#' @rdname e_matrix
+#' @rdname e_format_matrix_axis
 #' @export
 e_format_matrix_axis <- function(e, axis = "x", ...){
   if (missing(e)) {
@@ -247,7 +247,7 @@ e_format_matrix_axis <- function(e, axis = "x", ...){
 
 #' Add new chart to matrix chart
 #'
-#' Adds an already existing echart to your new matrix chart
+#' Adds an already existing echart to your new matrix chart. Charts with timelines are not supported. 
 #'
 #' @inheritParams e_bar
 #' @param chart An existing echart that you want to attach to your new matrix
@@ -304,6 +304,9 @@ e_matrix_addChart <- function(e,
   }
   if (missing(coord)) {
     stop("must provide coordinates for chart locations in matrix grid", call. = FALSE)
+  }
+  if (chart$x$tl) {
+    stop("e_matrix_addChart does not currently support timeline charts", call. = FALSE)
   }
   # ID Check
   if(!is.null(e$x$opts$yAxis)){
@@ -367,6 +370,138 @@ e_matrix_addChart <- function(e,
 
 
   e
+}
+
+
+#' Generate Chart Titles for Matrix
+#'
+#' helper function for creating titles for every plot in a geofacet style matrix.
+#' This generates the title using the name of the series. 
+#'
+#' @inheritParams e_bar
+#' @examples
+#'
+#' df <- data.frame(group = rep(grid$name, each = 20),
+#' date = seq(from = as.Date("2025-01-01"), to = as.Date("2025-01-20"), by = "day"),
+#' temp = sample(c(10:20), size = 60, replace = TRUE))
+#' 
+#' 
+#' df |>
+#'   group_by(group) |> 
+#'   e_chart(date) |>
+#'   e_line(temp, symbol = "none") |>
+#'   e_x_axis(splitNumber = 2) |> 
+#'   e_y_axis(splitNumber = 2) |>
+#'   e_geoFacet(rows = max(grid$row), cols = max(grid$col), legend = FALSE, grid = grid, margin_trbl = c("t"="25%"),left = "5%", width = "90%") |>
+#'   e_title(text = "State Temps") |>
+#'   e_title_matrix(textStyle = list(fontSize = 10), left = "center", top = "top")
+#'
+#' @seealso \href{https://echarts.apache.org/en/option.html#title}{Additional arguments}
+#'
+#' @rdname e_title_matrix
+#' @export
+e_title_matrix <- function(e, ...){
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+  
+  for(i in 1:length(e$x$opts$series)){
+    e$x$opts$title <- append(e$x$opts$title, list(list(text = e$x$opts$series[[i]]$name, 
+                                                       coordinateSystem = "matrix",
+                                                       coord = e$x$opts$grid[[i]]$coord,
+                                                       ...)
+    ))
+  }
+  e
+}
+
+
+#' Create geoFacet Echart
+#'
+#' generates a faceted chart using matrix functionality. Provides similar functionality to e_facet(). 
+#' Similar to geoFacet package.Timeline NOT supported.
+#'
+#' @inheritParams e_bar
+#' @param rows,cols Provide integer values for the number of rows and columns in the matrix grid
+#' @param grid A custom grid containing row,col positions and name. Or a string containing the name of
+#' a premade geoFacet grid from the geoFacet package.
+#' @param legend Whether chart contains a legend. Defaults to \code{TRUE}.
+#' @param legend_pos Position of the legend. One of "top", "right", "bottom",
+#'   "left". Determines to which side the `legend_space` argument applies.
+#' @param legend_space Space between legend and plot area. Supports
+#'   integers(pixels) or strings(percent of parent cell).
+#' @param margin_trbl Adjusts the size of the outside margin around the plotting
+#'   area. Default is `c(t = "15%", r = "5%", b = "5%", l = "5%")`. Supports
+#'   integers(pixels) or strings(percent of parent cell) To change only e.g. two
+#'   sides `c("r" = 8, "l" = 8)` could be used, other sides will use defaults.
+#'
+#'
+#' @examples
+#' echart <- iris |>
+#' group_by(Species) |>
+#'   e_charts(Sepal.Length) |>
+#'   e_line(Sepal.Width) |>
+#'   e_tooltip(trigger = "axis")
+#'
+#' e_matrix_raw(rows = 3, cols = 3, body = list(
+#' itemStyle = list(borderWidth = 0))) |>
+#' e_matrix_addChart(echart, coord = list(
+#'    c(0,2),0), margin_trbl = c("b" = "20%"))
+#'
+#'
+#' @rdname e_matrix_addChart
+#' @export
+e_geoFacet <- function(e, 
+                       rows, 
+                       cols, 
+                       grid,
+                       legend = TRUE,
+                       legend_pos = "top",
+                       legend_space = "10%",
+                       margin_trbl = c(t = "8%", r = "5%", b = "8%", l = "8%"),
+                       ...){
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
+  if(typeof(grid) !="character" & !is.data.frame(grid)){
+    stop("must provide valid grid. Either name of geofacet grid object or custom dataframe grid", call. = FALSE)
+  }
+  
+  if(typeof(grid)=="character"){
+    grid <- geofacet:::get_grid(grid)
+  }
+  
+  if(missing(rows) || missing(cols)){
+    rows = max(grid$row)
+    cols = max(grid$col)
+  }
+  
+  e2 <- e_matrix_raw(rows = rows, cols = cols, ...)
+  
+  n <- length(e$x$opts$series)
+  for(i in 1:nrow(grid)){
+    e3 <- e
+    series_pos <- NA
+    for(j in 1:n){
+      if(e$x$opts$series[[j]]$name == grid$name[i]){
+        series_pos <- j
+      }
+    }
+    if(is.na(series_pos)){
+      warning(paste(grid$name[i], "data not found in series", sep = ": "))
+      next
+    }
+    e3$x$opts$series <- list(e3$x$opts$series[[series_pos]])
+    e3$x$data <- NULL
+    e2 <- e2 |> e_matrix_addChart(e2, 
+                                  chart = e3, 
+                                  coord = list(grid$col[i]-1, grid$row[i]-1),
+                                  id = paste0("chart",i),
+                                  legend = FALSE,
+                                  margin_trbl = margin_trbl)
+  }
+  
+  e2
 }
 
 
@@ -597,3 +732,5 @@ e_heatmap_matrix <- function(e, z, ...){
 
   e
 }
+
+

@@ -2,6 +2,7 @@
 % Please edit documentation in R/matrix.R
 \name{e_matrix_addChart}
 \alias{e_matrix_addChart}
+\alias{e_geoFacet}
 \title{Add new chart to matrix chart}
 \usage{
 e_matrix_addChart(
@@ -13,6 +14,18 @@ e_matrix_addChart(
   legend_pos = "bottom",
   legend_space = "0\%",
   margin_trbl = c(t = "5\%", r = "5\%", b = "15\%", l = "5\%")
+)
+
+e_geoFacet(
+  e,
+  rows,
+  cols,
+  grid,
+  legend = TRUE,
+  legend_pos = "top",
+  legend_space = "10\%",
+  margin_trbl = c(t = "8\%", r = "5\%", b = "8\%", l = "8\%"),
+  ...
 )
 }
 \arguments{
@@ -42,11 +55,33 @@ integers(pixels) or strings(percent of parent cell).}
 area. Default is `c(t = "15%", r = "5%", b = "5%", l = "5%")`. Supports
 integers(pixels) or strings(percent of parent cell) To change only e.g. two
 sides `c("r" = 8, "l" = 8)` could be used, other sides will use defaults.}
+
+\item{rows, cols}{Provide integer values for the number of rows and columns in the matrix grid}
+
+\item{grid}{A custom grid containing row,col positions and name. Or a string containing the name of
+a premade geoFacet grid from the geoFacet package.}
+
+\item{...}{Any other option to pass, check See Also section.}
 }
 \description{
-Adds an already existing echart to your new matrix chart
+Adds an already existing echart to your new matrix chart. Charts with timelines are not supported.
+
+generates a faceted chart using matrix functionality. Provides similar functionality to e_facet(). 
+Similar to geoFacet package.Timeline NOT supported.
 }
 \examples{
+echart <- iris |>
+group_by(Species) |>
+  e_charts(Sepal.Length) |>
+  e_line(Sepal.Width) |>
+  e_tooltip(trigger = "axis")
+
+e_matrix_raw(rows = 3, cols = 3, body = list(
+itemStyle = list(borderWidth = 0))) |>
+e_matrix_addChart(echart, coord = list(
+   c(0,2),0), margin_trbl = c("b" = "20\%"))
+
+
 echart <- iris |>
 group_by(Species) |>
   e_charts(Sepal.Length) |>
