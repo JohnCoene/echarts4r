@@ -3,7 +3,7 @@
 #' Show or hide loading.
 #'
 #' @inheritParams e_bar
-#' @param hide_overlay Hides the white overaly that appears in shiny when a plot is recalculating.
+#' @param hide_overlay Hides the white overlay that appears in shiny when a plot is recalculating.
 #' @param text Text to display.
 #' @param color Color of spinner.
 #' @param text_color Color of text.

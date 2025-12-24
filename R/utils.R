@@ -835,9 +835,9 @@ check_installed <- function(pkg) {
 
 .get_size <- function(size){
   if (size == "") {
-    bd <- NULL
+    sz <- NULL
   } else {
-    bd <- size
+    sz <- size
   }
-  return(bd)
+  return(sz)
 }

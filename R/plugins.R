@@ -319,7 +319,7 @@ e_doughnut <- function(e,
 #' @rdname e_violin
 #' @export
 e_violin <- function(e,
-                     name = "barRange",
+                     name = "violin",
                      legend = TRUE,
                      y_index = 0,
                      x_index = 0,
@@ -347,7 +347,8 @@ e_violin <- function(e,
     e_serie <- list(data = vector)
 
     if (y_index != 0) {
-      e <- .set_y_axis(e, substitute(upper), y_index, i)
+      serie = names(e$x$data[[i]])[i]
+      e <- .set_y_axis(e, serie, y_index, i)
     }
     if (x_index != 0) {
       e <- .set_x_axis(e, x_index, i)
@@ -389,23 +390,6 @@ e_violin <- function(e,
 
     e
 }
-
-# WORKS WITH TIMELINE
-# df <- iris |>
-#   dplyr::group_by(Species) |>
-#   dplyr::summarise(min_length = min(Sepal.Length),
-#                    max_length = max(Sepal.Length))
-# df |> dplyr::group_by(Species) |> e_chart(Species, timeline = TRUE) |>
-#   e_barRange(lower = min_length,
-#              upper = max_length,
-#              textSymbol = '"'
-#   ) |> e_timeline_serie(
-#     title = list(
-#       list(text = "setosa"),
-#       list(text = "versicolor"),
-#       list(text = "virginica")
-#     )
-#   )
 
 #' Bar range chart
 #'
@@ -460,7 +444,8 @@ e_barRange <- function(e,
     e_serie <- list(data = vector)
 
     if (y_index != 0) {
-      e <- .set_y_axis(e, substitute(upper), y_index, i)
+      serie = names(e$x$data[[i]])[i]
+      e <- .set_y_axis(e, serie, y_index, i)
     }
     if (x_index != 0) {
       e <- .set_x_axis(e, x_index, i)
@@ -605,7 +590,7 @@ e_contour <- function(e,
     e <- e |> e_axis(type = 'value')
 
     if (y_index != 0) {
-      e <- .set_y_axis(e, substitute(upper), y_index, i)
+      e <- .set_y_axis(e, serie, y_index, i)
     }
     if (x_index != 0) {
       e <- .set_x_axis(e, x_index, i)
@@ -730,8 +715,8 @@ e_lineRange <- function(e,
                        legend = TRUE,
                        y_index = 0,
                        x_index = 0,
-                       lineStyle = list(opacity = 0.3, color = "black", width=1),
-                       areaStyle = list(opacity = 0.3, color = "red", width=1),
+                       lineStyle = list(opacity = 0.3, color = "#000", width=1),
+                       areaStyle = list(opacity = 0.3, color = "#032", width=1),
                        ...){
 
   if (missing(e)) {
@@ -755,7 +740,8 @@ e_lineRange <- function(e,
     e_serie <- list(data = vector)
 
     if (y_index != 0) {
-      e <- .set_y_axis(e, substitute(upper), y_index, i)
+      serie = names(e$x$data[[i]])[i]
+      e <- .set_y_axis(e, serie, y_index, i)
     }
     if (x_index != 0) {
       e <- .set_x_axis(e, x_index, i)
@@ -882,7 +868,8 @@ e_stage <- function(e,
     })
 
     if (y_index != 0) {
-      e <- .set_y_axis(e, substitute(upper), y_index, i)
+      serie = names(e$x$data[[i]])[i]
+      e <- .set_y_axis(e, serie, y_index, i)
     }
     if (x_index != 0) {
       e <- .set_x_axis(e, x_index, i)
@@ -971,7 +958,3 @@ e_stage <- function(e,
 
   e
 }
-
-#######
-
-# TODO beeswarm chart, broken axis? Enhanced Stock Trading Charts
