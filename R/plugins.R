@@ -319,7 +319,7 @@ e_doughnut <- function(e,
 #' @rdname e_violin
 #' @export
 e_violin <- function(e,
-                     name = "barRange",
+                     name = "violin",
                      legend = TRUE,
                      y_index = 0,
                      x_index = 0,
@@ -347,7 +347,8 @@ e_violin <- function(e,
     e_serie <- list(data = vector)
 
     if (y_index != 0) {
-      e <- .set_y_axis(e, substitute(upper), y_index, i)
+      serie = names(e$x$data[[i]])[i]
+      e <- .set_y_axis(e, serie, y_index, i)
     }
     if (x_index != 0) {
       e <- .set_x_axis(e, x_index, i)
@@ -389,23 +390,6 @@ e_violin <- function(e,
 
     e
 }
-
-# WORKS WITH TIMELINE
-# df <- iris |>
-#   dplyr::group_by(Species) |>
-#   dplyr::summarise(min_length = min(Sepal.Length),
-#                    max_length = max(Sepal.Length))
-# df |> dplyr::group_by(Species) |> e_chart(Species, timeline = TRUE) |>
-#   e_barRange(lower = min_length,
-#              upper = max_length,
-#              textSymbol = '"'
-#   ) |> e_timeline_serie(
-#     title = list(
-#       list(text = "setosa"),
-#       list(text = "versicolor"),
-#       list(text = "virginica")
-#     )
-#   )
 
 #' Bar range chart
 #'
@@ -460,7 +444,8 @@ e_barRange <- function(e,
     e_serie <- list(data = vector)
 
     if (y_index != 0) {
-      e <- .set_y_axis(e, substitute(upper), y_index, i)
+      serie = names(e$x$data[[i]])[i]
+      e <- .set_y_axis(e, serie, y_index, i)
     }
     if (x_index != 0) {
       e <- .set_x_axis(e, x_index, i)
@@ -471,6 +456,7 @@ e_barRange <- function(e,
       serie <- list(
         type = "custom",
         renderItem = 'barRange',
+        name = name,
         encode = list(x= 0,
                       y = c(1,2),
                       tooltip = c(1,2)),
@@ -486,7 +472,6 @@ e_barRange <- function(e,
       e$x$opts$series <- append(e$x$opts$series, list(serie))
 
       if (isTRUE(legend)) {
-        # Adding these 2 lines and legend is added
         current_trace <- length(e$x$opts$series)
         e$x$opts$series[[current_trace]]$name = name
         e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
@@ -511,6 +496,7 @@ e_barRange <- function(e,
     series_opts <- list(
       type = "custom",
       renderItem = 'barRange',
+      name = name,
       encode = list(x= 0,
                     y = c(1,2),
                     tooltip = c(1,2)),
@@ -604,7 +590,7 @@ e_contour <- function(e,
     e <- e |> e_axis(type = 'value')
 
     if (y_index != 0) {
-      e <- .set_y_axis(e, substitute(upper), y_index, i)
+      e <- .set_y_axis(e, serie, y_index, i)
     }
     if (x_index != 0) {
       e <- .set_x_axis(e, x_index, i)
@@ -632,10 +618,6 @@ e_contour <- function(e,
       e_serie <- append(opts, e_serie) # data after renderItem, data used for Y-sizing only
 
       if (isTRUE(legend)) {
-
-        # current_trace <- length(e$x$opts$series)
-        # e$x$opts$series[[current_trace]]$name = name
-
         e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
       }
       e$x$opts$series <- append(e$x$opts$series, list(e_serie))
@@ -733,8 +715,8 @@ e_lineRange <- function(e,
                        legend = TRUE,
                        y_index = 0,
                        x_index = 0,
-                       lineStyle = list(opacity = 0.3, color = "black", width=1),
-                       areaStyle = list(opacity = 0.3, color = "red", width=1),
+                       lineStyle = list(opacity = 0.3, color = "#000", width=1),
+                       areaStyle = list(opacity = 0.3, color = "#032", width=1),
                        ...){
 
   if (missing(e)) {
@@ -758,7 +740,8 @@ e_lineRange <- function(e,
     e_serie <- list(data = vector)
 
     if (y_index != 0) {
-      e <- .set_y_axis(e, substitute(upper), y_index, i)
+      serie = names(e$x$data[[i]])[i]
+      e <- .set_y_axis(e, serie, y_index, i)
     }
     if (x_index != 0) {
       e <- .set_x_axis(e, x_index, i)
@@ -782,10 +765,6 @@ e_lineRange <- function(e,
       e_serie <- append(opts, e_serie) # data after renderItem, data used for Y-sizing only
 
       if (isTRUE(legend)) {
-
-        # current_trace <- length(e$x$opts$series)
-        # e$x$opts$series[[current_trace]]$name = name
-
         e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
       }
       e$x$opts$series <- append(e$x$opts$series, list(e_serie))
@@ -803,55 +782,98 @@ e_lineRange <- function(e,
   e
 }
 
-#######
-# TODO look at .get_index to replace current_trace.
-# Do we want to make _ versions, too?
+#' Stage chart
+#'
+#' Draw a stage plot.
+#'
+#' @inheritParams e_band2_
+#' @param start column for start of stage on x axis
+#' @param end column for end of stage on x axis
+#' @param stage column for stage on y axis
+#' @param borderRadius The border radius of the stage.
+#' @param verticalMargin The vertical margin of the bars.
+#' @param minHorizontalSize The minimum width of the bars.
+#' @param envelope The envelope of the stage.
+#' @param axisLabel The style of the axis label.
+#'
+#' @export
+#'
+#' @examples
+#'
+#' df <- data.frame(
+#'   start = as.POSIXct(c(
+#'     "2024-09-07 06:12", "2024-09-07 06:15", "2024-09-07 05:45",
+#'     "2024-09-07 04:57", "2024-09-07 06:12", "2024-09-07 06:18"
+#'   )),
+#'
+#'   end = as.POSIXct(c(
+#'     "2024-09-07 06:12", "2024-09-07 06:18", "2024-09-07 06:12",
+#'     "2024-09-07 05:45", "2024-09-07 06:15", "2024-09-07 07:37"
+#'   )),
+#'
+#'   stage = c(
+#'     "Awake", "Awake",  "REM",
+#'     "Core", "Core", "Deep"
+#'   ),
+#'   stringsAsFactors = FALSE
+#'  )
+#' stage_order = c( "Deep", "Core","REM", "Awake")
+#'
+#' df |>
+#'   e_charts() |>
+#'   e_stage(start = start,
+#'           end = end,
+#'           stage = stage) |>
+#'           e_x_axis(type = 'time') |>
+#'           e_y_axis(type = 'category', data = stage_order)
+#'
+#'@seealso \href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/stage}{official documentation}
+#'
+#' @rdname e_stage
+#' @export
 e_stage <- function(e,
-                      time_start,
-                      time_end,
+                      start,
+                      end,
                       stage,
-                      stage_order,
                       legend = TRUE,
-                      name = "contour",
-                      thresholds = 8,
-                      bandwidth = 20,
-                      lineStyle = list(opacity = 0.3, color = "black", width=1),
-                      contourOpacity = 0.8,
-                      contourColors = list('#5470c6', '#91cc75', '#fac858', '#ee6666'),
+                      x_index = 0,
+                      y_index = 0,
+                      name = "stage",
+                      borderRadius = 8,
+                      verticalMargin = 10,
+                      minHorizontalSize = 3,
+                      envelope = list(show = TRUE, color = "#888", opacity = 0.25, externalRadius = 8 ),
+                      axisLabel = list(formatter = NULL, color = "#8A8A8A"),
                       ...){
 
   if (missing(e)) {
     stop("missing e", call. = FALSE)
   }
-# browser()
+
   data = e$x$data
 
-  for (i in seq_along(data)) { # TODO
+  for (i in seq_along(data)) {
 
     df = data[[i]]
+    start_col <- deparse(substitute(start))
+    end_col <- deparse(substitute(end))
+    stage_col <- deparse(substitute(stage))
+
     vector <- lapply(1:nrow(df), function(j) {
       list(
-        df[["start"]][j],
-        df[["end"]][j],
-        df[["stage"]][j]
+        df[[start_col]][[j]],
+        df[[end_col]][[j]],
+        df[[stage_col]][[j]]
       )
-      #
-      # list(
-      #   data[[i]][[deparse(substitute(time_start))]],
-      #   data[[i]][[deparse(substitute(time_end))]],
-      #   data[[i]][[deparse(substitute(stage))]]
-      # )
     })
 
-    e <- e |> e_axis(type = 'time', axis = "x")
-    e <- e |> e_axis(type = 'category', axis = "y")# data = list(stage_order)) #, serie = stage)
-
-    # if (y_index != 0) {
-    #   e <- .set_y_axis(e, substitute(upper), y_index, i)
-    # }
-    # if (x_index != 0) {
-    #   e <- .set_x_axis(e, x_index, i)
-    # }
+    if (y_index != 0) {
+      serie = names(e$x$data[[i]])[i]
+      e <- .set_y_axis(e, serie, y_index, i)
+    }
+    if (x_index != 0) {
+      e <- .set_x_axis(e, x_index, i)
+    }
 
     if (!e$x$tl) {
       opts <- list(
@@ -859,73 +881,71 @@ e_stage <- function(e,
         renderItem = 'stage',
         colorBy = 'data',
         encode = list(
-          x = c(0, 1),
-          y = 2,
-          tooltip = c(0, 1)
-        ),
-        # data = vector
-        # name = name,
+            x = c(0, 1),
+            y = 2,
+            tooltip = c(0, 1)),
+        name = name,
         itemPayload = list(
-          envelope = list()
-        )
-        # ...
+          borderRadius = borderRadius,
+          verticalMargin = verticalMargin,
+          minHorizontalSize = minHorizontalSize,
+          envelope = envelope,
+          axisLabel = axisLabel
+        ),
+         ...
       )
 
       e$x$opts$series <- append(e$x$opts$series, list(opts))
-      # e_serie <- append(opts, e_serie) # data after renderItem, data used for Y-sizing only
 
-      # if (isTRUE(legend)) {
-      #
-      #   # current_trace <- length(e$x$opts$series)
-      #   # e$x$opts$series[[current_trace]]$name = name
-      #
-      #   e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-      # }
+      if (isTRUE(legend)) {
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+      }
 
       e$x$opts$dataset <- list(source = vector)
 
     }
-    # else {
-    #   if (isTRUE(legend)) {
-    #     e$x$opts$legend$data <- append(
-    #       e$x$opts$legend$data,
-    #       list(name)
-    #     )
-    #   }
-    #   e$x$opts$options[[i]]$series <- append(
-    #     e$x$opts$options[[i]]$series,
-    #     list(e_serie)
-    #   )
-    # }
+    else {
+      if (isTRUE(legend)) {
+        e$x$opts$legend$data <- append(
+          e$x$opts$legend$data,
+          list(name)
+        )
+      }
+      e$x$opts$options[[i]]$series <- append(
+        e$x$opts$options[[i]]$series,
+        list(e_serie)
+      )
+    }
   }
-  # if (isTRUE(e$x$tl)) {
-  #   # generate series list
-  #   series_opts <- list(
-  #     type = "custom",
-  #     renderItem = 'contour',
-  #     encode = list(x= 0,
-  #                   y = 1,
-  #                   tooltip = 2),
-  #     data = vector,
-  #     name = name,
-  #     itemPayload = list(
-  #       thresholds = thresholds,
-  #       bandwidth = bandwidth,
-  #       lineStyle = lineStyle,
-  #       itemStyle = list(opacity = contourOpacity,
-  #                        color = contourColors)
-  #     ),
-  #     ...
-  #   )
-  #
-  #   if (isTRUE(legend)) {
-  #     e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
-  #   }
-  #   e$x$opts$baseOption$series <- append(
-  #     e$x$opts$baseOption$series,
-  #     list(series_opts)
-  #   )
-  # }
+  if (isTRUE(e$x$tl)) {
+
+    series_opts <- list(
+      type = "custom",
+      renderItem = 'stage',
+      colorBy = 'data',
+      encode = list(
+          x = c(0, 1),
+          y = 2,
+          tooltip = c(0, 1)),
+      name = name,
+      itemPayload = list(
+        borderRadius = borderRadius,
+        verticalMargin = verticalMargin,
+        minHorizontalSize = minHorizontalSize,
+        envelope = envelope,
+        axisLabel = axisLabel
+      ),
+      ...
+    )
+
+    if (isTRUE(legend)) {
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+    }
+    e$x$opts$baseOption$series <- append(
+      e$x$opts$baseOption$series,
+      list(series_opts)
+    )
+  }
 
   path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
   dep <- htmltools::htmlDependency(
@@ -938,40 +958,3 @@ e_stage <- function(e,
 
   e
 }
-
-df <- data.frame(
-  start = as.POSIXct(c(
-    "2024-09-07 06:12", "2024-09-07 06:15", "2024-09-07 08:59",
-    "2024-09-07 05:45", "2024-09-07 07:37", "2024-09-07 08:56",
-    "2024-09-07 09:08", "2024-09-07 05:45",
-    "2024-09-07 03:12", "2024-09-07 04:02", "2024-09-07 04:40",
-    "2024-09-07 04:57", "2024-09-07 06:12", "2024-09-07 06:18",
-    "2024-09-07 07:56", "2024-09-07 09:00", "2024-09-07 09:29",
-    "2024-09-07 03:27", "2024-09-07 04:36", "2024-09-07 04:48"
-  )),
-
-  end = as.POSIXct(c(
-    "2024-09-07 06:12", "2024-09-07 06:18", "2024-09-07 09:00",
-    "2024-09-07 06:12", "2024-09-07 07:56", "2024-09-07 08:59",
-    "2024-09-07 09:29", "2024-09-07 06:12",
-    "2024-09-07 03:27", "2024-09-07 04:36", "2024-09-07 04:48",
-    "2024-09-07 05:45", "2024-09-07 06:15", "2024-09-07 07:37",
-    "2024-09-07 08:56", "2024-09-07 09:08", "2024-09-07 10:41",
-    "2024-09-07 04:02", "2024-09-07 04:40", "2024-09-07 04:57"
-  )),
-
-  stage = c(
-    "Awake", "Awake", "Awake",
-    "REM", "REM", "REM", "REM", "REM",
-    "Core", "Core", "Core", "Core", "Core", "Core", "Core", "Core", "Core",
-    "Deep", "Deep", "Deep"
-  ),
-  stringsAsFactors = FALSE
-)
-
-
-# e <- df |> e_charts()
-# e |> e_stage(time_start = start, time_end = end, stage = stage, stage_order = c( "Deep", "Core","REM", "Awake"))
-#
-# e <- e |> e_axis(type = 'category', axis = "y", data = list( "Deep", "Core","REM", "Awake"), splitLine = list(show = TRUE), axisLabel = list(show = FALSE))
-#

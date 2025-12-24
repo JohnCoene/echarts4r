@@ -4000,9 +4000,10 @@ e_loess.echarts4r <- function(
         name = name,
         ...
       )
-      # TODO name is NULL
+
       if (y_index != 0) {
-        e <- .set_y_axis(e, name, y_index)
+        serie = names(e$x$data[[i]])[i]
+        e <- .set_y_axis(e, serie, y_index)
       }
 
       if (x_index != 0) {
@@ -4087,13 +4088,14 @@ e_loess.echarts4rProxy <- function(
         name = name,
         ...
       )
-      # TODO name is NULL
+
       if (y_index != 0) {
-        e <- .set_y_axis(e, name, y_index)
+        serie = names(e$x$data[[i]])[i]
+        e <- .set_y_axis(e, serie, y_index, i)
       }
 
       if (x_index != 0) {
-        e <- .set_x_axis(e, x_index)
+        e <- .set_x_axis(e, x_index, i)
       }
 
       if (!e$chart$x$tl) {
