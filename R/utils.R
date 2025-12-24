@@ -15,7 +15,7 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 .arrange_data_by_group <- function(data, x, reorder = TRUE) {
   vect <- data[[1]][[x]]
 
-  for (i in 1:length(data)) {
+  for (i in seq_along(data)) {
     if (reorder) {
       if (any(c(inherits(vect, "numeric"), inherits(vect, "integer")))) {
         data[[i]] <- data[[i]][order(data[[i]][[x]]), ]
@@ -99,7 +99,7 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
   }
 
   data <- data |>
-    dplyr::select(x = x, y = y, size, "sizeECHARTS") |>
+    dplyr::select(dplyr::all_of(c(x = x, y = y, size, "sizeECHARTS"))) |>
     dplyr::mutate(
       x = .jitter(x, factor, amount),
       y = .jitter(y, factor, amount)
@@ -116,7 +116,7 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
   row.names(data) <- NULL
 
   data <- data |>
-    dplyr::select(x = {{x}}, y = {{y}}) |>
+    dplyr::select(dplyr::all_of(c(x = {{x}}, y = {{y}}))) |>
     dplyr::mutate(
       x = .jitter(x, factor, amount),
       y = .jitter(y, factor, amount)
@@ -142,33 +142,33 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 }
 
 .add_bind2 <- function(e, l, bind, col = "name", i) {
-  e$x$data[[i]] |>
-    dplyr::select(bind) |>
+  bind <- e$x$data[[i]] |>
+    dplyr::select(dplyr::all_of(bind)) |>
     unname() |>
-    unlist() -> bind
+    unlist()
 
-  for (i in 1:length(l)) {
+  for (i in seq_along(l)) {
     l[[i]][[col]] <- bind[i]
   }
   l
 }
 
 .add_bind <- function(e, l, bind, col = "name") {
-  e$x$data[[1]] |>
-    dplyr::select(bind) |>
+  bind <- e$x$data[[1]] |>
+    dplyr::select(dplyr::all_of(bind)) |>
     unname() |>
-    unlist() -> bind
+    unlist()
 
-  for (i in 1:length(l)) {
+  for (i in seq_along(l)) {
     l[[i]][[col]] <- bind[i]
   }
   l
 }
 
 .build_data_p <- function(data, ..., vector = FALSE, scale = NULL, symbol_size = 1) {
-  data |>
+  data <- data |>
     dplyr::select(...) |>
-    purrr::set_names(NULL) -> data
+    purrr::set_names(NULL)
 
   if (!is.null(scale)) {
     data[[4]] <- scale(data[[3]]) * symbol_size
@@ -204,8 +204,8 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 }
 
 .build_sankey_edges <- function(data, source, target, values) {
-  data |>
-    dplyr::select(source, target, values) -> edges
+  edges <- data |>
+    dplyr::select(dplyr::all_of(c(source, target, values)))
 
   names(edges) <- c("source", "target", "value")
 
@@ -217,13 +217,13 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 
   data <- nodes |>
     dplyr::select(
-      name = !!names,
+      c(name = !!names,
       value = !!value,
       symbolSize = !!symbolSize,
       category = !!category,
       symbol = !!symbol,
       x = !!xpos,
-      y = !!ypos
+      y = !!ypos)
     )
 
   apply(data, 1, as.list)
@@ -234,11 +234,11 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 
   data <- nodes |>
     dplyr::select(
-      name = !!names,
+      c(name = !!names,
       value = !!value,
       symbol = !!symbol,
       x = !!xpos,
-      y = !!ypos
+      y = !!ypos)
     )
 
   apply(data, 1, as.list)
@@ -249,12 +249,12 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 
   data <- nodes |>
     dplyr::select(
-      name = !!names,
+      c(name = !!names,
       value = !!value,
       symbolSize = !!symbolSize,
       symbol = !!symbol,
       x = !!xpos,
-      y = !!ypos
+      y = !!ypos)
     )
 
   apply(data, 1, as.list)
@@ -266,9 +266,9 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
   if (is.null(size) && is.null(color)) {
     data <- edges |>
       dplyr::select(
-        source = !!source,
+        c(source = !!source,
         target = !!target,
-        value = !!value
+        value = !!value)
       )
 
     x <- apply(data, 1, as.list)
@@ -277,10 +277,10 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
   if (!is.null(size) && is.null(color)) {
     data <- edges |>
       dplyr::select(
-        source = !!source,
+        c(source = !!source,
         target = !!target,
         value = !!value,
-        size = !!size
+        size = !!size)
       )
 
     x <- apply(data, 1, function(x) {
@@ -299,10 +299,10 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
   if (!is.null(color) && is.null(size)) {
     data <- edges |>
       dplyr::select(
-        source = !!source,
+        c(source = !!source,
         target = !!target,
         value = !!value,
-        color = !!color
+        color = !!color)
       )
 
     x <- apply(data, 1, function(x) {
@@ -320,11 +320,11 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
   if (!is.null(size) && !is.null(color)) {
     data <- edges |>
       dplyr::select(
-        source = !!source,
+        c(source = !!source,
         target = !!target,
         value = !!value,
         size = !!size,
-        color = !!color
+        color = !!color)
       )
 
     x <- apply(data, 1, function(x) {
@@ -347,13 +347,13 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 }
 
 .build_graph_category <- function(nodes, cat) {
-  nodes |>
+  data <- nodes |>
     dplyr::select(
-      name = !!cat
+      c(name = !!cat)
     ) |>
-    unique() -> data
+    unique()
 
-  apply(data, 1, as.list) -> x
+  x <- apply(data, 1, as.list)
   names(x) <- NULL
   x
 }
@@ -472,8 +472,8 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
   x <- .get_data(e, e$x$mapping$x, i)
   label <- rep(label, length(x))
 
-  e$x$data[[i]] |>
-    dplyr::select(dplyr::all_of(serie)) -> data
+  data <- e$x$data[[i]] |>
+    dplyr::select(dplyr::all_of(serie))
 
   data <- cbind(x, data, label)
   row.names(data) <- NULL
@@ -580,12 +580,12 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 
 .map_lines <- function(e, source.lon, source.lat, target.lon, target.lat, source.name, target.name, value, i) {
   data <- e$x$data[[i]] |>
-    dplyr::select(
-      source.lon,
+    dplyr::select(dplyr::all_of(
+      c(source.lon,
       source.lat,
       target.lon,
-      target.lat
-    ) |>
+      target.lat)
+    )) |>
     apply(1, function(x) {
       x <- unname(x)
       list(
@@ -608,11 +608,11 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 }
 
 .build_cartesian3D <- function(e, ..., i = 1) {
-  e$x$data[[i]] |>
+  df <- e$x$data[[i]] |>
     dplyr::select(
       ...
     ) |>
-    unname() -> df
+    unname()
 
   apply(df, 1, function(x) {
     list(value = x)
@@ -622,20 +622,20 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 
 .build_height <- function(e, serie, color, j) {
   # data <- .build_data(e, e$x$mapping$x, serie, names = c("name", "height"))
-  e$x$data[[j]] |>
+  data <- e$x$data[[j]] |>
     dplyr::select(
-      name = e$x$mapping$x,
-      height = serie
-    ) -> data
+      c(name = e$x$mapping$x,
+      height = serie)
+    )
 
   names(data) <- c("name", "height")
 
-  apply(data, 1, as.list) -> l
+  l <- apply(data, 1, as.list)
 
   if (!missing(color)) {
     color <- .get_data(e, color)
 
-    for (i in 1:length(l)) {
+    for (i in seq_along(l)) {
       is <- list(
         color = color[i]
       )
@@ -792,8 +792,8 @@ check_installed <- function(pkg) {
 }
 
 .build_zigzags <- function(data, starts, ends, gap) {
-  data |>
-    dplyr::select(starts, ends, gap) -> zigzags
+  zigzags <- data |>
+    dplyr::select(dplyr::all_of(c(starts, ends, gap)))
 
   names(zigzags) <- c("start", "end", "gap")
 

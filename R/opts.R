@@ -852,7 +852,7 @@ e_flip_coords <- function(e) {
     names(e$x$opts) <- n
 
     for (i in seq_along(e$x$opts$series)) {
-      for (j in 1:length(e$x$opts$series[[i]]$data)) {
+      for (j in seq_along(e$x$opts$series[[i]]$data)) {
 
         if(!is.null(names(e$x$opts$series[[i]]$data[[j]]))){
           try({
@@ -875,9 +875,9 @@ e_flip_coords <- function(e) {
 
     names(e$x$opts$baseOption) <- n
 
-    for (i in 1:length(e$x$opts$options)) {
-      for (j in 1:length(e$x$opts$options[[i]]$series)) {
-        for (k in 1:length(e$x$opts$options[[i]]$series[[j]]$data)) {
+    for (i in seq_along(e$x$opts$options)) {
+      for (j in seq_along(e$x$opts$options[[i]]$series)) {
+        for (k in seq_along(e$x$opts$options[[i]]$series[[j]]$data)) {
           try({
             vals <- e$x$opts$options[[i]]$series[[j]]$data[[k]]$value
             e$x$opts$options[[i]]$series[[j]]$data[[k]]$value <- rev(vals)

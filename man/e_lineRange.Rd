@@ -12,8 +12,8 @@ e_lineRange(
   legend = TRUE,
   y_index = 0,
   x_index = 0,
-  lineStyle = list(opacity = 0.3, color = "black", width = 1),
-  areaStyle = list(opacity = 0.3, color = "red", width = 1),
+  lineStyle = list(opacity = 0.3, color = "#000", width = 1),
+  areaStyle = list(opacity = 0.3, color = "#032", width = 1),
   ...
 )
 }

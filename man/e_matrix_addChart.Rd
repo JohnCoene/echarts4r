@@ -56,18 +56,20 @@ area. Default is `c(t = "15%", r = "5%", b = "5%", l = "5%")`. Supports
 integers(pixels) or strings(percent of parent cell) To change only e.g. two
 sides `c("r" = 8, "l" = 8)` could be used, other sides will use defaults.}
 
-\item{rows, cols}{Provide integer values for the number of rows and columns in the matrix grid}
+\item{rows, cols}{Provide integer values for the number of rows and columns in
+the matrix grid}
 
-\item{grid}{A custom grid containing row,col positions and name. Or a string containing the name of
-a premade geoFacet grid from the geoFacet package.}
+\item{grid}{A custom grid containing row,col positions and name. Or a string
+containing the name of a premade geoFacet grid from the geoFacet package.}
 
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{
 Adds an already existing echart to your new matrix chart. Charts with timelines are not supported.
 
-generates a faceted chart using matrix functionality. Provides similar functionality to e_facet(). 
-Similar to geoFacet package.Timeline NOT supported.
+generates a faceted chart using matrix functionality. Provides similar
+functionality to e_facet(). Similar to geoFacet package.Timeline NOT
+supported.
 }
 \examples{
 echart <- iris |>

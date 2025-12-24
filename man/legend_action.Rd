@@ -24,7 +24,8 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{btn}{A \code{\link{e_button}} id.}
 
-\item{scroll_index}{Controle the scrolling of legend when \code{type = "scroll"} in \code{e_legend}.}
+\item{scroll_index}{Controle the scrolling of legend when \code{type =
+"scroll"} in \code{e_legend}.}
 
 \item{legend_id}{Id of legend.}
 }

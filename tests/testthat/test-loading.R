@@ -39,11 +39,12 @@ test_that("e_show_loading plot responds", {
     expect_equal(opts$maskColor, "#FFF")
     expect_equal(opts$zlevel, 10)
 
-    expect_s3_class(plot, "echarts4r")
-    expect_s3_class(plot, "htmlwidget")
+    expect_s3_class(proxy_chart(), "echarts4r")
+    expect_s3_class(proxy_chart(), "htmlwidget")
 
     chart_hide <- proxy_chart() |> e_hide_loading()
 
     expect_false(chart_hide$x$loading)
   })
 })
+

@@ -10,7 +10,9 @@ e_visual_map_range(e, ..., btn = NULL)
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{...}{Any options, see \href{https://echarts.apache.org/en/api.html#action.visualMap}{official documentation}}
+\item{...}{Any options, see
+\href{https://echarts.apache.org/en/api.html#action.visualMap}{official
+documentation}}
 
 \item{btn}{A \code{\link{e_button}} id.}
 }

@@ -20,7 +20,7 @@ e_bar_ <- function(
   }
 
   for (i in seq_along(e$x$data)) {
-    .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
+    vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie)
 
     if (!is.null(bind)) {
       vector <- .add_bind2(e, vector, bind, i = i)
@@ -125,7 +125,7 @@ e_line_ <- function(
   for (i in seq_along(e$x$data)) {
 
     # build JSON data
-    .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
+    vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie)
 
     if (!is.null(bind)) {
       vector <- .add_bind2(e, vector, bind, i = i)
@@ -228,7 +228,7 @@ e_area_ <- function(
   for (i in seq_along(e$x$data)) {
 
     # build JSON data
-    .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
+    vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie)
 
     if (!is.null(bind)) {
       vector <- .add_bind2(e, vector, bind, i = i)
@@ -333,7 +333,7 @@ e_step_ <- function(
   for (i in seq_along(e$x$data)) {
 
     # build JSON data
-    .build_data2(e$x$data[[i]], e$x$mapping$x, serie) -> vector
+    vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie)
 
     if (!is.null(bind)) {
       vector <- .add_bind2(e, vector, bind, i = i)
@@ -798,7 +798,7 @@ e_radar_ <- function(
   }
 
   # build JSON data
-  .get_data(e, serie) -> vector
+  vector <- .get_data(e, serie)
 
   series <- purrr::map(e$x$opts$series, "type") |>
     unlist()
@@ -1032,8 +1032,8 @@ e_parallel_ <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = li
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
-  e$x$data[[1]] |>
-    dplyr::select(...) -> df
+  df <- e$x$data[[1]] |>
+    dplyr::select(...)
 
   # remove names
   data <- df
@@ -1052,7 +1052,7 @@ e_parallel_ <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = li
   serie <- append(serie, opts)
 
   para <- list()
-  for (i in 1:ncol(df)) {
+  for (i in seq_along(ncol(df))) {
     line <- list()
     line$dim <- i - 1
     line$name <- names(df)[i]

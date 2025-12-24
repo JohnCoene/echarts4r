@@ -39,22 +39,22 @@ test_that("e_tooltip works without formatter", {
 # Tooltip formatter -------------------------------------------------------
 
 test_that("e_tooltip_item_formatter sets formatter for item_formatter", {
-  fmt = e_tooltip_item_formatter(style = "decimal", digits = 2)
+  fmt <- e_tooltip_item_formatter(style = "decimal", digits = 2)
   expect_snapshot(fmt)
 })
 
 test_that("e_tooltip_choro_formatter sets formatter for item_formatter", {
-  fmt = e_tooltip_choro_formatter(style = "decimal", digits = 2)
+  fmt <- e_tooltip_choro_formatter(style = "decimal", digits = 2)
   expect_snapshot(fmt)
 })
 
 test_that("e_tooltip_pie_formatter sets formatter for item_formatter", {
-  fmt = e_tooltip_pie_formatter(style = "decimal", digits = 2)
+  fmt <- e_tooltip_pie_formatter(style = "decimal", digits = 2)
   expect_snapshot(fmt)
 })
 
 test_that("e_tooltip_pointer_formatter sets formatter for item_formatter", {
-  fmt = e_tooltip_pointer_formatter(style = "decimal", digits = 2)
+  fmt <- e_tooltip_pointer_formatter(style = "decimal", digits = 2)
   expect_snapshot(fmt)
 })
 

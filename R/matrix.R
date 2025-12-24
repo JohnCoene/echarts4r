@@ -124,7 +124,7 @@ e_matrix_parent <- function(e, axis = "x", value, children, ...){
     child_ndx <- which(e$x$opts$matrix$x$data %in% children)
 
     if(length(child_ndx)==0){
-      for(i in 1:length(e$x$opts$matrix$x$data )){
+      for(i in seq_along(e$x$opts$matrix$x$data )){
         if(e$x$opts$matrix$x$data[[i]]$value %in% children){
           child_ndx <- append(child_ndx, i)
         }
@@ -145,7 +145,7 @@ e_matrix_parent <- function(e, axis = "x", value, children, ...){
     child_ndx <- which(e$x$opts$matrix$y$data %in% children)
 
     if(length(child_ndx)==0){
-      for(i in 1:length(e$x$opts$matrix$y$data )){
+      for(i in seq_along(e$x$opts$matrix$y$data )){
         if(e$x$opts$matrix$y$data[[i]]$value %in% children){
           child_ndx <- append(child_ndx, i)
         }
@@ -247,7 +247,7 @@ e_format_matrix_axis <- function(e, axis = "x", ...){
 
 #' Add new chart to matrix chart
 #'
-#' Adds an already existing echart to your new matrix chart. Charts with timelines are not supported. 
+#' Adds an already existing echart to your new matrix chart. Charts with timelines are not supported.
 #'
 #' @inheritParams e_bar
 #' @param chart An existing echart that you want to attach to your new matrix
@@ -310,14 +310,14 @@ e_matrix_addChart <- function(e,
   }
   # ID Check
   if(!is.null(e$x$opts$yAxis)){
-    for(i in 1:length(e$x$opts$yAxis)){
+    for(i in seq_along(e$x$opts$yAxis)){
       if(e$x$opts$yAxis[[i]]$id == id){
         stop("Chart id has already been used. Please supply a different id value")
       }
     }
   }
 
-  # Get count of existing charts in matrix for future ids 
+  # Get count of existing charts in matrix for future ids
   chart_count <- length(e$x$opts$xAxis)
   # Specified margins
   spec_margin <- c("t", "r", "b", "l") %in% names(margin_trbl) # see which elements are present
@@ -330,7 +330,7 @@ e_matrix_addChart <- function(e,
   # add IDs for grid and matrix based on supplied id
   chart <- chart |> e_axis(axis = "x", id = id, gridId = id) |> e_axis(axis = "y", id = id, gridId = id)
 
-  for(i in 1:length(chart$x$opts$series)){
+  for(i in seq_along(chart$x$opts$series)){
     chart$x$opts$series[[i]]$xAxisId <- id
     chart$x$opts$series[[i]]$yAxisId <- id
     chart$x$opts$series[[i]]$xAxisIndex <- chart_count
@@ -368,35 +368,41 @@ e_matrix_addChart <- function(e,
     e$x$opts$legend <- append(e$x$opts$legend, list(chart$x$opts$legend))
   }
 
-
   e
 }
 
-
+# TODO fix example here. Cannot find grid$name
 #' Generate Chart Titles for Matrix
 #'
-#' helper function for creating titles for every plot in a geofacet style matrix.
-#' This generates the title using the name of the series. 
+#' helper function for creating titles for every plot in a geofacet style
+#' matrix. This generates the title using the name of the series.
 #'
 #' @inheritParams e_bar
 #' @examples
 #'
 #' df <- data.frame(group = rep(grid$name, each = 20),
-#' date = seq(from = as.Date("2025-01-01"), to = as.Date("2025-01-20"), by = "day"),
-#' temp = sample(c(10:20), size = 60, replace = TRUE))
-#' 
-#' 
+#'   date = seq(from = as.Date("2025-01-01"),
+#'   to = as.Date("2025-01-20"), by = "day"),
+#'   temp = sample(c(10:20), size = 60, replace = TRUE))
+#'
 #' df |>
-#'   group_by(group) |> 
+#'   group_by(group) |>
 #'   e_chart(date) |>
 #'   e_line(temp, symbol = "none") |>
-#'   e_x_axis(splitNumber = 2) |> 
+#'   e_x_axis(splitNumber = 2) |>
 #'   e_y_axis(splitNumber = 2) |>
-#'   e_geoFacet(rows = max(grid$row), cols = max(grid$col), legend = FALSE, grid = grid, margin_trbl = c("t"="25%"),left = "5%", width = "90%") |>
+#'   e_geoFacet(rows = max(grid$row),
+#'              cols = max(grid$col),
+#'              legend = FALSE,
+#'              grid = grid,
+#'              margin_trbl = c("t"="25%"),
+#'              left = "5%",
+#'              width = "90%") |>
 #'   e_title(text = "State Temps") |>
-#'   e_title_matrix(textStyle = list(fontSize = 10), left = "center", top = "top")
-#'
-#' @seealso \href{https://echarts.apache.org/en/option.html#title}{Additional arguments}
+#'   e_title_matrix(textStyle = list(fontSize = 10),
+#'    left = "center", top = "top")
+#' @seealso \href{https://echarts.apache.org/en/option.html#title}{Additional
+#'   arguments}
 #'
 #' @rdname e_title_matrix
 #' @export
@@ -404,9 +410,9 @@ e_title_matrix <- function(e, ...){
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-  
-  for(i in 1:length(e$x$opts$series)){
-    e$x$opts$title <- append(e$x$opts$title, list(list(text = e$x$opts$series[[i]]$name, 
+
+  for(i in seq_along(e$x$opts$series)){
+    e$x$opts$title <- append(e$x$opts$title, list(list(text = e$x$opts$series[[i]]$name,
                                                        coordinateSystem = "matrix",
                                                        coord = e$x$opts$grid[[i]]$coord,
                                                        ...)
@@ -418,13 +424,15 @@ e_title_matrix <- function(e, ...){
 
 #' Create geoFacet Echart
 #'
-#' generates a faceted chart using matrix functionality. Provides similar functionality to e_facet(). 
-#' Similar to geoFacet package.Timeline NOT supported.
+#' generates a faceted chart using matrix functionality. Provides similar
+#' functionality to e_facet(). Similar to geoFacet package.Timeline NOT
+#' supported.
 #'
 #' @inheritParams e_bar
-#' @param rows,cols Provide integer values for the number of rows and columns in the matrix grid
-#' @param grid A custom grid containing row,col positions and name. Or a string containing the name of
-#' a premade geoFacet grid from the geoFacet package.
+#' @param rows,cols Provide integer values for the number of rows and columns in
+#'   the matrix grid
+#' @param grid A custom grid containing row,col positions and name. Or a string
+#'   containing the name of a premade geoFacet grid from the geoFacet package.
 #' @param legend Whether chart contains a legend. Defaults to \code{TRUE}.
 #' @param legend_pos Position of the legend. One of "top", "right", "bottom",
 #'   "left". Determines to which side the `legend_space` argument applies.
@@ -451,9 +459,9 @@ e_title_matrix <- function(e, ...){
 #'
 #' @rdname e_matrix_addChart
 #' @export
-e_geoFacet <- function(e, 
-                       rows, 
-                       cols, 
+e_geoFacet <- function(e,
+                       rows,
+                       cols,
                        grid,
                        legend = TRUE,
                        legend_pos = "top",
@@ -466,18 +474,19 @@ e_geoFacet <- function(e,
   if(typeof(grid) !="character" & !is.data.frame(grid)){
     stop("must provide valid grid. Either name of geofacet grid object or custom dataframe grid", call. = FALSE)
   }
-  
+
   if(typeof(grid)=="character"){
+    # TODO this is an internal function - may be a CRAN issue
     grid <- geofacet:::get_grid(grid)
   }
-  
+
   if(missing(rows) || missing(cols)){
-    rows = max(grid$row)
-    cols = max(grid$col)
+    rows <- max(grid$row)
+    cols <- max(grid$col)
   }
-  
+
   e2 <- e_matrix_raw(rows = rows, cols = cols, ...)
-  
+
   n <- length(e$x$opts$series)
   for(i in 1:nrow(grid)){
     e3 <- e
@@ -493,14 +502,14 @@ e_geoFacet <- function(e,
     }
     e3$x$opts$series <- list(e3$x$opts$series[[series_pos]])
     e3$x$data <- NULL
-    e2 <- e2 |> e_matrix_addChart(e2, 
-                                  chart = e3, 
+    e2 <- e2 |> e_matrix_addChart(e2,
+                                  chart = e3,
                                   coord = list(grid$col[i]-1, grid$row[i]-1),
                                   id = paste0("chart",i),
                                   legend = FALSE,
                                   margin_trbl = margin_trbl)
   }
-  
+
   e2
 }
 
@@ -561,12 +570,12 @@ e_pie_matrix <- function(e, x, y, legend = TRUE, ...){
   base_nodes_x <- get_base_nodes(e$x$opts$matrix$x$data)
   base_nodes_y <- get_base_nodes(e$x$opts$matrix$y$data)
 
-  for(i in 1:length(base_nodes_x)){
-    for(j in 1:length(base_nodes_y)){
+  for(i in seq_along(base_nodes_x)){
+    for(j in seq_along(base_nodes_y)){
       center <- c(base_nodes_x[[i]], base_nodes_y[[j]])
       data <- e$x$data[[1]] |> dplyr::filter(.data[[e$x$opts$matrix$x$name]] == center[[1]] & .data[[e$x$opts$matrix$y$name]] == center[[2]]) |> dplyr::select(dplyr::all_of(c(x,y)))
       l_data <- list()
-      for(k in 1:length(col(data))){
+      for(k in seq_along(col(data))){
         l <- list(name = colnames(data)[k], value = data[,k])
         l_data <- append(l_data, list(l))
       }
@@ -649,8 +658,8 @@ e_scatter_matrix <- function(e, z, ...){
   base_nodes_y <- get_base_nodes(e$x$opts$matrix$y$data)
 
   all_data <- list()
-  for(i in 1:length(base_nodes_x)){
-    for(j in 1:length(base_nodes_y)){
+  for(i in seq_along(base_nodes_x)){
+    for(j in seq_along(base_nodes_y)){
       center <- c(base_nodes_x[[i]], base_nodes_y[[j]])
       data <- e$x$data[[1]] |> dplyr::filter(.data[[e$x$opts$matrix$x$name]] == center[[1]] & .data[[e$x$opts$matrix$y$name]] == center[[2]]) |> dplyr::select(dplyr::all_of(c(z)))
       serie <- list(center[[1]], center[[2]], data[[1]])
@@ -718,8 +727,8 @@ e_heatmap_matrix <- function(e, z, ...){
   base_nodes_y <- get_base_nodes(e$x$opts$matrix$y$data)
 
   all_data <- list()
-  for(i in 1:length(base_nodes_x)){
-    for(j in 1:length(base_nodes_y)){
+  for(i in seq_along(base_nodes_x)){
+    for(j in seq_along(base_nodes_y)){
       center <- c(base_nodes_x[[i]], base_nodes_y[[j]])
       data <- e$x$data[[1]] |> dplyr::filter(.data[[e$x$opts$matrix$x$name]] == center[[1]] & .data[[e$x$opts$matrix$y$name]] == center[[2]]) |> dplyr::select(dplyr::all_of(c(z)))
       serie <- list(center[[1]], center[[2]], data[[1]])

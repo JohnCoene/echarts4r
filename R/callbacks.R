@@ -3,8 +3,8 @@
 #' Binds events to chart interactions.
 #'
 #' @inheritParams e_bar
-#' @param query Condistion that triggers the handler
-#' @param handler JavaSscript handler, passed to \link[htmlwidgets]{JS}.
+#' @param query Condition that triggers the handler
+#' @param handler Javascript handler, passed to \link[htmlwidgets]{JS}.
 #' @param event Event that triggers the handler.
 #'
 #' @examples
@@ -15,7 +15,9 @@
 #'     list(seriesName = "dist"),
 #'     "function(){alert('Serie clicked')}"
 #'   )
-#' @seealso \href{https://echarts.apache.org/en/api.html#echartsInstance.on}{official documentation}
+#' @seealso
+#'   \href{https://echarts.apache.org/en/api.html#echartsInstance.on}{official
+#'   documentation}
 #'
 #' @name callbacks
 #' @export
@@ -63,13 +65,13 @@ e_off <- function(e, query, handler, event = "click") {
 
 
 #' Blank Area
-#' 
+#'
 #' Use this function to capture a click on a
 #' blank area of the canvas.
 #' Note that this may stops other "click" events
 #' from working.
-#' 
-#' @export 
+#'
+#' @export
 e_get_zr <- function(){
   e$x$zr <- TRUE
   e

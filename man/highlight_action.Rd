@@ -14,7 +14,8 @@ e_downplay(e, series_index = NULL, series_name = NULL, btn = NULL)
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{series_index, series_name}{Index or name of serie to highlight or \code{list} or \code{vector} of series.}
+\item{series_index, series_name}{Index or name of serie to highlight or
+\code{list} or \code{vector} of series.}
 
 \item{btn}{A \code{\link{e_button}} id.}
 }

@@ -21,7 +21,7 @@ e_hide_loading(e)
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{hide_overlay}{Hides the white overaly that appears in shiny when a plot is recalculating.}
+\item{hide_overlay}{Hides the white overlay that appears in shiny when a plot is recalculating.}
 
 \item{text}{Text to display.}
 

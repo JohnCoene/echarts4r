@@ -22,15 +22,15 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{rows, cols}{Number of rows and columns. If both are `NULL` the number of rows and columns
 will be determined automatically.}
 
-\item{legend_pos}{Position of the legend. One of "top", "right", "bottom", "left". Determines 
+\item{legend_pos}{Position of the legend. One of "top", "right", "bottom", "left". Determines
 to which side the `legend_space` argument applies.}
 
-\item{legend_space}{Space between legend and plot area. The entered number will be used 
+\item{legend_space}{Space between legend and plot area. The entered number will be used
 as percentage.}
 
 \item{margin_trbl}{Adjusts the size of the outside margin around the plotting area. Default is
 `c(t = 2, r = 2, b = 5, l = 2)`. Numbers are used as percentage of total plotting area. To
-change only e.g. two sides `c("r" = 8, "l" = 8)` could be used, other sides will use 
+change only e.g. two sides `c("r" = 8, "l" = 8)` could be used, other sides will use
 defaults.}
 
 \item{h_panel_space, v_panel_space}{Horizontal and vertical spacing between the individual grid
@@ -46,14 +46,14 @@ Each serie, i.e.: \code{\link{e_bar}} will be plotted against a facet.
 \examples{
 group_size <- 20
 n_groups <- 13
-df <- data.frame("day" = rep(1:group_size, times=n_groups), 
+df <- data.frame("day" = rep(1:group_size, times=n_groups),
                  "temperature" = runif(group_size * n_groups, 10, 40),
                  "location" = rep(LETTERS[1:n_groups], each=group_size))
 
-df |> 
-  group_by(location) |> 
-  e_charts(day) |> 
-  e_line(temperature) |> 
-  e_facet(rows = 4, cols=4, legend_pos = "top", legend_space = 12) 
+df |>
+  group_by(location) |>
+  e_charts(day) |>
+  e_line(temperature) |>
+  e_facet(rows = 4, cols=4, legend_pos = "top", legend_space = 12)
 
 }

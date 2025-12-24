@@ -114,7 +114,7 @@ You can also plot it against different coordinates (`coord_system`).
 
 ```{r}
 latlong <- seq(-180, 180, by = 5)
-wind = expand.grid(lng = latlong, lat = latlong)
+wind <- expand.grid(lng = latlong, lat = latlong)
 wind$slng <- rnorm(nrow(wind), 0, 200)
 wind$slat <- rnorm(nrow(wind), 0, 200)
 wind$color <- abs(wind$slat) - abs(wind$slng)

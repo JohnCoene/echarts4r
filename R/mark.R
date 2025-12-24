@@ -12,8 +12,8 @@
 #' argument or pass a list specifying the label formatter.
 #' \code{label = list(formatter = "label")}. The former is more convenient
 #' but more limited, e.g.: you cannot specify the placement of the label.
-#' When the \code{e_mark} series function is used with \code{e_timeline} at the 
-#' same time, if the number of marks provided does not match the series, the 
+#' When the \code{e_mark} series function is used with \code{e_timeline} at the
+#' same time, if the number of marks provided does not match the series, the
 #' mark information will follow the setting of the previous frame.
 #'
 #' @examples
@@ -48,7 +48,7 @@
 #'     )
 #'   )
 #'
-#' # Serie options, since the mark of "virginica" is not set, the mark setting 
+#' # Serie options, since the mark of "virginica" is not set, the mark setting
 #' # of the previous frame is used
 #' iris |>
 #'   group_by(Species) |>
@@ -105,7 +105,7 @@ e_mark_point <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_
     }
 
     if (e$x$tl) {
-      for(j in 1:length(e$x$opts$options[[i]]$series)){
+      for(j in seq_along(e$x$opts$options[[i]]$series)){
         if (is.null(e$x$opts$options[[i]]$series[[j]]$markPoint)) {
           e$x$opts$options[[i]]$series[[j]]$markPoint <- append(e$x$opts$options[[i]]$series[[j]]$markPoint, point)
         } else {
@@ -150,7 +150,7 @@ e_mark_line <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_p
     }
 
     if (e$x$tl) {
-      for(j in 1:length(e$x$opts$options[[i]]$series)){
+      for(j in seq_along(e$x$opts$options[[i]]$series)){
         if (is.null(e$x$opts$options[[i]]$series[[j]]$markLine)) {
           e$x$opts$options[[i]]$series[[j]]$markLine <- append(e$x$opts$options[[i]]$series[[j]]$markLine, point)
         } else {
@@ -195,7 +195,7 @@ e_mark_area <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_p
     }
 
     if (e$x$tl) {
-      for(j in 1:length(e$x$opts$options[[i]]$series)){
+      for(j in seq_along(e$x$opts$options[[i]]$series)){
         if (is.null(e$x$opts$options[[i]]$series[[j]]$markArea)) {
           e$x$opts$options[[i]]$series[[j]]$markArea <- append(e$x$opts$options[[i]]$series[[j]]$markArea, point)
         } else {

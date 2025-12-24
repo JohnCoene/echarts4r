@@ -14,7 +14,9 @@ e_hidetip(e, ..., btn = NULL)
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{...}{Any options, see \href{https://echarts.apache.org/en/api.html#action.tooltip}{official documentation}}
+\item{...}{Any options, see
+\href{https://echarts.apache.org/en/api.html#action.tooltip}{official
+documentation}}
 
 \item{btn}{A \code{\link{e_button}} id.}
 }
@@ -22,7 +24,8 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Show or hide tooltip.
 }
 \note{
-The tooltip must be initialised with \code{\link{e_tooltip}} for this to work.
+The tooltip must be initialised with \code{\link{e_tooltip}} for this
+  to work.
 }
 \examples{
 cars |>

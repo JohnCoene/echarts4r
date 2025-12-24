@@ -56,7 +56,7 @@ e_cloud_ <- function(e, word, freq, color = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 
   if (!is.null(color)) {
     color <- .get_data(e, color)
-    for (i in 1:length(data)) {
+    for (i in seq_along(data)) {
       col <- list(
         color = color[i]
       )
@@ -341,13 +341,13 @@ e_violin <- function(e,
 
   # adjust scatter data to necessary format for violin polygons
     vector <- list()
-    for(j in 1:length(e$x$opts$series[[i]]$data)){
+    for(j in seq_along(e$x$opts$series[[i]]$data)){
       vector <- append(vector,list(as.list(e$x$opts$series[[i]]$data[[j]]$value)))
     }
     e_serie <- list(data = vector)
 
     if (y_index != 0) {
-      serie = names(e$x$data[[i]])[i]
+      serie <- names(e$x$data[[i]])[i]
       e <- .set_y_axis(e, serie, y_index, i)
     }
     if (x_index != 0) {
@@ -371,7 +371,7 @@ e_violin <- function(e,
       if (isTRUE(legend)) {
         # Adding these 2 lines and legend is added
         current_trace <- length(e$x$opts$series)
-        e$x$opts$series[[current_trace]]$name = name
+        e$x$opts$series[[current_trace]]$name <- name
         e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
       }
       e$x$opts$dataset <- list(source = vector)
@@ -444,7 +444,7 @@ e_barRange <- function(e,
     e_serie <- list(data = vector)
 
     if (y_index != 0) {
-      serie = names(e$x$data[[i]])[i]
+      serie <- names(e$x$data[[i]])[i]
       e <- .set_y_axis(e, serie, y_index, i)
     }
     if (x_index != 0) {
@@ -473,7 +473,7 @@ e_barRange <- function(e,
 
       if (isTRUE(legend)) {
         current_trace <- length(e$x$opts$series)
-        e$x$opts$series[[current_trace]]$name = name
+        e$x$opts$series[[current_trace]]$name <- name
         e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
       }
       e$x$opts$series <- append(e$x$opts$series, list(e_serie))
@@ -740,7 +740,7 @@ e_lineRange <- function(e,
     e_serie <- list(data = vector)
 
     if (y_index != 0) {
-      serie = names(e$x$data[[i]])[i]
+      serie <- names(e$x$data[[i]])[i]
       e <- .set_y_axis(e, serie, y_index, i)
     }
     if (x_index != 0) {
@@ -850,16 +850,16 @@ e_stage <- function(e,
     stop("missing e", call. = FALSE)
   }
 
-  data = e$x$data
+  data <- e$x$data
 
   for (i in seq_along(data)) {
 
-    df = data[[i]]
+    df <- data[[i]]
     start_col <- deparse(substitute(start))
     end_col <- deparse(substitute(end))
     stage_col <- deparse(substitute(stage))
 
-    vector <- lapply(1:nrow(df), function(j) {
+    vector <- lapply(seq_along(nrow(df)), function(j) {
       list(
         df[[start_col]][[j]],
         df[[end_col]][[j]],
@@ -867,8 +867,10 @@ e_stage <- function(e,
       )
     })
 
+    e_serie <- list(data = vector)
+
     if (y_index != 0) {
-      serie = names(e$x$data[[i]])[i]
+      serie <- names(e$x$data[[i]])[i]
       e <- .set_y_axis(e, serie, y_index, i)
     }
     if (x_index != 0) {

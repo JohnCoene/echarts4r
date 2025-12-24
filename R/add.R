@@ -1687,7 +1687,7 @@ e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, 
   serie <- append(serie, opts)
 
   para <- list()
-  for (i in 1:ncol(df)) {
+  for (i in seq_along(ncol(df))) {
     line <- list()
     line$dim <- i - 1
     line$name <- names(df)[i]
@@ -4002,7 +4002,7 @@ e_loess.echarts4r <- function(
       )
 
       if (y_index != 0) {
-        serie = names(e$x$data[[i]])[i]
+        serie <- names(e$x$data[[i]])[i]
         e <- .set_y_axis(e, serie, y_index)
       }
 
@@ -4090,7 +4090,7 @@ e_loess.echarts4rProxy <- function(
       )
 
       if (y_index != 0) {
-        serie = names(e$x$data[[i]])[i]
+        serie <-  names(e$x$data[[i]])[i]
         e <- .set_y_axis(e, serie, y_index, i)
       }
 

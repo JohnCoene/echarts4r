@@ -14,7 +14,9 @@ e_pie_unselect(e, ..., btn = NULL)
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{...}{Any options, see \href{https://echarts.apache.org/en/api.html#action.pie}{official documentation}}
+\item{...}{Any options, see
+\href{https://echarts.apache.org/en/api.html#action.pie}{official
+documentation}}
 
 \item{btn}{A \code{\link{e_button}} id.}
 }
@@ -24,7 +26,7 @@ Actions related to \code{\link{e_pie}}.
 \examples{
 mtcars |>
   head() |>
-  tibble::rownames_to_column("model") |> 
+  tibble::rownames_to_column("model") |>
   e_charts(model) |>
   e_pie(carb) |>
   e_pie_select(dataIndex = 0)

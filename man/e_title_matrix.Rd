@@ -13,27 +13,10 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{
-helper function for creating titles for every plot in a geofacet style matrix.
-This generates the title using the name of the series.
-}
-\examples{
-
-df <- data.frame(group = rep(grid$name, each = 20),
-date = seq(from = as.Date("2025-01-01"), to = as.Date("2025-01-20"), by = "day"),
-temp = sample(c(10:20), size = 60, replace = TRUE))
-
-
-df |>
-  group_by(group) |> 
-  e_chart(date) |>
-  e_line(temp, symbol = "none") |>
-  e_x_axis(splitNumber = 2) |> 
-  e_y_axis(splitNumber = 2) |>
-  e_geoFacet(rows = max(grid$row), cols = max(grid$col), legend = FALSE, grid = grid, margin_trbl = c("t"="25\%"),left = "5\%", width = "90\%") |>
-  e_title(text = "State Temps") |>
-  e_title_matrix(textStyle = list(fontSize = 10), left = "center", top = "top")
-
+helper function for creating titles for every plot in a geofacet style
+matrix. This generates the title using the name of the series.
 }
 \seealso{
-\href{https://echarts.apache.org/en/option.html#title}{Additional arguments}
+\href{https://echarts.apache.org/en/option.html#title}{Additional
+  arguments}
 }

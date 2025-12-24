@@ -122,8 +122,8 @@ e_append2_p_ <- function(proxy, series_index = NULL, data, x, y, z, scale = NULL
     stop("must pass echarts4rProxy object", call. = FALSE)
   }
 
-  data |>
-    dplyr::select(dplyr::all_of(c(x, y, z))) -> data
+  data <- data |>
+    dplyr::select(dplyr::all_of(c(x, y, z)))
 
   if (!is.null(scale)) {
     data[[4]] <- scale(data[[3]]) * symbol_size

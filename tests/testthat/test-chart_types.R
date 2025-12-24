@@ -865,18 +865,18 @@ test_that("e_sunburst plot has the good data structure and type", {
   expect_s3_class(plot, "htmlwidget")
 
   level_one <- plot$x$opts$series[[1]]$data
-  level_one_names <- lapply(1:length(level_one), \(x) level_one[[x]]$name) |> unlist()
+  level_one_names <- lapply(seq_along(level_one), \(x) level_one[[x]]$name) |> unlist()
   expect_equal(level_one_names,  c("earth", "mars", "venus"))
 
 
   level_two <- plot$x$opts$series[[1]]$data[[1]]$children
   level_two_names <-
-    lapply(1:length(level_two), \(x) level_two[[x]]$name) |> unlist()
+    lapply(seq_along(level_two), \(x) level_two[[x]]$name) |> unlist()
   expect_equal(level_two_names,  c("land", "ocean"))
 
   level_three <- plot$x$opts$series[[1]]$data[[1]]$children[[1]]$children
   level_three_names <-
-    lapply(1:length(level_three), \(x) level_three[[x]]$name) |> unlist()
+    lapply(seq_along(level_three), \(x) level_three[[x]]$name) |> unlist()
   expect_equal(level_three_names,  c("forest", "river"))
 
   expect_equal(
@@ -916,18 +916,18 @@ test_that("e_tree plot has the good data structure and type", {
   expect_s3_class(plot, "htmlwidget")
 
   level_one <- plot$x$opts$series[[1]]$data
-  level_one_names <- lapply(1:length(level_one), \(x) level_one[[x]]$name) |> unlist()
+  level_one_names <- lapply(seq_along(level_one), \(x) level_one[[x]]$name) |> unlist()
   expect_equal(level_one_names,  c("earth"))
 
 
   level_two <- plot$x$opts$series[[1]]$data[[1]]$children
   level_two_names <-
-    lapply(1:length(level_two), \(x) level_two[[x]]$name) |> unlist()
+    lapply(seq_along(level_two), \(x) level_two[[x]]$name) |> unlist()
   expect_equal(level_two_names,  c("land", "ocean"))
 
   level_three <- plot$x$opts$series[[1]]$data[[1]]$children[[1]]$children
   level_three_names <-
-    lapply(1:length(level_three), \(x) level_three[[x]]$name) |> unlist()
+    lapply(seq_along(level_three), \(x) level_three[[x]]$name) |> unlist()
   expect_equal(level_three_names,  c("forest", "river"))
 
   expect_equal(
@@ -971,18 +971,18 @@ test_that("e_treemap plot has the good data structure and type", {
   expect_s3_class(plot, "htmlwidget")
 
   level_one <- plot$x$opts$series[[1]]$data
-  level_one_names <- lapply(1:length(level_one), \(x) level_one[[x]]$name) |> unlist()
+  level_one_names <- lapply(seq_along(level_one), \(x) level_one[[x]]$name) |> unlist()
   expect_equal(level_one_names,  c("earth", "mars", "venus"))
 
 
   level_two <- plot$x$opts$series[[1]]$data[[1]]$children
   level_two_names <-
-    lapply(1:length(level_two), \(x) level_two[[x]]$name) |> unlist()
+    lapply(seq_along(level_two), \(x) level_two[[x]]$name) |> unlist()
   expect_equal(level_two_names,  c("land", "ocean"))
 
   level_three <- plot$x$opts$series[[1]]$data[[1]]$children[[1]]$children
   level_three_names <-
-    lapply(1:length(level_three), \(x) level_three[[x]]$name) |> unlist()
+    lapply(seq_along(level_three), \(x) level_three[[x]]$name) |> unlist()
   expect_equal(level_three_names,  c("forest", "river"))
 
   expect_equal(

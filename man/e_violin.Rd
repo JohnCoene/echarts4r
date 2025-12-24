@@ -6,7 +6,7 @@
 \usage{
 e_violin(
   e,
-  name = "barRange",
+  name = "violin",
   legend = TRUE,
   y_index = 0,
   x_index = 0,

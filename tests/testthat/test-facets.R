@@ -7,6 +7,7 @@ test_that("pie charts can be visualized with e_facet", {
 
     n_groups <- 12
     get_letters <- function(n) sample(x  = LETTERS, size = sample(5:8, 1))
+    # TODO try vapply
     letter_per_group <- sapply(1:n_groups, get_letters)
 
 

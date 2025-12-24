@@ -352,7 +352,7 @@ e_inspect <- function(e, json = FALSE, ...) {
 echarts_from_json <- function(txt, jswrapper = FALSE) {
   json <- jsonlite::fromJSON(txt, simplifyVector = FALSE)
 
-  e_charts() -> e
+  e <- e_charts()
   e$x$opts <- json
   if (isTRUE(jswrapper)) {
       for (i in seq_along(e$x$opts$tooltip)) {

@@ -3,7 +3,8 @@
 #' Highlight series
 #'
 #' @inheritParams e_bar
-#' @param series_index,series_name Index or name of serie to highlight or \code{list} or \code{vector} of series.
+#' @param series_index,series_name Index or name of serie to highlight or
+#'   \code{list} or \code{vector} of series.
 #' @param btn A \code{\link{e_button}} id.
 #'
 #' @examples
@@ -73,9 +74,12 @@ e_downplay <- function(e, series_index = NULL, series_name = NULL, btn = NULL) {
 #'
 #' @inheritParams e_bar
 #' @param btn A \code{\link{e_button}} id.
-#' @param ... Any options, see \href{https://echarts.apache.org/en/api.html#action.tooltip}{official documentation}
+#' @param ... Any options, see
+#'   \href{https://echarts.apache.org/en/api.html#action.tooltip}{official
+#'   documentation}
 #'
-#' @note The tooltip must be initialised with \code{\link{e_tooltip}} for this to work.
+#' @note The tooltip must be initialised with \code{\link{e_tooltip}} for this
+#'   to work.
 #'
 #' @examples
 #' cars |>
@@ -130,7 +134,9 @@ e_hidetip <- function(e, ..., btn = NULL) {
 #'
 #' @inheritParams e_bar
 #' @param btn A \code{\link{e_button}} id.
-#' @param ... Any options, see \href{https://echarts.apache.org/en/api.html#action.dataZoom.dataZoom}{official documentation}
+#' @param ... Any options, see
+#'   \href{https://echarts.apache.org/en/api.html#action.dataZoom.dataZoom}{official
+#'   documentation}
 #'
 #' @examples
 #' cars |>
@@ -168,7 +174,9 @@ e_zoom <- function(e, ..., btn = NULL) {
 #'
 #' @inheritParams e_bar
 #' @param btn A \code{\link{e_button}} id.
-#' @param ... Any options, see \href{https://echarts.apache.org/en/api.html#action.visualMap}{official documentation}
+#' @param ... Any options, see
+#'   \href{https://echarts.apache.org/en/api.html#action.visualMap}{official
+#'   documentation}
 #'
 #' @examples
 #' data("state")
@@ -206,12 +214,14 @@ e_visual_map_range <- function(e, ..., btn = NULL) {
 #'
 #' @inheritParams e_bar
 #' @param btn A \code{\link{e_button}} id.
-#' @param ... Any options, see \href{https://echarts.apache.org/en/api.html#action.pie}{official documentation}
+#' @param ... Any options, see
+#'   \href{https://echarts.apache.org/en/api.html#action.pie}{official
+#'   documentation}
 #'
 #' @examples
 #' mtcars |>
 #'   head() |>
-#'   tibble::rownames_to_column("model") |> 
+#'   tibble::rownames_to_column("model") |>
 #'   e_charts(model) |>
 #'   e_pie(carb) |>
 #'   e_pie_select(dataIndex = 0)
@@ -261,7 +271,9 @@ e_pie_unselect <- function(e, ..., btn = NULL) {
 #'
 #' @inheritParams e_bar
 #' @param btn A \code{\link{e_button}} id.
-#' @param ... Any options, see \href{https://echarts.apache.org/en/api.html#action.graph}{official documentation}
+#' @param ... Any options, see
+#'   \href{https://echarts.apache.org/en/api.html#action.graph}{official
+#'   documentation}
 #'
 #' @examples
 #' value <- rnorm(10, 10, 2)
@@ -333,7 +345,8 @@ e_unfocus_adjacency <- function(e, ..., btn = NULL) {
 #' @inheritParams e_bar
 #' @param btn A \code{\link{e_button}} id.
 #' @param name Legend name.
-#' @param scroll_index Controle the scrolling of legend when \code{type = "scroll"} in \code{e_legend}.
+#' @param scroll_index Controle the scrolling of legend when \code{type =
+#'   "scroll"} in \code{e_legend}.
 #' @param legend_id Id of legend.
 #'
 #' @examples
@@ -434,7 +447,11 @@ e_legend_toggle_select <- function(e, name, btn = NULL) {
 
 #' @rdname legend_action
 #' @export
-e_legend_scroll <- function(e, scroll_index = NULL, legend_id = NULL, btn = NULL) {
+e_legend_scroll <- function(e,
+                            scroll_index = NULL,
+                            legend_id = NULL,
+                            btn = NULL
+                            ) {
   opts <- list()
   if (!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "legendScroll")
@@ -499,7 +516,9 @@ e_restore <- function(e, btn = NULL) {
 #'
 #' @inheritParams e_bar
 #' @param btn A \code{\link{e_button}} id.
-#' @param ... Any options, see \href{https://echarts.apache.org/en/api.html#action.map}{official documentation}
+#' @param ... Any options, see
+#'   \href{https://echarts.apache.org/en/api.html#action.map}{official
+#'   documentation}
 #'
 #' @examples
 #' choropleth <- data.frame(

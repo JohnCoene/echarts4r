@@ -36,9 +36,9 @@ The toolbox allows you to add neat little interactive functions to your plots.
 ## Save plot
 
 ```{r}
-mtcars |> 
+echart <- mtcars |> 
   e_charts(qsec) |> 
-  e_line(mpg, smooth = TRUE) -> echart
+  e_line(mpg, smooth = TRUE)
 
 echart |> e_toolbox_feature(feature = "saveAsImage") # hit the download button!
 ```

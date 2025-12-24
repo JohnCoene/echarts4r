@@ -14,9 +14,9 @@ e_off(e, query, handler, event = "click")
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{query}{Condistion that triggers the handler}
+\item{query}{Condition that triggers the handler}
 
-\item{handler}{JavaSscript handler, passed to \link[htmlwidgets]{JS}.}
+\item{handler}{Javascript handler, passed to \link[htmlwidgets]{JS}.}
 
 \item{event}{Event that triggers the handler.}
 }
@@ -33,5 +33,6 @@ cars |>
   )
 }
 \seealso{
-\href{https://echarts.apache.org/en/api.html#echartsInstance.on}{official documentation}
+\href{https://echarts.apache.org/en/api.html#echartsInstance.on}{official
+  documentation}
 }

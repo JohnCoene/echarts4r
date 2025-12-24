@@ -63,7 +63,7 @@ echarts4rBox <- function(
   # Make sure x and y are strings
   x <- toString(substitute(x))
   y <- toString(substitute(y))
-  
+
   # build expected data format
   data <- .build_data2(data, {{ x }}, {{ y }})
 

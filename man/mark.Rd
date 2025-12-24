@@ -55,8 +55,8 @@ To set a label you need to either use the \code{title}
 argument or pass a list specifying the label formatter.
 \code{label = list(formatter = "label")}. The former is more convenient
 but more limited, e.g.: you cannot specify the placement of the label.
-When the \code{e_mark} series function is used with \code{e_timeline} at the 
-same time, if the number of marks provided does not match the series, the 
+When the \code{e_mark} series function is used with \code{e_timeline} at the
+same time, if the number of marks provided does not match the series, the
 mark information will follow the setting of the previous frame.
 }
 \examples{
@@ -91,7 +91,7 @@ mtcars |>
     )
   )
 
-# Serie options, since the mark of "virginica" is not set, the mark setting 
+# Serie options, since the mark of "virginica" is not set, the mark setting
 # of the previous frame is used
 iris |>
   group_by(Species) |>
