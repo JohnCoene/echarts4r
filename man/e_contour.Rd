@@ -9,8 +9,6 @@ e_contour(
   serie,
   name = "contour",
   legend = TRUE,
-  y_index = 0,
-  x_index = 0,
   thresholds = 8,
   bandwidth = 20,
   lineStyle = list(opacity = 0.3, color = "black", width = 1),
@@ -28,8 +26,6 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{name}{name of the serie.}
 
 \item{legend}{Whether to add serie to legend.}
-
-\item{x_index, y_index}{Indexes of x and y axis.}
 
 \item{thresholds}{contour density}
 

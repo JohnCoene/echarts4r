@@ -29,7 +29,7 @@
 #' @export
 e_cloud <- function(e, word, freq, color, rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(e)) {
-    stop("missing e", call. = FALSE)
+    stop("must pass e", call. = FALSE)
   }
 
   if (!missing(color)) {
@@ -45,7 +45,7 @@ e_cloud <- function(e, word, freq, color, rm_x = TRUE, rm_y = TRUE, ...) {
 #' @export
 e_cloud_ <- function(e, word, freq, color = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(e)) {
-    stop("missing e", call. = FALSE)
+    stop("must pass e", call. = FALSE)
   }
 
   e <- .rm_axis(e, rm_x, "x")
@@ -91,7 +91,7 @@ e_cloud_ <- function(e, word, freq, color = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 #' Draw liquid fill.
 #'
 #' @inheritParams e_bar
-#' @param color Color to plot.
+#' @param color Column of color to plot.
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #'
 #' @examples
@@ -107,7 +107,7 @@ e_cloud_ <- function(e, word, freq, color = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 #' @export
 e_liquid <- function(e, serie, color, rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(e)) {
-    stop("missing e", call. = FALSE)
+    stop("must pass e", call. = FALSE)
   }
 
   if (!missing(color)) {
@@ -123,7 +123,7 @@ e_liquid <- function(e, serie, color, rm_x = TRUE, rm_y = TRUE, ...) {
 #' @export
 e_liquid_ <- function(e, serie, color = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(e)) {
-    stop("missing e", call. = FALSE)
+    stop("must pass e", call. = FALSE)
   }
 
   e <- .rm_axis(e, rm_x, "x")
@@ -258,7 +258,7 @@ e_doughnut <- function(e,
                         ...) {
 
   if (missing(e)) {
-    stop("missing e", call. = FALSE)
+    stop("must pass e", call. = FALSE)
   }
 
   e <- .rm_axis(e, rm_x, "x")
@@ -330,11 +330,20 @@ e_violin <- function(e,
                      ...){
 
   if (missing(e)) {
-    stop("missing e", call. = FALSE)
+    stop("must pass e", call. = FALSE)
   }
 
-  if(e$x$opts$series[[1]]$type != 'scatter' || is.null(e$x$opts$series[[1]]$type)){
-    stop("violin is only supported with scatter plots")
+  if (e$x$tl) {
+    stop("timeline not supported", call. = FALSE)
+  }
+
+  no_tl <- e$x$opts$series[[1]]$type
+  tl <- e$x$opts$baseOption$series[[1]]$type
+  is_scatter <- identical(no_tl, "scatter") || identical(tl, "scatter")
+
+  if (is_scatter == FALSE & (is.null(no_tl) & is.null(tl))
+  ) {
+    stop("violin is only supported with scatter plots", call. = FALSE)
   }
 
  for (i in seq_along(e$x$opts$series)) {
@@ -347,6 +356,8 @@ e_violin <- function(e,
     e_serie <- list(data = vector)
 
     if (y_index != 0) {
+ #     TODO remove index?
+      # deparse(substitute(upper)),
       serie <- names(e$x$data[[i]])[i]
       e <- .set_y_axis(e, serie, y_index, i)
     }
@@ -375,7 +386,6 @@ e_violin <- function(e,
         e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
       }
       e$x$opts$dataset <- list(source = vector)
-
   }
 
     # add dependency
@@ -430,7 +440,7 @@ e_barRange <- function(e,
                        ...){
 
   if (missing(e)) {
-    stop("missing e", call. = FALSE)
+    stop("must pass e", call. = FALSE)
   }
 
   for (i in seq_along(e$x$data)) {
@@ -444,8 +454,7 @@ e_barRange <- function(e,
     e_serie <- list(data = vector)
 
     if (y_index != 0) {
-      serie <- names(e$x$data[[i]])[i]
-      e <- .set_y_axis(e, serie, y_index, i)
+      e <- .set_y_axis(e, deparse(substitute(upper)), y_index, i)
     }
     if (x_index != 0) {
       e <- .set_x_axis(e, x_index, i)
@@ -533,18 +542,6 @@ e_barRange <- function(e,
   e
 }
 
-# timeline works
-# mtcars |>
-#   dplyr::group_by(vs) |>
-#   e_charts(mpg, timeline = TRUE) |>
-#   e_contour(serie = mpg) |>
-#   e_timeline_serie(
-#         title = list(
-#           list(text = "a"),
-#           list(text = "b")
-#         )
-#   )
-
 #' Contour chart
 #'
 #' Draw a contour plot. x and y must each be numbers.
@@ -569,8 +566,6 @@ e_contour <- function(e,
                       serie,
                       name = "contour",
                       legend = TRUE,
-                      y_index = 0,
-                      x_index = 0,
                       thresholds = 8,
                       bandwidth = 20,
                       lineStyle = list(opacity = 0.3, color = "black", width=1),
@@ -579,7 +574,7 @@ e_contour <- function(e,
                        ...){
 
   if (missing(e)) {
-    stop("missing e", call. = FALSE)
+    stop("must pass e", call. = FALSE)
   }
 
   for (i in seq_along(e$x$data)) {
@@ -588,13 +583,6 @@ e_contour <- function(e,
     e_serie <- list(data = vector)
 
     e <- e |> e_axis(type = 'value')
-
-    if (y_index != 0) {
-      e <- .set_y_axis(e, serie, y_index, i)
-    }
-    if (x_index != 0) {
-      e <- .set_x_axis(e, x_index, i)
-    }
 
     if (!e$x$tl) {
       opts <- list(
@@ -686,7 +674,7 @@ e_contour <- function(e,
   e
 }
 
-# TODO legend color not changing
+# TODO legend color not changing to area color.
 #' Line range chart
 #'
 #' Draw a line range area plot.
@@ -720,7 +708,7 @@ e_lineRange <- function(e,
                        ...){
 
   if (missing(e)) {
-    stop("missing e", call. = FALSE)
+    stop("must pass e", call. = FALSE)
   }
   if (missing(lower) || missing(upper)) {
     stop("must pass lower, or upper", call. = FALSE)
@@ -740,8 +728,7 @@ e_lineRange <- function(e,
     e_serie <- list(data = vector)
 
     if (y_index != 0) {
-      serie <- names(e$x$data[[i]])[i]
-      e <- .set_y_axis(e, serie, y_index, i)
+      e <- .set_y_axis(e, deparse(substitute(upper)), y_index, i)
     }
     if (x_index != 0) {
       e <- .set_x_axis(e, x_index, i)
@@ -836,8 +823,6 @@ e_stage <- function(e,
                       end,
                       stage,
                       legend = TRUE,
-                      x_index = 0,
-                      y_index = 0,
                       name = "stage",
                       borderRadius = 8,
                       verticalMargin = 10,
@@ -847,7 +832,7 @@ e_stage <- function(e,
                       ...){
 
   if (missing(e)) {
-    stop("missing e", call. = FALSE)
+    stop("must pass e", call. = FALSE)
   }
 
   data <- e$x$data
@@ -859,7 +844,7 @@ e_stage <- function(e,
     end_col <- deparse(substitute(end))
     stage_col <- deparse(substitute(stage))
 
-    vector <- lapply(seq_along(nrow(df)), function(j) {
+    vector <- lapply(seq_along(1:nrow(df)), function(j) {
       list(
         df[[start_col]][[j]],
         df[[end_col]][[j]],
@@ -868,14 +853,6 @@ e_stage <- function(e,
     })
 
     e_serie <- list(data = vector)
-
-    if (y_index != 0) {
-      serie <- names(e$x$data[[i]])[i]
-      e <- .set_y_axis(e, serie, y_index, i)
-    }
-    if (x_index != 0) {
-      e <- .set_x_axis(e, x_index, i)
-    }
 
     if (!e$x$tl) {
       opts <- list(
@@ -896,7 +873,6 @@ e_stage <- function(e,
         ),
          ...
       )
-
       e$x$opts$series <- append(e$x$opts$series, list(opts))
 
       if (isTRUE(legend)) {

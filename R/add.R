@@ -57,9 +57,7 @@ e_bar.echarts4r <- function(e, serie, bind, name = NULL, legend = TRUE, y_index 
 #' @method e_bar echarts4rProxy
 #' @export
 e_bar.echarts4rProxy <- function(e, serie, bind, name = NULL, legend = TRUE, y_index = 0, x_index = 0, coord_system = "cartesian2d", ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
+
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -231,9 +229,6 @@ e_area.echarts4rProxy <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -302,6 +297,7 @@ e_step.echarts4r <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
+
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
@@ -541,9 +537,7 @@ e_scatter.echarts4rProxy <- function(
     rm_x = TRUE,
     rm_y = TRUE,
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
+
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -771,9 +765,6 @@ e_candle.echarts4r <- function(e, opening, closing, low, high, bind, name = NULL
 #' @export
 #' @method e_candle echarts4rProxy
 e_candle.echarts4rProxy <- function(e, opening, closing, low, high, bind, name = NULL, legend = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
 
   if (missing(opening) || missing(closing) || missing(low) || missing(high)) {
     stop("missing inputs", call. = FALSE)
@@ -787,7 +778,7 @@ e_candle.echarts4rProxy <- function(e, opening, closing, low, high, bind, name =
     deparse(substitute(closing)),
     deparse(substitute(low)),
     deparse(substitute(high)),
-    bind,
+    bd,
     name,
     legend,
     ...
@@ -846,6 +837,7 @@ e_radar.echarts4r <- function(
     rm_y = TRUE,
     ...,
     radar = list()) {
+
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
@@ -871,9 +863,6 @@ e_radar.echarts4rProxy <- function(
     rm_y = TRUE,
     ...,
     radar = list()) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -938,9 +927,6 @@ e_funnel.echarts4r <- function(e, values, labels, name = NULL, legend = TRUE, rm
 #' @export
 #' @method e_funnel echarts4rProxy
 e_funnel.echarts4rProxy <- function(e, values, labels, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   if (missing(values) || missing(labels)) {
     stop("missing values or labels", call. = FALSE)
   }
@@ -1017,14 +1003,12 @@ e_sankey.echarts4r <- function(e, source, target, value, layout = "none", rm_x =
 #' @method e_sankey echarts4rProxy
 e_sankey.echarts4rProxy <- function(e, source, target, value, layout = "none", rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(source) || missing(target) || missing(value)) {
-    if (missing(e)) {
-      stop("must pass e", call. = FALSE)
-    }
     stop("missing source, target or values", call. = FALSE)
   }
 
-  e <- .rm_axis(e, rm_x, "x")
-  e <- .rm_axis(e, rm_y, "y")
+  # Remove bc this breaks
+  # e <- .rm_axis(e, rm_x, "x")
+  # e <- .rm_axis(e, rm_y, "y")
 
   e$chart <- e_sankey_(
     e$chart,
@@ -1177,9 +1161,6 @@ e_graph.echarts4r <- function(e, layout = "force", name = NULL, rm_x = TRUE, rm_
 #' @export
 #' @method e_graph echarts4rProxy
 e_graph.echarts4rProxy <- function(e, layout = "force", name = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   e$chart <- e_graph(e$chart, layout, name, rm_x, rm_y, ...)
   return(e)
 }
@@ -1300,16 +1281,14 @@ e_graph_nodes.echarts4r <- function(e, nodes, names, value, size, category, symb
   }
 
   # build JSON data
-  e$x$opts$series[[length(e$x$opts$series)]]$data <- nodes
+  nodes <- e$x$opts$series[[length(e$x$opts$series)]]$data
   e
 }
 
 #' @export
 #' @method e_graph_nodes echarts4rProxy
 e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category, symbol = NULL, legend = TRUE, xpos = NULL, ypos = NULL) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
+
   if (missing(nodes) || missing(names) || missing(value)) {
     stop("missing arguments", call. = FALSE)
   }
@@ -1360,7 +1339,7 @@ e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category,
   }
 
   # build JSON data
-  e$chart$x$opts$series[[length(e$chart$x$opts$series)]]$data <- nodes
+  nodes <- e$chart$x$opts$series[[length(e$chart$x$opts$series)]]$data
   e
 }
 
@@ -1602,9 +1581,6 @@ e_heatmap.echarts4rProxy <- function(
     rm_y = TRUE,
     calendar = NULL,
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
 
   if (missing(y)) {
     stop("must pass y", call. = FALSE)
@@ -1707,9 +1683,6 @@ e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, 
 #' @export
 #' @method e_parallel echarts4rProxy
 e_parallel.echarts4rProxy <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   e$chart <- e_parallel(e$chart, ..., name = name, rm_x = rm_x, rm_y = rm_y)
   return(e)
 }
@@ -1891,9 +1864,6 @@ e_sunburst.echarts4r <- function(e, styles = NULL, names = NULL, levels = NULL, 
 #' @export
 #' @method e_sunburst echarts4rProxy
 e_sunburst.echarts4rProxy <- function(e, styles = NULL, names = NULL, levels = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   e$chart <- e_sunburst_(e$chart, styles, names, levels, rm_x, rm_y, ...)
 
   return(e)
@@ -1963,9 +1933,6 @@ e_treemap.echarts4r <- function(e, styles = NULL, names = NULL, levels = NULL, r
 #' @export
 #' @method e_treemap echarts4rProxy
 e_treemap.echarts4rProxy <- function(e, styles = NULL, names = NULL, levels = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   e$chart <- e_treemap_(e$chart, styles, names, levels, rm_x, rm_y, ...)
 
   return(e)
@@ -2017,9 +1984,6 @@ e_river.echarts4r <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE,
 #' @export
 #' @method e_river echarts4rProxy
 e_river.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -2147,10 +2111,6 @@ e_tree.echarts4r <- function(e, rm_x = TRUE, rm_y = TRUE, ...) {
 #' @export
 #' @method e_tree echarts4rProxy
 e_tree.echarts4rProxy <- function(e, rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
-
   e$chart <- e_tree_(e$chart, rm_x, rm_y, ...)
   return(e)
 }

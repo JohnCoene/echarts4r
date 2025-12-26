@@ -810,8 +810,8 @@ e_radar_ <- function(
       radarIndex = r.index,
       ...
     )
-
-    # add indicators
+# browser()
+# TODO proxy error here # e$x$mapping$x = NULL. It should ="x" in my unit test
     e <- .add_indicators(e, r.index, max, radar = radar)
 
     # add serie
@@ -980,6 +980,7 @@ e_heatmap_ <- function(
       e <- .rm_axis(e, rm_x, "x")
       e <- .rm_axis(e, rm_y, "y")
     } else {
+      # TODO e$x$mapping$x is NULL when using proxy
       xdata <- unique(.get_data(e, e$x$mapping$x, i))
 
       if (length(xdata) == 1) {
@@ -1204,6 +1205,9 @@ e_river_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = T
       e$X <- e$x$opts$xAxis$data
     }
 
+    # TODO trying to add another river in using proxy - breaks here.
+    # e$x$mapping$x is NULL
+    # e$x$mapping$x <- "apples"
     # build JSON data
     data <- .build_river(e, serie, nm, i)
 
@@ -1335,6 +1339,7 @@ e_lines_3d_ <- function(
   rm_y = TRUE,
   ...
 ) {
+
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
@@ -1343,15 +1348,16 @@ e_lines_3d_ <- function(
     stop("missing coordinates", call. = FALSE)
   }
 
-  if (missing(source_name)) {
+  # In proxy, these were turning into "NULL"
+  if (missing(source_name) || identical(source_name, "NULL")) {
     source_name <- NULL
   }
 
-  if (missing(target_name)) {
+  if (missing(target_name) || identical(target_name, "NULL")) {
     target_name <- NULL
   }
 
-  if (missing(value)) {
+  if (missing(value) || identical(value, "NULL"))  {
     value <- NULL
   }
 
@@ -1359,6 +1365,7 @@ e_lines_3d_ <- function(
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
+  # TODO in proxy - the last 3 values are "NULL"
   for (i in seq_along(e$x$data)) {
     data <- .map_lines(
       e,

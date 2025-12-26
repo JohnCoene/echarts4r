@@ -60,7 +60,7 @@ test_that("e_color.echarts4rProxy plot responds", {
 
   server <- function(input, output, session) {
     proxy_called <- shiny::reactiveVal(FALSE)
-    proxy_chart <- reactiveVal(NULL)
+    proxy_chart <- shiny::reactiveVal(NULL)
 
     output$line <- renderEcharts4r({
       e <- mtcars |>

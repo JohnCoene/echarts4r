@@ -10,8 +10,6 @@ e_stage(
   end,
   stage,
   legend = TRUE,
-  x_index = 0,
-  y_index = 0,
   name = "stage",
   borderRadius = 8,
   verticalMargin = 10,
@@ -32,8 +30,6 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{stage}{column for stage on y axis}
 
 \item{legend}{Whether to add serie to legend.}
-
-\item{x_index, y_index}{Indexes of x and y axis.}
 
 \item{name}{name of the serie.}
 

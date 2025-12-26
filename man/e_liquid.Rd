@@ -15,7 +15,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{serie}{Column name of serie to plot.}
 
-\item{color}{Color to plot.}
+\item{color}{Column of color to plot.}
 
 \item{rm_x, rm_y}{Whether to remove x and y axis, defaults to \code{TRUE}.}
 

@@ -126,17 +126,25 @@ e_facet <- function(e,
     }
 
     # Generate a vector for positions from the top
-    # TODO
-    top_pos_values <- sapply(1:rows, function(x){
-        margin_trbl[["t"]] + top_offset + ((x-1) * (height + v_panel_space))
-    })
+    top_pos_values <- vapply(
+      X = seq_len(rows),
+      FUN = function(x) {
+        margin_trbl[["t"]] + top_offset + ((x - 1) * (height + v_panel_space))
+      },
+      FUN.VALUE = numeric(1)
+    )
+
     top_positions <- rep(top_pos_values, each=cols)[1:nseries]
 
     # Generate a vector for positions from the left
-    # TODO try vapply
-    left_pos_values <- sapply(1:cols, function(x){
+    left_pos_values <- vapply(
+      X = seq_len(cols),
+      FUN = function(x) {
         margin_trbl[["l"]] + left_offset + ((x-1) * (width + h_panel_space))
-    })
+      },
+      FUN.VALUE = numeric(1)
+    )
+
     left_positions <- rep(left_pos_values, times=rows)[1:nseries]
 
 
