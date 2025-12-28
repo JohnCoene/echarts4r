@@ -85,14 +85,6 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Add 3D lines.
 }
 \examples{
-# get data
-flights <- read.csv(
-  paste0(
-    "https://raw.githubusercontent.com/plotly/datasets/",
-    "master/2011_february_aa_flight_paths.csv"
-  )
-)
-
 # Lines 3D
 # Globe
 # get tetures: echarts4r-assets.john-coene.com

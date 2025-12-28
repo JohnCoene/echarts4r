@@ -204,6 +204,9 @@ e_liquid_ <- function(e, serie, color = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
 #'
 #' @export
 e_modularity <- function(e, modularity = TRUE) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   clu <- list(
     modularity = modularity
   )
@@ -328,7 +331,6 @@ e_violin <- function(e,
                      binCount = 100,
                      bandWidthScale = 1,
                      ...){
-
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }

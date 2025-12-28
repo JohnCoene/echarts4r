@@ -1,4 +1,4 @@
-globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_acc", "val_loss", "flights"))
+globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_acc", "val_loss", "flights", "airports"))
 
 .arrange_data_x <- function(data, x, reorder = TRUE) {
   vect <- data[[x]]
@@ -469,6 +469,11 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 }
 
 .build_river <- function(e, serie, label, i) {
+
+  if(is.null(e$x$mapping$x)){
+    stop("e$x$mapping$x is NULL")
+  }
+
   x <- .get_data(e, e$x$mapping$x, i)
   label <- rep(label, length(x))
 
@@ -536,6 +541,11 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 }
 
 .set_x_axis <- function(e, x_index, i) {
+
+  if(is.null(e$x$mapping$x)){
+    stop("e$x$mapping$x is NULL")
+  }
+
   .set_any_axis(e, e$x$mapping$x, x_index, axis = "x", i)
 }
 
@@ -696,6 +706,10 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 .add_indicators <- function(e, r.index, max, radar = list()) {
   if (!length(e$x$opts$radar)) {
     e$x$opts$radar <- list(list())
+  }
+
+  if(is.null(e$x$mapping$x)){
+    stop("e$x$mapping$x is NULL")
   }
 
   x <- .get_data(e, e$x$mapping$x)

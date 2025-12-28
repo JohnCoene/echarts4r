@@ -48,7 +48,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{
-Pictorial bar chart is a type of bar chart that custimzed glyph
+Pictorial bar chart is a type of bar chart that customized glyph
 (like images, SVG PathData) can be used instead of rectangular bar.
 }
 \section{Symbols}{

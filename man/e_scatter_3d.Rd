@@ -45,7 +45,8 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 
 \item{bind}{Binding.}
 
-\item{coord_system}{Coordinate system to use, one of \code{geo3D}, \code{globe}, or \code{cartesian3D}.}
+\item{coord_system}{Coordinate system to use, one of \code{geo3D},
+\code{globe}, or \code{cartesian3D}.}
 
 \item{name}{name of the serie.}
 
@@ -96,13 +97,6 @@ matrix |>
     bottom = 300 # padding to avoid visual maps overlap
   )
 
-airports <- read.csv(
-  paste0(
-    "https://raw.githubusercontent.com/plotly/datasets/",
-    "master/2011_february_us_airport_traffic.csv"
-  )
-)
-
 airports |>
   e_charts(long) |>
   e_globe(
@@ -122,5 +116,6 @@ airports |>
   e_visual_map(inRange = list(symbolSize = c(1, 10)))
 }
 \seealso{
-\href{https://echarts.apache.org/en/option-gl.html#series-scatter3D}{Additional arguments}
+\href{https://echarts.apache.org/en/option-gl.html#series-scatter3D}{Additional
+  arguments}
 }

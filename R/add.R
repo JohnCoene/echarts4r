@@ -867,6 +867,10 @@ e_radar.echarts4rProxy <- function(
     stop("must pass serie", call. = FALSE)
   }
 
+  if(is.null(e$chart$x$mapping$x)){
+    stop("provide x in echarts4rProxy")
+  }
+
   serie <- deparse(substitute(serie))
 
   e$chart <- e_radar_(e$chart, serie, max, name, legend, rm_x, rm_y, ..., radar = radar)
@@ -1586,6 +1590,10 @@ e_heatmap.echarts4rProxy <- function(
     stop("must pass y", call. = FALSE)
   }
 
+  if(is.null(e$chart$x$mapping$x)){
+    stop("provide x in echarts4rProxy")
+  }
+
   if (!missing(z)) {
     z <- deparse(substitute(z))
   } else {
@@ -1737,6 +1745,10 @@ e_pie.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, coord_sys
 
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
+  }
+
+  if(is.null(e$chart$x$mapping$x)){
+    stop("provide x in echarts4rProxy")
   }
 
   e$chart <- e_pie_(e$chart, deparse(substitute(serie)), name, legend, coord_system, rm_x, rm_y, ...)
@@ -1988,6 +2000,11 @@ e_river.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, rm_x = 
     stop("must pass serie", call. = FALSE)
   }
 
+  if(is.null(e$chart$x$mapping$x)){
+    stop("provide x in echarts4rProxy")
+  }
+
+
   e$chart <- e_river_(e$chart, deparse(substitute(serie)), name, legend, rm_x, rm_y, ...)
   return(e)
 }
@@ -2189,50 +2206,51 @@ e_gauge.echarts4rProxy <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...
   return(e)
 }
 
+# TODO why have this? This doesnt even work?
 #' @inheritParams e_bar
-#' @param value Value to gauge.
-#' @param name Text on gauge.
-#' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
-#'
 #' @rdname e_gauge
 #' @export
-e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e) || missing(value) || missing(name)) {
-    stop("missing e, name, or value", call. = FALSE)
-  }
-
-  # remove axis
-  e <- .rm_axis(e, rm_x, "x")
-  e <- .rm_axis(e, rm_y, "y")
-
-  values <- list()
-
-  for (i in seq_along(e$x$data)) {
-    v <- .get_data(e, value, i = i) |>
-      unlist() |>
-      unname()
-
-    values[[i]] <- v[[1]]
-
-    serie <- list(
-      data = list(list(value = values[i], name = name))
-    )
-
-    opts <- list(
-      type = "gauge",
-      ...
-    )
-
-    if (!e$x$tl) {
-      lst <- append(serie, opts)
-      e$x$opts$series <- append(e$x$opts$series, list(lst))
-    } else {
-      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie))
-      e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, opts)
-    }
-  }
-  e
-}
+# e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
+#   if (missing(e) || missing(value) || missing(name)) {
+#     stop("missing e, name, or value", call. = FALSE)
+#   }
+#
+#   if (!inherits(value, "numeric")) {
+#     stop("must pass numeric or integer", call. = FALSE)
+#   }
+#
+#   # remove axis
+#   e <- .rm_axis(e, rm_x, "x")
+#   e <- .rm_axis(e, rm_y, "y")
+#
+#   values <- list()
+#
+#   for (i in seq_along(e$x$data)) {
+#     v <- .get_data(e, value, i = i) |>
+#       unlist() |>
+#       unname()
+#
+#     values[[i]] <- v[[1]]
+#
+#     serie <- list(
+#       data = list(list(value = values[i], name = name))
+#     )
+#
+#     opts <- list(
+#       type = "gauge",
+#       ...
+#     )
+#
+#     if (!e$x$tl) {
+#       lst <- append(serie, opts)
+#       e$x$opts$series <- append(e$x$opts$series, list(lst))
+#     } else {
+#       e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie))
+#       e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, opts)
+#     }
+#   }
+#   e
+# }
 
 #' Lines 3D
 #'
@@ -2247,14 +2265,6 @@ e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #'
 #' @examples
-#' # get data
-#' flights <- read.csv(
-#'   paste0(
-#'     "https://raw.githubusercontent.com/plotly/datasets/",
-#'     "master/2011_february_aa_flight_paths.csv"
-#'   )
-#' )
-#'
 #' # Lines 3D
 #' # Globe
 #' # get tetures: echarts4r-assets.john-coene.com
@@ -2483,9 +2493,6 @@ e_line_3d.echarts4r <- function(e, y, z, name = NULL, coord_system = NULL, rm_x 
 #' @export
 #' @method e_line_3d echarts4rProxy
 e_line_3d.echarts4rProxy <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
 
   if (missing(y) || missing(z)) {
     stop("missing coordinates", call. = FALSE)
@@ -2651,6 +2658,10 @@ e_bar_3d.echarts4rProxy <- function(
     stop("must pass y and z", call. = FALSE)
   }
 
+  if(is.null(e$chart$x$mapping$x)){
+    stop("provide x in echarts4rProxy")
+  }
+
   bd <- .get_bind(deparse(substitute(bind)))
 
   e$chart <- e_bar_3d_(
@@ -2745,10 +2756,6 @@ e_surface.echarts4rProxy <- function(
     rm_x = TRUE,
     rm_y = TRUE,
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
-
   if (missing(y) || missing(z)) {
     stop("must pass y and z", call. = FALSE)
   }
@@ -2780,13 +2787,6 @@ e_surface.echarts4rProxy <- function(
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #'
 #' @examples
-#' flights <- read.csv(
-#'   paste0(
-#'     "https://raw.githubusercontent.com/plotly/datasets/",
-#'     "master/2011_february_aa_flight_paths.csv"
-#'   )
-#' )
-#'
 #' flights |>
 #'   e_charts() |>
 #'   e_geo() |>
@@ -2926,10 +2926,6 @@ e_lines.echarts4rProxy <- function(
     rm_x = TRUE,
     rm_y = TRUE,
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
-
   if (missing(source_lat) || missing(source_lon) || missing(target_lat) || missing(target_lon)) {
     stop("missing coordinates", call. = FALSE)
   }
@@ -2973,7 +2969,8 @@ e_lines.echarts4rProxy <- function(
 #' @param y,z Coordinates.
 #' @param bind Binding.
 #' @param color,size Color and Size of bubbles.
-#' @param coord_system Coordinate system to use, one of \code{geo3D}, \code{globe}, or \code{cartesian3D}.
+#' @param coord_system Coordinate system to use, one of \code{geo3D},
+#'   \code{globe}, or \code{cartesian3D}.
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #'
 #' @examples
@@ -3014,13 +3011,6 @@ e_lines.echarts4rProxy <- function(
 #'     bottom = 300 # padding to avoid visual maps overlap
 #'   )
 #'
-#' airports <- read.csv(
-#'   paste0(
-#'     "https://raw.githubusercontent.com/plotly/datasets/",
-#'     "master/2011_february_us_airport_traffic.csv"
-#'   )
-#' )
-#'
 #' airports |>
 #'   e_charts(long) |>
 #'   e_globe(
@@ -3038,7 +3028,9 @@ e_lines.echarts4rProxy <- function(
 #'   ) |>
 #'   e_scatter_3d(lat, cnt, coord_system = "globe", blendMode = "lighter") |>
 #'   e_visual_map(inRange = list(symbolSize = c(1, 10)))
-#' @seealso \href{https://echarts.apache.org/en/option-gl.html#series-scatter3D}{Additional arguments}
+#' @seealso
+#'   \href{https://echarts.apache.org/en/option-gl.html#series-scatter3D}{Additional
+#'   arguments}
 #'
 #' @rdname e_scatter_3d
 #' @export
@@ -3122,6 +3114,10 @@ e_scatter_3d.echarts4rProxy <- function(
     ...) {
   if (missing(y) || missing(z)) {
     stop("must pass y and z", call. = FALSE)
+  }
+
+  if(is.null(e$chart$x$mapping$x)){
+    stop("provide x in echarts4rProxy")
   }
 
   if (!missing(color)) {
@@ -3406,7 +3402,7 @@ e_scatter_gl.echarts4rProxy <- function(e, y, z, name = NULL, coord_system = "ge
 
 #' Pictorial
 #'
-#' Pictorial bar chart is a type of bar chart that custimzed glyph
+#' Pictorial bar chart is a type of bar chart that customized glyph
 #' (like images, SVG PathData) can be used instead of rectangular bar.
 #'
 #' @inheritParams e_bar
@@ -4231,9 +4227,6 @@ e_density.echarts4rProxy <- function(
     y_index = 0,
     smooth = TRUE,
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
 
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
@@ -4243,6 +4236,7 @@ e_density.echarts4rProxy <- function(
   return(e)
 }
 
+# TODO I can't get this to work (see unit test)
 #' Lines WebGL
 #'
 #' Draw WebGL lines.
@@ -4261,8 +4255,8 @@ e_lines_gl.echarts4r <- function(e, data, coord_system = "geo", ...) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-  if (missing(data) || missing(e)) {
-    stop("missing e or data", call. = FALSE)
+  if (missing(data)) {
+    stop("missing data", call. = FALSE)
   }
 
   serie <- list(
@@ -4279,8 +4273,8 @@ e_lines_gl.echarts4r <- function(e, data, coord_system = "geo", ...) {
 #' @export
 #' @method e_lines_gl echarts4rProxy
 e_lines_gl.echarts4rProxy <- function(e, data, coord_system = "geo", ...) {
-  if (missing(data) || missing(e)) {
-    stop("missing e or data", call. = FALSE)
+  if (missing(data)) {
+    stop("missing data", call. = FALSE)
   }
 
   serie <- list(
@@ -4379,10 +4373,6 @@ e_band.echarts4rProxy <- function(
     areaStyle = list(list(color = "rgba(0,0,0,0)"), list()),
     legend = list(FALSE, FALSE),
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
-
   if (missing(min) || missing(max)) {
     stop("must pass min and max", call. = FALSE)
   }
@@ -4453,9 +4443,6 @@ e_correlations.echarts4r <- function(e, order = NULL, visual_map = TRUE, ...) {
 #' @export
 #' @method e_correlations echarts4rProxy
 e_correlations.echarts4rProxy <- function(e, order = NULL, visual_map = TRUE, ...) {
-  if (missing(e)) {
-    stop("missing e", call. = FALSE)
-  }
 
   mat <- e$chart$x$data[[1]]
 
@@ -4576,10 +4563,6 @@ e_error_bar.echarts4rProxy <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
-
   if (missing(lower) || missing(upper)) {
     stop("must pass lower, or upper", call. = FALSE)
   }
@@ -4739,9 +4722,6 @@ e_chord.echarts4rProxy <- function(e, source, target, value, rm_x = TRUE, rm_y =
   if (missing(source) || missing(target) || missing(value)) {
     stop("missing source, target or values", call. = FALSE)
   }
-
-  e <- .rm_axis(e, rm_x, "x")
-  e <- .rm_axis(e, rm_y, "y")
 
   e$chart <- e_chord_(
     e$chart,

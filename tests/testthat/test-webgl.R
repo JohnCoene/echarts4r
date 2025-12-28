@@ -19,6 +19,64 @@ test_that("e_surface plot has the good data structure and type", {
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
 })
+
+test_that("e_surface.echarts4rProxy plot responds", {
+
+  surface <- as.data.frame(as.table(volcano))
+  surface$Var1 <- as.numeric(surface$Var1)
+  surface$Var2 <- as.numeric(surface$Var2)
+
+  server <- function(input, output, session) {
+    proxy_called <- shiny::reactiveVal(FALSE)
+    proxy_chart <- shiny::reactiveVal(NULL)
+
+    output$line <- renderEcharts4r({
+      plot <- surface |>
+        e_charts(Var1) |>
+        e_surface(Var2, Freq)
+    })
+
+    observeEvent(input$update, {
+
+      chart <- echarts4rProxy("line",
+                              data = surface) |>
+        e_surface(Var2, Freq) |>
+        e_execute()
+      proxy_chart(chart)
+      proxy_called(TRUE)
+    })
+  }
+
+  shiny::testServer(server, {
+
+    expect_false(proxy_called())
+
+    json <- jsonlite::fromJSON(output$line)
+
+    session$setInputs(update = 1)
+    session$flushReact()
+
+    # Proxy was called with no errors
+    expect_true(proxy_called())
+
+    new_values <- lapply(proxy_chart()$chart$x$opts$series[[1]]$data, \(x) x) |> unlist()
+    # Updated values do not have the x value
+    expected_values <- .build_data2(surface, "Var2", "Freq") |> unlist() |> unname()
+
+    expect_identical(
+      new_values, expected_values
+    )
+
+    expect_equal(
+      proxy_chart()$chart$x$opts$series[[1]]$type,
+      "surface"
+    )
+
+    expect_error(echarts4rProxy("line", data = surface) |>
+                   e_surface(), "must pass y and z")
+  })
+})
+
 test_that("e_surface.echarts4r and e_surface_ expects error when missing e and y, z", {
   expect_error(iris |> e_charts() |> e_surface.echarts4r(), "must pass y and z")
   expect_error(e_surface.echarts4r(), "must pass e")
@@ -61,6 +119,64 @@ test_that("e_scatter_gl plot has the good data structure and type", {
     plot$x$opts$series[[1]]$type,
     "scatterGL"
   )
+})
+
+test_that("e_scatter_gl.echarts4rProxy plot responds", {
+
+  test_data <-  data.frame(
+    x = seq(3),
+    y = c(1, 3, 9),
+    z = c(2, 5, 4),
+    w = c(3, 4, 3)
+  )
+
+  server <- function(input, output, session) {
+    proxy_called <- shiny::reactiveVal(FALSE)
+    proxy_chart <- shiny::reactiveVal(NULL)
+
+    output$scatter <- renderEcharts4r({
+      test_data |>
+        e_charts(x) |>
+        e_scatter_gl(y, z, name = "Serie 1")
+    })
+
+    observeEvent(input$update, {
+      chart <- echarts4rProxy("scatter",
+                              data = test_data) |>
+        e_scatter_gl(y, y, name = "Serie 1") |>
+        e_execute()
+
+      proxy_chart(chart)
+      proxy_called(TRUE)
+    })
+  }
+
+  shiny::testServer(server, {
+    expect_false(proxy_called())
+    json <- jsonlite::fromJSON(output$scatter)
+
+    # Data matches - this is the first point
+    expect_identical(
+      json$x$opts$series$data[[1]]$value[[1]],
+      c(1L, 1L, 2L))
+
+    session$setInputs(update = 1)
+    session$flushReact()
+
+    # Update to line x
+    new_values <- proxy_chart()$chart$x$opts$series[[1]]$data |> unlist() |> unname()
+    expect_equal(new_values,c(1,1, 3,3,9, 9))
+
+    # Proxy was called with no errors
+    expect_true(proxy_called())
+
+    expect_equal(
+      proxy_chart()$chart$x$opts$series[[1]]$type,
+      "scatterGL"
+    )
+    expect_error(echarts4rProxy("scatterGL", data = test_data) |>
+                   e_scatter_gl(), "must pass y and z")
+  })
 })
 
 test_that("e_scatter_gl.echarts4r and e_scatter_gl_ expects error when missing e and y,z", {
@@ -551,6 +667,51 @@ test_that("e_flow_gl plot has the good data structure and type", {
   )
 })
 
+test_that("e_flow_gl.echarts4rProxy plot responds", {
+  vectors <- expand.grid(0:9, 0:9)
+  names(vectors) <- c("x", "y")
+  vectors$sx <- rnorm(10)
+  vectors$sy <- rnorm(10)
+
+  server <- function(input, output, session) {
+    proxy_called <- shiny::reactiveVal(FALSE)
+    proxy_chart <- shiny::reactiveVal(NULL)
+
+    output$candle <- renderEcharts4r({
+      vectors |>
+        e_charts(x) |>
+        e_flow_gl(y, sx, sy)
+    })
+
+    observeEvent(input$update, {
+      chart <- echarts4rProxy("candle",
+                              data = vectors) |>
+        e_flow_gl(y, sx, sx) |>
+        e_execute()
+
+      proxy_chart(chart)
+      proxy_called(TRUE)
+    })
+  }
+
+  shiny::testServer(server, {
+    expect_false(proxy_called())
+
+    session$setInputs(update = 1)
+    session$flushReact()
+
+    # Proxy was called with no errors
+    expect_true(proxy_called())
+
+    expect_equal(
+      proxy_chart()$chart$x$opts$series[[1]]$type,
+      "flowGL"
+    )
+    expect_error(echarts4rProxy("candle", data = vectors) |>
+                   e_flow_gl(), "must pass y and z")
+  })
+})
+
 test_that("e_flow_gl.echarts4r and e_flow_gl_ expects error when missing e and y,sx,sy", {
   expect_error(iris |> e_charts() |> e_flow_gl.echarts4r(),
                "must pass y, sx, and sy")
@@ -559,3 +720,114 @@ test_that("e_flow_gl.echarts4r and e_flow_gl_ expects error when missing e and y
   expect_error(iris |> e_charts() |> e_flow_gl_(), "must pass y, sx, and sy")
   expect_error(e_flow_gl_() , "must pass e")
 })
+
+# e_lines_gl --------------------------------------------------------------
+# TODO
+# test_that("e_lines_gl plot has the good data structure and type", {
+# e <- flights |>
+#   e_charts()
+#   data <- .map_lines(
+#     e,
+#     source.lon = "start_lon",
+#     source.lat = "start_lat",
+#     target.lon = "end_lon",
+#     target.lat = "end_lat",
+#     source.name = NULL,
+#     target.name = NULL,
+#     value = NULL,
+#     i = 1
+#   )
+#   # Not sure on format of data so trying different things
+#   # list( c(-74.006, 40.7128), c(2.3522, 48.8566))
+#   # plot <-
+#     e_charts() |>
+#     e_lines_gl(data = data, lineStyle = list(width = 20))
+#
+#   expect_s3_class(plot, "echarts4r")
+#   expect_s3_class(plot, "htmlwidget")
+#
+#   expect_equal(
+#     plot$x$opts$series[[1]]$data,
+#     list(
+#       list(value = c(181.03, -20.62, 650.00)),
+#       list(value = c(181.62, -20.42, 562.00)),
+#       list(value = c(181.66, -17.97, 626.00)),
+#       list(value = c(181.96, -20.42, 649.00)),
+#       list(value = c(184.1, -26.0, 42.0))
+#     )
+#   )
+#   expect_equal(
+#     plot$x$opts$series[[1]]$type,
+#     "linesGL"
+#   )
+# })
+
+# test_that("e_lines_gl.echarts4rProxy plot responds", {
+#
+#   test_data <-  data.frame(
+#     x = seq(3),
+#     y = c(1, 3, 9),
+#     z = c(2, 5, 4),
+#     w = c(3, 4, 3)
+#   )
+#
+#   server <- function(input, output, session) {
+#     proxy_called <- shiny::reactiveVal(FALSE)
+#     proxy_chart <- shiny::reactiveVal(NULL)
+#
+#     output$scatter <- renderEcharts4r({
+#       test_data |>
+#         e_charts(x) |>
+#         e_lines_gl(y, z, name = "Serie 1")
+#     })
+#
+#     observeEvent(input$update, {
+#       chart <- echarts4rProxy("scatter",
+#                               data = test_data) |>
+#         e_lines_gl(y, y, name = "Serie 1") |>
+#         e_execute()
+#
+#       proxy_chart(chart)
+#       proxy_called(TRUE)
+#     })
+#   }
+#
+#   shiny::testServer(server, {
+#     expect_false(proxy_called())
+#     json <- jsonlite::fromJSON(output$scatter)
+#
+#     # Data matches - this is the first point
+#     expect_identical(
+#       json$x$opts$series$data[[1]]$value[[1]],
+#       c(1L, 1L, 2L))
+#
+#     session$setInputs(update = 1)
+#     session$flushReact()
+#
+#     # Update to line x
+#     new_values <- proxy_chart()$chart$x$opts$series[[1]]$data |> unlist() |> unname()
+#     expect_equal(new_values,c(1,1, 3,3,9, 9))
+#
+#     # Proxy was called with no errors
+#     expect_true(proxy_called())
+#
+#     expect_equal(
+#       proxy_chart()$chart$x$opts$series[[1]]$type,
+#       "scatterGL"
+#     )
+#     expect_error(echarts4rProxy("scatterGL", data = test_data) |>
+#                    e_lines_gl(), "must pass y and z")
+#   })
+# })
+#
+# test_that("e_lines_gl.echarts4r and e_lines_gl_ expects error when missing e and y,z", {
+#   expect_error(iris |> e_charts() |> e_lines_gl.echarts4r(),
+#                "missing data")
+#   expect_error( e_lines_gl.echarts4r(),
+#                 "must pass e")
+#
+#   expect_error(iris |> e_charts() |> e_lines_gl_(),
+#                "missing data")
+#   expect_error(e_lines_gl_(),
+#                "must pass e")
+# })

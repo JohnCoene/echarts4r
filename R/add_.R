@@ -810,8 +810,7 @@ e_radar_ <- function(
       radarIndex = r.index,
       ...
     )
-# browser()
-# TODO proxy error here # e$x$mapping$x = NULL. It should ="x" in my unit test
+
     e <- .add_indicators(e, r.index, max, radar = radar)
 
     # add serie
@@ -980,7 +979,7 @@ e_heatmap_ <- function(
       e <- .rm_axis(e, rm_x, "x")
       e <- .rm_axis(e, rm_y, "y")
     } else {
-      # TODO e$x$mapping$x is NULL when using proxy
+
       xdata <- unique(.get_data(e, e$x$mapping$x, i))
 
       if (length(xdata) == 1) {
@@ -1080,12 +1079,9 @@ e_pie_ <- function(e, serie, name = NULL, legend = TRUE,  coord_system = "", rm_
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
-# browser()
-  # TODO does rm_x work with proxy?
-  # if(!is.null(e)){
+
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
-  # }
 
   if(coord_system == "matrix"){
     e <- e |> e_pie_matrix(e$x$mapping$x, serie, legend, ...)
@@ -1205,10 +1201,6 @@ e_river_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = T
       e$X <- e$x$opts$xAxis$data
     }
 
-    # TODO trying to add another river in using proxy - breaks here.
-    # e$x$mapping$x is NULL
-    # e$x$mapping$x <- "apples"
-    # build JSON data
     data <- .build_river(e, serie, nm, i)
 
     if (!length(e$x$opts$series)) {
@@ -1365,7 +1357,6 @@ e_lines_3d_ <- function(
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
-  # TODO in proxy - the last 3 values are "NULL"
   for (i in seq_along(e$x$data)) {
     data <- .map_lines(
       e,
@@ -1533,6 +1524,10 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
 
   if (missing(y) || missing(z)) {
     stop("must pass y and z", call. = FALSE)
+  }
+
+  if(is.null(e$x$mapping$x)){
+    stop("e$x$mapping$x is NULL")
   }
 
   # remove axis
@@ -1722,6 +1717,18 @@ e_lines_ <- function(
     stop("missing coordinates", call. = FALSE)
   }
 
+  if (missing(source_name) || identical(source_name, "NULL")) {
+    source_name <- NULL
+  }
+
+  if (missing(target_name) || identical(target_name, "NULL")) {
+    target_name <- NULL
+  }
+
+  if (missing(value) || identical(value, "NULL"))  {
+    value <- NULL
+  }
+
   # remove axis
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
@@ -1778,6 +1785,10 @@ e_scatter_3d_ <- function(
 
   if (missing(y) || missing(z)) {
     stop("must pass y and z", call. = FALSE)
+  }
+
+  if(is.null(e$x$mapping$x)){
+    stop("e$x$mapping$x is NULL")
   }
 
   # remove axis
@@ -2611,6 +2622,9 @@ e_error_bar_ <- function(
 #' @rdname e_chord
 #' @export
 e_chord_ <- function(e, source, target, value, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(source) || missing(target) || missing(value)) {
     stop("missing source, target or values", call. = FALSE)
   }

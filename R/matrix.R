@@ -372,6 +372,7 @@ e_matrix_addChart <- function(e,
 }
 
 # TODO fix example here. Cannot find grid$name
+
 #' Generate Chart Titles for Matrix
 #'
 #' helper function for creating titles for every plot in a geofacet style

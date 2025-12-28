@@ -124,13 +124,6 @@ e_geo_3d_ <- function(e, serie = NULL, color = NULL, type = "world", rm_x = TRUE
 #' @param rm_x,rm_y Whether to remove x and y axis, defaults to \code{TRUE}.
 #'
 #' @examples
-#' flights <- read.csv(
-#'   paste0(
-#'     "https://raw.githubusercontent.com/plotly/datasets/",
-#'     "master/2011_february_aa_flight_paths.csv"
-#'   )
-#' )
-#'
 #' flights |>
 #'   e_charts() |>
 #'   e_geo() |>
