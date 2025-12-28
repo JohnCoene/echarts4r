@@ -2210,47 +2210,47 @@ e_gauge.echarts4rProxy <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...
 #' @inheritParams e_bar
 #' @rdname e_gauge
 #' @export
-# e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
-#   if (missing(e) || missing(value) || missing(name)) {
-#     stop("missing e, name, or value", call. = FALSE)
-#   }
-#
-#   if (!inherits(value, "numeric")) {
-#     stop("must pass numeric or integer", call. = FALSE)
-#   }
-#
-#   # remove axis
-#   e <- .rm_axis(e, rm_x, "x")
-#   e <- .rm_axis(e, rm_y, "y")
-#
-#   values <- list()
-#
-#   for (i in seq_along(e$x$data)) {
-#     v <- .get_data(e, value, i = i) |>
-#       unlist() |>
-#       unname()
-#
-#     values[[i]] <- v[[1]]
-#
-#     serie <- list(
-#       data = list(list(value = values[i], name = name))
-#     )
-#
-#     opts <- list(
-#       type = "gauge",
-#       ...
-#     )
-#
-#     if (!e$x$tl) {
-#       lst <- append(serie, opts)
-#       e$x$opts$series <- append(e$x$opts$series, list(lst))
-#     } else {
-#       e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie))
-#       e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, opts)
-#     }
-#   }
-#   e
-# }
+e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(e) || missing(value) || missing(name)) {
+    stop("missing e, name, or value", call. = FALSE)
+  }
+
+  if (!inherits(value, "numeric")) {
+    stop("must pass numeric or integer", call. = FALSE)
+  }
+
+  # remove axis
+  e <- .rm_axis(e, rm_x, "x")
+  e <- .rm_axis(e, rm_y, "y")
+
+  values <- list()
+
+  for (i in seq_along(e$x$data)) {
+    v <- .get_data(e, value, i = i) |>
+      unlist() |>
+      unname()
+
+    values[[i]] <- v[[1]]
+
+    serie <- list(
+      data = list(list(value = values[i], name = name))
+    )
+
+    opts <- list(
+      type = "gauge",
+      ...
+    )
+
+    if (!e$x$tl) {
+      lst <- append(serie, opts)
+      e$x$opts$series <- append(e$x$opts$series, list(lst))
+    } else {
+      e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie))
+      e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, opts)
+    }
+  }
+  e
+}
 
 #' Lines 3D
 #'

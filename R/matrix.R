@@ -372,15 +372,6 @@ e_matrix_addChart <- function(e,
 }
 
 # TODO fix example here. Cannot find grid$name
-
-#' Generate Chart Titles for Matrix
-#'
-#' helper function for creating titles for every plot in a geofacet style
-#' matrix. This generates the title using the name of the series.
-#'
-#' @inheritParams e_bar
-#' @examples
-#'
 #' df <- data.frame(group = rep(grid$name, each = 20),
 #'   date = seq(from = as.Date("2025-01-01"),
 #'   to = as.Date("2025-01-20"), by = "day"),
@@ -402,6 +393,17 @@ e_matrix_addChart <- function(e,
 #'   e_title(text = "State Temps") |>
 #'   e_title_matrix(textStyle = list(fontSize = 10),
 #'    left = "center", top = "top")
+
+#' Generate Chart Titles for Matrix
+#'
+#' helper function for creating titles for every plot in a geofacet style
+#' matrix. This generates the title using the name of the series.
+#'
+#' @inheritParams e_bar
+#' @examples
+#' \dontrun{temp_code
+#' }
+#'
 #' @seealso \href{https://echarts.apache.org/en/option.html#title}{Additional
 #'   arguments}
 #'

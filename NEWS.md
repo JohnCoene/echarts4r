@@ -1,9 +1,11 @@
 # echarts4r 0.5.0
 
-- Added new chart types: `e_doughnut()`, `e_violin()`, `e_barRange`
+- Added new chart types: `e_doughnut()`, `e_violin()`, `e_barRange()`, `e_contour()`, `e_lineRange()`, `e_stage()`
 - Added `e_jitter()`
 - New matrix coordinate system?
 - Updated echarts.js to 6.0.0
+- Expanded unit testing
+- Bug fixes
 
 # echarts4r 0.4.6
 
