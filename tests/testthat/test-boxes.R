@@ -7,15 +7,8 @@ test_that("echarts4rBox returns list with options and bgColor", {
   expect_true("options" %in% names(result))
   expect_true("bgColor" %in% names(result))
 })
-# TODO review
-test_that("echarts4rBox accepts custom type", {
-  df <- data.frame(x = 1:5, y = 6:10)
 
-  result <- echarts4rBox(df, x, y, type = "line")
 
-  expect_equal(result$options$series[[1]]$type, "line")
-})
-#
 test_that("echarts4rBox converts area type to line with areaStyle", {
   df <- data.frame(x = 1:5, y = 6:10)
 

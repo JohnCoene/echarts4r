@@ -63,10 +63,10 @@ test_that("e_band plot has the good data structure and type", {
 #     })
 #
 #     observeEvent(input$update, {
-#       # browser()
+#       browser()
 #       # TODO breaks at execute bc it doesnt have an id. e_band returns without it. Not class proxy anymore.
 #       chart <- echarts4rProxy("line",
-#                               data = df) |>
+#                               data = df, x = x) |>
 #         e_band(lwr, upr) |>
 #         e_execute()
 #       proxy_chart(chart)
@@ -360,8 +360,6 @@ test_that("e_error_bar.echarts4rProxy plot responds", {
     })
 
     observeEvent(input$update, {
-      # browser()
-      # TODO breaks at execute bc it doesnt have an id. e_error_bar returns without it. Not class proxy anymore.
       chart <- echarts4rProxy("line",
                               data = df) |>
         e_bar(y) |>
@@ -442,13 +440,6 @@ test_that("e_boxplot plot has the good data structure and type", {
 
   ### The decimals are problematic so instead, check that the differences between the two expressions tend towards zero
 
-  # expect_equal(
-  #   plot$x$opts$series[[1]]$data,
-  #   list(c(-2.214700, -0.510335, 0.113909, 0.693351, 2.401618),
-  #        c(-4.583193, -2.199190, 0.671524, 4.607498, 9.723452),
-  #        c(3.144293, 8.093827, 9.880848, 12.061566, 17.492985))
-  # )
-
   # difference between the two expressions
   difference <- unlist(plot$x$opts$series[[1]]$data) - unlist(list(
     c(-2.214700, -0.510335, 0.113909, 0.693351, 2.401618),
@@ -463,6 +454,73 @@ test_that("e_boxplot plot has the good data structure and type", {
     "boxplot"
   )
 })
+
+test_that("e_boxplot.echarts4rProxy plot responds", {
+
+  set.seed(1)
+  df <- data.frame(
+    x = c(
+      round(rnorm(100), 5),
+      round(runif(100, -5, 10), 5),
+      round(rnorm(100, 10, 3), 5)
+    ),
+    y = c(
+      round(rnorm(100), 5),
+      round(runif(100, -5, 10), 5),
+      round(rnorm(100, 10, 3), 5)
+    ),
+    grp = c(
+      rep(LETTERS[1], 100),
+      rep(LETTERS[2], 100),
+      rep(LETTERS[3], 100)
+    )
+  )
+
+  server <- function(input, output, session) {
+    proxy_called <- shiny::reactiveVal(FALSE)
+    proxy_chart <- shiny::reactiveVal(NULL)
+
+    output$line <- renderEcharts4r({
+      df |>
+        group_by(grp) |>
+        e_charts() |>
+        e_boxplot(x)
+    })
+
+    observeEvent(input$update, {
+      chart <- echarts4rProxy("line",
+                              data = df) |>
+        e_boxplot(y) |>
+        e_execute()
+      proxy_chart(chart)
+
+      proxy_called(TRUE)
+    })
+  }
+
+  shiny::testServer(server, {
+
+    expect_false(proxy_called())
+
+    json <- jsonlite::fromJSON(output$line)
+
+
+    session$setInputs(update = 1)
+    session$flushReact()
+
+    # Proxy was called with no errors
+    expect_true(proxy_called())
+
+    expect_equal(
+      proxy_chart()$chart$x$opts$series[[1]]$type,
+      "boxplot"
+    )
+
+    expect_error(echarts4rProxy("line", data = df) |>
+                   e_boxplot(), "must pass serie")
+  })
+})
+
 
 test_that("e_boxplot.echarts4r and e_boxplot_ expects error when missing e and serie", {
   expect_error(iris |> e_charts() |> e_boxplot.echarts4r(),
@@ -507,7 +565,6 @@ test_that("e_histogram plot has the good data structure and type", {
     "bar"
   )
 })
-
 
 test_that("e_histogram.echarts4rProxy plot responds", {
 
@@ -862,8 +919,6 @@ test_that("e_loess plot has the good data structure and type", {
     e_charts(disp) |>
     e_scatter(mpg, qsec) |>
     e_loess(mpg ~ disp)
-  # TODO this fail with below
-    # e_loess(mpg ~ disp, y_index = 50, name = "TEST")
 
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")

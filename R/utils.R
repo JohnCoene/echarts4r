@@ -618,11 +618,20 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 }
 
 .build_cartesian3D <- function(e, ..., i = 1) {
-  df <- e$x$data[[i]] |>
-    dplyr::select(
-      ...
-    ) |>
-    unname()
+
+  # Don't use this bc it only selects unique cols.
+  # ... could be the same col.
+  # df <- e$x$data[[i]] |>
+  #   dplyr::select(
+  #     ...
+  #   ) |>
+  #   unname()
+
+  row.names(df) <- NULL
+  df <- e$x$data[[i]]
+
+  df <- df[, c(...), drop = FALSE]
+  df <- unname(df)
 
   apply(df, 1, function(x) {
     list(value = x)
@@ -632,6 +641,11 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 
 .build_height <- function(e, serie, color, j) {
   # data <- .build_data(e, e$x$mapping$x, serie, names = c("name", "height"))
+
+  if(is.null(e$x$mapping$x)){
+    stop("e$x$mapping$x is NULL")
+  }
+
   data <- e$x$data[[j]] |>
     dplyr::select(
       c(name = e$x$mapping$x,

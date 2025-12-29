@@ -358,9 +358,7 @@ e_violin <- function(e,
     e_serie <- list(data = vector)
 
     if (y_index != 0) {
- #     TODO remove index?
-      # deparse(substitute(upper)),
-      serie <- names(e$x$data[[i]])[i]
+      serie <- e$x$opts$series[[i]]$name
       e <- .set_y_axis(e, serie, y_index, i)
     }
     if (x_index != 0) {

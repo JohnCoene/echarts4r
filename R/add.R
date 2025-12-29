@@ -326,9 +326,6 @@ e_step.echarts4rProxy <- function(
     x_index = 0,
     coord_system = "cartesian2d",
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -1217,9 +1214,6 @@ e_graph_gl.echarts4r <- function(e, layout = "force", name = NULL, rm_x = TRUE, 
 #' @export
 #' @method e_graph_gl echarts4rProxy
 e_graph_gl.echarts4rProxy <- function(e, layout = "force", name = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   e$chart <- e_graph_gl(e$chart, layout, name, rm_x, rm_y, ...)
   return(e)
 }
@@ -1397,10 +1391,6 @@ e_graph_edges.echarts4r <- function(e, edges, source, target, value, size, color
 #' @method e_graph_edges echarts4rProxy
 #' @export
 e_graph_edges.echarts4rProxy <- function(e, edges, source, target, value, size, color) {
-
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
 
   if (missing(edges) || missing(source) || missing(target)) {
     stop("must pass edges, source and target", call. = FALSE)
@@ -2004,7 +1994,6 @@ e_river.echarts4rProxy <- function(e, serie, name = NULL, legend = TRUE, rm_x = 
     stop("provide x in echarts4rProxy")
   }
 
-
   e$chart <- e_river_(e$chart, deparse(substitute(serie)), name, legend, rm_x, rm_y, ...)
   return(e)
 }
@@ -2157,14 +2146,14 @@ e_tree.echarts4rProxy <- function(e, rm_x = TRUE, rm_y = TRUE, ...) {
 #'
 #' @rdname e_gauge
 #' @export
-e_gauge <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) UseMethod("e_gauge")
+e_gauge <- function(e, value, name = NULL, rm_x = TRUE, rm_y = TRUE, ...) UseMethod("e_gauge")
 
 #' @export
 #' @method e_gauge echarts4r
-e_gauge.echarts4r <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
+e_gauge.echarts4r <- function(e, value, name = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
 
-  if (missing(e) || missing(value) || missing(name)) {
-    stop("missing e, name, or value", call. = FALSE)
+  if (missing(e) || missing(value)) {
+    stop("missing e or value", call. = FALSE)
   }
 
   if (!inherits(value, "numeric")) {
@@ -2199,20 +2188,23 @@ e_gauge.echarts4r <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
   e
 }
 
+# TODO this doesnt work - see unit test
 #' @export
 #' @method e_gauge echarts4rProxy
-e_gauge.echarts4rProxy <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
+e_gauge.echarts4rProxy <- function(e, value, name = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
+  if (missing(value)) {
+    stop("missing value", call. = FALSE)
+  }
   e <- e$chart <- e_gauge(e$chart, value, name, rm_x, rm_y, ...)
   return(e)
 }
 
-# TODO why have this? This doesnt even work?
 #' @inheritParams e_bar
 #' @rdname e_gauge
 #' @export
-e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
+e_gauge_ <- function(e, value, name = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(e) || missing(value) || missing(name)) {
-    stop("missing e, name, or value", call. = FALSE)
+    stop("missing e or value", call. = FALSE)
   }
 
   if (!inherits(value, "numeric")) {
@@ -2223,17 +2215,9 @@ e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
-  values <- list()
-
-  for (i in seq_along(e$x$data)) {
-    v <- .get_data(e, value, i = i) |>
-      unlist() |>
-      unname()
-
-    values[[i]] <- v[[1]]
-
+  for (i in seq_along(value)) {
     serie <- list(
-      data = list(list(value = values[i], name = name))
+      data = list(list(value = value[i], name = name[i]))
     )
 
     opts <- list(
@@ -2246,8 +2230,11 @@ e_gauge_ <- function(e, value, name, rm_x = TRUE, rm_y = TRUE, ...) {
       e$x$opts$series <- append(e$x$opts$series, list(lst))
     } else {
       e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(serie))
-      e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, opts)
     }
+  }
+
+  if (e$x$tl) {
+    e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(opts))
   }
   e
 }
@@ -2475,7 +2462,7 @@ e_line_3d.echarts4r <- function(e, y, z, name = NULL, coord_system = NULL, rm_x 
   }
 
   if (missing(y) || missing(z)) {
-    stop("missing coordinates", call. = FALSE)
+    stop("must pass y and z", call. = FALSE)
   }
 
   e_line_3d_(
@@ -2495,7 +2482,7 @@ e_line_3d.echarts4r <- function(e, y, z, name = NULL, coord_system = NULL, rm_x 
 e_line_3d.echarts4rProxy <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
 
   if (missing(y) || missing(z)) {
-    stop("missing coordinates", call. = FALSE)
+    stop("must pass y and z", call. = FALSE)
   }
 
   e$chart <- e_line_3d_(
@@ -4164,10 +4151,6 @@ e_histogram.echarts4rProxy <- function(
   y_index = 0,
   ...
 ) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
-
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }

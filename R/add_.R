@@ -1043,6 +1043,12 @@ e_parallel_ <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = li
 
   data <- apply(data, 1, as.list)
 
+  # remove white spaces (ex: in " 1")
+  data <- purrr::map(data, function(x) {
+    gsub(" ", "", x) |>
+      as.list()
+  })
+
   serie <- list(
     name = name,
     type = "parallel",
@@ -1425,7 +1431,7 @@ e_line_3d_ <- function(e, y, z, name = NULL, coord_system = NULL, rm_x = TRUE, r
   }
 
   if (missing(y) || missing(z)) {
-    stop("missing coordinates", call. = FALSE)
+    stop("must pass y and z", call. = FALSE)
   }
 
   # remove axis
@@ -1539,13 +1545,13 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
 
   for (i in seq_along(e$x$data)) {
     if (coord_system != "cartesian3D") {
-      data <- .build_data2(e$x$data[[i]], e$x$mapping$x, y, z)
+      data <- .build_data2(e$x$data[[i]], e$x$mapping$x, {{y}}, {{z}})
 
       if (!is.null(bind)) {
         data <- .add_bind2(e, data, bind, i = i)
       }
     } else {
-      data <- .build_cartesian3D(e, e$x$mapping$x, y, z, i = i)
+      data <- .build_cartesian3D(e, e$x$mapping$x, {{y}}, {{z}}, i = i)
     }
 
     if (!e$x$tl) {
@@ -2127,7 +2133,7 @@ e_histogram_ <- function(
     }
 
     if (x_index != 0) {
-      # TODO e$x$mapping$x is NULL
+
       e <- .set_x_axis(e, x_index, i)
     }
 

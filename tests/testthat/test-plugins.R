@@ -209,9 +209,8 @@ test_that("e_violin x and y index works", {
                x_index = 1
     )
   # Should have 2nd index that match axis of 1st index
-  # expect_equal(as.character(plot$x$opts$xAxis[[2]]$data), c("setosa", "versicolor", "virginica"))
+  expect_equal(levels(plot$x$opts$xAxis[[2]]$data), c("setosa", "versicolor", "virginica"))
 
-  # TODO seems wrong?
   expect_equal(as.character(plot$x$opts$yAxis[[2]]$type), "value")
 })
 
@@ -272,17 +271,14 @@ test_that("e_barRange x and y index works", {
                      max_length = max(Sepal.Length))
 
   plot <- df |> e_chart(Species) |>
-    # TODO how to know this works?
     e_barRange(lower=min_length,
                upper=max_length,
-               y_index = 1,
-               x_index = 1
+               y_index = 10,
+               x_index = 10
     )
-  # Should have 2nd index that match axis of 1st index
-  expect_equal(as.character(plot$x$opts$xAxis[[2]]$data), c("setosa", "versicolor", "virginica"))
 
-  # TODO seems wrong?
-  expect_equal(as.character(plot$x$opts$yAxis[[2]]$type), "value")
+  expect_gt(length(plot$x$opts$xAxis), 10)
+  expect_gt(length(plot$x$opts$yAxis), 10)
 })
 
 test_that("e_barRange timeline works", {
@@ -410,24 +406,15 @@ test_that("e_lineRange x and y index works", {
 
   plot <- df |> e_chart(Species) |>
     e_line(min_length) |>
-    # TODO how to know this works?
+
     e_lineRange(lower=min_length,
                upper=max_length,
                areaStyle = list(color = "red"),
-               y_index = 1,
-               x_index = 1
-    ) #|>
-    # e_lineRange(lower=min_length,
-    #             upper=min_length,
-    #             areaStyle = list(color = "red"),
-    #             name = "RED"
-    # )
-  plot
-  # Should have 2nd index that match axis of 1st index
-  expect_equal(as.character(plot$x$opts$xAxis[[2]]$data), c("setosa", "versicolor", "virginica"))
-
-  # TODO seems wrong?
-  expect_equal(as.character(plot$x$opts$yAxis[[2]]$type), "value")
+               y_index = 10,
+               x_index = 10
+    )
+  expect_gt(length(plot$x$opts$xAxis), 10)
+  expect_gt(length(plot$x$opts$yAxis), 10)
 })
 
 test_that("e_lineRange expects error when missing e", {

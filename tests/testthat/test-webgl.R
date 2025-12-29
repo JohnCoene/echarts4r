@@ -218,6 +218,7 @@ test_that("e_graph_gl plot has the good data structure and type", {
 
 test_that("e_graph.echarts4r and e_graph_nodes expects error when missing e ", {
   expect_error(e_graph.echarts4r(), "must pass e")
+  expect_error(e_graph_gl.echarts4r(), "must pass e")
   expect_error(e_graph_nodes.echarts4r(), "must pass e")
   expect_error(iris |> e_charts() |> e_graph_nodes.echarts4r(), "missing arguments")
 
@@ -282,7 +283,6 @@ test_that("e_graph.echarts4r and e_graph_nodes expects error when missing e ", {
   expect_error(iris |> e_charts() |> e_graph_edges.echarts4r(), "must pass edges, source and target")
 })
 
-
 test_that("e_graph.echarts4rProxy plot responds", {
 
   nodes <- data.frame(
@@ -312,9 +312,8 @@ test_that("e_graph.echarts4rProxy plot responds", {
     })
 
     observeEvent(input$update, {
-      # TODO proxy is also NULL add e_execute() ??
       chart <- echarts4rProxy("line", data = nodes) |>
-        e_graph(layout = "circular")
+        e_graph(layout = "circular") |> e_execute()
 
       proxy_chart(chart)
 
@@ -372,10 +371,10 @@ test_that("e_graph_edges.echarts4rProxy plot responds", {
     })
 
     observeEvent(input$update, {
-      # TODO proxy is also NULL
       chart <- echarts4rProxy("line", data = nodes) |>
         e_graph(layout = "circular") |>
-        e_graph_edges(edges, source, target, size = size)
+        e_graph_edges(edges, source, target, size = size) |>
+        e_execute()
 
       proxy_chart(chart)
 
