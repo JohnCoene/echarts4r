@@ -194,9 +194,9 @@ test_that("e_scatter_gl.echarts4r and e_scatter_gl_ expects error when missing e
 # e_graph -----------------------------------------------------------------
 test_that("e_graph_gl plot has the good data structure and type", {
   nodes <- data.frame(
-    name = paste0(LETTERS, 1:300),
-    value = rnorm(300, 10, 2),
-    size = rnorm(300, 10, 2),
+    name = paste0(LETTERS, 1:50),
+    value = rnorm(50, 10, 2),
+    size = rnorm(50, 10, 2),
     grp = rep(c("grp1", "grp2", "grp3"), 100),
     stringsAsFactors = FALSE
   )
@@ -228,9 +228,9 @@ test_that("e_graph.echarts4r and e_graph_nodes expects error when missing e ", {
 
 test_that("node with missing category", {
   nodes <- data.frame(
-    name = paste0(LETTERS, 1:300),
-    value = rnorm(300, 10, 2),
-    size = rnorm(300, 10, 2),
+    name = paste0(LETTERS, 1:50),
+    value = rnorm(50, 10, 2),
+    size = rnorm(50, 10, 2),
     grp = rep(c("grp1", "grp2", "grp3"), 100),
     stringsAsFactors = FALSE
   )
@@ -252,16 +252,16 @@ test_that("node with missing category", {
 
 test_that("node with missing category and size", {
   nodes <- data.frame(
-    name = paste0(LETTERS, 1:300),
-    value = rnorm(300, 10, 2),
-    size = rnorm(300, 10, 2),
+    name = paste0(LETTERS, 1:50),
+    value = rnorm(50, 10, 2),
+    size = rnorm(50, 10, 2),
     grp = rep(c("grp1", "grp2", "grp3"), 100),
     stringsAsFactors = FALSE
   )
 
   edges <- data.frame(
-    source = sample(nodes$name, 400, replace = TRUE),
-    target = sample(nodes$name, 400, replace = TRUE),
+    source = sample(nodes$name, 40, replace = TRUE),
+    target = sample(nodes$name, 40, replace = TRUE),
     stringsAsFactors = FALSE
   )
 
@@ -269,6 +269,31 @@ test_that("node with missing category and size", {
     e_graph_gl() |>
     e_graph_nodes(nodes, name, value) |>
     e_graph_edges(edges, source, target)
+
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+})
+
+test_that("node with category and size", {
+  nodes <- data.frame(
+    name = paste0(LETTERS, 1:50),
+    value = rnorm(50, 10, 2),
+    size = rnorm(50, 10, 2),
+    grp = rep(c("grp1", "grp2", "grp3"), 100),
+    stringsAsFactors = FALSE
+  )
+
+  edges <- data.frame(
+    source = sample(nodes$name, 40, replace = TRUE),
+    target = sample(nodes$name, 40, replace = TRUE),
+    size = sample(nodes$name, 40, replace = TRUE),
+    stringsAsFactors = FALSE
+  )
+
+  plot <- e_charts() |>
+    e_graph_gl() |>
+    e_graph_nodes(nodes, name, value, size = size, category = grp) |>
+    e_graph_edges(edges, source, target, size = size)
 
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
@@ -400,6 +425,8 @@ test_that("e_graph_edges.echarts4rProxy plot responds", {
       proxy_chart()$chart$x$opts$series[[1]]$type,
       "graph"
     )
+    expect_error(echarts4rProxy("line") |>
+                   e_graph_edges(), "must pass edges, source and target")
   })
 })
 

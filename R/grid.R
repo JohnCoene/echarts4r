@@ -50,7 +50,7 @@
 #' # plot all labels & rotate
 #' USArrests |>
 #'   head(10) |>
-#'   tibble::rownames_to_column(var = "State") |> 
+#'   tibble::rownames_to_column(var = "State") |>
 #'   e_charts(State) |>
 #'   e_area(Murder) |>
 #'   e_x_axis(axisLabel = list(interval = 0, rotate = 45)) # rotate
@@ -618,6 +618,9 @@ e_single_axis <- function(e, index = 0, ...) {
 #'   )
 #' @export
 e_axis_labels <- function(e, x = "", y = "") {
+
+  ## TODO
+  # class(e) !="echarts4rProxy" ?? Else this breaks
   e |>
     e_x_axis(name = x) |>
     e_y_axis(name = y)

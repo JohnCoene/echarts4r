@@ -674,7 +674,6 @@ e_contour <- function(e,
   e
 }
 
-# TODO legend color not changing to area color.
 #' Line range chart
 #'
 #' Draw a line range area plot.
@@ -718,6 +717,9 @@ e_lineRange <- function(e,
     stop("timeline not supported", call. = FALSE)
   }
 
+  # Extract the color from areaStyle to use in legend
+  legend_color <- if (!is.null(areaStyle$color)) areaStyle$color else "#032"
+
   for (i in seq_along(e$x$data)) {
     vector <- .build_data2(
       e$x$data[[i]],
@@ -752,7 +754,12 @@ e_lineRange <- function(e,
       e_serie <- append(opts, e_serie) # data after renderItem, data used for Y-sizing only
 
       if (isTRUE(legend)) {
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+        legend_entry <- list(
+          name = name,
+          icon = "rect",  # Use rectangle icon
+          itemStyle = list(color = legend_color)
+        )
+        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(legend_entry))
       }
       e$x$opts$series <- append(e$x$opts$series, list(e_serie))
 

@@ -159,7 +159,6 @@ test_that("e_band2 plot has good data structure and type", {
 #     })
 #
 #     observeEvent(input$update, {
-#       # browser()
 #       # TODO breaks at execute bc it doesnt have an id. e_band2 returns without it. Not class proxy anymore.
 #       chart <- echarts4rProxy("line",
 #                               data = df) |>
@@ -176,7 +175,7 @@ test_that("e_band2 plot has good data structure and type", {
 #     expect_false(proxy_called())
 #
 #     json <- jsonlite::fromJSON(output$line)
-#     browser()
+#     # browser()
 #     expect_equal(
 #       do.call(rbind, json$x$opts$series$data[[1]]$value),
 #       unname(as.matrix( df[c("x", "lwr", "upr")]))
@@ -856,7 +855,6 @@ test_that("e_glm plot has the good data structure and type", {
 })
 
 test_that("e_glm.echarts4rProxy plot responds", {
-
   server <- function(input, output, session) {
     proxy_called <- shiny::reactiveVal(FALSE)
     proxy_chart <- shiny::reactiveVal(NULL)

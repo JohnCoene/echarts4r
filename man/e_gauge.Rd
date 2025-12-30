@@ -5,9 +5,9 @@
 \alias{e_gauge_}
 \title{Gauge}
 \usage{
-e_gauge(e, value, name, rm_x = TRUE, rm_y = TRUE, ...)
+e_gauge(e, value, name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 
-e_gauge_(e, value, name, rm_x = TRUE, rm_y = TRUE, ...)
+e_gauge_(e, value, name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or

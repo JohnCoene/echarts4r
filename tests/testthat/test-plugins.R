@@ -395,7 +395,7 @@ test_that("e_lineRange works", {
   )
 
   # Legend name is correct
-  expect_equal(plot$x$opts$legend$data[[1]], "line range")
+  expect_equal(plot$x$opts$legend$data[[1]]$name, "line range")
 })
 
 test_that("e_lineRange x and y index works", {

@@ -1,7 +1,6 @@
 ### Tests of the functions in the tab "Maps"
 ### https://echarts4r.john-coene.com/articles/map.html
 
-
 test_that("e_map plot has the good data structure and type", {
   set.seed(1)
   cns <- countrycode::codelist$country.name.en[1:5]

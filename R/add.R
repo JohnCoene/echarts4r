@@ -61,6 +61,10 @@ e_bar.echarts4rProxy <- function(e, serie, bind, name = NULL, legend = TRUE, y_i
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
+  # TODO should we add these?
+  # if(is.null(e$chart$x$mapping$x)){
+  #   stop("must pass x in echarts4rProxy()")
+  # }
 
   bd <- .get_bind(deparse(substitute(bind)))
 
@@ -660,9 +664,6 @@ e_effect_scatter.echarts4rProxy <- function(
     rm_x = TRUE,
     rm_y = TRUE,
     ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -2045,9 +2046,6 @@ e_boxplot.echarts4r <- function(e, serie, name = NULL, outliers = TRUE, ...) {
 #' @export
 #' @method e_boxplot echarts4rProxy
 e_boxplot.echarts4rProxy <- function(e, serie, name = NULL, outliers = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
@@ -2188,14 +2186,18 @@ e_gauge.echarts4r <- function(e, value, name = NULL, rm_x = TRUE, rm_y = TRUE, .
   e
 }
 
-# TODO this doesnt work - see unit test
 #' @export
 #' @method e_gauge echarts4rProxy
 e_gauge.echarts4rProxy <- function(e, value, name = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(value)) {
     stop("missing value", call. = FALSE)
   }
-  e <- e$chart <- e_gauge(e$chart, value, name, rm_x, rm_y, ...)
+
+  # Breaks if no data, so I added this.
+  if(is.null(e$chart$x$data[[1]])){
+    stop("provide data in echarts4rProxy")
+  }
+  e$chart <- e_gauge(e$chart, value, name, rm_x, rm_y, ...)
   return(e)
 }
 
@@ -4633,9 +4635,6 @@ e_band2.echarts4rProxy <- function(e, lower, upper,  name = NULL,
                                    x_index = 0,
                                    coord_system = "cartesian2d",
                                    itemStyle = list(borderWidth = 0.5), ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
   if (missing(lower) || missing(upper)) {
     stop("must pass lower and upper", call. = FALSE)
   }

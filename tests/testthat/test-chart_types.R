@@ -334,7 +334,7 @@ test_that("e_step.echarts4rProxy plot responds", {
     observeEvent(input$update, {
       chart <- echarts4rProxy("step",
                               data = test_data) |>
-        e_bar(y, name = "Serie 1") |>
+        e_step(y, name = "Serie 1") |>
         e_execute()
 
       proxy_chart(chart)
@@ -364,7 +364,7 @@ test_that("e_step.echarts4rProxy plot responds", {
 
     expect_equal(
       proxy_chart()$chart$x$opts$series[[1]]$type,
-      "bar"
+      "line"
     )
     expect_error(echarts4rProxy("step", data = test_data) |>
                    e_step(), "must pass serie")
@@ -2082,58 +2082,54 @@ test_that("e_gauge_ plot has the good data structure and type", {
   )
 })
 
+test_that("e_gauge.echarts4rProxy plot responds", {
 
-# test_that("e_gauge.echarts4rProxy plot responds", {
-#
-#   server <- function(input, output, session) {
-#     proxy_called <- shiny::reactiveVal(FALSE)
-#     proxy_chart <- shiny::reactiveVal(NULL)
-#
-#     output$line <- renderEcharts4r({
-#       e_charts() |>
-#         e_gauge(41, "PERCENT")
-#     })
-#
-#     observeEvent(input$update, {
-#       browser()
-#       # TODO Error in e_execute: attempt to apply non-function
-#       chart <- echarts4rProxy("line") |>
-#         e_gauge(value= 2) |>
-#         e_execute()
-#       proxy_chart(chart)
-#
-#       proxy_called(TRUE)
-#     })
-#   }
-#
-#   shiny::testServer(server, {
-#
-#     expect_false(proxy_called())
-#
-#     json <- jsonlite::fromJSON(output$line)
-#     # browser()
-#     expect_equal(
-#       json$x$opts$series$data[[1]]$value,
-#     41L )
-#
-#     session$setInputs(update = 1)
-#     session$flushReact()
-#
-#     # Update to line x
-#     new_values <- proxy_chart()$chart$x$opts$series[[1]]$data |> unlist() |> unname()
-#
-#     expect_equal(new_values,2L)
-#     # Proxy was called with no errors
-#     expect_true(proxy_called())
-#
-#     expect_equal(
-#       proxy_chart()$chart$x$opts$series[[1]]$type,
-#       "gauge"
-#     )
-#     expect_error(echarts4rProxy("radar", data = test_data) |>
-#                    e_radar(), "missing e or value")
-#   })
-# })
+  server <- function(input, output, session) {
+    proxy_called <- shiny::reactiveVal(FALSE)
+    proxy_chart <- shiny::reactiveVal(NULL)
+
+    output$line <- renderEcharts4r({
+      e_charts() |>
+        e_gauge(41, "PERCENT")
+    })
+
+    # This should not require data
+    observeEvent(input$update, {
+      chart <- echarts4rProxy("line", data = iris) |>
+        e_gauge(value= 2) |>
+        e_execute()
+      proxy_chart(chart)
+
+      proxy_called(TRUE)
+    })
+  }
+
+  shiny::testServer(server, {
+
+    expect_false(proxy_called())
+
+    json <- jsonlite::fromJSON(output$line)
+    expect_equal(
+      json$x$opts$series$data[[1]]$value,
+    41L )
+
+    session$setInputs(update = 1)
+    session$flushReact()
+
+    new_values <- proxy_chart()$chart$x$opts$series[[1]]$data |> unlist() |> unname()
+
+    expect_equal(new_values,2L)
+    # Proxy was called with no errors
+    expect_true(proxy_called())
+
+    expect_equal(
+      proxy_chart()$chart$x$opts$series[[1]]$type,
+      "gauge"
+    )
+    expect_error(echarts4rProxy("radar", data = iris) |>
+                   e_gauge(), "missing value")
+  })
+})
 
 test_that("e_gauge expects error when missing e or range", {
   expect_error(iris |> e_charts() |> e_gauge.echarts4r() , "missing e or value")
@@ -2290,7 +2286,6 @@ test_that("e_mark_p has good data structure", {
     1716.3
   )
 })
-
 
 # e_lines_3d ---------------------------------------------------------------
 

@@ -2381,6 +2381,9 @@ e_band2_ <- function(
   if (coord_system != "cartesian2d") {
     stop("only cartesian2d supported", call. = FALSE)
   }
+  if(is.null(e$x$mapping$x)){
+    stop("e$x$mapping$x is NULL")
+  }
 
   args <- list(...)
 
