@@ -102,7 +102,7 @@ test_that("e_band plot has the good data structure and type", {
 #     )
 #
 #     expect_error(echarts4rProxy("line", data = test_data) |>
-#                    e_line(), "must pass serie")
+#                    e_band(), "must pass serie")
 #   })
 # })
 
@@ -197,7 +197,7 @@ test_that("e_band2 plot has good data structure and type", {
 #     )
 #
 #     expect_error(echarts4rProxy("line", data = test_data) |>
-#                    e_line(), "must pass serie")
+#                    e_band2(), "must pass serie")
 #   })
 # })
 

@@ -1,3 +1,5 @@
+#' @keywords internal
+#' @noRd
 get_base_nodes <- function(x) {
   found_values <- list()
 
@@ -125,7 +127,9 @@ e_matrix_parent <- function(e, axis = "x", value, children, ...){
 
     if(length(child_ndx)==0){
       for(i in seq_along(e$x$opts$matrix$x$data )){
-        if(e$x$opts$matrix$x$data[[i]]$value %in% children){
+        data_subset <- e$x$opts$matrix$x$data[[i]]
+        # TODO also check for data_subset$children for nested children ?
+        if("value" %in% names(data_subset) && data_subset$value %in% children){
           child_ndx <- append(child_ndx, i)
         }
       }
@@ -146,7 +150,8 @@ e_matrix_parent <- function(e, axis = "x", value, children, ...){
 
     if(length(child_ndx)==0){
       for(i in seq_along(e$x$opts$matrix$y$data )){
-        if(e$x$opts$matrix$y$data[[i]]$value %in% children){
+        data_subset <- e$x$opts$matrix$y$data[[i]]$value
+        if("value" %in% names(data_subset) && data_subset$value %in% children){
           child_ndx <- append(child_ndx, i)
         }
       }

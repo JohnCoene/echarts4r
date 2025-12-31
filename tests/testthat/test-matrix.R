@@ -87,11 +87,126 @@ test_that("e_matrix appends additional arguments", {
   df <- data.frame(Class = c("A"), Grade = c("1"))
 
   plot <- df |> e_charts() |>
-    e_matrix(xAxis = "Class", yAxis = "Grade", customArg = "test")
+    e_matrix(xAxis = "Class", yAxis = "Grade", bottom = 20)
 
-  expect_equal(plot$x$opts$matrix$customArg, "test")
+  expect_equal(plot$x$opts$matrix$bottom, 20)
 })
 
 # e_matrix_raw ----------------------------------------------------------------
 
+test_that("e_matrix_raw fails informatively without rows or cols", {
+  expect_snapshot(e_matrix_raw(rows = 3), error = TRUE)
+  expect_snapshot(e_matrix_raw(cols = 3), error = TRUE)
+  expect_snapshot(e_matrix_raw(), error = TRUE)
+})
 
+test_that("e_matrix_raw creates matrix structure with specified dimensions", {
+  plot <- e_matrix_raw(rows = 3, cols = 4)
+
+  expect_s3_class(plot, "echarts4r")
+  expect_null(plot$x$opts$yAxis)
+  expect_length(plot$x$opts$matrix$x$data, 4)
+  expect_length(plot$x$opts$matrix$y$data, 3)
+  expect_false(plot$x$opts$matrix$x$show)
+  expect_false(plot$x$opts$matrix$y$show)
+})
+
+test_that("e_matrix_raw appends additional arguments", {
+  plot <- e_matrix_raw(rows = 2, cols = 2, customArg = "test")
+
+  expect_equal(plot$x$opts$matrix$customArg, "test")
+})
+
+test_that("e_matrix_raw creates proper NA structure", {
+  plot <- e_matrix_raw(rows = 2, cols = 3)
+
+  expect_true(all(sapply(plot$x$opts$matrix$x$data, is.na)))
+  expect_true(all(sapply(plot$x$opts$matrix$y$data, is.na)))
+})
+
+# e_matrix_parent ---------------------------------------------------------
+test_that("e_matrix_parent fails informatively without e", {
+  expect_error(e_matrix_parent(),
+               "must pass e")
+})
+
+test_that("e_matrix_parent creates parent node on x axis with direct children", {
+  df <- data.frame(
+    Class = rep(c("Class1", "Class2", "Class3"), each = 3),
+    Grade = c("Grade1", "Grade2", "Grade3")
+  )
+
+  plot <- df |>
+    e_charts() |>
+    e_matrix(xAxis = "Class", yAxis = "Grade") |>
+    e_matrix_parent(axis = "x", value = "Primary", children = c("Class1", "Class2"))
+
+  expect_s3_class(plot, "echarts4r")
+  expect_length(plot$x$opts$matrix$x$data, 2)
+  expect_equal(plot$x$opts$matrix$x$data[[2]]$value, "Primary")
+  expect_length(plot$x$opts$matrix$x$data[[2]]$children, 2)
+})
+
+test_that("e_matrix_parent creates parent node on y axis with direct children", {
+  df <- data.frame(
+    Class = rep(c("Class1", "Class2", "Class3"), each = 3),
+    Grade = c("Grade1", "Grade2", "Grade3")
+  )
+
+  plot <- df |>
+    e_charts() |>
+    e_matrix(xAxis = "Class", yAxis = "Grade") |>
+    e_matrix_parent(axis = "y", value = "High", children = c("Grade1", "Grade2"))
+
+  expect_s3_class(plot, "echarts4r")
+  expect_length(plot$x$opts$matrix$y$data, 2)
+  expect_equal(plot$x$opts$matrix$y$data[[2]]$value, "High")
+  expect_length(plot$x$opts$matrix$y$data[[2]]$children, 2)
+})
+
+test_that("e_matrix_parent fails informatively when children not found", {
+  df <- data.frame(
+    Class = rep(c("Class1", "Class2"), each = 2),
+    Grade = c("Grade1", "Grade2")
+  )
+
+  plot <- df |>
+    e_charts() |>
+    e_matrix(xAxis = "Class", yAxis = "Grade")
+
+  expect_error(e_matrix_parent(plot, axis = "x", value = "Test", children = "NonExistent"), "No children found in the data")
+
+  expect_error(e_matrix_parent(plot, axis = "y", value = "Test", children = "NonExistent"), "No children found in the data")
+})
+
+test_that("e_matrix_parent appends additional arguments", {
+  df <- data.frame(
+    Class = rep(c("Class1", "Class2"), each = 2),
+    Grade = c("Grade1", "Grade2")
+  )
+
+  plot <- df |>
+    e_charts() |>
+    e_matrix(xAxis = "Class", yAxis = "Grade") |>
+    e_matrix_parent(axis = "x", value = "Primary", children = "Class1", customArg = "test")
+
+  expect_equal(plot$x$opts$matrix$x$data[[2]]$customArg, "test")
+})
+
+# TODO check this - maybe need value
+# test_that("e_matrix_parent finds nested children", {
+#   df <- data.frame(
+#     Class = rep(c("Class1", "Class2"), each = 2),
+#     Grade = c("Grade1", "Grade2")
+#   )
+#
+#   plot <- df |>
+#     e_charts() |>
+#     e_matrix(xAxis = "Class", yAxis = "Grade") |>
+#     e_matrix_parent(axis = "x", value = "Primary", children = "Class1")
+#   plot |>
+#     e_matrix_parent(axis = "x", value = "AllClasses", children = "Class1")
+#
+#   expect_s3_class(plot, "echarts4r")
+#   expect_equal(plot$x$opts$matrix$x$data[[2]]$value, "AllClasses")
+# })

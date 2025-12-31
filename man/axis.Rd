@@ -121,7 +121,7 @@ cars |>
 # plot all labels & rotate
 USArrests |>
   head(10) |>
-  tibble::rownames_to_column(var = "State") |> 
+  tibble::rownames_to_column(var = "State") |>
   e_charts(State) |>
   e_area(Murder) |>
   e_x_axis(axisLabel = list(interval = 0, rotate = 45)) # rotate
