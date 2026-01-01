@@ -165,25 +165,26 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
   l
 }
 
-.build_data_p <- function(data, ..., vector = FALSE, scale = NULL, symbol_size = 1) {
-  data <- data |>
-    dplyr::select(...) |>
-    purrr::set_names(NULL)
-
-  if (!is.null(scale)) {
-    data[[4]] <- scale(data[[3]]) * symbol_size
-  } else {
-    data[[4]] <- data[[3]]
-  }
-
-  if (isTRUE(vector)) {
-    unlist(data)
-  } else {
-    apply(data, 1, function(x) {
-      list(value = unlist(x, use.names = FALSE))
-    })
-  }
-}
+# Not being used
+# .build_data_p <- function(data, ..., vector = FALSE, scale = NULL, symbol_size = 1) {
+#   data <- data |>
+#     dplyr::select(...) |>
+#     purrr::set_names(NULL)
+#
+#   if (!is.null(scale)) {
+#     data[[4]] <- scale(data[[3]]) * symbol_size
+#   } else {
+#     data[[4]] <- data[[3]]
+#   }
+#
+#   if (isTRUE(vector)) {
+#     unlist(data)
+#   } else {
+#     apply(data, 1, function(x) {
+#       list(value = unlist(x, use.names = FALSE))
+#     })
+#   }
+# }
 
 .build_sankey_nodes <- function(data, source, target) {
   nodes <- c(
@@ -263,7 +264,7 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 .build_graph_edges <- function(edges, source, target, value, size, color) {
   row.names(edges) <- NULL
 
-  if (is.null(size) && is.null(color)) {
+  if (rlang::quo_is_null(size) && rlang::quo_is_null(color)) {
     data <- edges |>
       dplyr::select(
         c(source = !!source,
@@ -274,7 +275,7 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
     x <- apply(data, 1, as.list)
   }
 
-  if (!is.null(size) && is.null(color)) {
+  if (!rlang::quo_is_null(size) && rlang::quo_is_null(color)) {
     data <- edges |>
       dplyr::select(
         c(source = !!source,
@@ -288,7 +289,7 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
         source = unname(x["source"]),
         target = unname(x["target"]),
         value = {
-          if (is.null(value)) "" else unname(x["value"])
+          if (rlang::quo_is_null(value)) "" else unname(x["value"])
         },
         symbolSize = c(5, 20),
         lineStyle = list(width = unname(x["size"]))
@@ -296,7 +297,7 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
     })
   }
 
-  if (!is.null(color) && is.null(size)) {
+  if (!rlang::quo_is_null(color) && rlang::quo_is_null(size)) {
     data <- edges |>
       dplyr::select(
         c(source = !!source,
@@ -310,14 +311,14 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
         source = unname(x["source"]),
         target = unname(x["target"]),
         value = {
-          if (is.null(value)) "" else unname(x["value"])
+          if (rlang::quo_is_null(value)) "" else unname(x["value"])
         },
         lineStyle = list(color = unname(x["color"]))
       )
     })
   }
 
-  if (!is.null(size) && !is.null(color)) {
+  if (!rlang::quo_is_null(size) && !rlang::quo_is_null(color)) {
     data <- edges |>
       dplyr::select(
         c(source = !!source,
@@ -332,7 +333,7 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
         source = unname(x["source"]),
         target = unname(x["target"]),
         value = {
-          if (is.null(value)) "" else unname(x["value"])
+          if (rlang::quo_is_null(value)) "" else unname(x["value"])
         },
         symbolSize = c(5, 20),
         lineStyle = list(
@@ -868,4 +869,17 @@ check_installed <- function(pkg) {
     sz <- size
   }
   return(sz)
+}
+
+.actions_btn <- function(e, opts, btn){
+  if (!is.null(btn)) {
+    if (!btn %in% names(e$x$buttons)) {
+      e$x$buttons[[btn]] <- list(opts)
+    } else {
+      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
+    }
+  } else {
+    e$x$events <- append(e$x$events, list(opts))
+  }
+  return(e)
 }

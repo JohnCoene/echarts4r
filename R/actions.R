@@ -28,15 +28,7 @@ e_highlight <- function(e, series_index = NULL, series_name = NULL, btn = NULL) 
   if (!is.null(series_name)) data$seriesName <- as.list(series_name)
   opts$data <- data
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -55,15 +47,7 @@ e_downplay <- function(e, series_index = NULL, series_name = NULL, btn = NULL) {
   if (!is.null(series_name)) data$seriesName <- as.list(series_name)
   opts$data <- data
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -95,15 +79,7 @@ e_showtip <- function(e, ..., btn = NULL) {
   data <- list(type = "showTip", ...)
   opts$data <- data
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -115,15 +91,7 @@ e_hidetip <- function(e, ..., btn = NULL) {
   data <- list(type = "hideTip", ...)
   opts$data <- data
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -155,15 +123,7 @@ e_zoom <- function(e, ..., btn = NULL) {
   opts <- list()
   opts$data <- list(type = "dataZoom", ...)
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -195,15 +155,7 @@ e_visual_map_range <- function(e, ..., btn = NULL) {
   if (!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "selectDataRange", ...)
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -232,15 +184,7 @@ e_pie_select <- function(e, ..., btn = NULL) {
   if (!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "pieSelect", ...)
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -252,15 +196,7 @@ e_pie_unselect <- function(e, ..., btn = NULL) {
   if (!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "pieUnSelect", ...)
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -307,15 +243,7 @@ e_focus_adjacency <- function(e, ..., btn = NULL) {
   if (!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "focusNodeAdjacency", ...)
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -327,15 +255,7 @@ e_unfocus_adjacency <- function(e, ..., btn = NULL) {
   if (!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "unfocusNodeAdjacency", ...)
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -376,15 +296,7 @@ e_legend_select <- function(e, name, btn = NULL) {
     opts$data$name <- name
   }
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -404,15 +316,7 @@ e_legend_unselect <- function(e, name, btn = NULL) {
     opts$data$name <- name
   }
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -432,15 +336,7 @@ e_legend_toggle_select <- function(e, name, btn = NULL) {
     opts$data$name <- name
   }
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -464,15 +360,7 @@ e_legend_scroll <- function(e,
     opts$data$legendId <- legend_id
   }
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -497,15 +385,7 @@ e_restore <- function(e, btn = NULL) {
   if (!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "restore")
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -551,15 +431,7 @@ e_map_select <- function(e, ..., btn = NULL) {
   if (!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "mapSelect", ...)
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -571,15 +443,7 @@ e_map_unselect <- function(e, ..., btn = NULL) {
   if (!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "mapUnSelect", ...)
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }
@@ -591,15 +455,7 @@ e_map_toggle_select <- function(e, ..., btn = NULL) {
   if (!is.null(btn)) opts$id <- btn
   opts$data <- list(type = "mapToggleSelect", ...)
 
-  if (!is.null(btn)) {
-    if (!btn %in% names(e$x$buttons)) {
-      e$x$buttons[[btn]] <- list(opts)
-    } else {
-      e$x$buttons[[btn]] <- append(e$x$buttons[[btn]], list(opts))
-    }
-  } else {
-    e$x$events <- append(e$x$events, list(opts))
-  }
+  e <- .actions_btn(e = e, opts = opts, btn = btn)
 
   return(e)
 }

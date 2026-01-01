@@ -27,6 +27,7 @@ Imports:
   countrycode,
   geofacet,
   broom,
+  rlang,
   shiny,
   scales,
   corrplot,

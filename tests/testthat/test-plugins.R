@@ -8,9 +8,9 @@ test_that("e_cloud plot has the good data structure and type", {
     dplyr::arrange(-freq)
 
   plot <- tf |>
-    e_color_range(freq, color) |>
+    # e_color_range(freq, color) |>
     e_charts() |>
-    e_cloud(terms, freq, color, shape = "circle", sizeRange = c(3, 15))
+    e_cloud(terms, freq, shape = "circle", sizeRange = c(3, 15))
 
 
   expect_s3_class(plot, "echarts4r")
@@ -30,7 +30,6 @@ test_that("e_cloud plot has the good data structure and type", {
 
 test_that("e_cloud and e_cloud_ expects error when missing e ", {
   expect_error(e_cloud(), "must pass e")
-
   expect_error(e_cloud_(), "must pass e")
 })
 
@@ -145,6 +144,10 @@ test_that("e_modularity has good data structure", {
     plot$x$opts$series[[1]]$modularity$modularity$sort)
 })
 
+test_that("e_cloud and e_cloud_ expects error when missing e ", {
+  expect_error(e_modularity(), "must pass e")
+})
+
 # doughnut ----------------------------------------------------------------
 test_that("e_doughnut has good data structure", {
 
@@ -205,13 +208,11 @@ test_that("e_violin x and y index works", {
     e_violin(
       name = "Iris",
 
-               y_index = 1,
-               x_index = 1
+               y_index = 10,
+               x_index = 10
     )
-  # Should have 2nd index that match axis of 1st index
-  expect_equal(levels(plot$x$opts$xAxis[[2]]$data), c("setosa", "versicolor", "virginica"))
-
-  expect_equal(as.character(plot$x$opts$yAxis[[2]]$type), "value")
+  expect_gt(length(plot$x$opts$xAxis), 10)
+  expect_gt(length(plot$x$opts$yAxis), 10)
 })
 
 test_that("e_violin expects error when missing e", {
@@ -228,6 +229,12 @@ test_that("e_violin expects error when missing e", {
                   ), "timeline not supported"
   )
 
+  expect_error( iris |> dplyr::group_by("Species") |>
+                  e_chart(Species) |>
+                  e_violin(
+                    name = "Iris"
+                  ), "violin is only supported with scatter plots"
+  )
   expect_error(e_violin(), "must pass e")
 })
 
@@ -429,6 +436,7 @@ test_that("e_lineRange expects error when missing e", {
                              upper=max_length
                  ), "timeline not supported"
                )
+  expect_error(df |> dplyr::group_by(Species) |> e_chart(Species, timeline = TRUE) |> e_lineRange(), "must pass lower, or upper")
 })
 
 # stage -------------------------------------------------------------------

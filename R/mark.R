@@ -324,7 +324,6 @@ e_mark_p.echarts4r <- function(e, type = "point", serie_index = NULL, data = NUL
 #' @method e_mark_p echarts4rProxy
 #' @export
 e_mark_p.echarts4rProxy <- function(e, type = "point", serie_index = NULL, data = NULL, ...) {
-  if (missing(e)) stop("must pass e", call. = FALSE)
   e$chart <- e_mark_p_(e$chart, type, serie_index, data, ...)
   return(e)
 }

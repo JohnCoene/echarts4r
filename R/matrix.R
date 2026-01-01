@@ -128,7 +128,7 @@ e_matrix_parent <- function(e, axis = "x", value, children, ...){
     if(length(child_ndx)==0){
       for(i in seq_along(e$x$opts$matrix$x$data )){
         data_subset <- e$x$opts$matrix$x$data[[i]]
-        # TODO also check for data_subset$children for nested children ?
+        # TODO also check for data_subset$children for nested children ? See unit test.
         if("value" %in% names(data_subset) && data_subset$value %in% children){
           child_ndx <- append(child_ndx, i)
         }
@@ -150,7 +150,7 @@ e_matrix_parent <- function(e, axis = "x", value, children, ...){
 
     if(length(child_ndx)==0){
       for(i in seq_along(e$x$opts$matrix$y$data )){
-        data_subset <- e$x$opts$matrix$y$data[[i]]$value
+        data_subset <- e$x$opts$matrix$y$data[[i]]
         if("value" %in% names(data_subset) && data_subset$value %in% children){
           child_ndx <- append(child_ndx, i)
         }
@@ -233,7 +233,6 @@ e_format_matrix_axis <- function(e, axis = "x", ...){
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-
 
   if (missing(axis)) {
     stop("must specify which axis", call. = FALSE)
@@ -429,11 +428,12 @@ e_title_matrix <- function(e, ...){
   e
 }
 
+# TODO example does not include e_geoFacet
 
 #' Create geoFacet Echart
 #'
 #' generates a faceted chart using matrix functionality. Provides similar
-#' functionality to e_facet(). Similar to geoFacet package.Timeline NOT
+#' functionality to e_facet(). Similar to geoFacet package. Timeline is NOT
 #' supported.
 #'
 #' @inheritParams e_bar
@@ -454,7 +454,7 @@ e_title_matrix <- function(e, ...){
 #'
 #' @examples
 #' echart <- iris |>
-#' group_by(Species) |>
+#'   group_by(Species) |>
 #'   e_charts(Sepal.Length) |>
 #'   e_line(Sepal.Width) |>
 #'   e_tooltip(trigger = "axis")
@@ -484,7 +484,7 @@ e_geoFacet <- function(e,
   }
 
   if(typeof(grid)=="character"){
-    # TODO this is an internal function - may be a CRAN issue
+    # TODO this is an internal function - may be a CRAN issue, Also make this a unit test.
     grid <- geofacet:::get_grid(grid)
   }
 
@@ -597,6 +597,7 @@ e_pie_matrix <- function(e, x, y, legend = TRUE, ...){
     }
   }
 
+  # TODO is timetime supported?
   if (isTRUE(e$x$tl)) {
     if (isTRUE(legend)) {
       e$x$opts$baseOption$legend$data <- append(
@@ -749,5 +750,3 @@ e_heatmap_matrix <- function(e, z, ...){
 
   e
 }
-
-

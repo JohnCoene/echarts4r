@@ -68,7 +68,7 @@ containing the name of a premade geoFacet grid from the geoFacet package.}
 Adds an already existing echart to your new matrix chart. Charts with timelines are not supported.
 
 generates a faceted chart using matrix functionality. Provides similar
-functionality to e_facet(). Similar to geoFacet package.Timeline NOT
+functionality to e_facet(). Similar to geoFacet package. Timeline is NOT
 supported.
 }
 \examples{
@@ -85,7 +85,7 @@ e_matrix_addChart(echart, coord = list(
 
 
 echart <- iris |>
-group_by(Species) |>
+  group_by(Species) |>
   e_charts(Sepal.Length) |>
   e_line(Sepal.Width) |>
   e_tooltip(trigger = "axis")
