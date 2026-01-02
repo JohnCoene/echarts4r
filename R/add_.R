@@ -38,7 +38,7 @@ e_bar_ <- function(
 
     if (coord_system == "polar") {
       e_serie$data <- e$x$data[[i]] |>
-        dplyr::select(dplyr::all_of(serie)) |>
+        dplyr::select(dplyr::all_of(c(e$x$mapping$x, serie))) |>
         unlist() |>
         unname() |>
         as.list()
@@ -1738,7 +1738,6 @@ e_lines_ <- function(
   # remove axis
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
-
 
   for (i in seq_along(e$x$data)) {
     data <- .map_lines(e, source_lon, source_lat, target_lon, target_lat, source_name, target_name, value, i)
