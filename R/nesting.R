@@ -9,10 +9,10 @@
 #' @param .data A dataset to use, if none are specified than
 #' the original dataset passed to `e_charts` is used.
 #' @param value The column to map to the parameter.
-#' 
+#'
 #' @section Functions:
-#' 
-#' - `e_add_nested`: Adds nested data, e.g.: 
+#'
+#' - `e_add_nested`: Adds nested data, e.g.:
 #' `e_add_nested("itemStyle", color, fontBold)` creates
 #' `\{itemStyle: \{color: 'red', fontBold: 'bold'\}\}`.
 #' - `e_add_unnested`: Adds unnested data, e.g.:
@@ -66,7 +66,7 @@
 #'     show,
 #'     fontStyle
 #'   )
-#' 
+#'
 #' @name nesting
 #' @export
 e_add <- function(e, param, ..., .serie = NULL, .data = NULL) {
@@ -75,7 +75,7 @@ e_add <- function(e, param, ..., .serie = NULL, .data = NULL) {
 }
 
 #' @rdname nesting
-#' @export 
+#' @export
 e_add_nested <- function(e, param, ..., .serie = NULL, .data = NULL) {
   if (missing(e) || missing(param)) {
     stop("missing e or param", call. = FALSE)
@@ -98,11 +98,18 @@ e_add_nested <- function(e, param, ..., .serie = NULL, .data = NULL) {
         for(k in seq_along(e$x$opts$series)){
           if(!is.null(.serie) && .serie != k)
             next
+          # If polar, 'itemStyle' may be in a different location.
+          if(!is.numeric(e$x$opts$series[[k]]$data[[j]])){
         e$x$opts$series[[k]]$data[[j]][[param]] <- data[[j]]
+          } else {
+            e$x$opts$series[[k]]$data[[j]] <- list(
+              value = e$x$opts$series[[k]]$data[[j]],
+              itemStyle = data[[j]])
+          }
         }
       } else {
         for(k in seq_along(e$x$opts$options[[i]]$series)){
-          if(!is.null(.serie) && .serie != k) 
+          if(!is.null(.serie) && .serie != k)
             next
           e$x$opts$options[[i]]$series[[k]]$data[[j]][[param]] <- data[[j]]
         }
@@ -113,7 +120,7 @@ e_add_nested <- function(e, param, ..., .serie = NULL, .data = NULL) {
 }
 
 #' @rdname nesting
-#' @export 
+#' @export
 e_add_unnested <- function(e, param, value, .serie = NULL, .data = NULL) {
   if (missing(e) || missing(param) || missing(value)) {
     stop("missing e, param, or value", call. = FALSE)
@@ -126,7 +133,7 @@ e_add_unnested <- function(e, param, value, .serie = NULL, .data = NULL) {
 
   for (i in seq_along(ds)) {
     data <- ds[[i]] |>
-      dplyr::pull({{ value }}) |> 
+      dplyr::pull({{ value }}) |>
       unname()
 
     for (j in seq_along(data)) {

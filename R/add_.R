@@ -38,7 +38,7 @@ e_bar_ <- function(
 
     if (coord_system == "polar") {
       e_serie$data <- e$x$data[[i]] |>
-        dplyr::select(dplyr::all_of(c(e$x$mapping$x, serie))) |>
+        dplyr::select(dplyr::all_of(serie)) |>
         unlist() |>
         unname() |>
         as.list()
