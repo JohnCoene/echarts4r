@@ -89,6 +89,8 @@ e_mark_point <- function(e, serie = NULL, data = NULL, ..., title = NULL, title_
 
   if (is.null(serie)) {
     index <- seq_along(if (e$x$tl) e$x$opts$options else e$x$opts$series)
+  } else if (e$x$tl){
+    index <- 1
   } else {
     index <- .get_index(e, serie)
   }
@@ -334,10 +336,11 @@ e_mark_p_ <- function(e, type, serie_index, data = NULL, ...) {
   if (missing(e)) stop("must pass e", call. = FALSE)
   if (missing(type)) stop("must pass type", call. = FALSE)
   mtype <- type
+
+  if (!mtype %in% c("point", "line", "area")) stop("type must be line,point or area", call. = FALSE)
   if (!startsWith(mtype, "mark")) {
     mtype <- switch(type, "point" = "markPoint", "line" = "markLine", "area" = "markArea")
   }
-  if (!startsWith(mtype, "mark")) stop("type must be line,point or area", call. = FALSE)
 
   index <- ifelse(is.null(serie_index), 1, as.numeric(serie_index))
 

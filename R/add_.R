@@ -1040,12 +1040,10 @@ e_parallel_ <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = li
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
-  data <- e$x$data[[1]] |>
-    dplyr::select(...)
-
-  df <- data
+  data <- e$x$data[[1]][, c(...), drop = FALSE]
 
   # remove names
+  df <- data
   row.names(data) <- NULL
   data <- unname(data)
 
@@ -1658,6 +1656,9 @@ e_surface_ <- function(e, y, z, bind = NULL, name = NULL, rm_x = TRUE, rm_y = TR
   if (missing(y) || missing(z)) {
     stop("must pass y and z", call. = FALSE)
   }
+  if(e$x$tl)(
+    stop("timeline not supported")
+  )
 
   # remove axis
   e <- .rm_axis(e, rm_x, "x")
@@ -1911,6 +1912,9 @@ e_flow_gl_ <- function(e, y, sx, sy, color = NULL, name = NULL, coord_system = N
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
+  if(e$x$tl)(
+    stop("timeline not supported")
+  )
 
   e$x$mainOpts$renderer <- "webgl"
 
@@ -2002,7 +2006,6 @@ e_scatter_gl_ <- function(e, y, z, name = NULL, coord_system = "geo", rm_x = TRU
           e$x$opts$baseOption$grid3D <- list(list(show = TRUE))
         }
       }
-
       e <- .set_axis_3D(e, "x", e$x$mapping$x, 0)
       e <- .set_axis_3D(e, "y", y, 0)
       e <- .set_axis_3D(e, "z", z, 0)
@@ -2326,6 +2329,9 @@ e_band_ <- function(
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
+  if(e$x$tl)(
+    stop("timeline not supported")
+  )
 
   if (missing(min) || missing(max)) {
     stop("must pass min and max", call. = FALSE)
@@ -2454,7 +2460,7 @@ e_band2_ <- function(
   }
   if (isTRUE(e$x$tl)) {
     series_opts <- list(
-      name = name,
+      name = nm,
       type = "custom",
       yAxisIndex = y_index,
       xAxisIndex = x_index,
@@ -2466,7 +2472,7 @@ e_band2_ <- function(
     )
 
     if (isTRUE(legend)) {
-      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
+      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(nm))
     }
     e$x$opts$baseOption$series <- append(
       e$x$opts$baseOption$series,

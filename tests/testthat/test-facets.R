@@ -118,11 +118,13 @@ test_that("e_facet adjusts dimensions based on legend position", {
   result_bottom <- e_facet(e, rows = 2, cols = 2, legend_pos = "bottom")
   result_left <- e_facet(e, rows = 2, cols = 2, legend_pos = "left")
   result_right <- e_facet(e, rows = 2, cols = 2, legend_pos = "right")
+  result_none <- e_facet(e, rows = 2, cols = 2, legend_pos = "NONE")
 
   expect_s3_class(result_top, "echarts4r")
   expect_s3_class(result_bottom, "echarts4r")
   expect_s3_class(result_left, "echarts4r")
   expect_s3_class(result_right, "echarts4r")
+  expect_s3_class(result_none, "echarts4r")
 })
 
 test_that("e_facet errors informatively without chart type", {

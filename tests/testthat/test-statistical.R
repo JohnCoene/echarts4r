@@ -19,7 +19,7 @@ test_that("e_band plot has the good data structure and type", {
     e_charts(x) |>
     e_line(y) |>
     e_band(lwr, upr)
-    plot$x$opts
+
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
 
@@ -37,6 +37,8 @@ test_that("e_band plot has the good data structure and type", {
     plot$x$opts$series[[1]]$type,
     "line"
   )
+  expect_error(df |> dplyr::group_by(x) |> e_chart(timeline = TRUE) |>
+                 e_band(lwr, upre) , "timeline not supported")
 })
 
 # test_that("e_band.echarts4rProxy plot responds", {
@@ -135,6 +137,32 @@ test_that("e_band2 plot has good data structure and type", {
   )
 })
 
+test_that("e_band2 timeline works", {
+
+  df <- data.frame(
+    x = 1:5,
+    y = round(runif(5, 5, 10), 6),
+    group = c("A", "A", "A", "B", "B")
+  ) |>
+    dplyr::mutate(
+      lwr = round(y - runif(5, 1, 3), 6),
+      upr = y + round(runif(5, 2, 4), 6)
+    )
+
+  plot <- df |> dplyr::group_by(group) |> e_chart(x, timeline = TRUE) |>
+    e_line(y) |>
+    e_band2(lwr, upr)
+
+  expect_true(plot$x$tl)
+
+  # Time series
+  expect_equal(
+    plot$x$opts$baseOption$timeline$data,
+    list("A", "B")
+  )
+
+  expect_equal(plot$x$opts$baseOption$series[[2]]$type, "custom")
+})
 # test_that("e_band2.echarts4rProxy plot responds", {
 #
 #   set.seed(1)
@@ -334,6 +362,31 @@ test_that("e_error_bar plot has the good data structure and type", {
   )
 })
 
+test_that("e_error_bar timeline works", {
+
+  df <- data.frame(
+    x = factor(c(1, 2)),
+    y = c(1, 5),
+    upper = c(1.1, 5.3),
+    lower = c(0.8, 4.3),
+    group = c("A", "B")
+  )
+
+  plot <- df |> dplyr::group_by(group) |> e_chart(x, timeline = TRUE) |>
+    e_bar(y) |>
+    e_error_bar(lower, upper)
+
+  expect_true(plot$x$tl)
+
+  # Time series
+  expect_equal(
+    plot$x$opts$baseOption$timeline$data,
+    list("A", "B")
+  )
+
+  expect_equal(plot$x$opts$baseOption$series[[2]]$type, "custom")
+})
+
 test_that("e_error_bar.echarts4rProxy plot responds", {
 
   set.seed(1)
@@ -453,6 +506,36 @@ test_that("e_boxplot plot has the good data structure and type", {
     "boxplot"
   )
 })
+
+# test_that("e_boxplot timeline works", {
+#
+#   df <- data.frame(
+#     x = c(
+#       round(rnorm(100), 5),
+#       round(runif(100, -5, 10), 5),
+#       round(rnorm(100, 10, 3), 5)
+#     ),
+#     grp = c(
+#       rep(LETTERS[1], 100),
+#       rep(LETTERS[2], 100),
+#       rep(LETTERS[3], 100)
+#     ),
+#     group = rep("A", 100)
+#   )
+#   # Cant get this work. Plot breaks when group is removed from e_chart()
+#   plot <- df |> dplyr::group_by(group) |> e_chart(group, timeline = TRUE) |>
+#     e_boxplot(x)
+#
+#   expect_true(plot$x$tl)
+#
+#   # Time series
+#   expect_equal(
+#     plot$x$opts$baseOption$timeline$data,
+#     list("A", "B")
+#   )
+#
+#   expect_equal(plot$x$opts$baseOption$series[[2]]$type, "custom")
+# })
 
 test_that("e_boxplot.echarts4rProxy plot responds", {
 
@@ -673,6 +756,35 @@ test_that("e_density plot has the good data structure and type", {
     plot$x$opts$series[[2]]$type,
     "line"
   )
+})
+
+test_that("e_density timeline works", {
+
+  df <- data.frame(
+    x = 1:10,
+    y = rnorm(10, 20, 12),
+    group = rep(c("A", "B"), 5)
+  )
+
+  plot <- df |> dplyr::group_by(group) |> e_chart( timeline = TRUE) |>
+    e_histogram(y) |>
+    e_density(
+      y,
+      name = "density",
+      areaStyle = list(opacity = .4),
+      smooth = TRUE,
+      y_index = 1
+    )
+
+  expect_true(plot$x$tl)
+
+  # Time series
+  expect_equal(
+    plot$x$opts$baseOption$timeline$data,
+    list("A", "B")
+  )
+
+  expect_equal(plot$x$opts$baseOption$series[[2]]$type, "line")
 })
 
 test_that("e_density.echarts4rProxy plot responds", {

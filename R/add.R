@@ -1176,6 +1176,9 @@ e_graph_gl.echarts4r <- function(e, layout = "force", name = NULL, rm_x = TRUE, 
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
+  if(e$x$tl)(
+    stop("timeline not supported")
+  )
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 

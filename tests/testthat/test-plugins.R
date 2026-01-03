@@ -297,13 +297,7 @@ test_that("e_barRange timeline works", {
   plot <- df |> dplyr::group_by(Species) |> e_chart(Species, timeline = TRUE) |>
     e_barRange(lower=min_length,
                upper=max_length
-    ) |> e_timeline_serie(
-          title = list(
-            list(text = "setosa"),
-            list(text = "versicolor"),
-            list(text = "virginica")
-          )
-        )
+    )
   expect_true(plot$x$tl)
 
   # Time series

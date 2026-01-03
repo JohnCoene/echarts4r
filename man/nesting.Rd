@@ -43,7 +43,7 @@ It allows adding those nested data points, see the examples below.
 \section{Functions}{
 
 
-- `e_add_nested`: Adds nested data, e.g.: 
+- `e_add_nested`: Adds nested data, e.g.:
 `e_add_nested("itemStyle", color, fontBold)` creates
 `\{itemStyle: \{color: 'red', fontBold: 'bold'\}\}`.
 - `e_add_unnested`: Adds unnested data, e.g.:

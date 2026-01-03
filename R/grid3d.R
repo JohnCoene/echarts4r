@@ -45,7 +45,13 @@ e_axis_3d <- function(e, axis = c("x", "y", "z"), index = 0, ...) {
   axis <- .r2axis3D(axis[1])
 
   r.index <- index + 1
-  max <- length(e$x$opts[[axis]])
+
+  x_data <- if(e$x$tl){
+    e$x$opts$baseOption[[axis]]
+  } else {
+      e$x$opts[[axis]]}
+
+  max <- length(x_data)
 
   if (r.index > max) {
     stop("invalid axis", call. = FALSE)
@@ -142,14 +148,14 @@ e_grid_3d <- function(e, index = 0, ...) {
 
   r.index <- index + 1
 
-  # initialise of not existing
+  # initialise if not existing
   if (!e$x$tl) {
     if (!length(e$x$opts[["grid3D"]])) {
-      e$x$opts$grid3D <- list()
+      e$x$opts$grid3D <- list(NULL)
     }
   } else {
     if (!length(e$x$opts$baseOption[["grid3D"]])) {
-      e$x$opts$baseOption$grid3D <- list()
+      e$x$opts$baseOption$grid3D <- list(NULL)
     }
   }
 

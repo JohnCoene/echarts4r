@@ -24,22 +24,22 @@ __This is experimental__
 Morph between graphs.
 }
 \examples{
-mtcars2 <- mtcars |> 
-  head() |> 
+mtcars2 <- mtcars |>
+  head() |>
   tibble::rownames_to_column("model")
 
-e1 <- mtcars2 |> 
-  e_charts(model) |> 
+e1 <- mtcars2 |>
+  e_charts(model) |>
   e_bar(
-    carb, 
+    carb,
     universalTransition = TRUE,
     animationDurationUpdate = 1000L
   )
 
-e2 <- mtcars2 |> 
-  e_charts(model) |> 
+e2 <- mtcars2 |>
+  e_charts(model) |>
   e_pie(
-    carb, 
+    carb,
     universalTransition = TRUE,
     animationDurationUpdate = 1000L
   )

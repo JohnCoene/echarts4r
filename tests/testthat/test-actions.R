@@ -321,7 +321,7 @@ test_that("e_legend_toggle_select appends to existing button actions", {
   expect_s3_class(result, "echarts4r")
   expect_equal(result$x$buttons$BUTTON[[1]]$data$type, "legendToggleSelect")
   expect_equal(result$x$buttons$BUTTON[[1]]$data$name,  "Quebec")
-  expect_error(e |> e_legend_unselect(), "missing name")
+  expect_error(e |> e_legend_toggle_select(), "missing name")
 })
 
 # e_legend_scroll ------------------------------------------------------
@@ -332,11 +332,12 @@ test_that("e_legend_scroll appends to existing button actions", {
     e_legend(type = 'scroll') |>
     e_scatter(uptake)
 
-  result <- e |> e_legend_scroll(scroll_index = 7, btn = "BUTTON") |> e_button("BUTTON")
+  result <- e |> e_legend_scroll(scroll_index = 7, btn = "BUTTON", legend_id = "legend") |> e_button("BUTTON")
 
   expect_s3_class(result, "echarts4r")
   expect_equal(result$x$buttons$BUTTON[[1]]$data$type, "legendScroll")
   expect_equal(result$x$buttons$BUTTON[[1]]$data$scrollDataIndex, 7)
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$legend, "legend")
   expect_error(e |> e_legend_unselect(), "missing name")
 })
 

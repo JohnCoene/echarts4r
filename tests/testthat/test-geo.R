@@ -32,6 +32,18 @@ test_that("e_geo_3d plot has the good data structure and type", {
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
 
+  missing_items <- choropleth |>
+    e_charts(countries) |>
+    e_geo_3d()
+  expect_s3_class(missing_items, "echarts4r")
+  expect_s3_class(missing_items, "htmlwidget")
+
+  missing_items_ <- choropleth |>
+    e_charts(countries) |>
+    e_geo_3d_()
+
+  expect_s3_class(missing_items_, "echarts4r")
+  expect_s3_class(missing_items_, "htmlwidget")
 })
 
 test_that("e_geo_3d.echarts4r and e_geo_3d_ expects error when missing e or serie", {

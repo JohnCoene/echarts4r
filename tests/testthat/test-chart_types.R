@@ -1573,10 +1573,10 @@ test_that("e_parallel plot has the good data structure and type", {
     plot$x$opts$series$type,
     "parallel"
   )
-
-  expect_error(df |> dplyr::group_by(price) |> e_chart(timeline = TRUE) |>
+e <- df |> dplyr::group_by(price) |> e_chart(timeline = TRUE)
+  expect_error(e |>
                  e_parallel(source, target, value) , "timeline not supported")
-  expect_error(df |> dplyr::group_by(price) |> e_chart(timeline = TRUE) |>
+  expect_error(e |>
                  e_parallel_("source", "target", "value") , "timeline not supported")
 })
 
@@ -2171,7 +2171,7 @@ test_that("e_treemap plot has the good data structure and type", {
     plot$x$opts$series[[1]]$type,
     "treemap"
   )
-  expect_error(tree |> dplyr::group_by(name) |> e_chart(timeline = TRUE) |>
+  expect_error(df |> dplyr::group_by(name) |> e_chart(timeline = TRUE) |>
                  e_treemap() , "timeline not supported")
 })
 

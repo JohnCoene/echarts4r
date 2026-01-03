@@ -42,7 +42,7 @@
 #' @export
 e_timeline_opts <- function(e, axis_type = "category", ...) {
   if (missing(e)) {
-    stop("missing e", call. = FALSE)
+    stop("must pass e", call. = FALSE)
   }
 
   if (!e$x$tl) {
@@ -60,7 +60,7 @@ e_timeline_opts <- function(e, axis_type = "category", ...) {
 #' @export
 e_timeline_serie <- function(e, ..., index = 1) {
   if (missing(e)) {
-    stop("missing e", call. = FALSE)
+    stop("must pass e", call. = FALSE)
   }
 
   args <- list(...)
@@ -85,7 +85,7 @@ e_timeline_serie <- function(e, ..., index = 1) {
 #' @export
 e_timeline_on_serie <- function(e, ..., serie_index) {
   if (missing(e) || missing(serie_index)) {
-    stop("missing e or serie_index", call. = FALSE)
+    stop("must pass e or serie_index", call. = FALSE)
   }
 
   args <- list(...)

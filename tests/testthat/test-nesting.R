@@ -173,14 +173,10 @@ test_that("e_add_unnested works with polar", {
     e_angle_axis(x) |>
     e_radius_axis() |>
     e_bar(y, coord_system = "polar") |>
-    e_add_nested("symbolSize", size)
-
-  result <- nested |>
     e_add_unnested("symbolSize", size)
-
-  expect_equal(result$x$opts$series[[1]]$data[[1]]$symbolSize, 5)
-  expect_equal(result$x$opts$series[[1]]$data[[2]]$symbolSize, 10)
-  expect_equal(result$x$opts$series[[1]]$data[[3]]$symbolSize, 15)
+  expect_equal(nested$x$opts$series[[1]]$data[[1]]$symbolSize, 5)
+  expect_equal(nested$x$opts$series[[1]]$data[[2]]$symbolSize, 10)
+  expect_equal(nested$x$opts$series[[1]]$data[[3]]$symbolSize, 15)
 })
 
 test_that("e_add_unnested uses original data when .data is NULL", {

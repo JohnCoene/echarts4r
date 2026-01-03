@@ -18,6 +18,9 @@ test_that("e_surface plot has the good data structure and type", {
 
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
+
+  expect_error(surface |> dplyr::group_by(Var1) |> e_chart(timeline = TRUE) |>
+                 e_surface(Var2, Freq) , "timeline not supported")
 })
 
 test_that("e_surface.echarts4rProxy plot responds", {
@@ -121,6 +124,54 @@ test_that("e_scatter_gl plot has the good data structure and type", {
   )
 })
 
+# TODO this render but I dont see the scatter
+test_that("e_scatter_gl cartesian3D coords", {
+  plot <- quakes[1:5, ] |>
+    e_charts(long) |>
+    e_scatter_gl(lat, depth, coord_system = "cartesian3D", symbolSize = 20) |>
+    e_visual_map()
+
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+
+  expect_equal(
+    plot$x$opts$series[[1]]$data,
+    list(
+      list(value = c(181.03, -20.62, 650.00)),
+      list(value = c(181.62, -20.42, 562.00)),
+      list(value = c(181.66, -17.97, 626.00)),
+      list(value = c(181.96, -20.42, 649.00)),
+      list(value = c(184.1, -26.0, 42.0))
+    )
+  )
+  expect_equal(
+    plot$x$opts$series[[1]]$type,
+    "scatterGL"
+  )
+})
+
+test_that("e_scatter_gl timeline works", {
+
+  plot <- quakes[1:5, ] |> dplyr::group_by(stations) |> e_chart(long, timeline = TRUE) |>
+    e_geo(
+      roam = TRUE,
+      boundingCoords = list(
+        c(185, -10),
+        c(165, -40)
+      )
+    ) |>
+    e_scatter_gl(lat, depth)
+  expect_true(plot$x$tl)
+
+  # Time series
+  expect_equal(
+    as.integer(unlist(plot$x$opts$baseOption$timeline$data)),
+    quakes[1:5, "stations"] |> sort()
+  )
+
+  expect_equal(plot$x$opts$baseOption$series[[1]]$type, "scatterGL")
+})
+
 test_that("e_scatter_gl.echarts4rProxy plot responds", {
 
   test_data <-  data.frame(
@@ -214,6 +265,10 @@ test_that("e_graph_gl plot has the good data structure and type", {
 
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
+
+  e <- iris |> dplyr::group_by(Species) |> e_charts(timeline = TRUE)
+  expect_error(e |>
+                 e_graph_gl() , "timeline not supported")
 })
 
 test_that("e_graph.echarts4r and e_graph_nodes expects error when missing e ", {
@@ -708,6 +763,9 @@ test_that("e_flow_gl plot has the good data structure and type", {
     plot$x$opts$series[[1]]$type,
     "flowGL"
   )
+
+  expect_error(vectors[1:10, ] |> dplyr::group_by(color) |> e_chart(timeline = TRUE) |>
+                 e_flow_gl(y, sx, sy, color) , "timeline not supported")
 })
 
 test_that("e_flow_gl.echarts4rProxy plot responds", {
