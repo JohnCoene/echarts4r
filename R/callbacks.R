@@ -71,8 +71,9 @@ e_off <- function(e, query, handler, event = "click") {
 #' Note that this may stops other "click" events
 #' from working.
 #'
+#' @inheritParams e_bar
 #' @export
-e_get_zr <- function(){
+e_get_zr <- function(e){
   e$x$zr <- TRUE
   e
 }

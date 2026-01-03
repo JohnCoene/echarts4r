@@ -234,3 +234,194 @@ test_that("e_visual_map_range appends to existing button actions", {
   expect_equal(result$x$buttons$BUTTON[[1]]$data$selected, list(60, 120))
 })
 
+# e_pie_select ------------------------------------------------------
+test_that("e_pie_unselect appends to existing button actions", {
+  e <- mtcars |>
+    head() |>
+    tibble::rownames_to_column("model") |>
+    e_charts(model) |>
+    e_pie(carb)
+
+  result <- e |> e_pie_unselect(dataIndex = 0, btn = "BUTTON") |> e_button("BUTTON", "No Pie")
+
+  result <- result |> e_pie_select(dataIndex = 6, btn = "BUTTON2") |> e_button("BUTTON2", "Pie")
+
+  expect_s3_class(result, "echarts4r")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$type, "pieUnSelect")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$dataIndex,  0)
+
+  expect_equal(result$x$buttons$BUTTON2[[1]]$data$type, "pieSelect")
+  expect_equal(result$x$buttons$BUTTON2[[1]]$data$dataIndex,  6)
+})
+
+# e_focus_adjacency ------------------------------------------------------
+test_that("e_focus_adjacency appends to existing button actions", {
+  e <- e_charts() |>
+    e_graph()
+
+  result <- e |> e_focus_adjacency(dataIndex = 0, btn = "BUTTON")
+
+  expect_s3_class(result, "echarts4r")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$type, "focusNodeAdjacency")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$dataIndex,  0)
+})
+
+# e_unfocus_adjacency ------------------------------------------------------
+test_that("e_unfocus_adjacency appends to existing button actions", {
+  e <- e_charts() |>
+    e_graph()
+
+  result <- e |> e_unfocus_adjacency(dataIndex = 0, btn = "BUTTON")
+
+  expect_s3_class(result, "echarts4r")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$type, "unfocusNodeAdjacency")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$dataIndex,  0)
+})
+
+# e_legend_select ------------------------------------------------------
+test_that("e_legend_select appends to existing button actions", {
+  e <- CO2 |>
+    group_by(Type) |>
+    e_charts(conc) |>
+    e_scatter(uptake)
+
+  result <- e |> e_legend_select("Quebec", btn = "BUTTON")
+
+  expect_s3_class(result, "echarts4r")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$type, "legendSelect")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$name,  "Quebec")
+
+  expect_error(e |> e_legend_select(), "missing name")
+})
+
+# e_legend_unselect ------------------------------------------------------
+test_that("e_legend_unselect appends to existing button actions", {
+  e <- CO2 |>
+    group_by(Type) |>
+    e_charts(conc) |>
+    e_scatter(uptake)
+
+  result <- e |> e_legend_unselect("Quebec", btn = "BUTTON")
+
+  expect_s3_class(result, "echarts4r")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$type, "legendUnSelect")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$name,  "Quebec")
+  expect_error(e |> e_legend_unselect(), "missing name")
+})
+
+# e_legend_toggle_select ------------------------------------------------------
+test_that("e_legend_toggle_select appends to existing button actions", {
+  e <- CO2 |>
+    group_by(Type) |>
+    e_charts(conc) |>
+    e_scatter(uptake)
+
+  result <- e |> e_legend_toggle_select("Quebec", btn = "BUTTON") |> e_button("BUTTON")
+
+  expect_s3_class(result, "echarts4r")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$type, "legendToggleSelect")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$name,  "Quebec")
+  expect_error(e |> e_legend_unselect(), "missing name")
+})
+
+# e_legend_scroll ------------------------------------------------------
+test_that("e_legend_scroll appends to existing button actions", {
+  e <- CO2 |>
+    group_by(conc) |>
+    e_charts(conc) |>
+    e_legend(type = 'scroll') |>
+    e_scatter(uptake)
+
+  result <- e |> e_legend_scroll(scroll_index = 7, btn = "BUTTON") |> e_button("BUTTON")
+
+  expect_s3_class(result, "echarts4r")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$type, "legendScroll")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$scrollDataIndex, 7)
+  expect_error(e |> e_legend_unselect(), "missing name")
+})
+
+# e_restore ------------------------------------------------------
+test_that("e_restore appends to existing button actions", {
+  e <- cars |>
+    e_charts(speed) |>
+    e_scatter(dist) |>
+    e_datazoom()
+
+  result <- e |> e_restore("BUTTON") |>
+    e_button("BUTTON", "Reset")
+
+  expect_s3_class(result, "echarts4r")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$type, "restore")
+})
+
+# e_map_select ------------------------------------------------------
+test_that("e_map_select appends to existing button actions", {
+  choropleth <- data.frame(
+    countries = c(
+      "France",
+      "Brazil",
+      "China"
+    ),
+    values = round(runif(9, 10, 25))
+  )
+
+  result <- choropleth |>
+    e_charts(countries) |>
+    e_map(values) |>
+    e_visual_map(min = 10, max = 25) |>
+    e_map_select(name = "China", btn = "BUTTON") |>
+    e_button("BUTTON", "Select China")
+
+
+  expect_s3_class(result, "echarts4r")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$type, "mapSelect")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$name, "China")
+})
+
+# e_map_unselect ------------------------------------------------------
+test_that("e_map_unselect appends to existing button actions", {
+  choropleth <- data.frame(
+    countries = c(
+      "France",
+      "Brazil",
+      "China"
+    ),
+    values = round(runif(9, 10, 25))
+  )
+
+  result <- choropleth |>
+    e_charts(countries) |>
+    e_map(values) |>
+    e_visual_map(min = 10, max = 25) |>
+    e_map_unselect(name = "China", btn = "BUTTON") |>
+    e_button("BUTTON", "Unselect China")
+
+
+  expect_s3_class(result, "echarts4r")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$type, "mapUnSelect")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$name, "China")
+})
+
+# e_map_toggle_select ------------------------------------------------------
+test_that("e_map_toggle_select appends to existing button actions", {
+  choropleth <- data.frame(
+    countries = c(
+      "France",
+      "Brazil",
+      "China"
+    ),
+    values = round(runif(9, 10, 25))
+  )
+
+  result <- choropleth |>
+    e_charts(countries) |>
+    e_map(values) |>
+    e_visual_map(min = 10, max = 25) |>
+    e_map_toggle_select(name = "China", btn = "BUTTON") |>
+    e_button("BUTTON", "Select China")
+
+
+  expect_s3_class(result, "echarts4r")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$type, "mapToggleSelect")
+  expect_equal(result$x$buttons$BUTTON[[1]]$data$name, "China")
+})

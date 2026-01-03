@@ -123,7 +123,6 @@ e_line_ <- function(
   }
 
   for (i in seq_along(e$x$data)) {
-
     # build JSON data
     vector <- .build_data2(e$x$data[[i]], e$x$mapping$x, serie)
 
@@ -1032,12 +1031,12 @@ e_parallel_ <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = li
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
-  df <- e$x$data[[1]] |>
+  data <- e$x$data[[1]] |>
     dplyr::select(...)
 
-  # remove names
-  data <- df
+  df <- data
 
+  # remove names
   row.names(data) <- NULL
   data <- unname(data)
 
@@ -1058,7 +1057,7 @@ e_parallel_ <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = li
   serie <- append(serie, opts)
 
   para <- list()
-  for (i in seq_along(ncol(df))) {
+  for (i in seq_along(1:ncol(df))) {
     line <- list()
     line$dim <- i - 1
     line$name <- names(df)[i]

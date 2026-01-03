@@ -193,6 +193,9 @@ e_bezier_curve_g <- function(e, ...) {
 #'   e_draft()
 #' @export
 e_draft <- function(e, text = "DRAFT", size = "120px", opacity = 0.4, color = "#d3d3d3") {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   e |>
     e_text_g(
       left = "center",

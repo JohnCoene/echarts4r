@@ -274,6 +274,23 @@ test_that("node with missing category and size", {
   expect_s3_class(plot, "htmlwidget")
 })
 
+test_that("edges with color", {
+
+  edges <- data.frame(
+    source = sample(LETTERS, 40, replace = TRUE),
+    target = sample(LETTERS, 40, replace = TRUE),
+    color = "#000",
+    stringsAsFactors = FALSE
+  )
+
+  plot <- e_charts() |>
+    e_graph_gl() |>
+    e_graph_edges(edges, source, target, color = color)
+  expect_equal(plot$x$opts$series[[1]]$links[[1]]$lineStyle$color, "#000")
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+})
+
 test_that("node with category and size", {
   nodes <- data.frame(
     name = paste0(LETTERS, 1:50),
@@ -368,7 +385,6 @@ test_that("e_graph.echarts4rProxy plot responds", {
 })
 
 test_that("e_graph_edges.echarts4rProxy plot responds", {
-  # Cannot see the edges in this unit test
   nodes <- data.frame(
     name = c("A", "B", "C", "D", "E"),
     value = c("A", "B", "C", "D", "E"),
@@ -392,6 +408,7 @@ test_that("e_graph_edges.echarts4rProxy plot responds", {
     output$line <- renderEcharts4r({
       e_charts() |>
         e_graph(layout = "none", autoCurveness = TRUE) |>
+        # e_graph_nodes(nodes, name, value, size, category = group, xpos = x, ypos = y) |>
         e_graph_edges(edges, source, target, size = size, color = color)
     })
 

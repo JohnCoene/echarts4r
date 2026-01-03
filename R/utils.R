@@ -648,10 +648,10 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
   }
 
   data <- e$x$data[[j]] |>
-    dplyr::select(
+    dplyr::select(dplyr::all_of(
       c(name = e$x$mapping$x,
       height = serie)
-    )
+    ))
 
   names(data) <- c("name", "height")
 
@@ -829,29 +829,29 @@ check_installed <- function(pkg) {
   apply(zigzags, 1, as.list)
 }
 
-
-.get_base_nodes <- function(x) {
-  found_values <- list()
-
-  if (is.list(x) && !is.data.frame(x)) {
-    current_names <- names(x)
-
-    for (i in seq_along(x)) {
-      element <- x[[i]]
-
-      is_unnamed <- is.null(current_names) || current_names[i] == ""
-
-      is_atomic_data <- !is.list(element) || is.data.frame(element)
-
-      if (is_unnamed && is_atomic_data) {
-        found_values <- c(found_values, list(element))
-      }
-
-      found_values <- c(found_values, get_base_nodes(element))
-    }
-  }
-  return(found_values)
-}
+# Not used
+# .get_base_nodes <- function(x) {
+#   found_values <- list()
+#
+#   if (is.list(x) && !is.data.frame(x)) {
+#     current_names <- names(x)
+#
+#     for (i in seq_along(x)) {
+#       element <- x[[i]]
+#
+#       is_unnamed <- is.null(current_names) || current_names[i] == ""
+#
+#       is_atomic_data <- !is.list(element) || is.data.frame(element)
+#
+#       if (is_unnamed && is_atomic_data) {
+#         found_values <- c(found_values, list(element))
+#       }
+#
+#       found_values <- c(found_values, get_base_nodes(element))
+#     }
+#   }
+#   return(found_values)
+# }
 
 .get_bind <- function(bind){
   if (bind == "") {

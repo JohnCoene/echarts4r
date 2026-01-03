@@ -61,10 +61,6 @@ e_bar.echarts4rProxy <- function(e, serie, bind, name = NULL, legend = TRUE, y_i
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
-  # TODO should we add these?
-  # if(is.null(e$chart$x$mapping$x)){
-  #   stop("must pass x in echarts4rProxy()")
-  # }
 
   bd <- .get_bind(deparse(substitute(bind)))
 
@@ -1240,7 +1236,6 @@ e_graph_nodes.echarts4r <- function(e, nodes, names, value, size, category, symb
   xpos <- dplyr::enquo(xpos)
   ypos <- dplyr::enquo(ypos)
 
-
   if (!missing(category) && !missing(size)) {
     e$x$opts$series[[length(e$x$opts$series)]]$categories <- .build_graph_category(nodes, dplyr::enquo(category))
 
@@ -1280,7 +1275,7 @@ e_graph_nodes.echarts4r <- function(e, nodes, names, value, size, category, symb
   }
 
   # build JSON data
-  nodes <- e$x$opts$series[[length(e$x$opts$series)]]$data
+  e$x$opts$series[[length(e$x$opts$series)]]$data <- nodes
   e
 }
 
@@ -1338,7 +1333,7 @@ e_graph_nodes.echarts4rProxy <- function(e, nodes, names, value, size, category,
   }
 
   # build JSON data
-  nodes <- e$chart$x$opts$series[[length(e$chart$x$opts$series)]]$data
+  e$chart$x$opts$series[[length(e$chart$x$opts$series)]]$data <- nodes
   e
 }
 
@@ -1637,11 +1632,11 @@ e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, 
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
-  df <- e$x$data[[1]] |>
+  data <- e$x$data[[1]] |>
     dplyr::select(...)
 
   # remove names
-  data <- df
+  df <- data
   row.names(data) <- NULL
   data <- unname(data)
 
@@ -1662,7 +1657,7 @@ e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, 
   serie <- append(serie, opts)
 
   para <- list()
-  for (i in seq_along(ncol(df))) {
+  for (i in seq_along(1:ncol(df))) {
     line <- list()
     line$dim <- i - 1
     line$name <- names(df)[i]

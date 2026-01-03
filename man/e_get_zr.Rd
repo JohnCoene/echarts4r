@@ -4,7 +4,11 @@
 \alias{e_get_zr}
 \title{Blank Area}
 \usage{
-e_get_zr()
+e_get_zr(e)
+}
+\arguments{
+\item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
+a proxy as returned by \code{\link{echarts4rProxy}}.}
 }
 \description{
 Use this function to capture a click on a

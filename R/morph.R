@@ -1,9 +1,9 @@
 #' Morphing
-#' 
+#'
 #' __This is experimental__
-#' 
+#'
 #' Morph between graphs.
-#' 
+#'
 #' @param e,... Graphs (from `e_graph`).
 #' @param callback JavaScript callback function as a
 #' character string (vector of length 1).
@@ -11,28 +11,28 @@
 #' as `opts` an array containing the options of the charts
 #' passed to `e` and `...`.
 #' @param default Default chart to show.
-#' 
-#' @examples 
-#' mtcars2 <- mtcars |> 
-#'   head() |> 
+#'
+#' @examples
+#' mtcars2 <- mtcars |>
+#'   head() |>
 #'   tibble::rownames_to_column("model")
-#' 
-#' e1 <- mtcars2 |> 
-#'   e_charts(model) |> 
+#'
+#' e1 <- mtcars2 |>
+#'   e_charts(model) |>
 #'   e_bar(
-#'     carb, 
+#'     carb,
 #'     universalTransition = TRUE,
 #'     animationDurationUpdate = 1000L
 #'   )
-#' 
-#' e2 <- mtcars2 |> 
-#'   e_charts(model) |> 
+#'
+#' e2 <- mtcars2 |>
+#'   e_charts(model) |>
 #'   e_pie(
-#'     carb, 
+#'     carb,
 #'     universalTransition = TRUE,
 #'     animationDurationUpdate = 1000L
 #'   )
-#' 
+#'
 #' cb <- "() => {
 #'   let x = 0;
 #'   setInterval(() => {
@@ -40,22 +40,22 @@
 #'     chart.setOption(opts[x % 2], true);
 #'   }, 3000);
 #' }"
-#' 
+#'
 #' e_morph(e1, e2, callback = cb)
-#' 
-#' @export 
+#'
+#' @export
 e_morph <- \(e, ..., callback, default = 1L) {
   warning("This is experimental")
 
   if(...length() < 1)
-    stop("Must pass at least one chart")
+    stop("Must pass at least two charts")
 
   if(missing(callback))
     stop("Missing callback")
 
   opts <- lapply(list(e, ...), \(p) {
     p$x$opts
-  }) |> 
+  }) |>
     unname()
 
   e$x$opts <- list(opts)

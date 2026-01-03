@@ -19,7 +19,7 @@ test_that("e_band plot has the good data structure and type", {
     e_charts(x) |>
     e_line(y) |>
     e_band(lwr, upr)
-
+    plot$x$opts
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
 

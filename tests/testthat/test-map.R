@@ -84,6 +84,32 @@ test_that("e_lines plot has the good data structure and type", {
   )
 })
 
+test_that("e_lines plot with source, target, value", {
+  flights <- flights[1:5,]
+
+  plot <- flights |>
+    e_charts() |>
+    e_geo() |>
+    e_lines(
+      start_lon,
+      start_lat,
+      end_lon,
+      end_lat,
+      source_name = airport1,
+      target_name = airport2,
+      value = cnt,
+      name = "flights",
+      lineStyle = list(normal = list(curveness = 0.3))
+    )
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+  first_result <- plot$x$opts$series[[1]]$data[[1]]
+
+  expect_equal(first_result$source_name, flights[1, "airport1"])
+  expect_equal(first_result$target_name, flights[1, "airport2"])
+  expect_equal(first_result$value, flights[1, "cnt"])
+})
+
 test_that("e_lines.echarts4rProxy plot responds", {
 
   server <- function(input, output, session) {

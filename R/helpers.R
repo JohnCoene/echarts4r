@@ -403,7 +403,7 @@ echarts_from_json <- function(txt, jswrapper = FALSE) {
 e_zigzag <- function(e, axis = 'y', start, end, gap = "3%", zigzagAmplitude = 10, ...){
 
   if (missing(e)) {
-    stop("must pass echart into function", call. = FALSE)
+    stop("must pass e", call. = FALSE)
   }
 
   if (missing(axis)) {

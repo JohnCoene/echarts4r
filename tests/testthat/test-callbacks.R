@@ -74,3 +74,11 @@ test_that("e_off wraps handler in htmlwidgets::JS", {
 
   expect_equal(result$x$off[[1]]$query, list(seriesName = "test"))
 })
+
+test_that("e_off wraps handler in htmlwidgets::JS", {
+  e <- e_charts()
+  expect_null(e$x$zr)
+  result <- e_get_zr(e)
+  expect_true(result$x$zr)
+})
+

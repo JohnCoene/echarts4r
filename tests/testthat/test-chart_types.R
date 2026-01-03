@@ -773,32 +773,34 @@ test_that("e_polar plot has the good data structure and type", {
 
 # e_radius ----------------------------------------------------------------
 
-# test_that("e_radius plot has the good data structure and type", {
-# df <- data.frame(
-#   x = seq(3),
-#   y = c(1, 3, 9),
-#   z = c(2, 5, 4),
-#   w = c(3, 4, 3)
-# )
-#   plot <- df |>
-#     head(10) |>
-#     e_charts(x) |>
-#     e_radius_axis(x)
-#
-#   plot2 <- df |>
-#     head(10) |>
-#     e_charts(x) |>
-#     e_radius_axis(x) |>
-#     e_bar(y, coord_system = "polar") |>
-#     e_scatter(z, coord_system = "polar")
-#
-#   expect_s3_class(plot, "echarts4r")
-#   expect_s3_class(plot, "htmlwidget")
-#
-#   expect_s3_class(plot2, "echarts4r")
-#   expect_s3_class(plot2, "htmlwidget")
-# })
+test_that("e_radius plot has the good data structure and type", {
+  df <- data.frame(
+    x = seq(3),
+    y = c(1, 3, 9),
+    z = c(2, 5, 4),
+    w = c(3, 4, 3)
+  )
+  # plot <- df |>
+  #   head(10) |>
+  #   e_charts(x) |>
+  #   e_radius_axis(x)
 
+  plot2 <- df |>
+    head(10) |>
+
+    e_charts(x) |>
+    e_polar() |>
+    e_angle_axis() |>
+    e_radius_axis(x) |>
+    e_bar(y, coord_system = "polar") |>
+    e_scatter_("z", coord_system = "polar")
+
+  # expect_s3_class(plot, "echarts4r")
+  # expect_s3_class(plot, "htmlwidget")
+
+  expect_s3_class(plot2, "echarts4r")
+  expect_s3_class(plot2, "htmlwidget")
+})
 
 # e_candle ----------------------------------------------------------------
 
@@ -1244,8 +1246,8 @@ test_that("e_heatmap.echarts4r and e_heatmap_ expects error when missing e and y
 
 
 # e_parallel --------------------------------------------------------------
-
 test_that("e_parallel plot has the good data structure and type", {
+
   df <- data.frame(
     price = c(2, 4, 3),
     amount = c(12, 3, 1),
@@ -1270,7 +1272,7 @@ test_that("e_parallel plot has the good data structure and type", {
   )
 })
 
-test_that("e_parallel plot has the good data structure and type", {
+test_that("e_parallel_ plot has the good data structure and type", {
   df <- data.frame(
     price = c(2, 4, 3),
     amount = c(12, 3, 1),
@@ -1295,10 +1297,8 @@ test_that("e_parallel plot has the good data structure and type", {
   )
 })
 
-
 test_that("e_parallel.echarts4rProxy plot responds", {
 
-  # Cannot see the output for e_parallel
   df <- data.frame(
     price = rnorm(5, 10),
     amount = rnorm(5, 15),
@@ -1495,20 +1495,67 @@ test_that("e_pie plot has the good data structure and type", {
 
 
 # e_sunburst --------------------------------------------------------------
+test_that("e_sunburst plot with levels", {
+  df <- tibble::tibble(
+    name = c("earth", "mars", "venus"),
+    value = c(30, 40, 30),
+    # 1st level
+    itemStyle = tibble::tibble(color = c(NA, "red", "blue")),
+    # embedded styles, optional
+    children = list(
+      tibble::tibble(
+        name = c("land", "ocean"),
+        value = c(10, 20),
+        # 2nd level
+        children = list(
+          tibble::tibble(name = c("forest", "river"), value = c(3, 7)),
+          # 3rd level
+          tibble::tibble(
+            name = c("fish", "kelp"),
+            value = c(10, 5),
+            children = list(
+              tibble::tibble(name = c("shark", "tuna"), value = c(2, 6)),
+              # 4th level
+              NULL # kelp
+            )
+          )
+        )
+      ),
+      tibble::tibble(name = c("crater", "valley"), value = c(20, 20)),
+      NULL # venus
+    )
+  )
+  myStyles <- c(list(color = "green"), list(color = "magenta")) # custom styles defined
+  myNames <- list(c("land", "river"), "crater") # names to style
+  myLevels <- list(2, c(3, 4)) # hierarchical levels to style
+
+  plot <- df |>
+    e_charts() |>
+    e_sunburst(myStyles, myNames, myLevels)
+
+  expect_s3_class(plot, "echarts4r")
+  expect_s3_class(plot, "htmlwidget")
+
+  expect_equal(
+    plot$x$opts$series[[1]]$type,
+    "sunburst"
+  )
+})
+
 test_that("e_sunburst plot has the good data structure and type", {
   df <- dplyr::tibble(
     name = c("earth", "mars", "venus"), value = c(30, 40, 30),        # 1st level
     itemStyle = dplyr::tibble(color = c(NA, 'red', 'blue')),
     children = list(
       dplyr::tibble(name = c("land", "ocean"), value = c(10,20),             # 2nd level
-             children = list(
-               dplyr::tibble(name = c("forest", "river"), value = c(3,7)),   # 3rd level
-               dplyr::tibble(name = c("fish", "kelp"), value = c(10,5),
-                      children = list(
-                        dplyr::tibble(name = c("shark", "tuna"), value = c(2,6)),  # 4th level
-                        NULL  # kelp
-                      ))
-             )),
+                    children = list(
+                      dplyr::tibble(name = c("forest", "river"), value = c(3,7)),   # 3rd level
+                      dplyr::tibble(name = c("fish", "kelp"), value = c(10,5),
+                                    children = list(
+                                      dplyr::tibble(name = c("shark", "tuna"), value = c(2,6)),  # 4th level
+                                      NULL  # kelp
+                                    ))
+                    )),
       dplyr::tibble(name = c("crater", "valley"), value = c(20,20)),
       NULL  # venus
     )
@@ -1542,7 +1589,6 @@ test_that("e_sunburst plot has the good data structure and type", {
     "sunburst"
   )
 })
-
 
 test_that("e_sunburst.echarts4rProxy plot responds", {
 

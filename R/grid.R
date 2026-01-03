@@ -619,8 +619,6 @@ e_single_axis <- function(e, index = 0, ...) {
 #' @export
 e_axis_labels <- function(e, x = "", y = "") {
 
-  ## TODO
-  # class(e) !="echarts4rProxy" ?? Else this breaks
   e |>
     e_x_axis(name = x) |>
     e_y_axis(name = y)

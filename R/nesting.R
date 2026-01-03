@@ -98,10 +98,10 @@ e_add_nested <- function(e, param, ..., .serie = NULL, .data = NULL) {
         for(k in seq_along(e$x$opts$series)){
           if(!is.null(.serie) && .serie != k)
             next
-          # If polar, 'itemStyle' may be in a different location.
           if(!is.numeric(e$x$opts$series[[k]]$data[[j]])){
         e$x$opts$series[[k]]$data[[j]][[param]] <- data[[j]]
           } else {
+            # If polar, 'itemStyle' may be in a different location - this fixes that.
             e$x$opts$series[[k]]$data[[j]] <- list(
               value = e$x$opts$series[[k]]$data[[j]],
               itemStyle = data[[j]])
@@ -141,7 +141,14 @@ e_add_unnested <- function(e, param, value, .serie = NULL, .data = NULL) {
         next
 
       if (!e$x$tl) {
+        if(!is.numeric(e$x$opts$series[[i]]$data[[j]])){
         e$x$opts$series[[i]]$data[[j]][[param]] <- data[j]
+        } else {
+          # If polar, 'itemStyle' may be in a different location - this fixes that.
+          e$x$opts$series[[i]]$data[[j]] <- list(
+            value = e$x$opts$series[[i]]$data[[j]],
+            itemStyle = data[[j]])
+        }
       } else {
         for(k in seq_along(e$x$opts$options[[i]]$series)){
           e$x$opts$options[[i]]$series[[k]]$data[[j]][[param]] <- data[j]

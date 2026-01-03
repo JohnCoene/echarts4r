@@ -31,7 +31,7 @@
 #' @export
 e_globe <- function(e, environment = NULL, base_texture = NULL, height_texture = NULL, ...) {
   if (missing(e)) {
-    stop("missing e", call. = FALSE)
+    stop("must pass e", call. = FALSE)
   }
 
   if (is.null(base_texture)) {
