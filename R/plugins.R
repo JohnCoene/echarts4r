@@ -109,6 +109,9 @@ e_liquid <- function(e, serie, color, rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
+  if(e$x$tl)(
+    stop("timeline not supported")
+  )
 
   if (!missing(color)) {
     cl <- deparse(substitute(color))

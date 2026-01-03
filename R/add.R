@@ -981,6 +981,9 @@ e_sankey.echarts4r <- function(e, source, target, value, layout = "none", rm_x =
   if (missing(source) || missing(target) || missing(value)) {
     stop("missing source, target or values", call. = FALSE)
   }
+  if(e$x$tl)(
+    stop("timeline not supported")
+  )
 
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
@@ -1628,6 +1631,9 @@ e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, 
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
+  if(e$x$tl)(
+    stop("timeline not supported")
+  )
 
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")

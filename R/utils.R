@@ -619,7 +619,6 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 }
 
 .build_cartesian3D <- function(e, ..., i = 1) {
-
   # Don't use this bc it only selects unique cols.
   # ... could be the same col.
   # df <- e$x$data[[i]] |>
@@ -627,11 +626,8 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
   #     ...
   #   ) |>
   #   unname()
-
+  df <- e$x$data[[i]][, c(...), drop = FALSE]
   row.names(df) <- NULL
-  df <- e$x$data[[i]]
-
-  df <- df[, c(...), drop = FALSE]
   df <- unname(df)
 
   apply(df, 1, function(x) {

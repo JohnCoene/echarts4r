@@ -787,6 +787,9 @@ e_radar_ <- function(
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
+  if(e$x$tl)(
+    stop("timeline not supported")
+  )
 
   # remove axis
   e <- .rm_axis(e, rm_x, "x")
@@ -898,6 +901,9 @@ e_sankey_ <- function(e, source, target, value, layout = "none", rm_x = TRUE, rm
   if (missing(source) || missing(target) || missing(value)) {
     stop("missing source, target or values", call. = FALSE)
   }
+  if(e$x$tl)(
+    stop("timeline not supported")
+  )
 
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
@@ -1027,6 +1033,9 @@ e_parallel_ <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = li
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
+  if(e$x$tl)(
+    stop("timeline not supported")
+  )
 
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
@@ -1148,7 +1157,9 @@ e_sunburst_ <- function(e, styles = NULL, names = NULL, levels = NULL, rm_x = TR
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-
+  if(e$x$tl)(
+    stop("timeline not supported")
+  )
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
@@ -1171,6 +1182,9 @@ e_treemap_ <- function(e, styles = NULL, names = NULL, levels = NULL, rm_x = TRU
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
+  if(e$x$tl)(
+    stop("timeline not supported")
+  )
 
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
@@ -1198,6 +1212,9 @@ e_river_ <- function(e, serie, name = NULL, legend = TRUE, rm_x = TRUE, rm_y = T
   if (missing(serie)) {
     stop("must pass serie", call. = FALSE)
   }
+  if(e$x$tl)(
+    stop("timeline not supported")
+  )
 
   for (i in seq_along(e$x$data)) {
     nm <- .name_it(e, serie, name, i)
@@ -1301,6 +1318,9 @@ e_tree_ <- function(e, rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
+  if(e$x$tl)(
+    stop("timeline not supported")
+  )
 
   # remove axis
   e <- .rm_axis(e, rm_x, "x")
@@ -1585,8 +1605,7 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
     } else {
 
       # globe
-      if (coord_system == "cartesian3d") { # cartesian
-
+      if (coord_system == "cartesian3D") { # cartesian
         if (!length(e$x$opts$zAxis3D)) {
           e$x$opts$baseOption$zAxis3D <- list(list(show = TRUE))
         }
@@ -1601,7 +1620,6 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
       e$x$opts$options[[i]]$series <- append(e$x$opts$options[[i]]$series, list(e_serie))
     }
   }
-
   if (e$x$tl) {
     serie_opts <- list(
       name = name,
@@ -1613,7 +1631,6 @@ e_bar_3d_ <- function(e, y, z, bind = NULL, coord_system = "cartesian3D", name =
     if (!is.null(name)) {
       e$x$opts$baseOption$legend$data <- append(e$x$opts$legend$data, name)
     }
-
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(serie_opts))
   }
 
@@ -2635,7 +2652,9 @@ e_chord_ <- function(e, source, target, value, rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(source) || missing(target) || missing(value)) {
     stop("missing source, target or values", call. = FALSE)
   }
-
+  if(e$x$tl)(
+    stop("timeline not supported")
+  )
   e <- .rm_axis(e, rm_x, "x")
   e <- .rm_axis(e, rm_y, "y")
 
