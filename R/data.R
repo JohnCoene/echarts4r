@@ -31,3 +31,22 @@
 #'   \item{cnt}{Integer vector}
 #' }
 "airports"
+
+#' Buildings sample set
+#'
+#' @source echarts
+#' \url{https://echarts.apache.org/examples/data-gl/asset/data/buildings.json}
+#' @format A tibble
+#' \describe{
+#'   \item{name}{Character vector}
+#'   \item{value}{Character vector}
+#'   \item{height}{Character vector}
+#' }
+"buildings_sample"
+
+#' Buildings sample set in json format
+#'
+#' @source echarts
+#' \url{https://echarts.apache.org/examples/data-gl/asset/data/buildings.json}
+#' @format A sample list of buildings
+"buildings_sample_json"

@@ -854,7 +854,7 @@ e_stage <- function(e,
     end_col <- deparse(substitute(end))
     stage_col <- deparse(substitute(stage))
 
-    vector <- lapply(seq_along(1:nrow(df)), function(j) {
+    vector <- lapply(seq_len(nrow(df)), function(j) {
       list(
         df[[start_col]][[j]],
         df[[end_col]][[j]],

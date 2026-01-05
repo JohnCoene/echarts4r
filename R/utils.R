@@ -1,4 +1,4 @@
-globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_acc", "val_loss", "flights", "airports"))
+globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_acc", "val_loss", "flights", "airports", "buildings_sample", "buildings_sample_json"))
 
 .arrange_data_x <- function(data, x, reorder = TRUE) {
   vect <- data[[x]]

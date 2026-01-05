@@ -13,18 +13,19 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \item{...}{Any other option to pass, check See Also section.}
 }
 \description{
-Define global font style.
+Define global font style. Font styles may have to be specified in their
+respected element.
 }
 \examples{
 cars |>
   e_charts(dist) |>
   e_scatter(speed) |>
-  e_labels() |>
+  e_labels(color = "#1E90FF") |>
   e_text_style(
-    color = "blue",
     fontStyle = "italic"
   )
 }
 \seealso{
-\href{https://echarts.apache.org/en/option.html#textStyle}{official documentation}
+\href{https://echarts.apache.org/en/option.html#textStyle}{official
+  documentation}
 }

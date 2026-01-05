@@ -104,7 +104,7 @@ e_add_nested <- function(e, param, ..., .serie = NULL, .data = NULL) {
             # If polar, 'itemStyle' may be in a different location - this fixes that.
             e$x$opts$series[[k]]$data[[j]] <- c(
               list(value = e$x$opts$series[[k]]$data[[j]]),
-              setNames(list(data[[j]]), param)
+              stats::setNames(list(data[[j]]), param)
             )
           }
         }
@@ -145,10 +145,10 @@ e_add_unnested <- function(e, param, value, .serie = NULL, .data = NULL) {
         if(!is.numeric(e$x$opts$series[[i]]$data[[j]])){
         e$x$opts$series[[i]]$data[[j]][[param]] <- data[j]
         } else {
-          # If polar, 'itemStyle' may be in a different location - this fixes that.
+          # If polar, 'itemStyle' may be in a different location - this fixes that.N
           e$x$opts$series[[i]]$data[[j]] <- c(
             list(value = e$x$opts$series[[i]]$data[[j]]),
-            setNames(list(data[[j]]), param)
+            stats::setNames(list(data[[j]]), param)
           )
         }
       } else {

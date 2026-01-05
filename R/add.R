@@ -1666,7 +1666,7 @@ e_parallel.echarts4r <- function(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, 
   serie <- append(serie, opts)
 
   para <- list()
-  for (i in seq_along(1:ncol(df))) {
+  for (i in seq_len(ncol(df))) {
     line <- list()
     line$dim <- i - 1
     line$name <- names(df)[i]

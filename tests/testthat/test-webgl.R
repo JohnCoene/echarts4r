@@ -439,6 +439,128 @@ test_that("e_graph.echarts4rProxy plot responds", {
   })
 })
 
+test_that("e_graph_nodes.echarts4rProxy with category and size", {
+
+  nodes <- data.frame(
+    name = c("A", "B", "C", "D", "E"),
+    value = c("A", "B", "C", "D", "E"),
+    group = c("gr1", "gr1", "gr2", "gr2", "gr3"),
+    size = 3:7 * 10,
+    x = c(0, 200, 400, 600, 800),
+    y = c(100, 100, 200, 200, 0)
+  )
+
+  edges <- data.frame(
+    source = c("A", "B", "C", "D", "E"),
+    target = c("B", "C", "D", "E", "D"),
+    size = rep(3, 5),
+    color = c("red", "green", "blue", "yellow", "black")
+  )
+
+  server <- function(input, output, session) {
+    proxy_called <- shiny::reactiveVal(FALSE)
+    proxy_chart <- shiny::reactiveVal(NULL)
+
+    output$line <- renderEcharts4r({
+      e_charts() |>
+        e_graph(layout = "none", autoCurveness = TRUE) |>
+        e_graph_nodes(nodes, name, value, size, category = group, xpos = x, ypos = y)
+    })
+
+    observeEvent(input$update, {
+      chart <- echarts4rProxy("line", data = nodes) |>
+        e_graph(layout = "circular") |>
+        e_graph_nodes(nodes, name, value, size, category = group, xpos = x, ypos = y) |>
+        e_execute()
+
+      proxy_chart(chart)
+
+      proxy_called(TRUE)
+    })
+  }
+
+  shiny::testServer(server, {
+
+    expect_false(proxy_called())
+
+    json <- jsonlite::fromJSON(output$line)
+    expect_equal(json$x$opts$series$layout, "none")
+
+    session$setInputs(update = 1)
+    session$flushReact()
+
+    expect_equal(proxy_chart()$chart$x$opts$series[[1]]$layout, "circular")
+    # Proxy was called with no errors
+    expect_true(proxy_called())
+
+    expect_equal(
+      proxy_chart()$chart$x$opts$series[[1]]$type,
+      "graph"
+    )
+  })
+})
+
+test_that("e_graph_nodes.echarts4rProxy with missing category", {
+
+  nodes <- data.frame(
+    name = c("A", "B", "C", "D", "E"),
+    value = c("A", "B", "C", "D", "E"),
+    group = c("gr1", "gr1", "gr2", "gr2", "gr3"),
+    size = 3:7 * 10,
+    x = c(0, 200, 400, 600, 800),
+    y = c(100, 100, 200, 200, 0)
+  )
+
+  edges <- data.frame(
+    source = c("A", "B", "C", "D", "E"),
+    target = c("B", "C", "D", "E", "D"),
+    size = rep(3, 5),
+    color = c("red", "green", "blue", "yellow", "black")
+  )
+
+  server <- function(input, output, session) {
+    proxy_called <- shiny::reactiveVal(FALSE)
+    proxy_chart <- shiny::reactiveVal(NULL)
+
+    output$line <- renderEcharts4r({
+      e_charts() |>
+        e_graph(layout = "none", autoCurveness = TRUE) |>
+        e_graph_nodes(nodes, name, value, size, xpos = x, ypos = y)
+    })
+
+    observeEvent(input$update, {
+      chart <- echarts4rProxy("line", data = nodes) |>
+        e_graph(layout = "circular") |>
+        e_graph_nodes(nodes, name, value, size, xpos = x, ypos = y) |>
+        e_execute()
+
+      proxy_chart(chart)
+
+      proxy_called(TRUE)
+    })
+  }
+
+  shiny::testServer(server, {
+
+    expect_false(proxy_called())
+
+    json <- jsonlite::fromJSON(output$line)
+    expect_equal(json$x$opts$series$layout, "none")
+
+    session$setInputs(update = 1)
+    session$flushReact()
+
+    expect_equal(proxy_chart()$chart$x$opts$series[[1]]$layout, "circular")
+    # Proxy was called with no errors
+    expect_true(proxy_called())
+
+    expect_equal(
+      proxy_chart()$chart$x$opts$series[[1]]$type,
+      "graph"
+    )
+  })
+})
+
 test_that("e_graph_edges.echarts4rProxy plot responds", {
   nodes <- data.frame(
     name = c("A", "B", "C", "D", "E"),

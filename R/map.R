@@ -343,7 +343,7 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
 #' Register a \href{https://geojson.org/}{geojson} map.
 #'
 #' @param e An \code{echarts4r} object as returned by \code{\link{e_charts}}.
-#' @param name Name of map, to use in \code{\link{e_map}}.
+#' @param name Name of map, to used in \code{\link{e_map}}.
 #' @param json,svg \href{https://geojson.org/}{Geojson}, or SVG.
 #' @param async Whether to read the file asynchronously.
 #' @param session A valid Shiny session.
@@ -437,7 +437,7 @@ e_map_register_ui <- function(name, json, async = FALSE) {
         }
       });")
   shiny::tags$script(
-    script
+    script[1]
   )
 }
 
@@ -493,7 +493,7 @@ e_mapbox <- function(e, token, ...) {
   path <- system.file("htmlwidgets/lib/mapbox", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-mapbox",
-    version = "0.38.0",
+    version = "3.17.0",
     src = c(file = path),
     script = "mapbox-gl.js",
     stylesheet = "mapbox-gl.css"

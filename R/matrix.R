@@ -496,7 +496,7 @@ e_geoFacet <- function(e,
   e2 <- e_matrix_raw(rows = rows, cols = cols, ...)
 
   n <- length(e$x$opts$series)
-  for(i in 1:nrow(grid)){
+  for(i in seq_len(nrow(grid))){
     e3 <- e
     series_pos <- NA
     for(j in 1:n){

@@ -30,16 +30,29 @@ to have an idea of what they should look like.
 }
 \section{Locales}{
 
+- AR
 - CS
 - DE
 - EN
 - ES
+- FA
 - FI
 - FR
+- HU
+- IT
 - JA
+- KO
+- NL
+- PL
 - PT (brazil)
+- RO
+- RU
 - SI
+- SV
 - TH
+- TR
+- UK
+- VI
 - ZH
 }
 
