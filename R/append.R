@@ -45,6 +45,7 @@
 #'   })
 #'
 #'   observeEvent(input$add, {
+#'
 #'     echarts4rProxy("plot") |>
 #'       e_append2_p(0, react(), x, y, z)
 #'   })

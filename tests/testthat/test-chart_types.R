@@ -50,6 +50,32 @@ test_that("e_line timeline works", {
   expect_equal(plot$x$opts$baseOption$series[[1]]$type, "line")
 })
 
+test_that("e_line x and y index works", {
+  plot <- iris |> e_chart(Species) |>
+    e_line(Sepal.Length,
+          y_index = 10,
+          x_index = 10
+    )
+  expect_gt(length(plot$x$opts$xAxis), 10)
+  expect_gt(length(plot$x$opts$yAxis), 10)
+})
+
+test_that("e_line polar works", {
+
+  plot <- iris |> e_chart(Species) |>
+    e_polar() |>
+    e_angle_axis(Species) |>
+    e_radius_axis() |>
+    e_line(Sepal.Length, coord_system = "polar")
+
+  expect_length(plot$x$opts$polar, 1)
+
+  expect_length(plot$x$opts$series[[1]]$data, nrow(iris))
+  expect_equal(as.character(unlist(plot$x$opts$angleAxis$data)), c("setosa", "versicolor", "virginica"))
+
+  expect_equal(plot$x$opts$series[[1]]$type, "line")
+})
+
 test_that("e_line.echarts4rProxy plot responds", {
 
   test_data <-  data.frame(
@@ -167,6 +193,15 @@ test_that("e_area timeline works", {
   expect_equal(plot$x$opts$baseOption$series[[1]]$type, "line")
 })
 
+test_that("e_area x and y index works", {
+  plot <- iris |> e_chart(Species) |>
+    e_area(Sepal.Length,
+           y_index = 10,
+           x_index = 10
+    )
+  expect_gt(length(plot$x$opts$xAxis), 10)
+  expect_gt(length(plot$x$opts$yAxis), 10)
+})
 test_that("e_area polar works", {
 
   plot <- iris |> e_chart(Species) |>
@@ -277,6 +312,15 @@ test_that("e_bar plot has the good data structure and type", {
     plot$x$opts$series[[1]]$type,
     "bar"
   )
+})
+test_that("e_bar x and y index works", {
+  plot <- iris |> e_chart(Species) |>
+    e_bar(Sepal.Length,
+                y_index = 10,
+                x_index = 10
+    )
+  expect_gt(length(plot$x$opts$xAxis), 10)
+  expect_gt(length(plot$x$opts$yAxis), 10)
 })
 
 test_that("e_bar timeline works", {
@@ -416,6 +460,31 @@ test_that("e_step timeline works", {
 
   expect_equal(plot$x$opts$baseOption$series[[1]]$type, "line")
 })
+test_that("e_step x and y index works", {
+  plot <- iris |> e_chart(Species) |>
+    e_step(Sepal.Length,
+           y_index = 10,
+           x_index = 10
+    )
+  expect_gt(length(plot$x$opts$xAxis), 10)
+  expect_gt(length(plot$x$opts$yAxis), 10)
+})
+
+test_that("e_step polar works", {
+
+  plot <- iris |> e_chart(Species) |>
+    e_polar() |>
+    e_angle_axis(Species) |>
+    e_radius_axis() |>
+    e_step(Sepal.Length, coord_system = "polar")
+
+  expect_length(plot$x$opts$polar, 1)
+
+  expect_length(plot$x$opts$series[[1]]$data, nrow(iris))
+  expect_equal(as.character(unlist(plot$x$opts$angleAxis$data)), c("setosa", "versicolor", "virginica"))
+
+  expect_equal(plot$x$opts$series[[1]]$type, "line")
+})
 
 test_that("e_step.echarts4rProxy plot responds", {
 
@@ -534,12 +603,6 @@ test_that("e_scatter timeline works", {
 
   plot <- iris |> dplyr::group_by(Species) |> e_chart(Species, timeline = TRUE) |>
     e_scatter(Sepal.Length
-    ) |> e_timeline_serie(
-      title = list(
-        list(text = "setosa"),
-        list(text = "versicolor"),
-        list(text = "virginica")
-      )
     )
   expect_true(plot$x$tl)
 
@@ -550,6 +613,15 @@ test_that("e_scatter timeline works", {
   )
 
   expect_equal(plot$x$opts$baseOption$series[[1]]$type, "scatter")
+})
+test_that("e_scatter x and y index works", {
+  plot <- iris |> e_chart(Species) |>
+    e_scatter(Sepal.Length,
+           y_index = 10,
+           x_index = 10
+    )
+  expect_gt(length(plot$x$opts$xAxis), 10)
+  expect_gt(length(plot$x$opts$yAxis), 10)
 })
 
 test_that("e_scatter.echarts4rProxy plot responds", {
@@ -666,12 +738,6 @@ test_that("e_effect_scatter timeline works", {
 
   plot <- iris |> dplyr::group_by(Species) |> e_chart(Species, timeline = TRUE) |>
     e_effect_scatter(Sepal.Length
-    ) |> e_timeline_serie(
-      title = list(
-        list(text = "setosa"),
-        list(text = "versicolor"),
-        list(text = "virginica")
-      )
     )
   expect_true(plot$x$tl)
 
@@ -683,6 +749,41 @@ test_that("e_effect_scatter timeline works", {
 
   expect_equal(plot$x$opts$baseOption$series[[1]]$type, "effectScatter")
 })
+test_that("e_effect_scatter x and y index works", {
+  plot <- iris |> e_chart(Species) |>
+    e_effect_scatter(Sepal.Length,
+              y_index = 10,
+              x_index = 10
+    )
+  expect_gt(length(plot$x$opts$xAxis), 10)
+  expect_gt(length(plot$x$opts$yAxis), 10)
+})
+test_that("e_effect_scatter polar works", {
+
+  plot <- iris |> e_chart(Species) |>
+    e_polar() |>
+    e_angle_axis(Species) |>
+    e_radius_axis() |>
+    e_effect_scatter(Sepal.Length, coord_system = "polar")
+
+  expect_length(plot$x$opts$polar, 1)
+
+  expect_length(plot$x$opts$series[[1]]$data, nrow(iris))
+  expect_equal(as.character(unlist(plot$x$opts$angleAxis$data)), c("setosa", "versicolor", "virginica"))
+})
+
+test_that("e_effect_scatter singleAxis works", {
+
+  plot <- iris |> e_chart(Species) |>
+    e_single_axis() |>
+    e_effect_scatter(Sepal.Length, coord_system = "singleAxis")
+
+  expect_length(plot$x$opts$singleAxis, 2)
+
+  expect_length(plot$x$opts$series[[1]]$data, nrow(iris))
+  expect_equal(as.character(unlist(plot$x$opts$singleAxis$data)), c("setosa", "versicolor", "virginica"))
+})
+
 test_that("e_effect_scatter.echarts4rProxy plot responds", {
 
   test_data <-  data.frame(
@@ -945,13 +1046,13 @@ test_that("e_polar plot has the good data structure and type", {
     z = c(2, 5, 4),
     w = c(3, 4, 3)
   )
+
   plot <- df |>
     e_charts(x) |>
     e_polar() |>
-    e_angle_axis_("x") |> # angle = x
+    e_angle_axis_("x") |>
     e_radius_axis_() |>
     e_bar_("y", coord_system = "polar")
-
 
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
@@ -998,14 +1099,13 @@ test_that("e_radius plot has the good data structure and type", {
 })
 
 # e_candle ----------------------------------------------------------------
-# TODO cannot see plot
 test_that("e_candle plot has the good data structure and type", {
   date <- c(
     "2017-01-01",
     "2017-01-02",
     "2017-01-03",
     "2017-01-04",
-    "2017-03-05",
+    "2017-01-05",
     "2017-01-06",
     "2017-01-07"
   )
@@ -1044,51 +1144,38 @@ test_that("e_candle plot has the good data structure and type", {
   )
 })
 
-# test_that("e_candle timeline works", {
-#
-#   date <- c(
-#     "2017-01-01",
-#     "2017-01-02",
-#     "2017-01-03",
-#     "2017-01-04",
-#     "2017-03-05",
-#     "2017-01-06",
-#     "2017-01-07"
-#   )
-#
-#   stock <- data.frame(
-#     date = date,
-#     opening = c(200.60, 200.22, 198.43, 199.05, 203.54, 203.40, 208.34),
-#     closing = c(200.72, 198.85, 199.05, 203.73, 204.08, 208.11, 211.88),
-#     low = c(197.82, 198.07, 197.90, 198.10, 202.00, 201.50, 207.60),
-#     high = c(203.32, 200.67, 200.00, 203.95, 204.90, 208.44, 213.17)
-#   )
-#
-#
-#   plot <- stock |> dplyr::group_by(date) |> e_chart(date, timeline = TRUE) |>
-#     e_candle(opening, closing, low, high) |>
-#     # e_y_axis(min = 190, max = 220) |>
-#     e_timeline_serie(
-#       title = list(
-#         list(text = "2017-01-01"),
-#         list(text = "versicolor"),
-#         list(text = "virginica"),
-#         list(text = "versicolor"),
-#         list(text = "virginica"),
-#         list(text = "versicolor"),
-#         list(text = "virginica")
-#       )
-#     )
-#   expect_true(plot$x$tl)
-#
-#   # Time series
-#   expect_equal(
-#     plot$x$opts$baseOption$timeline$data,
-#     list("setosa", "versicolor", "virginica")
-#   )
-#
-#   expect_equal(plot$x$opts$baseOption$series[[1]]$type, "candlestick")
-# })
+# Timeline works, but data is on the wrong x-axis
+test_that("e_candle timeline works", {
+
+  date <- c(
+    "2017-01-01",
+    "2017-01-02",
+    "2017-01-03",
+    "2017-01-04",
+    "2017-01-05",
+    "2017-01-06",
+    "2017-01-07"
+  )
+
+  stock <- data.frame(
+    date = date,
+    opening = c(200.60, 200.22, 198.43, 199.05, 203.54, 203.40, 208.34),
+    closing = c(200.72, 198.85, 199.05, 203.73, 204.08, 208.11, 211.88),
+    low = c(197.82, 198.07, 197.90, 198.10, 202.00, 201.50, 207.60),
+    high = c(203.32, 200.67, 200.00, 203.95, 204.90, 208.44, 213.17),
+    group = c("A", "A", "A", "B", "B", "B", "B")
+  )
+  plot <- stock |> dplyr::group_by(group) |> e_chart(date, timeline = TRUE) |> e_candle_("opening", "closing", "low", "high")
+  expect_true(plot$x$tl)
+
+  # Time series
+  expect_equal(
+    plot$x$opts$baseOption$timeline$data,
+    list("A", "B")
+  )
+
+  expect_equal(plot$x$opts$baseOption$series[[1]]$type, "candlestick")
+})
 
 test_that("e_candle.echarts4rProxy plot responds", {
 
@@ -1202,7 +1289,7 @@ test_that("e_funnel plot has the good data structure and type", {
   )
 })
 
-test_that("e_line timeline works", {
+test_that("e_funnel timeline works", {
 
   plot <- iris |> dplyr::group_by(Species) |> e_chart(Species, timeline = TRUE) |>
     e_funnel(Petal.Width, Species
@@ -2810,7 +2897,6 @@ test_that("e_lines_3d plot with source, target, value", {
 })
 
 test_that("e_lines_3d timeline works", {
-  # TODO not working
   plot <- flights |> head(5) |> dplyr::group_by(airport1) |> e_chart( timeline = TRUE) |>
     e_globe() |>
     e_lines_3d(
@@ -2822,9 +2908,7 @@ test_that("e_lines_3d timeline works", {
       effect = list(show = TRUE)
     ) |> suppressMessages()
 
-  plot
   expect_true(plot$x$tl)
-
   # Time series
   expect_equal(
     plot$x$opts$baseOption$timeline$data,
@@ -3243,6 +3327,30 @@ test_that("e_pictorial timeline works", {
   expect_equal(plot$x$opts$baseOption$series[[2]]$type, "pictorialBar")
 })
 
+test_that("e_density x and y index works", {
+  y <- rnorm(10, 10, 2)
+  df <- data.frame(
+    x = 1:10,
+    y = y,
+    z = y - rnorm(10, 5, 1),
+    group = LETTERS[1:10]
+  )
+
+  plot <- df |> e_chart(x) |>
+    e_bar(z, barWidth = 10) |>
+    e_pictorial(
+      y,
+      symbol = "rect",
+      symbolRepeat = TRUE,
+      z = -1,
+      symbolSize = c(10, 4),
+              y_index = 10,
+              x_index = 10
+    )
+  expect_gt(length(plot$x$opts$xAxis), 10)
+  expect_gt(length(plot$x$opts$yAxis), 10)
+})
+
 test_that("e_pictorial.echarts4rProxy plot responds", {
 
   set.seed(1)
@@ -3345,7 +3453,7 @@ test_that("e_chord plot has the good data structure and type", {
     "chord"
   )
   expect_error(sankey |> dplyr::group_by(source) |> e_chart(timeline = TRUE) |>
-                 e_sankey(source, target, value) , "timeline not supported")
+                 e_chord(source, target, value) , "timeline not supported")
 })
 
 test_that("e_chord.echarts4rProxy plot responds", {
@@ -3569,3 +3677,10 @@ test_that("e_lines.echarts4r and e_lines_ expects error when missing e and coord
   expect_error(iris |> e_charts() |> e_lines_(), "missing coordinates")
   expect_error(e_lines_() , "must pass e")
 })
+
+test_that("e_scale errors when not numeric", {
+  expect_error(e_scale("x must be numeric"))
+})
+
+
+

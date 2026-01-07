@@ -238,6 +238,7 @@ e_charts.default <- function(
   return(widget)
 }
 
+# TODO is this being used? Remove it?
 #' @rdname init
 #' @method e_charts Node
 #' @export

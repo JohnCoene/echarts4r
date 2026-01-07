@@ -124,12 +124,11 @@ test_that("e_scatter_gl plot has the good data structure and type", {
   )
 })
 
-# TODO this render but I dont see the scatter
+# TODO this render but I dont see the scatter when coord sys is cart
 test_that("e_scatter_gl cartesian3D coords", {
   plot <- quakes[1:5, ] |>
     e_charts(long) |>
-    e_scatter_gl(lat, depth, coord_system = "cartesian3D", symbolSize = 20) |>
-    e_visual_map()
+    e_scatter_gl(lat, depth, coord_system = "cartesian3D", symbolSize = 20)
 
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
@@ -945,21 +944,8 @@ test_that("e_flow_gl.echarts4r and e_flow_gl_ expects error when missing e and y
 })
 
 # e_lines_gl --------------------------------------------------------------
-# TODO
+# TODO cant get function to display
 # test_that("e_lines_gl plot has the good data structure and type", {
-# e <- flights |>
-#   e_charts()
-#   data <- .map_lines(
-#     e,
-#     source.lon = "start_lon",
-#     source.lat = "start_lat",
-#     target.lon = "end_lon",
-#     target.lat = "end_lat",
-#     source.name = NULL,
-#     target.name = NULL,
-#     value = NULL,
-#     i = 1
-#   )
 #   # Not sure on format of data so trying different things
 #   # list( c(-74.006, 40.7128), c(2.3522, 48.8566))
 #   # plot <-

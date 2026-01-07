@@ -211,7 +211,6 @@ test_that("e_matrix_parent appends additional arguments", {
 #   expect_equal(plot$x$opts$matrix$x$data[[2]]$value, "AllClasses")
 # })
 
-
 # e_matrix_corner ---------------------------------------------------------
 test_that("e_matrix_corner fails informatively without e", {
   expect_error(e_matrix_corner(), "must pass e")

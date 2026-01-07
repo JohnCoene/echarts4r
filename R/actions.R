@@ -160,7 +160,9 @@ e_visual_map_range <- function(e, ..., btn = NULL) {
   return(e)
 }
 
-# TODO this works but I see nothing changing in the examples
+# TODO this works but I see nothing changing in the examples.
+# There's also pieToggleSelect
+
 #' Select & Unselect Pie
 #'
 #' Actions related to \code{\link{e_pie}}.

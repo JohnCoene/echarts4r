@@ -37,7 +37,7 @@ mtcars |>
 # timeline
 mtcars |>
   group_by(cyl) |>
-  e_chart(wt) |>
+  e_chart(wt, timeline = TRUE) |>
   e_scatter(qsec, mpg) |>
   e_labels(fontSize = 9)
 }

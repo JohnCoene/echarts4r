@@ -40,8 +40,6 @@ test_that("e_timeline_opts works", {
 })
 
 # e_timeline_on_serie  ----------------------------------------------------
-
-
 test_that("expects error when missing e ", {
   expect_error(e_timeline_opts(), "must pass e")
   expect_error(e_timeline_serie(), "must pass e")
@@ -50,4 +48,46 @@ test_that("expects error when missing e ", {
   expect_warning(e_charts() |> e_timeline_opts(), "timeline not enabled in e_chart")
 
   expect_error(e_charts() |> e_timeline_serie(), "no arguments passed")
+})
+
+test_that("e_timeline_on_serie adds options to series at specified index", {
+  e <- iris |>
+    group_by(Species) |>
+    e_charts(Sepal.Length, timeline = TRUE) |>
+    e_line(Sepal.Width)
+
+  result <- e_timeline_on_serie(e, lineStyle = list(
+    list(color = "red"),
+    list(color = "blue"),
+    list(color = "green")
+  ), serie_index = 1)
+
+  expect_equal(result$x$opts$options[[1]]$series[[1]]$lineStyle, list(color = "red"))
+  expect_equal(result$x$opts$options[[2]]$series[[1]]$lineStyle, list(color = "blue"))
+  expect_equal(result$x$opts$options[[3]]$series[[1]]$lineStyle, list(color = "green"))
+})
+
+test_that("e_timeline_on_serie works with multiple arguments", {
+  e <- iris |>
+    group_by(Species) |>
+    e_charts(Sepal.Length, timeline = TRUE) |>
+    e_line(Sepal.Width)
+
+  result <- e_timeline_on_serie(
+    e,
+    lineStyle = list(
+      list(width = 2),
+      list(width = 3),
+      list(width = 4)
+    ),
+    smooth = list(TRUE, FALSE, TRUE),
+    serie_index = 1
+  )
+
+  expect_equal(result$x$opts$options[[1]]$series[[1]]$lineStyle, list(width = 2))
+  expect_equal(result$x$opts$options[[1]]$series[[1]]$smooth, TRUE)
+  expect_equal(result$x$opts$options[[2]]$series[[1]]$lineStyle, list(width = 3))
+  expect_equal(result$x$opts$options[[2]]$series[[1]]$smooth, FALSE)
+  expect_equal(result$x$opts$options[[3]]$series[[1]]$lineStyle, list(width = 4))
+  expect_equal(result$x$opts$options[[3]]$series[[1]]$smooth, TRUE)
 })
