@@ -309,7 +309,7 @@ e_step.echarts4r <- function(
 
   bd <- .get_bind(deparse(substitute(bind)))
 
-  e_step_(e, serie, bd, step, fill, name, legend, y_index, x_index, coord_system = "cartesian2d", ...)
+  e_step_(e, serie, bd, step, fill, name, legend, y_index, x_index, coord_system = coord_system, ...)
 }
 
 #' @export
@@ -334,7 +334,7 @@ e_step.echarts4rProxy <- function(
 
   bd <- .get_bind(deparse(substitute(bind)))
 
-  e$chart <- e_step_(e$chart, serie, bd, step, fill, name, legend, y_index, x_index, coord_system = "cartesian2d", ...)
+  e$chart <- e_step_(e$chart, serie, bd, step, fill, name, legend, y_index, x_index, coord_system = coord_system, ...)
   return(e)
 }
 
@@ -725,13 +725,13 @@ e_effect_scatter.echarts4rProxy <- function(
 #'
 #' @rdname e_candle
 #' @export
-e_candle <- function(e, opening, closing, low, high, bind, name = NULL, legend = TRUE, ...) {
+e_candle <- function(e, opening, closing, low, high, bind, name = "candle", legend = TRUE, ...) {
   UseMethod("e_candle")
   }
 
 #' @export
 #' @method e_candle echarts4r
-e_candle.echarts4r <- function(e, opening, closing, low, high, bind, name = NULL, legend = TRUE, ...) {
+e_candle.echarts4r <- function(e, opening, closing, low, high, bind, name = "candle", legend = TRUE, ...) {
 
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
@@ -758,7 +758,7 @@ e_candle.echarts4r <- function(e, opening, closing, low, high, bind, name = NULL
 
 #' @export
 #' @method e_candle echarts4rProxy
-e_candle.echarts4rProxy <- function(e, opening, closing, low, high, bind, name = NULL, legend = TRUE, ...) {
+e_candle.echarts4rProxy <- function(e, opening, closing, low, high, bind, name = "candle", legend = TRUE, ...) {
 
   if (missing(opening) || missing(closing) || missing(low) || missing(high)) {
     stop("missing inputs", call. = FALSE)
@@ -4225,7 +4225,9 @@ e_density.echarts4rProxy <- function(
   return(e)
 }
 
-# TODO I can't get this to work (see unit test)
+# TODO I can't get this to work. I need an example.
+# flights |> e_charts() |> e_lines_gl(flights)
+
 #' Lines WebGL
 #'
 #' Draw WebGL lines.
@@ -4376,6 +4378,7 @@ e_band.echarts4rProxy <- function(
     legend = legend,
     ...
   )
+  return(e)
 }
 
 #' Correlation
@@ -4627,6 +4630,12 @@ e_band2.echarts4r <- function(e, lower, upper,  name = NULL,
     e,
     deparse(substitute(lower)),
     deparse(substitute(upper)),
+    name,
+    legend,
+    y_index,
+    x_index,
+    coord_system,
+    itemStyle,
     ...
   )
 }
@@ -4647,8 +4656,15 @@ e_band2.echarts4rProxy <- function(e, lower, upper,  name = NULL,
     e$chart,
     deparse(substitute(lower)),
     deparse(substitute(upper)),
+    name,
+    legend,
+    y_index,
+    x_index,
+    coord_system,
+    itemStyle,
     ...
   )
+  return(e)
 }
 
 #' Chord

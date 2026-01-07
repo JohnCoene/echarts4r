@@ -82,9 +82,8 @@ e_color_range_ <- function(data, input, output, colors = c("#bf444c", "#d88273",
   }
 
   serie <- data[[input]]
-
   if (inherits(serie, "factor") || inherits(serie, "character")) {
-    col <- scales::col_numeric(colors, domain = range(serie))(serie)
+    col <- scales::col_factor(colors, domain = (serie))(serie)
   } else {
     col <- scales::col_numeric(colors, domain = range(serie))(serie)
   }
@@ -199,7 +198,7 @@ e_format_y_axis <- function(e, suffix = NULL, prefix = NULL, ...) {
 #' # timeline
 #' mtcars |>
 #'   group_by(cyl) |>
-#'   e_chart(wt) |>
+#'   e_chart(wt, timeline = TRUE) |>
 #'   e_scatter(qsec, mpg) |>
 #'   e_labels(fontSize = 9)
 #' @export
@@ -259,6 +258,9 @@ e_labels <- function(e, show = TRUE, position = "top", ...) {
 #'   e_list(opts)
 #' @export
 e_list <- function(e, list, append = FALSE) {
+  if (missing(e)) {
+    stop("must pass e", call. = FALSE)
+  }
   if (missing(list)) {
     stop("missing list", call. = FALSE)
   }
@@ -459,14 +461,14 @@ e_zigzag <- function(e, axis = 'y', start, end, gap = "3%", zigzagAmplitude = 10
 #' @export
 e_jitter <- function(e, axis = 'x', jitter = 20, jitterOverlap = FALSE, jitterMargin = 5){
   if(missing(e)) {
-    stop("must pass echart into function", call. = FALSE)
+    stop("must pass e", call. = FALSE)
   }
 
   if(is.null(axis)) {
     stop("must indicate which axis to apply jitter. e.g. 'x' or 'y'", call. = FALSE)
   }
 
-  if(e$x$opts$series[[1]]$type != 'scatter'){
+  if(e$x$opts$series[[1]]$type != 'scatter' || is.null(e$x$opts$series[[1]]$type)){
     stop("jitter is only supported with scatter plots")
   }
 
@@ -479,4 +481,3 @@ e_jitter <- function(e, axis = 'x', jitter = 20, jitterOverlap = FALSE, jitterMa
   }
   e
 }
-

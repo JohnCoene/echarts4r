@@ -706,7 +706,7 @@ e_effect_scatter_ <- function(
 
 #' @rdname e_candle
 #' @export
-e_candle_ <- function(e, opening, closing, low, high, bind = NULL, name = NULL, legend = TRUE, ...) {
+e_candle_ <- function(e, opening, closing, low, high, bind = NULL, name = "candle", legend = TRUE, ...) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
@@ -758,7 +758,6 @@ e_candle_ <- function(e, opening, closing, low, high, bind = NULL, name = NULL, 
     if (isTRUE(legend)) {
       e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
     }
-
     e$x$opts$baseOption$series <- append(e$x$opts$baseOption$series, list(add_opts))
   }
 
@@ -1398,6 +1397,9 @@ e_lines_3d_ <- function(
     serie_opts <- list(
       type = "lines3D",
       coordinateSystem = coord_system,
+
+      # Adding this fixed: "Uncaught TypeError: Cannot read properties of undefined (reading 'getSource')"
+      data = list(),
       ...
     )
 
@@ -2336,7 +2338,6 @@ e_band_ <- function(
   if (missing(min) || missing(max)) {
     stop("must pass min and max", call. = FALSE)
   }
-
   args <- list(...)
 
   args$lineStyle <- list(
@@ -2367,6 +2368,7 @@ e_band_ <- function(
 
     # max
     e$x$data[[i]][, max] <- e$x$data[[i]][, max] - e$x$data[[i]][, min]
+
     max_opts_index <- max_opts
     max_opts_index$e <- e
     max_opts_index$stack <- stack
@@ -2574,16 +2576,17 @@ e_error_bar_ <- function(
     if (x_index != 0) {
       e <- .set_x_axis(e, x_index, i)
     }
-    if (coord_system == "polar") {
-      e_serie$data <- e$x$data[[i]] |>
-        dplyr::select(dplyr::all_of(c(
-          lower,
-          upper
-        ))) |>
-        unlist() |>
-        unname() |>
-        as.list()
-    }
+    # I dont think this should be supported
+    # if (coord_system == "polar") {
+    #   e_serie$data <- e$x$data[[i]] |>
+    #     dplyr::select(dplyr::all_of(c(
+    #       lower,
+    #       upper
+    #     ))) |>
+    #     unlist() |>
+    #     unname() |>
+    #     as.list()
+    # }
     nm <- .name_it(e, ser[[i]]$name, name, i)
 
     if (!e$x$tl) {
@@ -2646,8 +2649,6 @@ e_error_bar_ <- function(
   e$dependencies <- append(e$dependencies, list(dep))
   e |> e_x_axis(type = "category") # wont work with type 'value'
 }
-
-
 
 #' @rdname e_chord
 #' @export

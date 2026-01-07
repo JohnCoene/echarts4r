@@ -221,6 +221,7 @@ e_z_axis <- function(e, serie, index = 0, margin = 0, ...) {
 #' @rdname axis
 #' @export
 e_rm_axis <- function(e, axis = c("x", "y", "z")) {
+  match.arg(axis, c("x", "y", "z"))
   axis <- .r2axis(axis[1])
 
   e$x$opts[[axis]] <- NULL
@@ -373,7 +374,7 @@ e_radius_axis_ <- function(e, serie = NULL, show = TRUE, ...) {
       as.list()
   }
 
-  if (e$x$tl) {
+  if (!e$x$tl) {
     e$x$opts$radiusAxis <- opts
   } else {
     e$x$opts$baseOption$radiusAxis <- opts
@@ -507,11 +508,12 @@ e_radar_opts <- function(e, index = 0, ...) {
   # initiatlise if wrong index
   if (r.index > max) {
     r.index <- 1
-    if (!e$x$tl) {
-      e$x$opts$radar <- list(list())
-    } else {
-      e$x$opts$baseOption$radar <- list(list())
-    }
+    # This part seemed to break the plot
+    # if (!e$x$tl) {
+    #   e$x$opts$radar <- list(list())
+    # } else {
+    #   e$x$opts$baseOption$radar <- list(list())
+    # }
   }
 
   for (i in seq_along(attrs)) {
