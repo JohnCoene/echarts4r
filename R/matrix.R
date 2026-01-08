@@ -375,28 +375,6 @@ e_matrix_addChart <- function(e,
   e
 }
 
-# TODO fix example here. Cannot find grid$name
-#' df <- data.frame(group = rep(grid$name, each = 20),
-#'   date = seq(from = as.Date("2025-01-01"),
-#'   to = as.Date("2025-01-20"), by = "day"),
-#'   temp = sample(c(10:20), size = 60, replace = TRUE))
-#'
-#' df |>
-#'   group_by(group) |>
-#'   e_chart(date) |>
-#'   e_line(temp, symbol = "none") |>
-#'   e_x_axis(splitNumber = 2) |>
-#'   e_y_axis(splitNumber = 2) |>
-#'   e_geoFacet(rows = max(grid$row),
-#'              cols = max(grid$col),
-#'              legend = FALSE,
-#'              grid = grid,
-#'              margin_trbl = c("t"="25%"),
-#'              left = "5%",
-#'              width = "90%") |>
-#'   e_title(text = "State Temps") |>
-#'   e_title_matrix(textStyle = list(fontSize = 10),
-#'    left = "center", top = "top")
 
 #' Generate Chart Titles for Matrix
 #'
@@ -405,8 +383,26 @@ e_matrix_addChart <- function(e,
 #'
 #' @inheritParams e_bar
 #' @examples
-#' \dontrun{temp_code
-#' }
+#' df <- data.frame(group = rep(letters[1:6], each = 20),
+#' date = seq(from = as.Date("2025-01-01"),
+#'            to = as.Date("2025-01-20"), by = "day"),
+#' temp = sample(c(10:20), size = 60, replace = TRUE))
+#' grid <- data.frame(name = unique(df$group), row = c(1:6), col = c(1:6))
+#' 
+#' df |>
+#'   group_by(group) |>
+#'   e_chart(date) |>
+#'   e_line(temp, symbol = "none") |>
+#'   e_x_axis(splitNumber = 2) |>
+#'   e_y_axis(splitNumber = 2) |>
+#'   e_geoFacet(legend = FALSE,
+#'              grid = grid,
+#'              margin_trbl = c("t"="25%"),
+#'              left = "5%",
+#'              width = "90%") |>
+#'   e_title(text = "Group Temps") |>
+#'   e_title_matrix(textStyle = list(fontSize = 10),
+#'                  left = "center", top = "top")
 #'
 #' @seealso \href{https://echarts.apache.org/en/option.html#title}{Additional
 #'   arguments}
@@ -428,7 +424,6 @@ e_title_matrix <- function(e, ...){
   e
 }
 
-# TODO example does not include e_geoFacet
 
 #' Create geoFacet Echart
 #'
@@ -453,18 +448,25 @@ e_title_matrix <- function(e, ...){
 #'
 #'
 #' @examples
-#' echart <- iris |>
-#'   group_by(Species) |>
-#'   e_charts(Sepal.Length) |>
-#'   e_line(Sepal.Width) |>
-#'   e_tooltip(trigger = "axis")
-#'
-#' e_matrix_raw(rows = 3, cols = 3, body = list(
-#' itemStyle = list(borderWidth = 0))) |>
-#' e_matrix_addChart(echart, coord = list(
-#'    c(0,2),0), margin_trbl = c("b" = "20%"))
-#'
-#'
+#' df <- data.frame(group = rep(letters[1:6], each = 20),
+#' date = seq(from = as.Date("2025-01-01"),
+#'            to = as.Date("2025-01-20"), by = "day"),
+#' temp = sample(c(10:20), size = 60, replace = TRUE))
+#' grid <- data.frame(name = unique(df$group), row = c(1:6), col = c(1:6))
+#' 
+#' df |>
+#'   group_by(group) |>
+#'   e_chart(date) |>
+#'   e_line(temp, symbol = "none") |>
+#'   e_x_axis(splitNumber = 2) |>
+#'   e_y_axis(splitNumber = 2) |>
+#'   e_geoFacet(legend = FALSE,
+#'              grid = grid,
+#'              margin_trbl = c("t"="25%"),
+#'              left = "5%",
+#'              width = "90%") |>
+#'   e_title(text = "Group Temps")
+#' 
 #' @rdname e_matrix_addChart
 #' @export
 e_geoFacet <- function(e,
@@ -485,7 +487,12 @@ e_geoFacet <- function(e,
 
   if(typeof(grid)=="character"){
     # TODO this is an internal function - may be a CRAN issue, Also make this a unit test.
-    grid <- geofacet:::get_grid(grid)
+    tryCatch(expr = {
+      grid2 <- eval(parse(text = paste0("geofacet::", grid)))
+      }, error = function(e){
+        stop("geofacet grid not found")
+      }
+    )
   }
 
   if(missing(rows) || missing(cols)){
