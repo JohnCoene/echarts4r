@@ -48,6 +48,10 @@ e_matrix <- function(e, xAxis, yAxis, ...){
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
+  
+  if(e$x$tl == TRUE){
+    stop("timeline is not supported in matrix")
+  }
 
 
   if (missing(xAxis) | missing(yAxis)) {
@@ -128,7 +132,6 @@ e_matrix_parent <- function(e, axis = "x", value, children, ...){
     if(length(child_ndx)==0){
       for(i in seq_along(e$x$opts$matrix$x$data )){
         data_subset <- e$x$opts$matrix$x$data[[i]]
-        # TODO also check for data_subset$children for nested children ? See unit test.
         if("value" %in% names(data_subset) && data_subset$value %in% children){
           child_ndx <- append(child_ndx, i)
         }
@@ -486,7 +489,6 @@ e_geoFacet <- function(e,
   }
 
   if(typeof(grid)=="character"){
-    # TODO this is an internal function - may be a CRAN issue, Also make this a unit test.
     tryCatch(expr = {
       grid2 <- eval(parse(text = paste0("geofacet::", grid)))
       }, error = function(e){
@@ -601,18 +603,6 @@ e_pie_matrix <- function(e, x, y, legend = TRUE, ...){
                     ...
       )
       e$x$opts$series <- append(e$x$opts$series, list(serie))
-    }
-  }
-
-  # TODO is timetime supported?
-  if (isTRUE(e$x$tl)) {
-    if (isTRUE(legend)) {
-      e$x$opts$baseOption$legend$data <- append(
-        e$x$opts$baseOption$legend$data,
-        purrr::map(e$x$data, "model") |>
-          unlist() |>
-          unique()
-      )
     }
   }
 
