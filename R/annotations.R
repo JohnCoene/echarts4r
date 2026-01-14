@@ -1,30 +1,26 @@
+`%||%` <- function(a, b) if (is.null(a)) b else a
+
 #' Add annotations to a chart
 #'
-#' @description
-#' Each annotation requires an x, y, and text.
-#'  In Shiny, to output an annotation position, use `input$annotation_positions`
-#'  For rectStyle if x and y are ignored then line is connected on the horizontal bottom of the box.
-#' For textStyle, rich text does work and will be applied to annotation text. textAlign and padding was also added.
-#' For arrowStyle, size was added.
-#' Make any "none" to remove element.
-#' If color is provided in group, the text, box border, line and arrow will use that color.
+#' @description Each annotation must be in a list with an x, y, and text.
+#' Styling can be added - see @details.
+#'
+#' In Shiny, to output an annotation position after dragging the box, use
+#' \code{input$id_dragged_annotation} or see \link{echarts4r-shiny}. This captures the annotation parameters - not any of the styles.
 #'
 #' @details
-#' - for textStyle list of [text.style](https://echarts.apache.org/en/option.html#graphic.elements-text.style)
+#' annotations can take the following styles to change the defaults. To remove any element use "none".
 #'
-#' - list of [group](https://echarts.apache.org/en/option.html#graphic.elements-group)
+#' - \strong{group}: Controls the box and text elements. color was added as an option. This color colors the text, box border, line and arrow - unless specified in that particular argument.
 #'
-#' - rectStyle list of [rect.style](https://echarts.apache.org/en/option.html#graphic.elements-rect.style)
+#' - \strong{rectStyle} Styles the annotation box.
 #'
-#' - lineStyle SVG list for [lines](https://www.w3schools.com/graphics/svg_stroking.asp)
+#' - \strong{textStyle}, Styles the annotation text. textAlign and padding was added.
 #'
-#' - arrowStyle list of [polygon.style](https://echarts.apache.org/en/option.html#graphic.elements-polygon.style)
+#' - \strong{arrowStyle}: Styles the arrow. size was added.
 #'
-#' @param e e
-#' @param annotations list of annotation to plot
-
-#'
-#' @export
+#' @param e An echarts4r object
+#' @param annotations list of annotations to plot
 #'
 #' @examples
 #' mtcars |>
@@ -47,7 +43,7 @@
 #'           color = "green"
 #'         ),
 #'         rectStyle = list(
-#'           lineDash = 'solid',
+#'           lineDash = 'dashed',
 #'           lineWidth = 2,
 #'           shape = list(width = 105, height = 35, r = 0)
 #'         ),
@@ -62,10 +58,10 @@
 #'         text = 'No styles',
 #'         offsetX = 0,
 #'         offsetY = -40,
-#'         color = "red",
 #'         lineStyle = "none",
 #'         rectStyle = "none",
-#'         arrowStyle = "none"
+#'         arrowStyle = "none",
+#'         textStyle = list(color = "red")
 #'       ),
 #'       # Style text using rich text
 #'       list(
@@ -80,12 +76,25 @@
 #'             bold = list(fontWeight = 'bold'),
 #'             red = list(fill = 'red')
 #'           )
-#'         ),
-#'         rectStyle = list(
-#'           lineDash = 'solid'
 #'         )
 #'       )
 #'     ))
+#'
+#' @seealso
+#' - \href{https://echarts.apache.org/en/option.html#graphic.elements-group}{Additional arguments for group}
+#'
+#' - \href{https://echarts.apache.org/en/option.html#graphic.elements-text.style}{Additional arguments for textStyle}
+#'
+#' - \href{https://echarts.apache.org/en/option.html#graphic.elements-rect.style}{Additional arguments for rectStyle}
+#'
+#' - \href{https://www.w3schools.com/graphics/svg_stroking.asp}{Additional
+#' arguments for lineStyle}
+#'
+#' - \href{https://echarts.apache.org/en/option.html#graphic.elements-polygon.style}{Additional
+#' arguments for arrowStyle}
+#'
+#' @rdname e_annotations
+#' @export
 e_annotations <- function(
     e,
     annotations
@@ -281,7 +290,7 @@ e_annotations <- function(
 }
 
 # Helper function to initialize annotation data
-# this is the output of  input$id_dragged_annotation
+# this is the output to input$id_dragged_annotation
 initialize_annotation_data <- function() {
   "
    if (!el._annotationData[index]) {
@@ -344,10 +353,8 @@ setup_drag_handler <- function() {
   "
 }
 
-
-`%||%` <- function(a, b) if (is.null(a)) b else a
-
 # R function with multiple positioning options
+#' @keywords internal
 auto_text_style <- function(
     box_shape,
     position = "center", # center, top, bottom, left, right
@@ -393,6 +400,7 @@ auto_text_style <- function(
 
 
 # Process a single annotation with all styles
+#' @keywords internal
 process_single_annotation <- function(
     ann
 ) {
@@ -466,7 +474,7 @@ process_single_annotation <- function(
   # Calculate text position (centered)
   text_pos <- auto_text_style(box_shape, position = default_text_style$textAlign, padding = default_text_style$padding)
 
-  final_text_style <- modifyList(
+  final_text_style <- utils::modifyList(
     default_text_style,
     c(
       ann$textStyle %||% list(),
@@ -481,28 +489,28 @@ process_single_annotation <- function(
     )
   )
 
-  final_box_style <- modifyList(
+  final_box_style <- utils::modifyList(
     default_box_style,
     c(
       ann$rectStyle %||% list()
     )
   )
 
-  final_line_style <- modifyList(
+  final_line_style <- utils::modifyList(
     default_line_style,
     c(
       ann$lineStyle %||% list()
     )
   )
 
-  final_arrow_style <- modifyList(
+  final_arrow_style <- utils::modifyList(
     default_arrow_style,
     c(
       ann$arrowStyle %||% list()
     )
   )
 
-  final_group <- modifyList(
+  final_group <- utils::modifyList(
     default_group,
     c(
       ann$group %||% list()

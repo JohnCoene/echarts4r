@@ -84,6 +84,7 @@ applications and interactive Rmd documents.
   \item{\code{id_mouseover_data_value}: returns value of hovered data point.}
   \item{\code{id_mouseover_row}: returns row o hovered data point.}
   \item{\code{id_mouseover_serie}: returns name of serie of hovered data point.}
+  \item{\code{id_dragged_annotation}: returns data on dragged annotation.}
 }
 }
 

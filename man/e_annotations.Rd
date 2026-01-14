@@ -7,33 +7,27 @@
 e_annotations(e, annotations)
 }
 \arguments{
-\item{e}{e}
+\item{e}{An echarts4r object}
 
-\item{annotations}{list of annotation to plot}
+\item{annotations}{list of annotations to plot}
 }
 \description{
-Each annotation requires an x, y, and text.
-Only works with cartesian2d.
- In Shiny, to output an annotation position, use `input$annotation_positions`
- For rectStyle if x and y are ignored then line is connected on the horizontal bottom of the box.
-For textStyle, rich text does work and will be applied to annotation text. textAlign and padding was also added.
-For arrowStyle, size was added.
-Make any "none" to remove element.
-If color is provided in group, the text, box border, line and arrow will use that color.
+Each annotation must be in a list with an x, y, and text.
+Styling can be added - see @details.
+
+In Shiny, to output an annotation position after dragging the box, use
+\code{input$id_dragged_annotation} or see \link{echarts4r-shiny}. This captures the annotation parameters - not any of the styles.
 }
 \details{
-- [ECharts graphics component](https://echarts.apache.org/en/option.html#graphic)
-- [ECharts-GL globe](https://echarts.apache.org/en/option-gl.html#globe)
+annotations can take the following styles to change the defaults. To remove any element use "none".
 
-- for textStyle list of [text.style](https://echarts.apache.org/en/option.html#graphic.elements-text.style)
+- \strong{group}: Controls the box and text elements. color was added as an option. This color colors the text, box border, line and arrow - unless specified in that particular argument.
 
-- list of [group](https://echarts.apache.org/en/option.html#graphic.elements-group)
+- \strong{rectStyle} Styles the annotation box.
 
-- rectStyle list of [rect.style](https://echarts.apache.org/en/option.html#graphic.elements-rect.style)
+- \strong{textStyle}, Styles the annotation text. textAlign and padding was added.
 
-- lineStyle SVG list for [lines](https://www.w3schools.com/graphics/svg_stroking.asp)
-
-- arrowStyle list of [polygon.style](https://echarts.apache.org/en/option.html#graphic.elements-polygon.style)
+- \strong{arrowStyle}: Styles the arrow. size was added.
 }
 \examples{
 mtcars |>
@@ -45,9 +39,10 @@ e_charts(mpg) |>
         id = 0,
         x = 15,
         y = 3,
-        text = 'An annotation',
+        text = 'An annotation\nwith styles',
         offsetX = 0,
         offsetY = -50,
+        # Using the styles
         group = list(draggable = FALSE, color = "red"),
         textStyle = list(
           fontSize = 14,
@@ -55,7 +50,7 @@ e_charts(mpg) |>
           color = "green"
         ),
         rectStyle = list(
-          lineDash = 'solid',
+          lineDash = 'dashed',
           lineWidth = 2,
           shape = list(width = 105, height = 35, r = 0)
         ),
@@ -67,14 +62,15 @@ e_charts(mpg) |>
         id = 0,
         x = 25,
         y = 1,
-        text = 'No Styles',
-        offsetX = 0, # box position from x,y
+        text = 'No styles',
+        offsetX = 0,
         offsetY = -40,
-        color = "red",
         lineStyle = "none",
         rectStyle = "none",
-        arrowStyle = "none"
+        arrowStyle = "none",
+        textStyle = list(color = "red")
       ),
+      # Style text using rich text
       list(
         id = 2,
         x = 25,
@@ -87,10 +83,21 @@ e_charts(mpg) |>
             bold = list(fontWeight = 'bold'),
             red = list(fill = 'red')
           )
-        ),
-        rectStyle = list(
-          lineDash = 'solid'
         )
       )
     ))
+
+}
+\seealso{
+- \href{https://echarts.apache.org/en/option.html#graphic.elements-group}{Additional arguments for group}
+
+- \href{https://echarts.apache.org/en/option.html#graphic.elements-text.style}{Additional arguments for textStyle}
+
+- \href{https://echarts.apache.org/en/option.html#graphic.elements-rect.style}{Additional arguments for rectStyle}
+
+- \href{https://www.w3schools.com/graphics/svg_stroking.asp}{Additional
+arguments for lineStyle}
+
+- \href{https://echarts.apache.org/en/option.html#graphic.elements-polygon.style}{Additional
+arguments for arrowStyle}
 }
