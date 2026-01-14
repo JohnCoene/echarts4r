@@ -5,7 +5,7 @@ HTMLWidgets.widget({
   type: 'output',
 
   factory: function(el, width, height) {
-    
+
     var initialized = false;
 
     var chart,opts;
@@ -27,23 +27,23 @@ HTMLWidgets.widget({
       });
       return(opts);
     }
-    
+
     return {
 
       renderValue: function(x) {
-        
+
         if(x.dispose === true){
           chart = echarts.init(document.getElementById(el.id));
           chart.dispose();
         }
-        
+
         if (!initialized) {
           initialized = true;
           if(x.theme2 === true){
             var th = JSON.parse(x.customTheme);
             echarts.registerTheme(x.theme_name, th);
           }
-          
+
         }
 
         if(x.hasOwnProperty('registerMap')){
@@ -54,29 +54,29 @@ HTMLWidgets.widget({
               echarts.registerMap(x.registerMap[map].mapName, x.registerMap[map].geoJSON);
           }
         }
-        
+
         if(x.hasOwnProperty('mapboxToken')){
           mapboxgl.accessToken = x.mapboxToken;
         }
-        
+
         if(!x.mainOpts)
           x.mainOpts = [];
         x.mainOpts.renderer = x.renderer;
 
         chart = echarts.init(document.getElementById(el.id), x.theme, x.mainOpts);
-        
+
         opts = evalFun(x.opts);
 
         if(x.morphed){
-          opts = x.opts[0][x.morphed.default]   
+          opts = x.opts[0][x.morphed.default]
         }
-        
+
         if(x.draw === true)
           chart.setOption(opts);
-        
+
         // shiny callbacks
         if (HTMLWidgets.shinyMode) {
-          
+
           chart.on("brushselected", function(e){
             Shiny.onInputChange(el.id + '_brush' + ":echarts4rParse", e);
           });
@@ -84,12 +84,12 @@ HTMLWidgets.widget({
           chart.on("brush", function(e){
             Shiny.onInputChange(el.id + '_brush_released' + ":echarts4rParse", e);
           });
-          
+
           chart.on("legendselectchanged", function(e){
             Shiny.onInputChange(el.id + '_legend_change' + ":echarts4rParse", e.name);
             Shiny.onInputChange(el.id + '_legend_selected' + ":echarts4rParse", e.selected);
           });
-          
+
           chart.on("globalout", function(e){
             Shiny.onInputChange(el.id + '_global_out' + ":echarts4rParse", e, {priority: 'event'});
           });
@@ -103,32 +103,54 @@ HTMLWidgets.widget({
               Shiny.setInputValue(el.id + '_clicked_zr' + ":echarts4rParse", e);
             });
           }
-          
+
           if(x.hasOwnProperty('capture')){
             chart.on(x.capture, function(e){
               Shiny.onInputChange(el.id + '_' + x.capture + ":echarts4rParse", e, {priority: 'event'});
             });
           }
-          
+
+        chart.getZr().on('dragend', function(e) {
+          if (e.target &&
+              e.target.id != null &&
+              String(e.target.id).startsWith('box_')) {
+
+            var annotationData = null;
+            for (var index in el._annotationData) {
+              if (el._annotationData[index].box_id === e.target.id) {
+                annotationData = el._annotationData[index];
+                break;
+              }
+            }
+
+            if (annotationData) {
+              Shiny.onInputChange(
+                el.id + "_dragged_annotation" + ":echarts4rParse",
+                annotationData
+              );
+            }
+          }
+        });
+
           chart.on("click", function(e){
             Shiny.onInputChange(el.id + '_clicked_data' + ":echarts4rParse", e.data, {priority: 'event'});
             Shiny.onInputChange(el.id + '_clicked_row' + ":echarts4rParse", e.dataIndex + 1, {priority: 'event'});
             Shiny.onInputChange(el.id + '_clicked_serie' + ":echarts4rParse", e.seriesName, {priority: 'event'});
           });
-          
+
           chart.on("mouseover", function(e){
             Shiny.onInputChange(el.id + '_mouseover_data' + ":echarts4rParse", e.data);
             Shiny.onInputChange(el.id + '_mouseover_row' + ":echarts4rParse", e.dataIndex + 1);
             Shiny.onInputChange(el.id + '_mouseover_serie' + ":echarts4rParse", e.seriesName);
           });
-          
+
           $(document).on('shiny:recalculating', function() {
-            
+
             if(x.hideWhite === true){
               var css = '.recalculating {opacity: 1.0 !important; }',
                   head = document.head || document.getElementsByTagName('head')[0],
                   style = document.createElement('style');
-              
+
               style.type = 'text/css';
               if (style.styleSheet){
                 style.styleSheet.cssText = css;
@@ -137,20 +159,20 @@ HTMLWidgets.widget({
               }
               head.appendChild(style);
             }
-            
+
             if(x.loading === true){
               chart.showLoading('default', x.loadingOpts);
             } else if(x.loading === false) {
               chart.hideLoading();
             }
-            
+
           });
-          
+
           $(document).on('shiny:value', function() {
             chart.hideLoading();
           });
         }
-        
+
         if(x.hasOwnProperty('connect')){
           var connections = [];
           for(var c = 0; c < x.connect.length; c++){
@@ -159,18 +181,18 @@ HTMLWidgets.widget({
           connections.push(chart);
           echarts.connect(connections);
         }
-        
+
         // actions
         if(x.events.length >= 1){
           for(var i = 0; i < x.events.length; i++){
             chart.dispatchAction(x.events[i].data);
-          }  
+          }
         }
-        
+
         // buttons
         var buttons = x.buttons;
         Object.keys(buttons).map( function(buttonId){
-          document.getElementById(buttonId).addEventListener('click', 
+          document.getElementById(buttonId).addEventListener('click',
             (function(id) {
               const scoped_id = id;
               return function(e){
@@ -182,31 +204,31 @@ HTMLWidgets.widget({
             )(buttonId)
           );
         });
-          
+
         if(x.hasOwnProperty('on')){
           for(var e = 0; e < x.on.length; e++){
             chart.on(x.on[e].event, x.on[e].query, x.on[e].handler);
           }
         }
-        
+
         if(x.hasOwnProperty('off')){
           for(var ev = 0; ev < x.off.length; ev++){
             chart.off(x.off[ev].event, x.off[ev].query, x.off[ev].handler);
           }
         }
-        
+
         if(x.hasOwnProperty('chartGroup')){
           chart.group = x.chartGroup;
         }
-        
+
         if(x.hasOwnProperty('groupConnect')){
           echarts.connect(x.groupConnect);
         }
-        
+
         if(x.hasOwnProperty('groupDisconnect')){
           echarts.disconnect(x.groupDisconnect);
         }
-        
+
         if(x.morphed){
           opts = x.opts[0];
           console.log(x.morphed);
@@ -215,11 +237,11 @@ HTMLWidgets.widget({
         }
 
       },
-      
+
       getChart: function(){
         return chart;
       },
-      
+
       getOpts: function(){
         return opts;
       },
@@ -261,7 +283,7 @@ function get_e_charts_opts(id){
   return(echarts);
 }
 
-function distinct(value, index, self) { 
+function distinct(value, index, self) {
   return self.indexOf(value) === index;
 }
 
@@ -270,7 +292,7 @@ function rm_undefined(el){
 }
 
 if (HTMLWidgets.shinyMode) {
-  
+
   // DRAW
   Shiny.addCustomMessageHandler('e_draw_p',
     function(data) {
@@ -280,9 +302,9 @@ if (HTMLWidgets.shinyMode) {
         chart.setOption(opts);
       }
   });
-  
+
   // HIGHLIGHT AND DOWNPLAY
-  
+
   Shiny.addCustomMessageHandler('e_highlight_p',
     function(data) {
       var chart = get_e_charts(data.id);
@@ -294,7 +316,7 @@ if (HTMLWidgets.shinyMode) {
         });
       }
   });
-  
+
   Shiny.addCustomMessageHandler('e_downplay_p',
     function(data) {
       var chart = get_e_charts(data.id);
@@ -306,9 +328,9 @@ if (HTMLWidgets.shinyMode) {
         });
       }
   });
-  
-  // TOOLTIP  
-  
+
+  // TOOLTIP
+
   Shiny.addCustomMessageHandler('e_showtip_p',
     function(data) {
       var chart = get_e_charts(data.id);
@@ -316,7 +338,7 @@ if (HTMLWidgets.shinyMode) {
         chart.dispatchAction(data.opts);
       }
   });
-  
+
   Shiny.addCustomMessageHandler('e_hidetip_p',
     function(data) {
       var chart = get_e_charts(data.id);
@@ -326,7 +348,7 @@ if (HTMLWidgets.shinyMode) {
         });
       }
   });
-  
+
   Shiny.addCustomMessageHandler('e_append_p',
     function(opts) {
       var chart = get_e_charts(opts.id);
@@ -337,7 +359,7 @@ if (HTMLWidgets.shinyMode) {
         });
       }
   });
-  
+
   Shiny.addCustomMessageHandler('e_focus_node_adjacency_p',
     function(data) {
       console.log(data);
@@ -348,7 +370,7 @@ if (HTMLWidgets.shinyMode) {
         })
       }
   });
-  
+
   Shiny.addCustomMessageHandler('e_unfocus_node_adjacency_p',
     function(data) {
       var chart = get_e_charts(data[0].id);
@@ -358,7 +380,7 @@ if (HTMLWidgets.shinyMode) {
         })
       }
   });
-  
+
   Shiny.addCustomMessageHandler('e_dispatch_action_p',
     function(data) {
       var chart = get_e_charts(data.id);
@@ -370,15 +392,15 @@ if (HTMLWidgets.shinyMode) {
   Shiny.addCustomMessageHandler('e_register_map',
     function(data) {
       if (typeof chart != 'undefined') {
-        $.ajax({ 
-          url: data.geoJSON, 
-          dataType: 'json', 
+        $.ajax({
+          url: data.geoJSON,
+          dataType: 'json',
           async: data.mapAsync,
-          success: function(json){ 
+          success: function(json){
             echarts.registerMap(data.mapName, json);
-          } 
+          }
         });
-        
+
       }
   });
 
@@ -410,10 +432,10 @@ if (HTMLWidgets.shinyMode) {
             data.opts.color.forEach(function(color){
               opts.color.push(color);
             });
-          else 
+          else
             opts.color = data.opts.color;
         }
-        
+
         if(data.opts.backgroundColor)
           opts.color = data.opts.backgroundColor;
 
@@ -421,7 +443,7 @@ if (HTMLWidgets.shinyMode) {
         if(data.opts.legend && opts.legend.length > 0)
           if(data.opts.legend.data)
             opts.legend[0].data = opts.legend[0].data.concat(data.opts.legend.data);
-        
+
         // x Axis
         if(opts.xAxis){
           if(opts.xAxis[0].data){
@@ -446,7 +468,7 @@ if (HTMLWidgets.shinyMode) {
 
   Shiny.addCustomMessageHandler('e_remove_serie_p',
     function(data) {
-      
+
       var chart = get_e_charts(data.id);
       if (typeof chart != 'undefined') {
         let opts = chart.getOption();
@@ -476,12 +498,12 @@ if (HTMLWidgets.shinyMode) {
   });
 
   Shiny.addCustomMessageHandler('e_merge_p',
-    function(data) {    
+    function(data) {
       // called by e_merge, add marks to serie
       var chart = get_e_charts(data.id);
       if (typeof chart != 'undefined') {
-        chart.setOption(data.opts); 
+        chart.setOption(data.opts);
       }
   });
-  
+
 }
