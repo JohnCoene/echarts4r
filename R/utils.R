@@ -879,3 +879,49 @@ check_installed <- function(pkg) {
   }
   return(e)
 }
+
+
+check_installed_installer <- function(pkg) {
+  has_it <- base::requireNamespace(pkg, quietly = TRUE)
+  
+  if (!has_it) {
+    cat(paste("This function requires the package:", pkg, "\n"))
+    install_pkg(pkg)
+  }
+  
+  
+}
+
+
+install_pkg <- function(pkg) {
+  input <- 1L
+  
+  if (interactive()) {
+    input <- utils::menu(
+      c("Yes", "No"),
+      title = paste("Install the", pkg, "package?")
+    )
+  }
+  
+  if (input != 1L) {
+    cli::cli_abort(
+      paste0("The {.pkg ", pkg,"} package is necessary for that method.\n Please try installing the package yourself with {.code install.packages(\"",pkg,"\")}")
+    )
+  }
+  
+  cli::cli_inform(paste0("Installing the {.pkg ", pkg,"} package."))
+  
+  tryCatch(
+    install.packages(pkg),
+    error = function(e) {
+      cli::cli_inform(conditionMessage(e))
+    }
+  )
+  
+  tryCatch(
+    require(pkg, character.only = TRUE),
+    error = function(e) {
+      cli::cli_inform(conditionMessage(e))
+    }
+  )
+}

@@ -469,8 +469,20 @@ e_title_matrix <- function(e, ...){
 #'              left = "5%",
 #'              width = "90%") |>
 #'   e_title(text = "Group Temps")
+#'
+#'
+#' tem <- data.frame(state.x77)
+#' sta <- cbind(state.name, tem) 
+#' colnames(sta)[1] <- "State"
+#'
+#' sta |>
+#'   group_by(State) |>
+#'   e_charts(Population) |>
+#'   e_scatter(Income) |>
+#'   e_geoFacet(grid = "us_state_grid1") |>
+#'   e_tooltip()
 #' 
-#' @rdname e_matrix_addChart
+#' @rdname e_geoFacet
 #' @export
 e_geoFacet <- function(e,
                        rows,
@@ -489,12 +501,8 @@ e_geoFacet <- function(e,
   }
 
   if(typeof(grid)=="character"){
-    tryCatch(expr = {
-      grid2 <- eval(parse(text = paste0("geofacet::", grid)))
-      }, error = function(e){
-        stop("geofacet grid not found")
-      }
-    )
+    check_installed_installer("geofacet")
+    grid <- get(grid)
   }
 
   if(missing(rows) || missing(cols)){
