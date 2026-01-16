@@ -21,6 +21,7 @@ License: Apache License (>= 2.0)
 Encoding: UTF-8
 Imports:
   htmlwidgets,
+  cli,
   dplyr (>= 0.7.0),
   purrr,
   countrycode,
@@ -38,6 +39,7 @@ Suggests:
   knitr,
   rmarkdown,
   covr,
+  geofacet,
   data.tree,
   leaflet,
   tibble,
@@ -48,3 +50,4 @@ Config/testthat/edition: 3
 URL: https://echarts4r.john-coene.com/, https://github.com/JohnCoene/echarts4r
 BugReports: https://github.com/JohnCoene/echarts4r/issues/
 LazyData: true
+VignetteBuilder: knitr

@@ -47,35 +47,39 @@ functionality to e_facet(). Similar to geoFacet package. Timeline is NOT
 supported.
 }
 \examples{
-df <- data.frame(group = rep(letters[1:6], each = 20),
-date = seq(from = as.Date("2025-01-01"),
-           to = as.Date("2025-01-20"), by = "day"),
-temp = sample(c(10:20), size = 60, replace = TRUE))
-grid <- data.frame(name = unique(df$group), row = c(1:6), col = c(1:6))
+if (require("geofacet", quietly = TRUE)) {
+  library(geofacet)
 
-df |>
-  group_by(group) |>
-  e_chart(date) |>
-  e_line(temp, symbol = "none") |>
-  e_x_axis(splitNumber = 2) |>
-  e_y_axis(splitNumber = 2) |>
-  e_geoFacet(legend = FALSE,
-             grid = grid,
-             margin_trbl = c("t"="25\%"),
-             left = "5\%",
-             width = "90\%") |>
-  e_title(text = "Group Temps")
+  df <- data.frame(group = rep(letters[1:6], each = 20),
+  date = seq(from = as.Date("2025-01-01"),
+             to = as.Date("2025-01-20"), by = "day"),
+  temp = sample(c(10:20), size = 60, replace = TRUE))
+  grid <- data.frame(name = unique(df$group), row = c(1:6), col = c(1:6))
+
+  df |>
+    group_by(group) |>
+    e_chart(date) |>
+    e_line(temp, symbol = "none") |>
+    e_x_axis(splitNumber = 2) |>
+    e_y_axis(splitNumber = 2) |>
+    e_geoFacet(legend = FALSE,
+               grid = grid,
+               margin_trbl = c("t"="25\%"),
+               left = "5\%",
+               width = "90\%") |>
+    e_title(text = "Group Temps")
 
 
-tem <- data.frame(state.x77)
-sta <- cbind(state.name, tem) 
-colnames(sta)[1] <- "State"
+  tem <- data.frame(state.x77)
+  sta <- cbind(state.name, tem)
+  colnames(sta)[1] <- "State"
 
-sta |>
-  group_by(State) |>
-  e_charts(Population) |>
-  e_scatter(Income) |>
-  e_geoFacet(grid = "us_state_grid1") |>
-  e_tooltip()
+  sta |>
+    group_by(State) |>
+    e_charts(Population) |>
+    e_scatter(Income) |>
+    e_geoFacet(grid = "us_state_grid1") |>
+    e_tooltip()
+ }
 
 }
