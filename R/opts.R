@@ -224,8 +224,7 @@ e_tooltip_item_formatter <- function(
         if (params.name == params.value[0]) {
             idx = 1;
         }
-        return params.value[0] + '<br>' +
-               params.marker + ' ' +
+        return params.marker + ' ' +
                params.seriesName + ': ' + fmt.format(parseFloat(params.value[idx]));
     }", locale, jsonlite::toJSON(opts, auto_unbox = TRUE)))
 
@@ -286,20 +285,14 @@ e_tooltip_pie_formatter <- function(
     currency = currency
   )
 
-  fmt <- htmlwidgets::JS(sprintf("function(params, ticket, callback) {
+  tip <- htmlwidgets::JS(sprintf("function(params, ticket, callback) {
     var fmt = new Intl.NumberFormat('%s', %s);
     return params.marker + ' ' +
            params.name + ': ' +
            fmt.format(params.value);
     }", locale, jsonlite::toJSON(opts, auto_unbox = TRUE)))
 
-  tip <- list(
-    formatter = fmt,
-    ...
-  )
-
-  tip <- structure(tip, class = "pie_formatter")
-
+  tip <- structure(tip, class = c("JS_EVAL", "item_formatter"))
   return(tip)
 }
 
