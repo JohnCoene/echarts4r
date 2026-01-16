@@ -2,7 +2,9 @@
 
 #' Add annotations to a chart
 #'
-#' @description Each annotation must be in a list with an x, y, and text.
+#' @description
+#'
+#' Each annotation must be in a list with an x, y, and text.
 #' Styling can be added - see @details.
 #'
 #' In Shiny, to output an annotation position after dragging the box, use
@@ -16,6 +18,8 @@
 #' - \strong{rectStyle} Styles the annotation box.
 #'
 #' - \strong{textStyle}, Styles the annotation text. textAlign and padding was added.
+#'
+#' - \strong{lineStyle} Styles the line that connects the annotation box to the arrow.
 #'
 #' - \strong{arrowStyle}: Styles the arrow. size was added.
 #'
@@ -69,7 +73,7 @@
 #'         x = 25,
 #'         y = 4.5,
 #'         text = "{bold|Text using}\n{red|rich text!}",
-#'         offsetX = 0, # box position
+#'         offsetX = 0,
 #'         offsetY = -40,
 #'         textStyle = list(
 #'           rich = list(
@@ -128,6 +132,15 @@ e_annotations <- function(
 
   # Store back in chart object
   e$x$annotations <- all_annos
+
+  # Adding this solves the issue for the SVG line to get messed up when
+  # `shiny::fluidRow(echarts4r::echarts4rOutput("chart"))` with no e_tooltip().
+  # I don't understand why this fixes it.
+  if (!e$x$tl & is.null(e$x$opts$tooltip)) {
+    e$x$opts$tooltip <-  list(trigger = 'fake')
+  } else if ((e$x$tl & is.null(e$x$opts$tooltip)) ) {
+    e$x$opts$baseOption$tooltip <-  list(trigger = 'fake')
+  }
 
   e |>
     htmlwidgets::onRender(
@@ -199,18 +212,18 @@ e_annotations <- function(
 
           var arrowTip = ann.arrowTip;
               // SMART EDGE DETECTION
-    var isAbove = boxPos[1] < anchorPos[1];
-    var boxEdge;
+          var isAbove = boxPos[1] < anchorPos[1];
+          var boxEdge;
 
-    if (isAbove) {
-      // Box is above anchor
-      // Connect to BOTTOM edge of box, with gap going DOWN (positive)
-      boxEdge = ann.rectShape.y + ann.rectShape.height ;
-    } else {
-      // Box is below anchor
-      // Connect to TOP edge of box, with gap going UP (negative)
-      boxEdge = ann.rectShape.y;
-    }
+          if (isAbove) {
+            // Box is above anchor
+            // Connect to BOTTOM edge of box, with gap going DOWN (positive)
+            boxEdge = ann.rectShape.y + ann.rectShape.height ;
+          } else {
+            // Box is below anchor
+            // Connect to TOP edge of box, with gap going UP (negative)
+            boxEdge = ann.rectShape.y;
+          }
 
       // SVG line
           var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -274,11 +287,48 @@ e_annotations <- function(
         }
 
         // Initial render
-        updateAnnotations();
+        setTimeout(updateAnnotations, 100)
 
         // Update on zoom/restore
         chart.on('dataZoom', updateAnnotations);
+        chart.on('timelinechanged', updateAnnotations);
         chart.on('restore', updateAnnotations);
+        chart.on('magictypechanged', updateAnnotations);   // Chart type change
+        chart.on('datazoom', updateAnnotations);           // Alternative zoom event
+
+        // Eesize listener when window changes
+        if (!el._resizeHandlerAttached) {
+          // Use ResizeObserver for better reliability
+          if (typeof ResizeObserver !== 'undefined') {
+            var resizeObserver = new ResizeObserver(function(entries) {
+              for (var entry of entries) {
+                if (entry.target === el) {
+                  // Debounce the update
+                  clearTimeout(el._resizeTimeout);
+                  el._resizeTimeout = setTimeout(function() {
+                    chart.resize();  // Resize chart first
+                    setTimeout(updateAnnotations, 50);  // Then update annotations
+                  }, 100);
+                }
+              }
+            });
+            resizeObserver.observe(el);
+            el._resizeObserver = resizeObserver;
+          } else {
+            // Fallback to window resize
+            var resizeHandler = function() {
+              clearTimeout(el._resizeTimeout);
+              el._resizeTimeout = setTimeout(function() {
+                chart.resize();
+                setTimeout(updateAnnotations, 50);
+              }, 100);
+            };
+            window.addEventListener('resize', resizeHandler);
+            el._resizeHandler = resizeHandler;
+          }
+
+          el._resizeHandlerAttached = true;
+        }
 
        // Setup drag handling",
         setup_drag_handler(),
@@ -398,7 +448,6 @@ auto_text_style <- function(
   pos
 }
 
-
 # Process a single annotation with all styles
 #' @keywords internal
 process_single_annotation <- function(
@@ -408,6 +457,7 @@ process_single_annotation <- function(
   if (is.null(ann$x) || is.null(ann$y) || is.null(ann$text)) {
     stop("Annotation must have x, y, and text fields")
   }
+
   # Default Properties ------------------------------------------------------
   default_color <- '#738DE4'
 

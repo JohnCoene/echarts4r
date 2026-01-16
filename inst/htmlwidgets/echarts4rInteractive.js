@@ -128,6 +128,28 @@ HTMLWidgets.widget({
             });
           }
 
+        chart.getZr().on('dragend', function(e) {
+          if (e.target &&
+              e.target.id != null &&
+              String(e.target.id).startsWith('box_')) {
+
+            var annotationData = null;
+            for (var index in el._annotationData) {
+              if (el._annotationData[index].box_id === e.target.id) {
+                annotationData = el._annotationData[index];
+                break;
+              }
+            }
+
+            if (annotationData) {
+              Shiny.onInputChange(
+                el.id + "_dragged_annotation" + ":echarts4rParse",
+                annotationData
+              );
+            }
+          }
+        });
+
           chart.on("click", function (e) {
             Shiny.onInputChange(
               el.id + "_clicked_data" + ":echarts4rParse",

@@ -27,6 +27,8 @@ annotations can take the following styles to change the defaults. To remove any 
 
 - \strong{textStyle}, Styles the annotation text. textAlign and padding was added.
 
+- \strong{lineStyle} Styles the line that connects the annotation box to the arrow.
+
 - \strong{arrowStyle}: Styles the arrow. size was added.
 }
 \examples{
@@ -76,7 +78,7 @@ e_charts(mpg) |>
         x = 25,
         y = 4.5,
         text = "{bold|Text using}\n{red|rich text!}",
-        offsetX = 0, # box position
+        offsetX = 0,
         offsetY = -40,
         textStyle = list(
           rich = list(
