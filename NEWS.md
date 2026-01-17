@@ -1,12 +1,12 @@
 # echarts4r 0.5.0
 
 - Added new chart types: `e_doughnut()`, `e_violin()`, `e_barRange()`, `e_contour()`, `e_lineRange()`, `e_stage()`
-- Added `e_jitter()`, `e_zigzap()`
+- Added `e_jitter()`, `e_zigzap()`, `e_annotations()`
 - New matrix coordinate system to display a series of plots in a grid
 - Updated echarts.js to 6.0.0
 - Greatly expanded unit testing
-- Bug fixes
-- Fixed bug using polar coord system in e_bar() [#494](https://github.com/JohnCoene/echarts4r/issues/494)
+- Fixes issues [#641](https://github.com/JohnCoene/echarts4r/issues/641), [#659](https://github.com/JohnCoene/echarts4r/issues/659), [#625](https://github.com/JohnCoene/echarts4r/issues/624), [#494](https://github.com/JohnCoene/echarts4r/issues/494)
+- Other various bug fixes
 
 # echarts4r 0.4.6
 

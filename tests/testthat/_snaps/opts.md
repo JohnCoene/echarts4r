@@ -3,7 +3,7 @@
     Code
       fmt
     Output
-      [1] "function(params, ticket, callback) {\n        var fmt = new Intl.NumberFormat('en', {\"style\":\"decimal\",\"minimumFractionDigits\":2,\"maximumFractionDigits\":2,\"currency\":\"USD\"});\n        var idx = 0;\n        if (params.name == params.value[0]) {\n            idx = 1;\n        }\n        return params.value[0] + '<br>' +\n               params.marker + ' ' +\n               params.seriesName + ': ' + fmt.format(parseFloat(params.value[idx]));\n    }"
+      [1] "function(params, ticket, callback) {\n        var fmt = new Intl.NumberFormat('en', {\"style\":\"decimal\",\"minimumFractionDigits\":2,\"maximumFractionDigits\":2,\"currency\":\"USD\"});\n        var idx = 0;\n        if (params.name == params.value[0]) {\n            idx = 1;\n        }\n        return params.marker + ' ' +\n               params.seriesName + ': ' + fmt.format(parseFloat(params.value[idx]));\n    }"
       attr(,"class")
       [1] "JS_EVAL"        "item_formatter"
 
@@ -21,13 +21,9 @@
     Code
       fmt
     Output
-      $formatter
       [1] "function(params, ticket, callback) {\n    var fmt = new Intl.NumberFormat('en', {\"style\":\"decimal\",\"minimumFractionDigits\":2,\"maximumFractionDigits\":2,\"currency\":\"USD\"});\n    return params.marker + ' ' +\n           params.name + ': ' +\n           fmt.format(params.value);\n    }"
       attr(,"class")
-      [1] "JS_EVAL"
-      
-      attr(,"class")
-      [1] "pie_formatter"
+      [1] "JS_EVAL"        "item_formatter"
 
 # e_tooltip_pointer_formatter sets formatter for item_formatter
 

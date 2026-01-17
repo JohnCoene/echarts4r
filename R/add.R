@@ -2261,6 +2261,7 @@ e_gauge_ <- function(e, value, name = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
 #' # Lines 3D
 #' # Globe
 #' # get tetures: echarts4r-assets.john-coene.com
+#' # get textures: echarts4r-assets.john-coene.com
 #' flights |>
 #'   e_charts() |>
 #'   e_globe(

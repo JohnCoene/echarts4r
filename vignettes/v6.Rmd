@@ -1,0 +1,23 @@
+---
+title: "v6"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{v6}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+There are a number of new features brought by version 6 of echarts.js, not all are showcased here, see the [official changelog](https://github.com/apache/echarts/releases/tag/6.0.0) for more information.
+
+## Matrix coordinate system
+
+## New Chart types
+There are 6 new chart types: e_doughnut, e_violin(), e_barRange, e_contour, e_lineRange, e_stage.
+See [Chart Types](vignette("chart_types")).
