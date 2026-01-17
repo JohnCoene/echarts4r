@@ -42,7 +42,16 @@ e_leaflet <- function(e, roam = TRUE, ...) {
 
   # add dependency
   path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+
   dep <- htmltools::htmlDependency(
+    name = "leaflet",
+    version = "1.9.4",
+    src = c(file = path),
+    stylesheet = "leaflet.css",
+    script = "leaflet.js"
+  )
+
+  dep2 <- htmltools::htmlDependency(
     name = "echarts-leaflet",
     version = "1.0.0",
     src = c(file = path),
@@ -50,7 +59,7 @@ e_leaflet <- function(e, roam = TRUE, ...) {
   )
 
   e$dependencies <- append(e$dependencies, htmlwidgets::getDependency("leaflet"))
-  e$dependencies <- append(e$dependencies, list(dep))
+  e$dependencies <- append(e$dependencies, list(dep, dep2))
 
   e
 }
