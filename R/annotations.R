@@ -4,14 +4,19 @@
 #'
 #' @description
 #'
-#' Each annotation must be in a list with an x, y, and text.
-#' Styling can be added - see @details.
+#' Apache ECharts does not include a native annotation system. This is a custom
+#' function that creates annotations using ECharts’ low-level graphic components
+#' and SVG for the line.
+#'
+#' Each annotation must be in a list with an x, y, and text. Styling can be
+#' added - see @details.
 #'
 #' In Shiny, to output an annotation position after dragging the box, use
-#' \code{input$id_dragged_annotation} or see \link{echarts4r-shiny}. This captures the annotation parameters - not any of the styles.
+#' \code{input$id_dragged_annotation} or see \link{echarts4r-shiny}. This
+#' captures the annotation parameters - not any of the styles.
 #'
-#' @details
-#' annotations can take the following styles to change the defaults. To remove any element use "none".
+#' @details annotations can take the following styles to change the defaults. To
+#' remove any element use "none".
 #'
 #' - \strong{group}: Controls the box and text elements. color was added as an option. This color colors the text, box border, line and arrow - unless specified in that particular argument.
 #'
@@ -107,7 +112,7 @@ e_annotations <- function(
     stop("must pass e", call. = FALSE)
   }
 
-  if (is.null(annotations)) {
+  if (missing(annotations)) {
     stop("must provide list of annotations")
   }
 
@@ -211,7 +216,7 @@ e_annotations <- function(
             ];
 
           var arrowTip = ann.arrowTip;
-              // SMART EDGE DETECTION
+          // SMART EDGE DETECTION
           var isAbove = boxPos[1] < anchorPos[1];
           var boxEdge;
 
@@ -375,8 +380,16 @@ setup_drag_handler <- function() {
         var boxPos = e.target.position;
         var ann = annotations[index];
 
+//console.log(boxPos[1]);
+//console.log(lineData.anchorPos[1]);
+//console.log(ann.rectShape.height);
+
         // SAME LOGIC as updateAnnotations
         var isAbove = boxPos[1] < lineData.anchorPos[1];
+
+        var lineLength = lineData.anchorPos[1] - boxPos[1];
+        var ifLineOverlapsAbove = (lineLength < (ann.rectShape.height / 2)) && lineLength > 0;
+
         var boxEdge;
 
         if (isAbove) {
@@ -405,7 +418,7 @@ setup_drag_handler <- function() {
 
 # R function with multiple positioning options
 #' @keywords internal
-auto_text_style <- function(
+find_text_position <- function(
     box_shape,
     position = "center", # center, top, bottom, left, right
     padding = 5
@@ -448,7 +461,7 @@ auto_text_style <- function(
   pos
 }
 
-# Process a single annotation with all styles
+# Process a single annotation with all styles so js can read it.
 #' @keywords internal
 process_single_annotation <- function(
     ann
@@ -459,7 +472,8 @@ process_single_annotation <- function(
   }
 
   # Default Properties ------------------------------------------------------
-  default_color <- '#738DE4'
+  a_color <- '#738DE4'
+  default_color <- ann$group$color %||% a_color
 
   default_text_style <- list(
     fontSize = 11,
@@ -468,28 +482,29 @@ process_single_annotation <- function(
     padding = ann$textStyle$padding %||% 2
   )
 
-  if(is.null(ann$lineStyle) || ann$lineStyle[[1]] != "none"){
+
+  if(if_style_is_not_none(ann$lineStyle)){
     default_line_style <- list(
       `stroke-width` = 2,
-      stroke = ann$group$color %||% default_color
+      stroke = ann$lineStyle[["stroke"]] %||% default_color
     )
   } else {
     default_line_style <- list()
     ann$lineStyle <- NULL
   }
 
-  if(is.null(ann$arrowStyle) || ann$arrowStyle[[1]] != "none"){
+  if(if_style_is_not_none(ann$arrowStyle)){
     default_arrow_style <- list(
-      fill = ann$group$color %||% default_color,
+      fill = ann$arrowStyle$fill %||% default_color,
       size = ann$arrowStyle$size %||% 8
     ) } else {
       default_arrow_style <- list(size = 0)
       ann$arrowStyle <- NULL
     }
 
-  if(is.null(ann$rectStyle) || ann$rectStyle[[1]] != "none"){
+  if(if_style_is_not_none(ann$rectStyle)){
     default_box_style <- list(
-      stroke = ann$group$color %||% default_color,
+      stroke = ann$rectStyle$stroke %||% default_color,
       fill = '#ffffff',
       lineWidth = 2
     )} else {
@@ -499,12 +514,13 @@ process_single_annotation <- function(
     }
 
   default_group <- list(draggable = TRUE, z = 10)
-  default_box_width = 80
-  default_box_height = 40
-  default_box_radius = 3
+  default_box_width <- 80
+  default_box_height <- 40
+  default_box_radius <- 3
 
   # Find box position -------------------------------------------------------
 
+  # None of these should ever be NA
   box_width <- ann$rectStyle$shape$width %||% default_box_width
   box_height <- ann$rectStyle$shape$height %||% default_box_height
   box_radius <- ann$rectStyle$shape$r %||% default_box_radius
@@ -522,7 +538,7 @@ process_single_annotation <- function(
   )
 
   # Calculate text position (centered)
-  text_pos <- auto_text_style(box_shape, position = default_text_style$textAlign, padding = default_text_style$padding)
+  text_pos <- find_text_position(box_shape, position = default_text_style$textAlign, padding = default_text_style$padding)
 
   final_text_style <- utils::modifyList(
     default_text_style,
@@ -591,4 +607,15 @@ process_single_annotation <- function(
     arrowTip = -arrow_size,
     group = final_group
   )
+}
+
+#' Determine if first element is none, then no style
+#'The first element could be NULL, a style, or a vector so we must account for all these.
+#' style = NULL
+#' style = list(lineWidth = 5)
+#' style = list(shape = list(width = 100))
+#' @keywords internal
+if_style_is_not_none <- function(style){
+  is.null(style) ||
+    !(is.character(style[[1]]) && style[[1]] == "none")
 }

@@ -335,7 +335,12 @@ test_that("e_map_register_p returns invisible NULL", {
   expect_null(result)
 })
 # e_mapbox ----------------------------------------------------------------
-
+test_that("e_mapbox adds mapbox dependencies", {
+  e <- mtcars |> e_charts(mpg)
+  result <- e_mapbox(e, token = "FAKE")
+  dep_names <- sapply(result$dependencies, function(x) x$name)
+  expect_true("echarts-mapbox" %in% dep_names)
+})
 
 # e_map_register.echarts4r ------------------------------------------------
 test_that("geojson support is functional", {

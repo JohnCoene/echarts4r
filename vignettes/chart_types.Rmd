@@ -447,7 +447,7 @@ df <- data.frame(
   ),
   stringsAsFactors = FALSE
  )
-stage_order = c( "Deep", "Core","REM", "Awake")
+stage_order <- c( "Deep", "Core","REM", "Awake")
 
 df |>
   e_charts() |>

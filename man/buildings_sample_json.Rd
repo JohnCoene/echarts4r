@@ -5,7 +5,7 @@
 \alias{buildings_sample_json}
 \title{Buildings sample set in json format}
 \format{
-A sample list of buildings
+json
 }
 \source{
 echarts

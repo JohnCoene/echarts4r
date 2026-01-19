@@ -29,25 +29,12 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 \description{
 Leaflet extension.
 }
-\note{
-Will not render in the RStudio, open in browser.
-}
 \examples{
-\dontrun{
-url <- paste0(
-  "https://echarts.apache.org/examples/",
-  "data-gl/asset/data/population.json"
-)
-data <- jsonlite::fromJSON(url)
-data <- as.data.frame(data)
-names(data) <- c("lon", "lat", "value")
-data$value <- log(data$value)
-
-data |>
+population |>
+  dplyr::filter(value > 8) |>
   e_charts(lon) |>
   e_leaflet() |>
-  e_leaflet_tile() |>
+  e_leaflet_tile(options = list(maxZoom = 3)) |>
   e_scatter(lat, size = value, coord_system = "leaflet")
-}
 
 }

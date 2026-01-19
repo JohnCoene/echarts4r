@@ -87,6 +87,7 @@ Add 3D lines.
 \examples{
 # Lines 3D
 # Globe
+# get tetures: echarts4r-assets.john-coene.com
 # get textures: echarts4r-assets.john-coene.com
 flights |>
   e_charts() |>

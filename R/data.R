@@ -48,5 +48,17 @@
 #'
 #' @source echarts
 #' \url{https://echarts.apache.org/examples/data-gl/asset/data/buildings.json}
-#' @format A sample list of buildings
+#' @format json
 "buildings_sample_json"
+
+#' World population data
+#'
+#' @source echarts
+#' \url{https://echarts.apache.org/examples/data-gl/asset/data/population.json}
+#' @format data frame with 3 columns and 38,654 rows
+#' \describe{
+#'   \item{lon}{Numeric vector}
+#'   \item{lat}{Numeric vector}
+#'   \item{value}{Integer vector}
+#' }
+"population"

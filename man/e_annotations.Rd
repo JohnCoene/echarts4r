@@ -12,14 +12,20 @@ e_annotations(e, annotations)
 \item{annotations}{list of annotations to plot}
 }
 \description{
-Each annotation must be in a list with an x, y, and text.
-Styling can be added - see @details.
+Apache ECharts does not include a native annotation system. This is a custom
+function that creates annotations using ECharts’ low-level graphic components
+and SVG for the line.
+
+Each annotation must be in a list with an x, y, and text. Styling can be
+added - see @details.
 
 In Shiny, to output an annotation position after dragging the box, use
-\code{input$id_dragged_annotation} or see \link{echarts4r-shiny}. This captures the annotation parameters - not any of the styles.
+\code{input$id_dragged_annotation} or see \link{echarts4r-shiny}. This
+captures the annotation parameters - not any of the styles.
 }
 \details{
-annotations can take the following styles to change the defaults. To remove any element use "none".
+annotations can take the following styles to change the defaults. To
+remove any element use "none".
 
 - \strong{group}: Controls the box and text elements. color was added as an option. This color colors the text, box border, line and arrow - unless specified in that particular argument.
 
