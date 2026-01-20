@@ -6,7 +6,8 @@
 #'
 #' Apache ECharts does not include a native annotation system. This is a custom
 #' function that creates annotations using ECharts’ low-level graphic components
-#' and SVG for the line.
+#' and SVG for the line. This currently only works in a 'cartesian2d' coordinate
+#' system.
 #'
 #' Each annotation must be in a list with an x, y, and text. Styling can be
 #' added - see @details.
@@ -16,15 +17,15 @@
 #' captures the annotation parameters - not any of the styles.
 #'
 #' @details annotations can take the following styles to change the defaults. To
-#' remove any element use "none".
+#'   remove any element use "none".
 #'
-#' - \strong{group}: Controls the box and text elements. color was added as an option. This color colors the text, box border, line and arrow - unless specified in that particular argument.
+#' - \strong{group}: Controls the box and text elements. color was added as an option. This color colors the text, box border, line and arrow - unless specified in that particular style argument.
 #'
 #' - \strong{rectStyle} Styles the annotation box.
 #'
 #' - \strong{textStyle}, Styles the annotation text. textAlign and padding was added.
 #'
-#' - \strong{lineStyle} Styles the line that connects the annotation box to the arrow.
+#' - \strong{lineStyle} Styles the line that connects the annotation box to the arrow using \href{https://www.w3schools.com/graphics/svg_stroking.asp}{SVG stroke attributes}
 #'
 #' - \strong{arrowStyle}: Styles the arrow. size was added.
 #'
@@ -301,7 +302,7 @@ e_annotations <- function(
         chart.on('magictypechanged', updateAnnotations);   // Chart type change
         chart.on('datazoom', updateAnnotations);           // Alternative zoom event
 
-        // Eesize listener when window changes
+        // Resize listener when window changes
         if (!el._resizeHandlerAttached) {
           // Use ResizeObserver for better reliability
           if (typeof ResizeObserver !== 'undefined') {
@@ -380,15 +381,8 @@ setup_drag_handler <- function() {
         var boxPos = e.target.position;
         var ann = annotations[index];
 
-//console.log(boxPos[1]);
-//console.log(lineData.anchorPos[1]);
-//console.log(ann.rectShape.height);
-
         // SAME LOGIC as updateAnnotations
         var isAbove = boxPos[1] < lineData.anchorPos[1];
-
-        var lineLength = lineData.anchorPos[1] - boxPos[1];
-        var ifLineOverlapsAbove = (lineLength < (ann.rectShape.height / 2)) && lineLength > 0;
 
         var boxEdge;
 
