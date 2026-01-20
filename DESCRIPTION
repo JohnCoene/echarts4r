@@ -35,7 +35,7 @@ Imports:
   rstudioapi
 Suggests:
   tidyr,
-  testthat (>= 3.0.0),
+  testthat (>= 3.3.0),
   knitr,
   rmarkdown,
   covr,
