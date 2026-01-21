@@ -18,7 +18,7 @@ home:
     href: https://echarts.apache.org/
 
 reference:
-  - title: "Initialisation & Shiny"
+  - title: "Initialisation and Shiny"
     desc: "Initialise echarts and use in Shiny."
     contents: 
       - e_charts
@@ -59,6 +59,12 @@ reference:
       - starts_with("e_funnel")
       - starts_with("e_heatmap")
       - starts_with("e_pictorial")
+      - starts_with("e_doughnut")
+      - starts_with("e_violin")
+      - starts_with("e_barRange")
+      - starts_with("e_contour")
+      - starts_with("e_lineRange")
+      - starts_with("e_stage")
   - title: "Geo"
     desc: "Geographical chart types"
     contents:
@@ -142,6 +148,11 @@ reference:
     contents:
       - connections
       - e_facet
+  - title: "Matrix"
+    desc: "Create custom matrix tables with charts"
+    contents:
+      - matches("matrix")
+      - e_geoFacet
   - title: "Timeline"
     desc: "Function to customise the chart timeline."
     contents:

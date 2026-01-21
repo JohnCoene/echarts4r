@@ -12,7 +12,7 @@ Authors@R: c(
   person("Robert", "Koetsier", email = "rk8roko@gmail.com ", role = "ctb", comment = c(ORCID = "0000-0002-4477-5401")),
   person("Jelle", "Geertsma", email = "rdatasculptor@gmail.com", role = "ctb"),
   person("Teofil", "Nakov", email = "teofiln@gmail.com", role = "ctb"),
-  person("Patrick","Rekieta",email = "Patrick.Rekieta@gmail.com", role = "ctb"),
+  person("Patrick","Rekieta",email = "Patrick.Rekieta@gmail.com", role = "ctb", comment = c(ORCID = "0009-0005-4446-9665")),
   person("Jacci", "Ziebert", email = "jacciziebert@gmail.com", role = "ctb")
   )
 Description: Easily create interactive charts by leveraging the 'Echarts Javascript' library which includes

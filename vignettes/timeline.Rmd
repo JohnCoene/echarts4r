@@ -1,6 +1,6 @@
 ---
 title: "Timeline"
-futhor: "John Coene"
+author: "John Coene"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
