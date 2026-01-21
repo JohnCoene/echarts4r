@@ -160,3 +160,56 @@ e_add_unnested <- function(e, param, value, .serie = NULL, .data = NULL) {
   }
   e
 }
+
+
+#' Insert binded data
+#'
+#' Utility function to attach an existing column(s) from your data to an existing series
+#'
+#' @inheritParams e_bar
+#' @param .serie Serie's index to add the data.
+#' @param .data Column names for the new data.
+#'
+#' @details This inserts new data into a series's values which allows for use in mapping things like e_visual_map 
+#' or tooltip parameters. This function also works when using timelines.
+#'
+#' @examples
+#' mtcars |>
+#'  e_charts(mpg) |>
+#'  e_scatter(wt, scale = e_scale) |>
+#'  e_insert_data(.serie = 1, .data = "qsec") |>
+#'  e_visual_map(qsec, scale = e_scale, dimension = 2) |> 
+#'  e_tooltip(trigger = "item", 
+#'            formatter = htmlwidgets::JS("function(params) {
+#'                                        return 'mpg: ' + params.value[0] + 
+#'                                        '<br />wt: ' + params.value[1] +
+#'                                        '<br />qsec: ' + params.value[2];
+#'                                        }")
+#'  ) 
+#'
+#' @name e_insert_data
+#' @export
+e_insert_data <- function(e, .serie, .data){
+  if(!e$x$tl){
+    for(i in seq_along(e$x$data)) {
+      bind <- e$x$data[[i]] |>
+        dplyr::select(dplyr::all_of(.data)) |>
+        unname() |>
+        unlist()
+      for(j in seq_along(e$x$opts$series[[.serie]]$data)){
+        e$x$opts$series[[.serie]]$data[[j]]$value <- append(e$x$opts$series[[.serie]]$data[[j]]$value, bind[j])
+      }
+    }
+  } else {
+    for(i in seq_along(e$x$data)) {
+      bind <- e$x$data[[i]] |>
+        dplyr::select(dplyr::all_of(.data)) |>
+        unname() |>
+        unlist()
+      for(j in seq_along(e$x$opts$options[[i]]$series[[.serie]]$data)){
+        e$x$opts$options[[i]]$series[[.serie]]$data[[j]]$value <- append(e$x$opts$options[[i]]$series[[.serie]]$data[[j]]$value, bind[j])
+      }
+    }
+  }
+  e
+}
