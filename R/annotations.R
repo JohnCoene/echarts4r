@@ -48,8 +48,8 @@
 #'         # Using the styles
 #'         group = list(draggable = FALSE, color = "red"),
 #'         textStyle = list(
-#'           fontSize = 14,
-#'           fontWeight = 'bold',
+#'           "font-size" = 14,
+#'           "font-weight" = 'bold',
 #'           color = "green"
 #'         ),
 #'         rectStyle = list(
@@ -91,11 +91,11 @@
 #'     ))
 #'
 #' @seealso
-#' - \href{https://echarts.apache.org/en/option.html#graphic.elements-group}{Additional arguments for group}
+#' - \href{https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute}{Additional arguments for SVG attributes}
 #'
 #' - \href{https://echarts.apache.org/en/option.html#graphic.elements-text.style}{Additional arguments for textStyle}
 #'
-#' - \href{https://echarts.apache.org/en/option.html#graphic.elements-rect.style}{Additional arguments for rectStyle}
+#' - \href{https://www.w3schools.com/graphics/svg_stroking.asp}{Additional arguments for rectStyle}
 #'
 #' - \href{https://www.w3schools.com/graphics/svg_stroking.asp}{Additional
 #' arguments for lineStyle}
@@ -107,7 +107,10 @@
 #' @export
 e_annotations <- function(
     e,
-    annotations
+    annotations,
+    # facet_number = NULL,
+    grid = NULL,
+    series = NULL
 ) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
@@ -121,7 +124,49 @@ e_annotations <- function(
     stop("annotations must be a list")
   }
 
-  new_annos <- lapply(annotations, process_single_annotation)
+  # Determine grid index
+  if (!is.null(series)) {
+    # Convert R's 1-based series index to 0-based
+    series_idx <- series - 1
+
+    # Check if series exists
+    if (is.null(e$x$opts$series[[series]])) {
+      stop(paste("Series", series, "not found"))
+    }
+
+    # Get grid index from series
+    # Series are mapped to grids via xAxisIndex/yAxisIndex
+    series_obj <- e$x$opts$series[[series]]
+
+    # Get xAxisIndex (defaults to 0)
+    x_axis_idx <- series_obj$xAxisIndex %||% 0
+
+    # Get which grid this xAxis is on
+    if (!is.null(e$x$opts$xAxis)) {
+      if (is.list(e$x$opts$xAxis) && length(e$x$opts$xAxis) > x_axis_idx + 1) {
+        grid_idx <- e$x$opts$xAxis[[x_axis_idx + 1]]$gridIndex %||% x_axis_idx
+      } else {
+        grid_idx <- x_axis_idx
+      }
+    } else {
+      grid_idx <- 0
+    }
+
+    # cat("Series", series, "→ xAxisIndex", x_axis_idx, "→ gridIndex", grid_idx, "\n")
+
+  } else if (!is.null(grid)) {
+    # Grid specified directly (convert from R's 1-based to 0-based)
+    grid_idx <- grid - 1
+  } else {
+    # Default to first grid
+    grid_idx <- 0
+  }
+
+  new_annos <- lapply(annotations, function(ann) {
+    processed <- process_single_annotation(ann)
+    processed$gridIndex <- ann$gridIndex %||% grid_idx
+    processed
+  })
 
   # Get existing annotations from chart object
   existing_annos <- e$x$annotations %||% list()
@@ -152,195 +197,397 @@ e_annotations <- function(
     htmlwidgets::onRender(
       paste0(
         "
-    function(el, x, data) {
-      var chart = echarts.getInstanceByDom(el);
+  function(el, x, data) {
+    var chart = echarts.getInstanceByDom(el);
 
-      // Helper to set multiple SVG attributes
-      function setAttrs(element, attrs) {
-        for (var key in attrs) {
-          if (attrs.hasOwnProperty(key) && attrs[key] != null) {
-            element.setAttribute(key, attrs[key].toString());
-          }
+    function setAttrs(element, attrs) {
+      for (var key in attrs) {
+        if (attrs.hasOwnProperty(key) && attrs[key] != null) {
+          element.setAttribute(key, attrs[key].toString());
         }
       }
+    }
 
-      // Load annotations from R
-      var annotations = x.annotations || [];  // Get ALL annotations from e$x$annotations
+    var annotations = x.annotations || [];
+    var svgs = {};
+    var linesByGrid = {};
+    var grids = [];
 
-      // Get or create SVG overlay
-      var svg = el.querySelector('#annotation-svg-' + el.id);
+    function getOrCreateSVG(gridIndex) {
+      var svgId = 'annotation-svg-' + el.id + '-grid-' + gridIndex;
+      var svg = document.getElementById(svgId);
+
       if (!svg) {
         svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('id', 'annotation-svg-' + el.id);
+        svg.setAttribute('id', svgId);
         svg.style.position = 'absolute';
-        svg.style.top = '0';
-        svg.style.left = '0';
-        svg.style.width = '100%';
-        svg.style.height = '100%';
-        svg.style.pointerEvents = 'none';
-        // svg.style.zIndex = z.toString();
+        svg.style.pointerEvents = 'none';  // ← Changed back to 'none'
+        svg.style.zIndex = '10';
+
+        var clipPathId = 'clip-grid-' + gridIndex;
+        var clipPath = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
+        clipPath.setAttribute('id', clipPathId);
+
+        var clipRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        clipRect.setAttribute('x', '0');
+        clipRect.setAttribute('y', '0');
+        clipRect.setAttribute('width', '100%');
+        clipRect.setAttribute('height', '100%');
+
+        clipPath.appendChild(clipRect);
+        svg.appendChild(clipPath);
+
+        var group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        group.setAttribute('id', 'annotations-group-' + gridIndex);
+        group.setAttribute('clip-path', 'url(#' + clipPathId + ')');
+        group.style.pointerEvents = 'none';  // ← Also set group to none
+        svg.appendChild(group);
+
         el.appendChild(svg);
       }
 
-      // Initialize storage
-       if (!window.annotationData) {
-    window.annotationData = {};
-       }
+      return svg;
+    }
 
-      if (!el._annotationData) {
-          el._annotationData = {};
+    if (!el._annotationData) {
+      el._annotationData = {};
+    }
+
+    function clearAllSvgLines() {
+      Object.keys(svgs).forEach(function(gridIndex) {
+        var svg = svgs[gridIndex];
+        if (svg) {
+          var group = svg.querySelector('#annotations-group-' + gridIndex);
+          if (group) {
+            while (group.firstChild) {
+              group.removeChild(group.firstChild);
+            }
+          }
         }
+      });
+    }
 
-      var graphics = [];
-      var lines = [];
+    function updateAnnotations() {
+      var option = chart.getOption();
+      if (!option || !option.grid || option.grid.length === 0) {
+        setTimeout(updateAnnotations, 100);
+        return;
+      }
 
-      function clearSvgLines() {
-        while (svg.firstChild) {
-          svg.removeChild(svg.firstChild);
+      clearAllSvgLines();
+      linesByGrid = {};
+      grids = [];
+
+      for (var i = 0; i < option.grid.length; i++) {
+        var gridModel = chart.getModel().getComponent('grid', i);
+
+        if (gridModel && gridModel.coordinateSystem) {
+          var gridRect = gridModel.coordinateSystem.getRect();
+          grids[i] = {
+            x: gridRect.x,
+            y: gridRect.y,
+            width: gridRect.width,
+            height: gridRect.height
+          };
+
+          var svg = getOrCreateSVG(i);
+          svg.style.left = gridRect.x + 'px';
+          svg.style.top = gridRect.y + 'px';
+          svg.style.width = gridRect.width + 'px';
+          svg.style.height = gridRect.height + 'px';
+
+          svgs[i] = svg;
+          linesByGrid[i] = [];
         }
       }
 
-    // function is here!
-      function updateAnnotations() {
-        clearSvgLines();
-        graphics = [];
-        lines = [];
+      annotations.forEach(function(ann, index) {
+        var gridIndex = ann.gridIndex || 0;
 
-        annotations.forEach(function(ann, index) {
-          var anchorPos = chart.convertToPixel('grid', [ann.x, ann.y]);
-      // Initialize annotation data",
+        if (!grids[gridIndex]) {
+          return;
+        }
+
+        var grid = grids[gridIndex];
+        var svg = svgs[gridIndex];
+        var group = svg.querySelector('#annotations-group-' + gridIndex);
+
+        var containerPixel = chart.convertToPixel({gridIndex: gridIndex}, [ann.x, ann.y]);
+
+        if (!containerPixel || containerPixel.length !== 2) {
+          return;
+        }
+
+        var anchorPos = [
+          containerPixel[0] - grid.x,
+          containerPixel[1] - grid.y
+        ];
+
+        ",
         initialize_annotation_data(),
-        " var annoData = el._annotationData[index];
-         var boxPos = [
-              anchorPos[0] + annoData.offsetX,
-              anchorPos[1] + annoData.offsetY
-            ];
-
-          var arrowTip = ann.arrowTip;
-          // SMART EDGE DETECTION
-          var isAbove = boxPos[1] < anchorPos[1];
-          var boxEdge;
-
-          if (isAbove) {
-            // Box is above anchor
-            // Connect to BOTTOM edge of box, with gap going DOWN (positive)
-            boxEdge = ann.rectShape.y + ann.rectShape.height ;
-          } else {
-            // Box is below anchor
-            // Connect to TOP edge of box, with gap going UP (negative)
-            boxEdge = ann.rectShape.y;
-          }
-
-      // SVG line
-          var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-
-          setAttrs(line, {
-              id: 'line_' + index,
-              x1: anchorPos[0],
-              y1: anchorPos[1] + arrowTip,
-              x2: boxPos[0],
-              y2: boxPos[1] + boxEdge
-            });
-
-          // Apply line style (annotation-specific or default)
-           setAttrs(line, ann.lineStyle);
-
-          svg.appendChild(line);
-
-          lines.push({
-            element: line,
-            anchorPos: anchorPos,
-            arrowTip: arrowTip,
-            boxEdge: boxEdge,
-            index: index
-          });
-
-          // Arrow point
-          graphics.push({
-              type: 'polygon',
-              id: 'arrow_' + index,
-              position: anchorPos,
-              z: ann.group.z,
-              shape: { points: ann.arrowVertices },
-              style: ann.arrowStyle,
-              silent: true
-              });
-
-           graphics.push({
-              type: 'group',
-             // coordinateSystem: 'cartesian2d',
-              id: 'box_' + index,
-              position: boxPos,
-              ...ann.group,
-              cursor: ann.draggable ? 'move' : 'default',
-              children: [
-                {
-                  type: 'rect',
-                  z: ann.group.z,
-                  shape: ann.rectShape,
-                  style: ann.rectStyle
-                },
-                {
-                  type: 'text',
-                  z: ann.group.z,
-                  style: ann.textStyle
-                }
-              ]
-            });
-          });
-
-          chart.setOption({ graphic: graphics });
-        }
-
-        // Initial render
-        setTimeout(updateAnnotations, 100)
-
-        // Update on zoom/restore
-        chart.on('dataZoom', updateAnnotations);
-        chart.on('timelinechanged', updateAnnotations);
-        chart.on('restore', updateAnnotations);
-        chart.on('magictypechanged', updateAnnotations);   // Chart type change
-        chart.on('datazoom', updateAnnotations);           // Alternative zoom event
-
-        // Resize listener when window changes
-        if (!el._resizeHandlerAttached) {
-          // Use ResizeObserver for better reliability
-          if (typeof ResizeObserver !== 'undefined') {
-            var resizeObserver = new ResizeObserver(function(entries) {
-              for (var entry of entries) {
-                if (entry.target === el) {
-                  // Debounce the update
-                  clearTimeout(el._resizeTimeout);
-                  el._resizeTimeout = setTimeout(function() {
-                    chart.resize();  // Resize chart first
-                    setTimeout(updateAnnotations, 50);  // Then update annotations
-                  }, 100);
-                }
-              }
-            });
-            resizeObserver.observe(el);
-            el._resizeObserver = resizeObserver;
-          } else {
-            // Fallback to window resize
-            var resizeHandler = function() {
-              clearTimeout(el._resizeTimeout);
-              el._resizeTimeout = setTimeout(function() {
-                chart.resize();
-                setTimeout(updateAnnotations, 50);
-              }, 100);
-            };
-            window.addEventListener('resize', resizeHandler);
-            el._resizeHandler = resizeHandler;
-          }
-
-          el._resizeHandlerAttached = true;
-        }
-
-       // Setup drag handling",
-        setup_drag_handler(),
         "
+
+        var annoData = el._annotationData[index];
+
+        // Store box_id
+        var boxId = 'box-group-' + index;
+        annoData.box_id = boxId;
+
+        var boxPos = [
+          anchorPos[0] + annoData.offsetX,
+          anchorPos[1] + annoData.offsetY
+        ];
+
+        var arrowTip = ann.arrowTip;
+        var isAbove = boxPos[1] < anchorPos[1];
+        var boxEdge = isAbove ?
+          ann.rectShape.y + ann.rectShape.height :
+          ann.rectShape.y;
+
+        // SVG LINE
+        var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        setAttrs(line, {
+          id: 'line_' + index,
+          x1: anchorPos[0],
+          y1: anchorPos[1] + arrowTip,
+          x2: boxPos[0],
+          y2: boxPos[1] + boxEdge
+        });
+        setAttrs(line, ann.lineStyle);
+        group.appendChild(line);
+
+        // SVG ARROW
+        var arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        var arrowPointsStr = ann.arrowVertices.map(function(p) {
+          return (anchorPos[0] + p[0]) + ',' + (anchorPos[1] + p[1]);
+        }).join(' ');
+        setAttrs(arrow, {
+          id: 'arrow_' + index,
+          points: arrowPointsStr,
+        });
+        setAttrs(arrow, ann.arrowStyle);
+        group.appendChild(arrow);
+
+        // DRAGGABLE GROUP
+        var boxGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        boxGroup.setAttribute('id', 'box-group-' + index);
+        boxGroup.setAttribute('data-index', index);
+        boxGroup.setAttribute('data-grid', gridIndex);
+        boxGroup.style.pointerEvents = 'none';  // ← Group is none by default",
+        svg_add_shadow(),
+        svg_HTML_to_tspan(),
+        "
+        // SVG RECT - THIS needs pointer-events: all
+        var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        setAttrs(rect, {
+          id: 'box_' + index,
+          x: ann.rectShape.x,
+          y: ann.rectShape.y,
+          width: ann.rectShape.width,
+          height: ann.rectShape.height,
+          rx: ann.rectShape.r
+        });
+
+        // split shadow from normal attrs
+        var { shadow, ...rectStyle } = ann.rectStyle || {};
+        setAttrs(rect, rectStyle);
+
+        // apply shadow if present
+        if (shadow) {
+          var filterId = ensureShadowFilter(svg, shadow);
+          rect.setAttribute('filter', `url(#${filterId})`);
+        }
+
+        // CRITICAL: Enable pointer events on rect ONLY
+       // if (ann.draggable) {
+          rect.style.cursor = 'move';
+          rect.style.pointerEvents = 'all';  // ← Only the rect gets events
+          rect.setAttribute('data-draggable', 'true');
+          rect.setAttribute('data-index', index);
+          rect.setAttribute('data-grid', gridIndex);
+       // }
+
+        boxGroup.appendChild(rect);
+
+        // SVG TEXT
+        var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        setAttrs(text, {
+          id: 'text_' + index,
+          x: ann.textStyle.x,
+          y: ann.textStyle.y
+        });
+        var tspans = htmlToTspans(ann.textStyle.text, ann.textStyle.x);
+        tspans.forEach(t => text.appendChild(t));
+        setAttrs(text, ann.textStyle);
+
+        boxGroup.appendChild(text);
+
+        // Set transform
+        boxGroup.setAttribute('transform', 'translate(' + boxPos[0] + ',' + boxPos[1] + ')');
+
+        group.appendChild(boxGroup);
+
+        linesByGrid[gridIndex].push({
+          line: line,
+          arrow: arrow,
+          boxGroup: boxGroup,
+          rect: rect,
+          anchorPos: anchorPos,
+          arrowTip: arrowTip,
+          index: index,
+          gridIndex: gridIndex,
+          ann: ann
+        });
+      });
     }
-  "
+
+    setTimeout(updateAnnotations, 200);
+
+    chart.on('dataZoom', updateAnnotations);
+    chart.on('timelinechanged', updateAnnotations);
+    chart.on('restore', updateAnnotations);
+
+    // Resize observor
+    if (!el._resizeHandlerAttached) {
+      if (typeof ResizeObserver !== 'undefined') {
+        var resizeObserver = new ResizeObserver(function(entries) {
+          clearTimeout(el._resizeTimeout);
+          el._resizeTimeout = setTimeout(function() {
+            chart.resize();
+            setTimeout(updateAnnotations, 150);
+          }, 100);
+        });
+        resizeObserver.observe(el);
+      }
+      el._resizeHandlerAttached = true;
+    }
+
+    // DRAG STATE
+    var isDragging = false;
+    var currentDrag = null;
+
+    // MOUSEDOWN on document
+    document.addEventListener('mousedown', function(e) {
+      console.log('Mousedown on:', e.target.tagName, e.target.id, 'draggable:', e.target.getAttribute('data-draggable'));
+
+      // Check if clicking on a draggable rect
+      if (e.target.tagName === 'rect' && e.target.getAttribute('data-draggable') === 'true') {
+        var annIndex = parseInt(e.target.getAttribute('data-index'));
+        var gridIdx = parseInt(e.target.getAttribute('data-grid'));
+
+        console.log('✓ Starting drag - annotation:', annIndex, 'grid:', gridIdx);
+
+        var lineData = linesByGrid[gridIdx].find(l => l.index === annIndex);
+        if (!lineData) {
+          console.warn('No line data found');
+          return;
+        }
+
+        var svg = svgs[gridIdx];
+        var svgRect = svg.getBoundingClientRect();
+        var boxGroup = lineData.boxGroup;
+
+        // Get current transform
+        var transform = boxGroup.getAttribute('transform');
+        var match = transform.match(/translate\\(([^,]+),([^)]+)\\)/);
+        var currentX = parseFloat(match[1]);
+        var currentY = parseFloat(match[2]);
+
+        isDragging = true;
+        currentDrag = {
+          boxGroup: boxGroup,
+          lineData: lineData,
+          gridIndex: gridIdx,
+          annIndex: annIndex,
+          svg: svg,
+          startX: e.clientX - svgRect.left - currentX,
+          startY: e.clientY - svgRect.top - currentY
+        };
+
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+
+    // MOUSEMOVE
+     document.addEventListener('mousemove', function(e) {
+      if (!isDragging || !currentDrag) return;
+
+      var svgRect = currentDrag.svg.getBoundingClientRect();
+      var grid = grids[currentDrag.gridIndex];
+      var ann = currentDrag.lineData.ann;
+
+      // Calculate desired position
+      var desiredX = e.clientX - svgRect.left - currentDrag.startX;
+      var desiredY = e.clientY - svgRect.top - currentDrag.startY;
+
+      // Calculate box boundaries
+      var boxLeft = desiredX + ann.rectShape.x;
+      var boxRight = desiredX + ann.rectShape.x + ann.rectShape.width;
+      var boxTop = desiredY + ann.rectShape.y;
+      var boxBottom = desiredY + ann.rectShape.y + ann.rectShape.height;
+
+      // CONSTRAIN to grid bounds
+      var newX = desiredX;
+      var newY = desiredY;
+
+      // Horizontal constraints
+      if (boxLeft < 0) {
+        newX = -ann.rectShape.x;
+      } else if (boxRight > grid.width) {
+        newX = grid.width - ann.rectShape.x - ann.rectShape.width;
+      }
+
+      // Vertical constraints
+      if (boxTop < 0) {
+        newY = -ann.rectShape.y;
+      } else if (boxBottom > grid.height) {
+        newY = grid.height - ann.rectShape.y - ann.rectShape.height;
+      }
+
+      // Update position
+      currentDrag.boxGroup.setAttribute('transform', 'translate(' + newX + ',' + newY + ')');
+
+      // Update line
+      var isAbove = newY < currentDrag.lineData.anchorPos[1];
+      var boxEdge = isAbove ?
+        ann.rectShape.y + ann.rectShape.height :
+        ann.rectShape.y;
+
+      currentDrag.lineData.line.setAttribute('x2', newX);
+      currentDrag.lineData.line.setAttribute('y2', newY + boxEdge);
+
+      // Store constrained offset
+      el._annotationData[currentDrag.annIndex].offsetX = newX - currentDrag.lineData.anchorPos[0];
+      el._annotationData[currentDrag.annIndex].offsetY = newY - currentDrag.lineData.anchorPos[1];
+
+      e.preventDefault();
+    });
+
+document.addEventListener('mouseup', function(e) {
+  if (isDragging) {
+    console.log('Drag ended, sending all annotation positions');
+
+    if (typeof Shiny !== 'undefined') {
+      // Send individual dragged annotation
+      Shiny.onInputChange(
+        el.id + '_dragged_annotation' + ':echarts4rParse',
+        el._annotationData[currentDrag.annIndex]
+      );
+
+      // Also send all positions
+      Shiny.setInputValue('annotation_positions', el._annotationData, {
+        priority: 'event'
+      });
+    }
+
+    isDragging = false;
+    currentDrag = null;
+  }
+});
+
+  }
+"
       )
     )
 }
@@ -364,93 +611,161 @@ initialize_annotation_data <- function() {
   "
 }
 
-# Helper function to handle drag events
-# cHECKS IF DRAGGED TARGET starts with box_ (annotation)
-# takes box ID -> now index
-setup_drag_handler <- function() {
+svg_HTML_to_tspan <- function(){
   "
-  chart.getZr().on('drag', function(e) {
-    if (e.target &&
-        e.target.id != null &&
-        String(e.target.id).startsWith('box_')) {
+  const svgNS = 'http://www.w3.org/2000/svg';
 
-      var index = parseInt(e.target.id.replace('box_', ''));
-      var lineData = lines.find(l => l.index === index);
+function htmlToTspans(html, baseX) {
+  const container = document.createElement('div');
+  container.innerHTML = html;
 
-      if (lineData) {
-        var boxPos = e.target.position;
-        var ann = annotations[index];
+  const tspans = [];
+  let dy = 0;
 
-        // SAME LOGIC as updateAnnotations
-        var isAbove = boxPos[1] < lineData.anchorPos[1];
+  function walk(node, inheritedStyle = {}) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (!node.textContent.trim()) return;
 
-        var boxEdge;
+      const tspan = document.createElementNS(svgNS, 'tspan');
+      tspan.textContent = node.textContent;
 
-        if (isAbove) {
-          // Box above: connect to bottom edge
-          boxEdge = ann.rectShape.y + ann.rectShape.height;
-        } else {
-          // Box below: connect to top edge
-          boxEdge = ann.rectShape.y;
-        }
+      Object.entries(inheritedStyle).forEach(([k, v]) =>
+        tspan.setAttribute(k, v)
+      );
 
-        // Update line
-        lineData.element.setAttribute('x2', boxPos[0]);
-        lineData.element.setAttribute('y2', boxPos[1] + boxEdge);
-
-        // Store offset
-        el._annotationData[index].offsetX = boxPos[0] - lineData.anchorPos[0];
-        el._annotationData[index].offsetY = boxPos[1] - lineData.anchorPos[1];
-
-        // Update stored boxEdge for future drags
-        lineData.boxEdge = boxEdge;
+      if (dy) {
+        tspan.setAttribute('x', baseX);
+        tspan.setAttribute('dy', dy);
+        dy = 0;
       }
+
+      tspans.push(tspan);
+      return;
     }
-  });
-  "
+
+    if (node.nodeType !== Node.ELEMENT_NODE) return;
+
+    let style = { ...inheritedStyle };
+
+    switch (node.tagName.toLowerCase()) {
+      case 'b':
+      case 'strong':
+        style['font-weight'] = 'bold';
+        break;
+      case 'i':
+      case 'em':
+        style['font-style'] = 'italic';
+        break;
+      case 'u':
+        style['text-decoration'] = 'underline';
+        break;
+      case 'br':
+        dy = '1.2em';
+        return;
+      case 'span':
+        if (node.style.color) style.fill = node.style.color;
+        if (node.style.fontSize) style['font-size'] = node.style.fontSize;
+        if (node.style.fontWeight) style['font-weight'] = node.style.fontWeight;
+        if (node.style.fontStyle) style['font-style'] = node.style.fontStyle;
+        break;
+    }
+
+    [...node.childNodes].forEach(child => walk(child, style));
+  }
+
+  [...container.childNodes].forEach(n => walk(n));
+  return tspans;
 }
 
+"
+}
+
+svg_add_shadow <- function(){
+  "
+  function ensureShadowFilter(svg, shadow) {
+  var defs = svg.querySelector('defs') ||
+    svg.insertBefore(
+      document.createElementNS('http://www.w3.org/2000/svg', 'defs'),
+      svg.firstChild
+    );
+
+  // Create a stable id so identical shadows reuse filters
+  var id = 'shadow_' + btoa(JSON.stringify(shadow)).replace(/=/g, '');
+
+  if (svg.querySelector('#' + id)) {
+    return id;
+  }
+
+  var filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+  setAttrs(filter, {
+    id: id,
+    x: '-50%',
+    y: '-50%',
+    width: '200%',
+    height: '200%'
+  });
+
+  var feDropShadow = document.createElementNS(
+    'http://www.w3.org/2000/svg',
+    'feDropShadow'
+  );
+
+  setAttrs(feDropShadow, {
+    dx: shadow.dx ?? 0,
+    dy: shadow.dy ?? 0,
+    stdDeviation: shadow.blur ?? 0,
+    'flood-color': shadow.color ?? '#000',
+    'flood-opacity': shadow.opacity ?? 1
+  });
+
+  filter.appendChild(feDropShadow);
+  defs.appendChild(filter);
+
+  return id;
+}"
+}
 # R function with multiple positioning options
 #' @keywords internal
 find_text_position <- function(
     box_shape,
-    position = "center", # center, top, bottom, left, right
+    position = "middle", # middle, top, bottom, left, right
     padding = 5
 ) {
   # Calculate base positions
   x_left <- box_shape$x + padding
-  x_center <- box_shape$x + (box_shape$width / 2)
+  x_middle <- box_shape$x + (box_shape$width / 2)
+  # x_right <- box_shape$width- padding
   x_right <- box_shape$x + box_shape$width - padding
 
   y_top <- box_shape$y + padding
-  y_center <- box_shape$y + (box_shape$height / 2)
+  y_middle <- box_shape$y + (box_shape$height / 2)
   y_bottom <- box_shape$y + box_shape$height - padding
 
   # Choose position
   pos <- switch(
     position,
-    "center" = list(
-      x = x_center,
-      y = y_center,
-      align = 'center',
+    "middle" = list(
+      x = x_middle,
+      y = y_middle,
+      align = 'middle',
       valign = 'middle'
     ),
-    "top" = list(x = x_center, y = y_top, align = 'center', valign = 'top'),
+    "top" = list(x = x_middle, y = y_top, align = 'middle', valign = 'top'),
     "bottom" = list(
-      x = x_center,
+      x = x_middle,
       y = y_bottom,
-      align = 'center',
+      align = 'middle',
       valign = 'bottom'
     ),
-    "left" = list(x = x_left, y = y_center, align = 'left', valign = 'middle'),
+    "left" = list(x = x_left, y = y_middle, align = 'left', valign = 'middle'),
     "right" = list(
       x = x_right,
-      y = y_center,
+      y = y_middle,
       align = 'right',
       valign = 'middle'
     ),
-    # default to center
-    list(x = x_center, y = y_center, align = 'center', valign = 'middle')
+    # default to middle
+    list(x = x_middle, y = y_middle, align = 'middle', valign = 'middle')
   )
   pos
 }
@@ -466,14 +781,16 @@ process_single_annotation <- function(
   }
 
   # Default Properties ------------------------------------------------------
+  # For these, better to use ann$arrowStyle[["fill"]] evaluation as opposed to ann$arrowStyle$fill so it does do a partial match.
+
   a_color <- '#738DE4'
   default_color <- ann$group$color %||% a_color
 
   default_text_style <- list(
-    fontSize = 11,
-    fontWeight = 'bold',
-    textAlign = ann$textStyle$textAlign %||% "left",
-    padding = ann$textStyle$padding %||% 2
+    "font-size" = 11,
+    "font-weight" = 'bold',
+    "text-anchor" = ann$textStyle[["text-anchor"]] %||% "left",
+    padding = ann$textStyle[["padding"]] %||% 2
   )
 
 
@@ -489,8 +806,8 @@ process_single_annotation <- function(
 
   if(if_style_is_not_none(ann$arrowStyle)){
     default_arrow_style <- list(
-      fill = ann$arrowStyle$fill %||% default_color,
-      size = ann$arrowStyle$size %||% 8
+      fill = ann$arrowStyle[["fill"]] %||% default_color,
+      size = ann$arrowStyle[["size"]] %||% 8
     ) } else {
       default_arrow_style <- list(size = 0)
       ann$arrowStyle <- NULL
@@ -498,9 +815,9 @@ process_single_annotation <- function(
 
   if(if_style_is_not_none(ann$rectStyle)){
     default_box_style <- list(
-      stroke = ann$rectStyle$stroke %||% default_color,
+      stroke = ann$rectStyle[["stroke"]] %||% default_color,
       fill = '#ffffff',
-      lineWidth = 2
+      "stroke-width" = 2
     )} else {
       # Fully transparent
       default_box_style <- list(fill = "rgba(255, 255, 255, 0)")
@@ -515,11 +832,11 @@ process_single_annotation <- function(
   # Find box position -------------------------------------------------------
 
   # None of these should ever be NA
-  box_width <- ann$rectStyle$shape$width %||% default_box_width
-  box_height <- ann$rectStyle$shape$height %||% default_box_height
-  box_radius <- ann$rectStyle$shape$r %||% default_box_radius
-  box_x <- ann$rectStyle$shape$x %||% -box_width / 2
-  box_y <- ann$rectStyle$shape$y %||% -box_height / 2
+  box_width <- ann$rectStyle$shape[["width"]] %||% default_box_width
+  box_height <- ann$rectStyle$shape[["height"]] %||% default_box_height
+  box_radius <- ann$rectStyle$shape[["r"]] %||% default_box_radius
+  box_x <- ann$rectStyle$shape[["x"]] %||% -box_width / 2
+  box_y <- ann$rectStyle$shape[["y"]] %||% -box_height / 2
 
   # Box shape.
   # x and y make the line connect in the middle.
@@ -532,7 +849,7 @@ process_single_annotation <- function(
   )
 
   # Calculate text position (centered)
-  text_pos <- find_text_position(box_shape, position = default_text_style$textAlign, padding = default_text_style$padding)
+  text_pos <- find_text_position(box_shape, position = default_text_style[["text-anchor"]], padding = default_text_style[["padding"]])
 
   final_text_style <- utils::modifyList(
     default_text_style,
@@ -542,9 +859,9 @@ process_single_annotation <- function(
         x = text_pos$x,
         y = text_pos$y,
         text = as.character(ann$text),
-        fill = ann$textStyle$color %||% default_color,
-        textAlign = text_pos$align,
-        textVerticalAlign = text_pos$valign
+        fill = ann$textStyle[["color"]] %||% default_color
+        # "text-anchor" = text_pos$align,
+        # "dominant-baseline" = text_pos$valign
       )
     )
   )

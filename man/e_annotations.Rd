@@ -4,7 +4,7 @@
 \alias{e_annotations}
 \title{Add annotations to a chart}
 \usage{
-e_annotations(e, annotations)
+e_annotations(e, annotations, grid = NULL, series = NULL)
 }
 \arguments{
 \item{e}{An echarts4r object}
@@ -54,8 +54,8 @@ e_charts(mpg) |>
         # Using the styles
         group = list(draggable = FALSE, color = "red"),
         textStyle = list(
-          fontSize = 14,
-          fontWeight = 'bold',
+          "font-size" = 14,
+          "font-weight" = 'bold',
           color = "green"
         ),
         rectStyle = list(
@@ -98,11 +98,11 @@ e_charts(mpg) |>
 
 }
 \seealso{
-- \href{https://echarts.apache.org/en/option.html#graphic.elements-group}{Additional arguments for group}
+- \href{https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute}{Additional arguments for SVG attributes}
 
 - \href{https://echarts.apache.org/en/option.html#graphic.elements-text.style}{Additional arguments for textStyle}
 
-- \href{https://echarts.apache.org/en/option.html#graphic.elements-rect.style}{Additional arguments for rectStyle}
+- \href{https://www.w3schools.com/graphics/svg_stroking.asp}{Additional arguments for rectStyle}
 
 - \href{https://www.w3schools.com/graphics/svg_stroking.asp}{Additional
 arguments for lineStyle}

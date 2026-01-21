@@ -1,7 +1,7 @@
 test_that("errors informatively without e", {
   expect_error(e_annotations(), "must pass e")
 })
-
+# TODO test when `fill-opacity` = 0.5, fill is also not 0.5
 test_that("errors informatively without annotations", {
   expect_snapshot(mtcars |> e_charts(mpg) |> e_annotations(), error = TRUE)
 })
@@ -86,12 +86,12 @@ test_that("`%||%` returns a when a is not NULL", {
 })
 
 # find_text_position ---------------------------------------------------------
-test_that("find_text_position returns center position by default", {
+test_that("find_text_position returns middle position by default", {
   box_shape <- list(x = 0, y = 0, width = 100, height = 50)
   result <- find_text_position(box_shape)
   expect_equal(result$x, 50)
   expect_equal(result$y, 25)
-  expect_equal(result$align, "center")
+  expect_equal(result$align, "middle")
   expect_equal(result$valign, "middle")
 })
 
@@ -100,7 +100,7 @@ test_that("find_text_position returns top position", {
   result <- find_text_position(box_shape, position = "top")
   expect_equal(result$x, 50)
   expect_equal(result$y, 5)
-  expect_equal(result$align, "center")
+  expect_equal(result$align, "middle")
   expect_equal(result$valign, "top")
 })
 
@@ -109,7 +109,7 @@ test_that("find_text_position returns bottom position", {
   result <- find_text_position(box_shape, position = "bottom")
   expect_equal(result$x, 50)
   expect_equal(result$y, 45)
-  expect_equal(result$align, "center")
+  expect_equal(result$align, "middle")
   expect_equal(result$valign, "bottom")
 })
 
@@ -136,25 +136,25 @@ test_that("find_text_position respects custom padding", {
   result <- find_text_position(box_shape, position = "top", padding = 10)
   expect_equal(result$x, 50)
   expect_equal(result$y, 10)
-  expect_equal(result$align, "center")
+  expect_equal(result$align, "middle")
   expect_equal(result$valign, "top")
 })
 
 test_that("find_text_position handles non-zero box origin", {
   box_shape <- list(x = -40, y = -25, width = 80, height = 50)
-  result <- find_text_position(box_shape, position = "center")
+  result <- find_text_position(box_shape, position = "middle")
   expect_equal(result$x, 0)
   expect_equal(result$y, 0)
-  expect_equal(result$align, "center")
+  expect_equal(result$align, "middle")
   expect_equal(result$valign, "middle")
 })
 
-test_that("find_text_position defaults to center for invalid position", {
+test_that("find_text_position defaults to middle for invalid position", {
   box_shape <- list(x = 0, y = 0, width = 100, height = 50)
   result <- find_text_position(box_shape, position = "invalid")
   expect_equal(result$x, 50)
   expect_equal(result$y, 25)
-  expect_equal(result$align, "center")
+  expect_equal(result$align, "middle")
   expect_equal(result$valign, "middle")
 })
 
@@ -302,11 +302,11 @@ test_that("process_single_annotation calculates arrow vertices", {
 test_that("process_single_annotation uses custom text align and padding", {
   ann <- list(
     x = 15, y = 3, text = "Test",
-    textStyle = list(textAlign = "center", padding = 5)
+    textStyle = list(textAlign = "middle", padding = 5)
   )
   result <- process_single_annotation(ann)
 
-  expect_equal(result$textStyle$textAlign, "center")
+  expect_equal(result$textStyle$textAlign, "middle")
   expect_equal(result$textStyle$padding, 5)
 })
 
