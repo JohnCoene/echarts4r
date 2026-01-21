@@ -93,6 +93,8 @@ reference:
       - e_labels
       - e_animation
       - e_modularity
+      - e_zigzag
+      - e_jitter
   - title: "Toolbox"
     desc: "Provide a toolbox for your chart"
     contents:
@@ -143,6 +145,7 @@ reference:
     contents:
       - ends_with("_g")
       - e_draft
+      - e_annotations
   - title: "Connect"
     desc: "Connect charts and their interactions."
     contents:
