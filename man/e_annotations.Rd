@@ -4,17 +4,28 @@
 \alias{e_annotations}
 \title{Add annotations to a chart}
 \usage{
-e_annotations(e, annotations, grid = NULL, series = NULL)
+e_annotations(
+  e,
+  annotations,
+  grid = NULL,
+  series = NULL,
+  legend = TRUE,
+  name = "Annotations",
+  legend_color = "#333333"
+)
 }
 \arguments{
 \item{e}{An echarts4r object}
 
 \item{annotations}{list of annotations to plot}
+
+\item{legend}{Whether to add serie to legend.}
+
+\item{name}{name of the serie.}
 }
 \description{
 Apache ECharts does not include a native annotation system. This is a custom
-function that creates annotations using ECharts’ low-level graphic components
-and SVG for the line. This currently only works in a 'cartesian2d' coordinate
+function that creates annotations using SVG. This currently only works in a 'cartesian2d' coordinate
 system.
 
 Each annotation must be in a list with an x, y, and text. Styling can be
@@ -32,7 +43,7 @@ annotations can take the following styles to change the defaults. To
 
 - \strong{rectStyle} Styles the annotation box.
 
-- \strong{textStyle}, Styles the annotation text. textAlign and padding was added.
+- \strong{textStyle}, Styles the annotation text. This support limited HTML tags using tspan. SUpported tags are: \code{b, strong, i, em, u, br, span}. Styling inside \code{span} can use \code{color, fontSize, fontWeight, fontStyle}.
 
 - \strong{lineStyle} Styles the line that connects the annotation box to the arrow using \href{https://www.w3schools.com/graphics/svg_stroking.asp}{SVG stroke attributes}
 

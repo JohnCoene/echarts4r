@@ -5,8 +5,7 @@
 #' @description
 #'
 #' Apache ECharts does not include a native annotation system. This is a custom
-#' function that creates annotations using ECharts’ low-level graphic components
-#' and SVG for the line. This currently only works in a 'cartesian2d' coordinate
+#' function that creates annotations using SVG. This currently only works in a 'cartesian2d' coordinate
 #' system.
 #'
 #' Each annotation must be in a list with an x, y, and text. Styling can be
@@ -23,7 +22,7 @@
 #'
 #' - \strong{rectStyle} Styles the annotation box.
 #'
-#' - \strong{textStyle}, Styles the annotation text. textAlign and padding was added.
+#' - \strong{textStyle}, Styles the annotation text. This support limited HTML tags using tspan. SUpported tags are: \code{b, strong, i, em, u, br, span}. Styling inside \code{span} can use \code{color, fontSize, fontWeight, fontStyle}.
 #'
 #' - \strong{lineStyle} Styles the line that connects the annotation box to the arrow using \href{https://www.w3schools.com/graphics/svg_stroking.asp}{SVG stroke attributes}
 #'
@@ -31,6 +30,7 @@
 #'
 #' @param e An echarts4r object
 #' @param annotations list of annotations to plot
+#' @inheritParams e_bar
 #'
 #' @examples
 #' mtcars |>
@@ -110,7 +110,10 @@ e_annotations <- function(
     annotations,
     # facet_number = NULL,
     grid = NULL,
-    series = NULL
+    series = NULL,
+    legend = TRUE,
+    name = "Annotations",
+    legend_color = "#333333"
 ) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
@@ -152,8 +155,6 @@ e_annotations <- function(
       grid_idx <- 0
     }
 
-    # cat("Series", series, "→ xAxisIndex", x_axis_idx, "→ gridIndex", grid_idx, "\n")
-
   } else if (!is.null(grid)) {
     # Grid specified directly (convert from R's 1-based to 0-based)
     grid_idx <- grid - 1
@@ -165,6 +166,7 @@ e_annotations <- function(
   new_annos <- lapply(annotations, function(ann) {
     processed <- process_single_annotation(ann)
     processed$gridIndex <- ann$gridIndex %||% grid_idx
+    processed$legend_name <- name
     processed
   })
 
@@ -183,6 +185,64 @@ e_annotations <- function(
 
   # Store back in chart object
   e$x$annotations <- all_annos
+
+  # ADD DUMMY SERIES FOR LEGEND
+  if (legend) {
+
+    # Extract unique legend groups
+    legend_info <- list()
+
+    for (i in seq_along(all_annos)) {
+      ann <- all_annos[[i]]
+
+      # Get color
+      color <- legend_color
+
+      # Get grid
+      grid_idx <- if (!is.null(ann$gridIndex)) {
+        ann$gridIndex
+      } else {
+        0
+      }
+    # Store first occurrence
+      if (is.null(legend_info[[name]])) {
+        legend_info[[name]] <- list(
+          color = color,
+          gridIndex = grid_idx
+        )
+      }
+    }
+
+    # Add a dummy series for each unique legend group
+    if (is.null(e$x$opts$series)) {
+      e$x$opts$series <- list()
+    }
+
+    for (group_name in names(legend_info)) {
+      info <- legend_info[[group_name]]
+
+      dummy_series <- list(
+        type = "scatter",
+        name = group_name,
+        data = list(),  # Empty data
+        symbol = "rect",
+        symbolSize = 8,
+        itemStyle = list(
+          color = info$color
+        ),
+        gridIndex = info$gridIndex,
+        xAxisIndex = info$gridIndex,
+        yAxisIndex = info$gridIndex,
+        tooltip = list(show = FALSE),
+        silent = TRUE,
+        animation = FALSE,
+        isAnnotationLegend = TRUE
+      )
+
+      # Append to series
+      e$x$opts$series[[length(e$x$opts$series) + 1]] <- dummy_series
+    }
+  }
 
   # Adding this solves the issue for the SVG line to get messed up when
   # `shiny::fluidRow(echarts4r::echarts4rOutput("chart"))` with no e_tooltip().
@@ -207,11 +267,64 @@ e_annotations <- function(
         }
       }
     }
+        setTimeout(function() {
+        var option = chart.getOption();
 
+        // Get unique annotation legend names
+        var annotations = x.annotations || [];
+        var legendItems = {};
+
+        annotations.forEach(function(ann) {
+          var name = ann.legend_name || ann.text || 'Annotation';
+          if (!legendItems[name]) {
+            legendItems[name] = {
+              name: name,
+              icon: 'rect',
+              textStyle: { color: '#333' }
+            };
+          }
+        });
+
+        // Add to existing legend data (don't create series)
+        if (!option.legend || !option.legend[0]) {
+          option.legend = [{ show: true, data: [] }];
+        }
+
+        if (!option.legend[0].data) {
+          option.legend[0].data = [];
+        }
+
+        // Add annotation items to legend
+        Object.keys(legendItems).forEach(function(name) {
+          option.legend[0].data.push(name);
+        });
+
+        // Initialize selection state
+        if (!option.legend[0].selected) {
+          option.legend[0].selected = {};
+        }
+
+        Object.keys(legendItems).forEach(function(name) {
+          if (option.legend[0].selected[name] === undefined) {
+            option.legend[0].selected[name] = true;
+          }
+        });
+
+        chart.setOption(option);
+      }, 100);
     var annotations = x.annotations || [];
     var svgs = {};
     var linesByGrid = {};
     var grids = [];
+    var annotationVisibility = {};  // ADD THIS BACK
+
+        // Initialize visibility tracking
+    annotations.forEach(function(ann, index) {
+      var legendName = ann.legend_name || ann.text || 'Annotation';
+      if (annotationVisibility[legendName] === undefined) {
+        annotationVisibility[legendName] = true;
+      }
+    });
 
     function getOrCreateSVG(gridIndex) {
       var svgId = 'annotation-svg-' + el.id + '-grid-' + gridIndex;
@@ -303,6 +416,14 @@ e_annotations <- function(
 
       annotations.forEach(function(ann, index) {
         var gridIndex = ann.gridIndex || 0;
+
+          // CHECK VISIBILITY AGAINST LEGEND
+        var legendName = ann.legend_name || ann.text || 'Annotation';
+        var isVisible = annotationVisibility[legendName] !== false;
+
+        if (!isVisible) {
+          return;  // Don't render if legend item is unchecked
+        }
 
         if (!grids[gridIndex]) {
           return;
@@ -447,6 +568,27 @@ e_annotations <- function(
     chart.on('timelinechanged', updateAnnotations);
     chart.on('restore', updateAnnotations);
 
+     // ADD LEGEND HANDLER
+    chart.on('legendselectchanged', function(params) {
+
+      if (params.selected) {
+        // Update visibility for annotation legend items
+        Object.keys(params.selected).forEach(function(name) {
+          // Check if this is an annotation legend item
+          var isAnnotationLegend = annotations.some(function(ann) {
+            return (ann.legend_name || ann.text) === name;
+          });
+
+          if (isAnnotationLegend) {
+            annotationVisibility[name] = params.selected[name];
+          }
+        });
+
+        // Re-render annotations
+        updateAnnotations();
+      }
+    });
+
     // Resize observor
     if (!el._resizeHandlerAttached) {
       if (typeof ResizeObserver !== 'undefined') {
@@ -468,14 +610,11 @@ e_annotations <- function(
 
     // MOUSEDOWN on document
     document.addEventListener('mousedown', function(e) {
-      console.log('Mousedown on:', e.target.tagName, e.target.id, 'draggable:', e.target.getAttribute('data-draggable'));
 
       // Check if clicking on a draggable rect
       if (e.target.tagName === 'rect' && e.target.getAttribute('data-draggable') === 'true') {
         var annIndex = parseInt(e.target.getAttribute('data-index'));
         var gridIdx = parseInt(e.target.getAttribute('data-grid'));
-
-        console.log('✓ Starting drag - annotation:', annIndex, 'grid:', gridIdx);
 
         var lineData = linesByGrid[gridIdx].find(l => l.index === annIndex);
         if (!lineData) {
@@ -566,7 +705,6 @@ e_annotations <- function(
 
 document.addEventListener('mouseup', function(e) {
   if (isDragging) {
-    console.log('Drag ended, sending all annotation positions');
 
     if (typeof Shiny !== 'undefined') {
       // Send individual dragged annotation
