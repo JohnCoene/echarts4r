@@ -7,8 +7,14 @@ test_that("errors informatively without annotations", {
 })
 
 test_that("errors informatively with non-list annotations", {
-  expect_snapshot(mtcars |> e_charts(mpg) |> e_annotations("not a list"), error = TRUE)
-  expect_snapshot(mtcars |> e_charts(mpg) |> e_annotations(list("not nested")), error = TRUE)
+  expect_snapshot(
+    mtcars |> e_charts(mpg) |> e_annotations("not a list"),
+    error = TRUE
+  )
+  expect_snapshot(
+    mtcars |> e_charts(mpg) |> e_annotations(list("not nested")),
+    error = TRUE
+  )
 })
 
 test_that("processes single annotation correctly", {
@@ -33,31 +39,34 @@ test_that("appends to existing annotations", {
 })
 
 test_that("styling works", {
-  e <- mtcars |> e_charts(mpg) |> e_scatter(wt) |>
+  e <- mtcars |>
+    e_charts(mpg) |>
+    e_scatter(wt) |>
     e_annotations(
-          annotations = list(
-            list(
-              id = 0,
-              x = 15,
-              y = 3,
-              text = 'An annotation',
-              offsetX = 0,
-              offsetY = -50,
-              # Using the styles
-              group = list(draggable = FALSE, color = "red"),
-              textStyle = list(
-                fontSize = 14,
-                fontWeight = 'bold'
-              ),
-              rectStyle = list(
-                lineDash = 'dashed',
-                lineWidth = 2,
-                shape = list(width = 105, height = 35, r = 0)
-              ),
-              lineStyle = list(`stroke-width` = 2),
-              arrowStyle = list(size = 12)
-            )
-          ))
+      annotations = list(
+        list(
+          id = 0,
+          x = 15,
+          y = 3,
+          text = 'An annotation',
+          offsetX = 0,
+          offsetY = -50,
+          # Using the styles
+          group = list(draggable = FALSE, color = "red"),
+          textStyle = list(
+            fontSize = 14,
+            fontWeight = 'bold'
+          ),
+          rectStyle = list(
+            lineDash = 'dashed',
+            lineWidth = 2,
+            shape = list(width = 105, height = 35, r = 0)
+          ),
+          lineStyle = list(`stroke-width` = 2),
+          arrowStyle = list(size = 12)
+        )
+      )
+    )
   anno <- e$x$annotations[[1]]
 
   expect_equal(anno$group$draggable, FALSE)
@@ -161,8 +170,14 @@ test_that("find_text_position defaults to middle for invalid position", {
 # process_single_annotation -----------------------------------------------
 test_that("process_single_annotation errors informatively without required fields", {
   expect_snapshot(process_single_annotation(list(x = 1, y = 2)), error = TRUE)
-  expect_snapshot(process_single_annotation(list(x = 1, text = "test")), error = TRUE)
-  expect_snapshot(process_single_annotation(list(y = 2, text = "test")), error = TRUE)
+  expect_snapshot(
+    process_single_annotation(list(x = 1, text = "test")),
+    error = TRUE
+  )
+  expect_snapshot(
+    process_single_annotation(list(y = 2, text = "test")),
+    error = TRUE
+  )
 })
 
 test_that("process_single_annotation processes minimal annotation", {
@@ -220,7 +235,9 @@ test_that("process_single_annotation handles rectStyle none", {
 
 test_that("process_single_annotation uses custom text style", {
   ann <- list(
-    x = 15, y = 3, text = "Test",
+    x = 15,
+    y = 3,
+    text = "Test",
     textStyle = list(fontSize = 14, fontWeight = "bold", color = "green")
   )
   result <- process_single_annotation(ann)
@@ -232,7 +249,9 @@ test_that("process_single_annotation uses custom text style", {
 
 test_that("process_single_annotation uses custom box dimensions", {
   ann <- list(
-    x = 15, y = 3, text = "Test",
+    x = 15,
+    y = 3,
+    text = "Test",
     rectStyle = list(shape = list(width = 105, height = 35, r = 0))
   )
   result <- process_single_annotation(ann)
@@ -244,7 +263,9 @@ test_that("process_single_annotation uses custom box dimensions", {
 
 test_that("process_single_annotation uses custom arrow size", {
   ann <- list(
-    x = 15, y = 3, text = "Test",
+    x = 15,
+    y = 3,
+    text = "Test",
     arrowStyle = list(size = 12)
   )
   result <- process_single_annotation(ann)
@@ -255,8 +276,11 @@ test_that("process_single_annotation uses custom arrow size", {
 
 test_that("process_single_annotation uses custom offsets", {
   ann <- list(
-    x = 15, y = 3, text = "Test",
-    offsetX = 10, offsetY = -50
+    x = 15,
+    y = 3,
+    text = "Test",
+    offsetX = 10,
+    offsetY = -50
   )
   result <- process_single_annotation(ann)
 
@@ -281,7 +305,9 @@ test_that("process_single_annotation sets default group options", {
 
 test_that("process_single_annotation overrides group options", {
   ann <- list(
-    x = 15, y = 3, text = "Test",
+    x = 15,
+    y = 3,
+    text = "Test",
     group = list(draggable = FALSE, z = 5)
   )
   result <- process_single_annotation(ann)
@@ -301,7 +327,9 @@ test_that("process_single_annotation calculates arrow vertices", {
 
 test_that("process_single_annotation uses custom text align and padding", {
   ann <- list(
-    x = 15, y = 3, text = "Test",
+    x = 15,
+    y = 3,
+    text = "Test",
     textStyle = list(textAlign = "middle", padding = 5)
   )
   result <- process_single_annotation(ann)
@@ -312,7 +340,9 @@ test_that("process_single_annotation uses custom text align and padding", {
 
 test_that("process_single_annotation merges custom line style", {
   ann <- list(
-    x = 15, y = 3, text = "Test",
+    x = 15,
+    y = 3,
+    text = "Test",
     lineStyle = list(`stroke-width` = 3, stroke = "blue")
   )
   result <- process_single_annotation(ann)
@@ -323,11 +353,25 @@ test_that("process_single_annotation merges custom line style", {
 
 test_that("process_single_annotation merges custom rect style", {
   ann <- list(
-    x = 15, y = 3, text = "Test",
+    x = 15,
+    y = 3,
+    text = "Test",
     rectStyle = list(lineDash = "dashed", lineWidth = 3)
   )
   result <- process_single_annotation(ann)
 
   expect_equal(result$rectStyle$lineDash, "dashed")
   expect_equal(result$rectStyle$lineWidth, 3)
+})
+
+test_that("if_style_is_not_none returns correct booleons", {
+  style <- list(x = "A")
+  style2 <- list(shape = list(width = 100))
+  isNone <- list("none")
+
+  expect_true(if_style_is_not_none(style$B))
+  expect_true(if_style_is_not_none(style))
+  expect_true(if_style_is_not_none(style2))
+
+  expect_false(if_style_is_not_none(isNone))
 })

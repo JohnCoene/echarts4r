@@ -41,7 +41,7 @@ annotations can take the following styles to change the defaults. To
 
 - \strong{group}: Controls the box and text elements. color was added as an option. This color colors the text, box border, line and arrow - unless specified in that particular style argument.
 
-- \strong{rectStyle} Styles the annotation box.
+- \strong{rectStyle} Styles the annotation box using SVG. It also takes \strong{shape} that uses \hrek{https://echarts.apache.org/en/option.html#graphic.elements-rect.shape}{echarts graphic.elements-rect.shape}.
 
 - \strong{textStyle}, Styles the annotation text. This support limited HTML tags using tspan. SUpported tags are: \code{b, strong, i, em, u, br, span}. Styling inside \code{span} can use \code{color, fontSize, fontWeight, fontStyle}.
 

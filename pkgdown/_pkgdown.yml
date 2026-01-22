@@ -20,7 +20,7 @@ home:
 reference:
   - title: "Initialisation and Shiny"
     desc: "Initialise echarts and use in Shiny."
-    contents: 
+    contents:
       - e_charts
       - e_chart
       - echarts4rOutput
@@ -242,6 +242,8 @@ navbar:
           href: articles/mark.html
         - text: "Themes"
           href: articles/themes.html
+        - text: "Annotations"
+          href: articles/annotations.html
     - text: "Shiny"
       menu:
         - text: 'Basics'

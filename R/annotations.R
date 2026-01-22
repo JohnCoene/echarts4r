@@ -20,7 +20,7 @@
 #'
 #' - \strong{group}: Controls the box and text elements. color was added as an option. This color colors the text, box border, line and arrow - unless specified in that particular style argument.
 #'
-#' - \strong{rectStyle} Styles the annotation box.
+#' - \strong{rectStyle} Styles the annotation box using SVG. It also takes \strong{shape} that uses \hrek{https://echarts.apache.org/en/option.html#graphic.elements-rect.shape}{echarts graphic.elements-rect.shape}.
 #'
 #' - \strong{textStyle}, Styles the annotation text. This support limited HTML tags using tspan. SUpported tags are: \code{b, strong, i, em, u, br, span}. Styling inside \code{span} can use \code{color, fontSize, fontWeight, fontStyle}.
 #'
@@ -34,7 +34,7 @@
 #'
 #' @examples
 #' mtcars |>
-#' e_charts(mpg) |>
+#'   e_charts(mpg) |>
 #'   e_scatter(wt) |>
 #'   e_annotations(
 #'     annotations = list(
@@ -42,7 +42,7 @@
 #'         id = 0,
 #'         x = 15,
 #'         y = 3,
-#'         text = 'An annotation\nwith styles',
+#'         text = 'An annotation<br>with styles',
 #'         offsetX = 0,
 #'         offsetY = -50,
 #'         # Using the styles
@@ -53,9 +53,17 @@
 #'           color = "green"
 #'         ),
 #'         rectStyle = list(
-#'           lineDash = 'dashed',
-#'           lineWidth = 2,
-#'           shape = list(width = 105, height = 35, r = 0)
+#'           `stroke-dasharray` = c(35, 10),
+#'           `stroke-width` = 2,
+#'               # Shadow can be added!
+#'                shadow = list(
+#'                  dx= 0,
+#'                  dy= 2,
+#'                  blur= 4,
+#'                  color= '#000',
+#'                  opacity= 0.3
+#'                ),
+#'           shape = list(width = 105, height = 50, r = 0)
 #'         ),
 #'         lineStyle = list(`stroke-width` = 2),
 #'         arrowStyle = list(size = 8)
@@ -66,54 +74,44 @@
 #'         x = 25,
 #'         y = 1,
 #'         text = 'No styles',
-#'         offsetX = 0,
-#'         offsetY = -40,
 #'         lineStyle = "none",
 #'         rectStyle = "none",
-#'         arrowStyle = "none",
-#'         textStyle = list(color = "red")
+#'         arrowStyle = "none"
 #'       ),
 #'       # Style text using rich text
 #'       list(
 #'         id = 2,
 #'         x = 25,
 #'         y = 4.5,
-#'         text = "{bold|Text using}\n{red|rich text!}",
+#'         text = "Default style",
 #'         offsetX = 0,
-#'         offsetY = -40,
-#'         textStyle = list(
-#'           rich = list(
-#'             bold = list(fontWeight = 'bold'),
-#'             red = list(fill = 'red')
-#'           )
-#'         )
+#'         offsetY = -40
 #'       )
 #'     ))
-#'
 #' @seealso
 #' - \href{https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute}{Additional arguments for SVG attributes}
 #'
-#' - \href{https://echarts.apache.org/en/option.html#graphic.elements-text.style}{Additional arguments for textStyle}
+#' - \href{https://www.w3schools.com/graphics/svg_text.asp}{Additional arguments for textStyle}
 #'
 #' - \href{https://www.w3schools.com/graphics/svg_stroking.asp}{Additional arguments for rectStyle}
 #'
 #' - \href{https://www.w3schools.com/graphics/svg_stroking.asp}{Additional
 #' arguments for lineStyle}
 #'
-#' - \href{https://echarts.apache.org/en/option.html#graphic.elements-polygon.style}{Additional
+#' - \href{https://www.w3schools.com/graphics/svg_fill.asp}{Additional
 #' arguments for arrowStyle}
 #'
 #' @rdname e_annotations
 #' @export
 e_annotations <- function(
-    e,
-    annotations,
-    # facet_number = NULL,
-    grid = NULL,
-    series = NULL,
-    legend = TRUE,
-    name = "Annotations",
-    legend_color = "#333333"
+  e,
+  annotations,
+  # facet_number = NULL,
+  grid = NULL,
+  series = NULL,
+  legend = TRUE,
+  name = "Annotations",
+  legend_color = "#333333"
 ) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
@@ -154,7 +152,6 @@ e_annotations <- function(
     } else {
       grid_idx <- 0
     }
-
   } else if (!is.null(grid)) {
     # Grid specified directly (convert from R's 1-based to 0-based)
     grid_idx <- grid - 1
@@ -188,7 +185,6 @@ e_annotations <- function(
 
   # ADD DUMMY SERIES FOR LEGEND
   if (legend) {
-
     # Extract unique legend groups
     legend_info <- list()
 
@@ -204,7 +200,7 @@ e_annotations <- function(
       } else {
         0
       }
-    # Store first occurrence
+      # Store first occurrence
       if (is.null(legend_info[[name]])) {
         legend_info[[name]] <- list(
           color = color,
@@ -224,7 +220,7 @@ e_annotations <- function(
       dummy_series <- list(
         type = "scatter",
         name = group_name,
-        data = list(),  # Empty data
+        data = list(), # Empty data
         symbol = "rect",
         symbolSize = 8,
         itemStyle = list(
@@ -239,8 +235,14 @@ e_annotations <- function(
         isAnnotationLegend = TRUE
       )
 
-      # Append to series
-      e$x$opts$series[[length(e$x$opts$series) + 1]] <- dummy_series
+      if (isTRUE(e$x$tl)) {
+        e$x$opts$baseOption$series[[
+          length(e$x$opts$baseOption$series) + 1
+        ]] <- dummy_series
+      } else {
+        # Append to series
+        e$x$opts$series[[length(e$x$opts$series) + 1]] <- dummy_series
+      }
     }
   }
 
@@ -248,627 +250,46 @@ e_annotations <- function(
   # `shiny::fluidRow(echarts4r::echarts4rOutput("chart"))` with no e_tooltip().
   # I don't understand why this fixes it.
   if (!e$x$tl & is.null(e$x$opts$tooltip)) {
-    e$x$opts$tooltip <-  list(trigger = 'fake')
-  } else if ((e$x$tl & is.null(e$x$opts$tooltip)) ) {
-    e$x$opts$baseOption$tooltip <-  list(trigger = 'fake')
+    e$x$opts$tooltip <- list(trigger = 'fake')
+  } else if ((e$x$tl & is.null(e$x$opts$tooltip))) {
+    e$x$opts$baseOption$tooltip <- list(trigger = 'fake')
   }
+
+  annotation_dependency <- function() {
+    htmltools::htmlDependency(
+      name = "echarts-annotations",
+      version = "1.0.0",
+      src = system.file("htmlwidgets/lib/echarts-6.0.0/plugins/", package = "echarts4r"),
+      script = "echarts-annotations.js"
+      )
+  }
+  e$dependencies <- append(e$dependencies, list(annotation_dependency()))
 
   e |>
     htmlwidgets::onRender(
-      paste0(
-        "
-  function(el, x, data) {
-    var chart = echarts.getInstanceByDom(el);
-
-    function setAttrs(element, attrs) {
-      for (var key in attrs) {
-        if (attrs.hasOwnProperty(key) && attrs[key] != null) {
-          element.setAttribute(key, attrs[key].toString());
-        }
-      }
-    }
-        setTimeout(function() {
-        var option = chart.getOption();
-
-        // Get unique annotation legend names
-        var annotations = x.annotations || [];
-        var legendItems = {};
-
-        annotations.forEach(function(ann) {
-          var name = ann.legend_name || ann.text || 'Annotation';
-          if (!legendItems[name]) {
-            legendItems[name] = {
-              name: name,
-              icon: 'rect',
-              textStyle: { color: '#333' }
-            };
-          }
-        });
-
-        // Add to existing legend data (don't create series)
-        if (!option.legend || !option.legend[0]) {
-          option.legend = [{ show: true, data: [] }];
-        }
-
-        if (!option.legend[0].data) {
-          option.legend[0].data = [];
-        }
-
-        // Add annotation items to legend
-        Object.keys(legendItems).forEach(function(name) {
-          option.legend[0].data.push(name);
-        });
-
-        // Initialize selection state
-        if (!option.legend[0].selected) {
-          option.legend[0].selected = {};
-        }
-
-        Object.keys(legendItems).forEach(function(name) {
-          if (option.legend[0].selected[name] === undefined) {
-            option.legend[0].selected[name] = true;
-          }
-        });
-
-        chart.setOption(option);
-      }, 100);
-    var annotations = x.annotations || [];
-    var svgs = {};
-    var linesByGrid = {};
-    var grids = [];
-    var annotationVisibility = {};  // ADD THIS BACK
-
-        // Initialize visibility tracking
-    annotations.forEach(function(ann, index) {
-      var legendName = ann.legend_name || ann.text || 'Annotation';
-      if (annotationVisibility[legendName] === undefined) {
-        annotationVisibility[legendName] = true;
-      }
-    });
-
-    function getOrCreateSVG(gridIndex) {
-      var svgId = 'annotation-svg-' + el.id + '-grid-' + gridIndex;
-      var svg = document.getElementById(svgId);
-
-      if (!svg) {
-        svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('id', svgId);
-        svg.style.position = 'absolute';
-        svg.style.pointerEvents = 'none';  // ← Changed back to 'none'
-        svg.style.zIndex = '10';
-
-        var clipPathId = 'clip-grid-' + gridIndex;
-        var clipPath = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
-        clipPath.setAttribute('id', clipPathId);
-
-        var clipRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        clipRect.setAttribute('x', '0');
-        clipRect.setAttribute('y', '0');
-        clipRect.setAttribute('width', '100%');
-        clipRect.setAttribute('height', '100%');
-
-        clipPath.appendChild(clipRect);
-        svg.appendChild(clipPath);
-
-        var group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-        group.setAttribute('id', 'annotations-group-' + gridIndex);
-        group.setAttribute('clip-path', 'url(#' + clipPathId + ')');
-        group.style.pointerEvents = 'none';  // ← Also set group to none
-        svg.appendChild(group);
-
-        el.appendChild(svg);
-      }
-
-      return svg;
-    }
-
-    if (!el._annotationData) {
-      el._annotationData = {};
-    }
-
-    function clearAllSvgLines() {
-      Object.keys(svgs).forEach(function(gridIndex) {
-        var svg = svgs[gridIndex];
-        if (svg) {
-          var group = svg.querySelector('#annotations-group-' + gridIndex);
-          if (group) {
-            while (group.firstChild) {
-              group.removeChild(group.firstChild);
-            }
-          }
-        }
-      });
-    }
-
-    function updateAnnotations() {
-      var option = chart.getOption();
-      if (!option || !option.grid || option.grid.length === 0) {
-        setTimeout(updateAnnotations, 100);
-        return;
-      }
-
-      clearAllSvgLines();
-      linesByGrid = {};
-      grids = [];
-
-      for (var i = 0; i < option.grid.length; i++) {
-        var gridModel = chart.getModel().getComponent('grid', i);
-
-        if (gridModel && gridModel.coordinateSystem) {
-          var gridRect = gridModel.coordinateSystem.getRect();
-          grids[i] = {
-            x: gridRect.x,
-            y: gridRect.y,
-            width: gridRect.width,
-            height: gridRect.height
-          };
-
-          var svg = getOrCreateSVG(i);
-          svg.style.left = gridRect.x + 'px';
-          svg.style.top = gridRect.y + 'px';
-          svg.style.width = gridRect.width + 'px';
-          svg.style.height = gridRect.height + 'px';
-
-          svgs[i] = svg;
-          linesByGrid[i] = [];
-        }
-      }
-
-      annotations.forEach(function(ann, index) {
-        var gridIndex = ann.gridIndex || 0;
-
-          // CHECK VISIBILITY AGAINST LEGEND
-        var legendName = ann.legend_name || ann.text || 'Annotation';
-        var isVisible = annotationVisibility[legendName] !== false;
-
-        if (!isVisible) {
-          return;  // Don't render if legend item is unchecked
-        }
-
-        if (!grids[gridIndex]) {
+      "function(el, x, data) {
+      function initWhenReady() {
+        if (typeof EChartsAnnotations === 'undefined') {
+          setTimeout(initWhenReady, 50);
           return;
         }
 
-        var grid = grids[gridIndex];
-        var svg = svgs[gridIndex];
-        var group = svg.querySelector('#annotations-group-' + gridIndex);
-
-        var containerPixel = chart.convertToPixel({gridIndex: gridIndex}, [ann.x, ann.y]);
-
-        if (!containerPixel || containerPixel.length !== 2) {
-          return;
-        }
-
-        var anchorPos = [
-          containerPixel[0] - grid.x,
-          containerPixel[1] - grid.y
-        ];
-
-        ",
-        initialize_annotation_data(),
-        "
-
-        var annoData = el._annotationData[index];
-
-        // Store box_id
-        var boxId = 'box-group-' + index;
-        annoData.box_id = boxId;
-
-        var boxPos = [
-          anchorPos[0] + annoData.offsetX,
-          anchorPos[1] + annoData.offsetY
-        ];
-
-        var arrowTip = ann.arrowTip;
-        var isAbove = boxPos[1] < anchorPos[1];
-        var boxEdge = isAbove ?
-          ann.rectShape.y + ann.rectShape.height :
-          ann.rectShape.y;
-
-        // SVG LINE
-        var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        setAttrs(line, {
-          id: 'line_' + index,
-          x1: anchorPos[0],
-          y1: anchorPos[1] + arrowTip,
-          x2: boxPos[0],
-          y2: boxPos[1] + boxEdge
-        });
-        setAttrs(line, ann.lineStyle);
-        group.appendChild(line);
-
-        // SVG ARROW
-        var arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-        var arrowPointsStr = ann.arrowVertices.map(function(p) {
-          return (anchorPos[0] + p[0]) + ',' + (anchorPos[1] + p[1]);
-        }).join(' ');
-        setAttrs(arrow, {
-          id: 'arrow_' + index,
-          points: arrowPointsStr,
-        });
-        setAttrs(arrow, ann.arrowStyle);
-        group.appendChild(arrow);
-
-        // DRAGGABLE GROUP
-        var boxGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-        boxGroup.setAttribute('id', 'box-group-' + index);
-        boxGroup.setAttribute('data-index', index);
-        boxGroup.setAttribute('data-grid', gridIndex);
-        boxGroup.style.pointerEvents = 'none';  // ← Group is none by default",
-        svg_add_shadow(),
-        svg_HTML_to_tspan(),
-        "
-        // SVG RECT - THIS needs pointer-events: all
-        var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        setAttrs(rect, {
-          id: 'box_' + index,
-          x: ann.rectShape.x,
-          y: ann.rectShape.y,
-          width: ann.rectShape.width,
-          height: ann.rectShape.height,
-          rx: ann.rectShape.r
-        });
-
-        // split shadow from normal attrs
-        var { shadow, ...rectStyle } = ann.rectStyle || {};
-        setAttrs(rect, rectStyle);
-
-        // apply shadow if present
-        if (shadow) {
-          var filterId = ensureShadowFilter(svg, shadow);
-          rect.setAttribute('filter', `url(#${filterId})`);
-        }
-
-        // CRITICAL: Enable pointer events on rect ONLY
-       // if (ann.draggable) {
-          rect.style.cursor = 'move';
-          rect.style.pointerEvents = 'all';  // ← Only the rect gets events
-          rect.setAttribute('data-draggable', 'true');
-          rect.setAttribute('data-index', index);
-          rect.setAttribute('data-grid', gridIndex);
-       // }
-
-        boxGroup.appendChild(rect);
-
-        // SVG TEXT
-        var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        setAttrs(text, {
-          id: 'text_' + index,
-          x: ann.textStyle.x,
-          y: ann.textStyle.y
-        });
-        var tspans = htmlToTspans(ann.textStyle.text, ann.textStyle.x);
-        tspans.forEach(t => text.appendChild(t));
-        setAttrs(text, ann.textStyle);
-
-        boxGroup.appendChild(text);
-
-        // Set transform
-        boxGroup.setAttribute('transform', 'translate(' + boxPos[0] + ',' + boxPos[1] + ')');
-
-        group.appendChild(boxGroup);
-
-        linesByGrid[gridIndex].push({
-          line: line,
-          arrow: arrow,
-          boxGroup: boxGroup,
-          rect: rect,
-          anchorPos: anchorPos,
-          arrowTip: arrowTip,
-          index: index,
-          gridIndex: gridIndex,
-          ann: ann
-        });
-      });
-    }
-
-    setTimeout(updateAnnotations, 200);
-
-    chart.on('dataZoom', updateAnnotations);
-    chart.on('timelinechanged', updateAnnotations);
-    chart.on('restore', updateAnnotations);
-
-     // ADD LEGEND HANDLER
-    chart.on('legendselectchanged', function(params) {
-
-      if (params.selected) {
-        // Update visibility for annotation legend items
-        Object.keys(params.selected).forEach(function(name) {
-          // Check if this is an annotation legend item
-          var isAnnotationLegend = annotations.some(function(ann) {
-            return (ann.legend_name || ann.text) === name;
-          });
-
-          if (isAnnotationLegend) {
-            annotationVisibility[name] = params.selected[name];
-          }
-        });
-
-        // Re-render annotations
-        updateAnnotations();
-      }
-    });
-
-    // Resize observor
-    if (!el._resizeHandlerAttached) {
-      if (typeof ResizeObserver !== 'undefined') {
-        var resizeObserver = new ResizeObserver(function(entries) {
-          clearTimeout(el._resizeTimeout);
-          el._resizeTimeout = setTimeout(function() {
-            chart.resize();
-            setTimeout(updateAnnotations, 150);
-          }, 100);
-        });
-        resizeObserver.observe(el);
-      }
-      el._resizeHandlerAttached = true;
-    }
-
-    // DRAG STATE
-    var isDragging = false;
-    var currentDrag = null;
-
-    // MOUSEDOWN on document
-    document.addEventListener('mousedown', function(e) {
-
-      // Check if clicking on a draggable rect
-      if (e.target.tagName === 'rect' && e.target.getAttribute('data-draggable') === 'true') {
-        var annIndex = parseInt(e.target.getAttribute('data-index'));
-        var gridIdx = parseInt(e.target.getAttribute('data-grid'));
-
-        var lineData = linesByGrid[gridIdx].find(l => l.index === annIndex);
-        if (!lineData) {
-          console.warn('No line data found');
-          return;
-        }
-
-        var svg = svgs[gridIdx];
-        var svgRect = svg.getBoundingClientRect();
-        var boxGroup = lineData.boxGroup;
-
-        // Get current transform
-        var transform = boxGroup.getAttribute('transform');
-        var match = transform.match(/translate\\(([^,]+),([^)]+)\\)/);
-        var currentX = parseFloat(match[1]);
-        var currentY = parseFloat(match[2]);
-
-        isDragging = true;
-        currentDrag = {
-          boxGroup: boxGroup,
-          lineData: lineData,
-          gridIndex: gridIdx,
-          annIndex: annIndex,
-          svg: svg,
-          startX: e.clientX - svgRect.left - currentX,
-          startY: e.clientY - svgRect.top - currentY
-        };
-
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    });
-
-    // MOUSEMOVE
-     document.addEventListener('mousemove', function(e) {
-      if (!isDragging || !currentDrag) return;
-
-      var svgRect = currentDrag.svg.getBoundingClientRect();
-      var grid = grids[currentDrag.gridIndex];
-      var ann = currentDrag.lineData.ann;
-
-      // Calculate desired position
-      var desiredX = e.clientX - svgRect.left - currentDrag.startX;
-      var desiredY = e.clientY - svgRect.top - currentDrag.startY;
-
-      // Calculate box boundaries
-      var boxLeft = desiredX + ann.rectShape.x;
-      var boxRight = desiredX + ann.rectShape.x + ann.rectShape.width;
-      var boxTop = desiredY + ann.rectShape.y;
-      var boxBottom = desiredY + ann.rectShape.y + ann.rectShape.height;
-
-      // CONSTRAIN to grid bounds
-      var newX = desiredX;
-      var newY = desiredY;
-
-      // Horizontal constraints
-      if (boxLeft < 0) {
-        newX = -ann.rectShape.x;
-      } else if (boxRight > grid.width) {
-        newX = grid.width - ann.rectShape.x - ann.rectShape.width;
+        EChartsAnnotations.initialize(el, x, data);
       }
 
-      // Vertical constraints
-      if (boxTop < 0) {
-        newY = -ann.rectShape.y;
-      } else if (boxBottom > grid.height) {
-        newY = grid.height - ann.rectShape.y - ann.rectShape.height;
-      }
-
-      // Update position
-      currentDrag.boxGroup.setAttribute('transform', 'translate(' + newX + ',' + newY + ')');
-
-      // Update line
-      var isAbove = newY < currentDrag.lineData.anchorPos[1];
-      var boxEdge = isAbove ?
-        ann.rectShape.y + ann.rectShape.height :
-        ann.rectShape.y;
-
-      currentDrag.lineData.line.setAttribute('x2', newX);
-      currentDrag.lineData.line.setAttribute('y2', newY + boxEdge);
-
-      // Store constrained offset
-      el._annotationData[currentDrag.annIndex].offsetX = newX - currentDrag.lineData.anchorPos[0];
-      el._annotationData[currentDrag.annIndex].offsetY = newY - currentDrag.lineData.anchorPos[1];
-
-      e.preventDefault();
-    });
-
-document.addEventListener('mouseup', function(e) {
-  if (isDragging) {
-
-    if (typeof Shiny !== 'undefined') {
-      // Send individual dragged annotation
-      Shiny.onInputChange(
-        el.id + '_dragged_annotation' + ':echarts4rParse',
-        el._annotationData[currentDrag.annIndex]
-      );
-
-      // Also send all positions
-      Shiny.setInputValue('annotation_positions', el._annotationData, {
-        priority: 'event'
-      });
-    }
-
-    isDragging = false;
-    currentDrag = null;
-  }
-});
-
-  }
-"
-      )
+      initWhenReady();
+    }"
     )
-}
 
-# Helper function to initialize annotation data
-# this is the output to input$id_dragged_annotation
-initialize_annotation_data <- function() {
-  "
-   if (!el._annotationData[index]) {
-          el._annotationData[index] = {
-            row_index: index,
-            box_id: 'box_' + index,
-            offsetX: ann.offsetX,
-            offsetY: ann.offsetY,
-            text: ann.text,
-            x: ann.x,
-            y: ann.y,
-            id: ann.id
-          };
-        }
-  "
-}
-
-svg_HTML_to_tspan <- function(){
-  "
-  const svgNS = 'http://www.w3.org/2000/svg';
-
-function htmlToTspans(html, baseX) {
-  const container = document.createElement('div');
-  container.innerHTML = html;
-
-  const tspans = [];
-  let dy = 0;
-
-  function walk(node, inheritedStyle = {}) {
-    if (node.nodeType === Node.TEXT_NODE) {
-      if (!node.textContent.trim()) return;
-
-      const tspan = document.createElementNS(svgNS, 'tspan');
-      tspan.textContent = node.textContent;
-
-      Object.entries(inheritedStyle).forEach(([k, v]) =>
-        tspan.setAttribute(k, v)
-      );
-
-      if (dy) {
-        tspan.setAttribute('x', baseX);
-        tspan.setAttribute('dy', dy);
-        dy = 0;
-      }
-
-      tspans.push(tspan);
-      return;
-    }
-
-    if (node.nodeType !== Node.ELEMENT_NODE) return;
-
-    let style = { ...inheritedStyle };
-
-    switch (node.tagName.toLowerCase()) {
-      case 'b':
-      case 'strong':
-        style['font-weight'] = 'bold';
-        break;
-      case 'i':
-      case 'em':
-        style['font-style'] = 'italic';
-        break;
-      case 'u':
-        style['text-decoration'] = 'underline';
-        break;
-      case 'br':
-        dy = '1.2em';
-        return;
-      case 'span':
-        if (node.style.color) style.fill = node.style.color;
-        if (node.style.fontSize) style['font-size'] = node.style.fontSize;
-        if (node.style.fontWeight) style['font-weight'] = node.style.fontWeight;
-        if (node.style.fontStyle) style['font-style'] = node.style.fontStyle;
-        break;
-    }
-
-    [...node.childNodes].forEach(child => walk(child, style));
-  }
-
-  [...container.childNodes].forEach(n => walk(n));
-  return tspans;
-}
-
-"
-}
-
-svg_add_shadow <- function(){
-  "
-  function ensureShadowFilter(svg, shadow) {
-  var defs = svg.querySelector('defs') ||
-    svg.insertBefore(
-      document.createElementNS('http://www.w3.org/2000/svg', 'defs'),
-      svg.firstChild
-    );
-
-  // Create a stable id so identical shadows reuse filters
-  var id = 'shadow_' + btoa(JSON.stringify(shadow)).replace(/=/g, '');
-
-  if (svg.querySelector('#' + id)) {
-    return id;
-  }
-
-  var filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
-  setAttrs(filter, {
-    id: id,
-    x: '-50%',
-    y: '-50%',
-    width: '200%',
-    height: '200%'
-  });
-
-  var feDropShadow = document.createElementNS(
-    'http://www.w3.org/2000/svg',
-    'feDropShadow'
-  );
-
-  setAttrs(feDropShadow, {
-    dx: shadow.dx ?? 0,
-    dy: shadow.dy ?? 0,
-    stdDeviation: shadow.blur ?? 0,
-    'flood-color': shadow.color ?? '#000',
-    'flood-opacity': shadow.opacity ?? 1
-  });
-
-  filter.appendChild(feDropShadow);
-  defs.appendChild(filter);
-
-  return id;
-}"
 }
 # R function with multiple positioning options
 #' @keywords internal
 find_text_position <- function(
-    box_shape,
-    position = "middle", # middle, top, bottom, left, right
-    padding = 5
+  box_shape,
+  position = "right", # middle, top, bottom, left, right
+  padding = 5
 ) {
+  padding = 0
   # Calculate base positions
   x_left <- box_shape$x + padding
   x_middle <- box_shape$x + (box_shape$width / 2)
@@ -911,7 +332,7 @@ find_text_position <- function(
 # Process a single annotation with all styles so js can read it.
 #' @keywords internal
 process_single_annotation <- function(
-    ann
+  ann
 ) {
   # Required fields
   if (is.null(ann$x) || is.null(ann$y) || is.null(ann$text)) {
@@ -928,11 +349,11 @@ process_single_annotation <- function(
     "font-size" = 11,
     "font-weight" = 'bold',
     "text-anchor" = ann$textStyle[["text-anchor"]] %||% "left",
-    padding = ann$textStyle[["padding"]] %||% 2
+    "dominant-baseline" = ann$textStyle[["dominant-baseline"]] %||% "middle"
+    # padding = ann$textStyle[["padding"]] %||% 2
   )
 
-
-  if(if_style_is_not_none(ann$lineStyle)){
+  if (if_style_is_not_none(ann$lineStyle)) {
     default_line_style <- list(
       `stroke-width` = 2,
       stroke = ann$lineStyle[["stroke"]] %||% default_color
@@ -942,25 +363,27 @@ process_single_annotation <- function(
     ann$lineStyle <- NULL
   }
 
-  if(if_style_is_not_none(ann$arrowStyle)){
+  if (if_style_is_not_none(ann$arrowStyle)) {
     default_arrow_style <- list(
       fill = ann$arrowStyle[["fill"]] %||% default_color,
       size = ann$arrowStyle[["size"]] %||% 8
-    ) } else {
-      default_arrow_style <- list(size = 0)
-      ann$arrowStyle <- NULL
-    }
+    )
+  } else {
+    default_arrow_style <- list(size = 0)
+    ann$arrowStyle <- NULL
+  }
 
-  if(if_style_is_not_none(ann$rectStyle)){
+  if (if_style_is_not_none(ann$rectStyle)) {
     default_box_style <- list(
       stroke = ann$rectStyle[["stroke"]] %||% default_color,
       fill = '#ffffff',
       "stroke-width" = 2
-    )} else {
-      # Fully transparent
-      default_box_style <- list(fill = "rgba(255, 255, 255, 0)")
-      ann$rectStyle <- NULL
-    }
+    )
+  } else {
+    # Fully transparent
+    default_box_style <- list(fill = "rgba(255, 255, 255, 0)")
+    ann$rectStyle <- NULL
+  }
 
   default_group <- list(draggable = TRUE, z = 10)
   default_box_width <- 80
@@ -986,9 +409,14 @@ process_single_annotation <- function(
     r = box_radius
   )
 
+  # TODO edit this - only need x / y
   # Calculate text position (centered)
-  text_pos <- find_text_position(box_shape, position = default_text_style[["text-anchor"]], padding = default_text_style[["padding"]])
-
+  text_pos <- find_text_position(
+    box_shape,
+    position = default_text_style[["text-anchor"]],
+    padding = default_text_style[["padding"]]
+  )
+  print(text_pos)
   final_text_style <- utils::modifyList(
     default_text_style,
     c(
@@ -998,8 +426,6 @@ process_single_annotation <- function(
         y = text_pos$y,
         text = as.character(ann$text),
         fill = ann$textStyle[["color"]] %||% default_color
-        # "text-anchor" = text_pos$align,
-        # "dominant-baseline" = text_pos$valign
       )
     )
   )
@@ -1064,7 +490,7 @@ process_single_annotation <- function(
 #' style = list(lineWidth = 5)
 #' style = list(shape = list(width = 100))
 #' @keywords internal
-if_style_is_not_none <- function(style){
+if_style_is_not_none <- function(style) {
   is.null(style) ||
     !(is.character(style[[1]]) && style[[1]] == "none")
 }
