@@ -1,7 +1,7 @@
 test_that("errors informatively without e", {
   expect_error(e_annotations(), "must pass e")
 })
-# TODO test when `fill-opacity` = 0.5, fill is also not 0.5
+
 test_that("errors informatively without annotations", {
   expect_snapshot(mtcars |> e_charts(mpg) |> e_annotations(), error = TRUE)
 })
@@ -100,71 +100,13 @@ test_that("find_text_position returns middle position by default", {
   result <- find_text_position(box_shape)
   expect_equal(result$x, 50)
   expect_equal(result$y, 25)
-  expect_equal(result$align, "middle")
-  expect_equal(result$valign, "middle")
-})
-
-test_that("find_text_position returns top position", {
-  box_shape <- list(x = 0, y = 0, width = 100, height = 50)
-  result <- find_text_position(box_shape, position = "top")
-  expect_equal(result$x, 50)
-  expect_equal(result$y, 5)
-  expect_equal(result$align, "middle")
-  expect_equal(result$valign, "top")
-})
-
-test_that("find_text_position returns bottom position", {
-  box_shape <- list(x = 0, y = 0, width = 100, height = 50)
-  result <- find_text_position(box_shape, position = "bottom")
-  expect_equal(result$x, 50)
-  expect_equal(result$y, 45)
-  expect_equal(result$align, "middle")
-  expect_equal(result$valign, "bottom")
-})
-
-test_that("find_text_position returns left position", {
-  box_shape <- list(x = 0, y = 0, width = 100, height = 50)
-  result <- find_text_position(box_shape, position = "left")
-  expect_equal(result$x, 5)
-  expect_equal(result$y, 25)
-  expect_equal(result$align, "left")
-  expect_equal(result$valign, "middle")
-})
-
-test_that("find_text_position returns right position", {
-  box_shape <- list(x = 0, y = 0, width = 100, height = 50)
-  result <- find_text_position(box_shape, position = "right")
-  expect_equal(result$x, 95)
-  expect_equal(result$y, 25)
-  expect_equal(result$align, "right")
-  expect_equal(result$valign, "middle")
-})
-
-test_that("find_text_position respects custom padding", {
-  box_shape <- list(x = 0, y = 0, width = 100, height = 50)
-  result <- find_text_position(box_shape, position = "top", padding = 10)
-  expect_equal(result$x, 50)
-  expect_equal(result$y, 10)
-  expect_equal(result$align, "middle")
-  expect_equal(result$valign, "top")
 })
 
 test_that("find_text_position handles non-zero box origin", {
   box_shape <- list(x = -40, y = -25, width = 80, height = 50)
-  result <- find_text_position(box_shape, position = "middle")
+  result <- find_text_position(box_shape)
   expect_equal(result$x, 0)
   expect_equal(result$y, 0)
-  expect_equal(result$align, "middle")
-  expect_equal(result$valign, "middle")
-})
-
-test_that("find_text_position defaults to middle for invalid position", {
-  box_shape <- list(x = 0, y = 0, width = 100, height = 50)
-  result <- find_text_position(box_shape, position = "invalid")
-  expect_equal(result$x, 50)
-  expect_equal(result$y, 25)
-  expect_equal(result$align, "middle")
-  expect_equal(result$valign, "middle")
 })
 
 # process_single_annotation -----------------------------------------------
@@ -219,6 +161,14 @@ test_that("process_single_annotation handles lineStyle none", {
   expect_equal(result$lineStyle, list())
 })
 
+test_that("process_single_annotation handles similar names", {
+  ann <- list(x = 15, y = 3, text = "Test", lineStyle = list(stroke = "red", `stroke-opacity` = 0.3))
+  result <- process_single_annotation(ann)
+
+  expect_equal(result$lineStyle[["stroke"]], "red")
+  expect_equal(result$lineStyle[["stroke-opacity"]], 0.3)
+})
+
 test_that("process_single_annotation handles arrowStyle none", {
   ann <- list(x = 15, y = 3, text = "Test", arrowStyle = "none")
   result <- process_single_annotation(ann)
@@ -231,6 +181,15 @@ test_that("process_single_annotation handles rectStyle none", {
   result <- process_single_annotation(ann)
 
   expect_equal(result$rectStyle$fill, "rgba(255, 255, 255, 0)")
+})
+
+
+test_that("process_single_annotation handles incorrect padding_trbl", {
+  ann <- list(x = 15, y = 3, text = "Test", textStyle = list(padding_trbl = "123"))
+  expect_error(process_single_annotation(ann))
+
+  ann <- list(x = 15, y = 3, text = "Test", textStyle = list(padding_trbl = list(1,2,3)))
+  expect_error(process_single_annotation(ann))
 })
 
 test_that("process_single_annotation uses custom text style", {

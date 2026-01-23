@@ -1,6 +1,7 @@
 (function() {
   window.EChartsAnnotations = {
 
+    // Helper function to set R attributes to JS
     setAttrs: function(element, attrs) {
       for (var key in attrs) {
         if (attrs.hasOwnProperty(key) && attrs[key] != null) {
@@ -9,6 +10,7 @@
       }
     },
 
+    // Apply HTML to Text
     htmlToTspans: function(html, baseX) {
       const container = document.createElement('div');
       const svgNS = 'http://www.w3.org/2000/svg';
@@ -42,6 +44,7 @@
 
         let style = { ...inheritedStyle };
 
+        // The HTML tags that are supported
         switch (node.tagName.toLowerCase()) {
           case 'b':
           case 'strong':
@@ -72,6 +75,7 @@
       return tspans;
     },
 
+    // Add shadow to annotation box
      ensureShadowFilter: function(svg, shadow) {
       var defs = svg.querySelector('defs') ||
         svg.insertBefore(
@@ -119,6 +123,7 @@
       var chart = echarts.getInstanceByDom(el);
       var self = this;
 
+      // This adds annontations to the legend so they can toggled off/on
       setTimeout(function() {
         var option = chart.getOption();
 
@@ -127,7 +132,7 @@
         var legendItems = {};
 
         annotations.forEach(function(ann) {
-          var name = ann.legend_name || ann.text || 'Annotation';
+          var name = ann.legend_name || 'Annotation';
           if (!legendItems[name]) {
             legendItems[name] = {
               name: name,
@@ -179,6 +184,7 @@
         }
       });
 
+      // Uses a grid system so annos are bounded by the grid
       function getOrCreateSVG(gridIndex) {
         var svgId = 'annotation-svg-' + el.id + '-grid-' + gridIndex;
         var svg = document.getElementById(svgId);
@@ -219,6 +225,7 @@
         el._annotationData = {};
       }
 
+      // Helper to remove anno groups
       function clearAllSvgLines() {
         Object.keys(svgs).forEach(function(gridIndex) {
           var svg = svgs[gridIndex];
@@ -271,7 +278,7 @@
           var gridIndex = ann.gridIndex || 0;
 
           // CHECK VISIBILITY AGAINST LEGEND
-          var legendName = ann.legend_name || ann.text || 'Annotation';
+          var legendName = ann.legend_name || 'Annotation';
           var isVisible = annotationVisibility[legendName] !== false;
 
           if (!isVisible) {
@@ -297,7 +304,8 @@
             containerPixel[1] - grid.y
           ];
 
-          // Initialize annotation data
+          // Initialize annotation data.
+          // This is what gets returned to Shiny the input handler.
           if (!el._annotationData[index]) {
             el._annotationData[index] = {
               row_index: index,
@@ -313,7 +321,9 @@
 
           var annoData = el._annotationData[index];
 
-          // Store box_id
+          // Store box_id.
+          // This group consists of: box and text. Outside the box, there's
+          // an arrow and line
           var boxId = 'box-group-' + index;
           annoData.box_id = boxId;
 
@@ -337,6 +347,8 @@
             x2: boxPos[0],
             y2: boxPos[1] + boxEdge
           });
+
+          // ann.lineStyle is a list from R.
           self.setAttrs(line, ann.lineStyle);
           group.appendChild(line);
 
@@ -429,25 +441,30 @@
 
       setTimeout(updateAnnotations, 200);
 
+// Annos will update on ...
       chart.on('dataZoom', updateAnnotations);
       chart.on('timelinechanged', updateAnnotations);
       chart.on('restore', updateAnnotations);
 
-      // ADD LEGEND HANDLER
+// ADD LEGEND HANDLER
       chart.on('legendselectchanged', function(params) {
-        if (params.selected) {
-          Object.keys(params.selected).forEach(function(name) {
-            var isAnnotationLegend = annotations.some(function(ann) {
-              return (ann.legend_name || ann.text) === name;
-            });
+          const clicked = params.name;
+          const isOn = params.selected[clicked];
 
-            if (isAnnotationLegend) {
-              annotationVisibility[name] = params.selected[name];
-            }
+          var isAnnotationLegend = annotations.some(function (ann) {
+            return ann.legend_name === clicked;
           });
 
-          updateAnnotations();
-        }
+          if (isAnnotationLegend) {
+            annotationVisibility[clicked] = isOn;
+            updateAnnotations();
+          } else {
+            // Wait for chart to finish rescaling, then update annotations
+            setTimeout(function() {
+              console.log('Updating annotation positions after axis rescale');
+              updateAnnotations();
+             }, 100);
+          }
       });
 
       // Resize observer
@@ -508,7 +525,7 @@
         }
       });
 
-      // MOUSEMOVE
+      // MOUSEMOVE - add a bounding box.
       document.addEventListener('mousemove', function(e) {
         if (!isDragging || !currentDrag) return;
 

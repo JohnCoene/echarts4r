@@ -5,11 +5,12 @@
 #' @description
 #'
 #' Apache ECharts does not include a native annotation system. This is a custom
-#' function that creates annotations using SVG. This currently only works in a 'cartesian2d' coordinate
-#' system.
+#' function that creates annotations using SVG. This currently only works in a
+#' 'cartesian2d' coordinate system.
 #'
 #' Each annotation must be in a list with an x, y, and text. Styling can be
-#' added - see @details.
+#' added - see @details. Because they are SVG, it takes SVG arguments, not
+#' ECharts arguments for styling.
 #'
 #' In Shiny, to output an annotation position after dragging the box, use
 #' \code{input$id_dragged_annotation} or see \link{echarts4r-shiny}. This
@@ -20,17 +21,22 @@
 #'
 #' - \strong{group}: Controls the box and text elements. color was added as an option. This color colors the text, box border, line and arrow - unless specified in that particular style argument.
 #'
-#' - \strong{rectStyle} Styles the annotation box using SVG. It also takes \strong{shape} that uses \hrek{https://echarts.apache.org/en/option.html#graphic.elements-rect.shape}{echarts graphic.elements-rect.shape}.
+#' - \strong{rectStyle} Styles the annotation box. It also takes \strong{shape} that uses \href{https://echarts.apache.org/en/option.html#graphic.elements-rect.shape}{echarts graphic.elements-rect.shape attributes} that controls rectangle width,  height and corner radius.
 #'
-#' - \strong{textStyle}, Styles the annotation text. This support limited HTML tags using tspan. SUpported tags are: \code{b, strong, i, em, u, br, span}. Styling inside \code{span} can use \code{color, fontSize, fontWeight, fontStyle}.
+#' - \strong{textStyle}, Styles the annotation text. This supports limited HTML tags using tspan. Supported tags are: \code{b, strong, i, em, u, br, span}. Styling inside \code{span} can use \code{color, fontSize, fontWeight, fontStyle}. \code{x} and \code{y} attributes are automatically determined based on box size, unless specified. \code{padding_trbl} was also added to add padding - this must be a list of exactly 4 integers.
 #'
 #' - \strong{lineStyle} Styles the line that connects the annotation box to the arrow using \href{https://www.w3schools.com/graphics/svg_stroking.asp}{SVG stroke attributes}
 #'
-#' - \strong{arrowStyle}: Styles the arrow. size was added.
+#' - \strong{arrowStyle}: Styles the arrow. size was added that automatically adjusts the vertices of the triangle.
 #'
 #' @param e An echarts4r object
 #' @param annotations list of annotations to plot
-#' @inheritParams e_bar
+#' @param facet integer; Which facet panel to place annotations on (1 = first
+#'   panel, 2 = second, etc.). Only needed for faceted plots. Defaults to first
+#'   panel.
+#' @param legend Whether to add annotations to legend.
+#' @name name name of the legend
+#' @param legend_color color of the legend box
 #'
 #' @examples
 #' mtcars |>
@@ -42,15 +48,16 @@
 #'         id = 0,
 #'         x = 15,
 #'         y = 3,
-#'         text = 'An annotation<br>with styles',
+#'         text = 'An annotation<br>with <i>style</i>',
 #'         offsetX = 0,
 #'         offsetY = -50,
 #'         # Using the styles
-#'         group = list(draggable = FALSE, color = "red"),
+#'         group = list(draggable = FALSE, color = "#924"),
 #'         textStyle = list(
 #'           "font-size" = 14,
 #'           "font-weight" = 'bold',
-#'           color = "green"
+#'           color = "#394",
+#'           padding_trbl = list(0, 0, 5, 0)
 #'         ),
 #'         rectStyle = list(
 #'           `stroke-dasharray` = c(35, 10),
@@ -78,7 +85,7 @@
 #'         rectStyle = "none",
 #'         arrowStyle = "none"
 #'       ),
-#'       # Style text using rich text
+#'       # Default style
 #'       list(
 #'         id = 2,
 #'         x = 25,
@@ -86,10 +93,22 @@
 #'         text = "Default style",
 #'         offsetX = 0,
 #'         offsetY = -40
+#'       ),
+#'       # left-aligned annotation
+#'       list(
+#'         id = 2,
+#'         x = 0,
+#'         y = 0.5,
+#'         text = "I'm left<br>aligned!",
+#'         offsetX = 60,
+#'         offsetY = -40,
+#'         textStyle = list(
+#'           "text-anchor" = "start",
+#'           padding_trbl = list(0, 0, 6, 10)
+#'         )
 #'       )
 #'     ))
 #' @seealso
-#' - \href{https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute}{Additional arguments for SVG attributes}
 #'
 #' - \href{https://www.w3schools.com/graphics/svg_text.asp}{Additional arguments for textStyle}
 #'
@@ -101,14 +120,15 @@
 #' - \href{https://www.w3schools.com/graphics/svg_fill.asp}{Additional
 #' arguments for arrowStyle}
 #'
+#' - \href{https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute}{Even more arguments for SVG attributes}
+#'
 #' @rdname e_annotations
 #' @export
 e_annotations <- function(
   e,
   annotations,
-  # facet_number = NULL,
-  grid = NULL,
-  series = NULL,
+  # facet_number = NULL, color or draggable here?
+  facet = NULL,
   legend = TRUE,
   name = "Annotations",
   legend_color = "#333333"
@@ -125,45 +145,18 @@ e_annotations <- function(
     stop("annotations must be a list")
   }
 
-  # Determine grid index
-  if (!is.null(series)) {
-    # Convert R's 1-based series index to 0-based
-    series_idx <- series - 1
 
-    # Check if series exists
-    if (is.null(e$x$opts$series[[series]])) {
-      stop(paste("Series", series, "not found"))
-    }
-
-    # Get grid index from series
-    # Series are mapped to grids via xAxisIndex/yAxisIndex
-    series_obj <- e$x$opts$series[[series]]
-
-    # Get xAxisIndex (defaults to 0)
-    x_axis_idx <- series_obj$xAxisIndex %||% 0
-
-    # Get which grid this xAxis is on
-    if (!is.null(e$x$opts$xAxis)) {
-      if (is.list(e$x$opts$xAxis) && length(e$x$opts$xAxis) > x_axis_idx + 1) {
-        grid_idx <- e$x$opts$xAxis[[x_axis_idx + 1]]$gridIndex %||% x_axis_idx
-      } else {
-        grid_idx <- x_axis_idx
-      }
-    } else {
-      grid_idx <- 0
-    }
-  } else if (!is.null(grid)) {
-    # Grid specified directly (convert from R's 1-based to 0-based)
-    grid_idx <- grid - 1
+  if (!is.null(facet)) {
+    # facet number (1-based R indexing)
+    grid_idx <- facet - 1
   } else {
-    # Default to first grid
     grid_idx <- 0
   }
 
   new_annos <- lapply(annotations, function(ann) {
     processed <- process_single_annotation(ann)
     processed$gridIndex <- ann$gridIndex %||% grid_idx
-    processed$legend_name <- name
+    processed$legend_name <- ann$legend_name %||% name
     processed
   })
 
@@ -286,45 +279,33 @@ e_annotations <- function(
 #' @keywords internal
 find_text_position <- function(
   box_shape,
-  position = "right", # middle, top, bottom, left, right
-  padding = 5
+  position = "middle"
 ) {
-  padding = 0
-  # Calculate base positions
-  x_left <- box_shape$x + padding
-  x_middle <- box_shape$x + (box_shape$width / 2)
-  # x_right <- box_shape$width- padding
-  x_right <- box_shape$x + box_shape$width - padding
 
-  y_top <- box_shape$y + padding
+  # Calculate base positions
+  x_left <- box_shape$x
+  x_middle <- box_shape$x + (box_shape$width / 2)
+  x_right <- box_shape$x + box_shape$width
+
+  y_top <- box_shape$y
   y_middle <- box_shape$y + (box_shape$height / 2)
-  y_bottom <- box_shape$y + box_shape$height - padding
+  y_bottom <- box_shape$y + box_shape$height
 
   # Choose position
   pos <- switch(
     position,
     "middle" = list(
       x = x_middle,
-      y = y_middle,
-      align = 'middle',
-      valign = 'middle'
+      y = y_middle
     ),
-    "top" = list(x = x_middle, y = y_top, align = 'middle', valign = 'top'),
-    "bottom" = list(
-      x = x_middle,
-      y = y_bottom,
-      align = 'middle',
-      valign = 'bottom'
-    ),
-    "left" = list(x = x_left, y = y_middle, align = 'left', valign = 'middle'),
-    "right" = list(
+    "start" = list(x = x_left,
+                   y = y_middle),
+    "end" = list(
       x = x_right,
-      y = y_middle,
-      align = 'right',
-      valign = 'middle'
+      y = y_middle
     ),
     # default to middle
-    list(x = x_middle, y = y_middle, align = 'middle', valign = 'middle')
+    list(x = x_middle, y = y_middle)
   )
   pos
 }
@@ -339,7 +320,7 @@ process_single_annotation <- function(
     stop("Annotation must have x, y, and text fields")
   }
 
-  # Default Properties ------------------------------------------------------
+  # Default Properties --
   # For these, better to use ann$arrowStyle[["fill"]] evaluation as opposed to ann$arrowStyle$fill so it does do a partial match.
 
   a_color <- '#738DE4'
@@ -348,9 +329,8 @@ process_single_annotation <- function(
   default_text_style <- list(
     "font-size" = 11,
     "font-weight" = 'bold',
-    "text-anchor" = ann$textStyle[["text-anchor"]] %||% "left",
-    "dominant-baseline" = ann$textStyle[["dominant-baseline"]] %||% "middle"
-    # padding = ann$textStyle[["padding"]] %||% 2
+    "text-anchor" = ann$textStyle[["text-anchor"]] %||% "middle",
+    "dominant-baseline" = ann$textStyle[["dominant-baseline"]] %||% "central"
   )
 
   if (if_style_is_not_none(ann$lineStyle)) {
@@ -390,7 +370,7 @@ process_single_annotation <- function(
   default_box_height <- 40
   default_box_radius <- 3
 
-  # Find box position -------------------------------------------------------
+  # Find box position --
 
   # None of these should ever be NA
   box_width <- ann$rectStyle$shape[["width"]] %||% default_box_width
@@ -409,21 +389,34 @@ process_single_annotation <- function(
     r = box_radius
   )
 
-  # TODO edit this - only need x / y
-  # Calculate text position (centered)
+  # Calculate text position (start, end, middle)
   text_pos <- find_text_position(
     box_shape,
-    position = default_text_style[["text-anchor"]],
-    padding = default_text_style[["padding"]]
+    position = default_text_style[["text-anchor"]]
   )
-  print(text_pos)
+
+  padding <- ann$textStyle$padding_trbl
+
+  if(!is.null(padding) && length(padding) > 0){
+    isPadNumber <- is.numeric(unlist(padding))
+
+    if(length(padding) != 4 || isPadNumber == FALSE){
+      stop("padding_trbl must be a list with 4 numbers")
+    }
+  }
+
+  pad_top <- padding[[1]] %||% 0
+  pad_right <- padding[[2]] %||% 0
+  pad_bot <- padding[[3]] %||% 0
+  pad_left <- padding[[4]] %||% 0
+
   final_text_style <- utils::modifyList(
     default_text_style,
     c(
       ann$textStyle %||% list(),
       list(
-        x = text_pos$x,
-        y = text_pos$y,
+        x = (ann$textStyle$x %||% text_pos$x) + pad_left - pad_right,
+        y = (ann$textStyle$y %||% text_pos$y) + pad_top - pad_bot,
         text = as.character(ann$text),
         fill = ann$textStyle[["color"]] %||% default_color
       )
