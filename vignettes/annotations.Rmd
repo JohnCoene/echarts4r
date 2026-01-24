@@ -28,7 +28,8 @@ iris |>
   e_charts(Sepal.Length) |>
   e_line(Sepal.Width) |>
   e_annotations(
-    legend_color = "red",
+    legend_color = "#928DE4",
+    default_color = "#928DE4",
     annotations = list(
       list(
         id = 0,
@@ -38,7 +39,6 @@ iris |>
         offsetX = -40,
         offsetY = 40,
         # Using the styles
-        group = list(draggable = TRUE, color = "red"),
         textStyle = list(
           "text-anchor" = "middle",
           "font-size" = 14,
@@ -74,7 +74,7 @@ iris |>
        # left-aligned annotation
        list(
          id = 2,
-         x = 0,
+         x = 1,
          y = 0.5,
          text = "I'm left<br>aligned,<br>right?",
          offsetX = 60,
@@ -109,7 +109,7 @@ iris |>
 
 ## Facets
 
-An annotation can be added to a specific facet with their own legend.
+An annotation can be added to a specific facet with their own legend just by adding another `e_annotations()` and using `facet` argument.
 ```{r}
 group_size <- 20
 n_groups <- 13
@@ -146,9 +146,10 @@ df |>
             rectStyle = list(shape = shape)
             )))
 ```
-## Shiny
-Dragging the annotation can be captured.
 
+## Shiny
+
+Dragging the annotation can be captured as to save the locations of the box.
 ```{r, eval=FALSE}
 library(shiny)
 

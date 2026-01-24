@@ -43,6 +43,7 @@ test_that("styling works", {
     e_charts(mpg) |>
     e_scatter(wt) |>
     e_annotations(
+      default_color = "red",
       annotations = list(
         list(
           id = 0,
@@ -52,7 +53,6 @@ test_that("styling works", {
           offsetX = 0,
           offsetY = -50,
           # Using the styles
-          group = list(draggable = FALSE, color = "red"),
           textStyle = list(
             fontSize = 14,
             fontWeight = 'bold'
@@ -69,8 +69,7 @@ test_that("styling works", {
     )
   anno <- e$x$annotations[[1]]
 
-  expect_equal(anno$group$draggable, FALSE)
-  expect_equal(anno$group$color, "red")
+  expect_equal(anno$draggable, TRUE)
 
   expect_equal(anno$textStyle$fontSize, 14)
   expect_equal(anno$textStyle$fontWeight, "bold")
@@ -144,14 +143,14 @@ test_that("process_single_annotation uses default color", {
   expect_equal(result$arrowStyle$fill, "#738DE4")
 })
 
-test_that("process_single_annotation uses custom group color", {
-  ann <- list(x = 15, y = 3, text = "Test", group = list(color = "red"))
-  result <- process_single_annotation(ann)
+test_that("process_single_annotation uses default color", {
+  ann <- list(x = 15, y = 3, text = "Test")
+  result <- process_single_annotation(ann, default_color = "#000")
 
-  expect_equal(result$textStyle$fill, "red")
-  expect_equal(result$rectStyle$stroke, "red")
-  expect_equal(result$lineStyle$stroke, "red")
-  expect_equal(result$arrowStyle$fill, "red")
+  expect_equal(result$textStyle$fill, "#000")
+  expect_equal(result$rectStyle$stroke, "#000")
+  expect_equal(result$lineStyle$stroke, "#000")
+  expect_equal(result$arrowStyle$fill, "#000")
 })
 
 test_that("process_single_annotation handles lineStyle none", {
@@ -254,25 +253,11 @@ test_that("process_single_annotation uses custom id", {
   expect_equal(result$id, 5)
 })
 
-test_that("process_single_annotation sets default group options", {
+test_that("process_single_annotation overwrites default options", {
   ann <- list(x = 15, y = 3, text = "Test")
-  result <- process_single_annotation(ann)
+  result <- process_single_annotation(ann, draggable = FALSE)
 
-  expect_equal(result$group$draggable, TRUE)
-  expect_equal(result$group$z, 10)
-})
-
-test_that("process_single_annotation overrides group options", {
-  ann <- list(
-    x = 15,
-    y = 3,
-    text = "Test",
-    group = list(draggable = FALSE, z = 5)
-  )
-  result <- process_single_annotation(ann)
-
-  expect_equal(result$group$draggable, FALSE)
-  expect_equal(result$group$z, 5)
+  expect_equal(result$draggable, FALSE)
 })
 
 test_that("process_single_annotation calculates arrow vertices", {

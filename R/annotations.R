@@ -19,8 +19,6 @@
 #' @details annotations can take the following styles to change the defaults. To
 #'   remove any element use "none".
 #'
-#' - \strong{group}: Controls the box and text elements. color was added as an option. This color colors the text, box border, line and arrow - unless specified in that particular style argument.
-#'
 #' - \strong{rectStyle} Styles the annotation box. It also takes \strong{shape} that uses \href{https://echarts.apache.org/en/option.html#graphic.elements-rect.shape}{echarts graphic.elements-rect.shape attributes} that controls rectangle width,  height and corner radius.
 #'
 #' - \strong{textStyle}, Styles the annotation text. This supports limited HTML tags using tspan. Supported tags are: \code{b, strong, i, em, u, br, span}. Styling inside \code{span} can use \code{color, fontSize, fontWeight, fontStyle}. \code{x} and \code{y} attributes are automatically determined based on box size, unless specified. \code{padding_trbl} was also added to add padding - this must be a list of exactly 4 integers.
@@ -35,8 +33,11 @@
 #'   panel, 2 = second, etc.). Only needed for faceted plots. Defaults to first
 #'   panel.
 #' @param legend Whether to add annotations to legend.
-#' @name name name of the legend
+#' @param name name of the legend
 #' @param legend_color color of the legend box
+#' @param default_color color of all SVG elements, unless specified in each style. It colors text, line, arrow, and rectable outline.
+#' @param draggable booleon; if TRUE, annotations can be dragged by the user
+#' @note HTML tags may not work in RStudio viewer, open in browser.
 #'
 #' @examples
 #' mtcars |>
@@ -51,8 +52,6 @@
 #'         text = 'An annotation<br>with <i>style</i>',
 #'         offsetX = 0,
 #'         offsetY = -50,
-#'         # Using the styles
-#'         group = list(draggable = FALSE, color = "#924"),
 #'         textStyle = list(
 #'           "font-size" = 14,
 #'           "font-weight" = 'bold',
@@ -127,11 +126,12 @@
 e_annotations <- function(
   e,
   annotations,
-  # facet_number = NULL, color or draggable here?
   facet = NULL,
   legend = TRUE,
   name = "Annotations",
-  legend_color = "#333333"
+  legend_color = "#333333",
+  default_color = '#738DE4',
+  draggable = TRUE
 ) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
@@ -145,6 +145,10 @@ e_annotations <- function(
     stop("annotations must be a list")
   }
 
+  if(!is.null(facet) && !is.numeric(facet)){
+    stop("facet must be an integer, The first facet (facet = 1) is the default when facet is NULL.")
+  }
+
 
   if (!is.null(facet)) {
     # facet number (1-based R indexing)
@@ -154,7 +158,7 @@ e_annotations <- function(
   }
 
   new_annos <- lapply(annotations, function(ann) {
-    processed <- process_single_annotation(ann)
+    processed <- process_single_annotation(ann, default_color, draggable)
     processed$gridIndex <- ann$gridIndex %||% grid_idx
     processed$legend_name <- ann$legend_name %||% name
     processed
@@ -248,15 +252,15 @@ e_annotations <- function(
     e$x$opts$baseOption$tooltip <- list(trigger = 'fake')
   }
 
-  annotation_dependency <- function() {
+  dep <-
     htmltools::htmlDependency(
       name = "echarts-annotations",
       version = "1.0.0",
       src = system.file("htmlwidgets/lib/echarts-6.0.0/plugins/", package = "echarts4r"),
       script = "echarts-annotations.js"
       )
-  }
-  e$dependencies <- append(e$dependencies, list(annotation_dependency()))
+
+  e$dependencies <- append(e$dependencies, list(dep))
 
   e |>
     htmlwidgets::onRender(
@@ -313,7 +317,9 @@ find_text_position <- function(
 # Process a single annotation with all styles so js can read it.
 #' @keywords internal
 process_single_annotation <- function(
-  ann
+  ann,
+  default_color = "#738DE4",
+  draggable = TRUE
 ) {
   # Required fields
   if (is.null(ann$x) || is.null(ann$y) || is.null(ann$text)) {
@@ -322,9 +328,6 @@ process_single_annotation <- function(
 
   # Default Properties --
   # For these, better to use ann$arrowStyle[["fill"]] evaluation as opposed to ann$arrowStyle$fill so it does do a partial match.
-
-  a_color <- '#738DE4'
-  default_color <- ann$group$color %||% a_color
 
   default_text_style <- list(
     "font-size" = 11,
@@ -365,7 +368,6 @@ process_single_annotation <- function(
     ann$rectStyle <- NULL
   }
 
-  default_group <- list(draggable = TRUE, z = 10)
   default_box_width <- 80
   default_box_height <- 40
   default_box_radius <- 3
@@ -444,13 +446,6 @@ process_single_annotation <- function(
     )
   )
 
-  final_group <- utils::modifyList(
-    default_group,
-    c(
-      ann$group %||% list()
-    )
-  )
-
   arrow_size <- final_arrow_style$size
 
   arrow_vertices <- list(
@@ -473,7 +468,7 @@ process_single_annotation <- function(
     arrowStyle = final_arrow_style,
     arrowVertices = arrow_vertices,
     arrowTip = -arrow_size,
-    group = final_group
+    draggable = draggable
   )
 }
 

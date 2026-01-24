@@ -1,7 +1,8 @@
 (function() {
   window.EChartsAnnotations = {
 
-    // Helper function to set R attributes to JS
+  // FUNCTIONS ///
+    // Helper function to set R attributes from a list into JS
     setAttrs: function(element, attrs) {
       for (var key in attrs) {
         if (attrs.hasOwnProperty(key) && attrs[key] != null) {
@@ -10,7 +11,65 @@
       }
     },
 
-    // Apply HTML to Text
+// Used to create each SVG element - line, rect, polygon, text and set their respective attributes (i.e. ann.lineStyle)
+    createSVGElement: function(type, attrs) {
+      var el = document.createElementNS('http://www.w3.org/2000/svg', type);
+      if (attrs) this.setAttrs(el, attrs);
+      return el;
+    },
+
+    // Helper to remove anno groups
+    clearAllSvgLines: function(svgs) {
+      Object.keys(svgs).forEach(function(gridIndex) {
+        var svg = svgs[gridIndex];
+        if (svg) {
+          var group = svg.querySelector('#annotations-group-' + gridIndex);
+          if (group) {
+            while (group.firstChild) {
+              group.removeChild(group.firstChild);
+            }
+          }
+        }
+      });
+    },
+
+  // Uses a grid system so annos are bounded by the grid
+    getOrCreateSVG: function(el, gridIndex) {
+      var svgId = 'annotation-svg-' + el.id + '-grid-' + gridIndex;
+      var svg = document.getElementById(svgId);
+
+      if (!svg) {
+        svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('id', svgId);
+        svg.style.position = 'absolute';
+        svg.style.pointerEvents = 'none';
+        svg.style.zIndex = '10';
+
+        var clipPathId = 'clip-grid-' + gridIndex;
+        var clipPath = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
+        clipPath.setAttribute('id', clipPathId);
+
+        var clipRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        clipRect.setAttribute('x', '0');
+        clipRect.setAttribute('y', '0');
+        clipRect.setAttribute('width', '100%');
+        clipRect.setAttribute('height', '100%');
+
+        clipPath.appendChild(clipRect);
+        svg.appendChild(clipPath);
+
+        var group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        group.setAttribute('id', 'annotations-group-' + gridIndex);
+        group.setAttribute('clip-path', 'url(#' + clipPathId + ')');
+        group.style.pointerEvents = 'none';
+        svg.appendChild(group);
+        el.appendChild(svg);
+      }
+
+      return svg;
+    },
+
+    // Apply HTML to text using tspan
     htmlToTspans: function(html, baseX) {
       const container = document.createElement('div');
       const svgNS = 'http://www.w3.org/2000/svg';
@@ -118,17 +177,83 @@
       return id;
     },
 
-    // Main initialization function
-    initialize: function(el, x, data, helpers) {
+    calculateAnnotationPosition: function (el, annotation, chart, index, grids, gridIndex) {
+      var grid = grids[gridIndex];
+      var containerPixel = chart.convertToPixel(
+        {gridIndex: gridIndex},
+        [annotation.x, annotation.y]
+      );
+
+      if (!containerPixel || containerPixel.length !== 2) {
+        return null;
+      }
+
+      var anchorPos = [
+        containerPixel[0] - grid.x,
+        containerPixel[1] - grid.y
+      ];
+
+       // This is what gets returned to Shiny in the input handler.
+      if (!el._annotationData[index]) {
+        el._annotationData[index] = {
+          row_index: index,
+          box_id: 'box_' + index,
+          offsetX: annotation.offsetX || 0,
+          offsetY: annotation.offsetY || 0,
+          text: annotation.text || '',
+          x: annotation.x,
+          y: annotation.y,
+          id: annotation.id
+        };
+      }
+
+      var annoData = el._annotationData[index];
+      annoData.box_id = 'box-group-' + index;
+
+      var boxPos = [
+        anchorPos[0] + annoData.offsetX,
+        anchorPos[1] + annoData.offsetY
+      ];
+
+      var isAbove = boxPos[1] < anchorPos[1];
+      var boxEdge = isAbove
+        ? annotation.rectShape.y + annotation.rectShape.height
+        : annotation.rectShape.y;
+
+      return {
+        anchorPos: anchorPos,
+        boxPos: boxPos,
+        boxEdge: boxEdge
+      };
+    },
+
+// MAIN FUNCTION
+
+    initialize: function(el, x, data) {
+      var DEBOUNCE_DELAY = 150;
+      var LEGEND_INIT_DELAY = 100;
+      var ANNOTATION_UPDATE_DELAY = 200;
+      var RESIZE_DEBOUNCE  = 100;
+
       var chart = echarts.getInstanceByDom(el);
       var self = this;
+
+      // Grabs annotations from e$x$annotations
+      var annotations = x.annotations || [];
+      var svgs = {};
+      var linesByGrid = {};
+      var grids = [];
+      var annotationVisibility = {};
+
+      if (!el._annotationData) {
+        el._annotationData = {};
+      }
 
       // This adds annontations to the legend so they can toggled off/on
       setTimeout(function() {
         var option = chart.getOption();
 
         // Get unique annotation legend names
-        var annotations = x.annotations || [];
         var legendItems = {};
 
         annotations.forEach(function(ann) {
@@ -168,88 +293,25 @@
         });
 
         chart.setOption(option);
-      }, 100);
+      }, LEGEND_INIT_DELAY);
 
-      var annotations = x.annotations || [];
-      var svgs = {};
-      var linesByGrid = {};
-      var grids = [];
-      var annotationVisibility = {};
 
       // Initialize visibility tracking
       annotations.forEach(function(ann, index) {
-        var legendName = ann.legend_name || ann.text || 'Annotation';
+        var legendName = ann.legend_name || 'Annotation';
         if (annotationVisibility[legendName] === undefined) {
           annotationVisibility[legendName] = true;
         }
       });
 
-      // Uses a grid system so annos are bounded by the grid
-      function getOrCreateSVG(gridIndex) {
-        var svgId = 'annotation-svg-' + el.id + '-grid-' + gridIndex;
-        var svg = document.getElementById(svgId);
-
-        if (!svg) {
-          svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-          svg.setAttribute('id', svgId);
-          svg.style.position = 'absolute';
-          svg.style.pointerEvents = 'none';
-          svg.style.zIndex = '10';
-
-          var clipPathId = 'clip-grid-' + gridIndex;
-          var clipPath = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
-          clipPath.setAttribute('id', clipPathId);
-
-          var clipRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-          clipRect.setAttribute('x', '0');
-          clipRect.setAttribute('y', '0');
-          clipRect.setAttribute('width', '100%');
-          clipRect.setAttribute('height', '100%');
-
-          clipPath.appendChild(clipRect);
-          svg.appendChild(clipPath);
-
-          var group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-          group.setAttribute('id', 'annotations-group-' + gridIndex);
-          group.setAttribute('clip-path', 'url(#' + clipPathId + ')');
-          group.style.pointerEvents = 'none';
-          svg.appendChild(group);
-
-          el.appendChild(svg);
-        }
-
-        return svg;
-      }
-
-      if (!el._annotationData) {
-        el._annotationData = {};
-      }
-
-      // Helper to remove anno groups
-      function clearAllSvgLines() {
-        Object.keys(svgs).forEach(function(gridIndex) {
-          var svg = svgs[gridIndex];
-          if (svg) {
-            var group = svg.querySelector('#annotations-group-' + gridIndex);
-            if (group) {
-              while (group.firstChild) {
-                group.removeChild(group.firstChild);
-              }
-            }
-          }
-        });
-      }
-
       function updateAnnotations() {
         var option = chart.getOption();
         if (!option || !option.grid || option.grid.length === 0) {
-          setTimeout(updateAnnotations, 100);
+          setTimeout(updateAnnotations, ANNOTATION_UPDATE_DELAY);
           return;
         }
 
-        clearAllSvgLines();
-        linesByGrid = {};
-        grids = [];
+        self.clearAllSvgLines(svgs);
 
         for (var i = 0; i < option.grid.length; i++) {
           var gridModel = chart.getModel().getComponent('grid', i);
@@ -263,7 +325,7 @@
               height: gridRect.height
             };
 
-            var svg = getOrCreateSVG(i);
+            var svg = self.getOrCreateSVG(el, i);
             svg.style.left = gridRect.x + 'px';
             svg.style.top = gridRect.y + 'px';
             svg.style.width = gridRect.width + 'px';
@@ -275,104 +337,59 @@
         }
 
         annotations.forEach(function(ann, index) {
+
           var gridIndex = ann.gridIndex || 0;
+          var svg = svgs[gridIndex];
+          var group = svg.querySelector('#annotations-group-' + gridIndex);
 
           // CHECK VISIBILITY AGAINST LEGEND
           var legendName = ann.legend_name || 'Annotation';
           var isVisible = annotationVisibility[legendName] !== false;
-
-          if (!isVisible) {
+          var gridIndex = ann.gridIndex || 0;
+          if (!isVisible || !grids[gridIndex]) {
             return;
           }
 
-          if (!grids[gridIndex]) {
-            return;
-          }
+          // Calculate annotation position
+          var annoPos = self.calculateAnnotationPosition(el, ann, chart, index, grids, gridIndex);
 
-          var grid = grids[gridIndex];
-          var svg = svgs[gridIndex];
-          var group = svg.querySelector('#annotations-group-' + gridIndex);
+          // ann.lineStyle, etc. is a list from R. These create the SVG element and apply styling.
+          var rect = self.createSVGElement('rect', ann.rectStyle);
+          var text = self.createSVGElement('text', ann.textStyle);
+          var line = self.createSVGElement('line', ann.lineStyle);
+          var arrow = self.createSVGElement('polygon', ann.arrowStyle);
+          var arrowTip = ann.arrowTip;
 
-          var containerPixel = chart.convertToPixel({gridIndex: gridIndex}, [ann.x, ann.y]);
-
-          if (!containerPixel || containerPixel.length !== 2) {
-            return;
-          }
-
-          var anchorPos = [
-            containerPixel[0] - grid.x,
-            containerPixel[1] - grid.y
-          ];
-
-          // Initialize annotation data.
-          // This is what gets returned to Shiny the input handler.
-          if (!el._annotationData[index]) {
-            el._annotationData[index] = {
-              row_index: index,
-              box_id: 'box_' + index,
-              offsetX: ann.offsetX || 0,
-              offsetY: ann.offsetY || 0,
-              text: ann.text || '',
-              x: ann.x,
-              y: ann.y,
-              id: ann.id
-            };
-          }
-
-          var annoData = el._annotationData[index];
-
-          // Store box_id.
           // This group consists of: box and text. Outside the box, there's
           // an arrow and line
-          var boxId = 'box-group-' + index;
-          annoData.box_id = boxId;
-
-          var boxPos = [
-            anchorPos[0] + annoData.offsetX,
-            anchorPos[1] + annoData.offsetY
-          ];
-
-          var arrowTip = ann.arrowTip;
-          var isAbove = boxPos[1] < anchorPos[1];
-          var boxEdge = isAbove ?
-            ann.rectShape.y + ann.rectShape.height :
-            ann.rectShape.y;
+          var boxGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 
           // SVG LINE
-          var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
           self.setAttrs(line, {
             id: 'line_' + index,
-            x1: anchorPos[0],
-            y1: anchorPos[1] + arrowTip,
-            x2: boxPos[0],
-            y2: boxPos[1] + boxEdge
+            x1: annoPos.anchorPos[0],
+            y1: annoPos.anchorPos[1] + arrowTip,
+            x2: annoPos.boxPos[0],
+            y2: annoPos.boxPos[1] + annoPos.boxEdge
           });
 
-          // ann.lineStyle is a list from R.
-          self.setAttrs(line, ann.lineStyle);
-          group.appendChild(line);
-
           // SVG ARROW
-          var arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
           var arrowPointsStr = ann.arrowVertices.map(function(p) {
-            return (anchorPos[0] + p[0]) + ',' + (anchorPos[1] + p[1]);
+            return (annoPos.anchorPos[0] + p[0]) + ',' + (annoPos.anchorPos[1] + p[1]);
           }).join(' ');
+
           self.setAttrs(arrow, {
             id: 'arrow_' + index,
             points: arrowPointsStr,
           });
-          self.setAttrs(arrow, ann.arrowStyle);
-          group.appendChild(arrow);
 
           // DRAGGABLE GROUP
-          var boxGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
           boxGroup.setAttribute('id', 'box-group-' + index);
           boxGroup.setAttribute('data-index', index);
           boxGroup.setAttribute('data-grid', gridIndex);
           boxGroup.style.pointerEvents = 'none';
 
           // SVG RECT
-          var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
           self.setAttrs(rect, {
             id: 'box_' + index,
             x: ann.rectShape.x,
@@ -387,24 +404,31 @@
           var shadow = rectStyle.shadow;
           delete rectStyle.shadow;
 
-          self.setAttrs(rect, rectStyle);
-
           // Apply shadow if present
           if (shadow && self.ensureShadowFilter) {
             var filterId = self.ensureShadowFilter(svg, shadow);
             rect.setAttribute('filter', 'url(#' + filterId + ')');
           }
 
+          // Check if this annotation is draggable
+          var isDraggable = ann.draggable;  // Default to true
+
+          if (isDraggable) {
+            rect.style.cursor = 'move';
+            rect.style.pointerEvents = 'all';
+            rect.setAttribute('data-draggable', 'true');
+          } else {
+            rect.style.cursor = 'default';
+            rect.style.pointerEvents = 'none';
+            rect.setAttribute('data-draggable', 'false');
+          }
+
           rect.style.cursor = 'move';
           rect.style.pointerEvents = 'all';
-          rect.setAttribute('data-draggable', 'true');
           rect.setAttribute('data-index', index);
           rect.setAttribute('data-grid', gridIndex);
 
-          boxGroup.appendChild(rect);
-
           // SVG TEXT
-          var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
           self.setAttrs(text, {
             id: 'text_' + index,
             x: ann.textStyle.x,
@@ -412,25 +436,27 @@
           });
 
           var tspans = self.htmlToTspans(ann.textStyle.text, ann.textStyle.x);
+
           tspans.forEach(function(t) {
             text.appendChild(t);
           });
 
-          self.setAttrs(text, ann.textStyle);
+          boxGroup.setAttribute('transform', 'translate(' + annoPos.boxPos[0] + ',' + annoPos.boxPos[1] + ')');
 
-          boxGroup.appendChild(text);
-
-          // Set transform
-          boxGroup.setAttribute('transform', 'translate(' + boxPos[0] + ',' + boxPos[1] + ')');
-
+          // GROUP SVG ELEMENTS
+          group.appendChild(line);
+          group.appendChild(arrow);
           group.appendChild(boxGroup);
+
+          boxGroup.appendChild(rect);
+          boxGroup.appendChild(text);
 
           linesByGrid[gridIndex].push({
             line: line,
             arrow: arrow,
             boxGroup: boxGroup,
             rect: rect,
-            anchorPos: anchorPos,
+            anchorPos: annoPos.anchorPos,
             arrowTip: arrowTip,
             index: index,
             gridIndex: gridIndex,
@@ -439,7 +465,7 @@
         });
       }
 
-      setTimeout(updateAnnotations, 200);
+      setTimeout(updateAnnotations, ANNOTATION_UPDATE_DELAY);
 
 // Annos will update on ...
       chart.on('dataZoom', updateAnnotations);
@@ -461,9 +487,8 @@
           } else {
             // Wait for chart to finish rescaling, then update annotations
             setTimeout(function() {
-              console.log('Updating annotation positions after axis rescale');
               updateAnnotations();
-             }, 100);
+             }, LEGEND_INIT_DELAY);
           }
       });
 
@@ -474,13 +499,15 @@
             clearTimeout(el._resizeTimeout);
             el._resizeTimeout = setTimeout(function() {
               chart.resize();
-              setTimeout(updateAnnotations, 150);
-            }, 100);
+              setTimeout(updateAnnotations, DEBOUNCE_DELAY);
+            }, RESIZE_DEBOUNCE);
           });
           resizeObserver.observe(el);
         }
         el._resizeHandlerAttached = true;
       }
+
+// Event listeners //
 
       // DRAG STATE
       var isDragging = false;
@@ -580,12 +607,7 @@
               el.id + '_dragged_annotation' + ':echarts4rParse',
               el._annotationData[currentDrag.annIndex]
             );
-
-            Shiny.setInputValue('annotation_positions', el._annotationData, {
-              priority: 'event'
-            });
           }
-
           isDragging = false;
           currentDrag = null;
         }
