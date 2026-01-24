@@ -1,0 +1,29 @@
+---
+title: "Matrix"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Matrix}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(echarts4r)
+
+e_common(
+    font_family = "Raleway"
+)
+```
+
+Build charts using the new matrix system added in [Echarts v6.](https://echarts.apache.org/handbook/en/basics/release-note/v6-feature/#) `echarts4r` now comes with a highly customisable matrix coordinate system, which in some methods is easier to use than the previous grid functionality. Build custome tables using the new matrix functions
+
+## Matrix
+
+
+
