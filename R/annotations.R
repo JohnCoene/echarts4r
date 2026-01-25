@@ -21,7 +21,7 @@
 #'
 #' - \strong{rectStyle} Styles the annotation box. It also takes \strong{shape} that uses \href{https://echarts.apache.org/en/option.html#graphic.elements-rect.shape}{echarts graphic.elements-rect.shape attributes} that controls rectangle width,  height and corner radius.
 #'
-#' - \strong{textStyle}, Styles the annotation text. This supports limited HTML tags using tspan. Supported tags are: \code{b, strong, i, em, u, br, span}. Styling inside \code{span} can use \code{color, fontSize, fontWeight, fontStyle}. \code{x} and \code{y} attributes are automatically determined based on box size, unless specified. \code{padding_trbl} was also added to add padding - this must be a list of exactly 4 integers.
+#' - \strong{textStyle}, Styles the annotation text. This supports limited HTML tags using tspan. Supported tags are: \code{b, strong, i, em, u, br, span}. Styling inside \code{span} can use \code{color, fontSize, fontWeight, fontStyle}. \code{x} and \code{y} attributes are automatically determined based on box size, unless specified. \code{padding_trbl} was also added to add padding - this must be a list of exactly 4 integers - in the order of top, right, bottom, and left padding. This padding just pushes the text in that direction.
 #'
 #' - \strong{lineStyle} Styles the line that connects the annotation box to the arrow using \href{https://www.w3schools.com/graphics/svg_stroking.asp}{SVG stroke attributes}
 #'
@@ -29,15 +29,15 @@
 #'
 #' @param e An echarts4r object
 #' @param annotations list of annotations to plot
-#' @param facet integer; Which facet panel to place annotations on (1 = first
-#'   panel, 2 = second, etc.). Only needed for faceted plots. Defaults to first
+#' @param .facet integer; facet's index. Only needed for faceted plots. Defaults to first plot.
 #'   panel.
 #' @param legend Whether to add annotations to legend.
 #' @param name name of the legend
 #' @param legend_color color of the legend box
-#' @param default_color color of all SVG elements, unless specified in each style. It colors text, line, arrow, and rectable outline.
+#' @param default_color color of all SVG elements, unless specified in each
+#'   style. It colors text, line, arrow, and rectable outline.
 #' @param draggable booleon; if TRUE, annotations can be dragged by the user
-#' @note HTML tags may not work in RStudio viewer, open in browser.
+#' @note HTML tags may not apply in RStudio viewer, open in browser.
 #'
 #' @examples
 #' mtcars |>
@@ -126,10 +126,10 @@
 e_annotations <- function(
   e,
   annotations,
-  facet = NULL,
+  .facet = NULL,
   legend = TRUE,
   name = "Annotations",
-  legend_color = "#333333",
+  legend_color = '#738DE4',
   default_color = '#738DE4',
   draggable = TRUE
 ) {
@@ -145,17 +145,19 @@ e_annotations <- function(
     stop("annotations must be a list")
   }
 
-  if(!is.null(facet) && !is.numeric(facet)){
-    stop("facet must be an integer, The first facet (facet = 1) is the default when facet is NULL.")
+  if(!is.null(.facet) && !is.numeric(.facet)){
+    stop(".facet must be an integer, The first facet (.facet = 1) is the default when facet is NULL.")
   }
 
 
-  if (!is.null(facet)) {
+  if (!is.null(.facet)) {
     # facet number (1-based R indexing)
-    grid_idx <- facet - 1
+    grid_idx <- .facet - 1
   } else {
     grid_idx <- 0
   }
+
+
 
   new_annos <- lapply(annotations, function(ann) {
     processed <- process_single_annotation(ann, default_color, draggable)
@@ -372,6 +374,21 @@ process_single_annotation <- function(
   default_box_height <- 40
   default_box_radius <- 3
 
+  padding <- ann$textStyle$padding_trbl
+
+  if(!is.null(padding) && length(padding) > 0){
+    isPadNumber <- is.numeric(unlist(padding))
+
+    if(length(padding) != 4 || isPadNumber == FALSE){
+      stop("padding_trbl must be a list with 4 numbers")
+    }
+  }
+
+  pad_top <- padding[[1]] %||% 0
+  pad_right <- padding[[2]] %||% 0
+  pad_bot <- padding[[3]] %||% 0
+  pad_left <- padding[[4]] %||% 0
+
   # Find box position --
 
   # None of these should ever be NA
@@ -396,21 +413,6 @@ process_single_annotation <- function(
     box_shape,
     position = default_text_style[["text-anchor"]]
   )
-
-  padding <- ann$textStyle$padding_trbl
-
-  if(!is.null(padding) && length(padding) > 0){
-    isPadNumber <- is.numeric(unlist(padding))
-
-    if(length(padding) != 4 || isPadNumber == FALSE){
-      stop("padding_trbl must be a list with 4 numbers")
-    }
-  }
-
-  pad_top <- padding[[1]] %||% 0
-  pad_right <- padding[[2]] %||% 0
-  pad_bot <- padding[[3]] %||% 0
-  pad_left <- padding[[4]] %||% 0
 
   final_text_style <- utils::modifyList(
     default_text_style,

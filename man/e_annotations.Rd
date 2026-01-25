@@ -7,10 +7,10 @@
 e_annotations(
   e,
   annotations,
-  facet = NULL,
+  .facet = NULL,
   legend = TRUE,
   name = "Annotations",
-  legend_color = "#333333",
+  legend_color = "#738DE4",
   default_color = "#738DE4",
   draggable = TRUE
 )
@@ -20,8 +20,7 @@ e_annotations(
 
 \item{annotations}{list of annotations to plot}
 
-\item{facet}{integer; Which facet panel to place annotations on (1 = first
-panel, 2 = second, etc.). Only needed for faceted plots. Defaults to first
+\item{.facet}{integer; facet's index. Only needed for faceted plots. Defaults to first plot.
 panel.}
 
 \item{legend}{Whether to add annotations to legend.}
@@ -30,7 +29,8 @@ panel.}
 
 \item{legend_color}{color of the legend box}
 
-\item{default_color}{color of all SVG elements, unless specified in each style. It colors text, line, arrow, and rectable outline.}
+\item{default_color}{color of all SVG elements, unless specified in each
+style. It colors text, line, arrow, and rectable outline.}
 
 \item{draggable}{booleon; if TRUE, annotations can be dragged by the user}
 }
@@ -53,7 +53,7 @@ annotations can take the following styles to change the defaults. To
 
 - \strong{rectStyle} Styles the annotation box. It also takes \strong{shape} that uses \href{https://echarts.apache.org/en/option.html#graphic.elements-rect.shape}{echarts graphic.elements-rect.shape attributes} that controls rectangle width,  height and corner radius.
 
-- \strong{textStyle}, Styles the annotation text. This supports limited HTML tags using tspan. Supported tags are: \code{b, strong, i, em, u, br, span}. Styling inside \code{span} can use \code{color, fontSize, fontWeight, fontStyle}. \code{x} and \code{y} attributes are automatically determined based on box size, unless specified. \code{padding_trbl} was also added to add padding - this must be a list of exactly 4 integers.
+- \strong{textStyle}, Styles the annotation text. This supports limited HTML tags using tspan. Supported tags are: \code{b, strong, i, em, u, br, span}. Styling inside \code{span} can use \code{color, fontSize, fontWeight, fontStyle}. \code{x} and \code{y} attributes are automatically determined based on box size, unless specified. \code{padding_trbl} was also added to add padding - this must be a list of exactly 4 integers - in the order of top, right, bottom, and left padding. This padding just pushes the text in that direction.
 
 - \strong{lineStyle} Styles the line that connects the annotation box to the arrow using \href{https://www.w3schools.com/graphics/svg_stroking.asp}{SVG stroke attributes}
 
