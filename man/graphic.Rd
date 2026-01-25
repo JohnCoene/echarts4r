@@ -90,7 +90,51 @@ cars |>
       opacity = .6
     )
   )
-}
-\seealso{
-\href{https://echarts.apache.org/en/option.html#graphic}{official documentation}
+
+# Position does change depending on window size.
+mtcars |>
+  e_charts(mpg) |>
+  e_line(wt) |>
+  e_group_g(
+    left = '18\%',
+    top = '55\%',
+    children = list(
+      # Background rectangle
+      list(
+        type = 'rect',
+        z = 100,
+        left = 'center',
+        top = 'middle',
+        shape = list(
+          width = 240,
+          height = 90
+        ),
+        style = list(
+          fill = '#fff',
+          stroke = '#555',
+          lineWidth = 1,
+          shadowBlur = 8,
+          shadowOffsetX = 3,
+          shadowOffsetY = 3,
+          shadowColor = 'rgba(0,0,0,0.2)'
+        )
+      ),
+      # Text element
+      list(
+        type = 'text',
+        z = 100,
+        left = 'center',
+        top = 'middle',
+        style = list(
+          fill = '#333',
+          width = 220,
+          overflow = 'break',
+          text = 'xAxis represents miles per gallon, yAxis represents weight in tonnes This text block can be placed in any place',
+          font = '14px Microsoft YaHei'
+        )
+      )
+    )
+  )
+#' @seealso \href{https://echarts.apache.org/en/option.html#graphic}{official documentation}
+
 }
