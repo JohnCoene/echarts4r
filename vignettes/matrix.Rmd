@@ -15,15 +15,644 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 library(echarts4r)
+library(dplyr)
 
 e_common(
     font_family = "Raleway"
 )
 ```
 
-Build charts using the new matrix system added in [Echarts v6.](https://echarts.apache.org/handbook/en/basics/release-note/v6-feature/#) `echarts4r` now comes with a highly customisable matrix coordinate system, which in some methods is easier to use than the previous grid functionality. Build custome tables using the new matrix functions
+Build charts using the new matrix system added in [Echarts v6.](https://echarts.apache.org/handbook/en/basics/release-note/v6-feature/#) `echarts4r` now comes with a highly customisable matrix coordinate system, which in some methods is easier to use than the previous grid functionality. Build custom tables using the new matrix functions. Note that as of Echarts4r v0.5.0, timelines are not currently supported with matrix functions.
 
 ## Matrix
 
+To get started with using a matrix, there are a few options you can use. The two starting options consist of `e_matrix` and `e_matrix_raw`. You can learn more about the matrix system using the [official documentation](https://echarts.apache.org/en/option.html#matrix) for additional details. It is worth mentioning that not all series will support the matrix system and some require the matrix to be used in combination with the already existing grid system. See the table at the bottom of the page for additional details. 
+
+Now let's get started with building some matrix charts! `e_matrix` will take two columns that contain your x and y groupings and will plot the unique combinations in a table style format. There is no need to use `group_by` with the matrix functions. 
+
+```{r}
+df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
+"Grade" = c("Grade1","Grade2", "Grade3"))
+
+df |> 
+  e_charts() |> 
+  e_matrix(xAxis = "Class", yAxis = "Grade")
+```
+
+If we only want to create the table with no additional headers or column names, we can instead use the `e_matrix_raw` to generate the matrix. This will be especially useful when adding new charts directly to the matrix later on. When using `e_matrix_raw` you will need to specify how many columns and rows you want in your table. 
+
+```{r}
+e_matrix_raw(rows = 3, cols = 3)
+```
+
+All tables are fully customizable through the supported css options found [here](https://echarts.apache.org/en/option.html#matrix.body). We can use these options to fully remove the lines of the table leaving an blank matrix.
+
+```{r}
+e_matrix_raw(rows = 3, cols = 3, backgroundStyle=list(borderWidth=0), body = list(itemStyle = list(borderWidth = 0)))
+```
+
+## Format matrix
+
+There are a few other ways that we can customize our matrix table to reach our desired output. First we can take our initial example from `e_matrix` and add some text to the corner cell of the headers. To do this, we will use `e_matrix_corner` to access that corner cell. Documentation for the corner cell can be found [here](https://echarts.apache.org/en/option.html#matrix.corner).
+
+```{r}
+df |> 
+  e_charts() |> 
+  e_matrix(xAxis = "Class", yAxis = "Grade") |> 
+  e_matrix_corner(value = "Schools")
+```
+
+Now we can add additional levels to our headers. This is done using `e_matrix_parent` to add new levels. To use this function, we will give it our new text value. We also need to specify which existing headers will be children of this new header parent. As you mess around with `e_matrix_parent` you may notice that additional cells are being generated for the corner of the table. In `e_matrix_corner` we can specify where we want that corner value to go using the coord attribute. As of Echarts4r v0.5.0, there is no way to add new children to the headers. 
+
+```{r}
+df |> e_charts() |> 
+  e_matrix(xAxis = "Class", yAxis = "Grade") |>
+  e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |>
+  e_matrix_parent(value = "High", children = "Class3") |>
+  e_matrix_parent(value = "ALL", children = c("Primary", "High")) |>
+  e_matrix_corner(value = "Schools", coord = c(-1,-2))
+```
+
+When working with the matrix functions, it is important to remember that the coordinate system is formatted as [col_number, row_number]. Additionally, row and column counting starts at 0. If we need to make additional changes to how our headers look, we can easily access the formatting options using `e_format_matrix_axis`. Documentation for the axis options can be found [here](https://echarts.apache.org/en/option.html#matrix.x).
+
+```{r}
+e <- df |> 
+  e_charts() |> 
+  e_matrix(xAxis = "Class", yAxis = "Grade") |> 
+  e_matrix_corner(value = "Schools") |>
+  e_matrix_parent(value = "Primary", children = c("Class1", "Class2")) |>
+  e_format_matrix_axis(axis = "y", label = list(color = "red")) |>
+  e_format_matrix_axis(axis = "x", itemStyle = list(color = "#999"), label = list(fontSize = 25))
+```
+
+## Adding charts
+
+### Table Style
+
+Now that we have built our table, we can start adding some charts to each cell. In order to do this, we will use `e_matrix_addChart`. This will allows us to pre-build an Echart and add it to a specific cell (Note: Each Echart will need a unique ID when added to the matrix). 
+
+Let's get building! First we can build some basic charts that we want to add.  
+```{r}
+echart1 <- iris |>
+  group_by(Species) |>
+  e_charts(Sepal.Length) |>
+  e_line(Sepal.Width) |>
+  e_tooltip(trigger = "axis")
+
+echart2 <- mtcars |>
+  head() |>
+  tibble::rownames_to_column("model") |>
+  e_charts(model) |>
+  e_pie(carb)
+
+echart3 <- mtcars |>
+  tibble::rownames_to_column("model") |>
+  mutate(total = mpg + qsec) |>
+  arrange(desc(total)) |>
+  e_charts(model) |>
+  e_bar(mpg, stack = "grp") |>
+  e_bar(qsec, stack = "grp") |>
+  e_tooltip(trigger = "item")
+
+echart4 <- iris |>
+  e_charts() |>
+  e_boxplot(Sepal.Length) |>
+  e_tooltip()
 
 
+df |> 
+  e_charts() |> 
+  e_matrix(xAxis = "Class", yAxis = "Grade") |> 
+  e_matrix_corner(value = "Schools") |>
+  e_matrix_addChart(chart = echart1, id = "Chart1", coord = c(0,0)) |>
+  e_matrix_addChart(chart = echart2, id = "Chart2", coord = c(1,1), legend = FALSE) |>
+  e_matrix_addChart(chart = echart3, id = "Chart3", coord = c(2,1))
+
+```
+
+### Dashboard style
+
+In addition to filling single cells of the matrix, we can also fill multiple / merge multiple cells. To do this we use the format [(col_start, col_end), (row_start, row_end)]. This functionality can be used to create dashboard style presentations of multiple charts. 
+
+```{r}
+e_matrix_raw(3,3, body = list(itemStyle = list(borderWidth = 0))) |>
+  e_matrix_addChart(echart1, id = "Chart1", coord = list(c(0,2),0)) |>
+  e_matrix_addChart(echart3, id = "Chart2", coord = list(c(1,2),c(1,2))) |>
+  e_matrix_addChart(echart4, id = "Chart3", coord = list(0,c(1,2)), legend = FALSE) |>
+  e_tooltip()
+```
+
+### geoFacet style
+
+Inspired by the [geofacet package](https://hafen.github.io/geofacet/) for ggplot, you can now use the matrix system to generate tables that are shaped like a specified grid. This functionality supports custom grids or a string containing the name of an existing geofacet grid. You can find the pre-built grids [here](https://hafen.github.io/geofacet/reference/grids.html).
+
+
+```{r}
+df <- data.frame(group = rep(letters[1:6], each = 20),
+  date = seq(from = as.Date("2025-01-01"),
+             to = as.Date("2025-01-20"), by = "day"),
+  temp = sample(c(10:20), size = 60, replace = TRUE))
+
+grid <- data.frame(name = unique(df$group), row = c(1:6), col = c(1:6))
+
+df |>
+  group_by(group) |>
+  e_chart(date) |>
+  e_line(temp, symbol = "none") |>
+  e_x_axis(splitNumber = 2) |>
+  e_y_axis(splitNumber = 2) |>
+  e_geoFacet(legend = FALSE,
+             grid = grid,
+             margin_trbl = c("t"="25%"),
+             left = "5%",
+             width = "90%") |>
+  e_title(text = "Group Temps") |>
+  e_tooltip(trigger = "axis")
+
+```
+
+
+## Supported Series
+
+### Heatmap Chart
+```{r}
+df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
+                   "Grade" = c("Grade1","Grade2", "Grade3"),
+                  "A" = sample(1:10, 9),
+                  "B" = sample(1:10,9),
+                  "C" = sample(1:10,9))
+
+df |> e_chart() |>
+ e_matrix(xAxis = "Class", yAxis = "Grade") |>
+ e_heatmap(A, coord_system = "matrix") |>
+ e_labels(position = "inside",
+          formatter = htmlwidgets::JS(
+            'function(params){return(params.value[2]);}'),
+          fontWeight = "bold") |>
+ e_visual_map(A, inRange = list(color = c("#bf444c", "#d88273", "#f6efa6")))
+
+```
+
+### Pie Chart
+
+```{r}
+df |> e_chart() |>
+ e_matrix(xAxis = "Class", yAxis = "Grade") |>
+ e_pie_(serie = c("A","B","C"), coord_system = "matrix", label = list(show = FALSE))
+```
+
+### Scatter Chart
+
+```{r}
+df |> e_chart() |>
+ e_matrix(xAxis = "Class", yAxis = "Grade") |>
+ e_scatter(A, coord_system = "matrix", symbolSize = 20) |>
+ e_labels(position = "inside",
+          formatter = htmlwidgets::JS(
+           'function(params){return(params.value[2]);}'),
+          color = "black",
+          fontWeight = "bold") |>
+  e_visual_map(A, inRange = list(symbolSize = c(20,50)))
+
+```
+
+
+## [Matrix Support](https://echarts.apache.org/en/option.html#series-line.coordinateSystem)
+<table>
+<thead>
+<tr>
+<th></th>
+<th>no coord sys</th>
+<th><a href="#grid">grid</a> (cartesian2d)</th>
+<th><a href="#polar">polar</a></th>
+<th><a href="#geo">geo</a></th>
+<th><a href="#singleAxis">singleAxis</a></th>
+<th><a href="#radar">radar</a></th>
+<th><a href="#parallel">parallel</a></th>
+<th><a href="#calendar">calendar</a></th>
+<th><a href="#matrix">matrix</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#grid">grid</a> (cartesian2d)</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#polar">polar</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#geo">geo</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#singleAxis">singleAxis</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#calendar">calendar</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><a href="#matrix">matrix</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><a href="#series-line">series-line</a></td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌ (✅ if via another coord sys like <a href="#grid">grid</a>)</td>
+<td>❌ (✅ if via another coord sys like <a href="#grid">grid</a>)</td>
+</tr>
+<tr>
+<td><a href="#series-bar">series-bar</a></td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌ (✅ if via another coord sys like <a href="#grid">grid</a>)</td>
+<td>❌ (✅ if via another coord sys like <a href="#grid">grid</a>)</td>
+</tr>
+<tr>
+<td><a href="#series-pie">series-pie</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#series-scatter">series-scatter</a></td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#series-effectScatter">series-effectScatter</a></td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#series-radar">series-radar</a></td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌ (✅ if via <a href="#radar">radar</a> coord sys)</td>
+<td>❌ (✅ if via <a href="#radar">radar</a> coord sys)</td>
+</tr>
+<tr>
+<td><a href="#series-tree">series-tree</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#series-treemap">series-treemap</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#series-sunburst">series-sunburst</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#series-boxplot">series-boxplot</a></td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌ (✅ if via another coord sys like <a href="#grid">grid</a>)</td>
+<td>❌ (✅ if via another coord sys like <a href="#grid">grid</a>)</td>
+</tr>
+<tr>
+<td><a href="#series-candlestick">series-candlestick</a></td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌ (✅ if via another coord sys like <a href="#grid">grid</a>)</td>
+<td>❌ (✅ if via another coord sys like <a href="#grid">grid</a>)</td>
+</tr>
+<tr>
+<td><a href="#series-heatmap">series-heatmap</a></td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#series-map">series-map</a></td>
+<td>✅ (create a geo coord sys exclusively)</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#series-parallel">series-parallel</a></td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌ (✅ if via <a href="#parallel">parallel</a> coord sys)</td>
+<td>❌ (✅ if via <a href="#parallel">parallel</a> coord sys)</td>
+</tr>
+<tr>
+<td><a href="#series-lines">series-lines</a></td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌ (✅ if via another coord sys like <a href="#geo">geo</a>)</td>
+<td>❌ (✅ if via another coord sys like <a href="#geo">geo</a>)</td>
+</tr>
+<tr>
+<td><a href="#series-graph">series-graph</a></td>
+<td>✅ (create a "view" coord sys exclusively)</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#series-sankey">series-sankey</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#series-funnel">series-funnel</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#series-gauge">series-gauge</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#series-pictorialBar">series-pictorialBar</a></td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌ (✅ if via another coord sys like <a href="#grid">grid</a>)</td>
+<td>❌ (✅ if via another coord sys like <a href="#grid">grid</a>)</td>
+</tr>
+<tr>
+<td><a href="#series-themeRiver">series-themeRiver</a></td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌ (✅ if via another coord sys like <a href="#singleAxis">singleAxis</a>)</td>
+<td>❌ (✅ if via another coord sys like <a href="#singleAxis">singleAxis</a>)</td>
+</tr>
+<tr>
+<td><a href="#series-chord">series-chord</a></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#title">title</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#legend">legend</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#dataZoom">dataZoom</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#visualMap">visualMap</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#toolbox">toolbox</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#timeline">timeline</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="#thumbnail">thumbnail</a></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>

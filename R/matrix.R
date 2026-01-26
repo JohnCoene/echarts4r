@@ -315,6 +315,12 @@ e_matrix_addChart <- function(e,
   if (chart$x$tl) {
     stop("e_matrix_addChart does not currently support timeline charts", call. = FALSE)
   }
+  
+  # Remove existing yAxis if using e_matrix instead of e_matrix_raw
+  if(is.null(e$x$opts$yAxis[[1]]$id)){
+    e$x$opts$yAxis <- NULL
+  }
+  
   # ID Check
   if(!is.null(e$x$opts$yAxis)){
     for(i in seq_along(e$x$opts$yAxis)){
@@ -334,6 +340,16 @@ e_matrix_addChart <- function(e,
   # add new data into matrix chart
   e$x$data <- append(e$x$data, chart$x$data)
 
+  #Build x and y axes if they are missing
+  if(is.null(chart$x$opts$yAxis)){
+    chart$x$opts$yAxis[[1]] <- list(show = FALSE)
+  }
+  if(is.null(chart$x$opts$xAxis)){
+    chart$x$opts$xAxis[[1]] <- list(show = FALSE)
+  }
+  
+  
+  
   # add IDs for grid and matrix based on supplied id
   chart <- chart |> e_axis(axis = "x", id = id, gridId = id) |> e_axis(axis = "y", id = id, gridId = id)
 
@@ -342,6 +358,11 @@ e_matrix_addChart <- function(e,
     chart$x$opts$series[[i]]$yAxisId <- id
     chart$x$opts$series[[i]]$xAxisIndex <- chart_count
     chart$x$opts$series[[i]]$yAxisIndex <- chart_count
+    
+    if(chart$x$opts$series[[i]]$type == "pie"){
+      chart$x$opts$series[[i]]$coordinateSystem <- "matrix"
+      chart$x$opts$series[[i]]$coord <- coord
+    }
   }
 
   # Attach series and axis information to the matrix chart
