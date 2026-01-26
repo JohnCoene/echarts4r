@@ -57,6 +57,8 @@ e_matrix <- function(e, xAxis, yAxis, ...){
   if (missing(xAxis) | missing(yAxis)) {
     stop("must provide both x and y values", call. = FALSE)
   }
+  
+  e$x$opts$yAxis <- NULL
 
   e$x$opts$matrix <- append(e$x$opts$matrix, list(x = list(data = as.list(unique(e$x$data[[1]][[xAxis]])), name = xAxis)))
 

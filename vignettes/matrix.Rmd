@@ -1,6 +1,6 @@
 ---
 title: "Matrix"
-author: "John Coene"
+author: "Patrick Rekieta"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -22,7 +22,7 @@ e_common(
 )
 ```
 
-Build charts using the new matrix system added in [Echarts v6.](https://echarts.apache.org/handbook/en/basics/release-note/v6-feature/#) `echarts4r` now comes with a highly customisable matrix coordinate system, which in some methods is easier to use than the previous grid functionality. Build custom tables using the new matrix functions. Note that as of Echarts4r v0.5.0, timelines are not currently supported with matrix functions.
+Build charts using the new matrix system added in [Echarts v6](https://echarts.apache.org/handbook/en/basics/release-note/v6-feature/#). `echarts4r` now comes with a highly customisable matrix coordinate system, which in some methods is easier to use than the previous grid functionality. Build custom tables using the new matrix functions. Note that as of Echarts4r v0.5.0, timelines are not currently supported with matrix functions.
 
 ## Matrix
 
@@ -37,19 +37,16 @@ df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
 df |> 
   e_charts() |> 
   e_matrix(xAxis = "Class", yAxis = "Grade")
+
 ```
 
 If we only want to create the table with no additional headers or column names, we can instead use the `e_matrix_raw` to generate the matrix. This will be especially useful when adding new charts directly to the matrix later on. When using `e_matrix_raw` you will need to specify how many columns and rows you want in your table. 
 
 ```{r}
-e_matrix_raw(rows = 3, cols = 3)
+e_matrix_raw(rows = 3, cols = 3, backgroundStyle=list(borderWidth=0))
 ```
 
-All tables are fully customizable through the supported css options found [here](https://echarts.apache.org/en/option.html#matrix.body). We can use these options to fully remove the lines of the table leaving an blank matrix.
-
-```{r}
-e_matrix_raw(rows = 3, cols = 3, backgroundStyle=list(borderWidth=0), body = list(itemStyle = list(borderWidth = 0)))
-```
+All tables are fully customizable through the supported css options found [here](https://echarts.apache.org/en/option.html#matrix.body). We can use these options to fully remove the lines of the table leaving an blank matrix if desired.
 
 ## Format matrix
 
@@ -60,6 +57,7 @@ df |>
   e_charts() |> 
   e_matrix(xAxis = "Class", yAxis = "Grade") |> 
   e_matrix_corner(value = "Schools")
+
 ```
 
 Now we can add additional levels to our headers. This is done using `e_matrix_parent` to add new levels. To use this function, we will give it our new text value. We also need to specify which existing headers will be children of this new header parent. As you mess around with `e_matrix_parent` you may notice that additional cells are being generated for the corner of the table. In `e_matrix_corner` we can specify where we want that corner value to go using the coord attribute. As of Echarts4r v0.5.0, there is no way to add new children to the headers. 
@@ -76,7 +74,7 @@ df |> e_charts() |>
 When working with the matrix functions, it is important to remember that the coordinate system is formatted as [col_number, row_number]. Additionally, row and column counting starts at 0. If we need to make additional changes to how our headers look, we can easily access the formatting options using `e_format_matrix_axis`. Documentation for the axis options can be found [here](https://echarts.apache.org/en/option.html#matrix.x).
 
 ```{r}
-e <- df |> 
+df |> 
   e_charts() |> 
   e_matrix(xAxis = "Class", yAxis = "Grade") |> 
   e_matrix_corner(value = "Schools") |>
@@ -169,6 +167,25 @@ df |>
   e_title(text = "Group Temps") |>
   e_tooltip(trigger = "axis")
 
+```
+
+We can also add titles to each graph using `e_title_matrix`.
+
+```{r}
+df |>
+  group_by(group) |>
+  e_chart(date) |>
+  e_line(temp, symbol = "none") |>
+  e_x_axis(splitNumber = 2) |>
+  e_y_axis(splitNumber = 2) |>
+  e_geoFacet(legend = FALSE,
+             grid = grid,
+             margin_trbl = c("t"="25%"),
+             left = "5%",
+             width = "90%") |>
+  e_title(text = "Group Temps") |>
+  e_tooltip(trigger = "axis") |>
+  e_title_matrix()
 ```
 
 

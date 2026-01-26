@@ -60,7 +60,7 @@ annotations can take the following styles to change the defaults. To
 - \strong{arrowStyle}: Styles the arrow. size was added that automatically adjusts the vertices of the triangle.
 }
 \note{
-HTML tags may not work in RStudio viewer, open in browser.
+HTML tags may not apply in RStudio viewer, open in browser.
 }
 \examples{
 mtcars |>
