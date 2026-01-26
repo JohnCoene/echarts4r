@@ -10,14 +10,123 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  warning = FALSE, 
+  message = FALSE
 )
+
+library(echarts4r)
+library(dplyr)
+
 ```
 
 There are a number of new features brought by version 6 of echarts.js, not all are showcased here, see the [official changelog](https://github.com/apache/echarts/releases/tag/6.0.0) for more information.
 
+## New default theme
+
+The default theme has been updated with a new color palette that is more consistent between chart types and components. The old theme can still be used by referring to "v5". 
+
+## New chart features
+
+Scatter charts now support support an attribute called jitter. Jitter helps prevent overlap of data points to make the distribution of points easier to see. You can access this feature with `e_jitter`
+
+```{r}
+df <- data.frame(
+  value = c(rnorm(50, mean = 5, sd = 1),
+            rnorm(50, mean = 10, sd = 1)),
+  group = rep(c("Group A", "Group B"), each = 50)
+  )
+
+df |> 
+  e_charts(group) |> 
+  e_scatter(value, legend = FALSE) |> 
+  e_jitter(jitter = 30, jitterOverlap = FALSE)
+```
+
+Bar charts now support a new axis break effect referred to as zigzags. This helps to show data where there are large differences in elements. You can click the break to expand to the original data ratio. This can be accessed with `e_zigzag`
+
+```{r}
+df <- data.frame(
+              x = c("a", "b", "c", "d", "c"),
+              y = c(100, 200, 200, 700, 250)
+             )
+
+df |>
+  e_charts(x) |>
+  e_bar(y, legend = FALSE) |>
+  e_zigzag(axis = 'y', start = 300, end = 600)
+```
+
+
+
 ## Matrix coordinate system
 
-## New Chart types
-There are 6 new chart types: e_doughnut, e_violin(), e_barRange, e_contour, e_lineRange, e_stage.
-See [Chart Types](vignette("chart_types")).
+One of the largest updates for Echarts v6 is the development of the new matrix coordinate system. This function in a similar method as the previous grid system. The matrix system allows you to build out charts using a table style layout in which you can combine various charts into one final product. 
+
+Using this new layout system, users can combine various chart types and components to create even more complex visuals. See [Matrix](vignette("matrix")) for additional details. 
+
+```{r, echo = FALSE}
+echart1 <- iris |>
+  group_by(Species) |>
+  e_charts(Sepal.Length) |>
+  e_line(Sepal.Width) |>
+  e_tooltip(trigger = "axis") |>
+  e_legend(textStyle = list(fontSize = 10), itemWidth = 18, itemHeight = 10)
+
+
+echart2 <- mtcars |>
+  head() |>
+  tibble::rownames_to_column("model") |>
+  e_charts(model) |>
+  e_pie(carb)
+
+echart3 <- mtcars |>
+  tibble::rownames_to_column("model") |>
+  mutate(total = mpg + qsec) |>
+  arrange(desc(total)) |>
+  e_charts(model) |>
+  e_bar(mpg, stack = "grp") |>
+  e_bar(qsec, stack = "grp") |>
+  e_tooltip(trigger = "item") |>
+  e_legend(textStyle = list(fontSize = 10), itemWidth = 18, itemHeight = 10) |>
+  e_x_axis(show = FALSE)
+
+echart4 <- iris |>
+  e_charts() |>
+  e_boxplot(Sepal.Length) |>
+  e_tooltip()
+
+v <- LETTERS[1:10]
+matrix <- data.frame(
+  x = sample(v, 300, replace = TRUE),
+  y = sample(v, 300, replace = TRUE),
+  z = rnorm(300, 10, 1),
+  stringsAsFactors = FALSE
+) |>
+  dplyr::group_by(x, y) |>
+  dplyr::summarise(z = sum(z)) |>
+  dplyr::ungroup()
+
+echart5 <- matrix |>
+  e_charts(x) |>
+  e_heatmap(y, z, itemStyle = list(emphasis = list(shadowBlur = 10))) |>
+  e_visual_map(z, itemWidth = 10, itemHeight = 80)
+
+
+
+
+e <- e_matrix_raw(4,3, body = list(itemStyle = list(borderWidth = 0)), left = "1%", right = "1%", top = "1%", bottom = "1%") |>
+  e_matrix_addChart(echart1, id = "Chart1", coord = list(c(0,2),0), margin_trbl = c(b = "32%")) |>
+  e_matrix_addChart(echart2, id = "Chart2", coord = c(2,3), legend = FALSE) |>
+  e_matrix_addChart(echart3, id = "Chart3", coord = list(c(1,2),c(1,2)), margin_trbl = c(b = "15%", top = "15%"), legend_space = "5%") |>
+  e_matrix_addChart(echart4, id = "Chart4", coord = list(0,c(1,2)), legend = FALSE, margin_trbl = c(b="15%", top = "15%")) |>
+  e_matrix_addChart(echart5, id = "Chart5", coord = list(c(0,1),3), legend = FALSE, margin_trbl = c(l = "15%")) |>
+  e_tooltip()
+
+e
+```
+
+
+## New chart types
+There are 7 new chart types: `e_doughnut`, `e_violin`, `e_barRange`, `e_contour`, `e_lineRange`, `e_stage`, and `e_chord`.
+See [Chart Types](vignette("chart_types")) for more information on usage.

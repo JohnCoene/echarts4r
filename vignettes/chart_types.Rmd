@@ -376,6 +376,21 @@ liquid |>
   e_liquid(val) 
 ```
 
+## Chord
+
+```{r}
+chord_data <- data.frame(
+  source = c("a", "b", "c", "d", "c"),
+  target = c("b", "c", "d", "e", "e"),
+  value = ceiling(rnorm(5, 10, 1)),
+  stringsAsFactors = FALSE
+)
+
+chord_data |>
+  e_charts() |>
+  e_chord(source, target, value)
+```
+
 ## Doughnut
 
 ```{r}

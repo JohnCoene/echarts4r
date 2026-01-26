@@ -318,10 +318,23 @@ e_matrix_addChart <- function(e,
     stop("e_matrix_addChart does not currently support timeline charts", call. = FALSE)
   }
   
+  if(!is.null(chart$x$opts$parallelAxis)){
+    stop("e_matrix_addChart does not support parallel charts")
+  }
+  
+  if(!is.null(chart$x$opts$calendar)){
+    stop("e_matrix_addChart does not support calendar charts")
+  }
+  
+  if(!is.null(chart$x$opts$radar)){
+    stop("e_matrix_addChart does not support radar charts")
+  }
+  
   # Remove existing yAxis if using e_matrix instead of e_matrix_raw
   if(is.null(e$x$opts$yAxis[[1]]$id)){
     e$x$opts$yAxis <- NULL
   }
+  
   
   # ID Check
   if(!is.null(e$x$opts$yAxis)){
@@ -361,10 +374,23 @@ e_matrix_addChart <- function(e,
     chart$x$opts$series[[i]]$xAxisIndex <- chart_count
     chart$x$opts$series[[i]]$yAxisIndex <- chart_count
     
+    if(chart$x$opts$series[[i]]$type == "themeRiver"){
+      stop("e_matrix_addChart does not support themeRiver charts")
+    }
+    
     if(chart$x$opts$series[[i]]$type == "pie"){
       chart$x$opts$series[[i]]$coordinateSystem <- "matrix"
       chart$x$opts$series[[i]]$coord <- coord
     }
+  }
+  
+  ## Add visualMap
+  if(!is.null(chart$x$opts$visualMap)){
+    chart$x$opts$series[[1]]$id <- id
+    chart$x$opts$visualMap[[1]]$coordinateSystem <- "matrix"
+    chart$x$opts$visualMap[[1]]$seriesId <- id
+    chart$x$opts$visualMap[[1]]$coord <- coord
+    e$x$opts$visualMap <- append(e$x$opts$visualMap, chart$x$opts$visualMap)
   }
 
   # Attach series and axis information to the matrix chart
@@ -381,6 +407,8 @@ e_matrix_addChart <- function(e,
   )
   )
   )
+  
+  
 
   # Update and add legend
   if(legend){
