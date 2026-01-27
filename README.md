@@ -8,7 +8,7 @@
 
 [![R-CMD-check](https://github.com/JohnCoene/echarts4r/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JohnCoene/echarts4r/actions/workflows/R-CMD-check.yaml) [![version](https://img.shields.io/github/tag/JohnCoene/echarts4r.svg)](https://github.com/JohnCoene/echarts4r/releases) [![GitHub closed issues](https://img.shields.io/github/issues-closed/JohnCoene/echarts4r.svg)](https://github.com/JohnCoene/echarts4r/issues) [![echarts4r](https://cranlogs.r-pkg.org/badges/echarts4r)](https://cranlogs.r-pkg.org/badges/echarts4r) [![code-size](https://img.shields.io/github/languages/code-size/JohnCoene/echarts4r.svg)](https://github.com/JohnCoene/echarts4r) [![Coveralls test coverage](https://coveralls.io/repos/github/JohnCoene/echarts4r/badge.svg)](https://coveralls.io/github/JohnCoene/echarts4r)
 
-[Apache ECharts](https://echarts.apache.org/en/) version __5__ for R.
+[Apache ECharts](https://echarts.apache.org/en/) version __6__ for R.
 
 [Website](https://echarts4r.john-coene.com) |
 <!--[Shiny Demo](https://shiny.john-coene.com/echarts4rShiny/) -->
@@ -18,7 +18,7 @@
 
 ## Note
 
-The Github version is currently going through the update from ECharts.js version 4 to version 5: feel free to test it but there are some issues. Please use the stable CRAN version otherwise.
+The Github version just underwent a change from ECharts.js version 4 to version 6. Please use the stable CRAN version.
 
 ## Example
 

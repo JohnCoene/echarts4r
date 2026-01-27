@@ -18,7 +18,7 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Utility function to attach an existing column(s) from your data to an existing series
 }
 \details{
-This inserts new data into a series's values which allows for use in mapping things like e_visual_map 
+This inserts new data into a series's values which allows for use in mapping things like e_visual_map
 or tooltip parameters. This function also works when using timelines.
 }
 \examples{
@@ -26,13 +26,13 @@ mtcars |>
  e_charts(mpg) |>
  e_scatter(wt, scale = e_scale) |>
  e_insert_data(.serie = 1, .data = "qsec") |>
- e_visual_map(qsec, scale = e_scale, dimension = 2) |> 
- e_tooltip(trigger = "item", 
+ e_visual_map(qsec, scale = e_scale, dimension = 2) |>
+ e_tooltip(trigger = "item",
            formatter = htmlwidgets::JS("function(params) {
-                                       return 'mpg: ' + params.value[0] + 
+                                       return 'mpg: ' + params.value[0] +
                                        '<br />wt: ' + params.value[1] +
                                        '<br />qsec: ' + params.value[2];
                                        }")
- ) 
+ )
 
 }

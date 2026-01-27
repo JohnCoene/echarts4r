@@ -21,7 +21,9 @@
 #'   \item{\code{e_bezier_curve_g} to draw a quadratic bezier curve or cubic bezier curve.}
 #' }
 #'
-#' @note Some elements, i.e.: \code{e_image_g} may not display in the RStudio browwser but will work fine in your browser, R markdown documents and Shiny applications.
+#' @note Some elements, i.e.: \code{e_image_g} may not display in the RStudio
+#'   browwser but will work fine in your browser, R markdown documents and Shiny
+#'   applications.
 #'
 #' @examples
 #' # may not work in RStudio viewer
@@ -41,6 +43,8 @@
 #'     )
 #'   )
 #'
+#' anno_text <-
+#' 'xAxis represents miles per gallon, yAxis represents weight in tonnes.'
 #' # Position does change depending on window size.
 #' mtcars |>
 #'   e_charts(mpg) |>
@@ -57,7 +61,7 @@
 #'         top = 'middle',
 #'         shape = list(
 #'           width = 240,
-#'           height = 90
+#'           height = 70
 #'         ),
 #'         style = list(
 #'           fill = '#fff',
@@ -79,7 +83,7 @@
 #'           fill = '#333',
 #'           width = 220,
 #'           overflow = 'break',
-#'           text = 'xAxis represents miles per gallon, yAxis represents weight in tonnes This text block can be placed in any place',
+#'           text = anno_text,
 #'           font = '14px Microsoft YaHei'
 #'         )
 #'       )
