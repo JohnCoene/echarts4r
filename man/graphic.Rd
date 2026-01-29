@@ -52,7 +52,9 @@ a proxy as returned by \code{\link{echarts4rProxy}}.}
 Low level API to define graphic elements.
 }
 \note{
-Some elements, i.e.: \code{e_image_g} may not display in the RStudio browwser but will work fine in your browser, R markdown documents and Shiny applications.
+Some elements, i.e.: \code{e_image_g} may not display in the RStudio
+  browwser but will work fine in your browser, R markdown documents and Shiny
+  applications.
 }
 \section{Functions}{
 
@@ -91,6 +93,8 @@ cars |>
     )
   )
 
+anno_text <-
+'xAxis represents miles per gallon, yAxis represents weight in tonnes.'
 # Position does change depending on window size.
 mtcars |>
   e_charts(mpg) |>
@@ -107,7 +111,7 @@ mtcars |>
         top = 'middle',
         shape = list(
           width = 240,
-          height = 90
+          height = 70
         ),
         style = list(
           fill = '#fff',
@@ -129,7 +133,7 @@ mtcars |>
           fill = '#333',
           width = 220,
           overflow = 'break',
-          text = 'xAxis represents miles per gallon, yAxis represents weight in tonnes This text block can be placed in any place',
+          text = anno_text,
           font = '14px Microsoft YaHei'
         )
       )

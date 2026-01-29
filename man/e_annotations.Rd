@@ -63,6 +63,8 @@ annotations can take the following styles to change the defaults. To
 HTML tags may not apply in RStudio viewer, open in browser.
 }
 \examples{
+# May not work render HTML correctly in RStudio viewer
+# Open in browser
 mtcars |>
   e_charts(mpg) |>
   e_scatter(wt) |>

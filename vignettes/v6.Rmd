@@ -57,8 +57,6 @@ df |>
   e_zigzag(axis = 'y', start = 300, end = 600)
 ```
 
-
-
 ## Matrix coordinate system
 
 One of the largest updates for Echarts v6 is the development of the new matrix coordinate system. This function in a similar method as the previous grid system. The matrix system allows you to build out charts using a table style layout in which you can combine various charts into one final product. 
@@ -66,6 +64,10 @@ One of the largest updates for Echarts v6 is the development of the new matrix c
 Using this new layout system, users can combine various chart types and components to create even more complex visuals. See [Matrix](vignette("matrix")) for additional details. 
 
 ```{r, echo = FALSE}
+library(dplyr)
+library(tibble)
+library(echarts4r)
+
 echart1 <- iris |>
   group_by(Species) |>
   e_charts(Sepal.Length) |>
@@ -76,12 +78,12 @@ echart1 <- iris |>
 
 echart2 <- mtcars |>
   head() |>
-  tibble::rownames_to_column("model") |>
+  rownames_to_column("model") |>
   e_charts(model) |>
   e_pie(carb)
 
 echart3 <- mtcars |>
-  tibble::rownames_to_column("model") |>
+  rownames_to_column("model") |>
   mutate(total = mpg + qsec) |>
   arrange(desc(total)) |>
   e_charts(model) |>
@@ -103,17 +105,14 @@ matrix <- data.frame(
   z = rnorm(300, 10, 1),
   stringsAsFactors = FALSE
 ) |>
-  dplyr::group_by(x, y) |>
-  dplyr::summarise(z = sum(z)) |>
-  dplyr::ungroup()
+  group_by(x, y) |>
+  summarise(z = sum(z)) |>
+  ungroup()
 
 echart5 <- matrix |>
   e_charts(x) |>
   e_heatmap(y, z, itemStyle = list(emphasis = list(shadowBlur = 10))) |>
   e_visual_map(z, itemWidth = 10, itemHeight = 80)
-
-
-
 
 e <- e_matrix_raw(4,3, body = list(itemStyle = list(borderWidth = 0)), left = "1%", right = "1%", top = "1%", bottom = "1%") |>
   e_matrix_addChart(echart1, id = "Chart1", coord = list(c(0,2),0), margin_trbl = c(b = "32%")) |>
@@ -130,3 +129,24 @@ e
 ## New chart types
 There are 7 new chart types: `e_doughnut`, `e_violin`, `e_barRange`, `e_contour`, `e_lineRange`, `e_stage`, and `e_chord`.
 See [Chart Types](vignette("chart_types")) for more information on usage.
+
+## Annotations
+Annotations can also be added to a chart. See [Annotations](vignette("annotations")) for more information on usage.
+```{r}
+mtcars |>
+  e_charts(mpg) |>
+  e_scatter(wt) |>
+  e_annotations(
+    annotations = list(
+      list(
+        id = 0,
+        x = 16,
+        y = 3.1,
+        offsetY = 40,
+        offsetX = -40,
+        text = 'An annotation!'
+        )
+    )
+  )
+```
+

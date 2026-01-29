@@ -53,8 +53,6 @@ df$Date <- paste("1973", df$Month, df$Day, sep = "-") |>
 ```
 
 ```{r}
-library(echarts4r) # load echarts4r
-
 df |> 
   e_charts(x = Date) |> # initialise and set x
   e_line(serie = Temp) # add a line
