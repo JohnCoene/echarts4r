@@ -4,13 +4,13 @@
 \alias{e_heatmap_matrix}
 \title{Generate heatmap for matrix}
 \usage{
-e_heatmap_matrix(e, z, ...)
+e_heatmap_matrix(e, z_val, ...)
 }
 \arguments{
 \item{e}{An \code{echarts4r} object as returned by \code{\link{e_charts}} or
 a proxy as returned by \code{\link{echarts4rProxy}}.}
 
-\item{z}{Column name for data to be used for heatmap}
+\item{z_val}{Column name for data to be used for heatmap}
 
 \item{...}{Any other option to pass, check See Also section.}
 }

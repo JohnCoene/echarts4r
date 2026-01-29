@@ -748,7 +748,7 @@ e_scatter_matrix <- function(e, z, ...){
 #' Draw heatmap chart in matrix coordinate system
 #'
 #' @inheritParams e_bar
-#' @param z Column name for data to be used for heatmap
+#' @param z_val Column name for data to be used for heatmap
 #' @examples
 #'
 #' df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
@@ -781,7 +781,7 @@ e_scatter_matrix <- function(e, z, ...){
 #'
 #' @rdname e_heatmap_matrix
 #' @export
-e_heatmap_matrix <- function(e, z, ...){
+e_heatmap_matrix <- function(e, z_val, ...){
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
@@ -799,7 +799,7 @@ e_heatmap_matrix <- function(e, z, ...){
   for(i in seq_along(base_nodes_x)){
     for(j in seq_along(base_nodes_y)){
       center <- c(base_nodes_x[[i]], base_nodes_y[[j]])
-      data <- e$x$data[[1]] |> dplyr::filter(.data[[e$x$opts$matrix$x$name]] == center[[1]] & .data[[e$x$opts$matrix$y$name]] == center[[2]]) |> dplyr::select(dplyr::all_of(c(z)))
+      data <- e$x$data[[1]] |> dplyr::filter(.data[[e$x$opts$matrix$x$name]] == center[[1]] & .data[[e$x$opts$matrix$y$name]] == center[[2]]) |> dplyr::select(dplyr::all_of(c(z_val)))
       serie <- list(center[[1]], center[[2]], data[[1]])
       all_data <- append(all_data, list(serie))
     }

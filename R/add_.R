@@ -947,7 +947,7 @@ e_heatmap_ <- function(
   }
 
   if(coord_system == "matrix"){
-    e <- e |> e_heatmap_matrix(y)
+    e <- e |> e_heatmap_matrix(y, ...)
     return(e)
   }
 
