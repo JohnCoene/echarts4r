@@ -41,51 +41,6 @@ e_cloud <- function(e, word, freq, color, rm_x = TRUE, rm_y = TRUE, ...) {
   e_cloud_(e, deparse(substitute(word)), deparse(substitute(freq)), cl, rm_x, rm_y, ...)
 }
 
-#' @rdname e_cloud
-#' @export
-e_cloud_ <- function(e, word, freq, color = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
-
-  e <- .rm_axis(e, rm_x, "x")
-  e <- .rm_axis(e, rm_y, "y")
-
-  data <- .build_data(e, freq)
-  data <- .add_bind(e, data, word)
-
-  if (!is.null(color)) {
-    color <- .get_data(e, color)
-    for (i in seq_along(data)) {
-      col <- list(
-        color = color[i]
-      )
-      data[[i]]$textStyle <- col
-    }
-  }
-
-  serie <- list(
-    type = "wordCloud",
-    data = data,
-    ...
-  )
-
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-
-  # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
-  dep <- htmltools::htmlDependency(
-    name = "echarts-wordcloud",
-    version = "1.0.0",
-    src = c(file = path),
-    script = "echarts-wordcloud.min.js"
-  )
-
-  e$dependencies <- append(e$dependencies, list(dep))
-
-  e
-}
-
 #' Liquid fill
 #'
 #' Draw liquid fill.
@@ -120,48 +75,6 @@ e_liquid <- function(e, serie, color, rm_x = TRUE, rm_y = TRUE, ...) {
   }
 
   e_liquid_(e, deparse(substitute(serie)), cl, rm_x, rm_y, ...)
-}
-
-#' @rdname e_liquid
-#' @export
-e_liquid_ <- function(e, serie, color = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
-  if (missing(e)) {
-    stop("must pass e", call. = FALSE)
-  }
-
-  e <- .rm_axis(e, rm_x, "x")
-  e <- .rm_axis(e, rm_y, "y")
-
-  data <- .get_data(e, serie) |>
-    unlist() |>
-    unname()
-
-  serie <- list(
-    type = "liquidFill",
-    data = data,
-    ...
-  )
-
-  if (!is.null(color)) {
-    serie$color <- .get_data(e, color) |>
-      unlist() |>
-      unname()
-  }
-
-  e$x$opts$series <- append(e$x$opts$series, list(serie))
-
-  # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
-  dep <- htmltools::htmlDependency(
-    name = "echarts-liquidfill",
-    version = "1.0.0",
-    src = c(file = path),
-    script = "echarts-liquidfill.min.js"
-  )
-
-  e$dependencies <- append(e$dependencies, list(dep))
-
-  e
 }
 
 #' Modularity
@@ -445,104 +358,20 @@ e_barRange <- function(e,
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-
-  for (i in seq_along(e$x$data)) {
-
-    vector <- .build_data2(
-      e$x$data[[i]],
-      e$x$mapping$x,
+  
+  e_barRange_(e,
       deparse(substitute(lower)),
-      deparse(substitute(upper))
-    )
-    e_serie <- list(data = vector)
+      deparse(substitute(upper)),
+      name, 
+      legend, 
+      y_index,
+      x_index,
+      barWidth,
+      borderRadius,
+      margin,
+      textSymbol,
+        ...)
 
-    if (y_index != 0) {
-      e <- .set_y_axis(e, deparse(substitute(upper)), y_index, i)
-    }
-    if (x_index != 0) {
-      e <- .set_x_axis(e, x_index, i)
-    }
-
-    if (!e$x$tl) {
-      # generate series list
-      serie <- list(
-        type = "custom",
-        renderItem = 'barRange',
-        name = name,
-        encode = list(x= 0,
-                      y = c(1,2),
-                      tooltip = c(1,2)),
-        data = vector,
-        itemPayload = list(
-          textSymbol = textSymbol,
-          barWidth = barWidth,
-          borderRadius = borderRadius,
-          margin = margin
-        ),
-        ...
-      )
-      e$x$opts$series <- append(e$x$opts$series, list(serie))
-
-      if (isTRUE(legend)) {
-        current_trace <- length(e$x$opts$series)
-        e$x$opts$series[[current_trace]]$name <- name
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-      }
-      e$x$opts$series <- append(e$x$opts$series, list(e_serie))
-    }
-    else {
-      if (isTRUE(legend)) {
-        e$x$opts$legend$data <- append(
-          e$x$opts$legend$data,
-          list(name)
-        )
-      }
-
-      e$x$opts$options[[i]]$series <- append(
-        e$x$opts$options[[i]]$series,
-        list(e_serie)
-      )
-    }
-  }
-  if (isTRUE(e$x$tl)) {
-    series_opts <- list(
-      type = "custom",
-      renderItem = 'barRange',
-      name = name,
-      encode = list(x= 0,
-                    y = c(1,2),
-                    tooltip = c(1,2)),
-      data = vector,
-      itemPayload = list(
-        textSymbol = textSymbol,
-        barWidth = barWidth,
-        borderRadius = borderRadius,
-        margin = margin
-      ),
-      ...
-    )
-
-    if (isTRUE(legend)) {
-      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
-    }
-    e$x$opts$baseOption$series <- append(
-      e$x$opts$baseOption$series,
-      list(series_opts)
-    )
-  }
-
-  # In the js I replaced "°C" with 't.itemPayload.textSymbol' since the symbol
-  # was hard-coded
-  path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
-  dep <- htmltools::htmlDependency(
-    name = "echarts-barRange",
-    version = "1.0.0",
-    src = c(file = path),
-    script = "echarts-barRange.js")
-
-  e$dependencies <- append(e$dependencies, list(dep))
-
-  e
 }
 
 #' Contour chart
@@ -580,101 +409,18 @@ e_contour <- function(e,
     stop("must pass e", call. = FALSE)
   }
 
-  for (i in seq_along(e$x$data)) {
-    vector <-   .build_data2(e$x$data[[i]], e$x$mapping$x, deparse(substitute(serie)))
-
-    e_serie <- list(data = vector)
-
-    e <- e |> e_axis(type = 'value')
-
-    if (!e$x$tl) {
-      opts <- list(
-        type = "custom",
-        renderItem = 'contour',
-        encode = list(x= 0,
-                      y = 1,
-                      tooltip = 2),
-        data = vector,
-        name = name,
-        itemPayload = list(
-          thresholds = thresholds,
-          bandwidth = bandwidth,
-          lineStyle = lineStyle,
-          itemStyle = list(opacity = contourOpacity,
-                           color = contourColors)
-        ),
-        ...
-      )
-
-      e_serie <- append(opts, e_serie) # data after renderItem, data used for Y-sizing only
-
-      if (isTRUE(legend)) {
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-      }
-      e$x$opts$series <- append(e$x$opts$series, list(e_serie))
-
-    }
-    else {
-      if (isTRUE(legend)) {
-        e$x$opts$legend$data <- append(
-          e$x$opts$legend$data,
-          list(name)
-        )
-      }
-      e$x$opts$options[[i]]$series <- append(
-        e$x$opts$options[[i]]$series,
-        list(e_serie)
-      )
-    }
-  }
-  if (isTRUE(e$x$tl)) {
-    # generate series list
-    series_opts <- list(
-      type = "custom",
-      renderItem = 'contour',
-      encode = list(x= 0,
-                    y = 1,
-                    tooltip = 2),
-      data = vector,
-      name = name,
-      itemPayload = list(
-        thresholds = thresholds,
-        bandwidth = bandwidth,
-        lineStyle = lineStyle,
-        itemStyle = list(opacity = contourOpacity,
-                         color = contourColors)
-      ),
-      ...
-    )
-
-    if (isTRUE(legend)) {
-      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
-    }
-    e$x$opts$baseOption$series <- append(
-      e$x$opts$baseOption$series,
-      list(series_opts)
-    )
-  }
-
-  path_d3 <- system.file("htmlwidgets/lib/d3", package = "echarts4r")
-  dep_d3 <- htmltools::htmlDependency(
-    name = "d3",
-    version = "7.9.0",
-    src = c(file = path_d3),
-    script = "d3.min.js")
-
-  e$dependencies <- append(e$dependencies, list(dep_d3))
-
-  path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
-  dep <- htmltools::htmlDependency(
-    name = "echarts-contour",
-    version = "1.0.0",
-    src = c(file = path),
-    script = "echarts-contour.js")
-
-  e$dependencies <- append(e$dependencies, list(dep))
-
-  e
+  e_contour_(e,
+           deparse(substitute(serie)),
+           name,
+           legend,
+           thresholds,
+           bandwidth,
+           lineStyle,
+           contourOpacity,
+           contourColors,
+           ...
+  )
+  
 }
 
 #' Line range chart
@@ -693,7 +439,7 @@ e_contour <- function(e,
 #'                    upper = max(Sepal.Length))
 #' df |>
 #'   e_chart(Species) |>
-#'   e_lineRange(lower = lower, upper = upper)
+#'   e_lineRange_(lower = lower, upper = upper)
 #' @seealso \href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/lineRange}{official documentation}
 #'
 #' @rdname e_lineRange
@@ -712,7 +458,7 @@ e_lineRange <- function(e,
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-  if (missing(lower) || missing(upper)) {
+  if (missing("lower") || missing("upper")) {
     stop("must pass lower, or upper", call. = FALSE)
   }
 
@@ -720,63 +466,17 @@ e_lineRange <- function(e,
     stop("timeline not supported", call. = FALSE)
   }
 
-  # Extract the color from areaStyle to use in legend
-  legend_color <- if (!is.null(areaStyle$color)) areaStyle$color else "#032"
-
-  for (i in seq_along(e$x$data)) {
-    vector <- .build_data2(
-      e$x$data[[i]],
-      e$x$mapping$x,
-      deparse(substitute(lower)),
-      deparse(substitute(upper))
+    e_lineRange_(e,
+           deparse(substitute(lower)),
+           deparse(substitute(upper)),
+           name,
+           legend,
+           y_index,
+           x_index,
+           lineStyle,
+           areaStyle,
+           ...
     )
-    e_serie <- list(data = vector)
-
-    if (y_index != 0) {
-      e <- .set_y_axis(e, deparse(substitute(upper)), y_index, i)
-    }
-    if (x_index != 0) {
-      e <- .set_x_axis(e, x_index, i)
-    }
-
-      opts <- list(
-        type = "custom",
-        name = name,
-        renderItem = 'lineRange',
-        encode = list(x= 0,
-                      y = c(1,2),
-                      tooltip = c(1,2)),
-        data = vector,
-        itemPayload = list(
-          areaStyle = areaStyle,
-          lineStyle = lineStyle
-        ),
-         ...
-      )
-
-      e_serie <- append(opts, e_serie) # data after renderItem, data used for Y-sizing only
-
-      if (isTRUE(legend)) {
-        legend_entry <- list(
-          name = name,
-          icon = "rect",  # Use rectangle icon
-          itemStyle = list(color = legend_color)
-        )
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(legend_entry))
-      }
-      e$x$opts$series <- append(e$x$opts$series, list(e_serie))
-
-  }
-  path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
-  dep <- htmltools::htmlDependency(
-    name = "echarts-lineRange",
-    version = "1.0.0",
-    src = c(file = path),
-    script = "echarts-lineRange.js")
-
-  e$dependencies <- append(e$dependencies, list(dep))
-
-  e
 }
 
 #' Stage chart
@@ -818,7 +518,7 @@ e_lineRange <- function(e,
 #'
 #' df |>
 #'   e_charts() |>
-#'   e_stage(start = start,
+#'   e_stage_(start = start,
 #'           end = end,
 #'           stage = stage) |>
 #'           e_x_axis(type = 'time') |>
@@ -832,8 +532,8 @@ e_stage <- function(e,
                       start,
                       end,
                       stage,
-                      legend = TRUE,
                       name = "stage",
+                      legend = TRUE,                      
                       borderRadius = 8,
                       verticalMargin = 10,
                       minHorizontalSize = 3,
@@ -844,105 +544,17 @@ e_stage <- function(e,
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-
-  data <- e$x$data
-
-  for (i in seq_along(data)) {
-
-    df <- data[[i]]
-    start_col <- deparse(substitute(start))
-    end_col <- deparse(substitute(end))
-    stage_col <- deparse(substitute(stage))
-
-    vector <- lapply(seq_len(nrow(df)), function(j) {
-      list(
-        df[[start_col]][[j]],
-        df[[end_col]][[j]],
-        df[[stage_col]][[j]]
-      )
-    })
-
-    e_serie <- list(data = vector)
-
-    if (!e$x$tl) {
-      opts <- list(
-        type = "custom",
-        renderItem = 'stage',
-        colorBy = 'data',
-        encode = list(
-            x = c(0, 1),
-            y = 2,
-            tooltip = c(0, 1)),
-        name = name,
-        itemPayload = list(
-          borderRadius = borderRadius,
-          verticalMargin = verticalMargin,
-          minHorizontalSize = minHorizontalSize,
-          envelope = envelope,
-          axisLabel = axisLabel
-        ),
-         ...
-      )
-      e$x$opts$series <- append(e$x$opts$series, list(opts))
-
-      if (isTRUE(legend)) {
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-      }
-
-      e$x$opts$dataset <- list(source = vector, sourceHeader = FALSE)
-
-    }
-    else {
-      if (isTRUE(legend)) {
-        e$x$opts$legend$data <- append(
-          e$x$opts$legend$data,
-          list(name)
-        )
-      }
-      e$x$opts$options[[i]]$series <- append(
-        e$x$opts$options[[i]]$series,
-        list(e_serie)
-      )
-    }
-  }
-  if (isTRUE(e$x$tl)) {
-
-    series_opts <- list(
-      type = "custom",
-      renderItem = 'stage',
-      colorBy = 'data',
-      encode = list(
-          x = c(0, 1),
-          y = 2,
-          tooltip = c(0, 1)),
-      name = name,
-      itemPayload = list(
-        borderRadius = borderRadius,
-        verticalMargin = verticalMargin,
-        minHorizontalSize = minHorizontalSize,
-        envelope = envelope,
-        axisLabel = axisLabel
-      ),
-      ...
+    e_stage_(e,
+           deparse(substitute(start)),
+           deparse(substitute(end)),
+           deparse(substitute(stage)),
+           name,
+           legend,
+           borderRadius,
+           verticalMargin,
+           minHorizontalSize,
+           envelope,
+           axisLabel,
+           ...
     )
-
-    if (isTRUE(legend)) {
-      e$x$opts$baseOption$legend$data <- append(e$x$opts$baseOption$legend$data, list(name))
-    }
-    e$x$opts$baseOption$series <- append(
-      e$x$opts$baseOption$series,
-      list(series_opts)
-    )
-  }
-
-  path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
-  dep <- htmltools::htmlDependency(
-    name = "echarts-stage",
-    version = "1.0.0",
-    src = c(file = path),
-    script = "echarts-stage.js")
-
-  e$dependencies <- append(e$dependencies, list(dep))
-
-  e
 }

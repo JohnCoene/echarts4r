@@ -30,7 +30,6 @@ test_that("e_cloud plot has the good data structure and type", {
 
 test_that("e_cloud and e_cloud_ expects error when missing e ", {
   expect_error(e_cloud(), "must pass e")
-  expect_error(e_cloud_(), "must pass e")
 })
 
 
@@ -106,10 +105,8 @@ test_that("e_liquid plot has color", {
     plot$x$opts$series[[1]]$color, df$col)
 })
 
-test_that("e_liquid and e_liquid_ expects error when missing e ", {
+test_that("e_liquid expects error when missing e ", {
   expect_error(e_liquid(), "must pass e")
-
-  expect_error(e_liquid_(), "must pass e")
 })
 
 # modularity --------------------------------------------------------------
