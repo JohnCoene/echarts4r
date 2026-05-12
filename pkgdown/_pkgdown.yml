@@ -191,21 +191,25 @@ reference:
 navbar:
   title: "echarts4r"
   structure:
-    left: [home, license, news, reference, guide, charts, geospatial, style, shiny]
-    right: [search, github]
+    left: [home, license, news, reference, guide, charts, geospatial, style, interaction, shiny]
+    right: [github, search]
   components:
     home:
       icon: fa-home
       href: index.html
+      aria-label: "Home"
     license:
       icon: fa-balance-scale
       href: LICENSE.html
+      aria-label: "License"
     news:
       icon: fa-newspaper
       href: news/index.html
+      aria-label: "News"
     reference:
       icon: fa-code
       href: "reference/"
+      aria-label: "Code Reference"
     guide:
       text: "Guide"
       menu:
@@ -250,6 +254,19 @@ navbar:
       menu:
         - text: "Grid & Axis"
           href: articles/grid.html
+        - text: "Graphics"
+          href: articles/graphics.html
+        - text: "Mark"
+          href: articles/mark.html
+        - text: "Themes"
+          href: articles/themes.html
+        - text: "Annotations"
+          href: articles/annotations.html
+        - text: "Matrix"
+          href: articles/matrix.html
+    interaction:
+      text: "Interaction"
+      menu:
         - text: "Brush & Slide"
           href: articles/brush.html
         - text: "Arrange & Connect"
@@ -260,18 +277,8 @@ navbar:
           href: articles/tooltip.html
         - text: "Actions & Buttons"
           href: articles/actions-buttons.html
-        - text: "Graphics"
-          href: articles/graphics.html
-        - text: "Mark"
-          href: articles/mark.html
-        - text: "Themes"
-          href: articles/themes.html
-        - text: "Annotations"
-          href: articles/annotations.html
         - text: "Timeline"
           href: articles/timeline.html
-        - text: "Matrix"
-          href: articles/matrix.html
         - text: "Crosstalk"
           href: articles/crosstalk.html
     shiny:
@@ -286,6 +293,7 @@ navbar:
     github:
       icon: fab fa-github fa-lg
       href: https://github.com/JohnCoene/echarts4r
+      aria-label: "Github"
 
 authors:
   John Coene:

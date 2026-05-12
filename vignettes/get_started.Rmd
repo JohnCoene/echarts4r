@@ -163,7 +163,7 @@ df |>
 For instance the documentation for the tooltip looks like this:
 
 <a href="https://echarts.apache.org/en/option.html#tooltip" target="_blank">
-  <img src="https://echarts4r.john-coene.com/articles/docs.png" class="img-responsive responsive-img" />
+  <img src="https://echarts4r.john-coene.com/articles/docs.png" class="img-responsive responsive-img" alt="Image of Echarts documentation for tooltip"/>
 </a>
 
 Therefore if we want to change our tooltip to an [axisPointer](https://echarts.apache.org/en/option.html#tooltip.axisPointer) we can do so by passing a list to `axisPointer`.   

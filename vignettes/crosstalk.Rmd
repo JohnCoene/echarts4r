@@ -4,7 +4,7 @@ author: "Jacci Ziebert"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{crosstalk}
+  %\VignetteIndexEntry{Crosstalk}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

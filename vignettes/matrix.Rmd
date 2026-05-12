@@ -24,7 +24,7 @@ e_common(
 
 Build charts using the new matrix system added in [Echarts v6](https://echarts.apache.org/handbook/en/basics/release-note/v6-feature/#). `echarts4r` now comes with a highly customisable matrix coordinate system, which in some methods is easier to use than the previous grid functionality. Build custom tables using the new matrix functions. Note that as of Echarts4r v0.5.0, timelines are not currently supported with matrix functions.
 
-## Matrix
+## Matrix System
 
 To get started with using a matrix, there are a few options you can use. The two starting options consist of `e_matrix` and `e_matrix_raw`. You can learn more about the matrix system using the [official documentation](https://echarts.apache.org/en/option.html#matrix) for additional details. It is worth mentioning that not all series will support the matrix system and some require the matrix to be used in combination with the already existing grid system. See the table at the bottom of the page for additional details. 
 
