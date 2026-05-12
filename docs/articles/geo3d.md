@@ -71,7 +71,7 @@ remotes::install_github('JohnCoene/echarts4r.maps')
 ```
 
 View the full list of maps with
-[`echarts4r.maps::em_bank()`](https://rdrr.io/pkg/echarts4r.maps/man/maps.html).
+[`echarts4r.maps::em_bank()`](http://echarts4r-maps.john-coene.com/reference/maps.md).
 
 ``` r
 library(echarts4r.maps)

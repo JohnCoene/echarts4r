@@ -10,7 +10,7 @@ issues](https://img.shields.io/github/issues-closed/JohnCoene/echarts4r.svg)](ht
 [![Coveralls test
 coverage](https://coveralls.io/repos/github/JohnCoene/echarts4r/badge.svg)](https://coveralls.io/github/JohnCoene/echarts4r)
 
-![](reference/figures/logo.png)
+![Echarts4r Logo Image](reference/figures/logo.png)
 
 Interactive visualisations for R via [Apache
 ECharts](https://echarts.apache.org/)

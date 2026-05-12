@@ -39,4 +39,6 @@ server <- function(input, output){
 shinyApp(ui, server)
 ```
 
-![](boxes.png)
+![Box Images](boxes.png)
+
+Box Images

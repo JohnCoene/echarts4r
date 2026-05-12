@@ -156,7 +156,8 @@ and can be passed to `...`. You will find all these options in the
 
 For instance the documentation for the tooltip looks like this:
 
-[![](https://echarts4r.john-coene.com/articles/docs.png)](https://echarts.apache.org/en/option.html#tooltip)
+[![Image of Echarts documentation for
+tooltip](https://echarts4r.john-coene.com/articles/docs.png)](https://echarts.apache.org/en/option.html#tooltip)
 
 Therefore if we want to change our tooltip to an
 [axisPointer](https://echarts.apache.org/en/option.html#tooltip.axisPointer)

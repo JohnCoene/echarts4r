@@ -42,10 +42,10 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../index.html"><span class="fa fa-home"></span></a></li>
-<li class="nav-item"><a class="nav-link" href="../LICENSE.html"><span class="fa fa-balance-scale"></span></a></li>
-<li class="nav-item"><a class="nav-link" href="../news/index.html"><span class="fa fa-newspaper"></span></a></li>
-<li class="nav-item"><a class="nav-link" href="../reference/"><span class="fa fa-code"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="../index.html" aria-label="Home"><span class="fa fa-home"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="../LICENSE.html" aria-label="License"><span class="fa fa-balance-scale"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html" aria-label="News"><span class="fa fa-newspaper"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/" aria-label="Code Reference"><span class="fa fa-code"></span></a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-guide" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Guide</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-guide">
@@ -80,17 +80,22 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-style" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Style</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-style">
 <li><a class="dropdown-item" href="../articles/grid.html">Grid &amp; Axis</a></li>
-    <li><a class="dropdown-item" href="../articles/brush.html">Brush &amp; Slide</a></li>
-    <li><a class="dropdown-item" href="../articles/connect.html">Arrange &amp; Connect</a></li>
-    <li><a class="dropdown-item" href="../articles/toolbox.html">Toolbox</a></li>
-    <li><a class="dropdown-item" href="../articles/tooltip.html">Tooltip</a></li>
-    <li><a class="dropdown-item" href="../articles/actions-buttons.html">Actions &amp; Buttons</a></li>
     <li><a class="dropdown-item" href="../articles/graphics.html">Graphics</a></li>
     <li><a class="dropdown-item" href="../articles/mark.html">Mark</a></li>
     <li><a class="dropdown-item" href="../articles/themes.html">Themes</a></li>
     <li><a class="dropdown-item" href="../articles/annotations.html">Annotations</a></li>
-    <li><a class="dropdown-item" href="../articles/timeline.html">Timeline</a></li>
     <li><a class="dropdown-item" href="../articles/matrix.html">Matrix</a></li>
+  </ul>
+</li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-interaction" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interaction</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-interaction">
+<li><a class="dropdown-item" href="../articles/brush.html">Brush &amp; Slide</a></li>
+    <li><a class="dropdown-item" href="../articles/connect.html">Arrange &amp; Connect</a></li>
+    <li><a class="dropdown-item" href="../articles/toolbox.html">Toolbox</a></li>
+    <li><a class="dropdown-item" href="../articles/tooltip.html">Tooltip</a></li>
+    <li><a class="dropdown-item" href="../articles/actions-buttons.html">Actions &amp; Buttons</a></li>
+    <li><a class="dropdown-item" href="../articles/timeline.html">Timeline</a></li>
     <li><a class="dropdown-item" href="../articles/crosstalk.html">Crosstalk</a></li>
   </ul>
 </li>
@@ -104,10 +109,10 @@
 </li>
       </ul>
 <ul class="navbar-nav">
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/JohnCoene/echarts4r" aria-label="Github"><span class="fa fab fa-github fa-lg"></span></a></li>
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/JohnCoene/echarts4r"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -117,11 +122,12 @@
 
 
 
-
-<div class="row">
+<link href="make-geo-json_files/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="make-geo-json_files/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="make-geo-json_files/echarts4r-6.0.0/echarts.min.js"></script><script src="make-geo-json_files/echarts4r-6.0.0/ecStat.min.js"></script><script src="make-geo-json_files/echarts4r-6.0.0/dataTool.min.js"></script><script src="make-geo-json_files/echarts4r-binding-0.5.1/echarts4r.js"></script><div class="row">
   <main id="main"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>GeoJSON data</h1>
-                        <h4 data-toc-skip class="author">Pengfei Li</h4>
+                        <h4 data-toc-skip class="author">Pengfei Li,
+Patrick Rekieta</h4>
             
             <h4 data-toc-skip class="date">2026-05-12</h4>
       
@@ -135,84 +141,169 @@
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p>You will find <em>215 maps</em> in the companion package <a href="https://echarts4r-maps.john-coene.com/" class="external-link">echarts4r.maps</a>.
-However, since you may need different kinds of maps i.e.: at the citiy
-or county level that are not included in this package, you may need to
-get the detailed map data from third-party source such as <a href="https://gadm.org/" class="external-link">gadm.org</a>. This document shows how to make
-your own <code>GeoJSON</code> file which can be used in
+However, since you may need different kinds of maps i.e.: at the city or
+county level that are not included in this package, you may need to get
+detailed map data from a third-party source such as <a href="https://gadm.org/" class="external-link">gadm.org</a>. This document shows how to make
+your own <code>GeoJSON</code> data which can be used in
 <code>e_map_register</code>.</p>
 </div>
 <div class="section level2">
-<h2 id="packages">Packages<a class="anchor" aria-label="anchor" href="#packages"></a>
+<h2 id="geojson-structure">GeoJSON structure<a class="anchor" aria-label="anchor" href="#geojson-structure"></a>
 </h2>
-<p>These are packages to help you building such maps</p>
-<ul>
-<li>
-<code>sp</code>: spatial data management package.</li>
-<li>
-<code>raster</code>: get spatial data from <a href="https://gadm.org/" class="external-link">gadm.org</a>.</li>
-<li>
-<code>geojsonio</code>: convert spatial data into json format.</li>
-<li>
-<code>rmapshaper</code>: simplify the spatial data.</li>
-</ul>
+<p>A GeoJSON object used with <code>e_map_register</code> is a list with
+a <code>type</code> of <code>"FeatureCollection"</code> and a
+<code>features</code> array. Each feature needs a
+<code>properties</code> list with at least a <code>name</code> field
+(used by echarts for tooltips and matching data) and a
+<code>geometry</code> defining the shape.</p>
+<p>Below we build a small example with three rectangular regions
+entirely in R — no external data or downloads required.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://echarts4r.john-coene.com">echarts4r</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.github.io/geodata/" class="external-link">geodata</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: terra</span></span>
-<span><span class="co">#&gt; terra 1.9.27</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/edzer/sp/" class="external-link">sp</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster" class="external-link">raster</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/geojsonio" class="external-link">geojsonio</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Registered S3 method overwritten by 'geojsonsf':</span></span>
-<span><span class="co">#&gt;   method        from   </span></span>
-<span><span class="co">#&gt;   print.geojson geojson</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'geojsonio'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     pretty</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ateucher/rmapshaper" class="external-link">rmapshaper</a></span><span class="op">)</span></span></code></pre></div>
+<span></span>
+<span><span class="va">my_geojson</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  type <span class="op">=</span> <span class="st">"FeatureCollection"</span>,</span>
+<span>  features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>      type <span class="op">=</span> <span class="st">"Feature"</span>,</span>
+<span>      properties <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Region A"</span><span class="op">)</span>,</span>
+<span>      geometry <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>        type <span class="op">=</span> <span class="st">"Polygon"</span>,</span>
+<span>        coordinates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>          <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>        <span class="op">)</span><span class="op">)</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>      type <span class="op">=</span> <span class="st">"Feature"</span>,</span>
+<span>      properties <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Region B"</span><span class="op">)</span>,</span>
+<span>      geometry <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>        type <span class="op">=</span> <span class="st">"Polygon"</span>,</span>
+<span>        coordinates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>          <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>        <span class="op">)</span><span class="op">)</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>      type <span class="op">=</span> <span class="st">"Feature"</span>,</span>
+<span>      properties <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Region C"</span><span class="op">)</span>,</span>
+<span>      geometry <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>        type <span class="op">=</span> <span class="st">"Polygon"</span>,</span>
+<span>        coordinates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>          <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span>        <span class="op">)</span><span class="op">)</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+<h2 id="registering-and-plotting-the-map">Registering and plotting the map<a class="anchor" aria-label="anchor" href="#registering-and-plotting-the-map"></a>
 </h2>
-<p>Get India map data from gadm website, this command need network
-available, it will download the rds data to the current directory.</p>
+<p>Once you have a GeoJSON list, pass it to <code>e_map_register</code>
+and then use <code>e_map</code> to plot data on it. The
+<code>name</code> column in your data must match the <code>name</code>
+property in the GeoJSON features.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># india_sp &lt;- geodata::gadm(country = "INDIA", path = ".", level = 2)</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># india_sp &lt;- methods::as(india_sp, "Spatial")</span></span>
-<span><span class="co"># india_sp |&gt; </span></span>
-<span><span class="co">#   head() |&gt; </span></span>
-<span><span class="co">#   knitr::kable()</span></span></code></pre></div>
-<p>Note that you can then combine maps with
-<code>raster::union(map1, map2)</code> or with the <code>em_maps</code>
-function from the <a href="https://echarts4r-maps.john-coene.com" class="external-link">echarts4r.maps</a> package.
-Then convert the <code>SpatialPolygonsDataFrame</code> into
-<code>GeoJSON</code> with <code>geojsonio</code>: <em>this will take a
-long time as the map is very detailed</em>.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># india_json &lt;- geojsonio::geojson_list(india_sp)</span></span>
+<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Region A"</span>, <span class="st">"Region B"</span>, <span class="st">"Region C"</span><span class="op">)</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">25</span>, <span class="fl">40</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># print(object.size(india_json), units = "Mb")</span></span></code></pre></div>
-<p>Therefore we can simplify the map to make it smaller.</p>
+<span><span class="va">data</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/e_map_register.html">e_map_register</a></span><span class="op">(</span><span class="st">"my_map"</span>, <span class="va">my_geojson</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/map.html">e_map</a></span><span class="op">(</span><span class="va">value</span>, map <span class="op">=</span> <span class="st">"my_map"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/e_visual_map.html">e_visual_map</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/e-tooltip.html">e_tooltip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="echarts4r html-widget html-fill-item" id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:100%;height:500px;"></div>
+<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"series":[{"type":"map","map":"my_map","name":"value","data":[{"value":10,"name":"Region A"},{"value":25,"name":"Region B"},{"value":40,"name":"Region C"}]}],"visualMap":[{"calculable":true,"type":"continuous","min":10,"max":40}],"tooltip":{"trigger":"item"},"textStyle":{"fontFamily":"Raleway"}},"dispose":true,"registerMap":[{"mapName":"my_map","geoJSON":{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"name":"Region A"},"geometry":{"type":"Polygon","coordinates":[[[0,0],[2,0],[2,2],[0,2],[0,0]]]}},{"type":"Feature","properties":{"name":"Region B"},"geometry":{"type":"Polygon","coordinates":[[[2,0],[4,0],[4,2],[2,2],[2,0]]]}},{"type":"Feature","properties":{"name":"Region C"},"geometry":{"type":"Polygon","coordinates":[[[0,2],[4,2],[4,4],[0,4],[0,2]]]}}]}}]},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="section level2">
+<h2 id="using-the-nameproperty-option">Using the nameProperty option<a class="anchor" aria-label="anchor" href="#using-the-nameproperty-option"></a>
+</h2>
+<p>By default, echarts expects each GeoJSON feature to have a
+<code>name</code> property. If your GeoJSON uses a different property
+name (e.g., <code>NAME_2</code> from sources like <a href="https://gadm.org/" class="external-link">gadm.org</a>), you can use the
+<code>nameProperty</code> argument to tell echarts which property to
+use.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gadm_style_geojson</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  type <span class="op">=</span> <span class="st">"FeatureCollection"</span>,</span>
+<span>  features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>      type <span class="op">=</span> <span class="st">"Feature"</span>,</span>
+<span>      properties <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>NAME_2 <span class="op">=</span> <span class="st">"District X"</span>, GID_2 <span class="op">=</span> <span class="st">"IND.1.1_1"</span><span class="op">)</span>,</span>
+<span>      geometry <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>        type <span class="op">=</span> <span class="st">"Polygon"</span>,</span>
+<span>        coordinates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>          <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>        <span class="op">)</span><span class="op">)</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>      type <span class="op">=</span> <span class="st">"Feature"</span>,</span>
+<span>      properties <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>NAME_2 <span class="op">=</span> <span class="st">"District Y"</span>, GID_2 <span class="op">=</span> <span class="st">"IND.1.2_1"</span><span class="op">)</span>,</span>
+<span>      geometry <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>        type <span class="op">=</span> <span class="st">"Polygon"</span>,</span>
+<span>        coordinates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>          <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>        <span class="op">)</span><span class="op">)</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">data2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"District X"</span>, <span class="st">"District Y"</span><span class="op">)</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">200</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">data2</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/e_map_register.html">e_map_register</a></span><span class="op">(</span><span class="st">"gadm_map"</span>, <span class="va">gadm_style_geojson</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/map.html">e_map</a></span><span class="op">(</span><span class="va">value</span>, map <span class="op">=</span> <span class="st">"gadm_map"</span>, nameProperty <span class="op">=</span> <span class="st">"NAME_2"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/e_visual_map.html">e_visual_map</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/e-tooltip.html">e_tooltip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="echarts4r html-widget html-fill-item" id="htmlwidget-e5c8c404fe174e4c81bd" style="width:100%;height:500px;"></div>
+<script type="application/json" data-for="htmlwidget-e5c8c404fe174e4c81bd">{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"series":[{"type":"map","map":"gadm_map","name":"value","nameProperty":"NAME_2","data":[{"value":100,"name":"District X"},{"value":200,"name":"District Y"}]}],"visualMap":[{"calculable":true,"type":"continuous","min":100,"max":200}],"tooltip":{"trigger":"item"},"textStyle":{"fontFamily":"Raleway"}},"dispose":true,"registerMap":[{"mapName":"gadm_map","geoJSON":{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"NAME_2":"District X","GID_2":"IND.1.1_1"},"geometry":{"type":"Polygon","coordinates":[[[0,0],[3,0],[3,3],[0,3],[0,0]]]}},{"type":"Feature","properties":{"NAME_2":"District Y","GID_2":"IND.1.2_1"},"geometry":{"type":"Polygon","coordinates":[[[3,0],[6,0],[6,3],[3,3],[3,0]]]}}]}}]},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="section level2">
+<h2 id="working-with-real-spatial-data">Working with real spatial data<a class="anchor" aria-label="anchor" href="#working-with-real-spatial-data"></a>
+</h2>
+<p>For real-world maps, the typical workflow is:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Obtain spatial data</strong> — from packages like
+<code>geodata</code>, <code>rnaturalearth</code>, or download shapefiles
+from <a href="https://gadm.org/" class="external-link">gadm.org</a>.</li>
+<li>
+<strong>Convert to GeoJSON</strong> — use
+<code><a href="https://docs.ropensci.org/geojsonio/reference/geojson_list.html" class="external-link">geojsonio::geojson_list()</a></code> or <code><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">sf::st_read()</a></code>
+combined with <code><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">jsonlite::fromJSON()</a></code>.</li>
+<li>
+<strong>Simplify</strong> — detailed maps can be very large. Use
+<code><a href="http://andyteucher.ca/rmapshaper/reference/ms_simplify.html" class="external-link">rmapshaper::ms_simplify()</a></code> to reduce file size before
+converting to GeoJSON.</li>
+<li>
+<strong>Register and plot</strong> — pass the GeoJSON list to
+<code>e_map_register</code> and plot with <code>e_map</code>.</li>
+</ol>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># india_small &lt;- rmapshaper::ms_simplify(india_sp, keep = 0.05)</span></span>
-<span><span class="co"># india_json_small &lt;- geojsonio::geojson_list(india_small)</span></span>
-<span><span class="co"># print(object.size(india_json_small), units = "Mb") </span></span></code></pre></div>
-<p>The function <code><a href="https://rspatial.github.io/geodata/reference/gadm.html" class="external-link">geodata::gadm</a></code> gives each polygon a
-<code>NAME_*</code> property (where <code>*</code> is the
-<code>level</code> specified) rather than just <code>name</code>. The
-tooltip will not display properly unless we use the <code>nameMap</code>
-to point to that property, by default echarts expects the
-<code>name</code> property.</p>
-<p>Now we can use the <code>GeoJSON</code> with
-<code>e_map_register</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># plot </span></span>
-<span><span class="co"># e_charts() |&gt;</span></span>
-<span>  <span class="co"># e_map_register("India", india_json_small) |&gt;</span></span>
-<span>  <span class="co"># e_map(map = "India", nameProperty = "NAME_2")</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Example workflow (not run — requires geodata and geojsonio packages)</span></span>
+<span><span class="va">india_sp</span> <span class="op">&lt;-</span> <span class="fu">geodata</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/geodata/reference/gadm.html" class="external-link">gadm</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"INDIA"</span>, path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, level <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">india_sp</span> <span class="op">&lt;-</span> <span class="fu">methods</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/methods/as.html" class="external-link">as</a></span><span class="op">(</span><span class="va">india_sp</span>, <span class="st">"Spatial"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Simplify to reduce size</span></span>
+<span><span class="va">india_small</span> <span class="op">&lt;-</span> <span class="fu">rmapshaper</span><span class="fu">::</span><span class="fu"><a href="http://andyteucher.ca/rmapshaper/reference/ms_simplify.html" class="external-link">ms_simplify</a></span><span class="op">(</span><span class="va">india_sp</span>, keep <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Convert to GeoJSON list</span></span>
+<span><span class="va">india_json</span> <span class="op">&lt;-</span> <span class="fu">geojsonio</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/geojsonio/reference/geojson_list.html" class="external-link">geojson_list</a></span><span class="op">(</span><span class="va">india_small</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot</span></span>
+<span><span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/e_map_register.html">e_map_register</a></span><span class="op">(</span><span class="st">"India"</span>, <span class="va">india_json</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/map.html">e_map</a></span><span class="op">(</span>map <span class="op">=</span> <span class="st">"India"</span>, nameProperty <span class="op">=</span> <span class="st">"NAME_2"</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main>
 </div>

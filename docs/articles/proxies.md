@@ -87,7 +87,7 @@ server <- function(input, output){
 shinyApp(ui, server)
 ```
 
-![](echarts4r-add1.gif)
+![Gif of line drawing on scatter plot](echarts4r-add1.gif)
 
 We can then add another button to remove the serie with `e_remove_serie`
 which does not require the use of `e_execute`.
@@ -132,7 +132,8 @@ server <- function(input, output){
 shinyApp(ui, server)
 ```
 
-![](echarts4r-add2.gif)
+![Gif of line drawing onto scatter plot and then being
+removed](echarts4r-add2.gif)
 
 We can now demonstrate how to add multiple series, and the useful of
 `e_execute`.
@@ -180,4 +181,5 @@ server <- function(input, output){
 shinyApp(ui, server)
 ```
 
-![](echarts4r-add3.gif)
+![Gif of line being drawn onto scatter plot with loess
+fit](echarts4r-add3.gif)

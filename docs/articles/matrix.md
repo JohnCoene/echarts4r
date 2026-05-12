@@ -8,7 +8,7 @@ functionality. Build custom tables using the new matrix functions. Note
 that as of Echarts4r v0.5.0, timelines are not currently supported with
 matrix functions.
 
-## Matrix
+## Matrix System
 
 To get started with using a matrix, there are a few options you can use.
 The two starting options consist of `e_matrix` and `e_matrix_raw`. You

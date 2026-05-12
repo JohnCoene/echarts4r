@@ -30,10 +30,9 @@ You will find _215 maps_ in the companion package [echarts4r.maps](https://echar
 
 A GeoJSON object used with `e_map_register` is a list with a `type` of `"FeatureCollection"` and a `features` array. Each feature needs a `properties` list with at least a `name` field (used by echarts for tooltips and matching data) and a `geometry` defining the shape.
 
-Below we build a small example with three rectangular regions entirely in R — no external data or downloads required.
+Below we build a small example with three rectangular regions.
 
 ```{r}
-library(echarts4r)
 
 my_geojson <- list(
   type = "FeatureCollection",

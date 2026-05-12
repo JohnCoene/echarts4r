@@ -42,10 +42,10 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../index.html"><span class="fa fa-home"></span></a></li>
-<li class="nav-item"><a class="nav-link" href="../LICENSE.html"><span class="fa fa-balance-scale"></span></a></li>
-<li class="nav-item"><a class="nav-link" href="../news/index.html"><span class="fa fa-newspaper"></span></a></li>
-<li class="nav-item"><a class="nav-link" href="../reference/"><span class="fa fa-code"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="../index.html" aria-label="Home"><span class="fa fa-home"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="../LICENSE.html" aria-label="License"><span class="fa fa-balance-scale"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html" aria-label="News"><span class="fa fa-newspaper"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/" aria-label="Code Reference"><span class="fa fa-code"></span></a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-guide" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Guide</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-guide">
@@ -80,17 +80,22 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-style" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Style</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-style">
 <li><a class="dropdown-item" href="../articles/grid.html">Grid &amp; Axis</a></li>
-    <li><a class="dropdown-item" href="../articles/brush.html">Brush &amp; Slide</a></li>
-    <li><a class="dropdown-item" href="../articles/connect.html">Arrange &amp; Connect</a></li>
-    <li><a class="dropdown-item" href="../articles/toolbox.html">Toolbox</a></li>
-    <li><a class="dropdown-item" href="../articles/tooltip.html">Tooltip</a></li>
-    <li><a class="dropdown-item" href="../articles/actions-buttons.html">Actions &amp; Buttons</a></li>
     <li><a class="dropdown-item" href="../articles/graphics.html">Graphics</a></li>
     <li><a class="dropdown-item" href="../articles/mark.html">Mark</a></li>
     <li><a class="dropdown-item" href="../articles/themes.html">Themes</a></li>
     <li><a class="dropdown-item" href="../articles/annotations.html">Annotations</a></li>
-    <li><a class="dropdown-item" href="../articles/timeline.html">Timeline</a></li>
     <li><a class="dropdown-item" href="../articles/matrix.html">Matrix</a></li>
+  </ul>
+</li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-interaction" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Interaction</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-interaction">
+<li><a class="dropdown-item" href="../articles/brush.html">Brush &amp; Slide</a></li>
+    <li><a class="dropdown-item" href="../articles/connect.html">Arrange &amp; Connect</a></li>
+    <li><a class="dropdown-item" href="../articles/toolbox.html">Toolbox</a></li>
+    <li><a class="dropdown-item" href="../articles/tooltip.html">Tooltip</a></li>
+    <li><a class="dropdown-item" href="../articles/actions-buttons.html">Actions &amp; Buttons</a></li>
+    <li><a class="dropdown-item" href="../articles/timeline.html">Timeline</a></li>
     <li><a class="dropdown-item" href="../articles/crosstalk.html">Crosstalk</a></li>
   </ul>
 </li>
@@ -104,10 +109,10 @@
 </li>
       </ul>
 <ul class="navbar-nav">
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/JohnCoene/echarts4r" aria-label="Github"><span class="fa fab fa-github fa-lg"></span></a></li>
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/JohnCoene/echarts4r"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -140,7 +145,7 @@
 <code class="sourceCode R"><span><span class="va">choropleth</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"France"</span>, <span class="st">"Brazil"</span>, <span class="st">"China"</span>, <span class="st">"Russia"</span>, <span class="st">"Canada"</span>, <span class="st">"India"</span>, <span class="st">"United States"</span>,</span>
 <span>                <span class="st">"Argentina"</span>, <span class="st">"Australia"</span><span class="op">)</span>,</span>
-<span>  values <span class="op">=</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/math-generics.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">10</span>, <span class="fl">25</span><span class="op">)</span><span class="op">)</span></span>
+<span>  values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">10</span>, <span class="fl">25</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">choropleth</span> <span class="op">|&gt;</span> </span>
@@ -166,7 +171,7 @@
 <span>  </span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
 <span>  name <span class="op">=</span> <span class="va">names</span>,</span>
-<span>  value <span class="op">=</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/math-generics.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">names</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">6</span><span class="op">)</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">names</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">6</span><span class="op">)</span>,</span>
 <span>  height <span class="op">=</span> <span class="va">heights</span> <span class="op">/</span> <span class="fl">10</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -192,7 +197,7 @@ with 215 maps.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">'JohnCoene/echarts4r.maps'</span><span class="op">)</span></span></code></pre></div>
 <p>View the full list of maps with
-<code><a href="https://rdrr.io/pkg/echarts4r.maps/man/maps.html" class="external-link">echarts4r.maps::em_bank()</a></code>.</p>
+<code><a href="http://echarts4r-maps.john-coene.com/reference/maps.html" class="external-link">echarts4r.maps::em_bank()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://echarts4r-maps.john-coene.com/" class="external-link">echarts4r.maps</a></span><span class="op">)</span></span>
 <span></span>
@@ -200,7 +205,7 @@ with 215 maps.</p>
 <span></span>
 <span><span class="va">USArrests</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/init.html">e_charts</a></span><span class="op">(</span><span class="va">state</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/echarts4r.maps/man/maps.html" class="external-link">em_map</a></span><span class="op">(</span><span class="st">"USA"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="http://echarts4r-maps.john-coene.com/reference/maps.html" class="external-link">em_map</a></span><span class="op">(</span><span class="st">"USA"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/map.html">e_map_3d</a></span><span class="op">(</span><span class="va">Murder</span>, map <span class="op">=</span> <span class="st">"USA"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/e_visual_map.html">e_visual_map</a></span><span class="op">(</span><span class="va">Murder</span><span class="op">)</span></span></code></pre></div>
 <div class="echarts4r html-widget html-fill-item" id="htmlwidget-36aa3d2a04d42bbc2145" style="width:100%;height:500px;"></div>
