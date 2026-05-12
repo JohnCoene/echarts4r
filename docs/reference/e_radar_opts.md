@@ -1,51 +1,31 @@
-<div id="main" class="col-md-9" role="main">
-
 # Radar axis
-
-<div class="ref-description section level2">
 
 Radar axis setup and options.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_radar_opts(e, index = 0, ...)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   index:
+- index:
 
-    Index of axis to customise.
+  Index of axis to customise.
 
--   ...:
+- ...:
 
-    Any other option to pass, check See Also section.
-
-</div>
-
-<div class="section level2">
+  Any other option to pass, check See Also section.
 
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 df <- data.frame(
@@ -61,11 +41,5 @@ df |>
   e_radar_opts(center = c("25%", "25%")) |>
   e_tooltip(trigger = "item")
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"radar":[{"indicator":[{"name":"A","max":"7"},{"name":"B","max":"7"},{"name":"C","max":"7"},{"name":"D","max":"7"},{"name":"E","max":"7"}],"center":["25%","25%"]}],"series":[{"type":"radar","data":[{"value":[2.320630583912134,2.086617673747241,3.999835765920579,3.448582136072218,3.628747564740479],"name":"y"},{"value":[3.950491623021662,6.536196880042553,6.516848317347467,4.501920194365084,6.439912614412606],"name":"z"}],"radarIndex":0}],"legend":{"data":["y","z"]},"tooltip":{"trigger":"item"}},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"radar":[{"indicator":[{"name":"A","max":"7"},{"name":"B","max":"7"},{"name":"C","max":"7"},{"name":"D","max":"7"},{"name":"E","max":"7"}],"center":["25%","25%"]}],"series":[{"type":"radar","data":[{"value":[1.122476710937917,1.236693467013538,2.889348425902426,3.805653868243098,1.433709479868412],"name":"y"},{"value":[3.441468123346567,4.219672588631511,4.492245843634009,5.402136127464473,4.478003036230803],"name":"z"}],"radarIndex":0}],"legend":{"data":["y","z"]},"tooltip":{"trigger":"item"}},"dispose":true},"evals":[],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

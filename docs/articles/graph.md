@@ -1,18 +1,12 @@
-<div id="main" role="main">
-
 # Graph
 
 There are two core functions that let you build graphs in `echarts4r`;
 `e_graph` and `e_graph_gl`. The latter is the webGL “version.”
 
-<div class="section level2">
-
 ## Basic
 
 Initialise your graph with `e_charts` then add nodes and edges with
 `e_graph_nodes` and `e_graph_edges` respectively.
-
-<div id="cb1" class="sourceCode">
 
 ``` r
 value <- rnorm(10, 10, 2)
@@ -37,23 +31,9 @@ e_charts() |>
   e_tooltip()
 ```
 
-</div>
-
-<div id="htmlwidget-ac96cb3ee4656e2e9ec3"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Groups
 
 The same but with groups.
-
-<div id="cb2" class="sourceCode">
 
 ``` r
 value <- rnorm(10, 10, 2)
@@ -79,23 +59,9 @@ e_charts() |>
   e_tooltip()
 ```
 
-</div>
-
-<div id="htmlwidget-e5c8c404fe174e4c81bd"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Groups
 
 The same but with groups and symbols.
-
-<div id="cb3" class="sourceCode">
 
 ``` r
 value <- rnorm(10, 10, 2)
@@ -122,23 +88,9 @@ e_charts() |>
   e_tooltip()
 ```
 
-</div>
-
-<div id="htmlwidget-36aa3d2a04d42bbc2145"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Graph GL
 
 Simply use `e_graph_gl` instead of `e_graph`.
-
-<div id="cb4" class="sourceCode">
 
 ``` r
 flights <- read.csv(
@@ -166,24 +118,10 @@ e_charts() |>
     e_tooltip()
 ```
 
-</div>
-
-<div id="htmlwidget-febe03efa1a2d8d52a86"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Les Miserables
 
 The Les Miserables dataset is a popular visualization that demonstrates
 network graphs. An example of this graph is provided below.
-
-<div id="cb5" class="sourceCode">
 
 ``` r
 library(echarts4r)
@@ -221,15 +159,3 @@ e_charts() |>
   ) |>
   e_tooltip()
 ```
-
-</div>
-
-<div id="htmlwidget-1fb4450895fe099f74a1"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-</div>

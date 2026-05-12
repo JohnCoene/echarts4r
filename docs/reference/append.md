@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Append Proxy
-
-<div class="ref-description section level2">
 
 Append data dynamically.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_append1_p(proxy, series_index = NULL, data, x, y, name = NULL)
@@ -42,61 +32,52 @@ e_append2_p_(
 )
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   proxy:
+- proxy:
 
-    An echarts4r proxy as returned by `echarts4rProxy`.
+  An echarts4r proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   series_index:
+- series_index:
 
-    Index of serie to append to (starts from 0).
+  Index of serie to append to (starts from 0).
 
--   data:
+- data:
 
-    Data.frame containing data to append.
+  Data.frame containing data to append.
 
--   x, y, z:
+- x, y, z:
 
-    Columns names to plot.
+  Columns names to plot.
 
--   name:
+- name:
 
-    if using \`bind\` with e.g \`e_scatter\` this can be used to supply
-    the colname for the name attribute bind is mapping to
+  if using \`bind\` with e.g \`e_scatter\` this can be used to supply
+  the colname for the name attribute bind is mapping to
 
--   scale:
+- scale:
 
-    A scaling function as passed to `e_scatter`.
+  A scaling function as passed to
+  [`e_scatter`](https://echarts4r.john-coene.com/reference/scatter.md).
 
--   symbol_size:
+- symbol_size:
 
-    Multiplier of scaling function as in `e_scatter`.
-
-</div>
-
-<div class="section level2">
+  Multiplier of scaling function as in
+  [`e_scatter`](https://echarts4r.john-coene.com/reference/scatter.md).
 
 ## Details
 
 Currently not all types of series supported incremental rendering when
-using appendData. Only these types of series support it: `e_scatter` and
-`e_line` of pure echarts, and `e_scatter_3d`, and `e_line_3d` of
-echarts-gl.
-
-</div>
-
-<div class="section level2">
+using appendData. Only these types of series support it:
+[`e_scatter`](https://echarts4r.john-coene.com/reference/scatter.md) and
+[`e_line`](https://echarts4r.john-coene.com/reference/e_line.md) of pure
+echarts, and
+[`e_scatter_3d`](https://echarts4r.john-coene.com/reference/e_scatter_3d.md),
+and [`e_line_3d`](https://echarts4r.john-coene.com/reference/line3D.md)
+of echarts-gl.
 
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 if (FALSE) { # \dontrun{
@@ -145,9 +126,3 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 } # }
 ```
-
-</div>
-
-</div>
-
-</div>

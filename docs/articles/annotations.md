@@ -1,19 +1,13 @@
-<div id="main" role="main">
-
 # Annotations
 
 Annotations can be added to a variety of charts that use x, y
 coordinates. While Apache ECharts does not include a native annotation
 system, this is a custom function that creates annotations using SVG.
 
-<div class="section level2">
-
 ## Styling Annotation Elements
 
 Here’s an example of the style options. These take SVG attributes.
 Annotations can be removed by clicking the legend when `legend = TRUE`.
-
-<div id="cb1" class="sourceCode">
 
 ``` r
 iris |>
@@ -79,21 +73,7 @@ iris |>
        )))
 ```
 
-</div>
-
-<div id="htmlwidget-ac96cb3ee4656e2e9ec3"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Timeline
-
-<div id="cb2" class="sourceCode">
 
 ``` r
 iris |>
@@ -113,24 +93,12 @@ iris |>
         text = 'Same point!<br>Drag me!')))
 ```
 
-</div>
-
-<div id="htmlwidget-e5c8c404fe174e4c81bd"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Facets and Matrix Coordinate System
 
 An annotation can be added to a specific facet with their own legend
-just by adding another `e_annotations()` and using `.facet` argument.
-
-<div id="cb3" class="sourceCode">
+just by adding another
+[`e_annotations()`](https://echarts4r.john-coene.com/reference/e_annotations.md)
+and using `.facet` argument.
 
 ``` r
 group_size <- 20
@@ -169,18 +137,8 @@ df |>
     )
 ```
 
-</div>
-
-<div id="htmlwidget-36aa3d2a04d42bbc2145"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
 Similar in a matrix. Just add the facet number. They use the same legend
 because the legend name is identical.
-
-<div id="cb4" class="sourceCode">
 
 ``` r
 df <- data.frame(group = rep(letters[1:6], each = 20),
@@ -218,24 +176,10 @@ df |>
                        )))
 ```
 
-</div>
-
-<div id="htmlwidget-febe03efa1a2d8d52a86"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Shiny
 
 Dragging the annotation can be captured as to save the locations of the
 box.
-
-<div id="cb5" class="sourceCode">
 
 ``` r
 library(shiny)
@@ -275,9 +219,3 @@ server <- function(input, output, session) {
 
 shinyApp(ui = ui, server = server)
 ```
-
-</div>
-
-</div>
-
-</div>

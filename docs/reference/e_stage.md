@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Stage chart
-
-<div class="ref-description section level2">
 
 Draw a stage plot.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_stage(
@@ -31,83 +21,65 @@ e_stage(
 )
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   start:
+- start:
 
-    column for start of stage on x axis
+  column for start of stage on x axis
 
--   end:
+- end:
 
-    column for end of stage on x axis
+  column for end of stage on x axis
 
--   stage:
+- stage:
 
-    column for stage on y axis
+  column for stage on y axis
 
--   legend:
+- legend:
 
-    Whether to add serie to legend.
+  Whether to add serie to legend.
 
--   name:
+- name:
 
-    name of the serie.
+  name of the serie.
 
--   borderRadius:
+- borderRadius:
 
-    The border radius of the stage.
+  The border radius of the stage.
 
--   verticalMargin:
+- verticalMargin:
 
-    The vertical margin of the bars.
+  The vertical margin of the bars.
 
--   minHorizontalSize:
+- minHorizontalSize:
 
-    The minimum width of the bars.
+  The minimum width of the bars.
 
--   envelope:
+- envelope:
 
-    The envelope of the stage.
+  The envelope of the stage.
 
--   axisLabel:
+- axisLabel:
 
-    The style of the axis label.
+  The style of the axis label.
 
--   ...:
+- ...:
 
-    additional options
-
-</div>
-
-<div class="section level2">
+  additional options
 
 ## See also
-
-<div class="dont-index">
 
 [official
 documentation](https://github.com/apache/echarts-custom-series/tree/main/custom-series/stage)
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 df <- data.frame(
@@ -137,11 +109,5 @@ df |>
           e_x_axis(type = 'time') |>
           e_y_axis(type = 'category', data = stage_order)
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"type":"category","data":["Deep","Core","REM","Awake"]}],"series":[{"type":"custom","renderItem":"stage","colorBy":"data","encode":{"x":[0,1],"y":2,"tooltip":[0,1]},"name":"stage","itemPayload":{"borderRadius":8,"verticalMargin":10,"minHorizontalSize":3,"envelope":{"show":true,"color":"#888","opacity":0.25,"externalRadius":8},"axisLabel":{"formatter":null,"color":"#8A8A8A"}}}],"legend":{"data":["stage"]},"dataset":{"source":[["2024-09-07T04:12:00Z","2024-09-07T04:12:00Z","Awake"],["2024-09-07T04:15:00Z","2024-09-07T04:18:00Z","Awake"],["2024-09-07T03:45:00Z","2024-09-07T04:12:00Z","REM"],["2024-09-07T02:57:00Z","2024-09-07T03:45:00Z","Core"],["2024-09-07T04:12:00Z","2024-09-07T04:15:00Z","Core"],["2024-09-07T04:18:00Z","2024-09-07T05:37:00Z","Deep"]]},"xAxis":{"type":"time"}},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true,"type":"category","data":["Deep","Core","REM","Awake"]}],"series":[{"type":"custom","renderItem":"stage","colorBy":"data","encode":{"x":[0,1],"y":2,"tooltip":[0,1]},"name":"stage","itemPayload":{"borderRadius":8,"verticalMargin":10,"minHorizontalSize":3,"envelope":{"show":true,"color":"#888","opacity":0.25,"externalRadius":8},"axisLabel":{"formatter":null,"color":"#8A8A8A"}}}],"legend":{"data":["stage"]},"dataset":{"source":[["2024-09-07T11:12:00Z","2024-09-07T11:12:00Z","Awake"],["2024-09-07T11:15:00Z","2024-09-07T11:18:00Z","Awake"],["2024-09-07T10:45:00Z","2024-09-07T11:12:00Z","REM"],["2024-09-07T09:57:00Z","2024-09-07T10:45:00Z","Core"],["2024-09-07T11:12:00Z","2024-09-07T11:15:00Z","Core"],["2024-09-07T11:18:00Z","2024-09-07T12:37:00Z","Deep"]]},"xAxis":{"type":"time"}},"dispose":true},"evals":[],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

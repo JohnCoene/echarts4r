@@ -1,74 +1,50 @@
-<div id="main" class="col-md-9" role="main">
-
 # 2011 airport data
-
-<div class="ref-description section level2">
 
 2011 airport data
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 airports
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Format
 
 A data frame with 221 rows and 8 variables:
 
--   iata:
+- iata:
 
-    Character vector
+  Character vector
 
--   airport:
+- airport:
 
-    Character vector
+  Character vector
 
--   city:
+- city:
 
-    Character vector
+  Character vector
 
--   state:
+- state:
 
-    Character vector
+  Character vector
 
--   country:
+- country:
 
-    Character vector
+  Character vector
 
--   lat:
+- lat:
 
-    Numeric vector
+  Numeric vector
 
--   long:
+- long:
 
-    Numeric vector
+  Numeric vector
 
--   cnt:
+- cnt:
 
-    Integer vector
-
-</div>
-
-<div class="section level2">
+  Integer vector
 
 ## Source
 
 github repo
 <https://raw.githubusercontent.com/plotly/datasets/master/2011_february_us_airport_traffic.csv>
-
-</div>
-
-</div>

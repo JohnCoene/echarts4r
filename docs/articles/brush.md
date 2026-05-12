@@ -1,17 +1,11 @@
-<div id="main" role="main">
-
 # Brush & Slide
 
 Leverage `echarts4r` build-in “crosstalk.”
-
-<div class="section level2">
 
 ## Sliders
 
 Let’s do a fairly standard chart but add a slider on the x axis and one
 on the y axis.
-
-<div id="cb1" class="sourceCode">
 
 ``` r
 mtcars |> 
@@ -21,23 +15,9 @@ mtcars |>
   e_datazoom(y_index = 0, type = "slider") 
 ```
 
-</div>
-
-<div id="htmlwidget-ac96cb3ee4656e2e9ec3"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Zoom
 
 Let’s leverage `e_datazoom`.
-
-<div id="cb2" class="sourceCode">
 
 ``` r
 USArrests |> 
@@ -51,23 +31,9 @@ USArrests |>
   e_datazoom(x_index = c(0, 1))
 ```
 
-</div>
-
-<div id="htmlwidget-e5c8c404fe174e4c81bd"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Brush
 
 Let’s now look at `e_brush`.
-
-<div id="cb3" class="sourceCode">
 
 ``` r
 quakes |> 
@@ -91,21 +57,11 @@ quakes |>
   e_tooltip() # Add tooltips
 ```
 
-</div>
-
-<div id="htmlwidget-36aa3d2a04d42bbc2145"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
 The key to the above is 1) use the `bind` argument in both `e_scatter`
 to bind the data, in this case `stations`, think of it as a key, and 2)
 not removing the axis on the first `e_scatter`.
 
 Let’s combine both.
-
-<div id="cb4" class="sourceCode">
 
 ``` r
 quakes |> 
@@ -131,16 +87,4 @@ quakes |>
   e_datazoom(y_index = 0, type = "slider") 
 ```
 
-</div>
-
-<div id="htmlwidget-febe03efa1a2d8d52a86"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
 `e_brush` actually filters while `e_datazoom` only zooms on the data.
-
-</div>
-
-</div>

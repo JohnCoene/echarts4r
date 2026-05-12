@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Register map
-
-<div class="ref-description section level2">
 
 Register a [geojson](https://geojson.org/) map.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_map_register(e, name, json, ...)
@@ -29,42 +19,34 @@ e_map_register_p(
 e_map_register_ui(name, json, async = FALSE)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md).
 
--   name:
+- name:
 
-    Name of map, to used in `e_map`.
+  Name of map, to used in
+  [`e_map`](https://echarts4r.john-coene.com/reference/map.md).
 
--   json, svg:
+- json, svg:
 
-    [Geojson](https://geojson.org/), or SVG.
+  [Geojson](https://geojson.org/), or SVG.
 
--   ...:
+- ...:
 
-    Additional options passed to
-    [registerMap](https://echarts.apache.org/en/api.html#echarts.registerMap).
+  Additional options passed to
+  [registerMap](https://echarts.apache.org/en/api.html#echarts.registerMap).
 
--   async:
+- async:
 
-    Whether to read the file asynchronously.
+  Whether to read the file asynchronously.
 
--   session:
+- session:
 
-    A valid Shiny session.
-
-</div>
-
-<div class="section level2">
+  A valid Shiny session.
 
 ## Details
 
@@ -73,13 +55,7 @@ to function. While the function `e_map_register_ui` is meant to register
 the map globally in the Shiny UI, not that then `json` must be
 accessible from the UI (generally www folder).
 
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 if (FALSE) { # \dontrun{
@@ -93,9 +69,3 @@ USArrests |>
   e_visual_map(Murder)
 } # }
 ```
-
-</div>
-
-</div>
-
-</div>

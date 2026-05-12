@@ -1,12 +1,6 @@
-<div id="main" role="main">
-
 # 3D
 
-<div class="section level2">
-
 ## Surface
-
-<div id="cb1" class="sourceCode">
 
 ``` r
 data <- expand.grid(
@@ -21,21 +15,7 @@ data |>
   e_visual_map(z)
 ```
 
-</div>
-
-<div id="htmlwidget-ac96cb3ee4656e2e9ec3"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Bar 3D
-
-<div id="cb2" class="sourceCode">
 
 ``` r
 v <- LETTERS[1:10]
@@ -52,8 +32,12 @@ matrix <- data.frame(
     z2 = sum(z2)
   ) |> 
   dplyr::ungroup() 
-#> `summarise()` has grouped output by 'x'. You can override using the `.groups`
-#> argument.
+#> `summarise()` has regrouped the output.
+#> ℹ Summaries were computed grouped by x and y.
+#> ℹ Output is grouped by x.
+#> ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+#> ℹ Use `summarise(.by = c(x, y))` for per-operation grouping
+#>   (`?dplyr::dplyr_by`) instead.
   
 trans <- list(opacity = 0.4) # transparency
 emphasis <- list(itemStyle = list(color = "#313695"))
@@ -65,21 +49,7 @@ matrix |>
   e_legend()
 ```
 
-</div>
-
-<div id="htmlwidget-e5c8c404fe174e4c81bd"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Scatter
-
-<div id="cb3" class="sourceCode">
 
 ``` r
 v <- LETTERS[1:10]
@@ -98,8 +68,12 @@ matrix <- data.frame(
     size = sum(size)
   ) |> 
   dplyr::ungroup() 
-#> `summarise()` has grouped output by 'x'. You can override using the `.groups`
-#> argument.
+#> `summarise()` has regrouped the output.
+#> ℹ Summaries were computed grouped by x and y.
+#> ℹ Output is grouped by x.
+#> ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+#> ℹ Use `summarise(.by = c(x, y))` for per-operation grouping
+#>   (`?dplyr::dplyr_by`) instead.
   
 matrix |> 
   e_charts(x) |> 
@@ -117,21 +91,7 @@ matrix |>
   )
 ```
 
-</div>
-
-<div id="htmlwidget-36aa3d2a04d42bbc2145"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Line
-
-<div id="cb4" class="sourceCode">
 
 ``` r
 df <- data.frame(
@@ -145,15 +105,3 @@ df |>
   e_line_3d(y, z, smooth = TRUE) |> 
   e_visual_map()
 ```
-
-</div>
-
-<div id="htmlwidget-febe03efa1a2d8d52a86"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-</div>

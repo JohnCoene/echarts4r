@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Boxplot
-
-<div class="ref-description section level2">
 
 Draw boxplot.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_boxplot(e, serie, name = NULL, outliers = TRUE, ...)
@@ -20,55 +10,37 @@ e_boxplot(e, serie, name = NULL, outliers = TRUE, ...)
 e_boxplot_(e, serie, name = NULL, outliers = TRUE, ...)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   serie:
+- serie:
 
-    Column name of serie to plot.
+  Column name of serie to plot.
 
--   name:
+- name:
 
-    name of the serie.
+  name of the serie.
 
--   outliers:
+- outliers:
 
-    Whether to plot outliers.
+  Whether to plot outliers.
 
--   ...:
+- ...:
 
-    Any other option to pass, check See Also section.
-
-</div>
-
-<div class="section level2">
+  Any other option to pass, check See Also section.
 
 ## See also
-
-<div class="dont-index">
 
 [Additional
 arguments](https://echarts.apache.org/en/option.html#series-boxplot)
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 df <- data.frame(
@@ -81,11 +53,5 @@ df |>
   e_boxplot(y, outliers = TRUE) |>
   e_boxplot(x, outliers = TRUE)
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"series":[{"name":"y","type":"boxplot","data":[[1,2.5,5,7.5,10],[1,3.5,6,8.5,10]]},{"type":"scatter","data":[[0,-6],[1,25]]}],"xAxis":[{"data":["y","x"],"type":"category"}]},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"series":[{"name":"y","type":"boxplot","data":[[1,2.5,5,7.5,10],[1,3.5,6,8.5,10]]},{"type":"scatter","data":[[0,-6],[1,25]]}],"xAxis":[{"data":["y","x"],"type":"category"}]},"dispose":true},"evals":[],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

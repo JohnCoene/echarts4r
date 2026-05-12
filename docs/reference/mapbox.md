@@ -1,73 +1,41 @@
-<div id="main" class="col-md-9" role="main">
-
 # Mapbox
-
-<div class="ref-description section level2">
 
 Use mapbox.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_mapbox(e, token, ...)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   token:
+- token:
 
-    Your mapbox token from [mapbox](https://www.mapbox.com/).
+  Your mapbox token from [mapbox](https://www.mapbox.com/).
 
--   ...:
+- ...:
 
-    Any option.
-
-</div>
-
-<div class="section level2">
+  Any option.
 
 ## Note
 
 Mapbox may not work properly in the RSudio console.
 
-</div>
-
-<div class="section level2">
-
 ## See also
-
-<div class="dont-index">
 
 [Official
 documentation](https://echarts.apache.org/en/option-gl.html#mapbox3D.style),
 [mapbox documentation](https://docs.mapbox.com/mapbox-gl-js/api/)
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 if (FALSE) { # \dontrun{
@@ -89,9 +57,3 @@ data |>
   e_visual_map()
 } # }
 ```
-
-</div>
-
-</div>
-
-</div>

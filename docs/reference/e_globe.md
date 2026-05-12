@@ -1,72 +1,45 @@
-<div id="main" class="col-md-9" role="main">
-
 # Globe
-
-<div class="ref-description section level2">
 
 Add globe.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_globe(e, environment = NULL, base_texture = NULL, height_texture = NULL, ...)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   environment:
+- environment:
 
-    Texture of background.
+  Texture of background.
 
--   base_texture:
+- base_texture:
 
-    Base texture of globe.
+  Base texture of globe.
 
--   height_texture:
+- height_texture:
 
-    Texture of height.
+  Texture of height.
 
--   ...:
+- ...:
 
-    Any other option to pass, check See Also section.
-
-</div>
-
-<div class="section level2">
+  Any other option to pass, check See Also section.
 
 ## See also
 
-<div class="dont-index">
-
-`e_country_names`, [Additional
+[`e_country_names`](https://echarts4r.john-coene.com/reference/e_country_names.md),
+[Additional
 arguments](https://echarts.apache.org/en/option-gl.html#globe)
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 if (FALSE) { # \dontrun{
@@ -87,9 +60,3 @@ data |>
   e_visual_map(show = FALSE)
 } # }
 ```
-
-</div>
-
-</div>
-
-</div>

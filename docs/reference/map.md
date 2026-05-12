@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Choropleth
-
-<div class="ref-description section level2">
 
 Draw maps.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_map(e, serie, map = "world", name = NULL, rm_x = TRUE, rm_y = TRUE, ...)
@@ -74,69 +64,52 @@ e_map_3d_custom(
 )
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   serie:
+- serie:
 
-    Values to plot.
+  Values to plot.
 
--   map:
+- map:
 
-    Map type.
+  Map type.
 
--   name:
+- name:
 
-    name of the serie.
+  name of the serie.
 
--   rm_x, rm_y:
+- rm_x, rm_y:
 
-    Whether to remove x and y axis, defaults to `TRUE`.
+  Whether to remove x and y axis, defaults to `TRUE`.
 
--   ...:
+- ...:
 
-    Any other option to pass, check See Also section.
+  Any other option to pass, check See Also section.
 
--   coord_system:
+- coord_system:
 
-    Coordinate system to use, one of `cartesian3D`, `geo3D`, `globe`.
+  Coordinate system to use, one of `cartesian3D`, `geo3D`, `globe`.
 
--   id, value, height:
+- id, value, height:
 
-    Columns corresponding to registered map.
-
-</div>
-
-<div class="section level2">
+  Columns corresponding to registered map.
 
 ## See also
 
-<div class="dont-index">
-
-`e_country_names`, [Additional map
+[`e_country_names`](https://echarts4r.john-coene.com/reference/e_country_names.md),
+[Additional map
 arguments](https://echarts.apache.org/en/option.html#series-map),
 [Additional map 3D
 arguments](https://echarts.apache.org/en/option-gl.html#series-map3D)
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 if (FALSE) { # \dontrun{
@@ -223,9 +196,3 @@ choropleth |>
   e_visual_map(min = 1, max = 10)
 } # }
 ```
-
-</div>
-
-</div>
-
-</div>

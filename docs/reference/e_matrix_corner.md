@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Fill Matrix Axis Corner
-
-<div class="ref-description section level2">
 
 helper function for adding data to the corner of matrix
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_matrix_corner(
@@ -25,60 +15,42 @@ e_matrix_corner(
 )
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   coord:
+- coord:
 
-    corner cell coordinate location
+  corner cell coordinate location
 
--   value:
+- value:
 
-    text to display in corner cell
+  text to display in corner cell
 
--   mergeCells:
+- mergeCells:
 
-    whether the body cells and corner cells can be merged
+  whether the body cells and corner cells can be merged
 
--   coordClamp:
+- coordClamp:
 
-    determines whether null values can be used to indicate an entire
-    row/column
+  determines whether null values can be used to indicate an entire
+  row/column
 
--   ...:
+- ...:
 
-    Any other option to pass, check See Also section.
-
-</div>
-
-<div class="section level2">
+  Any other option to pass, check See Also section.
 
 ## See also
-
-<div class="dont-index">
 
 [Additional
 arguments](https://echarts.apache.org/en/option.html#matrix.corner)
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 df <- data.frame("Class" = rep(c("Class1", "Class2", "Class3"),each = 3),
@@ -92,11 +64,5 @@ e_matrix_parent(value = "High", children = "Class3") |>
 e_matrix_corner(value = "All School",
 label = list(fontSize = 24, color = "#555", position = "inside"))
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"matrix":{"x":{"data":[{"value":"Primary","children":["Class1","Class2"]},{"value":"High","children":["Class3"]}],"name":"Class"},"y":{"data":["Grade1","Grade2","Grade3"],"name":"Grade"},"corner":{"data":[{"coord":[-1,-1],"value":"All School","mergeCells":true,"coordClamp":false}],"label":{"fontSize":24,"color":"#555","position":"inside"}}}},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"matrix":{"x":{"data":[{"value":"Primary","children":["Class1","Class2"]},{"value":"High","children":["Class3"]}],"name":"Class"},"y":{"data":["Grade1","Grade2","Grade3"],"name":"Grade"},"corner":{"data":[{"coord":[-1,-1],"value":"All School","mergeCells":true,"coordClamp":false}],"label":{"fontSize":24,"color":"#555","position":"inside"}}}},"dispose":true},"evals":[],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

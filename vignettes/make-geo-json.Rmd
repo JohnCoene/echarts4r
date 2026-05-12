@@ -37,6 +37,7 @@ These are packages to help you building such maps
 
 ```{r}
 library(echarts4r)
+library(geodata)
 library(sp)
 library(raster)
 library(geojsonio)
@@ -48,28 +49,28 @@ library(rmapshaper)
 Get India map data from gadm website, this command need network available, it will download the rds data to the current directory.
 
 ```{r}
-india_sp <- geodata::gadm(country = "INDIA", level = 2)
-
-india_sp <- methods::as(india_sp, "Spatial")
-india_sp |> 
-  head() |> 
-  knitr::kable()
+# india_sp <- geodata::gadm(country = "INDIA", path = ".", level = 2)
+# 
+# india_sp <- methods::as(india_sp, "Spatial")
+# india_sp |> 
+#   head() |> 
+#   knitr::kable()
 ```
 
 Note that you can then combine maps with `raster::union(map1, map2)` or with the `em_maps` function from the [echarts4r.maps](https://echarts4r-maps.john-coene.com) package. Then convert the `SpatialPolygonsDataFrame` into `GeoJSON` with `geojsonio`: _this will take a long time as the map is very detailed_.
 
 ```{r}
-india_json <- geojsonio::geojson_list(india_sp)
+# india_json <- geojsonio::geojson_list(india_sp)
 
-print(object.size(india_json), units = "Mb")
+# print(object.size(india_json), units = "Mb")
 ```
 
 Therefore we can simplify the map to make it smaller.
 
 ```{r}
-india_small <- rmapshaper::ms_simplify(india_sp, keep = 0.05) 
-india_json_small <- geojsonio::geojson_list(india_small)
-print(object.size(india_json_small), units = "Mb") 
+# india_small <- rmapshaper::ms_simplify(india_sp, keep = 0.05)
+# india_json_small <- geojsonio::geojson_list(india_small)
+# print(object.size(india_json_small), units = "Mb") 
 ```
 
 The function `geodata::gadm` gives each polygon a `NAME_*` property (where `*` is the `level` specified) rather than just `name`. The tooltip will not display properly unless we use the `nameMap` to point to that property, by default echarts expects the `name` property.
@@ -78,9 +79,9 @@ Now we can use the `GeoJSON` with `e_map_register`.
 
 ```{r}
 # plot 
-e_charts() |>
-  e_map_register("India", india_json_small) |>
-  e_map(map = "India", nameProperty = "NAME_2")
+# e_charts() |>
+  # e_map_register("India", india_json_small) |>
+  # e_map(map = "India", nameProperty = "NAME_2")
 ```
 
 

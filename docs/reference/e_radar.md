@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Radar
-
-<div class="ref-description section level2">
 
 Add a radar chart
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_radar(
@@ -40,57 +30,48 @@ e_radar_(
 )
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   serie:
+- serie:
 
-    Column name of serie to plot.
+  Column name of serie to plot.
 
--   max:
+- max:
 
-    Maximum value.
+  Maximum value.
 
--   name:
+- name:
 
-    name of the serie.
+  name of the serie.
 
--   legend:
+- legend:
 
-    Whether to add serie to legend.
+  Whether to add serie to legend.
 
--   rm_x, rm_y:
+- rm_x, rm_y:
 
-    Whether to remove x and y axis, defaults to `TRUE`.
+  Whether to remove x and y axis, defaults to `TRUE`.
 
--   ...:
+- ...:
 
-    Any other option to pass, check See Also section.
+  Any other option to pass, check See Also section.
 
--   radar:
+- radar:
 
-    A `list` of options to pass to the `radar` rather than the serie,
-    see [official
-    documentation](https://echarts.apache.org/en/option.html#radar)
-    alternatively, use the `e_radar_opts`.
-
-</div>
-
-<div class="section level2">
+  A `list` of options to pass to the `radar` rather than the serie, see
+  [official
+  documentation](https://echarts.apache.org/en/option.html#radar)
+  alternatively, use the
+  [`e_radar_opts`](https://echarts4r.john-coene.com/reference/e_radar_opts.md).
 
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 df <- data.frame(
@@ -105,11 +86,5 @@ df |>
   e_radar(z) |>
   e_tooltip(trigger = "item")
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"radar":[{"indicator":[{"name":"A","max":"7"},{"name":"B","max":"7"},{"name":"C","max":"7"},{"name":"D","max":"7"},{"name":"E","max":"7"}]}],"series":[{"type":"radar","data":[{"value":[4.686408122070134,1.740797747857869,4.199765197001398,1.341521601192653,4.689943125471473],"name":"y"},{"value":[6.170177514664829,4.373845785856247,3.619638945907354,4.679578265175223,4.531138227321208],"name":"z"}],"radarIndex":0}],"legend":{"data":["y","z"]},"tooltip":{"trigger":"item"}},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"radar":[{"indicator":[{"name":"A","max":"7"},{"name":"B","max":"7"},{"name":"C","max":"7"},{"name":"D","max":"7"},{"name":"E","max":"7"}]}],"series":[{"type":"radar","data":[{"value":[2.439802867360413,1.771020610816777,4.545185283757746,3.879675946198404,3.098696202971041],"name":"y"},{"value":[4.282921931706369,4.73408012278378,3.301008227281272,6.516692508943379,3.505958292633295],"name":"z"}],"radarIndex":0}],"legend":{"data":["y","z"]},"tooltip":{"trigger":"item"}},"dispose":true},"evals":[],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

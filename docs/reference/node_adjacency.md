@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Node Adjacency
-
-<div class="ref-description section level2">
 
 Focus or unfocus on node adjacency.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_focus_adjacency_p(proxy, index, ...)
@@ -20,44 +10,29 @@ e_focus_adjacency_p(proxy, index, ...)
 e_unfocus_adjacency_p(proxy, ...)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   proxy:
+- proxy:
 
-    An echarts4r proxy as returned by `echarts4rProxy`.
+  An echarts4r proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   index:
+- index:
 
-    One or more node index to focus on.
+  One or more node index to focus on.
 
--   ...:
+- ...:
 
-    Any other options, see [official
-    documentation](https://echarts.apache.org/en/api.html#action.graph)
-    and details.
-
-</div>
-
-<div class="section level2">
+  Any other options, see [official
+  documentation](https://echarts.apache.org/en/api.html#action.graph)
+  and details.
 
 ## Details
 
 Must pass `seriesId`, `seriesIndex`, or `seriesName`, generally
 `seriesIndex = 0` will work.
 
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 value <- rnorm(10, 10, 2)
@@ -128,9 +103,3 @@ if (interactive()) {
 }
 } # }
 ```
-
-</div>
-
-</div>
-
-</div>

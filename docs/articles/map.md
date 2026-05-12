@@ -1,16 +1,10 @@
-<div id="main" role="main">
-
 # Maps
 
 This document describes the maps.
 
-<div class="section level2">
-
 ## Choropleth
 
 Pass countries as `x` argument.
-
-<div id="cb1" class="sourceCode">
 
 ``` r
 cns <- countrycode::codelist$country.name.en
@@ -25,23 +19,9 @@ cns |>
   e_visual_map(value)
 ```
 
-</div>
-
-<div id="htmlwidget-ac96cb3ee4656e2e9ec3"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Lines
 
 Use `e_lines` (not ~~`e_line`~~)
-
-<div id="cb2" class="sourceCode">
 
 ``` r
 flights <- read.csv(
@@ -62,18 +42,6 @@ flights |>
    )
 ```
 
-</div>
-
-<div id="htmlwidget-e5c8c404fe174e4c81bd"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Countries
 
 The companion package
@@ -82,18 +50,13 @@ maps.
 
 You can install the package with:
 
-<div id="cb3" class="sourceCode">
-
 ``` r
 install.packages("remotes")
 remotes::install_github('JohnCoene/echarts4r.maps')
 ```
 
-</div>
-
-View the full list of maps with `echarts4r.maps::em_bank()`.
-
-<div id="cb4" class="sourceCode">
+View the full list of maps with
+[`echarts4r.maps::em_bank()`](https://rdrr.io/pkg/echarts4r.maps/man/maps.html).
 
 ``` r
 library(echarts4r.maps)
@@ -111,24 +74,10 @@ df |>
   e_theme("infographic")
 ```
 
-</div>
-
-<div id="htmlwidget-36aa3d2a04d42bbc2145"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## GeoJSON support
 
 Use a custom [geojson](https://geojson.org/) map; 1) read the json and
 register it with `e_register_map`.
-
-<div id="cb5" class="sourceCode">
 
 ``` r
 json <- jsonlite::read_json("https://raw.githubusercontent.com/shawnbot/topogram/master/data/us-states.geojson")
@@ -140,15 +89,3 @@ USArrests |>
   e_map(Murder, map = "USA") |> 
   e_visual_map(Murder)
 ```
-
-</div>
-
-<div id="htmlwidget-febe03efa1a2d8d52a86"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-</div>

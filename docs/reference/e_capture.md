@@ -1,57 +1,33 @@
-<div id="main" class="col-md-9" role="main">
-
 # Capture event
-
-<div class="ref-description section level2">
 
 Add an event capture.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_capture(e, event)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   event:
+- event:
 
-    An event name from the [event
-    documentation](https://echarts.apache.org/en/api.html#events).
-
-</div>
-
-<div class="section level2">
+  An event name from the [event
+  documentation](https://echarts.apache.org/en/api.html#events).
 
 ## Details
 
 Many events can be captured, however not all are integrated, you can
 pass one that is not implemented with this function.
 
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 if (FALSE) { # \dontrun{
@@ -82,9 +58,3 @@ if (interactive()) {
 }
 } # }
 ```
-
-</div>
-
-</div>
-
-</div>

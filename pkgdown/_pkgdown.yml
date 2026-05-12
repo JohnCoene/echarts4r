@@ -1,13 +1,16 @@
-url: http://echarts4r.john-coene.com
+url: https://echarts4r.john-coene.com
 
 template:
   bootstrap: 5
+  includes:
+    in_header: |
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
+    in_body: |
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
   params:
     bootswatch: lumen
     ganalytics: UA-74544116-1
-    docsearch:
-      api_key: f67fcda57c44388a248e49a457aa4fe7
-      index_name: echarts4r
 
 development:
   mode: release
@@ -187,22 +190,31 @@ reference:
 
 navbar:
   title: "echarts4r"
-  left:
-    - icon: fa-home
+  structure:
+    left: [home, license, news, reference, guide, charts, geospatial, style, shiny]
+    right: [search, github]
+  components:
+    home:
+      icon: fa-home
       href: index.html
-    - icon: fa-balance-scale
+    license:
+      icon: fa-balance-scale
       href: LICENSE.html
-    - icon: fa-newspaper
+    news:
+      icon: fa-newspaper
       href: news/index.html
-    - icon: fa-code
+    reference:
+      icon: fa-code
       href: "reference/"
-    - text: "Guide"
+    guide:
+      text: "Guide"
       menu:
         - text: "Get Started"
           href: articles/get_started.html
         - text: "Advanced"
           href: articles/advanced.html
-    - text: "Charts"
+    charts:
+      text: "Charts"
       menu:
         - text: "Chart Types"
           href: articles/chart_types.html
@@ -216,7 +228,8 @@ navbar:
           href: articles/pictorial.html
         - text: "3D"
           href: articles/threeD.html
-    - text: "Geospatial"
+    geospatial:
+      text: "Geospatial"
       menu:
         - text: "Map"
           href: articles/map.html
@@ -232,7 +245,8 @@ navbar:
           href: articles/leaflet-mapbox.html
         - text: "GeoJSON"
           href: articles/make-geo-json.html
-    - text: "Style"
+    style:
+      text: "Style"
       menu:
         - text: "Grid & Axis"
           href: articles/grid.html
@@ -260,7 +274,8 @@ navbar:
           href: articles/matrix.html
         - text: "Crosstalk"
           href: articles/crosstalk.html
-    - text: "Shiny"
+    shiny:
+      text: "Shiny"
       menu:
         - text: 'Basics'
           href: articles/shiny.html
@@ -268,9 +283,8 @@ navbar:
           href: articles/boxes.html
         - text: 'Proxies'
           href: articles/proxies.html
-
-  right:
-    - icon: fab fa-github fa-lg
+    github:
+      icon: fab fa-github fa-lg
       href: https://github.com/JohnCoene/echarts4r
 
 authors:

@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Bar range chart
-
-<div class="ref-description section level2">
 
 Draw a bar range plot with labels on each end.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_barRange(
@@ -31,75 +21,57 @@ e_barRange(
 )
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   lower, upper:
+- lower, upper:
 
-    series of lower and upper borders of the band
+  series of lower and upper borders of the band
 
--   name:
+- name:
 
-    name of the serie.
+  name of the serie.
 
--   legend:
+- legend:
 
-    Whether to add serie to legend.
+  Whether to add serie to legend.
 
--   x_index, y_index:
+- x_index, y_index:
 
-    Indexes of x and y axis.
+  Indexes of x and y axis.
 
--   barWidth:
+- barWidth:
 
-    width of each bar
+  width of each bar
 
--   borderRadius:
+- borderRadius:
 
-    roundness of the bar ends
+  roundness of the bar ends
 
--   margin:
+- margin:
 
-    space between the text labels and the bar
+  space between the text labels and the bar
 
--   textSymbol:
+- textSymbol:
 
-    string for the label to end with
+  string for the label to end with
 
--   ...:
+- ...:
 
-    additional options
-
-</div>
-
-<div class="section level2">
+  additional options
 
 ## See also
-
-<div class="dont-index">
 
 [official
 documentation](https://github.com/apache/echarts-custom-series/tree/main/custom-series/barRange)
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 df <- iris |>
@@ -113,11 +85,5 @@ df |> e_chart(Species) |>
              textSymbol = '"'
   )
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["setosa","versicolor","virginica"],"type":"category","boundaryGap":true}],"series":[{"type":"custom","renderItem":"barRange","name":"barRange","encode":{"x":0,"y":[1,2],"tooltip":[1,2]},"data":[{"value":["setosa","4.3","5.8"]},{"value":["versicolor","4.9","7.0"]},{"value":["virginica","4.9","7.9"]}],"itemPayload":{"textSymbol":"\"","barWidth":10,"borderRadius":5,"margin":10}},{"data":[{"value":["setosa","4.3","5.8"]},{"value":["versicolor","4.9","7.0"]},{"value":["virginica","4.9","7.9"]}]}],"legend":{"data":["barRange"]}},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["setosa","versicolor","virginica"],"type":"category","boundaryGap":true}],"series":[{"type":"custom","renderItem":"barRange","name":"barRange","encode":{"x":0,"y":[1,2],"tooltip":[1,2]},"data":[{"value":["setosa","4.3","5.8"]},{"value":["versicolor","4.9","7.0"]},{"value":["virginica","4.9","7.9"]}],"itemPayload":{"textSymbol":"\"","barWidth":10,"borderRadius":5,"margin":10}},{"data":[{"value":["setosa","4.3","5.8"]},{"value":["versicolor","4.9","7.0"]},{"value":["virginica","4.9","7.9"]}]}],"legend":{"data":["barRange"]}},"dispose":true},"evals":[],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Axis 3D
-
-<div class="ref-description section level2">
 
 Customise 3D axis.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_axis_3d(e, axis = c("x", "y", "z"), index = 0, ...)
@@ -24,38 +14,28 @@ e_y_axis_3d(e, index = 0, ...)
 e_z_axis_3d(e, index = 0, ...)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   axis:
+- axis:
 
-    Axis to customise.
+  Axis to customise.
 
--   index:
+- index:
 
-    Index of axis to customise.
+  Index of axis to customise.
 
--   ...:
+- ...:
 
-    Any other option to pass, check See Also section.
-
-</div>
-
-<div class="section level2">
+  Any other option to pass, check See Also section.
 
 ## See also
-
-<div class="dont-index">
 
 [Additional x
 arguments](https://echarts.apache.org/en/option-gl.html#xAxis3D),
@@ -64,15 +44,7 @@ arguments](https://echarts.apache.org/en/option-gl.html#yAxis3D),
 [Additional z
 arguments](https://echarts.apache.org/en/option-gl.html#zAxis3D)
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 # phony data
@@ -90,8 +62,12 @@ matrix <- data.frame(
     z2 = sum(z2)
   ) |>
   dplyr::ungroup()
-#> `summarise()` has grouped output by 'x'. You can override using the `.groups`
-#> argument.
+#> `summarise()` has regrouped the output.
+#> ℹ Summaries were computed grouped by x and y.
+#> ℹ Output is grouped by x.
+#> ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+#> ℹ Use `summarise(.by = c(x, y))` for per-operation grouping
+#>   (`?dplyr::dplyr_by`) instead.
 
 trans <- list(opacity = 0.4) # transparency
 emphasis <- list(itemStyle = list(color = "#313695"))
@@ -102,11 +78,5 @@ matrix |>
   e_bar_3d(y, z2, stack = "stack", name = "Serie 2", itemStyle = trans, emphasis = emphasis) |>
   e_x_axis_3d(axisLine = list(lineStyle = list(color = "blue")))
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"xAxis3D":[{"type":"category","data":["A","B","C","D","E","F","G","H","I","J"],"axisLine":{"lineStyle":{"color":"blue"}}}],"yAxis3D":[{"type":"category","data":["A","B","C","D","F","G","H","I","J","E"]}],"zAxis3D":[{"type":"value"}],"grid3D":[{"show":true}],"legend":{"data":["Serie 1","Serie 2"]},"series":[{"name":"Serie 1","type":"bar3D","coordinateSystem":"cartesian3D","data":[{"value":["A","A"," 60.305504"]},{"value":["A","B"," 50.115865"]},{"value":["A","C"," 41.170632"]},{"value":["A","D"," 30.706813"]},{"value":["A","F"," 29.447792"]},{"value":["A","G"," 39.087371"]},{"value":["A","H","  9.053693"]},{"value":["A","I"," 28.880299"]},{"value":["A","J"," 28.890699"]},{"value":["B","A"," 41.364915"]},{"value":["B","B"," 10.941699"]},{"value":["B","C"," 77.481616"]},{"value":["B","D"," 20.882622"]},{"value":["B","F"," 53.163899"]},{"value":["B","G"," 42.009088"]},{"value":["B","H","  8.482680"]},{"value":["B","I"," 30.010300"]},{"value":["B","J"," 69.505725"]},{"value":["C","A"," 41.857142"]},{"value":["C","B"," 40.453958"]},{"value":["C","C"," 10.252451"]},{"value":["C","D"," 52.420101"]},{"value":["C","E"," 20.468964"]},{"value":["C","F"," 20.676385"]},{"value":["C","G"," 31.019735"]},{"value":["C","H","  9.481143"]},{"value":["C","I"," 19.690338"]},{"value":["C","J"," 41.453069"]},{"value":["D","A"," 18.525964"]},{"value":["D","B"," 10.416763"]},{"value":["D","C"," 30.707041"]},{"value":["D","D"," 10.298087"]},{"value":["D","E"," 19.813112"]},{"value":["D","F"," 26.590180"]},{"value":["D","G"," 28.407949"]},{"value":["D","H"," 41.615859"]},{"value":["D","J"," 49.963103"]},{"value":["E","A"," 30.132899"]},{"value":["E","B"," 29.892598"]},{"value":["E","D"," 19.956015"]},{"value":["E","E"," 28.967994"]},{"value":["E","F"," 28.987695"]},{"value":["E","G"," 30.760969"]},{"value":["E","H"," 60.293704"]},{"value":["E","I"," 38.219733"]},{"value":["E","J"," 29.435246"]},{"value":["F","A"," 20.110939"]},{"value":["F","B"," 31.947463"]},{"value":["F","C"," 19.344995"]},{"value":["F","D"," 64.981246"]},{"value":["F","E"," 26.615125"]},{"value":["F","F"," 21.762324"]},{"value":["F","G"," 49.485639"]},{"value":["F","H"," 17.858002"]},{"value":["F","I"," 22.560246"]},{"value":["F","J"," 39.788569"]},{"value":["G","A"," 39.694926"]},{"value":["G","B"," 21.544664"]},{"value":["G","C"," 19.815555"]},{"value":["G","D"," 20.945689"]},{"value":["G","E"," 27.880918"]},{"value":["G","F"," 31.251887"]},{"value":["G","H"," 40.613522"]},{"value":["G","I"," 53.325375"]},{"value":["G","J"," 56.233879"]},{"value":["H","A"," 49.737321"]},{"value":["H","B"," 20.459656"]},{"value":["H","C"," 60.843544"]},{"value":["H","D"," 17.569331"]},{"value":["H","E"," 10.914607"]},{"value":["H","F","  9.687534"]},{"value":["H","G"," 21.040179"]},{"value":["H","H","  9.616827"]},{"value":["H","I"," 42.246212"]},{"value":["H","J"," 10.598055"]},{"value":["I","A"," 18.125133"]},{"value":["I","B"," 46.674598"]},{"value":["I","C"," 16.999850"]},{"value":["I","D"," 39.375934"]},{"value":["I","E"," 11.053655"]},{"value":["I","F"," 43.025267"]},{"value":["I","G"," 20.909934"]},{"value":["I","H"," 37.852167"]},{"value":["I","I"," 10.392023"]},{"value":["I","J"," 41.627045"]},{"value":["J","A","  8.951542"]},{"value":["J","B"," 41.561237"]},{"value":["J","C"," 26.945619"]},{"value":["J","D"," 38.106903"]},{"value":["J","E","106.049994"]},{"value":["J","G"," 25.312526"]},{"value":["J","H"," 19.936005"]},{"value":["J","I"," 40.336948"]},{"value":["J","J"," 39.815264"]}],"stack":"stack","itemStyle":{"opacity":0.4},"emphasis":{"itemStyle":{"color":"#313695"}}},{"name":"Serie 2","type":"bar3D","coordinateSystem":"cartesian3D","data":[{"value":["A","A","60.810849"]},{"value":["A","B","51.672764"]},{"value":["A","C","36.986437"]},{"value":["A","D","32.485120"]},{"value":["A","F","29.106461"]},{"value":["A","G","40.338767"]},{"value":["A","H"," 9.068480"]},{"value":["A","I","31.492357"]},{"value":["A","J","30.156471"]},{"value":["B","A","42.542768"]},{"value":["B","B"," 8.605536"]},{"value":["B","C","78.082687"]},{"value":["B","D","20.223783"]},{"value":["B","F","49.231150"]},{"value":["B","G","39.324664"]},{"value":["B","H","10.577854"]},{"value":["B","I","30.584493"]},{"value":["B","J","71.156695"]},{"value":["C","A","37.129502"]},{"value":["C","B","43.988312"]},{"value":["C","C","11.209732"]},{"value":["C","D","47.538905"]},{"value":["C","E","19.634988"]},{"value":["C","F","19.129996"]},{"value":["C","G","33.741378"]},{"value":["C","H","11.011451"]},{"value":["C","I","22.367739"]},{"value":["C","J","39.141935"]},{"value":["D","A","22.434755"]},{"value":["D","B"," 8.595985"]},{"value":["D","C","29.227856"]},{"value":["D","D","11.773852"]},{"value":["D","E","18.784083"]},{"value":["D","F","30.390350"]},{"value":["D","G","29.212188"]},{"value":["D","H","39.826484"]},{"value":["D","J","46.336546"]},{"value":["E","A","29.099559"]},{"value":["E","B","28.789530"]},{"value":["E","D","18.921832"]},{"value":["E","E","30.918201"]},{"value":["E","F","32.369095"]},{"value":["E","G","30.195156"]},{"value":["E","H","57.082447"]},{"value":["E","I","39.861246"]},{"value":["E","J","29.746820"]},{"value":["F","A","18.761253"]},{"value":["F","B","30.014744"]},{"value":["F","C","17.909948"]},{"value":["F","D","61.625227"]},{"value":["F","E","28.617280"]},{"value":["F","F","21.235332"]},{"value":["F","G","49.675824"]},{"value":["F","H","21.432411"]},{"value":["F","I","19.616452"]},{"value":["F","J","39.501161"]},{"value":["G","A","43.996368"]},{"value":["G","B","17.658457"]},{"value":["G","C","20.628929"]},{"value":["G","D","19.731141"]},{"value":["G","E","31.999471"]},{"value":["G","F","28.174880"]},{"value":["G","H","36.686611"]},{"value":["G","I","46.126778"]},{"value":["G","J","59.923579"]},{"value":["H","A","50.510178"]},{"value":["H","B","20.714749"]},{"value":["H","C","62.731343"]},{"value":["H","D","20.356817"]},{"value":["H","E","12.648916"]},{"value":["H","F","10.311709"]},{"value":["H","G","19.726537"]},{"value":["H","H","10.516876"]},{"value":["H","I","39.614491"]},{"value":["H","J"," 9.663411"]},{"value":["I","A","20.286025"]},{"value":["I","B","51.598292"]},{"value":["I","C","20.459518"]},{"value":["I","D","45.970725"]},{"value":["I","E","10.510437"]},{"value":["I","F","38.777393"]},{"value":["I","G","18.383967"]},{"value":["I","H","39.156358"]},{"value":["I","I","10.342697"]},{"value":["I","J","41.550019"]},{"value":["J","A"," 8.900160"]},{"value":["J","B","40.236069"]},{"value":["J","C","28.001781"]},{"value":["J","D","38.926428"]},{"value":["J","E","98.954968"]},{"value":["J","G","30.283394"]},{"value":["J","H","19.472131"]},{"value":["J","I","38.779245"]},{"value":["J","J","40.633979"]}],"stack":"stack","itemStyle":{"opacity":0.4},"emphasis":{"itemStyle":{"color":"#313695"}}}]},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"xAxis3D":[{"type":"category","data":["A","B","C","D","E","F","G","H","I","J"],"axisLine":{"lineStyle":{"color":"blue"}}}],"yAxis3D":[{"type":"category","data":["A","B","C","D","F","G","H","I","J","E"]}],"zAxis3D":[{"type":"value"}],"grid3D":[{"show":true}],"legend":{"data":["Serie 1","Serie 2"]},"series":[{"name":"Serie 1","type":"bar3D","coordinateSystem":"cartesian3D","data":[{"value":["A","A"," 63.265440"]},{"value":["A","B"," 40.717517"]},{"value":["A","C"," 25.053953"]},{"value":["A","D"," 30.114120"]},{"value":["A","F"," 19.471472"]},{"value":["A","G"," 42.497981"]},{"value":["A","H"," 10.791534"]},{"value":["A","I"," 29.775953"]},{"value":["A","J"," 22.355246"]},{"value":["B","A"," 36.869958"]},{"value":["B","B"," 10.303848"]},{"value":["B","C"," 83.945983"]},{"value":["B","D"," 16.247874"]},{"value":["B","F"," 50.829174"]},{"value":["B","G"," 40.356684"]},{"value":["B","H"," 10.028357"]},{"value":["B","I"," 29.565625"]},{"value":["B","J"," 67.144393"]},{"value":["C","A"," 43.503708"]},{"value":["C","B"," 39.186942"]},{"value":["C","C"," 11.170056"]},{"value":["C","D"," 51.741780"]},{"value":["C","E"," 20.400340"]},{"value":["C","F"," 19.341293"]},{"value":["C","G"," 31.498521"]},{"value":["C","H","  8.645072"]},{"value":["C","I"," 19.473562"]},{"value":["C","J"," 42.064791"]},{"value":["D","A"," 28.373887"]},{"value":["D","B","  9.299440"]},{"value":["D","C"," 27.313951"]},{"value":["D","D"," 10.476844"]},{"value":["D","E"," 17.626002"]},{"value":["D","F"," 29.943936"]},{"value":["D","G"," 30.701857"]},{"value":["D","H"," 38.040054"]},{"value":["D","J"," 51.836922"]},{"value":["E","A"," 30.212931"]},{"value":["E","B"," 29.590195"]},{"value":["E","D"," 18.130478"]},{"value":["E","E"," 28.646270"]},{"value":["E","F"," 25.612796"]},{"value":["E","G"," 29.054849"]},{"value":["E","H"," 61.010453"]},{"value":["E","I"," 50.446596"]},{"value":["E","J"," 27.335579"]},{"value":["F","A"," 39.320095"]},{"value":["F","B"," 32.240625"]},{"value":["F","C"," 20.250088"]},{"value":["F","D"," 58.328092"]},{"value":["F","E"," 27.059195"]},{"value":["F","F"," 19.533713"]},{"value":["F","G"," 48.533770"]},{"value":["F","H"," 21.352927"]},{"value":["F","I"," 20.277331"]},{"value":["F","J"," 39.318187"]},{"value":["G","A"," 37.234023"]},{"value":["G","B"," 19.663777"]},{"value":["G","C"," 19.712900"]},{"value":["G","D"," 18.906237"]},{"value":["G","E"," 28.980541"]},{"value":["G","F"," 31.886909"]},{"value":["G","H"," 37.889970"]},{"value":["G","I"," 48.098370"]},{"value":["G","J"," 58.039521"]},{"value":["H","A"," 50.123117"]},{"value":["H","B"," 18.111461"]},{"value":["H","C"," 57.944606"]},{"value":["H","D"," 19.315956"]},{"value":["H","E"," 11.369776"]},{"value":["H","F"," 10.362159"]},{"value":["H","G"," 17.878152"]},{"value":["H","H"," 11.433701"]},{"value":["H","I"," 37.700514"]},{"value":["H","J"," 10.063919"]},{"value":["I","A"," 29.694539"]},{"value":["I","B"," 49.185857"]},{"value":["I","C"," 19.537893"]},{"value":["I","D"," 37.171589"]},{"value":["I","E","  9.837883"]},{"value":["I","F"," 42.899733"]},{"value":["I","G"," 18.545395"]},{"value":["I","H"," 41.682941"]},{"value":["I","I"," 10.626310"]},{"value":["I","J"," 31.754732"]},{"value":["J","A"," 10.736068"]},{"value":["J","B"," 39.439238"]},{"value":["J","C"," 31.779978"]},{"value":["J","D"," 38.644664"]},{"value":["J","E","101.434774"]},{"value":["J","G"," 30.575785"]},{"value":["J","H"," 19.591690"]},{"value":["J","I"," 39.621060"]},{"value":["J","J"," 37.648541"]}],"stack":"stack","itemStyle":{"opacity":0.4},"emphasis":{"itemStyle":{"color":"#313695"}}},{"name":"Serie 2","type":"bar3D","coordinateSystem":"cartesian3D","data":[{"value":["A","A","57.323069"]},{"value":["A","B","39.390543"]},{"value":["A","C","27.582334"]},{"value":["A","D","31.019027"]},{"value":["A","F","19.709857"]},{"value":["A","G","40.712966"]},{"value":["A","H"," 9.130161"]},{"value":["A","I","32.783241"]},{"value":["A","J","19.741780"]},{"value":["B","A","38.060176"]},{"value":["B","B"," 8.346719"]},{"value":["B","C","78.291348"]},{"value":["B","D","18.274229"]},{"value":["B","F","48.343668"]},{"value":["B","G","38.775050"]},{"value":["B","H"," 9.386820"]},{"value":["B","I","27.660358"]},{"value":["B","J","70.306347"]},{"value":["C","A","39.829361"]},{"value":["C","B","43.889963"]},{"value":["C","C"," 9.140464"]},{"value":["C","D","51.781195"]},{"value":["C","E","19.442855"]},{"value":["C","F","21.418344"]},{"value":["C","G","32.276883"]},{"value":["C","H","10.539466"]},{"value":["C","I","18.418222"]},{"value":["C","J","38.578814"]},{"value":["D","A","29.152382"]},{"value":["D","B"," 9.084079"]},{"value":["D","C","34.756639"]},{"value":["D","D","11.212490"]},{"value":["D","E","19.339507"]},{"value":["D","F","29.982206"]},{"value":["D","G","31.072660"]},{"value":["D","H","38.784021"]},{"value":["D","J","47.720683"]},{"value":["E","A","30.763996"]},{"value":["E","B","29.013676"]},{"value":["E","D","19.520783"]},{"value":["E","E","28.652849"]},{"value":["E","F","32.841137"]},{"value":["E","G","31.078571"]},{"value":["E","H","59.411032"]},{"value":["E","I","47.532755"]},{"value":["E","J","27.906170"]},{"value":["F","A","38.645081"]},{"value":["F","B","25.545925"]},{"value":["F","C","20.733582"]},{"value":["F","D","59.816944"]},{"value":["F","E","32.778008"]},{"value":["F","F","21.524803"]},{"value":["F","G","47.041266"]},{"value":["F","H","19.396463"]},{"value":["F","I","21.184520"]},{"value":["F","J","43.300262"]},{"value":["G","A","38.880487"]},{"value":["G","B","19.444310"]},{"value":["G","C","20.471177"]},{"value":["G","D","20.706461"]},{"value":["G","E","32.956102"]},{"value":["G","F","29.634695"]},{"value":["G","H","39.586698"]},{"value":["G","I","45.043167"]},{"value":["G","J","60.567965"]},{"value":["H","A","50.435653"]},{"value":["H","B","20.656170"]},{"value":["H","C","59.828500"]},{"value":["H","D","21.037008"]},{"value":["H","E"," 9.803681"]},{"value":["H","F","10.139131"]},{"value":["H","G","18.326312"]},{"value":["H","H","10.375116"]},{"value":["H","I","40.117224"]},{"value":["H","J","10.266169"]},{"value":["I","A","33.034400"]},{"value":["I","B","52.562119"]},{"value":["I","C","18.738313"]},{"value":["I","D","40.362678"]},{"value":["I","E","10.383657"]},{"value":["I","F","40.452191"]},{"value":["I","G","21.722957"]},{"value":["I","H","40.642591"]},{"value":["I","I","10.743228"]},{"value":["I","J","29.830628"]},{"value":["J","A","10.272059"]},{"value":["J","B","38.147631"]},{"value":["J","C","31.356145"]},{"value":["J","D","43.301173"]},{"value":["J","E","99.049619"]},{"value":["J","G","31.051042"]},{"value":["J","H","19.678744"]},{"value":["J","I","42.980212"]},{"value":["J","J","39.476486"]}],"stack":"stack","itemStyle":{"opacity":0.4},"emphasis":{"itemStyle":{"color":"#313695"}}}]},"dispose":true},"evals":[],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

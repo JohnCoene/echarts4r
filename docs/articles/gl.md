@@ -1,15 +1,9 @@
-<div id="main" role="main">
-
 # web GL
 
 This document details webGL visualisations; webGL is ideal when you have
 large datasets to plot.
 
-<div class="section level2">
-
 ## Surface
-
-<div id="cb1" class="sourceCode">
 
 ``` r
 data("montereybay", package = "rayshader")
@@ -24,21 +18,7 @@ bay |>
   e_visual_map(Freq) 
 ```
 
-</div>
-
-<div id="htmlwidget-ac96cb3ee4656e2e9ec3"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Scatter
-
-<div id="cb2" class="sourceCode">
 
 ``` r
 quakes |> 
@@ -54,21 +34,7 @@ quakes |>
   e_visual_map()
 ```
 
-</div>
-
-<div id="htmlwidget-e5c8c404fe174e4c81bd"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Graph GL
-
-<div id="cb3" class="sourceCode">
 
 ``` r
 #Use graphGL for larger networks
@@ -92,24 +58,10 @@ e_charts() |>
   e_graph_edges(edges, source, target)
 ```
 
-</div>
-
-<div id="htmlwidget-36aa3d2a04d42bbc2145"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Flow GL
 
 Van der Pol oscillator by [David
 Granjon](https://twitter.com/divadnojnarg).
-
-<div id="cb4" class="sourceCode">
 
 ``` r
 vectors <- expand.grid(x = -3:3, y = -3:3)
@@ -138,17 +90,7 @@ vectors |>
   ) 
 ```
 
-</div>
-
-<div id="htmlwidget-febe03efa1a2d8d52a86"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
 You can also plot it against different coordinates (`coord_system`).
-
-<div id="cb5" class="sourceCode">
 
 ``` r
 latlong <- seq(-180, 180, by = 5)
@@ -186,15 +128,3 @@ wind |>
   e_x_axis(show = FALSE) |> 
   e_y_axis(show = FALSE)
 ```
-
-</div>
-
-<div id="htmlwidget-1fb4450895fe099f74a1"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-</div>
