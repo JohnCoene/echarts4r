@@ -889,7 +889,7 @@ e_stage <- function(e,
         e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
       }
 
-      e$x$opts$dataset <- list(source = vector)
+      e$x$opts$dataset <- list(source = vector, sourceHeader = FALSE)
 
     }
     else {

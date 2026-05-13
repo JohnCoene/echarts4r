@@ -49,9 +49,9 @@ Suggests:
   data.tree,
   leaflet
 Depends: R (>= 4.1.0)  
-RoxygenNote: 7.3.3
 Config/testthat/edition: 3
 URL: https://echarts4r.john-coene.com, https://github.com/JohnCoene/echarts4r
 BugReports: https://github.com/JohnCoene/echarts4r/issues/
 LazyData: true
 VignetteBuilder: knitr
+Config/roxygen2/version: 8.0.0
