@@ -131,6 +131,11 @@ globalVariables(c("x", "e", ".", ".data", "acc", "epoch", "loss", "size", "val_a
 
 .build_data2 <- function(data, ...) {
   row.names(data) <- NULL
+
+  # Noticed an issue via unit test for e_line_3d proxy.
+  # select() selects only 1 match of a col name while base R selects all col names and creates duplicates cols names (i.e. y, y.1, y.2).
+  # So it was building the data incorrectly such that the z value in e_line_3d was not being replaced.
+
   # data <- data |>
   #  dplyr::select(...)
   data <- data[, c(...), drop = FALSE]

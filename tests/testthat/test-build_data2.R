@@ -30,4 +30,17 @@ test_that("build_data2 creates a list", {
   y <- .build_data2(mtcars, "mpg")
 
   expect_type(y, "list")
+
+  # Expect 1 value
+  expect_equal(y[[1]]$value, 21)
+})
+
+test_that("build_data2 creates a list", {
+  x <- mtcars
+  y <- .build_data2(mtcars, "mpg", "mpg")
+
+  expect_type(y, "list")
+
+  # Expect 2 values bc two cols of the same name were selected
+  expect_equal(y[[1]]$value, c(21, 21))
 })
