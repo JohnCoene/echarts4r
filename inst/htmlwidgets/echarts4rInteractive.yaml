@@ -2,7 +2,7 @@ dependencies:
  - name: echarts4rInteractive
    version: 6.0.0
    src: htmlwidgets/lib/echarts-6.0.0
-   script: 
+   script:
       - echarts.min.js
       - ecStat.min.js
       - dataTool.min.js
