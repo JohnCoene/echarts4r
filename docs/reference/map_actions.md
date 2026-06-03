@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Map Actions
-
-<div class="ref-description section level2">
 
 Map-related actions.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_map_select(e, ..., btn = NULL)
@@ -22,47 +12,30 @@ e_map_unselect(e, ..., btn = NULL)
 e_map_toggle_select(e, ..., btn = NULL)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   ...:
+- ...:
 
-    Any options, see [official
-    documentation](https://echarts.apache.org/en/api.html#action.map)
+  Any options, see [official
+  documentation](https://echarts.apache.org/en/api.html#action.map)
 
--   btn:
+- btn:
 
-    A `e_button` id.
-
-</div>
-
-<div class="section level2">
+  A [`e_button`](https://echarts4r.john-coene.com/reference/e_button.md)
+  id.
 
 ## See also
 
-<div class="dont-index">
-
-`e_map_register`
-
-</div>
-
-</div>
-
-<div class="section level2">
+[`e_map_register`](https://echarts4r.john-coene.com/reference/e_map_register.md)
 
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 choropleth <- data.frame(
@@ -88,11 +61,5 @@ choropleth |>
   e_button("btn", "Select China")
 Select China
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":{"btn":[{"id":"btn","data":{"type":"mapToggleSelect","name":"China"}}]},"opts":{"series":[{"type":"map","map":"world","name":"values","data":[{"value":14,"name":"France"},{"value":22,"name":"Brazil"},{"value":13,"name":"China"},{"value":20,"name":"Russia"},{"value":23,"name":"Canada"},{"value":14,"name":"India"},{"value":11,"name":"United States"},{"value":21,"name":"Argentina"},{"value":19,"name":"Australia"}]}],"visualMap":[{"min":10,"max":25,"calculable":true,"type":"continuous"}]},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":{"btn":[{"id":"btn","data":{"type":"mapToggleSelect","name":"China"}}]},"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"series":[{"type":"map","map":"world","name":"values","data":[{"value":24,"name":"France"},{"value":13,"name":"Brazil"},{"value":10,"name":"China"},{"value":23,"name":"Russia"},{"value":15,"name":"Canada"},{"value":10,"name":"India"},{"value":17,"name":"United States"},{"value":11,"name":"Argentina"},{"value":17,"name":"Australia"}]}],"visualMap":[{"min":10,"max":25,"calculable":true,"type":"continuous"}]},"dispose":true},"evals":[],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

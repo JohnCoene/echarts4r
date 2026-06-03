@@ -1,51 +1,30 @@
-<div id="main" class="col-md-9" role="main">
-
 # Dispatch Action
-
-<div class="ref-description section level2">
 
 Create your own proxies, essentially a wrapper around the [action
 API](https://echarts.apache.org/en/api.html#action).
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_dispatch_action_p(proxy, type, ...)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   proxy:
+- proxy:
 
-    An echarts4r proxy as returned by `echarts4rProxy`.
+  An echarts4r proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   type:
+- type:
 
-    Type of action to dispatch, i.e.: `highlight`.
+  Type of action to dispatch, i.e.: `highlight`.
 
--   ...:
+- ...:
 
-    Named options.
-
-</div>
-
-<div class="section level2">
+  Named options.
 
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 if (FALSE) { # \dontrun{
@@ -80,9 +59,3 @@ if (interactive()) {
 }
 } # }
 ```
-
-</div>
-
-</div>
-
-</div>

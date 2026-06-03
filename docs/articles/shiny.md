@@ -1,28 +1,10 @@
-<div id="main" role="main">
-
 # Shiny
-
-<div class="panel panel-default">
-
-<div class="panel-heading">
 
 New Features
 
-</div>
-
-<div class="panel-body">
-
 Use (almost) any function on a dynamic proxy!
 
-</div>
-
-<div class="panel-footer">
-
-[Documentation](http://echarts4r.john-coene.com/articles/development)
-
-</div>
-
-</div>
+[Documentation](https://echarts4r.john-coene.com/articles/development)
 
 `echarts4r` comes with proxies (functions ending in `_p`) as well as the
 ability access selected data. You will find a demo of shiny working with
@@ -30,29 +12,23 @@ ability access selected data. You will find a demo of shiny working with
 
 [Shiny Demo](http://shiny.john-coene.com/echarts4rShiny/)
 
-<div class="section level2">
-
 ## Deploy
 
 A note if you are publishing on
 [shinyapps.io](https://www.shinyapps.io/), if you have *locally*
 installed the development version of the package from
 [Github](https://github.com/JohnCoene/echarts4r) with `remotes` as
-indicated on the [homepage](http://echarts4r.john-coene.com/) of the
+indicated on the [homepage](https://echarts4r.john-coene.com/) of the
 website please reinstall it `devtools`. Otherwise shinyapps.io will
 intall the CRAN version which might lead to issues.
-
-<div id="cb1" class="sourceCode">
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("JohnCoene/echarts4r")
 ```
 
-</div>
-
 If you are using the [Shiny
-Server](http://echarts4r.john-coene.com/articles/), remember to install
+Server](https://echarts4r.john-coene.com/articles/), remember to install
 the package on the respective server with the following command:
 
     # stable version
@@ -60,33 +36,28 @@ the package on the respective server with the following command:
     # dev version
     sudo su - -c "R -e \"remotes::install_github('JohnCoene/echarts4r')\""
 
-</div>
-
-<div class="section level2">
-
 ## Events
 
 Get data from shiny with the following:
 
--   `elementId` + `_brush` - returns data on brushed data points.
--   `elementId` + `_legend_change` - returns series name of legend
-    selected/unselected.
--   `elementId` + `_legend_selected` - returns list of selected status
-    for each series.
--   `elementId` + `_clicked_data` - returns data of clicked data point.
--   `elementId` + `_clicked_data_value` - returns value of clicked data
-    point.
--   `elementId` + `_clicked_row` - returns row number of clicked data
-    point.
--   `elementId` + `_clicked_serie` - returns name of serie of clicked
-    data point.
--   `elementId` + `_mouseover_data` - returns data on hovered data
-    point.
--   `elementId` + `_mouseover_data_value` - returns value of hovered
-    data point.
--   `elementId` + `_mouseover_row` - returns row o hovered data point.
--   `elementId` + `_mouseover_serie` - returns name of serie of hovered
-    data point.
+- `elementId` + `_brush` - returns data on brushed data points.
+- `elementId` + `_legend_change` - returns series name of legend
+  selected/unselected.
+- `elementId` + `_legend_selected` - returns list of selected status for
+  each series.
+- `elementId` + `_clicked_data` - returns data of clicked data point.
+- `elementId` + `_clicked_data_value` - returns value of clicked data
+  point.
+- `elementId` + `_clicked_row` - returns row number of clicked data
+  point.
+- `elementId` + `_clicked_serie` - returns name of serie of clicked data
+  point.
+- `elementId` + `_mouseover_data` - returns data on hovered data point.
+- `elementId` + `_mouseover_data_value` - returns value of hovered data
+  point.
+- `elementId` + `_mouseover_row` - returns row o hovered data point.
+- `elementId` + `_mouseover_serie` - returns name of serie of hovered
+  data point.
 
 If you want to implement a missing callback with `e_distpatch_action_p`.
 
@@ -95,27 +66,19 @@ showcasing callbacks.
 
 [Callbacks demo](https://psim.shinyapps.io/echarts4r_callbacks/)
 
-</div>
-
-<div class="section level2">
-
 ## Proxies
 
 Interact with the charts without redrawing (proxies):
 
--   `e_append1_p` and `e_append2_p` - to add data to your chart.
--   `e_highlight_p` and `e_downplay_p` - to highlight or downplay a
-    serie.
--   `e_showtip_p` and `e_hidetip_p` - to Show or hide the tooltip.
--   `e_draw_p` to draw the chart, see function documentation for
-    examples.
--   `e_focus_adjacency` and `e_unfocus_adjacency` - to focus or unfocus
-    on adjacent nodes (networks).
--   `e_mark_p` to dynamically mark points, lines, and areas.
+- `e_append1_p` and `e_append2_p` - to add data to your chart.
+- `e_highlight_p` and `e_downplay_p` - to highlight or downplay a serie.
+- `e_showtip_p` and `e_hidetip_p` - to Show or hide the tooltip.
+- `e_draw_p` to draw the chart, see function documentation for examples.
+- `e_focus_adjacency` and `e_unfocus_adjacency` - to focus or unfocus on
+  adjacent nodes (networks).
+- `e_mark_p` to dynamically mark points, lines, and areas.
 
 See the example below and the various proxies documentation.
-
-<div id="cb3" class="sourceCode">
 
 ``` r
 library(shiny)
@@ -158,19 +121,11 @@ server <- function(input, output, session){
 shinyApp(ui, server)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Loading
 
 You can also show a spinner while shiny recalculates.
 
 Without loading, chart redraws with neat animation.
-
-<div id="cb4" class="sourceCode">
 
 ``` r
 # no redraw
@@ -203,11 +158,7 @@ server <- function(input, output){
 shinyApp(ui, server)
 ```
 
-</div>
-
 With loading.
-
-<div id="cb5" class="sourceCode">
 
 ``` r
 # keep UI
@@ -231,9 +182,3 @@ server <- function(input, output){
 
 shinyApp(ui, server)
 ```
-
-</div>
-
-</div>
-
-</div>

@@ -1,11 +1,7 @@
-<div id="main" role="main">
-
 # Mark Points, Lines & Areas
 
 You can mark points, lines and areas on your chart to emphasise certain
 things.
-
-<div class="section level2">
 
 ## Type
 
@@ -15,11 +11,9 @@ documentation](https://echarts.apache.org/en/option.html#series-line.markPoint.d
 
 One of the format is to pass a `type`:
 
--   `min`
--   `max`
--   `avg`
-
-<div id="cb1" class="sourceCode">
+- `min`
+- `max`
+- `avg`
 
 ``` r
 max <- list(
@@ -38,11 +32,7 @@ avg <- list(
 )
 ```
 
-</div>
-
 By default `e_mark_*` is applied to all series.
-
-<div id="cb2" class="sourceCode">
 
 ``` r
 iris |> 
@@ -54,17 +44,7 @@ iris |>
   e_mark_point(data = avg)
 ```
 
-</div>
-
-<div id="htmlwidget-ac96cb3ee4656e2e9ec3"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
 But you can specify one or more serie it should apply apply to.
-
-<div id="cb3" class="sourceCode">
 
 ``` r
 iris |> 
@@ -76,21 +56,7 @@ iris |>
   e_mark_point(serie = c("virginica", "versicolor"), data = avg)
 ```
 
-</div>
-
-<div id="htmlwidget-e5c8c404fe174e4c81bd"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Custom
-
-<div id="cb4" class="sourceCode">
 
 ``` r
 library(dplyr)
@@ -124,21 +90,7 @@ iris |>
   e_x_axis(min = 4)
 ```
 
-</div>
-
-<div id="htmlwidget-36aa3d2a04d42bbc2145"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Point
-
-<div id="cb5" class="sourceCode">
 
 ``` r
 iris |> 
@@ -149,23 +101,9 @@ iris |>
   e_x_axis(min = 4)
 ```
 
-</div>
-
-<div id="htmlwidget-febe03efa1a2d8d52a86"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Line
 
 Horizontally.
-
-<div id="cb6" class="sourceCode">
 
 ``` r
 iris |> 
@@ -176,17 +114,7 @@ iris |>
   e_x_axis(min = 4)
 ```
 
-</div>
-
-<div id="htmlwidget-1fb4450895fe099f74a1"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
 Vertically.
-
-<div id="cb7" class="sourceCode">
 
 ``` r
 cars |> 
@@ -198,21 +126,7 @@ cars |>
   e_mark_line(data = list(xAxis = 22), title = "Need for Speed") 
 ```
 
-</div>
-
-<div id="htmlwidget-10b3b7155e8045a1b2ad"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Area
-
-<div id="cb8" class="sourceCode">
 
 ``` r
 iris |> 
@@ -227,15 +141,3 @@ iris |>
   ) |> 
   e_x_axis(min = 4)
 ```
-
-</div>
-
-<div id="htmlwidget-4018eef1a407a0df6b52"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-</div>

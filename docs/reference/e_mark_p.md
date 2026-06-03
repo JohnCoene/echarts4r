@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Mark
-
-<div class="ref-description section level2">
 
 Mark points, lines, and areas with a proxy (\[echarts4rProxy()\]).
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_mark_p(e, type, serie_index, data, ...)
@@ -20,51 +10,37 @@ e_mark_p(e, type, serie_index, data, ...)
 e_mark_p_(e, type, serie_index, data = NULL, ...)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   type:
+- type:
 
-    Type of mark: 'point','line' or 'area', defaults to 'point'.
+  Type of mark: 'point','line' or 'area', defaults to 'point'.
 
--   serie_index:
+- serie_index:
 
-    Single index of serie to mark on, defaults to 1. Proxy doesn't know
-    series' names, so it only uses index.
+  Single index of serie to mark on, defaults to 1. Proxy doesn't know
+  series' names, so it only uses index.
 
--   data:
+- data:
 
-    Location of point, line or area, defaults to NULL.
+  Location of point, line or area, defaults to NULL.
 
--   ...:
+- ...:
 
-    Any other option to pass, check See Also section.
-
-</div>
-
-<div class="section level2">
+  Any other option to pass, check See Also section.
 
 ## Details
 
 Allows the three type of marks to work with \[echarts4rProxy()\]
 
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 library(shiny)
@@ -150,9 +126,3 @@ if (interactive()) {
   shinyApp(ui, server)
 }
 ```
-
-</div>
-
-</div>
-
-</div>

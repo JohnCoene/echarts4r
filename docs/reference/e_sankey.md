@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Sankey
-
-<div class="ref-description section level2">
 
 Draw a sankey diagram.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_sankey(
@@ -38,59 +28,41 @@ e_sankey_(
 )
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   source, target:
+- source, target:
 
-    Source and target columns.
+  Source and target columns.
 
--   value:
+- value:
 
-    Value change from `source` to `target`.
+  Value change from `source` to `target`.
 
--   layout:
+- layout:
 
-    Layout of sankey.
+  Layout of sankey.
 
--   rm_x, rm_y:
+- rm_x, rm_y:
 
-    Whether to remove the x and y axis, defaults to `TRUE`.
+  Whether to remove the x and y axis, defaults to `TRUE`.
 
--   ...:
+- ...:
 
-    Any other option to pass, check See Also section.
-
-</div>
-
-<div class="section level2">
+  Any other option to pass, check See Also section.
 
 ## See also
-
-<div class="dont-index">
 
 [Additional
 arguments](https://echarts.apache.org/en/option.html#series-sankey)
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 sankey <- data.frame(
@@ -104,11 +76,5 @@ sankey |>
   e_charts() |>
   e_sankey(source, target, value)
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"series":[{"type":"sankey","orient":"none","data":[{"name":"a"},{"name":"b"},{"name":"c"},{"name":"d"},{"name":"e"}],"links":[{"source":"a","target":"b","value":"11"},{"source":"b","target":"c","value":"10"},{"source":"c","target":"d","value":"11"},{"source":"d","target":"e","value":"12"},{"source":"c","target":"e","value":"11"}]}]},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"series":[{"type":"sankey","orient":"none","data":[{"name":"a"},{"name":"b"},{"name":"c"},{"name":"d"},{"name":"e"}],"links":[{"source":"a","target":"b","value":" 9"},{"source":"b","target":"c","value":"11"},{"source":"c","target":"d","value":"10"},{"source":"d","target":"e","value":"10"},{"source":"c","target":"e","value":"12"}]}]},"dispose":true},"evals":[],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

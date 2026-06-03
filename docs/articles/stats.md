@@ -1,12 +1,6 @@
-<div id="main" role="main">
-
 # Statistical plots
 
-<div class="section level2">
-
 ## Confidence Bands
-
-<div id="cb1" class="sourceCode">
 
 ``` r
 data <- jsonlite::fromJSON("https://echarts.apache.org/examples/data/asset/data/confidence-band.json")
@@ -25,21 +19,7 @@ data |>
   )
 ```
 
-</div>
-
-<div id="htmlwidget-ac96cb3ee4656e2e9ec3"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Area Bands
-
-<div id="cb2" class="sourceCode">
 
 ``` r
 data(EuStockMarkets)
@@ -53,21 +33,7 @@ as.data.frame(EuStockMarkets) |> dplyr::slice_head(n=200) |>
   e_datazoom(start = 50) 
 ```
 
-</div>
-
-<div id="htmlwidget-e5c8c404fe174e4c81bd"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Correlation Matrix
-
-<div id="cb3" class="sourceCode">
 
 ``` r
 cor(mtcars) |> 
@@ -76,21 +42,7 @@ cor(mtcars) |>
   e_tooltip()
 ```
 
-</div>
-
-<div id="htmlwidget-36aa3d2a04d42bbc2145"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Error bars
-
-<div id="cb4" class="sourceCode">
 
 ``` r
 df <- data.frame(
@@ -106,21 +58,7 @@ df |>
   e_error_bar(lower, upper)
 ```
 
-</div>
-
-<div id="htmlwidget-febe03efa1a2d8d52a86"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Boxplot
-
-<div id="cb5" class="sourceCode">
 
 ``` r
 df <- data.frame(
@@ -142,21 +80,7 @@ df |>
   e_boxplot(x)
 ```
 
-</div>
-
-<div id="htmlwidget-1fb4450895fe099f74a1"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Histogram
-
-<div id="cb6" class="sourceCode">
 
 ``` r
 # data.frame
@@ -171,24 +95,10 @@ df |>
   e_tooltip()
 ```
 
-</div>
-
-<div id="htmlwidget-10b3b7155e8045a1b2ad"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Density
 
 Plot the density on a different Y axis as its range differs much from
 the that of the histogram.
-
-<div id="cb7" class="sourceCode">
 
 ``` r
 df |>
@@ -199,21 +109,7 @@ df |>
   e_tooltip()
 ```
 
-</div>
-
-<div id="htmlwidget-4018eef1a407a0df6b52"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Linear
-
-<div id="cb8" class="sourceCode">
 
 ``` r
 iris |> 
@@ -224,21 +120,7 @@ iris |>
   e_x_axis(min = 4)
 ```
 
-</div>
-
-<div id="htmlwidget-5b1b2f4ad92281566982"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Polynomial
-
-<div id="cb9" class="sourceCode">
 
 ``` r
 mtcars |> 
@@ -246,15 +128,3 @@ mtcars |>
   e_scatter(mpg, qsec) |> 
   e_loess(mpg ~ disp)
 ```
-
-</div>
-
-<div id="htmlwidget-25c3e940e6859592f801"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-</div>

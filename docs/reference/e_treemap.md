@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Treemap
-
-<div class="ref-description section level2">
 
 Build a treemap.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_treemap(
@@ -36,59 +26,41 @@ e_treemap_(
 )
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   styles:
+- styles:
 
-    Vector of style lists, defaults to `NULL`.
+  Vector of style lists, defaults to `NULL`.
 
--   names:
+- names:
 
-    Names of items to style, expects a `list`, defaults to `NULL`.
+  Names of items to style, expects a `list`, defaults to `NULL`.
 
--   levels:
+- levels:
 
-    Hierarchical levels to style, expects a `list`, defaults to `NULL`.
+  Hierarchical levels to style, expects a `list`, defaults to `NULL`.
 
--   rm_x, rm_y:
+- rm_x, rm_y:
 
-    Whether to remove x and y axis, defaults to `TRUE`.
+  Whether to remove x and y axis, defaults to `TRUE`.
 
--   ...:
+- ...:
 
-    Any other option to pass, check See Also section.
-
-</div>
-
-<div class="section level2">
+  Any other option to pass, check See Also section.
 
 ## See also
-
-<div class="dont-index">
 
 [Additional
 arguments](https://echarts.apache.org/en/option.html#series-treemap)
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 library(dplyr)
@@ -126,11 +98,5 @@ df |>
   e_charts() |>
   e_treemap()
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"series":[{"type":"treemap","data":[{"name":"earth","value":30,"itemStyle":{},"children":[{"name":"land","value":10,"children":[{"name":"forest","value":3},{"name":"river","value":7}]},{"name":"ocean","value":20,"children":[{"name":"fish","value":10,"children":[{"name":"shark","value":2},{"name":"tuna","value":6}]},{"name":"kelp","value":5,"children":{}}]}]},{"name":"mars","value":40,"itemStyle":{"color":"red"},"children":[{"name":"crater","value":20},{"name":"valley","value":20}]},{"name":"venus","value":30,"itemStyle":{"color":"blue"},"children":{}}]}]},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"series":[{"type":"treemap","data":[{"name":"earth","value":30,"itemStyle":{},"children":[{"name":"land","value":10,"children":[{"name":"forest","value":3},{"name":"river","value":7}]},{"name":"ocean","value":20,"children":[{"name":"fish","value":10,"children":[{"name":"shark","value":2},{"name":"tuna","value":6}]},{"name":"kelp","value":5,"children":{}}]}]},{"name":"mars","value":40,"itemStyle":{"color":"red"},"children":[{"name":"crater","value":20},{"name":"valley","value":20}]},{"name":"venus","value":30,"itemStyle":{"color":"blue"},"children":{}}]}]},"dispose":true},"evals":[],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

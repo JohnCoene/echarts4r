@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Parallel
-
-<div class="ref-description section level2">
 
 Draw parallel coordinates.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_parallel(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = list())
@@ -20,55 +10,38 @@ e_parallel(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = list())
 e_parallel_(e, ..., name = NULL, rm_x = TRUE, rm_y = TRUE, opts = list())
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   ...:
+- ...:
 
-    Columns to select from the data passed to `e_charts`.
+  Columns to select from the data passed to
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md).
 
--   name:
+- name:
 
-    name of the serie.
+  name of the serie.
 
--   rm_x, rm_y:
+- rm_x, rm_y:
 
-    Whether to remove x and y axis, defaults to `TRUE`.
+  Whether to remove x and y axis, defaults to `TRUE`.
 
--   opts:
+- opts:
 
-    A list of additional options to pass to the serie.
-
-</div>
-
-<div class="section level2">
+  A list of additional options to pass to the serie.
 
 ## See also
-
-<div class="dont-index">
 
 [Additional
 arguments](https://echarts.apache.org/en/option.html#series-parallel)
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 df <- data.frame(
@@ -81,11 +54,5 @@ df |>
   e_charts() |>
   e_parallel(price, amount, letter, opts = list(smooth = TRUE))
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"series":{"name":null,"type":"parallel","data":[["10.386435","15.04492","A"],["8.389964","15.72566","B"],["11.760761","14.30748","C"],["9.013599","14.26416","D"],["11.996950","14.80526","E"]],"smooth":true},"parallelAxis":[{"dim":0,"name":"price"},{"dim":1,"name":"amount"},{"dim":2,"name":"letter","type":"category","data":["A","B","C","D","E"]}]},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"series":{"name":null,"type":"parallel","data":[["10.576402","15.73775","A"],["11.136540","14.34615","B"],["10.419682","15.66239","C"],["8.214609","14.80731","D"],["11.779514","15.81688","E"]],"smooth":true},"parallelAxis":[{"dim":0,"name":"price"},{"dim":1,"name":"amount"},{"dim":2,"name":"letter","type":"category","data":["A","B","C","D","E"]}]},"dispose":true},"evals":[],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

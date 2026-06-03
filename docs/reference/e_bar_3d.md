@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Bar 3D
-
-<div class="ref-description section level2">
 
 Add 3D bars
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_bar_3d(
@@ -40,63 +30,45 @@ e_bar_3d_(
 )
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   y, z:
+- y, z:
 
-    Coordinates.
+  Coordinates.
 
--   bind:
+- bind:
 
-    Binding.
+  Binding.
 
--   coord_system:
+- coord_system:
 
-    Coordinate system to use, one of `cartesian3D`, `geo3D`, `globe`.
+  Coordinate system to use, one of `cartesian3D`, `geo3D`, `globe`.
 
--   name:
+- name:
 
-    name of the serie.
+  name of the serie.
 
--   rm_x, rm_y:
+- rm_x, rm_y:
 
-    Whether to remove x and y axis, defaults to `TRUE`.
+  Whether to remove x and y axis, defaults to `TRUE`.
 
--   ...:
+- ...:
 
-    Any other option to pass, check See Also section.
-
-</div>
-
-<div class="section level2">
+  Any other option to pass, check See Also section.
 
 ## See also
-
-<div class="dont-index">
 
 [Additional
 arguments](https://echarts.apache.org/en/option-gl.html#series-bar3D)
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 if (FALSE) { # \dontrun{
@@ -167,9 +139,3 @@ matrix |>
   e_visual_map(z2)
 } # }
 ```
-
-</div>
-
-</div>
-
-</div>

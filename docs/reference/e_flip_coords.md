@@ -1,43 +1,23 @@
-<div id="main" class="col-md-9" role="main">
-
 # Flip coordinates
-
-<div class="ref-description section level2">
 
 Flip cartesian 2D coordinates.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_flip_coords(e)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
-
-</div>
-
-<div class="section level2">
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 df <- data.frame(
@@ -53,13 +33,7 @@ df |>
 
 plot # normal
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["A","B","C","D","E"],"type":"category","boundaryGap":true}],"legend":{"data":["y","z"]},"series":[{"data":[{"value":["A","2.556350"]},{"value":["B","2.926332"]},{"value":["C","3.828305"]},{"value":["D","3.347530"]},{"value":["E","4.229464"]}],"name":"y","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d"},{"data":[{"value":["A","5.622080"]},{"value":["B","5.926922"]},{"value":["C","7.874934"]},{"value":["D","6.709102"]},{"value":["E","9.626961"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"z","type":"line","coordinateSystem":"cartesian2d"}]},"dispose":true},"evals":[],"jsHooks":[]}e_flip_coords(plot) # flip
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["A","B","C","D","E"],"type":"category","boundaryGap":true}],"legend":{"data":["y","z"]},"series":[{"data":[{"value":["A","3.579811"]},{"value":["B","1.388159"]},{"value":["C","1.042827"]},{"value":["D","3.335171"]},{"value":["E","1.984933"]}],"name":"y","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d"},{"data":[{"value":["A","9.235357"]},{"value":["B","8.565122"]},{"value":["C","3.135261"]},{"value":["D","8.243479"]},{"value":["E","9.019232"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"z","type":"line","coordinateSystem":"cartesian2d"}]},"dispose":true},"evals":[],"jsHooks":[]}e_flip_coords(plot) # flip
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"xAxis":[{"show":true}],"yAxis":[{"data":["A","B","C","D","E"],"type":"category","boundaryGap":true}],"legend":{"data":["y","z"]},"series":[{"data":[{"value":["2.556350","A"]},{"value":["2.926332","B"]},{"value":["3.828305","C"]},{"value":["3.347530","D"]},{"value":["4.229464","E"]}],"name":"y","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d"},{"data":[{"value":["5.622080","A"]},{"value":["5.926922","B"]},{"value":["7.874934","C"]},{"value":["6.709102","D"]},{"value":["9.626961","E"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"z","type":"line","coordinateSystem":"cartesian2d"}]},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"xAxis":[{"show":true}],"yAxis":[{"data":["A","B","C","D","E"],"type":"category","boundaryGap":true}],"legend":{"data":["y","z"]},"series":[{"data":[{"value":["3.579811","A"]},{"value":["1.388159","B"]},{"value":["1.042827","C"]},{"value":["3.335171","D"]},{"value":["1.984933","E"]}],"name":"y","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d"},{"data":[{"value":["9.235357","A"]},{"value":["8.565122","B"]},{"value":["3.135261","C"]},{"value":["8.243479","D"]},{"value":["9.019232","E"]}],"yAxisIndex":0,"xAxisIndex":0,"name":"z","type":"line","coordinateSystem":"cartesian2d"}]},"dispose":true},"evals":[],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

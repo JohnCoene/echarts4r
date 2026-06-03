@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Line range chart
-
-<div class="ref-description section level2">
 
 Draw a line range area plot.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_lineRange(
@@ -29,67 +19,49 @@ e_lineRange(
 )
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   lower, upper:
+- lower, upper:
 
-    series of lower and upper borders of the band
+  series of lower and upper borders of the band
 
--   name:
+- name:
 
-    name of the serie.
+  name of the serie.
 
--   legend:
+- legend:
 
-    Whether to add serie to legend.
+  Whether to add serie to legend.
 
--   x_index, y_index:
+- x_index, y_index:
 
-    Indexes of x and y axis.
+  Indexes of x and y axis.
 
--   lineStyle:
+- lineStyle:
 
-    properties of the border lines
+  properties of the border lines
 
--   areaStyle:
+- areaStyle:
 
-    properties of the area between the lines
+  properties of the area between the lines
 
--   ...:
+- ...:
 
-    additional options
-
-</div>
-
-<div class="section level2">
+  additional options
 
 ## See also
-
-<div class="dont-index">
 
 [official
 documentation](https://github.com/apache/echarts-custom-series/tree/main/custom-series/lineRange)
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 df <- iris |>
@@ -100,11 +72,5 @@ df |>
   e_chart(Species) |>
   e_lineRange(lower = lower, upper = upper)
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["setosa","versicolor","virginica"],"type":"category","boundaryGap":true}],"legend":{"data":[{"name":"lineRange","icon":"rect","itemStyle":{"color":"#032"}}]},"series":[{"type":"custom","name":"lineRange","renderItem":"lineRange","encode":{"x":0,"y":[1,2],"tooltip":[1,2]},"data":[{"value":["setosa","4.3","5.8"]},{"value":["versicolor","4.9","7.0"]},{"value":["virginica","4.9","7.9"]}],"itemPayload":{"areaStyle":{"opacity":0.3,"color":"#032","width":1},"lineStyle":{"opacity":0.3,"color":"#000","width":1}},"data.1":[{"value":["setosa","4.3","5.8"]},{"value":["versicolor","4.9","7.0"]},{"value":["virginica","4.9","7.9"]}]}]},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["setosa","versicolor","virginica"],"type":"category","boundaryGap":true}],"legend":{"data":[{"name":"lineRange","icon":"rect","itemStyle":{"color":"#032"}}]},"series":[{"type":"custom","name":"lineRange","renderItem":"lineRange","encode":{"x":0,"y":[1,2],"tooltip":[1,2]},"data":[{"value":["setosa","4.3","5.8"]},{"value":["versicolor","4.9","7.0"]},{"value":["virginica","4.9","7.9"]}],"itemPayload":{"areaStyle":{"opacity":0.3,"color":"#032","width":1},"lineStyle":{"opacity":0.3,"color":"#000","width":1}},"data.1":[{"value":["setosa","4.3","5.8"]},{"value":["versicolor","4.9","7.0"]},{"value":["virginica","4.9","7.9"]}]}]},"dispose":true},"evals":[],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

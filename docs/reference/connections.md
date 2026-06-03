@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Connect charts
-
-<div class="ref-description section level2">
 
 Connect charts together.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_connect(e, ids)
@@ -26,84 +16,63 @@ e_disconnect_group(e, group = NULL)
 e_arrange(..., rows = NULL, cols = NULL, width = "xs", title = NULL)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   ids:
+- ids:
 
-    Scalar, vector or list of ids of chart to connect with.
+  Scalar, vector or list of ids of chart to connect with.
 
--   group:
+- group:
 
-    Group name.
+  Group name.
 
--   ...:
+- ...:
 
-    Any `echarts` objects.
+  Any `echarts` objects.
 
--   rows, cols:
+- rows, cols:
 
-    Number of rows and columns.
+  Number of rows and columns.
 
--   width:
+- width:
 
-    Width of columns, one of `xs`, `md`, `lg`.
+  Width of columns, one of `xs`, `md`, `lg`.
 
--   title:
+- title:
 
-    Title of charts.
-
-</div>
-
-<div class="section level2">
+  Title of charts.
 
 ## Value
 
 `e_arrange`: in an interactive session, returns a
-`htmltools::browsable`, in `rmarkdown` returns a container
-(`htmltools::div`).
-
-</div>
-
-<div class="section level2">
+[`htmltools::browsable`](https://rstudio.github.io/htmltools/reference/browsable.html),
+in `rmarkdown` returns a container
+([`htmltools::div`](https://rstudio.github.io/htmltools/reference/builder.html)).
 
 ## Note
 
 `e_arrange` may not work properly in the RStudio viewer.
 
-</div>
-
-<div class="section level2">
-
 ## Functions
 
--   `e_connect`: connects charts by `ids`, *cannot* be disconnected.
+- `e_connect`: connects charts by `ids`, *cannot* be disconnected.
 
--   `e_group`: assigns a group to chart.
+- `e_group`: assigns a group to chart.
 
--   `e_connect_group`: connects chart with another group.
+- `e_connect_group`: connects chart with another group.
 
--   `e_disconnect_group`: diconnects chart from group.
+- `e_disconnect_group`: diconnects chart from group.
 
--   `e_arrange`: arrange charts.
-
-</div>
-
-<div class="section level2">
+- `e_arrange`: arrange charts.
 
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 # linked datazoom
@@ -130,9 +99,3 @@ if (interactive()) {
   e_arrange(e1, e2, title = "Linked datazoom")
 }
 ```
-
-</div>
-
-</div>
-
-</div>

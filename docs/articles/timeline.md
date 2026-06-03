@@ -1,16 +1,10 @@
-<div id="main" role="main">
-
 # Timeline
-
-<div class="section level2">
 
 ## Introduction
 
 `echarts4r` version `0.2.1` supports the timeline component!
 
 Let’s create some phoney data to demonstrate.
-
-<div id="cb1" class="sourceCode">
 
 ``` r
 # fake data
@@ -30,15 +24,11 @@ df <- data.frame(
 ) 
 ```
 
-</div>
-
 While on a “standard” chart you group data to distinguish between
 categories, to take advantage of the timeline component, you group them
 by *time steps* then set `timeline` to `TRUE`when initialise the chart.
 
 By changing a single argument (`timeline`) you go from:
-
-<div id="cb2" class="sourceCode">
 
 ``` r
 df |>
@@ -47,17 +37,7 @@ df |>
   e_scatter(y, symbol_size = 5)
 ```
 
-</div>
-
-<div id="htmlwidget-ac96cb3ee4656e2e9ec3"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
 To an acutal timeline:
-
-<div id="cb3" class="sourceCode">
 
 ``` r
 df |>
@@ -66,54 +46,40 @@ df |>
   e_scatter(y, symbol_size = 5)
 ```
 
-</div>
-
-<div id="htmlwidget-e5c8c404fe174e4c81bd"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Supported types
 
 It works with the vast majority chart types, they are listed below and
 in the man page of `e_charts`.
 
--   `e_bar`
--   `e_line`
--   `e_step`
--   `e_area`
--   `e_scatter`
--   `e_effect_scatter`
--   `e_candle`
--   `e_heatmap`
--   `e_pie`
--   `e_line_3d`
--   `e_lines_3d`
--   `e_bar_3d`
--   `e_lines`
--   `e_scatter_3d`
--   `e_scatter_gl`
--   `e_histogram`
--   `e_lm`
--   `e_loess`
--   `e_glm`
--   `e_density`
--   `e_pictorial`
--   `e_boxplot`
--   `e_map`
--   `e_map_3d`
--   `e_line_3d`
--   `e_gauge`
+- `e_bar`
+- `e_line`
+- `e_step`
+- `e_area`
+- `e_scatter`
+- `e_effect_scatter`
+- `e_candle`
+- `e_heatmap`
+- `e_pie`
+- `e_line_3d`
+- `e_lines_3d`
+- `e_bar_3d`
+- `e_lines`
+- `e_scatter_3d`
+- `e_scatter_gl`
+- `e_histogram`
+- `e_lm`
+- `e_loess`
+- `e_glm`
+- `e_density`
+- `e_pictorial`
+- `e_boxplot`
+- `e_map`
+- `e_map_3d`
+- `e_line_3d`
+- `e_gauge`
 
 All options, i.e.: `e_tooltip` or `e_globe`, work with the timeline
 component.
-
-<div id="cb4" class="sourceCode">
 
 ``` r
 df |> 
@@ -123,23 +89,9 @@ df |>
   e_loess(y ~ x)
 ```
 
-</div>
-
-<div id="htmlwidget-36aa3d2a04d42bbc2145"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## General Options
 
 You can pass options to the timeline with `e_timeline_opts`.
-
-<div id="cb5" class="sourceCode">
 
 ``` r
 library(dplyr)
@@ -177,18 +129,6 @@ df |>
   )
 ```
 
-</div>
-
-<div id="htmlwidget-febe03efa1a2d8d52a86"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Time step options
 
 The function `e_timeline_opts` is used to set general options on the
@@ -200,8 +140,6 @@ However, we can also set options specific to each timestep with
 from the rest of the package. As we have to assign options to multiple
 timesteps at once we need to pass vectors or lists of options, the
 length of the timesteps.
-
-<div id="cb6" class="sourceCode">
 
 ``` r
 library(quantmod)
@@ -242,15 +180,3 @@ data |>
     )
   ) 
 ```
-
-</div>
-
-<div id="htmlwidget-1fb4450895fe099f74a1"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-</div>

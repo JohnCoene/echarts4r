@@ -1,8 +1,4 @@
-<div id="main" role="main">
-
 # Arrange & Connect
-
-<div class="section level2">
 
 ## Basics
 
@@ -13,8 +9,6 @@ might make it even easier. Below we create two charts, with
 
 You can link charts together in two different ways, one with `e_connect`
 by refering other charts’s id (`elementId`)
-
-<div id="cb1" class="sourceCode">
 
 ``` r
 e1 <- mtcars |> 
@@ -45,62 +39,15 @@ e3 <- mtcars |>
   e_connect(c("chart1", "chart2")) # connect
 ```
 
-</div>
-
 You can browse the above from your console like so.
-
-<div id="cb2" class="sourceCode">
 
 ``` r
 e_arrange(e1, e2, e3)
 ```
 
-</div>
-
-<div class="row">
-
-<div class="col-xs-12">
-
-<div id="chart1" class="echarts4r html-widget"
-style="width:100%;height:200px;">
-
-</div>
-
-</div>
-
-</div>
-
-<div class="row">
-
-<div class="col-xs-12">
-
-<div id="chart2" class="echarts4r html-widget"
-style="width:100%;height:200px;">
-
-</div>
-
-</div>
-
-</div>
-
-<div class="row">
-
-<div class="col-xs-12">
-
-<div id="htmlwidget-ac96cb3ee4656e2e9ec3" class="echarts4r html-widget"
-style="width:100%;height:200px;">
-
-</div>
-
-</div>
-
-</div>
-
 The package natively links interactions, therefore, in the following the
 legend is acutally unique, one legend will trigger on both charts
 because they bear the same name.
-
-<div id="cb3" class="sourceCode">
 
 ``` r
 create_chart <- function(data, var){
@@ -121,57 +68,9 @@ e7 <- create_chart(mtcars, "qsec") |>
 e_arrange(e4, e5, e6, e7, rows = 2, cols = 2)
 ```
 
-</div>
-
-<div class="row">
-
-<div class="col-xs-6">
-
-<div id="htmlwidget-e5c8c404fe174e4c81bd" class="echarts4r html-widget"
-style="width:100%;height:200px;">
-
-</div>
-
-</div>
-
-<div class="col-xs-6">
-
-<div id="htmlwidget-36aa3d2a04d42bbc2145" class="echarts4r html-widget"
-style="width:100%;height:200px;">
-
-</div>
-
-</div>
-
-</div>
-
-<div class="row">
-
-<div class="col-xs-6">
-
-<div id="htmlwidget-febe03efa1a2d8d52a86" class="echarts4r html-widget"
-style="width:100%;height:200px;">
-
-</div>
-
-</div>
-
-<div class="col-xs-6">
-
-<div id="htmlwidget-1fb4450895fe099f74a1" class="echarts4r html-widget"
-style="width:100%;height:200px;">
-
-</div>
-
-</div>
-
-</div>
-
 You can connect pretty much anything, including geospatial
 visualisations, it’ll work as long as they share one or more thing in
 common (i.e.: serie `name`).
-
-<div id="cb4" class="sourceCode">
 
 ``` r
 library(echarts4r.maps)
@@ -200,38 +99,9 @@ e9 <- UK |>
 e_arrange(e8, e9, cols = 2, rows = 1)
 ```
 
-</div>
-
-<div class="row">
-
-<div class="col-xs-6">
-
-<div id="US" class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="col-xs-6">
-
-<div id="htmlwidget-10b3b7155e8045a1b2ad"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-</div>
-
 On the geo-spatial visualisations above you can slide the visual map to
 filter states/kingdoms (because `e_visual_map` defaults to
 `calculable = TRUE`).
-
-</div>
-
-<div class="section level2">
 
 ## Shiny
 
@@ -240,8 +110,6 @@ There is no need for `e_arrange` in Shiny, though `e_connect` and
 you don’t truly have to use `e_arrange` in R markdown either.
 
 Once the charts are connected they don’t need to be side by side.
-
-<div id="cb5" class="sourceCode">
 
 ``` r
 library(shiny)
@@ -284,9 +152,3 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 ```
-
-</div>
-
-</div>
-
-</div>

@@ -1,19 +1,9 @@
-<div id="main" class="col-md-9" role="main">
-
 # Pictorial
-
-<div class="ref-description section level2">
 
 Pictorial bar chart is a type of bar chart that customized glyph (like
 images, SVG PathData) can be used instead of rectangular bar.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_pictorial(
@@ -41,87 +31,65 @@ e_pictorial_(
 )
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   serie:
+- serie:
 
-    Column name of serie to plot.
+  Column name of serie to plot.
 
--   symbol:
+- symbol:
 
-    Symbol to plot.
+  Symbol to plot.
 
--   bind:
+- bind:
 
-    Binding between datasets, namely for use of `e_brush`.
+  Binding between datasets, namely for use of
+  [`e_brush`](https://echarts4r.john-coene.com/reference/e_brush.md).
 
--   name:
+- name:
 
-    name of the serie.
+  name of the serie.
 
--   legend:
+- legend:
 
-    Whether to add serie to legend.
+  Whether to add serie to legend.
 
--   x_index, y_index:
+- x_index, y_index:
 
-    Indexes of x and y axis.
+  Indexes of x and y axis.
 
--   ...:
+- ...:
 
-    Any other option to pass, check See Also section.
-
-</div>
-
-<div class="section level2">
+  Any other option to pass, check See Also section.
 
 ## Symbols
 
--   Built-in:
+- Built-in:
 
-    `circle`, `rect`, `roundRect`, `triangle`, `diamond`, `pin`,
-    `arrow`.
+  `circle`, `rect`, `roundRect`, `triangle`, `diamond`, `pin`, `arrow`.
 
--   SVG Path:
+- SVG Path:
 
-    Path data for SVG graphics.
+  Path data for SVG graphics.
 
--   Images:
+- Images:
 
-    Path to image, don't forget to precede it with `image://`, see
-    examples.
-
-</div>
-
-<div class="section level2">
+  Path to image, don't forget to precede it with `image://`, see
+  examples.
 
 ## See also
-
-<div class="dont-index">
 
 [Additional
 arguments](https://echarts.apache.org/en/option.html#series-pictorialBar)
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 # built-in symbols
@@ -144,7 +112,7 @@ df |>
   ) |>
   e_theme("westeros")
 
-{"x":{"theme":"westeros","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["z","y"]},"series":[{"data":[{"value":[1,3.680418325189625]},{"value":[2,2.797482994710832]},{"value":[3,6.870432462126657]},{"value":[4,5.168975050252445]},{"value":[5,5.587862003758179]},{"value":[6,0.9605032733092038]},{"value":[7,5.257642060928768]},{"value":[8,9.670092645280976]},{"value":[9,4.248217727265358]},{"value":[10,6.573344602162518]}],"name":"z","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","barWidth":10},{"data":[{"value":[1,9.281663461037441]},{"value":[2,8.584655251689309]},{"value":[3,10.76918333141315]},{"value":[4,9.210001117003053]},{"value":[5,9.221908594443505]},{"value":[6,7.253182481733599]},{"value":[7,9.928782089086203]},{"value":[8,11.60929880617437]},{"value":[9,10.04461614082031]},{"value":[10,11.08679857861155]}],"name":"y","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0,"symbolRepeat":true,"z":-1,"symbolSize":[10,4],"symbol":"rect"}]},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"westeros","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["z","y"]},"series":[{"data":[{"value":[1,3.13913730106914]},{"value":[2,5.526583594204411]},{"value":[3,5.166374678886444]},{"value":[4,6.212644157447046]},{"value":[5,4.457765667252596]},{"value":[6,3.177905647013128]},{"value":[7,2.27819846498791]},{"value":[8,10.30428232865397]},{"value":[9,7.870460254311175]},{"value":[10,4.692378155430389]}],"name":"z","type":"bar","yAxisIndex":0,"xAxisIndex":0,"coordinateSystem":"cartesian2d","barWidth":10},{"data":[{"value":[1,7.937013850252923]},{"value":[2,10.82402762236756]},{"value":[3,10.1229170786158]},{"value":[4,9.945613402148638]},{"value":[5,9.739791115353277]},{"value":[6,7.051541769010236]},{"value":[7,7.188374405855072]},{"value":[8,13.98277623885222]},{"value":[9,9.182607401599519]},{"value":[10,8.675097907658966]}],"name":"y","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0,"symbolRepeat":true,"z":-1,"symbolSize":[10,4],"symbol":"rect"}]},"dispose":true},"evals":[],"jsHooks":[]}
 # svg path
 path <- "path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"
 
@@ -163,7 +131,7 @@ df |>
     itemStyle = style
   )
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["y"]},"series":[{"data":[{"value":[1,9.281663461037441]},{"value":[2,8.584655251689309]},{"value":[3,10.76918333141315]},{"value":[4,9.210001117003053]},{"value":[5,9.221908594443505]},{"value":[6,7.253182481733599]},{"value":[7,9.928782089086203]},{"value":[8,11.60929880617437]},{"value":[9,10.04461614082031]},{"value":[10,11.08679857861155]}],"name":"y","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0,"barCategoryGap":"-130%","itemStyle":{"normal":{"opacity":0.5},"emphasis":{"opacity":1}},"symbol":"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"}]},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["y"]},"series":[{"data":[{"value":[1,7.937013850252923]},{"value":[2,10.82402762236756]},{"value":[3,10.1229170786158]},{"value":[4,9.945613402148638]},{"value":[5,9.739791115353277]},{"value":[6,7.051541769010236]},{"value":[7,7.188374405855072]},{"value":[8,13.98277623885222]},{"value":[9,9.182607401599519]},{"value":[10,8.675097907658966]}],"name":"y","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0,"barCategoryGap":"-130%","itemStyle":{"normal":{"opacity":0.5},"emphasis":{"opacity":1}},"symbol":"path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"}]},"dispose":true},"evals":[],"jsHooks":[]}
 # image
 # might not work in RStudio viewer
 # open in browser
@@ -191,7 +159,7 @@ data |>
   e_pictorial(value, symbol) |>
   e_legend(FALSE)
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["Qomolangma","Kilimanjaro"],"type":"category","boundaryGap":true}],"legend":{"data":["value"],"show":false,"type":"plain"},"series":[{"data":[{"value":["Qomolangma","8844"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Qomolangma.png"},{"value":["Kilimanjaro","5895"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Kilimanjaro.png"}],"name":"value","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0}]},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"data":["Qomolangma","Kilimanjaro"],"type":"category","boundaryGap":true}],"legend":{"data":["value"],"show":false,"type":"plain"},"series":[{"data":[{"value":["Qomolangma","8844"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Qomolangma.png"},{"value":["Kilimanjaro","5895"],"symbol":"image://https://ecomfe.github.io/echarts-examples/public/data/asset/img/hill-Kilimanjaro.png"}],"name":"value","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0}]},"dispose":true},"evals":[],"jsHooks":[]}
 # timeline
 df <- data.frame(
   x = rep(1:5, 2),
@@ -213,11 +181,5 @@ df |>
     symbolSize = c(10, 4)
   )
 
-{"x":{"theme":"","tl":true,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"baseOption":{"yAxis":[{"show":true}],"timeline":{"data":["2017","2018"],"axisType":"category"},"xAxis":[{"type":"value"}],"legend":{"data":["y"]},"series":[{"name":"y","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0,"symbolRepeat":true,"z":-1,"symbolSize":[10,4]}]},"options":[{"series":[{"data":[{"value":[1,1.075496610719711]},{"value":[2,9.923466887325048]},{"value":[3,8.939253968186677]},{"value":[4,2.90356103470549]},{"value":[5,3.550573884742334]}]}]},{"series":[{"data":[{"value":[1,6.445330921560526]},{"value":[2,9.416053681168705]},{"value":[3,6.853089564479887]},{"value":[4,8.792824093718082]},{"value":[5,4.375954407500103]}]}]}]},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":true,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"baseOption":{"yAxis":[{"show":true}],"timeline":{"data":["2017","2018"],"axisType":"category"},"xAxis":[{"type":"value"}],"legend":{"data":["y"]},"series":[{"name":"y","type":"pictorialBar","yAxisIndex":0,"xAxisIndex":0,"symbolRepeat":true,"z":-1,"symbolSize":[10,4]}]},"options":[{"series":[{"data":[{"value":[1,6.677289308514446]},{"value":[2,6.741374559467658]},{"value":[3,5.852175108157098]},{"value":[4,3.711235732072964]},{"value":[5,9.09841323364526]}]}]},{"series":[{"data":[{"value":[1,8.150339548010379]},{"value":[2,7.15040225815028]},{"value":[3,4.860965554602444]},{"value":[4,1.867917549796402]},{"value":[5,5.758024752140045]}]}]}]},"dispose":true},"evals":[],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

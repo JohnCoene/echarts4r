@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Highlight & Downplay Proxy
-
-<div class="ref-description section level2">
 
 Proxies to highlight and downplay series.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_highlight_p(proxy, series_index = NULL, series_name = NULL)
@@ -20,33 +10,22 @@ e_highlight_p(proxy, series_index = NULL, series_name = NULL)
 e_downplay_p(proxy, series_index = NULL, series_name = NULL)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   proxy:
+- proxy:
 
-    An echarts4r proxy as returned by `echarts4rProxy`.
+  An echarts4r proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   series_index:
+- series_index:
 
-    Series index, can be a vector.
+  Series index, can be a vector.
 
--   series_name:
+- series_name:
 
-    Series Name, can be vector.
-
-</div>
-
-<div class="section level2">
+  Series Name, can be vector.
 
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 if (FALSE) { # \dontrun{
@@ -112,9 +91,3 @@ if (interactive()) {
 }
 } # }
 ```
-
-</div>
-
-</div>
-
-</div>

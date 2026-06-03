@@ -1,51 +1,28 @@
-<div id="main" class="col-md-9" role="main">
-
 # Get data
 
-<div class="ref-description section level2">
-
-Get data passed to `e_charts`.
-
-</div>
-
-<div class="section level2">
+Get data passed to
+[`e_charts`](https://echarts4r.john-coene.com/reference/init.md).
 
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_get_data(e)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
-
-</div>
-
-<div class="section level2">
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
 ## Value
 
 A list of data.frames, one for each group.
 
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 echart <- cars |>
@@ -55,7 +32,7 @@ echart <- cars |>
 
 echart
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["dist","speed-lm"]},"series":[{"data":[{"value":[4,2]},{"value":[4,10]},{"value":[7,4]},{"value":[7,22]},{"value":[8,16]},{"value":[9,10]},{"value":[10,18]},{"value":[10,26]},{"value":[10,34]},{"value":[11,17]},{"value":[11,28]},{"value":[12,14]},{"value":[12,20]},{"value":[12,24]},{"value":[12,28]},{"value":[13,26]},{"value":[13,34]},{"value":[13,34]},{"value":[13,46]},{"value":[14,26]},{"value":[14,36]},{"value":[14,60]},{"value":[14,80]},{"value":[15,20]},{"value":[15,26]},{"value":[15,54]},{"value":[16,32]},{"value":[16,40]},{"value":[17,32]},{"value":[17,40]},{"value":[17,50]},{"value":[18,42]},{"value":[18,56]},{"value":[18,76]},{"value":[18,84]},{"value":[19,36]},{"value":[19,46]},{"value":[19,68]},{"value":[20,32]},{"value":[20,48]},{"value":[20,52]},{"value":[20,56]},{"value":[20,64]},{"value":[22,66]},{"value":[23,54]},{"value":[24,70]},{"value":[24,92]},{"value":[24,93]},{"value":[24,120]},{"value":[25,85]}],"name":"dist","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3},{"name":"speed-lm","type":"line","symbol":"none","smooth":true,"data":[{"value":[4,-1.849459854014553]},{"value":[4,-1.849459854014553]},{"value":[7,9.947766423357702]},{"value":[7,9.947766423357702]},{"value":[8,13.88017518248179]},{"value":[9,17.81258394160587]},{"value":[10,21.74499270072996]},{"value":[10,21.74499270072996]},{"value":[10,21.74499270072996]},{"value":[11,25.67740145985405]},{"value":[11,25.67740145985405]},{"value":[12,29.60981021897813]},{"value":[12,29.60981021897813]},{"value":[12,29.60981021897813]},{"value":[12,29.60981021897813]},{"value":[13,33.54221897810222]},{"value":[13,33.54221897810222]},{"value":[13,33.54221897810222]},{"value":[13,33.54221897810222]},{"value":[14,37.4746277372263]},{"value":[14,37.4746277372263]},{"value":[14,37.4746277372263]},{"value":[14,37.4746277372263]},{"value":[15,41.40703649635039]},{"value":[15,41.40703649635039]},{"value":[15,41.40703649635039]},{"value":[16,45.33944525547447]},{"value":[16,45.33944525547447]},{"value":[17,49.27185401459855]},{"value":[17,49.27185401459855]},{"value":[17,49.27185401459855]},{"value":[18,53.20426277372264]},{"value":[18,53.20426277372264]},{"value":[18,53.20426277372264]},{"value":[18,53.20426277372264]},{"value":[19,57.13667153284673]},{"value":[19,57.13667153284673]},{"value":[19,57.13667153284673]},{"value":[20,61.06908029197081]},{"value":[20,61.06908029197081]},{"value":[20,61.06908029197081]},{"value":[20,61.06908029197081]},{"value":[20,61.06908029197081]},{"value":[22,68.93389781021898]},{"value":[23,72.86630656934307]},{"value":[24,76.79871532846715]},{"value":[24,76.79871532846715]},{"value":[24,76.79871532846715]},{"value":[24,76.79871532846715]},{"value":[25,80.73112408759124]}]}]},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["dist","speed-lm"]},"series":[{"data":[{"value":[4,2]},{"value":[4,10]},{"value":[7,4]},{"value":[7,22]},{"value":[8,16]},{"value":[9,10]},{"value":[10,18]},{"value":[10,26]},{"value":[10,34]},{"value":[11,17]},{"value":[11,28]},{"value":[12,14]},{"value":[12,20]},{"value":[12,24]},{"value":[12,28]},{"value":[13,26]},{"value":[13,34]},{"value":[13,34]},{"value":[13,46]},{"value":[14,26]},{"value":[14,36]},{"value":[14,60]},{"value":[14,80]},{"value":[15,20]},{"value":[15,26]},{"value":[15,54]},{"value":[16,32]},{"value":[16,40]},{"value":[17,32]},{"value":[17,40]},{"value":[17,50]},{"value":[18,42]},{"value":[18,56]},{"value":[18,76]},{"value":[18,84]},{"value":[19,36]},{"value":[19,46]},{"value":[19,68]},{"value":[20,32]},{"value":[20,48]},{"value":[20,52]},{"value":[20,56]},{"value":[20,64]},{"value":[22,66]},{"value":[23,54]},{"value":[24,70]},{"value":[24,92]},{"value":[24,93]},{"value":[24,120]},{"value":[25,85]}],"name":"dist","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":3},{"name":"speed-lm","type":"line","symbol":"none","smooth":true,"data":[{"value":[4,-1.849459854014553]},{"value":[4,-1.849459854014553]},{"value":[7,9.947766423357702]},{"value":[7,9.947766423357702]},{"value":[8,13.88017518248179]},{"value":[9,17.81258394160587]},{"value":[10,21.74499270072996]},{"value":[10,21.74499270072996]},{"value":[10,21.74499270072996]},{"value":[11,25.67740145985405]},{"value":[11,25.67740145985405]},{"value":[12,29.60981021897813]},{"value":[12,29.60981021897813]},{"value":[12,29.60981021897813]},{"value":[12,29.60981021897813]},{"value":[13,33.54221897810222]},{"value":[13,33.54221897810222]},{"value":[13,33.54221897810222]},{"value":[13,33.54221897810222]},{"value":[14,37.4746277372263]},{"value":[14,37.4746277372263]},{"value":[14,37.4746277372263]},{"value":[14,37.4746277372263]},{"value":[15,41.40703649635039]},{"value":[15,41.40703649635039]},{"value":[15,41.40703649635039]},{"value":[16,45.33944525547447]},{"value":[16,45.33944525547447]},{"value":[17,49.27185401459855]},{"value":[17,49.27185401459855]},{"value":[17,49.27185401459855]},{"value":[18,53.20426277372264]},{"value":[18,53.20426277372264]},{"value":[18,53.20426277372264]},{"value":[18,53.20426277372264]},{"value":[19,57.13667153284673]},{"value":[19,57.13667153284673]},{"value":[19,57.13667153284673]},{"value":[20,61.06908029197081]},{"value":[20,61.06908029197081]},{"value":[20,61.06908029197081]},{"value":[20,61.06908029197081]},{"value":[20,61.06908029197081]},{"value":[22,68.93389781021898]},{"value":[23,72.86630656934307]},{"value":[24,76.79871532846715]},{"value":[24,76.79871532846715]},{"value":[24,76.79871532846715]},{"value":[24,76.79871532846715]},{"value":[25,80.73112408759124]}]}]},"dispose":true},"evals":[],"jsHooks":[]}
 e_get_data(echart)[[1]]
 #>    speed dist   .fitted     .resid       .hat   .sigma      .cooksd  .std.resid
 #> 1      4    2 -1.849460   3.849460 0.11486131 15.53088 4.592312e-03  0.26604155
@@ -109,9 +86,3 @@ e_get_data(echart)[[1]]
 #> 49    24  120 76.798715  43.201285 0.07398540 14.09546 3.403959e-01  2.91906038
 #> 50    25   85 80.731124   4.268876 0.08727007 15.52867 4.035418e-03  0.29053451
 ```
-
-</div>
-
-</div>
-
-</div>

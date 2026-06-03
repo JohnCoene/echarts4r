@@ -1,8 +1,4 @@
-<div id="main" class="col-md-9" role="main">
-
 # echarts4r
-
-<div class="section level1">
 
 [![R-CMD-check](https://github.com/JohnCoene/echarts4r/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JohnCoene/echarts4r/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
@@ -14,47 +10,25 @@ issues](https://img.shields.io/github/issues-closed/JohnCoene/echarts4r.svg)](ht
 [![Coveralls test
 coverage](https://coveralls.io/repos/github/JohnCoene/echarts4r/badge.svg)](https://coveralls.io/github/JohnCoene/echarts4r)
 
-<div class="row">
-
-<div class="col-md-4">
-
-![](reference/figures/logo.png)
-
-</div>
-
-<div class="col-md-8">
+![Echarts4r Logo Image](reference/figures/logo.png)
 
 Interactive visualisations for R via [Apache
 ECharts](https://echarts.apache.org/)
 
-[Get Started](http://echarts4r.john-coene.com/articles/get_started.md)
-[Reference](http://echarts4r.john-coene.com/reference/)
-[Timeline](http://echarts4r.john-coene.com/articles/timeline) [Shiny
+[Get Started](https://echarts4r.john-coene.com/articles/get_started.md)
+[Reference](https://echarts4r.john-coene.com/reference/)
+[Timeline](https://echarts4r.john-coene.com/articles/timeline) [Shiny
 Demo](http://shiny.john-coene.com/echarts4rShiny)
 
-</div>
-
-</div>
-
   
   
-
-<div class="thumbnail" style="text-align:center;">
-
-<div class="caption">
 
 #### Version 6
 
 Explore new features available on version 6 of echarts.js!
 
   
-[Explore](http://echarts4r.john-coene.com/articles/v6)
-
-</div>
-
-</div>
-
-<div class="section level2">
+[Explore](https://echarts4r.john-coene.com/articles/v6)
 
 ## Introduction
 
@@ -65,21 +39,9 @@ introducing echarts4r.
 
   
 
-<div class="panel panel-default">
-
-<div class="panel-body">
-
 You can learn how to build such R packages for interactive
 visualisations with the book [JavaScript for
 R](https://javascript-for-r.com/).
-
-</div>
-
-</div>
-
-</div>
-
-<div class="section level2">
 
 ## Installation
 
@@ -87,74 +49,42 @@ The package is available on
 [CRAN](https://CRAN.R-project.org/package=echarts4r). The full
 installation can be obtained with:
 
-<div id="cb1" class="sourceCode">
-
 ``` r
 install.packages("echarts4r")
 ```
-
-</div>
 
 However, if you only want a *lite* version you can simply do, this is
 useful for a lighter version that installs faster if you do not want to
 use any of the geospatial features of the package:
 
-<div id="cb2" class="sourceCode">
-
 ``` r
 install.packages("echarts4r", dependencies = c("Depends", "Imports"))
 ```
 
-</div>
-
 You can also install the *unstable* development version of echarts4r
 with `remotes` from Github, see
-[changes](http://echarts4r.john-coene.com/news/index.md).
-
-<div id="cb3" class="sourceCode">
+[changes](https://echarts4r.john-coene.com/news/index.md).
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("JohnCoene/echarts4r")
 ```
 
-</div>
-
 如果您位于中国，请安装:
-
-<div id="cb4" class="sourceCode">
 
 ``` r
 # install.packages("remotes")
 remotes::install_git("https://gitee.com/JohnCoene/echarts4r")
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Companions
 
 Companion packages to make `echarts4r` even better. You can install and
 load the whole suite with:
 
-<div id="cb5" class="sourceCode">
-
 ``` r
 remotes::install_github("JohnCoene/echarts4r.suite")
 ```
-
-</div>
-
-<div class="row">
-
-<div class="col-md-6">
-
-<div class="thumbnail" style="text-align:center;">
-
-<div class="caption">
 
 #### echarts4r.assets
 
@@ -168,18 +98,6 @@ remotes::install_github('JohnCoene/echarts4r.assets')
 [Website](https://echarts4r-assets.john-coene.com/)
 [Github](https://github.com/JohnCoene/echarts4r.assets)
 
-</div>
-
-</div>
-
-</div>
-
-<div class="col-md-6">
-
-<div class="thumbnail" style="text-align:center;">
-
-<div class="caption">
-
 #### echarts4r.maps
 
 A collection of 215 country maps to use with geo-spatial visualisations.
@@ -191,908 +109,1051 @@ remotes::install_github('JohnCoene/echarts4r.maps')
 [Website](https://echarts4r-maps.john-coene.com/)
 [Github](https://github.com/JohnCoene/echarts4r.maps)
 
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="main" class="col-md-9" role="main">
-
 # Package index
-
-<div class="section level2">
 
 ## Initialisation and Shiny
 
 Initialise echarts and use in Shiny.
 
-</div>
-
-<div class="section level2">
-
--   `e_charts()` `e_charts_()` `e_chart()` `e_data()` : Initialise
+- [`e_charts()`](https://echarts4r.john-coene.com/reference/init.md)
+  [`e_charts_()`](https://echarts4r.john-coene.com/reference/init.md)
+  [`e_chart()`](https://echarts4r.john-coene.com/reference/init.md)
+  [`e_data()`](https://echarts4r.john-coene.com/reference/init.md) :
+  Initialise
 
 &nbsp;
 
--   `echarts4rOutput()` `renderEcharts4r()` `echarts4rProxy()`
-    `echarts4r_proxy()` : Shiny bindings for echarts4r
-
-</div>
-
-<div class="section level2">
+- [`echarts4rOutput()`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md)
+  [`renderEcharts4r()`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md)
+  [`echarts4rProxy()`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md)
+  [`echarts4r_proxy()`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md)
+  : Shiny bindings for echarts4r
 
 ## Chart Types
 
 Chart types available in echarts4r these can work for static plots or
 Shiny proxies
 
-</div>
-
-<div class="section level2">
-
--   `e_band()` `e_band_()` : Confidence bands
+- [`e_band()`](https://echarts4r.john-coene.com/reference/band.md)
+  [`e_band_()`](https://echarts4r.john-coene.com/reference/band.md) :
+  Confidence bands
 
 &nbsp;
 
--   `e_band2()` `e_band2_()` : Area bands
+- [`e_band2()`](https://echarts4r.john-coene.com/reference/band2.md)
+  [`e_band2_()`](https://echarts4r.john-coene.com/reference/band2.md) :
+  Area bands
 
 &nbsp;
 
--   `e_area()` `e_area_()` : Area
+- [`e_area()`](https://echarts4r.john-coene.com/reference/e_area.md)
+  [`e_area_()`](https://echarts4r.john-coene.com/reference/e_area.md) :
+  Area
 
 &nbsp;
 
--   `e_bar()` `e_bar_()` : Bar and Line chart
+- [`e_bar()`](https://echarts4r.john-coene.com/reference/e_bar.md)
+  [`e_bar_()`](https://echarts4r.john-coene.com/reference/e_bar.md) :
+  Bar and Line chart
 
 &nbsp;
 
--   `e_barRange()` : Bar range chart
+- [`e_barRange()`](https://echarts4r.john-coene.com/reference/e_barRange.md)
+  : Bar range chart
 
 &nbsp;
 
--   `e_bar_3d()` `e_bar_3d_()` : Bar 3D
+- [`e_bar_3d()`](https://echarts4r.john-coene.com/reference/e_bar_3d.md)
+  [`e_bar_3d_()`](https://echarts4r.john-coene.com/reference/e_bar_3d.md)
+  : Bar 3D
 
 &nbsp;
 
--   `e_cloud()` `e_cloud_()` : Wordcloud
+- [`e_cloud()`](https://echarts4r.john-coene.com/reference/e_cloud.md)
+  [`e_cloud_()`](https://echarts4r.john-coene.com/reference/e_cloud.md)
+  : Wordcloud
 
 &nbsp;
 
--   `e_correlations()` : Correlation
+- [`e_correlations()`](https://echarts4r.john-coene.com/reference/e_correlations.md)
+  : Correlation
 
 &nbsp;
 
--   `e_line()` `e_line_()` : Line
+- [`e_line()`](https://echarts4r.john-coene.com/reference/e_line.md)
+  [`e_line_()`](https://echarts4r.john-coene.com/reference/e_line.md) :
+  Line
 
 &nbsp;
 
--   `e_lineRange()` : Line range chart
+- [`e_lineRange()`](https://echarts4r.john-coene.com/reference/e_lineRange.md)
+  : Line range chart
 
 &nbsp;
 
--   `e_lines()` `e_lines_()` : Lines
+- [`e_lines()`](https://echarts4r.john-coene.com/reference/e_lines.md)
+  [`e_lines_()`](https://echarts4r.john-coene.com/reference/e_lines.md)
+  : Lines
 
 &nbsp;
 
--   `e_lines_gl()` : Lines WebGL
+- [`e_lines_gl()`](https://echarts4r.john-coene.com/reference/e_lines_gl.md)
+  : Lines WebGL
 
 &nbsp;
 
--   `e_graphic_g()` `e_group_g()` `e_image_g()` `e_text_g()`
-    `e_rect_g()` `e_circle_g()` `e_ring_g()` `e_sector_g()` `e_arc_g()`
-    `e_polygon_g()` `e_polyline_g()` `e_line_g()` `e_bezier_curve_g()` :
-    Graphic
+- [`e_graphic_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_group_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_image_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_text_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_rect_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_circle_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_ring_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_sector_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_arc_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_polygon_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_polyline_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_line_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_bezier_curve_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  : Graphic
 
 &nbsp;
 
--   `e_lines_3d()` `e_line_3d()` `e_lines_3d_()` `e_line_3d_()` : Lines
-    3D
+- [`e_lines_3d()`](https://echarts4r.john-coene.com/reference/line3D.md)
+  [`e_line_3d()`](https://echarts4r.john-coene.com/reference/line3D.md)
+  [`e_lines_3d_()`](https://echarts4r.john-coene.com/reference/line3D.md)
+  [`e_line_3d_()`](https://echarts4r.john-coene.com/reference/line3D.md)
+  : Lines 3D
 
 &nbsp;
 
--   `e_scatter_3d()` `e_scatter_3d_()` : Scatter 3D
+- [`e_scatter_3d()`](https://echarts4r.john-coene.com/reference/e_scatter_3d.md)
+  [`e_scatter_3d_()`](https://echarts4r.john-coene.com/reference/e_scatter_3d.md)
+  : Scatter 3D
 
 &nbsp;
 
--   `e_scatter_gl()` `e_scatter_gl_()` : Scatter GL
+- [`e_scatter_gl()`](https://echarts4r.john-coene.com/reference/e_scatter_gl.md)
+  [`e_scatter_gl_()`](https://echarts4r.john-coene.com/reference/e_scatter_gl.md)
+  : Scatter GL
 
 &nbsp;
 
--   `e_scatter_matrix()` : Generate scatter point for matrix
+- [`e_scatter_matrix()`](https://echarts4r.john-coene.com/reference/e_scatter_matrix.md)
+  : Generate scatter point for matrix
 
 &nbsp;
 
--   `e_scatter()` `e_effect_scatter()` `e_scale()` `e_scatter_()`
-    `e_effect_scatter_()` : Scatter
+- [`e_scatter()`](https://echarts4r.john-coene.com/reference/scatter.md)
+  [`e_effect_scatter()`](https://echarts4r.john-coene.com/reference/scatter.md)
+  [`e_scale()`](https://echarts4r.john-coene.com/reference/scatter.md)
+  [`e_scatter_()`](https://echarts4r.john-coene.com/reference/scatter.md)
+  [`e_effect_scatter_()`](https://echarts4r.john-coene.com/reference/scatter.md)
+  : Scatter
 
 &nbsp;
 
--   `e_pie()` `e_pie_()` : Pie
+- [`e_pie()`](https://echarts4r.john-coene.com/reference/e_pie.md)
+  [`e_pie_()`](https://echarts4r.john-coene.com/reference/e_pie.md) :
+  Pie
 
 &nbsp;
 
--   `e_pie_matrix()` : Generate pie chart for matrix
+- [`e_pie_matrix()`](https://echarts4r.john-coene.com/reference/e_pie_matrix.md)
+  : Generate pie chart for matrix
 
 &nbsp;
 
--   `e_pie_select()` `e_pie_unselect()` : Select & Unselect Pie
+- [`e_pie_select()`](https://echarts4r.john-coene.com/reference/pie_action.md)
+  [`e_pie_unselect()`](https://echarts4r.john-coene.com/reference/pie_action.md)
+  : Select & Unselect Pie
 
 &nbsp;
 
--   `e_radar()` `e_radar_()` : Radar
+- [`e_radar()`](https://echarts4r.john-coene.com/reference/e_radar.md)
+  [`e_radar_()`](https://echarts4r.john-coene.com/reference/e_radar.md)
+  : Radar
 
 &nbsp;
 
--   `e_radar_opts()` : Radar axis
+- [`e_radar_opts()`](https://echarts4r.john-coene.com/reference/e_radar_opts.md)
+  : Radar axis
 
 &nbsp;
 
--   `e_sankey()` `e_sankey_()` : Sankey
+- [`e_sankey()`](https://echarts4r.john-coene.com/reference/e_sankey.md)
+  [`e_sankey_()`](https://echarts4r.john-coene.com/reference/e_sankey.md)
+  : Sankey
 
 &nbsp;
 
--   `e_step()` `e_step_()` : Step
+- [`e_step()`](https://echarts4r.john-coene.com/reference/e_step.md)
+  [`e_step_()`](https://echarts4r.john-coene.com/reference/e_step.md) :
+  Step
 
 &nbsp;
 
--   `e_sunburst()` `e_sunburst_()` : Sunburst
+- [`e_sunburst()`](https://echarts4r.john-coene.com/reference/e_sunburst.md)
+  [`e_sunburst_()`](https://echarts4r.john-coene.com/reference/e_sunburst.md)
+  : Sunburst
 
 &nbsp;
 
--   `e_lm()` `e_glm()` `e_loess()` : Smooth
+- [`e_lm()`](https://echarts4r.john-coene.com/reference/smooth.md)
+  [`e_glm()`](https://echarts4r.john-coene.com/reference/smooth.md)
+  [`e_loess()`](https://echarts4r.john-coene.com/reference/smooth.md) :
+  Smooth
 
 &nbsp;
 
--   `e_candle()` `e_candle_()` : Candlestick
+- [`e_candle()`](https://echarts4r.john-coene.com/reference/e_candle.md)
+  [`e_candle_()`](https://echarts4r.john-coene.com/reference/e_candle.md)
+  : Candlestick
 
 &nbsp;
 
--   `e_river()` `e_river_()` : River
+- [`e_river()`](https://echarts4r.john-coene.com/reference/e_river.md)
+  [`e_river_()`](https://echarts4r.john-coene.com/reference/e_river.md)
+  : River
 
 &nbsp;
 
--   `e_boxplot()` `e_boxplot_()` : Boxplot
+- [`e_boxplot()`](https://echarts4r.john-coene.com/reference/e_boxplot.md)
+  [`e_boxplot_()`](https://echarts4r.john-coene.com/reference/e_boxplot.md)
+  : Boxplot
 
 &nbsp;
 
--   `e_error_bar()` `e_error_bar_()` : Error bar
+- [`e_error_bar()`](https://echarts4r.john-coene.com/reference/errorbar.md)
+  [`e_error_bar_()`](https://echarts4r.john-coene.com/reference/errorbar.md)
+  : Error bar
 
 &nbsp;
 
--   `e_histogram()` `e_density()` `e_histogram_()` `e_density_()` :
-    Histogram & Density
+- [`e_histogram()`](https://echarts4r.john-coene.com/reference/histogram.md)
+  [`e_density()`](https://echarts4r.john-coene.com/reference/histogram.md)
+  [`e_histogram_()`](https://echarts4r.john-coene.com/reference/histogram.md)
+  [`e_density_()`](https://echarts4r.john-coene.com/reference/histogram.md)
+  : Histogram & Density
 
 &nbsp;
 
--   `e_liquid()` `e_liquid_()` : Liquid fill
+- [`e_liquid()`](https://echarts4r.john-coene.com/reference/e_liquid.md)
+  [`e_liquid_()`](https://echarts4r.john-coene.com/reference/e_liquid.md)
+  : Liquid fill
 
 &nbsp;
 
--   `e_tree()` `e_tree_()` : Tree
+- [`e_tree()`](https://echarts4r.john-coene.com/reference/e_tree.md)
+  [`e_tree_()`](https://echarts4r.john-coene.com/reference/e_tree.md) :
+  Tree
 
 &nbsp;
 
--   `e_treemap()` `e_treemap_()` : Treemap
+- [`e_treemap()`](https://echarts4r.john-coene.com/reference/e_treemap.md)
+  [`e_treemap_()`](https://echarts4r.john-coene.com/reference/e_treemap.md)
+  : Treemap
 
 &nbsp;
 
--   `e_gauge()` `e_gauge_()` : Gauge
+- [`e_gauge()`](https://echarts4r.john-coene.com/reference/e_gauge.md)
+  [`e_gauge_()`](https://echarts4r.john-coene.com/reference/e_gauge.md)
+  : Gauge
 
 &nbsp;
 
--   `e_chord()` `e_chord_()` : Chord
+- [`e_chord()`](https://echarts4r.john-coene.com/reference/e_chord.md)
+  [`e_chord_()`](https://echarts4r.john-coene.com/reference/e_chord.md)
+  : Chord
 
 &nbsp;
 
--   `e_parallel()` `e_parallel_()` : Parallel
+- [`e_parallel()`](https://echarts4r.john-coene.com/reference/e_parallel.md)
+  [`e_parallel_()`](https://echarts4r.john-coene.com/reference/e_parallel.md)
+  : Parallel
 
 &nbsp;
 
--   `e_surface()` `e_surface_()` : Surface
+- [`e_surface()`](https://echarts4r.john-coene.com/reference/e_surface.md)
+  [`e_surface_()`](https://echarts4r.john-coene.com/reference/e_surface.md)
+  : Surface
 
 &nbsp;
 
--   `e_flow_gl()` `e_flow_gl_()` : Flow GL
+- [`e_flow_gl()`](https://echarts4r.john-coene.com/reference/e_flow_gl.md)
+  [`e_flow_gl_()`](https://echarts4r.john-coene.com/reference/e_flow_gl.md)
+  : Flow GL
 
 &nbsp;
 
--   `e_graph()` `e_graph_gl()` `e_graph_nodes()` `e_graph_edges()` :
-    Graph
+- [`e_graph()`](https://echarts4r.john-coene.com/reference/graph.md)
+  [`e_graph_gl()`](https://echarts4r.john-coene.com/reference/graph.md)
+  [`e_graph_nodes()`](https://echarts4r.john-coene.com/reference/graph.md)
+  [`e_graph_edges()`](https://echarts4r.john-coene.com/reference/graph.md)
+  : Graph
 
 &nbsp;
 
--   `e_funnel()` `e_funnel_()` : Funnel
+- [`e_funnel()`](https://echarts4r.john-coene.com/reference/e_funnel.md)
+  [`e_funnel_()`](https://echarts4r.john-coene.com/reference/e_funnel.md)
+  : Funnel
 
 &nbsp;
 
--   `e_heatmap()` `e_heatmap_()` : Heatmap
+- [`e_heatmap()`](https://echarts4r.john-coene.com/reference/e_heatmap.md)
+  [`e_heatmap_()`](https://echarts4r.john-coene.com/reference/e_heatmap.md)
+  : Heatmap
 
 &nbsp;
 
--   `e_heatmap_matrix()` : Generate heatmap for matrix
+- [`e_heatmap_matrix()`](https://echarts4r.john-coene.com/reference/e_heatmap_matrix.md)
+  : Generate heatmap for matrix
 
 &nbsp;
 
--   `e_pictorial()` `e_pictorial_()` : Pictorial
+- [`e_pictorial()`](https://echarts4r.john-coene.com/reference/e_pictorial.md)
+  [`e_pictorial_()`](https://echarts4r.john-coene.com/reference/e_pictorial.md)
+  : Pictorial
 
 &nbsp;
 
--   `e_doughnut()` : Segmented Doughnut
+- [`e_doughnut()`](https://echarts4r.john-coene.com/reference/e_doughnut.md)
+  : Segmented Doughnut
 
 &nbsp;
 
--   `e_violin()` : Violin chart
+- [`e_violin()`](https://echarts4r.john-coene.com/reference/e_violin.md)
+  : Violin chart
 
 &nbsp;
 
--   `e_contour()` : Contour chart
+- [`e_contour()`](https://echarts4r.john-coene.com/reference/e_contour.md)
+  : Contour chart
 
 &nbsp;
 
--   `e_stage()` : Stage chart
-
-</div>
-
-<div class="section level2">
+- [`e_stage()`](https://echarts4r.john-coene.com/reference/e_stage.md) :
+  Stage chart
 
 ## Geo
 
 Geographical chart types
 
-</div>
-
-<div class="section level2">
-
--   `e_map_register()` `e_svg_register()` `e_map_register_p()`
-    `e_map_register_ui()` : Register map
-
-&nbsp;
-
--   `e_map()` `e_map_()` `e_svg()` `e_svg_()` `e_map_3d()` `e_map_3d_()`
-    `e_map_3d_custom()` : Choropleth
+- [`e_map_register()`](https://echarts4r.john-coene.com/reference/e_map_register.md)
+  [`e_svg_register()`](https://echarts4r.john-coene.com/reference/e_map_register.md)
+  [`e_map_register_p()`](https://echarts4r.john-coene.com/reference/e_map_register.md)
+  [`e_map_register_ui()`](https://echarts4r.john-coene.com/reference/e_map_register.md)
+  : Register map
 
 &nbsp;
 
--   `e_mapbox()` : Mapbox
+- [`e_map()`](https://echarts4r.john-coene.com/reference/map.md)
+  [`e_map_()`](https://echarts4r.john-coene.com/reference/map.md)
+  [`e_svg()`](https://echarts4r.john-coene.com/reference/map.md)
+  [`e_svg_()`](https://echarts4r.john-coene.com/reference/map.md)
+  [`e_map_3d()`](https://echarts4r.john-coene.com/reference/map.md)
+  [`e_map_3d_()`](https://echarts4r.john-coene.com/reference/map.md)
+  [`e_map_3d_custom()`](https://echarts4r.john-coene.com/reference/map.md)
+  : Choropleth
 
 &nbsp;
 
--   `e_map_select()` `e_map_unselect()` `e_map_toggle_select()` : Map
-    Actions
+- [`e_mapbox()`](https://echarts4r.john-coene.com/reference/mapbox.md) :
+  Mapbox
 
 &nbsp;
 
--   `e_geo()` : Geo
+- [`e_map_select()`](https://echarts4r.john-coene.com/reference/map_actions.md)
+  [`e_map_unselect()`](https://echarts4r.john-coene.com/reference/map_actions.md)
+  [`e_map_toggle_select()`](https://echarts4r.john-coene.com/reference/map_actions.md)
+  : Map Actions
 
 &nbsp;
 
--   `e_geoFacet()` : Create geoFacet Echart
+- [`e_geo()`](https://echarts4r.john-coene.com/reference/e_geo.md) : Geo
 
 &nbsp;
 
--   `e_geo_3d()` `e_geo_3d_()` : Geo 3D
+- [`e_geoFacet()`](https://echarts4r.john-coene.com/reference/e_geoFacet.md)
+  : Create geoFacet Echart
 
 &nbsp;
 
--   `e_globe()` : Globe
+- [`e_geo_3d()`](https://echarts4r.john-coene.com/reference/e_geo_3d.md)
+  [`e_geo_3d_()`](https://echarts4r.john-coene.com/reference/e_geo_3d.md)
+  : Geo 3D
 
 &nbsp;
 
--   `e_leaflet()` `e_leaflet_tile()` : Leaflet
+- [`e_globe()`](https://echarts4r.john-coene.com/reference/e_globe.md) :
+  Globe
 
 &nbsp;
 
--   `e_flow_gl()` `e_flow_gl_()` : Flow GL
+- [`e_leaflet()`](https://echarts4r.john-coene.com/reference/leaflet.md)
+  [`e_leaflet_tile()`](https://echarts4r.john-coene.com/reference/leaflet.md)
+  : Leaflet
 
 &nbsp;
 
--   `e_lines_gl()` : Lines WebGL
+- [`e_flow_gl()`](https://echarts4r.john-coene.com/reference/e_flow_gl.md)
+  [`e_flow_gl_()`](https://echarts4r.john-coene.com/reference/e_flow_gl.md)
+  : Flow GL
 
 &nbsp;
 
--   `e_scatter_gl()` `e_scatter_gl_()` : Scatter GL
+- [`e_lines_gl()`](https://echarts4r.john-coene.com/reference/e_lines_gl.md)
+  : Lines WebGL
 
 &nbsp;
 
--   `e_graph()` `e_graph_gl()` `e_graph_nodes()` `e_graph_edges()` :
-    Graph
+- [`e_scatter_gl()`](https://echarts4r.john-coene.com/reference/e_scatter_gl.md)
+  [`e_scatter_gl_()`](https://echarts4r.john-coene.com/reference/e_scatter_gl.md)
+  : Scatter GL
 
-</div>
+&nbsp;
 
-<div class="section level2">
+- [`e_graph()`](https://echarts4r.john-coene.com/reference/graph.md)
+  [`e_graph_gl()`](https://echarts4r.john-coene.com/reference/graph.md)
+  [`e_graph_nodes()`](https://echarts4r.john-coene.com/reference/graph.md)
+  [`e_graph_edges()`](https://echarts4r.john-coene.com/reference/graph.md)
+  : Graph
 
 ## Tooltip
 
 Customise the tooltip
 
-</div>
-
-<div class="section level2">
-
--   `e_tooltip()` `e_tooltip_item_formatter()`
-    `e_tooltip_choro_formatter()` `e_tooltip_pie_formatter()`
-    `e_tooltip_pointer_formatter()` : Tooltip
-
-&nbsp;
-
--   `e_axis_pointer()` : Axis pointer
+- [`e_tooltip()`](https://echarts4r.john-coene.com/reference/e-tooltip.md)
+  [`e_tooltip_item_formatter()`](https://echarts4r.john-coene.com/reference/e-tooltip.md)
+  [`e_tooltip_choro_formatter()`](https://echarts4r.john-coene.com/reference/e-tooltip.md)
+  [`e_tooltip_pie_formatter()`](https://echarts4r.john-coene.com/reference/e-tooltip.md)
+  [`e_tooltip_pointer_formatter()`](https://echarts4r.john-coene.com/reference/e-tooltip.md)
+  : Tooltip
 
 &nbsp;
 
--   `e_showtip()` `e_hidetip()` : Show & Hide Tooltip
+- [`e_axis_pointer()`](https://echarts4r.john-coene.com/reference/e_axis_pointer.md)
+  : Axis pointer
 
-</div>
+&nbsp;
 
-<div class="section level2">
+- [`e_showtip()`](https://echarts4r.john-coene.com/reference/tooltip_action.md)
+  [`e_hidetip()`](https://echarts4r.john-coene.com/reference/tooltip_action.md)
+  : Show & Hide Tooltip
 
 ## Aesthetics
 
 Customise the aesthetics of the chart
 
-</div>
-
-<div class="section level2">
-
--   `e_theme()` `e_theme_custom()` `e_theme_register()` : Themes
-
-&nbsp;
-
--   `e_common()` : General options
+- [`e_theme()`](https://echarts4r.john-coene.com/reference/theme.md)
+  [`e_theme_custom()`](https://echarts4r.john-coene.com/reference/theme.md)
+  [`e_theme_register()`](https://echarts4r.john-coene.com/reference/theme.md)
+  : Themes
 
 &nbsp;
 
--   `e_color()` : Color
+- [`e_common()`](https://echarts4r.john-coene.com/reference/e_common.md)
+  : General options
 
 &nbsp;
 
--   `e_text_style()` : Text style
+- [`e_color()`](https://echarts4r.john-coene.com/reference/e_color.md) :
+  Color
 
 &nbsp;
 
--   `e_visual_map()` `e_visual_map_()` : Visual Map
+- [`e_text_style()`](https://echarts4r.john-coene.com/reference/e_text_style.md)
+  : Text style
 
 &nbsp;
 
--   `e_visual_map_range()` : Select Visual Map
+- [`e_visual_map()`](https://echarts4r.john-coene.com/reference/e_visual_map.md)
+  [`e_visual_map_()`](https://echarts4r.john-coene.com/reference/e_visual_map.md)
+  : Visual Map
 
 &nbsp;
 
--   `e_legend()` : Legend
+- [`e_visual_map_range()`](https://echarts4r.john-coene.com/reference/e_visual_map_range.md)
+  : Select Visual Map
 
 &nbsp;
 
--   `e_labels()` : Format labels
+- [`e_legend()`](https://echarts4r.john-coene.com/reference/e_legend.md)
+  : Legend
 
 &nbsp;
 
--   `e_animation()` : Animation
+- [`e_labels()`](https://echarts4r.john-coene.com/reference/e_labels.md)
+  : Format labels
 
 &nbsp;
 
--   `e_modularity()` : Modularity
+- [`e_animation()`](https://echarts4r.john-coene.com/reference/e_animation.md)
+  : Animation
 
 &nbsp;
 
--   `e_zigzag()` : Axis ZigZags
+- [`e_modularity()`](https://echarts4r.john-coene.com/reference/e_modularity.md)
+  : Modularity
 
 &nbsp;
 
--   `e_jitter()` : Axis Jitter
+- [`e_zigzag()`](https://echarts4r.john-coene.com/reference/e_zigzag.md)
+  : Axis ZigZags
 
-</div>
+&nbsp;
 
-<div class="section level2">
+- [`e_jitter()`](https://echarts4r.john-coene.com/reference/e_jitter.md)
+  : Axis Jitter
 
 ## Toolbox
 
 Provide a toolbox for your chart
 
-</div>
-
-<div class="section level2">
-
--   `e_toolbox_feature()` `e_toolbox()` : Toolbox
+- [`e_toolbox_feature()`](https://echarts4r.john-coene.com/reference/toolbox.md)
+  [`e_toolbox()`](https://echarts4r.john-coene.com/reference/toolbox.md)
+  : Toolbox
 
 &nbsp;
 
--   `e_zoom()` : Zoom
+- [`e_zoom()`](https://echarts4r.john-coene.com/reference/e_zoom.md) :
+  Zoom
 
 &nbsp;
 
--   `e_datazoom()` : Data zoom
+- [`e_datazoom()`](https://echarts4r.john-coene.com/reference/e_datazoom.md)
+  : Data zoom
 
 &nbsp;
 
--   `e_brush()` : Brush
-
-</div>
-
-<div class="section level2">
+- [`e_brush()`](https://echarts4r.john-coene.com/reference/e_brush.md) :
+  Brush
 
 ## Grid and Axis
 
 Customise the grid and axis
 
-</div>
-
-<div class="section level2">
-
--   `e_grid()` : Grid
+- [`e_grid()`](https://echarts4r.john-coene.com/reference/e_grid.md) :
+  Grid
 
 &nbsp;
 
--   `e_grid_3d()` : Grid
+- [`e_grid_3d()`](https://echarts4r.john-coene.com/reference/e_grid_3d.md)
+  : Grid
 
 &nbsp;
 
--   `e_hide_grid_lines()` : ' Hide Grid Lines
+- [`e_hide_grid_lines()`](https://echarts4r.john-coene.com/reference/e_hide_grid_lines.md)
+  : ' Hide Grid Lines
 
 &nbsp;
 
--   `e_angle_axis()` `e_angle_axis_()` : Angle axis
+- [`e_angle_axis()`](https://echarts4r.john-coene.com/reference/angle_axis.md)
+  [`e_angle_axis_()`](https://echarts4r.john-coene.com/reference/angle_axis.md)
+  : Angle axis
 
 &nbsp;
 
--   `e_axis()` `e_axis_()` `e_x_axis_()` `e_y_axis_()` `e_z_axis_()`
-    `e_x_axis()` `e_y_axis()` `e_z_axis()` `e_rm_axis()`
-    `e_axis_formatter()` : Axis
+- [`e_axis()`](https://echarts4r.john-coene.com/reference/axis.md)
+  [`e_axis_()`](https://echarts4r.john-coene.com/reference/axis.md)
+  [`e_x_axis_()`](https://echarts4r.john-coene.com/reference/axis.md)
+  [`e_y_axis_()`](https://echarts4r.john-coene.com/reference/axis.md)
+  [`e_z_axis_()`](https://echarts4r.john-coene.com/reference/axis.md)
+  [`e_x_axis()`](https://echarts4r.john-coene.com/reference/axis.md)
+  [`e_y_axis()`](https://echarts4r.john-coene.com/reference/axis.md)
+  [`e_z_axis()`](https://echarts4r.john-coene.com/reference/axis.md)
+  [`e_rm_axis()`](https://echarts4r.john-coene.com/reference/axis.md)
+  [`e_axis_formatter()`](https://echarts4r.john-coene.com/reference/axis.md)
+  : Axis
 
 &nbsp;
 
--   `e_axis_3d()` `e_x_axis_3d()` `e_y_axis_3d()` `e_z_axis_3d()` : Axis
-    3D
+- [`e_axis_3d()`](https://echarts4r.john-coene.com/reference/axis3d.md)
+  [`e_x_axis_3d()`](https://echarts4r.john-coene.com/reference/axis3d.md)
+  [`e_y_axis_3d()`](https://echarts4r.john-coene.com/reference/axis3d.md)
+  [`e_z_axis_3d()`](https://echarts4r.john-coene.com/reference/axis3d.md)
+  : Axis 3D
 
 &nbsp;
 
--   `e_axis_labels()` : Axis Labels
+- [`e_axis_labels()`](https://echarts4r.john-coene.com/reference/e_axis_labels.md)
+  : Axis Labels
 
 &nbsp;
 
--   `e_axis_pointer()` : Axis pointer
+- [`e_axis_pointer()`](https://echarts4r.john-coene.com/reference/e_axis_pointer.md)
+  : Axis pointer
 
 &nbsp;
 
--   `e_axis_stagger()` : Stagger Axis Labels
+- [`e_axis_stagger()`](https://echarts4r.john-coene.com/reference/e_axis_stagger.md)
+  : Stagger Axis Labels
 
 &nbsp;
 
--   `e_format_matrix_axis()` : Format Matrix Axis
+- [`e_format_matrix_axis()`](https://echarts4r.john-coene.com/reference/e_format_matrix_axis.md)
+  : Format Matrix Axis
 
 &nbsp;
 
--   `e_single_axis()` : Single Axis
+- [`e_single_axis()`](https://echarts4r.john-coene.com/reference/e_single_axis.md)
+  : Single Axis
 
 &nbsp;
 
--   `e_format_axis()` `e_format_x_axis()` `e_format_y_axis()` :
-    Formatters
+- [`e_format_axis()`](https://echarts4r.john-coene.com/reference/formatters.md)
+  [`e_format_x_axis()`](https://echarts4r.john-coene.com/reference/formatters.md)
+  [`e_format_y_axis()`](https://echarts4r.john-coene.com/reference/formatters.md)
+  : Formatters
 
 &nbsp;
 
--   `e_radius_axis()` `e_radius_axis_()` : Radius axis
+- [`e_radius_axis()`](https://echarts4r.john-coene.com/reference/radius_axis.md)
+  [`e_radius_axis_()`](https://echarts4r.john-coene.com/reference/radius_axis.md)
+  : Radius axis
 
 &nbsp;
 
--   `e_flip_coords()` : Flip coordinates
+- [`e_flip_coords()`](https://echarts4r.john-coene.com/reference/e_flip_coords.md)
+  : Flip coordinates
 
 &nbsp;
 
--   `e_color_range()` `e_color_range_()` : Color range
+- [`e_color_range()`](https://echarts4r.john-coene.com/reference/e_color_range.md)
+  [`e_color_range_()`](https://echarts4r.john-coene.com/reference/e_color_range.md)
+  : Color range
 
 &nbsp;
 
--   `e_polar()` : Polar
+- [`e_polar()`](https://echarts4r.john-coene.com/reference/e_polar.md) :
+  Polar
 
 &nbsp;
 
--   `e_calendar()` : Calendar
-
-</div>
-
-<div class="section level2">
+- [`e_calendar()`](https://echarts4r.john-coene.com/reference/e_calendar.md)
+  : Calendar
 
 ## Highlight and Downplay
 
 Highlight and downplay series or data points on the chart
 
-</div>
-
-<div class="section level2">
-
--   `e_highlight()` `e_downplay()` : Highlight & Downplay
+- [`e_highlight()`](https://echarts4r.john-coene.com/reference/highlight_action.md)
+  [`e_downplay()`](https://echarts4r.john-coene.com/reference/highlight_action.md)
+  : Highlight & Downplay
 
 &nbsp;
 
--   `e_highlight_p()` `e_downplay_p()` : Highlight & Downplay Proxy
+- [`e_highlight_p()`](https://echarts4r.john-coene.com/reference/highlight_proxy.md)
+  [`e_downplay_p()`](https://echarts4r.john-coene.com/reference/highlight_proxy.md)
+  : Highlight & Downplay Proxy
 
 &nbsp;
 
--   `e_mark_p()` `e_mark_p_()` : Mark
+- [`e_mark_p()`](https://echarts4r.john-coene.com/reference/e_mark_p.md)
+  [`e_mark_p_()`](https://echarts4r.john-coene.com/reference/e_mark_p.md)
+  : Mark
 
 &nbsp;
 
--   `e_mark_point()` `e_mark_line()` `e_mark_area()` : Mark point
+- [`e_mark_point()`](https://echarts4r.john-coene.com/reference/mark.md)
+  [`e_mark_line()`](https://echarts4r.john-coene.com/reference/mark.md)
+  [`e_mark_area()`](https://echarts4r.john-coene.com/reference/mark.md)
+  : Mark point
 
 &nbsp;
 
--   `e_focus_adjacency()` `e_unfocus_adjacency()` : Nodes Adjacency
+- [`e_focus_adjacency()`](https://echarts4r.john-coene.com/reference/graph_action.md)
+  [`e_unfocus_adjacency()`](https://echarts4r.john-coene.com/reference/graph_action.md)
+  : Nodes Adjacency
 
 &nbsp;
 
--   `e_focus_adjacency_p()` `e_unfocus_adjacency_p()` : Node Adjacency
+- [`e_focus_adjacency_p()`](https://echarts4r.john-coene.com/reference/node_adjacency.md)
+  [`e_unfocus_adjacency_p()`](https://echarts4r.john-coene.com/reference/node_adjacency.md)
+  : Node Adjacency
 
 &nbsp;
 
--   `e_pie_select()` `e_pie_unselect()` : Select & Unselect Pie
+- [`e_pie_select()`](https://echarts4r.john-coene.com/reference/pie_action.md)
+  [`e_pie_unselect()`](https://echarts4r.john-coene.com/reference/pie_action.md)
+  : Select & Unselect Pie
 
 &nbsp;
 
--   `e_legend_select()` `e_legend_unselect()` `e_legend_toggle_select()`
-    `e_legend_scroll()` : Legend
-
-</div>
-
-<div class="section level2">
+- [`e_legend_select()`](https://echarts4r.john-coene.com/reference/legend_action.md)
+  [`e_legend_unselect()`](https://echarts4r.john-coene.com/reference/legend_action.md)
+  [`e_legend_toggle_select()`](https://echarts4r.john-coene.com/reference/legend_action.md)
+  [`e_legend_scroll()`](https://echarts4r.john-coene.com/reference/legend_action.md)
+  : Legend
 
 ## Shiny
 
 Functions relevant to using echarts4r with Shiny.
 
-</div>
-
-<div class="section level2">
-
--   `e_append1_p()` `e_append1_p_()` `e_append2_p()` `e_append2_p_()` :
-    Append Proxy
-
-&nbsp;
-
--   `e_dispatch_action_p()` : Dispatch Action
+- [`e_append1_p()`](https://echarts4r.john-coene.com/reference/append.md)
+  [`e_append1_p_()`](https://echarts4r.john-coene.com/reference/append.md)
+  [`e_append2_p()`](https://echarts4r.john-coene.com/reference/append.md)
+  [`e_append2_p_()`](https://echarts4r.john-coene.com/reference/append.md)
+  : Append Proxy
 
 &nbsp;
 
--   `e_draw_p()` : Draw
+- [`e_dispatch_action_p()`](https://echarts4r.john-coene.com/reference/e_dispatch_action_p.md)
+  : Dispatch Action
 
 &nbsp;
 
--   `e_execute()` `e_execute_p()` : Send
+- [`e_draw_p()`](https://echarts4r.john-coene.com/reference/e_draw_p.md)
+  : Draw
 
 &nbsp;
 
--   `e_map_register()` `e_svg_register()` `e_map_register_p()`
-    `e_map_register_ui()` : Register map
+- [`e_execute()`](https://echarts4r.john-coene.com/reference/e_execute.md)
+  [`e_execute_p()`](https://echarts4r.john-coene.com/reference/e_execute.md)
+  : Send
 
 &nbsp;
 
--   `e_mark_p()` `e_mark_p_()` : Mark
+- [`e_map_register()`](https://echarts4r.john-coene.com/reference/e_map_register.md)
+  [`e_svg_register()`](https://echarts4r.john-coene.com/reference/e_map_register.md)
+  [`e_map_register_p()`](https://echarts4r.john-coene.com/reference/e_map_register.md)
+  [`e_map_register_ui()`](https://echarts4r.john-coene.com/reference/e_map_register.md)
+  : Register map
 
 &nbsp;
 
--   `e_remove_serie_p()` `e_remove_serie()` : Remove Serie
+- [`e_mark_p()`](https://echarts4r.john-coene.com/reference/e_mark_p.md)
+  [`e_mark_p_()`](https://echarts4r.john-coene.com/reference/e_mark_p.md)
+  : Mark
 
 &nbsp;
 
--   `e_highlight_p()` `e_downplay_p()` : Highlight & Downplay Proxy
+- [`e_remove_serie_p()`](https://echarts4r.john-coene.com/reference/e_remove.md)
+  [`e_remove_serie()`](https://echarts4r.john-coene.com/reference/e_remove.md)
+  : Remove Serie
 
 &nbsp;
 
--   `e_focus_adjacency_p()` `e_unfocus_adjacency_p()` : Node Adjacency
+- [`e_highlight_p()`](https://echarts4r.john-coene.com/reference/highlight_proxy.md)
+  [`e_downplay_p()`](https://echarts4r.john-coene.com/reference/highlight_proxy.md)
+  : Highlight & Downplay Proxy
 
 &nbsp;
 
--   `e_showtip_p()` `e_hidetip_p()` : Tooltip Proxy
+- [`e_focus_adjacency_p()`](https://echarts4r.john-coene.com/reference/node_adjacency.md)
+  [`e_unfocus_adjacency_p()`](https://echarts4r.john-coene.com/reference/node_adjacency.md)
+  : Node Adjacency
 
 &nbsp;
 
--   `e_resize()` : Resize
+- [`e_showtip_p()`](https://echarts4r.john-coene.com/reference/tooltip_proxy.md)
+  [`e_hidetip_p()`](https://echarts4r.john-coene.com/reference/tooltip_proxy.md)
+  : Tooltip Proxy
 
 &nbsp;
 
--   `e_on()` `e_off()` : Callbacks
+- [`e_resize()`](https://echarts4r.john-coene.com/reference/e_resize.md)
+  : Resize
 
 &nbsp;
 
--   `e_button()` : Button
+- [`e_on()`](https://echarts4r.john-coene.com/reference/callbacks.md)
+  [`e_off()`](https://echarts4r.john-coene.com/reference/callbacks.md) :
+  Callbacks
 
 &nbsp;
 
--   `e_restore()` : Restore Toolbox
+- [`e_button()`](https://echarts4r.john-coene.com/reference/e_button.md)
+  : Button
 
 &nbsp;
 
--   `e_capture()` : Capture event
+- [`e_restore()`](https://echarts4r.john-coene.com/reference/e_restore.md)
+  : Restore Toolbox
 
 &nbsp;
 
--   `e_show_loading()` `e_hide_loading()` : Loading
+- [`e_capture()`](https://echarts4r.john-coene.com/reference/e_capture.md)
+  : Capture event
 
 &nbsp;
 
--   `e_merge()` : Merge options in chart, used in e_mark
+- [`e_show_loading()`](https://echarts4r.john-coene.com/reference/loading.md)
+  [`e_hide_loading()`](https://echarts4r.john-coene.com/reference/loading.md)
+  : Loading
 
 &nbsp;
 
--   `e_get_zr()` : Blank Area
+- [`e_merge()`](https://echarts4r.john-coene.com/reference/e_merge.md) :
+  Merge options in chart, used in e_mark
 
 &nbsp;
 
--   `echarts4rBox()` : Box
+- [`e_get_zr()`](https://echarts4r.john-coene.com/reference/e_get_zr.md)
+  : Blank Area
 
 &nbsp;
 
--   `renderEcharts4rBox()` : Render box
+- [`echarts4rBox()`](https://echarts4r.john-coene.com/reference/echarts4rBox.md)
+  : Box
 
 &nbsp;
 
--   `echarts4rBoxOutput()` : Box Output
+- [`renderEcharts4rBox()`](https://echarts4r.john-coene.com/reference/renderEcharts4rBox.md)
+  : Render box
 
-</div>
+&nbsp;
 
-<div class="section level2">
+- [`echarts4rBoxOutput()`](https://echarts4r.john-coene.com/reference/echarts4rBoxOutput.md)
+  : Box Output
 
 ## Graphics
 
 Add graphics to charts.
 
-</div>
-
-<div class="section level2">
-
--   `e_graphic_g()` `e_group_g()` `e_image_g()` `e_text_g()`
-    `e_rect_g()` `e_circle_g()` `e_ring_g()` `e_sector_g()` `e_arc_g()`
-    `e_polygon_g()` `e_polyline_g()` `e_line_g()` `e_bezier_curve_g()` :
-    Graphic
+- [`e_graphic_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_group_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_image_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_text_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_rect_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_circle_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_ring_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_sector_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_arc_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_polygon_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_polyline_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_line_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  [`e_bezier_curve_g()`](https://echarts4r.john-coene.com/reference/graphic.md)
+  : Graphic
 
 &nbsp;
 
--   `e_draft()` : Draft
+- [`e_draft()`](https://echarts4r.john-coene.com/reference/e_draft.md) :
+  Draft
 
 &nbsp;
 
--   `e_annotations()` : Add annotations to a chart
-
-</div>
-
-<div class="section level2">
+- [`e_annotations()`](https://echarts4r.john-coene.com/reference/e_annotations.md)
+  : Add annotations to a chart
 
 ## Datasets
 
 Example datasets included with the package.
 
-</div>
-
-<div class="section level2">
-
--   `airports` : 2011 airport data
+- [`airports`](https://echarts4r.john-coene.com/reference/airports.md) :
+  2011 airport data
 
 &nbsp;
 
--   `buildings_sample` : Buildings sample set
+- [`buildings_sample`](https://echarts4r.john-coene.com/reference/buildings_sample.md)
+  : Buildings sample set
 
 &nbsp;
 
--   `buildings_sample_json` : Buildings sample set in json format
+- [`buildings_sample_json`](https://echarts4r.john-coene.com/reference/buildings_sample_json.md)
+  : Buildings sample set in json format
 
 &nbsp;
 
--   `flights` : 2011 flight path data
+- [`flights`](https://echarts4r.john-coene.com/reference/flights.md) :
+  2011 flight path data
 
 &nbsp;
 
--   `population` : World population data
-
-</div>
-
-<div class="section level2">
+- [`population`](https://echarts4r.john-coene.com/reference/population.md)
+  : World population data
 
 ## Connect
 
 Connect charts and their interactions.
 
-</div>
-
-<div class="section level2">
-
--   `e_connect()` `e_group()` `e_connect_group()` `e_disconnect_group()`
-    `e_arrange()` : Connect charts
+- [`e_connect()`](https://echarts4r.john-coene.com/reference/connections.md)
+  [`e_group()`](https://echarts4r.john-coene.com/reference/connections.md)
+  [`e_connect_group()`](https://echarts4r.john-coene.com/reference/connections.md)
+  [`e_disconnect_group()`](https://echarts4r.john-coene.com/reference/connections.md)
+  [`e_arrange()`](https://echarts4r.john-coene.com/reference/connections.md)
+  : Connect charts
 
 &nbsp;
 
--   `e_facet()` : Facet
-
-</div>
-
-<div class="section level2">
+- [`e_facet()`](https://echarts4r.john-coene.com/reference/e_facet.md) :
+  Facet
 
 ## Matrix
 
 Create custom matrix tables with charts
 
-</div>
-
-<div class="section level2">
-
--   `e_format_matrix_axis()` : Format Matrix Axis
+- [`e_format_matrix_axis()`](https://echarts4r.john-coene.com/reference/e_format_matrix_axis.md)
+  : Format Matrix Axis
 
 &nbsp;
 
--   `e_heatmap_matrix()` : Generate heatmap for matrix
+- [`e_heatmap_matrix()`](https://echarts4r.john-coene.com/reference/e_heatmap_matrix.md)
+  : Generate heatmap for matrix
 
 &nbsp;
 
--   `e_matrix()` : Generate Matrix
+- [`e_matrix()`](https://echarts4r.john-coene.com/reference/e_matrix.md)
+  : Generate Matrix
 
 &nbsp;
 
--   `e_matrix_addChart()` : Add new chart to matrix chart
+- [`e_matrix_addChart()`](https://echarts4r.john-coene.com/reference/e_matrix_addChart.md)
+  : Add new chart to matrix chart
 
 &nbsp;
 
--   `e_matrix_corner()` : Fill Matrix Axis Corner
+- [`e_matrix_corner()`](https://echarts4r.john-coene.com/reference/e_matrix_corner.md)
+  : Fill Matrix Axis Corner
 
 &nbsp;
 
--   `e_matrix_parent()` : Generate Matrix Axis Parents
+- [`e_matrix_parent()`](https://echarts4r.john-coene.com/reference/e_matrix_parent.md)
+  : Generate Matrix Axis Parents
 
 &nbsp;
 
--   `e_matrix_raw()` : Generate Matrix
+- [`e_matrix_raw()`](https://echarts4r.john-coene.com/reference/e_matrix_raw.md)
+  : Generate Matrix
 
 &nbsp;
 
--   `e_pie_matrix()` : Generate pie chart for matrix
+- [`e_pie_matrix()`](https://echarts4r.john-coene.com/reference/e_pie_matrix.md)
+  : Generate pie chart for matrix
 
 &nbsp;
 
--   `e_scatter_matrix()` : Generate scatter point for matrix
+- [`e_scatter_matrix()`](https://echarts4r.john-coene.com/reference/e_scatter_matrix.md)
+  : Generate scatter point for matrix
 
 &nbsp;
 
--   `e_title_matrix()` : Generate Chart Titles for Matrix
+- [`e_title_matrix()`](https://echarts4r.john-coene.com/reference/e_title_matrix.md)
+  : Generate Chart Titles for Matrix
 
 &nbsp;
 
--   `e_geoFacet()` : Create geoFacet Echart
-
-</div>
-
-<div class="section level2">
+- [`e_geoFacet()`](https://echarts4r.john-coene.com/reference/e_geoFacet.md)
+  : Create geoFacet Echart
 
 ## Timeline
 
 Function to customise the chart timeline.
 
-</div>
-
-<div class="section level2">
-
--   `e_timeline_opts()` `e_timeline_serie()` `e_timeline_on_serie()` :
-    Timeline
-
-</div>
-
-<div class="section level2">
+- [`e_timeline_opts()`](https://echarts4r.john-coene.com/reference/timeline-opts.md)
+  [`e_timeline_serie()`](https://echarts4r.john-coene.com/reference/timeline-opts.md)
+  [`e_timeline_on_serie()`](https://echarts4r.john-coene.com/reference/timeline-opts.md)
+  : Timeline
 
 ## Misc
 
 Other functions to improve your charts.
 
-</div>
-
-<div class="section level2">
-
--   `e_utc()` : Use UTC
+- [`e_utc()`](https://echarts4r.john-coene.com/reference/e_utc.md) : Use
+  UTC
 
 &nbsp;
 
--   `e_aria()` : Aria
+- [`e_aria()`](https://echarts4r.john-coene.com/reference/e_aria.md) :
+  Aria
 
 &nbsp;
 
--   `e_get_data()` : Get data
+- [`e_get_data()`](https://echarts4r.john-coene.com/reference/e_get_data.md)
+  : Get data
 
 &nbsp;
 
--   `e_country_names()` `e_country_names_()` : Country names
+- [`e_country_names()`](https://echarts4r.john-coene.com/reference/e_country_names.md)
+  [`e_country_names_()`](https://echarts4r.john-coene.com/reference/e_country_names.md)
+  : Country names
 
 &nbsp;
 
--   `e_title()` : Title
+- [`e_title()`](https://echarts4r.john-coene.com/reference/e_title.md) :
+  Title
 
 &nbsp;
 
--   `e_add()` `e_add_nested()` `e_add_unnested()` : Add nested data
+- [`e_add()`](https://echarts4r.john-coene.com/reference/nesting.md)
+  [`e_add_nested()`](https://echarts4r.john-coene.com/reference/nesting.md)
+  [`e_add_unnested()`](https://echarts4r.john-coene.com/reference/nesting.md)
+  : Add nested data
 
 &nbsp;
 
--   `e_insert_data()` : Insert binded data
+- [`e_insert_data()`](https://echarts4r.john-coene.com/reference/e_insert_data.md)
+  : Insert binded data
 
 &nbsp;
 
--   `e_list()` : List
+- [`e_list()`](https://echarts4r.john-coene.com/reference/e_list.md) :
+  List
 
 &nbsp;
 
--   `e_inspect()` `echarts_from_json()` : To & From JSON
+- [`e_inspect()`](https://echarts4r.john-coene.com/reference/echartsNJSON.md)
+  [`echarts_from_json()`](https://echarts4r.john-coene.com/reference/echartsNJSON.md)
+  : To & From JSON
 
 &nbsp;
 
--   `e_dims()` : Dimensions
+- [`e_dims()`](https://echarts4r.john-coene.com/reference/e_dims.md) :
+  Dimensions
 
 &nbsp;
 
--   `e_locale()` `e_locale_manual()` : Locale
+- [`e_locale()`](https://echarts4r.john-coene.com/reference/e_locale.md)
+  [`e_locale_manual()`](https://echarts4r.john-coene.com/reference/e_locale.md)
+  : Locale
 
 &nbsp;
 
--   `e_morph()` : Morphing
-
-</div>
-
-</div>
-
-<div id="main" class="col-md-9" role="main">
+- [`e_morph()`](https://echarts4r.john-coene.com/reference/e_morph.md) :
+  Morphing
 
 # Articles
 
-<div class="section">
-
 ### All vignettes
 
-<div class="section-desc">
-
-</div>
-
--   [Actions &
-    Buttons](http://echarts4r.john-coene.com/articles/actions-buttons.md):
--   [Advanced](http://echarts4r.john-coene.com/articles/advanced.md):
--   [Annotations](http://echarts4r.john-coene.com/articles/annotations.md):
--   [boxes](http://echarts4r.john-coene.com/articles/boxes.md):
--   [Brush & Slide](http://echarts4r.john-coene.com/articles/brush.md):
--   [Chart
-    Types](http://echarts4r.john-coene.com/articles/chart_types.md):
--   [Arrange &
-    Connect](http://echarts4r.john-coene.com/articles/connect.md):
--   [Geo](http://echarts4r.john-coene.com/articles/geo.md):
--   [Geo 3D](http://echarts4r.john-coene.com/articles/geo3d.md):
--   [Get
-    Started](http://echarts4r.john-coene.com/articles/get_started.md):
--   [web GL](http://echarts4r.john-coene.com/articles/gl.md):
--   [Globe](http://echarts4r.john-coene.com/articles/globe.md):
--   [Graph](http://echarts4r.john-coene.com/articles/graph.md):
--   [Graphics](http://echarts4r.john-coene.com/articles/graphics.md):
--   [Grid & Axis](http://echarts4r.john-coene.com/articles/grid.md):
--   [Leaflet &
-    Mapbox](http://echarts4r.john-coene.com/articles/leaflet-mapbox.md):
--   [GeoJSON
-    data](http://echarts4r.john-coene.com/articles/make-geo-json.md):
--   [Maps](http://echarts4r.john-coene.com/articles/map.md):
--   [Map 3D](http://echarts4r.john-coene.com/articles/map3d.md):
--   [Mark Points, Lines &
-    Areas](http://echarts4r.john-coene.com/articles/mark.md):
--   [Matrix](http://echarts4r.john-coene.com/articles/matrix.md):
--   [Pictorial](http://echarts4r.john-coene.com/articles/pictorial.md):
--   [Proxies](http://echarts4r.john-coene.com/articles/proxies.md):
--   [Shiny](http://echarts4r.john-coene.com/articles/shiny.md):
--   [Statistical
-    plots](http://echarts4r.john-coene.com/articles/stats.md):
--   [Themes](http://echarts4r.john-coene.com/articles/themes.md):
--   [3D](http://echarts4r.john-coene.com/articles/threeD.md):
--   [Timeline](http://echarts4r.john-coene.com/articles/timeline.md):
--   [Toolbox](http://echarts4r.john-coene.com/articles/toolbox.md):
--   [Tooltip](http://echarts4r.john-coene.com/articles/tooltip.md):
--   [Version 5](http://echarts4r.john-coene.com/articles/v5.md):
--   [v6](http://echarts4r.john-coene.com/articles/v6.md):
-
-</div>
-
-</div>
+- [Actions &
+  Buttons](https://echarts4r.john-coene.com/articles/actions-buttons.md):
+- [Advanced](https://echarts4r.john-coene.com/articles/advanced.md):
+- [Annotations](https://echarts4r.john-coene.com/articles/annotations.md):
+- [boxes](https://echarts4r.john-coene.com/articles/boxes.md):
+- [Brush & Slide](https://echarts4r.john-coene.com/articles/brush.md):
+- [Chart
+  Types](https://echarts4r.john-coene.com/articles/chart_types.md):
+- [Arrange &
+  Connect](https://echarts4r.john-coene.com/articles/connect.md):
+- [Crosstalk](https://echarts4r.john-coene.com/articles/crosstalk.md):
+- [Geo](https://echarts4r.john-coene.com/articles/geo.md):
+- [Geo 3D](https://echarts4r.john-coene.com/articles/geo3d.md):
+- [Get
+  Started](https://echarts4r.john-coene.com/articles/get_started.md):
+- [web GL](https://echarts4r.john-coene.com/articles/gl.md):
+- [Globe](https://echarts4r.john-coene.com/articles/globe.md):
+- [Graph](https://echarts4r.john-coene.com/articles/graph.md):
+- [Graphics](https://echarts4r.john-coene.com/articles/graphics.md):
+- [Grid & Axis](https://echarts4r.john-coene.com/articles/grid.md):
+- [Leaflet &
+  Mapbox](https://echarts4r.john-coene.com/articles/leaflet-mapbox.md):
+- [GeoJSON
+  data](https://echarts4r.john-coene.com/articles/make-geo-json.md):
+- [Maps](https://echarts4r.john-coene.com/articles/map.md):
+- [Map 3D](https://echarts4r.john-coene.com/articles/map3d.md):
+- [Mark Points, Lines &
+  Areas](https://echarts4r.john-coene.com/articles/mark.md):
+- [Matrix](https://echarts4r.john-coene.com/articles/matrix.md):
+- [Pictorial](https://echarts4r.john-coene.com/articles/pictorial.md):
+- [Proxies](https://echarts4r.john-coene.com/articles/proxies.md):
+- [Shiny](https://echarts4r.john-coene.com/articles/shiny.md):
+- [Statistical
+  plots](https://echarts4r.john-coene.com/articles/stats.md):
+- [Themes](https://echarts4r.john-coene.com/articles/themes.md):
+- [3D](https://echarts4r.john-coene.com/articles/threeD.md):
+- [Timeline](https://echarts4r.john-coene.com/articles/timeline.md):
+- [Toolbox](https://echarts4r.john-coene.com/articles/toolbox.md):
+- [Tooltip](https://echarts4r.john-coene.com/articles/tooltip.md):
+- [Version 5](https://echarts4r.john-coene.com/articles/v5.md):
+- [v6](https://echarts4r.john-coene.com/articles/v6.md):

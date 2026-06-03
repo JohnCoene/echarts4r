@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Box
-
-<div class="ref-description section level2">
 
 Renders a data box in shiny.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 echarts4rBox(
@@ -32,81 +22,61 @@ echarts4rBox(
 )
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   data:
+- data:
 
-    A dataframe containing data to plot.
+  A dataframe containing data to plot.
 
--   x, y:
+- x, y:
 
-    Bare column name of variables to draw.
+  Bare column name of variables to draw.
 
--   text, subtext:
+- text, subtext:
 
-    Title and subtitle of box.
+  Title and subtitle of box.
 
--   type:
+- type:
 
-    Chart type to draw.
+  Chart type to draw.
 
--   ...:
+- ...:
 
-    Additional arguments to pass to the serie.
+  Additional arguments to pass to the serie.
 
--   color:
+- color:
 
-    Color of chart in box.
+  Color of chart in box.
 
--   text_color:
+- text_color:
 
-    Color of text.
+  Color of text.
 
--   background_color:
+- background_color:
 
-    Color of box.
+  Color of box.
 
--   step:
+- step:
 
-    Step method, only used if `type = "step"`.
+  Step method, only used if `type = "step"`.
 
--   title_args:
+- title_args:
 
-    Additional arguments to add to the title.
+  Additional arguments to add to the title.
 
--   tooltip:
+- tooltip:
 
-    Tooltip to use.
-
-</div>
-
-<div class="section level2">
+  Tooltip to use.
 
 ## See also
 
-<div class="dont-index">
-
-`renderEcharts4rBox`, `echarts4rBoxOutput`
-
-</div>
-
-</div>
-
-<div class="section level2">
+[`renderEcharts4rBox`](https://echarts4r.john-coene.com/reference/renderEcharts4rBox.md),
+[`echarts4rBoxOutput`](https://echarts4r.john-coene.com/reference/echarts4rBoxOutput.md)
 
 ## Examples
 
-<div class="sourceCode">
-
 ``` r
 library(shiny)
-#> Warning: package 'shiny' was built under R version 4.5.2
 
 ui <- fluidPage(
   fluidRow(
@@ -123,9 +93,3 @@ if (FALSE) { # \dontrun{
 shinyApp(ui, server)
 } # }
 ```
-
-</div>
-
-</div>
-
-</div>

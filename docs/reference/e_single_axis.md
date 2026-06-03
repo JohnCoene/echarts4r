@@ -1,51 +1,31 @@
-<div id="main" class="col-md-9" role="main">
-
 # Single Axis
-
-<div class="ref-description section level2">
 
 Setup single axis.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_single_axis(e, index = 0, ...)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   index:
+- index:
 
-    Index of axis to customise.
+  Index of axis to customise.
 
--   ...:
+- ...:
 
-    Any other option to pass, check See Also section.
-
-</div>
-
-<div class="section level2">
+  Any other option to pass, check See Also section.
 
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 df <- data.frame(
@@ -63,11 +43,5 @@ df |>
     coord_system = "singleAxis"
   )
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"singleAxis":{"type":"category","data":["A","B","C","D","E","F","G","H","I","J"]},"legend":{"data":["value"]},"series":[{"data":[{"value":["A","14.965604"," 7.172316"," 5.081728"]},{"value":["B","10.792073","19.718881","20.000000"]},{"value":["C","12.000164","18.383641","18.412357"]},{"value":["D","18.640727","14.986178","14.372663"]},{"value":["E"," 8.754958","18.170802","18.159283"]},{"value":["F","18.147561","10.356471"," 8.867792"]},{"value":["G","19.591992","14.266882","13.517396"]},{"value":["H","11.283864","17.499860","17.361512"]},{"value":["I","16.060058"," 3.739502"," 1.000000"]},{"value":["J","18.416140"," 5.029583"," 2.533949"]}],"name":"value","type":"scatter","symbol":null,"coordinateSystem":"singleAxis","singleAxisIndex":0,"symbolSize":"function(data){ return data[3];}"}]},"dispose":true},"evals":["opts.series.0.symbolSize"],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"singleAxis":{"type":"category","data":["A","B","C","D","E","F","G","H","I","J"]},"legend":{"data":["value"]},"series":[{"data":[{"value":["A"," 6.111576","16.523868","16.527402"]},{"value":["B","14.473041","19.430997","20.000000"]},{"value":["C"," 6.673005"," 3.524905"," 1.000000"]},{"value":["D","10.966482","15.530949","15.341350"]},{"value":["E","13.889921"," 5.131111"," 2.918631"]},{"value":["F"," 8.127688"," 9.490324"," 8.125758"]},{"value":["G"," 9.766691","11.984781","11.105414"]},{"value":["H","19.705053","14.045482","13.566944"]},{"value":["I"," 7.993271"," 5.274085"," 3.089415"]},{"value":["J","10.268712"," 8.897619"," 7.417765"]}],"name":"value","type":"scatter","symbol":null,"coordinateSystem":"singleAxis","singleAxisIndex":0,"symbolSize":"function(data){ return data[3];}"}]},"dispose":true},"evals":["opts.series.0.symbolSize"],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

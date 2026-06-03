@@ -1,14 +1,8 @@
-<div id="main" role="main">
-
 # Chart Types
 
 This document include the *standard* chart types *only*.
 
-<div class="section level2">
-
 ## Line and Area
-
-<div id="cb1" class="sourceCode">
 
 ``` r
 library(echarts4r)
@@ -27,21 +21,7 @@ df |>
   e_title("Line and area charts")
 ```
 
-</div>
-
-<div id="htmlwidget-ac96cb3ee4656e2e9ec3"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Bar and step
-
-<div id="cb2" class="sourceCode">
 
 ``` r
 df |> 
@@ -51,21 +31,7 @@ df |>
   e_title("Bar and step charts")
 ```
 
-</div>
-
-<div id="htmlwidget-e5c8c404fe174e4c81bd"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Scatter
-
-<div id="cb3" class="sourceCode">
 
 ``` r
 df |> 
@@ -75,21 +41,7 @@ df |>
   e_legend(FALSE) # hide legend
 ```
 
-</div>
-
-<div id="htmlwidget-36aa3d2a04d42bbc2145"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Effect Scatter
-
-<div id="cb4" class="sourceCode">
 
 ``` r
 df |> 
@@ -100,21 +52,7 @@ df |>
   e_legend(FALSE) # hide legend
 ```
 
-</div>
-
-<div id="htmlwidget-febe03efa1a2d8d52a86"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Polar
-
-<div id="cb5" class="sourceCode">
 
 ``` r
 df |> 
@@ -126,21 +64,7 @@ df |>
   e_scatter(z, coord_system = "polar")
 ```
 
-</div>
-
-<div id="htmlwidget-1fb4450895fe099f74a1"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Radial
-
-<div id="cb6" class="sourceCode">
 
 ``` r
 df |> 
@@ -153,21 +77,7 @@ df |>
   e_scatter(z, coord_system = "polar")
 ```
 
-</div>
-
-<div id="htmlwidget-10b3b7155e8045a1b2ad"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Candlestick
-
-<div id="cb7" class="sourceCode">
 
 ``` r
 library(quantmod)
@@ -177,10 +87,6 @@ GS <- as.data.frame(GS)
 GS$date <- row.names(GS)
 ```
 
-</div>
-
-<div id="cb8" class="sourceCode">
-
 ``` r
 GS |> 
   e_charts(date) |> 
@@ -189,21 +95,7 @@ GS |>
   e_title("Candlestick chart", "Quantmod data")
 ```
 
-</div>
-
-<div id="htmlwidget-4018eef1a407a0df6b52"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Funnel
-
-<div id="cb9" class="sourceCode">
 
 ``` r
 funnel <- data.frame(stage = c("View", "Click", "Purchase"), value = c(80, 30, 20))
@@ -214,21 +106,7 @@ funnel |>
   e_title("Funnel")
 ```
 
-</div>
-
-<div id="htmlwidget-5b1b2f4ad92281566982"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Sankey
-
-<div id="cb10" class="sourceCode">
 
 ``` r
 sankey <- data.frame(
@@ -244,21 +122,7 @@ sankey |>
   e_title("Sankey chart")
 ```
 
-</div>
-
-<div id="htmlwidget-25c3e940e6859592f801"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Heatmap
-
-<div id="cb11" class="sourceCode">
 
 ``` r
 v <- LETTERS[1:10]
@@ -271,8 +135,12 @@ matrix <- data.frame(
   dplyr::group_by(x, y) |> 
   dplyr::summarise(z = sum(z)) |> 
   dplyr::ungroup()
-#> `summarise()` has grouped output by 'x'. You can override using the `.groups`
-#> argument.
+#> `summarise()` has regrouped the output.
+#> ℹ Summaries were computed grouped by x and y.
+#> ℹ Output is grouped by x.
+#> ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+#> ℹ Use `summarise(.by = c(x, y))` for per-operation grouping
+#>   (`?dplyr::dplyr_by`) instead.
 
 matrix |> 
   e_charts(x) |> 
@@ -281,21 +149,7 @@ matrix |>
   e_title("Heatmap")
 ```
 
-</div>
-
-<div id="htmlwidget-3f27c09be0c60bb52829"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Parallel
-
-<div id="cb12" class="sourceCode">
 
 ``` r
 df <- data.frame(
@@ -310,21 +164,7 @@ df |>
   e_title("Parallel chart")
 ```
 
-</div>
-
-<div id="htmlwidget-416566eb193bf50d04e6"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Pie
-
-<div id="cb13" class="sourceCode">
 
 ``` r
 mtcars |> 
@@ -335,21 +175,7 @@ mtcars |>
   e_title("Pie chart")
 ```
 
-</div>
-
-<div id="htmlwidget-72cbf064100ce560a04c"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Donut
-
-<div id="cb14" class="sourceCode">
 
 ``` r
 mtcars |> 
@@ -360,21 +186,7 @@ mtcars |>
   e_title("Donut chart")
 ```
 
-</div>
-
-<div id="htmlwidget-d11fc4360aa0230696d7"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Rosetype
-
-<div id="cb15" class="sourceCode">
 
 ``` r
 mtcars |> 
@@ -384,21 +196,7 @@ mtcars |>
   e_pie(hp, roseType = "radius")
 ```
 
-</div>
-
-<div id="htmlwidget-21c7483268bafca56cec"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Sunburst
-
-<div id="cb16" class="sourceCode">
 
 ``` r
 df <- data.frame(
@@ -416,25 +214,10 @@ universe |>
   e_sunburst()
 ```
 
-</div>
-
-<div id="htmlwidget-1834a22cd196f3aa03a1"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Tree
-
-<div id="cb17" class="sourceCode">
 
 ``` r
 library(tibble)
-#> Warning: package 'tibble' was built under R version 4.5.2
 
 tree <- tibble(
   name = "earth",        # 1st level
@@ -458,21 +241,7 @@ tree |>
   e_title("Tree graph")
 ```
 
-</div>
-
-<div id="htmlwidget-28515d92cb327f90c9eb"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Treemap
-
-<div id="cb18" class="sourceCode">
 
 ``` r
 universe |> 
@@ -481,21 +250,7 @@ universe |>
   e_title("Treemap chart")
 ```
 
-</div>
-
-<div id="htmlwidget-0caf26d4e3c00206b0c5"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## River
-
-<div id="cb19" class="sourceCode">
 
 ``` r
 dates <- seq.Date(Sys.Date() - 30, Sys.Date(), by = "day")
@@ -516,21 +271,7 @@ river |>
   e_title("River charts", "(Streamgraphs)")
 ```
 
-</div>
-
-<div id="htmlwidget-da0b268a2927f570ebf3"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Calendar
-
-<div id="cb20" class="sourceCode">
 
 ``` r
 dates <- seq.Date(as.Date("2017-01-01"), as.Date("2018-12-31"), by = "day")
@@ -546,17 +287,7 @@ year |>
   e_title("Calendar", "Heatmap")
 ```
 
-</div>
-
-<div id="htmlwidget-0ed12bb554391c49c2e3"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
 For multiple years, lay multiple calendars, group by year.
-
-<div id="cb21" class="sourceCode">
 
 ``` r
 year |> 
@@ -571,21 +302,7 @@ year |>
   e_tooltip("item") 
 ```
 
-</div>
-
-<div id="htmlwidget-ec658d41f8c4f2d124e9"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Gauge
-
-<div id="cb22" class="sourceCode">
 
 ``` r
 e_charts() |> 
@@ -593,21 +310,7 @@ e_charts() |>
   e_title("Gauge")
 ```
 
-</div>
-
-<div id="htmlwidget-6b83523733b890d61edc"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Radar
-
-<div id="cb23" class="sourceCode">
 
 ``` r
 df <- data.frame(
@@ -623,21 +326,7 @@ df |>
   e_tooltip(trigger = "item")
 ```
 
-</div>
-
-<div id="htmlwidget-b3f7c917b6c8ff580948"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Wordcloud
-
-<div id="cb24" class="sourceCode">
 
 ``` r
 words <- function(n = 5000) {
@@ -656,21 +345,7 @@ tf |>
   e_title("Wordcloud", "Random strings")
 ```
 
-</div>
-
-<div id="htmlwidget-d258b2ee1c304ebe1664"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Liquifill
-
-<div id="cb25" class="sourceCode">
 
 ``` r
 liquid <- data.frame(val = c(0.6, 0.5, 0.4))
@@ -680,21 +355,7 @@ liquid |>
   e_liquid(val) 
 ```
 
-</div>
-
-<div id="htmlwidget-b8f31ebacaee3527bb86"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Chord
-
-<div id="cb26" class="sourceCode">
 
 ``` r
 chord_data <- data.frame(
@@ -709,42 +370,14 @@ chord_data |>
   e_chord(source, target, value)
 ```
 
-</div>
-
-<div id="htmlwidget-b25b670b028f478bf741"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Doughnut
-
-<div id="cb27" class="sourceCode">
 
 ``` r
  e_chart() |>
   e_doughnut(numerator = 3, denominator = 6)
 ```
 
-</div>
-
-<div id="htmlwidget-46d1193f7ba074d981c8"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Violin
-
-<div id="cb28" class="sourceCode">
 
 ``` r
 PlantGrowth |>
@@ -753,21 +386,7 @@ PlantGrowth |>
   e_violin(binCount = 200)
 ```
 
-</div>
-
-<div id="htmlwidget-382a200f56fb8e6a1fd3"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Bar Range
-
-<div id="cb29" class="sourceCode">
 
 ``` r
 df <- iris |>
@@ -782,21 +401,7 @@ df |> e_chart(Species) |>
   )
 ```
 
-</div>
-
-<div id="htmlwidget-da403bf8187c892ade73"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Contour
-
-<div id="cb30" class="sourceCode">
 
 ``` r
 mtcars |>
@@ -804,21 +409,7 @@ mtcars |>
  e_contour(serie = mpg)
 ```
 
-</div>
-
-<div id="htmlwidget-756e3bf13eb93ebd21f9"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Line Range
-
-<div id="cb31" class="sourceCode">
 
 ``` r
 df <- iris |>
@@ -830,21 +421,7 @@ df |>
   e_lineRange(lower = lower, upper = upper)
 ```
 
-</div>
-
-<div id="htmlwidget-2931a41253ddcd61f464"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Stage
-
-<div id="cb32" class="sourceCode">
 
 ``` r
 df <- data.frame(
@@ -874,15 +451,3 @@ df |>
           e_x_axis(type = 'time') |>
           e_y_axis(type = 'category', data = stage_order)
 ```
-
-</div>
-
-<div id="htmlwidget-853270d7a7ddd5c78dff"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-</div>

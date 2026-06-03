@@ -1,18 +1,9 @@
-<div id="main" class="col-md-9" role="main">
-
 # Nodes Adjacency
 
-<div class="ref-description section level2">
-
-Actions related to `e_graph`.
-
-</div>
-
-<div class="section level2">
+Actions related to
+[`e_graph`](https://echarts4r.john-coene.com/reference/graph.md).
 
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_focus_adjacency(e, ..., btn = NULL)
@@ -20,35 +11,26 @@ e_focus_adjacency(e, ..., btn = NULL)
 e_unfocus_adjacency(e, ..., btn = NULL)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   ...:
+- ...:
 
-    Any options, see [official
-    documentation](https://echarts.apache.org/en/api.html#action.graph)
+  Any options, see [official
+  documentation](https://echarts.apache.org/en/api.html#action.graph)
 
--   btn:
+- btn:
 
-    A `e_button` id.
-
-</div>
-
-<div class="section level2">
+  A [`e_button`](https://echarts4r.john-coene.com/reference/e_button.md)
+  id.
 
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 value <- rnorm(10, 10, 2)
@@ -76,11 +58,5 @@ e_charts() |>
     dataIndex = 4
   )
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[{"data":{"type":"focusNodeAdjacency","seriesIndex":0,"dataIndex":4}}],"buttons":[],"opts":{"series":[{"name":null,"type":"graph","layout":"force","categories":[{"name":"grp1"},{"name":"grp2"}],"data":[{"name":"Z","value":" 9.838490","symbolSize":" 9.838490","category":"grp1"},{"name":"O","value":"14.451139","symbolSize":"14.451139","category":"grp2"},{"name":"X","value":" 8.468096","symbolSize":" 8.468096","category":"grp1"},{"name":"W","value":" 9.136815","symbolSize":" 9.136815","category":"grp2"},{"name":"K","value":" 9.700741","symbolSize":" 9.700741","category":"grp1"},{"name":"J","value":"10.802435","symbolSize":"10.802435","category":"grp2"},{"name":"C","value":" 9.814017","symbolSize":" 9.814017","category":"grp1"},{"name":"D","value":"13.447850","symbolSize":"13.447850","category":"grp2"},{"name":"U","value":"12.628372","symbolSize":"12.628372","category":"grp1"},{"name":"B","value":"10.729494","symbolSize":"10.729494","category":"grp2"}],"links":[{"source":"Z","target":"O"},{"source":"B","target":"O"},{"source":"O","target":"O"},{"source":"J","target":"D"},{"source":"B","target":"W"},{"source":"W","target":"U"},{"source":"J","target":"Z"},{"source":"K","target":"U"},{"source":"K","target":"W"},{"source":"D","target":"D"},{"source":"Z","target":"D"},{"source":"Z","target":"W"},{"source":"B","target":"K"},{"source":"B","target":"J"},{"source":"W","target":"U"},{"source":"K","target":"U"},{"source":"O","target":"D"},{"source":"U","target":"J"},{"source":"X","target":"K"},{"source":"B","target":"Z"}]}],"legend":{"data":["grp1","grp2"]}},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[{"data":{"type":"focusNodeAdjacency","seriesIndex":0,"dataIndex":4}}],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"series":[{"name":null,"type":"graph","layout":"force","categories":[{"name":"grp1"},{"name":"grp2"}],"data":[{"name":"W","value":"13.150551","symbolSize":"13.150551","category":"grp1"},{"name":"C","value":"10.676011","symbolSize":"10.676011","category":"grp2"},{"name":"S","value":" 9.454903","symbolSize":" 9.454903","category":"grp1"},{"name":"P","value":" 9.520610","symbolSize":" 9.520610","category":"grp2"},{"name":"F","value":"12.796634","symbolSize":"12.796634","category":"grp1"},{"name":"I","value":"11.168639","symbolSize":"11.168639","category":"grp2"},{"name":"K","value":" 8.110658","symbolSize":" 8.110658","category":"grp1"},{"name":"O","value":"11.619870","symbolSize":"11.619870","category":"grp2"},{"name":"D","value":" 9.451658","symbolSize":" 9.451658","category":"grp1"},{"name":"L","value":" 8.447189","symbolSize":" 8.447189","category":"grp2"}],"links":[{"source":"S","target":"C"},{"source":"K","target":"O"},{"source":"O","target":"K"},{"source":"L","target":"O"},{"source":"I","target":"P"},{"source":"K","target":"S"},{"source":"D","target":"K"},{"source":"L","target":"I"},{"source":"P","target":"L"},{"source":"P","target":"D"},{"source":"F","target":"K"},{"source":"I","target":"D"},{"source":"K","target":"S"},{"source":"P","target":"D"},{"source":"F","target":"O"},{"source":"O","target":"F"},{"source":"C","target":"P"},{"source":"K","target":"L"},{"source":"S","target":"D"},{"source":"S","target":"I"}]}],"legend":{"data":["grp1","grp2"]}},"dispose":true},"evals":[],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

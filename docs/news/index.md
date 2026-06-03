@@ -1,252 +1,219 @@
-<div id="main" class="col-md-9" role="main">
-
 # Changelog
 
-<div class="section level2">
+## echarts4r 0.5.1
+
+- Added crosstalk capability to
+  [`e_bar()`](https://echarts4r.john-coene.com/reference/e_bar.md),
+  [`e_line()`](https://echarts4r.john-coene.com/reference/e_line.md) and
+  11 other chart types
+  [\#214](https://github.com/JohnCoene/echarts4r/issues/214)
 
 ## echarts4r 0.5.0
 
--   Added new chart types: `e_doughnut()`, `e_violin()`, `e_barRange()`,
-    `e_contour()`, `e_lineRange()`, `e_stage()`, `e_chord()`
--   Added `e_jitter()`, `e_zigzag()`, `e_annotations()`,
-    `e_insert_data()`
--   New matrix coordinate system to display a series of plots in a grid
--   Updated themes
--   Added custom JavaScript for new annotation options
--   Updated echarts.js to 6.0.0
--   Greatly expanded unit testing
--   Fixes issues
-    [\#641](https://github.com/JohnCoene/echarts4r/issues/641),
-    [\#659](https://github.com/JohnCoene/echarts4r/issues/659),
-    [\#625](https://github.com/JohnCoene/echarts4r/issues/624),
-    [\#494](https://github.com/JohnCoene/echarts4r/issues/494)
--   Other various bug fixes
+CRAN release: 2026-02-10
 
-</div>
-
-<div class="section level2">
+- Added new chart types:
+  [`e_doughnut()`](https://echarts4r.john-coene.com/reference/e_doughnut.md),
+  [`e_violin()`](https://echarts4r.john-coene.com/reference/e_violin.md),
+  [`e_barRange()`](https://echarts4r.john-coene.com/reference/e_barRange.md),
+  [`e_contour()`](https://echarts4r.john-coene.com/reference/e_contour.md),
+  [`e_lineRange()`](https://echarts4r.john-coene.com/reference/e_lineRange.md),
+  [`e_stage()`](https://echarts4r.john-coene.com/reference/e_stage.md),
+  [`e_chord()`](https://echarts4r.john-coene.com/reference/e_chord.md)
+- Added
+  [`e_jitter()`](https://echarts4r.john-coene.com/reference/e_jitter.md),
+  [`e_zigzag()`](https://echarts4r.john-coene.com/reference/e_zigzag.md),
+  [`e_annotations()`](https://echarts4r.john-coene.com/reference/e_annotations.md),
+  [`e_insert_data()`](https://echarts4r.john-coene.com/reference/e_insert_data.md)
+- New matrix coordinate system to display a series of plots in a grid
+- Updated themes
+- Added custom JavaScript for new annotation options
+- Updated echarts.js to 6.0.0
+- Greatly expanded unit testing
+- Fixes issues
+  [\#641](https://github.com/JohnCoene/echarts4r/issues/641),
+  [\#659](https://github.com/JohnCoene/echarts4r/issues/659),
+  [\#625](https://github.com/JohnCoene/echarts4r/issues/624),
+  [\#494](https://github.com/JohnCoene/echarts4r/issues/494)
+- Other various bug fixes
 
 ## echarts4r 0.4.6
 
 CRAN release: 2025-09-11
 
--   Fix missing package anchors in Rd files for CRAN HTML documentation
--   Fix lost braces issues in `e_pictorial.Rd` and `nesting.Rd`
-    documentation
--   Bump to echarts.js 5.4.3
--   Fix themes
-    [\#615](https://github.com/JohnCoene/echarts4r/issues/615)
--   Fix documentation mismatch for `e_graph_edges` function by adding
-    missing `color` parameter
--   Add missing package anchor for `hist` function in `histogram.Rd`
-
-</div>
-
-<div class="section level2">
+- Fix missing package anchors in Rd files for CRAN HTML documentation
+- Fix lost braces issues in `e_pictorial.Rd` and `nesting.Rd`
+  documentation
+- Bump to echarts.js 5.4.3
+- Fix themes [\#615](https://github.com/JohnCoene/echarts4r/issues/615)
+- Fix documentation mismatch for `e_graph_edges` function by adding
+  missing `color` parameter
+- Add missing package anchor for `hist` function in `histogram.Rd`
 
 ## echarts4r 0.4.5
 
 CRAN release: 2023-06-16
 
--   Update dependencies to `5.4.2`
-
-</div>
-
-<div class="section level2">
+- Update dependencies to `5.4.2`
 
 ## echarts4r 0.4.4
 
 CRAN release: 2022-05-28
 
--   Better checks on theme names
-    [\#407](https://github.com/JohnCoene/echarts4r/issues/407)
--   Update to echarts.js 5.3.2
--   Added `e_morph`
-
-</div>
-
-<div class="section level2">
+- Better checks on theme names
+  [\#407](https://github.com/JohnCoene/echarts4r/issues/407)
+- Update to echarts.js 5.3.2
+- Added `e_morph`
 
 ## echarts4r 0.4.3
 
 CRAN release: 2022-01-03
 
--   Bump echarts.js to version 5.2.2
--   Support click on plot background
-    [\#394](https://github.com/JohnCoene/echarts4r/issues/394) with
-    `e_get_zr`.
--   `e_facet` function completed
-    [\#396](https://github.com/JohnCoene/echarts4r/issues/396) thanks to
-    [Robert Koetsier](https://github.com/robert-koetsier)
-
-</div>
-
-<div class="section level2">
+- Bump echarts.js to version 5.2.2
+- Support click on plot background
+  [\#394](https://github.com/JohnCoene/echarts4r/issues/394) with
+  `e_get_zr`.
+- `e_facet` function completed
+  [\#396](https://github.com/JohnCoene/echarts4r/issues/396) thanks to
+  [Robert Koetsier](https://github.com/robert-koetsier)
 
 ## echarts4r 0.4.2
 
 CRAN release: 2021-10-04
 
--   Added proxy method on `e_color`, see
-    [\#347](https://github.com/JohnCoene/echarts4r/issues/347)
--   Added `.serie` argument to `e_add` to allow adding data to a
-    specific serie.
--   Added `.data` argument to `e_add`.
--   Added `value` and `size` arguments to `e_graph_edges`.
--   Add note in documentation to clarify x axis type for `e_bar` see
-    [\#357](https://github.com/JohnCoene/echarts4r/issues/357)
--   Update all themes in an attempt to fix
-    [\#363](https://github.com/JohnCoene/echarts4r/issues/363)
--   Update base JavaScript version of Echarts.js to v 5.1.2
--   Fix [\#365](https://github.com/JohnCoene/echarts4r/issues/365)
-    `e_flip_coords` works with all data formats.
--   Deprecate `e_add` in favour of `e_add_nested` and `e_add_unnested`
-    see `?nesting`, see
-    [\#371](https://github.com/JohnCoene/echarts4r/issues/371)
--   Allow passing multiple names (vector) to `e_lm`, one for each group.
--   Bring support for locales
-    [\#372](https://github.com/JohnCoene/echarts4r/issues/372) so one
-    can automatically translate part of plots.
-
-</div>
-
-<div class="section level2">
+- Added proxy method on `e_color`, see
+  [\#347](https://github.com/JohnCoene/echarts4r/issues/347)
+- Added `.serie` argument to `e_add` to allow adding data to a specific
+  serie.
+- Added `.data` argument to `e_add`.
+- Added `value` and `size` arguments to `e_graph_edges`.
+- Add note in documentation to clarify x axis type for `e_bar` see
+  [\#357](https://github.com/JohnCoene/echarts4r/issues/357)
+- Update all themes in an attempt to fix
+  [\#363](https://github.com/JohnCoene/echarts4r/issues/363)
+- Update base JavaScript version of Echarts.js to v 5.1.2
+- Fix [\#365](https://github.com/JohnCoene/echarts4r/issues/365)
+  `e_flip_coords` works with all data formats.
+- Deprecate `e_add` in favour of `e_add_nested` and `e_add_unnested` see
+  [`?nesting`](https://echarts4r.john-coene.com/reference/nesting.md),
+  see [\#371](https://github.com/JohnCoene/echarts4r/issues/371)
+- Allow passing multiple names (vector) to `e_lm`, one for each group.
+- Bring support for locales
+  [\#372](https://github.com/JohnCoene/echarts4r/issues/372) so one can
+  automatically translate part of plots.
 
 ## echarts4r 0.4.1
 
 CRAN release: 2021-07-14
 
--   Apply mark to all series in timeline, fixes
-    [\#290](https://github.com/JohnCoene/echarts4r/issues/290)
--   Bump ECharts.js
--   Add `e_svg` family of functions to fix
-    [\#319](https://github.com/JohnCoene/echarts4r/issues/319)
--   Replaced magrittr pipe `%>%` to R native’s `|>`.
--   Fix `e_map` when used with no data, map was not displayed
--   Fix `e_flip_coords` with boxplots (and other single column series)
-    see [\#336](https://github.com/JohnCoene/echarts4r/issues/336)
--   Fix `e_add` applied to timeline, see
-    [\#338](https://github.com/JohnCoene/echarts4r/issues/338)
-
-</div>
-
-<div class="section level2">
+- Apply mark to all series in timeline, fixes
+  [\#290](https://github.com/JohnCoene/echarts4r/issues/290)
+- Bump ECharts.js
+- Add `e_svg` family of functions to fix
+  [\#319](https://github.com/JohnCoene/echarts4r/issues/319)
+- Replaced magrittr pipe `%>%` to R native’s `|>`.
+- Fix `e_map` when used with no data, map was not displayed
+- Fix `e_flip_coords` with boxplots (and other single column series) see
+  [\#336](https://github.com/JohnCoene/echarts4r/issues/336)
+- Fix `e_add` applied to timeline, see
+  [\#338](https://github.com/JohnCoene/echarts4r/issues/338)
 
 ## echarts4r 0.4.0
 
 CRAN release: 2021-03-07
 
--   Bump ECharts.js updated from version 4 to 5.
-
-</div>
-
-<div class="section level2">
+- Bump ECharts.js updated from version 4 to 5.
 
 ## echarts4r 0.3.4
 
--   Fixed naming of x axis for `e_boxplot`, see
-    [\#219](https://github.com/JohnCoene/echarts4r/issues/219)
--   Fixed `e_parallel` arguments, see
-    [\#223](https://github.com/JohnCoene/echarts4r/issues/223)
--   Accept `data.tree` data for easy creation of tree, treemaps and
-    sunbursts, see
-    [\#207](https://github.com/JohnCoene/echarts4r/issues/207)
--   Fix ordering in timeline
-    [\#234](https://github.com/JohnCoene/echarts4r/issues/234)
--   Fix the issue that `e_band()` displays the upper band incorrectly,
-    see [\#237](https://github.com/JohnCoene/echarts4r/issues/237).
-    Thanks [@shrektan](https://github.com/shrektan) for the reporting
-    and PR.
-
-</div>
-
-<div class="section level2">
+- Fixed naming of x axis for `e_boxplot`, see
+  [\#219](https://github.com/JohnCoene/echarts4r/issues/219)
+- Fixed `e_parallel` arguments, see
+  [\#223](https://github.com/JohnCoene/echarts4r/issues/223)
+- Accept `data.tree` data for easy creation of tree, treemaps and
+  sunbursts, see
+  [\#207](https://github.com/JohnCoene/echarts4r/issues/207)
+- Fix ordering in timeline
+  [\#234](https://github.com/JohnCoene/echarts4r/issues/234)
+- Fix the issue that
+  [`e_band()`](https://echarts4r.john-coene.com/reference/band.md)
+  displays the upper band incorrectly, see
+  [\#237](https://github.com/JohnCoene/echarts4r/issues/237). Thanks
+  [@shrektan](https://github.com/shrektan) for the reporting and PR.
 
 ## echarts4r 0.3.3
 
 CRAN release: 2020-10-16
 
--   Added `echarts4rBox`, `renderEcharts4rBox`, and `echarts4rBoxOutput`
-    to create value boxes.
--   Fix `e_common` theme, was no longer applied due to dynamic
-    dependencies introduced in `0.3.2`
--   Fix `e_flip_coords` for timeline feature, see
-    [\#166](https://github.com/JohnCoene/echarts4r/issues/166/)
--   `name` argument was not used in `e_boxplot`, see
-    [\#171](https://github.com/JohnCoene/echarts4r/issues/171/)
--   Allow customising area under the curve of density plot see
-    [\#172](https://github.com/JohnCoene/echarts4r/issues/172/)
--   Update mapbox dependency from `0.38` to `1.11`
--   Fix country name conversion in `e_country_names`
-    [\#189](https://github.com/JohnCoene/echarts4r/issues/189/)
--   Fix legend toggle in radar charts
-    [\#74](https://github.com/JohnCoene/echarts4r/issues/74/)
--   `e_loess`, and `e_lm` take a `model_args` argument to pass arguments
-    to underlying model function
-    [\#194](https://github.com/JohnCoene/echarts4r/issues/194/)
--   Bump to JavaScript version to `4.9.0`
--   `echarts_from_json` supports functions, see
-    [199](https://github.com/JohnCoene/echarts4r/pull/199/) (thanks to
-    [swsoyee](https://github.com/swsoyee/))
--   Remove `e_facet`, was wrongly exported
-    [\#212](https://github.com/JohnCoene/echarts4r/issues/212/)
--   Add tests, thanks to Etienne Bacher, see
-    [\#201](https://github.com/JohnCoene/echarts4r/pull/201/)
--   Add styler, thanks to Wei Su see
-    [\#211](https://github.com/JohnCoene/echarts4r/pull/211/)
--   Removed the {d3r} import: no longer necessary.
-
-</div>
-
-<div class="section level2">
+- Added `echarts4rBox`, `renderEcharts4rBox`, and `echarts4rBoxOutput`
+  to create value boxes.
+- Fix `e_common` theme, was no longer applied due to dynamic
+  dependencies introduced in `0.3.2`
+- Fix `e_flip_coords` for timeline feature, see
+  [\#166](https://github.com/JohnCoene/echarts4r/issues/166/)
+- `name` argument was not used in `e_boxplot`, see
+  [\#171](https://github.com/JohnCoene/echarts4r/issues/171/)
+- Allow customising area under the curve of density plot see
+  [\#172](https://github.com/JohnCoene/echarts4r/issues/172/)
+- Update mapbox dependency from `0.38` to `1.11`
+- Fix country name conversion in `e_country_names`
+  [\#189](https://github.com/JohnCoene/echarts4r/issues/189/)
+- Fix legend toggle in radar charts
+  [\#74](https://github.com/JohnCoene/echarts4r/issues/74/)
+- `e_loess`, and `e_lm` take a `model_args` argument to pass arguments
+  to underlying model function
+  [\#194](https://github.com/JohnCoene/echarts4r/issues/194/)
+- Bump to JavaScript version to `4.9.0`
+- `echarts_from_json` supports functions, see
+  [199](https://github.com/JohnCoene/echarts4r/pull/199/) (thanks to
+  [swsoyee](https://github.com/swsoyee/))
+- Remove `e_facet`, was wrongly exported
+  [\#212](https://github.com/JohnCoene/echarts4r/issues/212/)
+- Add tests, thanks to Etienne Bacher, see
+  [\#201](https://github.com/JohnCoene/echarts4r/pull/201/)
+- Add styler, thanks to Wei Su see
+  [\#211](https://github.com/JohnCoene/echarts4r/pull/211/)
+- Removed the {d3r} import: no longer necessary.
 
 ## echarts4r 0.3.2
 
 CRAN release: 2020-06-18
 
--   Bump echarts.js to 4.8.0 and echarts-gl to 1.1.2
--   Fix `e_add` when used with timeline feature see
-    [\#165](https://github.com/JohnCoene/echarts4r/issues/165/).
--   Bump echart.js to 4.8.0 now in english (no longer Chinese).
+- Bump echarts.js to 4.8.0 and echarts-gl to 1.1.2
+- Fix `e_add` when used with timeline feature see
+  [\#165](https://github.com/JohnCoene/echarts4r/issues/165/).
+- Bump echart.js to 4.8.0 now in english (no longer Chinese).
 
 Dynamic dependencies:
 
--   themes
--   leaflet
--   mapbox
--   wordcloud
--   liquidfill
--   world.js (underlying world map for e_geo and e_map)
--   error bars (custom renderer)
+- themes
+- leaflet
+- mapbox
+- wordcloud
+- liquidfill
+- world.js (underlying world map for e_geo and e_map)
+- error bars (custom renderer)
 
 This greatly improves the performances of echarts4r which now loads much
 faster.
 
-</div>
-
-<div class="section level2">
-
 ## echarts4r 0.3.1.9000
 
--   Added convenience `e_hide_grid_lines` to easily hide grid lines.
--   `e_map_register_ui` added to register a custom map in the Shiny UI,
-    for faster serialisation.
--   `e_leaflet*` functions now correctly apply the `roam` argument
-    [\#147](https://github.com/JohnCoene/echarts4r/issues/147)
--   Internals changes for dplyr \>= 0.7.0
--   Correct bug in
-    [boxplot](https://echarts4r.john-coene.com/articles/stats.html#boxplot)
-    thanks to [Matthias](https://github.com/matthias-a) in
-    [issue](https://github.com/JohnCoene/echarts4r/issues/163)
-    [\#163](https://github.com/JohnCoene/echarts4r/issues/163) for the
-    fix.
--   Avoid page breaks on PDF, see
-    [\#159](https://github.com/JohnCoene/echarts4r/issues/159), thanks
-    [Steve](https://github.com/sdmcallister).
-
-</div>
-
-<div class="section level2">
+- Added convenience `e_hide_grid_lines` to easily hide grid lines.
+- `e_map_register_ui` added to register a custom map in the Shiny UI,
+  for faster serialisation.
+- `e_leaflet*` functions now correctly apply the `roam` argument
+  [\#147](https://github.com/JohnCoene/echarts4r/issues/147)
+- Internals changes for dplyr \>= 0.7.0
+- Correct bug in
+  [boxplot](https://echarts4r.john-coene.com/articles/stats.html#boxplot)
+  thanks to [Matthias](https://github.com/matthias-a) in
+  [issue](https://github.com/JohnCoene/echarts4r/issues/163)
+  [\#163](https://github.com/JohnCoene/echarts4r/issues/163) for the
+  fix.
+- Avoid page breaks on PDF, see
+  [\#159](https://github.com/JohnCoene/echarts4r/issues/159), thanks
+  [Steve](https://github.com/sdmcallister).
 
 ## echarts4r 0.3.0.9000
 
@@ -262,83 +229,73 @@ vignette](https://echarts4r.john-coene.com/articles/proxies.html) for
 more. This implies some minute changes to the `echarts4rProxy`: nothing
 broken though.
 
--   Warning in `e_axis_fomatter` if user uses RStudio, relates to
-    [\#100](https://github.com/JohnCoene/echarts4r/issues/100)
--   Fixed [\#98](https://github.com/JohnCoene/echarts4r/issues/98) where
-    a bug was introduced in `e_radar_opts` when the timeline component
-    was added.
--   `bind` argument added to `e_heatmap`
--   `e_scatter_3d` correctly takes `bind` argument when `coords` is set
-    to `cartesian3D` (previously incorrect).
--   Bumped number of built-in themes to 40+.
--   Added `e_remove_serie_p` to remove series from the graph.
--   Added `e_axis_labels` to easily place axis labels.
--   Added `e_resize` to dynamically resize the chart.
--   Added `e_map_register_p` works like a proxy but does not require a
-    chart.
--   Fixed a few issues with `e_mark*` family, labels and multiple marks
-    correctly work.
--   Initialisation function now take `reorder` argument to specify
-    whether to reorder numeric values.
-    [\#126](https://github.com/JohnCoene/echarts4r/issues/126)
--   Added `e_register_theme` to register a global theme, see
-    [\#127](https://github.com/JohnCoene/echarts4r/issues/127).
--   `e_theme_custom` now accepts path to a JSON file.
--   `e_visual_map` drops `NA`s.
--   Added `e_axis_stagger` function to stagger x axis labels.
-
-</div>
-
-<div class="section level2">
+- Warning in `e_axis_fomatter` if user uses RStudio, relates to
+  [\#100](https://github.com/JohnCoene/echarts4r/issues/100)
+- Fixed [\#98](https://github.com/JohnCoene/echarts4r/issues/98) where a
+  bug was introduced in `e_radar_opts` when the timeline component was
+  added.
+- `bind` argument added to `e_heatmap`
+- `e_scatter_3d` correctly takes `bind` argument when `coords` is set to
+  `cartesian3D` (previously incorrect).
+- Bumped number of built-in themes to 40+.
+- Added `e_remove_serie_p` to remove series from the graph.
+- Added `e_axis_labels` to easily place axis labels.
+- Added `e_resize` to dynamically resize the chart.
+- Added `e_map_register_p` works like a proxy but does not require a
+  chart.
+- Fixed a few issues with `e_mark*` family, labels and multiple marks
+  correctly work.
+- Initialisation function now take `reorder` argument to specify whether
+  to reorder numeric values.
+  [\#126](https://github.com/JohnCoene/echarts4r/issues/126)
+- Added `e_register_theme` to register a global theme, see
+  [\#127](https://github.com/JohnCoene/echarts4r/issues/127).
+- `e_theme_custom` now accepts path to a JSON file.
+- `e_visual_map` drops `NA`s.
+- Added `e_axis_stagger` function to stagger x axis labels.
 
 ## echarts4r 0.2.3
 
 CRAN release: 2019-07-18
 
--   Bar chart’s `bind` argument has been fixed.
--   `e_tooltip_choro_formatter` tooltip formatter for choropleth maps
-    added, thanks to [Artem](https://github.com/artemklevtsov).
--   Tooltip formatters correctly identify locale on UNIX systems, thanks
-    to [Artem](https://github.com/artemklevtsov).
--   `e_mark_point()`, `e_mark_line()` and `e_mark_area()` no longer use
-    `grep()`, which means the serie will only be matched with the exact
-    same name. Thanks [@shrektan](https://github.com/shrektan) for the
-    reporting and PR
-    ([\#80](https://github.com/JohnCoene/echarts4r/issues/80),
-    [\#81](https://github.com/JohnCoene/echarts4r/issues/81)).
--   Multiple `e_title` now allowed.
--   Multiple `e_visual_map` in
-    [timelines](https://echarts4r.john-coene.com/articles/timeline.html)
-    is now fixed.
--   Corrected all links (or so I think).
--   `e_sankey` fix thanks to [Artem
-    Klevtsov](https://github.com/artemklevtsov).
--   Many dependencies removed, it is now much easier to install.
-
-</div>
-
-<div class="section level2">
+- Bar chart’s `bind` argument has been fixed.
+- `e_tooltip_choro_formatter` tooltip formatter for choropleth maps
+  added, thanks to [Artem](https://github.com/artemklevtsov).
+- Tooltip formatters correctly identify locale on UNIX systems, thanks
+  to [Artem](https://github.com/artemklevtsov).
+- [`e_mark_point()`](https://echarts4r.john-coene.com/reference/mark.md),
+  [`e_mark_line()`](https://echarts4r.john-coene.com/reference/mark.md)
+  and
+  [`e_mark_area()`](https://echarts4r.john-coene.com/reference/mark.md)
+  no longer use [`grep()`](https://rdrr.io/r/base/grep.html), which
+  means the serie will only be matched with the exact same name. Thanks
+  [@shrektan](https://github.com/shrektan) for the reporting and PR
+  ([\#80](https://github.com/JohnCoene/echarts4r/issues/80),
+  [\#81](https://github.com/JohnCoene/echarts4r/issues/81)).
+- Multiple `e_title` now allowed.
+- Multiple `e_visual_map` in
+  [timelines](https://echarts4r.john-coene.com/articles/timeline.html)
+  is now fixed.
+- Corrected all links (or so I think).
+- `e_sankey` fix thanks to [Artem
+  Klevtsov](https://github.com/artemklevtsov).
+- Many dependencies removed, it is now much easier to install.
 
 ## echarts4r 0.2.2
 
 CRAN release: 2019-04-09
 
--   `draw` argument added to `e_charts`, to set whether to draw the
-    chart, see bullet below.
--   `e_draw_p` added to choose draw chart.
--   `e_inspect` to inspect the output of echarts4r.
--   `echarts_from_json` to create an echarts4r object from JSON options.
--   `e_axis` family of functions (e.g.: `e_x_axis`) now accepts a column
-    name as first argument to easily adapt the range of the axes, in a
-    similar fashion as with `e_visual_map`.
--   `e_charts` family forces data.frame conversion to avoid jsonlite
-    bug.
--   Fixed bug in the `formatter` argument of `e_tooltip` where passing
-    custom function was not working.
-
-</div>
-
-<div class="section level2">
+- `draw` argument added to `e_charts`, to set whether to draw the chart,
+  see bullet below.
+- `e_draw_p` added to choose draw chart.
+- `e_inspect` to inspect the output of echarts4r.
+- `echarts_from_json` to create an echarts4r object from JSON options.
+- `e_axis` family of functions (e.g.: `e_x_axis`) now accepts a column
+  name as first argument to easily adapt the range of the axes, in a
+  similar fashion as with `e_visual_map`.
+- `e_charts` family forces data.frame conversion to avoid jsonlite bug.
+- Fixed bug in the `formatter` argument of `e_tooltip` where passing
+  custom function was not working.
 
 ## echarts4r 0.2.1
 
@@ -346,44 +303,40 @@ CRAN release: 2019-01-05
 
 **Support for timeline added**
 
--   `e_clean` removed as it was not of use anymore.
--   `e_list` added to pas raw list of options.
--   Improved `e_color_range` helper.
--   `e_lm` & `e_loess` now support `group_by`.
--   `e_scattter` scaling much more robust with new arguments. Also not
-    takes an optional `symbol` argument.
--   Jitter points with `e_scatter`
--   `e_append` adapated to work with new scatter-family of function
-    (scaling).
--   `e_lines_gl` added.
--   Improved examples.
--   Can now register multiple maps with `e_map_regiter`.
--   Error handling in `e_loess` and `e_lm` to better work with groups.
--   `e_capture` to capture events not implemented.
--   `e_bands` to add confidence bands.
--   Added example of heatmap with geo.
--   Fixed bug where the background color was not applied with `e_color`.
--   `e_scatter` size forced to numeric to avoid buggy character vector
-    caused by `apply` function.
--   Forces `webgl` rendering for `e_globe`, `e_scatter_gl` and
-    `e_flow_gl`.
--   Groups are now ordered in order to ensure match across series when
-    using `timeline = TRUE`.
--   `e_theme` now also accepts `default`.
--   `auritus` theme added.
--   `bar.width` argument renamed to `bar_width` in `e_histogram`.
--   `e_map_3d` and `e_map` correctly assign `name` argument.
--   Axis and tooltip formatters helpers added `e_tooltip_item_formatter`
-    & `e_axis_formatter`, thanks to [Artem
-    Klevtsov](https://github.com/artemklevtsov).
--   `e_error_bar` added to plot error bars.
--   Ability to specify `icons` in `e_legend`.
--   `e_aria` added to enable generating Accessible Rich Internet
-    Applications.
-
-</div>
-
-<div class="section level2">
+- `e_clean` removed as it was not of use anymore.
+- `e_list` added to pas raw list of options.
+- Improved `e_color_range` helper.
+- `e_lm` & `e_loess` now support `group_by`.
+- `e_scattter` scaling much more robust with new arguments. Also not
+  takes an optional `symbol` argument.
+- Jitter points with `e_scatter`
+- `e_append` adapated to work with new scatter-family of function
+  (scaling).
+- `e_lines_gl` added.
+- Improved examples.
+- Can now register multiple maps with `e_map_regiter`.
+- Error handling in `e_loess` and `e_lm` to better work with groups.
+- `e_capture` to capture events not implemented.
+- `e_bands` to add confidence bands.
+- Added example of heatmap with geo.
+- Fixed bug where the background color was not applied with `e_color`.
+- `e_scatter` size forced to numeric to avoid buggy character vector
+  caused by `apply` function.
+- Forces `webgl` rendering for `e_globe`, `e_scatter_gl` and
+  `e_flow_gl`.
+- Groups are now ordered in order to ensure match across series when
+  using `timeline = TRUE`.
+- `e_theme` now also accepts `default`.
+- `auritus` theme added.
+- `bar.width` argument renamed to `bar_width` in `e_histogram`.
+- `e_map_3d` and `e_map` correctly assign `name` argument.
+- Axis and tooltip formatters helpers added `e_tooltip_item_formatter` &
+  `e_axis_formatter`, thanks to [Artem
+  Klevtsov](https://github.com/artemklevtsov).
+- `e_error_bar` added to plot error bars.
+- Ability to specify `icons` in `e_legend`.
+- `e_aria` added to enable generating Accessible Rich Internet
+  Applications.
 
 ## echarts4r 0.2.0
 
@@ -396,95 +349,87 @@ Deprecated functions from `0.1.2` have been removed, they can be found
 in the [echarts4r.assets](https://echarts4r-assets.john-coene.com/)
 package:
 
--   `e_convert_texture`
--   `e_stars_texture`
--   `e_composite_texture`
--   `e_globe_texture`
--   `e_map_texture`
+- `e_convert_texture`
+- `e_stars_texture`
+- `e_composite_texture`
+- `e_globe_texture`
+- `e_map_texture`
 
 The `scatter` family of function has been reworked: the `scale` argument
 now takes a scaling function. To accomodate to this, the `e_visual_map`
 function also takes, optionally, a `scaling` function. Retired
 `e_keras_history` due to its uselessness.
 
-</div>
-
-<div class="section level2">
-
 ## echarts4r 0.1.2
 
--   `e_labels` to easily add labels.
--   Mapbox support see `e_mapbox`.
--   Improved `e_scatter`.
--   Improved `e_toolbox`.
--   Fixed `e_axis` (and corresponding `e_x_axis` and `e_y_axis`) bugs.
--   `e_add` added for nested data.
--   `e_showtip_p` and `e_hidetip_p` fixed.
--   `e_focus_adjacency_p` and `e_unfocus_adjacency_p` proxies to
-    highlight adjacent nodes (on graph/network) added.
--   Deprecation of texture related functions in favour of
-    [echarts4r.assets](https://echarts4r-assets.john-coene.com/).
--   `e_single_axis` added, works with `e_scatter`.
--   `e_text_style` added, to customise global fonts.
--   `e_angle_axis` now takes `serie` argument, see example.
--   Improved documentation of many functions.
--   `e_common` to pass options that will apply to all subsequent charts.
+- `e_labels` to easily add labels.
+- Mapbox support see `e_mapbox`.
+- Improved `e_scatter`.
+- Improved `e_toolbox`.
+- Fixed `e_axis` (and corresponding `e_x_axis` and `e_y_axis`) bugs.
+- `e_add` added for nested data.
+- `e_showtip_p` and `e_hidetip_p` fixed.
+- `e_focus_adjacency_p` and `e_unfocus_adjacency_p` proxies to highlight
+  adjacent nodes (on graph/network) added.
+- Deprecation of texture related functions in favour of
+  [echarts4r.assets](https://echarts4r-assets.john-coene.com/).
+- `e_single_axis` added, works with `e_scatter`.
+- `e_text_style` added, to customise global fonts.
+- `e_angle_axis` now takes `serie` argument, see example.
+- Improved documentation of many functions.
+- `e_common` to pass options that will apply to all subsequent charts.
 
 First iteration of the graphic low-level API:
 
--   `g_graphic_g`
+- `g_graphic_g`
 
--   `g_group_g`
+- `g_group_g`
 
--   `g_image_g`
+- `g_image_g`
 
--   `g_text_g`
+- `g_text_g`
 
--   `g_rect_g`
+- `g_rect_g`
 
--   `g_circle_g`
+- `g_circle_g`
 
--   `g_ring_g`
+- `g_ring_g`
 
--   `g_sector_g`
+- `g_sector_g`
 
--   `g_arc_g`
+- `g_arc_g`
 
--   `g_polygon_g`
+- `g_polygon_g`
 
--   `g_polyline_g`
+- `g_polyline_g`
 
--   `g_line_g`
+- `g_line_g`
 
--   `g_bezier_curve_g`
+- `g_bezier_curve_g`
 
--   Added actions that can be tied to buttons.
+- Added actions that can be tied to buttons.
 
--   Added the ability to add buttons.
+- Added the ability to add buttons.
 
--   Added `e_arrange` & `e_connect` to connect charts interactions and
-    visualise them together.
+- Added `e_arrange` & `e_connect` to connect charts interactions and
+  visualise them together.
 
--   Better supprot for radial, angle, and polar charts.
+- Better supprot for radial, angle, and polar charts.
 
--   Callbacks added `e_on` and `e_off`.
+- Callbacks added `e_on` and `e_off`.
 
--   `e_map_custom` added to work with custom registered maps.
+- `e_map_custom` added to work with custom registered maps.
 
--   `e_datazoom` takes a `toolbox` argument to optionally not the
-    `dataZoom` toolbox element.
+- `e_datazoom` takes a `toolbox` argument to optionally not the
+  `dataZoom` toolbox element.
 
--   Much improved documentation
+- Much improved documentation
 
--   `e_map` and `e_map_3d` no longer require the `serie` argument.
+- `e_map` and `e_map_3d` no longer require the `serie` argument.
 
--   `e_mark_*`: The `serie` argument of the mark family functions (i.e.:
-    `e_mark_point`) can now take a vector *and* if left `NULL` the point
-    is marked on all series.
-
-</div>
-
-<div class="section level2">
+- `e_mark_*`: The `serie` argument of the mark family functions (i.e.:
+  `e_mark_point`) can now take a vector *and* if left `NULL` the point
+  is marked on all series.
 
 ## echarts4r 0.1.1
 
@@ -492,87 +437,68 @@ CRAN release: 2018-09-17
 
 *Now available on CRAN*
 
--   No longer passes entirety of data.frame to the fron-end.
-
-</div>
-
-<div class="section level2">
+- No longer passes entirety of data.frame to the fron-end.
 
 ## echarts4r 0.1.0
 
-`echarts4r` now understands `dplyr::group_by`
+`echarts4r` now understands
+[`dplyr::group_by`](https://dplyr.tidyverse.org/reference/group_by.html)
 
--   `e_clean` to remove original data from visualisation and lighten up
-    end product.
-
-</div>
-
-<div class="section level2">
+- `e_clean` to remove original data from visualisation and lighten up
+  end product.
 
 ## echarts4r 0.0.2
 
--   `e_keras_history` added - plot `keras` history (loss & acc).
--   `e_format_axis`, `e_format_x_axis`, `e_format_y_axis` added - format
-    axis labels & pointers.
--   `e_tooltip` now takes a default `trigger = "item"`.
--   `e_flip_coords` added - to flip x/y corrdinates.
--   Grid & Axis vignettes.
--   `e_register_map` fixed.
--   `renderer` argument added to `e_charts` to enable SVG renderer.
-
-</div>
-
-<div class="section level2">
+- `e_keras_history` added - plot `keras` history (loss & acc).
+- `e_format_axis`, `e_format_x_axis`, `e_format_y_axis` added - format
+  axis labels & pointers.
+- `e_tooltip` now takes a default `trigger = "item"`.
+- `e_flip_coords` added - to flip x/y corrdinates.
+- Grid & Axis vignettes.
+- `e_register_map` fixed.
+- `renderer` argument added to `e_charts` to enable SVG renderer.
 
 ## echarts4r 0.0.1
 
 Added:
 
--   `e_lm`, `e_glm` and `e_loess`.
-
-</div>
-
-<div class="section level2">
+- `e_lm`, `e_glm` and `e_loess`.
 
 ## echarts4r 0.0.1.9000
 
 Initial version with chart types:
 
--   Bar
--   Line
--   Area
--   Step
--   Scatter
--   Effect Scatter
--   Candlestick
--   Funnel
--   Sankey
--   Graph
--   Heatmap
--   Parallel
--   Pie
--   Tree
--   Treemap
--   River (streamgraph)
--   Sunburst
--   Boxplot
--   Calendar
--   Gauge
--   Polar
--   wordcloud
--   liquidFill
--   Map
--   Pictorial
--   Line 3D
--   Bar 3D
--   Scatter 3D
--   Map 3D
--   Geo 3D
--   Globe 3D
--   Flow GL
--   Graph GL
--   Scatter GL
-
-</div>
-
-</div>
+- Bar
+- Line
+- Area
+- Step
+- Scatter
+- Effect Scatter
+- Candlestick
+- Funnel
+- Sankey
+- Graph
+- Heatmap
+- Parallel
+- Pie
+- Tree
+- Treemap
+- River (streamgraph)
+- Sunburst
+- Boxplot
+- Calendar
+- Gauge
+- Polar
+- wordcloud
+- liquidFill
+- Map
+- Pictorial
+- Line 3D
+- Bar 3D
+- Scatter 3D
+- Map 3D
+- Geo 3D
+- Globe 3D
+- Flow GL
+- Graph GL
+- Scatter GL

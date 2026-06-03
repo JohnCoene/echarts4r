@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Loading
-
-<div class="ref-description section level2">
 
 Show or hide loading.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_show_loading(
@@ -28,59 +18,45 @@ e_show_loading(
 e_hide_loading(e)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   hide_overlay:
+- hide_overlay:
 
-    Hides the white overlay that appears in shiny when a plot is
-    recalculating.
+  Hides the white overlay that appears in shiny when a plot is
+  recalculating.
 
--   text:
+- text:
 
-    Text to display.
+  Text to display.
 
--   color:
+- color:
 
-    Color of spinner.
+  Color of spinner.
 
--   text_color:
+- text_color:
 
-    Color of text.
+  Color of text.
 
--   mask_color:
+- mask_color:
 
-    Color of mask.
+  Color of mask.
 
--   zlevel:
+- zlevel:
 
-    Z level.
-
-</div>
-
-<div class="section level2">
+  Z level.
 
 ## Details
 
 This only applies to Shiny.
 
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 if (FALSE) { # \dontrun{
@@ -139,9 +115,3 @@ if (interactive()) {
 }
 } # }
 ```
-
-</div>
-
-</div>
-
-</div>

@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Tooltip Proxy
-
-<div class="ref-description section level2">
 
 Proxies to show or hide tooltip.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_showtip_p(proxy, ...)
@@ -20,30 +10,19 @@ e_showtip_p(proxy, ...)
 e_hidetip_p(proxy)
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   proxy:
+- proxy:
 
-    An echarts4r proxy as returned by `echarts4rProxy`.
+  An echarts4r proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   ...:
+- ...:
 
-    Any other option, see
-    [showTip](https://echarts.apache.org/en/api.html#action.tooltip).
-
-</div>
-
-<div class="section level2">
+  Any other option, see
+  [showTip](https://echarts.apache.org/en/api.html#action.tooltip).
 
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 if (FALSE) { # \dontrun{
@@ -107,9 +86,3 @@ if (interactive()) {
 }
 } # }
 ```
-
-</div>
-
-</div>
-
-</div>

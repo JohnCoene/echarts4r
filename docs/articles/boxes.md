@@ -1,13 +1,9 @@
-<div id="main" role="main">
-
 # boxes
 
 The latest version of echarts4r comes with “boxes,” these are similar to
 [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/index.html)
 `valuebox`. They work very much like any other echarts4r charts within
 shiny.
-
-<div id="cb1" class="sourceCode">
 
 ``` r
 library(shiny)
@@ -43,8 +39,6 @@ server <- function(input, output){
 shinyApp(ui, server)
 ```
 
-</div>
+![Box Images](boxes.png)
 
-![](boxes.png)
-
-</div>
+Box Images

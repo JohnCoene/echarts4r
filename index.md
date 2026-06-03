@@ -9,7 +9,7 @@
 <div class = "row">
 
 <div class = "col-md-4">
-<img class = "img-responsive responsive-img" src="reference/figures/logo.png">
+<img class = "img-responsive responsive-img" src="reference/figures/logo.png" alt="Echarts4r Logo Image">
 </div>
 
 <div class = "col-md-8">

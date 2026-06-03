@@ -1,18 +1,8 @@
-<div id="main" class="col-md-9" role="main">
-
 # Candlestick
-
-<div class="ref-description section level2">
 
 Add a candlestick chart.
 
-</div>
-
-<div class="section level2">
-
 ## Usage
-
-<div class="sourceCode">
 
 ``` r
 e_candle(
@@ -40,59 +30,42 @@ e_candle_(
 )
 ```
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Arguments
 
--   e:
+- e:
 
-    An `echarts4r` object as returned by `e_charts` or a proxy as
-    returned by `echarts4rProxy`.
+  An `echarts4r` object as returned by
+  [`e_charts`](https://echarts4r.john-coene.com/reference/init.md) or a
+  proxy as returned by
+  [`echarts4rProxy`](https://echarts4r.john-coene.com/reference/echarts4r-shiny.md).
 
--   opening, closing, low, high:
+- opening, closing, low, high:
 
-    Stock prices.
+  Stock prices.
 
--   bind:
+- bind:
 
-    Binding between datasets, namely for use of `e_brush`.
+  Binding between datasets, namely for use of
+  [`e_brush`](https://echarts4r.john-coene.com/reference/e_brush.md).
 
--   name:
+- name:
 
-    name of the serie.
+  name of the serie.
 
--   legend:
+- legend:
 
-    Whether to add serie to legend.
+  Whether to add serie to legend.
 
--   ...:
+- ...:
 
-    Any other option to pass, check See Also section.
-
-</div>
-
-<div class="section level2">
+  Any other option to pass, check See Also section.
 
 ## See also
-
-<div class="dont-index">
 
 [Additional
 arguments](https://echarts.apache.org/en/option.html#series-candlestick)
 
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Examples
-
-<div class="sourceCode">
 
 ``` r
 date <- c(
@@ -118,11 +91,5 @@ stock |>
   e_candle(opening, closing, low, high) |>
   e_y_axis(min = 190, max = 220)
 
-{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true,"min":190,"max":220}],"xAxis":[{"data":["2017-01-01","2017-01-02","2017-01-03","2017-01-04","2017-03-05","2017-01-06","2017-01-07"],"type":"category","boundaryGap":true}],"legend":{"data":["candle"]},"series":[{"data":[{"value":[200.6,200.72,197.82,203.32]},{"value":[200.22,198.85,198.07,200.67]},{"value":[198.43,199.05,197.9,200]},{"value":[199.05,203.73,198.1,203.95]},{"value":[203.54,204.08,202,204.9]},{"value":[203.4,208.11,201.5,208.44]},{"value":[208.34,211.88,207.6,213.17]}],"name":"candle","type":"candlestick"}]},"dispose":true},"evals":[],"jsHooks":[]}
+{"x":{"theme":"","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"yAxis":[{"show":true,"min":190,"max":220}],"xAxis":[{"data":["2017-01-01","2017-01-02","2017-01-03","2017-01-04","2017-03-05","2017-01-06","2017-01-07"],"type":"category","boundaryGap":true}],"legend":{"data":["candle"]},"series":[{"data":[{"value":[200.6,200.72,197.82,203.32]},{"value":[200.22,198.85,198.07,200.67]},{"value":[198.43,199.05,197.9,200]},{"value":[199.05,203.73,198.1,203.95]},{"value":[203.54,204.08,202,204.9]},{"value":[203.4,208.11,201.5,208.44]},{"value":[208.34,211.88,207.6,213.17]}],"name":"candle","type":"candlestick"}]},"dispose":true},"evals":[],"jsHooks":[]}
 ```
-
-</div>
-
-</div>
-
-</div>

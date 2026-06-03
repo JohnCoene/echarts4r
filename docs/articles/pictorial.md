@@ -1,16 +1,10 @@
-<div id="main" role="main">
-
 # Pictorial
 
 Pictorial bar chart is a type of bar chart that custimzed glyph (like
 images, SVG PathData) can be used instead of rectangular bar. This kind
 of chart is usually used in infographic.
 
-<div class="section level2">
-
 ## Built-in symbols
-
-<div id="cb1" class="sourceCode">
 
 ``` r
 y <- rnorm(10, 10, 2)
@@ -29,24 +23,10 @@ df |>
   e_title("Built-in symbols")
 ```
 
-</div>
-
-<div id="htmlwidget-ac96cb3ee4656e2e9ec3"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Icons
 
 [echarts4r.assets](https://echarts4r-assets.john-coene.com) now includes
 icons you can easily include in your plots.
-
-<div id="cb2" class="sourceCode">
 
 ``` r
 library(echarts4r.assets)
@@ -62,21 +42,7 @@ mtcars |>
   e_legend(icons = ea_icons("trash"))
 ```
 
-</div>
-
-<div id="htmlwidget-e5c8c404fe174e4c81bd"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## SVG path
-
-<div id="cb3" class="sourceCode">
 
 ``` r
 path <- "path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z"
@@ -94,21 +60,7 @@ df |>
   e_title("SVG path")
 ```
 
-</div>
-
-<div id="htmlwidget-36aa3d2a04d42bbc2145"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-<div class="section level2">
-
 ## Images
-
-<div id="cb4" class="sourceCode">
 
 ``` r
 qomo <- paste0(
@@ -134,15 +86,3 @@ data |>
   e_legend(FALSE) |> 
   e_title("Images", "Mountains height")
 ```
-
-</div>
-
-<div id="htmlwidget-febe03efa1a2d8d52a86"
-class="echarts4r html-widget html-fill-item"
-style="width:100%;height:500px;">
-
-</div>
-
-</div>
-
-</div>

@@ -1,8 +1,4 @@
-<div id="main" role="main">
-
 # Proxies
-
-<div class="section level2">
 
 ## Introduction
 
@@ -12,16 +8,10 @@ as a proxy. This, combined with a new `e_remove_serie` lets one
 seamlessly add and remove series from a chart without having to redraw
 it in its entirety, making for much slicker Shiny charts.
 
-</div>
-
-<div class="section level2">
-
 ## Examples
 
 Below is a basic Shiny application that uses echarts4r. We’ll afterwards
 add to the app the ability to add and remove a serie.
-
-<div id="cb1" class="sourceCode">
 
 ``` r
 library(shiny)
@@ -50,8 +40,6 @@ server <- function(input, output){
 shinyApp(ui, server)
 ```
 
-</div>
-
 We add a button to enable adding a serie on the chart.
 
 1.  Create a proxy with `echarts4rProxy`.
@@ -64,8 +52,6 @@ are free to use any other functions that adds a serie to a chart. The
 `e_execute` function is used to actually send the the updates to the
 front end and have the chart updated, this allows batching updates,
 e.g.: add a scatter plot and a line at once.
-
-<div id="cb2" class="sourceCode">
 
 ``` r
 library(shiny)
@@ -101,14 +87,10 @@ server <- function(input, output){
 shinyApp(ui, server)
 ```
 
-</div>
-
-![](echarts4r-add1.gif)
+![Gif of line drawing on scatter plot](echarts4r-add1.gif)
 
 We can then add another button to remove the serie with `e_remove_serie`
 which does not require the use of `e_execute`.
-
-<div id="cb3" class="sourceCode">
 
 ``` r
 library(shiny)
@@ -150,14 +132,11 @@ server <- function(input, output){
 shinyApp(ui, server)
 ```
 
-</div>
-
-![](echarts4r-add2.gif)
+![Gif of line drawing onto scatter plot and then being
+removed](echarts4r-add2.gif)
 
 We can now demonstrate how to add multiple series, and the useful of
 `e_execute`.
-
-<div id="cb4" class="sourceCode">
 
 ``` r
 library(shiny)
@@ -202,10 +181,5 @@ server <- function(input, output){
 shinyApp(ui, server)
 ```
 
-</div>
-
-![](echarts4r-add3.gif)
-
-</div>
-
-</div>
+![Gif of line being drawn onto scatter plot with loess
+fit](echarts4r-add3.gif)
