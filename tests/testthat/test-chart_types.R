@@ -1514,6 +1514,38 @@ test_that("e_heatmap plot has the good data structure and type", {
   )
 })
 
+test_that("e_heatmap selects correct data when y and z are the same", {
+  set.seed(1)
+
+  v <- LETTERS[1:5]
+
+  matrix <- data.frame(
+    x = sample(v, 5, replace = TRUE),
+    y = sample(v, 5, replace = TRUE),
+    z = rnorm(5, 10, 1),
+    stringsAsFactors = FALSE
+  ) |>
+    dplyr::group_by(x, y) |>
+    dplyr::summarise(z = sum(z), .groups = "drop_last") |>
+    dplyr::ungroup()
+
+  # heatmap uses y,y. This should NOT euqal the previous test.
+  # There was a bug in which if y and z are both the same values, then z will get ignored. Now y and z and both treated as y, for example here.
+  plot <- matrix |>
+    e_charts(x) |>
+    e_heatmap(y, y) |>
+    e_visual_map(z)
+
+  expect_equal(
+    plot$x$opts$series[[1]]$data,
+    list(list(value = c("A", "C", "C")), list(value = c("B", "C", "C")), list(value = c("D", "B", "B")), list(value = c("E", "A", "A")))
+  )
+  expect_equal(
+    plot$x$opts$series[[1]]$type,
+    "heatmap"
+  )
+})
+
 test_that("e_heatmap timeline works", {
 
   set.seed(1)
@@ -3093,7 +3125,7 @@ test_that("e_line_3d.echarts4rProxy plot responds", {
     output$bar <- renderEcharts4r({
       test_data |>
         e_charts(x) |>
-        e_line_3d(y, z)
+        e_scatter_3d(y, z)
     })
 
     observeEvent(input$update, {
