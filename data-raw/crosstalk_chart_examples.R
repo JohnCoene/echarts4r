@@ -1,4 +1,7 @@
 # e_area_ -----------------------------------------------------------------
+library(crosstalk)
+library(DT)
+
 sd <- CO2 |>
   group_by(Plant) |> SharedData$new()
 

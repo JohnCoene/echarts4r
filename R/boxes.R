@@ -128,10 +128,10 @@ renderEcharts4rBox <- function(expr, env = parent.frame(), quoted = FALSE) {
     path <- system.file("htmlwidgets/lib/echarts-6.1.0", package = "echarts4r")
 
     deps <- htmltools::htmlDependency(
-      name = "countup",
-      version = "4.9.0",
+      name = "echarts",
+      version = "6.1.0",
       src = c(file = path),
-      script = c("echarts-en.min.js")
+      script = c("echarts.min.js")
     )
 
     val$deps <- lapply(
