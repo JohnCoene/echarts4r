@@ -1178,7 +1178,7 @@ e_locale <- function(e, locale){
     dep <- htmltools::htmlDependency(
       name = sprintf("%s-echarts4r-locale", locale),
       version = utils::packageVersion("echarts4r"),
-      src = "htmlwidgets/lib/echarts-6.0.0/i18n",
+      src = "htmlwidgets/lib/echarts-6.1.0/i18n",
       package = "echarts4r",
       script = sprintf("lang%s.js", locale)
     )

@@ -31,14 +31,14 @@
 #' @rdname theme
 #' @export
 e_theme <- function(
-  e, 
-  name = c("auritus", "azul", "bee-inspired", "blue", "caravan", "carp", 
-    "chalk", "cool", "dark", "dark-blue", "dark-bold", "dark-digerati", "dark-fresh-cut", 
-    "dark-mushroom", "eduardo", "essos", "forest", "fresh-cut", 
-    "fruit", "gray", "green", "halloween", "helianthus", "infographic", 
-    "inspired", "jazz", "london", "macarons", "macarons2", "mint", 
-    "purple-passion", "rainbow", "red", "red-velvet",  "roma", "royal", "sakura", 
-    "shine", "tech-blue", "v5", "vintage", "walden", "wef", "weforum", 
+  e,
+  name = c("auritus", "azul", "bee-inspired", "blue", "caravan", "carp",
+    "chalk", "cool", "dark", "dark-blue", "dark-bold", "dark-digerati", "dark-fresh-cut",
+    "dark-mushroom", "eduardo", "essos", "forest", "fresh-cut",
+    "fruit", "gray", "green", "halloween", "helianthus", "infographic",
+    "inspired", "jazz", "london", "macarons", "macarons2", "mint",
+    "purple-passion", "rainbow", "red", "red-velvet",  "roma", "royal", "sakura",
+    "shine", "tech-blue", "v5", "vintage", "walden", "wef", "weforum",
     "westeros", "wonderland"
   )
 ) {
@@ -49,7 +49,7 @@ e_theme <- function(
   e$x$theme <- name
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-6.0.0/themes", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.1.0/themes", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = name,
     version = "1.0.0",
