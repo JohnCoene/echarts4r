@@ -1074,7 +1074,7 @@ e_arrange <- function(..., rows = NULL, cols = NULL, width = "xs", title = NULL)
           htmltools::tags$link(
             rel="stylesheet",
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css",
-            integrity = "sha384-YEteyAKbjYSLDrpbBY0aFgK1CrQHo0Erb5XT/MU5FYvkb3SmPSZSisW7LOYTKvTx",
+            integrity="sha384-YEteyAKbjYSLDrpbBY0aFgK1CrQHo0Erb5XT/MU5FYvkb3SmPSZSisW7LOYTKvTx",
             crossorigin="anonymous"
           )
         ),
