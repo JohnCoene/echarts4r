@@ -433,6 +433,45 @@ e_charts_ <- function(
     )
   )
 
+  # Crosstalk
+  ct_key   <- NULL
+  ct_group <- NULL
+  isGroupedData <- NULL
+  isCrosstalk <- FALSE
+  if (!missing(data) && crosstalk::is.SharedData(data)) {
+    ct_key   <- data$key() |> as.character()
+    ct_group <- data$groupName()
+
+    isCrosstalk = TRUE
+
+    # origData() returns wrong thing on grouped SharedData
+    data <- (data$origData())
+    data$XkeyX <- ct_key  # add key column
+    isGroupedData <- dplyr::is.grouped_df(data)
+  }
+
+  # forward options using x
+  x <- list(
+    theme = "",
+    tl = timeline,
+    draw = draw,
+    renderer = tolower(renderer),
+    mapping = list(),
+    events = list(),
+    buttons = list(),
+    # ── 2. Store crosstalk metadata on x so JS + serie functions can read it ─
+    settings = list(
+      crosstalk_key   = ct_key,
+      crosstalk_group = ct_group
+    ),
+    opts = list(
+      ...,
+      yAxis = list(
+        list(show = TRUE)
+      )
+    )
+  )
+
   if (!missing(data)) {
     row.names(data) <- NULL
 
@@ -442,6 +481,82 @@ e_charts_ <- function(
 
     x$data <- map_grps_(data, timeline)
   }
+
+
+  # Start crosstalk -------------------------------------------------------
+  # First, I'll acknowledge {echarty} for guidance on how to implement
+  # this. https://github.com/helgasoft/echarty/
+
+  # Crosstalk works by adding a column called 'XkeyX' so each row (i.e. data
+  # point) will have a unique key. e$x$settings contains crosstalk_key and
+  # crosstalk_group - assigned by crosstalk, unless specified.
+  # e$x$crosstalk_grpvar contains name of group (if any)
+
+  # When data is constructed (i.e. in e_line()), each data point will have an
+  # 'XkeyX'. This key is used to identify which data was selected. This gets
+  # matched using this id and datasetId. These values are found:
+
+  # e$x$opts$dataset[[1]]$source[[1]]$XkeyX
+  # e$x$opts$series[[1]]$datasetId
+
+  # This will attach dimensions (i.e. colnames) and e$opts$dataset (i.e.)
+  # js / crosstalk and the js looks for this column to grab
+  if (!is.null(ct_group) & isTRUE(isGroupedData)) {
+
+    flat_data <- dplyr::ungroup(data)
+
+    # Just the name of the group_by variable
+    grp_var   <- if (dplyr::is_grouped_df(data)) dplyr::group_vars(data)[1] else NULL
+
+    source_data <- lapply(seq_len(nrow(flat_data)), function(i) {
+      as.list(flat_data[i, , drop = FALSE])
+    })
+    x$crosstalk_grpvar <- grp_var
+    grp_vals <- as.character(unique(flat_data[[grp_var]]))
+
+    grp_transforms <- lapply(grp_vals, function(g) {
+      list(
+        id = paste0("Xtalk_", g),
+        fromDatasetIndex = 0,
+        transform = list(
+          # filter by group first, then by crosstalk key
+          list(type = "filter", config = list(dimension = grp_var, `=` = g)),
+          list(type = "filter", config = list(dimension = "XkeyX", reg = "^"))
+        )
+      )
+    })
+
+    x$opts$dataset <- c(
+      list(list(id = "source", dimensions = colnames(flat_data), source = source_data)),
+      grp_transforms
+    )
+  }
+
+  # after building x$opts, add the dataset + Xtalk transform
+  if (!is.null(ct_group) & isFALSE(isGroupedData)) {
+    # convert data frame to list of rows
+    source_data <- lapply(seq_len(nrow(data)), function(i) {
+      as.list(data[i, , drop = FALSE])
+    })
+
+    x$opts$dataset <- list(
+      list(
+        id = "source",
+        dimensions = colnames(data),
+        source = source_data
+      ),
+      list(
+        id = "Xtalk",
+        fromDatasetId = "source",
+        transform = list(
+          type = "filter",
+          config = list(dimension = "XkeyX", reg = "^")
+        )
+      )
+    )
+  }
+
+  # End crosstalk -----------------------------------------------------------
 
   if (!is.null(xmap)) {
     x$mapping$x <- xmap[1]
