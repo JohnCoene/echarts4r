@@ -46,6 +46,7 @@
 
         svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.setAttribute('id', svgId);
+        svg.setAttribute('aria-hidden', 'true');
         svg.style.position = 'absolute';
         svg.style.pointerEvents = 'none';
         svg.style.zIndex = '10';
