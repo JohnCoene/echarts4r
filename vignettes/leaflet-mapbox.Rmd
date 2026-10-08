@@ -26,7 +26,7 @@ Leaflet only works with `e_scatter` and `e_effect_scatter`.
 
 ## Scatter
 
-```{r}
+```{r, echo = TRUE, eval = FALSE}
 echarts4r::population |> 
   e_charts(lon) |> 
   e_leaflet() |>
@@ -49,11 +49,11 @@ echarts4r::population |>
   e_visual_map(value)
 ```
 
-```{r, echo = FALSE}
+```{r, echo = TRUE, eval = FALSE}
 echarts4r::population |> 
   e_charts(lon) |> 
   e_mapbox(
-    token = "pk.eyJ1IjoiamNvZW5lcCIsImEiOiJjamwyYXJyMjExb2R0M3FxcDlmemg2czFiIn0.OL6qEEADz5qBjhKecwgBdg",
+    ttoken = "YOUR_TOKEN",
     style = "mapbox://styles/mapbox/dark-v9"
   ) |> 
   e_bar_3d(lat, value, coord_system = "mapbox") |> 
