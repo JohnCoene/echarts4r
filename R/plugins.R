@@ -73,7 +73,7 @@ e_cloud_ <- function(e, word, freq, color = NULL, rm_x = TRUE, rm_y = TRUE, ...)
   e$x$opts$series <- append(e$x$opts$series, list(serie))
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-wordcloud",
     version = "1.0.0",
@@ -151,7 +151,7 @@ e_liquid_ <- function(e, serie, color = NULL, rm_x = TRUE, rm_y = TRUE, ...) {
   e$x$opts$series <- append(e$x$opts$series, list(serie))
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-liquidfill",
     version = "1.0.0",
@@ -217,7 +217,7 @@ e_modularity <- function(e, modularity = TRUE) {
   e$x$opts$series[[length(e$x$opts$series)]]$modularity <- clu
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-modularity",
     version = "1.0.0",
@@ -291,7 +291,7 @@ e_doughnut <- function(e,
   e$x$opts$series <- append(e$x$opts$series, list(serie))
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-doughnut",
     version = "1.0.0",
@@ -392,7 +392,7 @@ e_violin <- function(e,
   }
 
     # add dependency
-    path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+    path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
     dep <- htmltools::htmlDependency(
       name = "echarts-violin",
       version = "1.0.0",
@@ -533,7 +533,7 @@ e_barRange <- function(e,
 
   # In the js I replaced "°C" with 't.itemPayload.textSymbol' since the symbol
   # was hard-coded
-  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-barRange",
     version = "1.0.0",
@@ -665,7 +665,7 @@ e_contour <- function(e,
 
   e$dependencies <- append(e$dependencies, list(dep_d3))
 
-  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-contour",
     version = "1.0.0",
@@ -767,7 +767,7 @@ e_lineRange <- function(e,
       e$x$opts$series <- append(e$x$opts$series, list(e_serie))
 
   }
-  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-lineRange",
     version = "1.0.0",
@@ -935,7 +935,7 @@ e_stage <- function(e,
     )
   }
 
-  path <- system.file("htmlwidgets/lib/echarts-6.0.0/plugins", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-stage",
     version = "1.0.0",

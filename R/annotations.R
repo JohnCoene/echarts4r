@@ -260,7 +260,7 @@ e_annotations <- function(
     htmltools::htmlDependency(
       name = "echarts-annotations",
       version = "1.0.0",
-      src = system.file("htmlwidgets/lib/echarts-6.0.0/plugins/", package = "echarts4r"),
+      src = system.file("htmlwidgets/lib/echarts-6.1.0/plugins/", package = "echarts4r"),
       script = "echarts-annotations.js"
       )
 
