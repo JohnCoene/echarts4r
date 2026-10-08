@@ -168,7 +168,7 @@ e_map_ <- function(e, serie = NULL, map = "world", name = NULL, rm_x = TRUE, rm_
 
   if (map == "world") {
     # add dependency
-    path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
+    path <- system.file("htmlwidgets/lib/echarts-6.1.0", package = "echarts4r")
     dep <- htmltools::htmlDependency(
       name = "echarts-world",
       version = "1.0.0",
@@ -252,7 +252,7 @@ e_map_3d_ <- function(e, serie = NULL, map = "world", name = NULL, coord_system 
 
   if (map == "world") {
     # add dependency
-    path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
+    path <- system.file("htmlwidgets/lib/echarts-6.1.0", package = "echarts4r")
     dep <- htmltools::htmlDependency(
       name = "echarts-world",
       version = "1.0.0",
@@ -264,7 +264,7 @@ e_map_3d_ <- function(e, serie = NULL, map = "world", name = NULL, coord_system 
   }
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.1.0", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-gl",
     version = "1.1.2",
@@ -326,7 +326,7 @@ e_map_3d_custom <- function(e, id, value, height, map = NULL, name = NULL, rm_x 
   e$x$opts$series <- append(e$x$opts$series, list(app))
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-6.0.0", package = "echarts4r")
+  path <- system.file("htmlwidgets/lib/echarts-6.1.0", package = "echarts4r")
   dep <- htmltools::htmlDependency(
     name = "echarts-gl",
     version = "1.1.2",
