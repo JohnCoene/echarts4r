@@ -1,0 +1,69 @@
+name: Inspection 🛠
+
+on:
+  pull_request:
+    types:
+      - synchronize
+      - reopened
+      - ready_for_review
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+  linter:
+    if: github.event_name != 'push'
+    name: Linter 🦸‍♀️
+    uses: johnsonandjohnson/actions/.github/workflows/lint.yaml@dev
+
+  gitleaks:
+    name: gitleaks 💧
+    uses: insightsengineering/r.pkg.template/.github/workflows/gitleaks.yaml@main
+
+  spelling:
+    name: Spell Check 🆎
+    uses: insightsengineering/r.pkg.template/.github/workflows/spelling.yaml@main
+    secrets:
+      REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
+
+  links:
+    if: github.event_name != 'push'
+    name: Check URLs 🌐
+    uses: insightsengineering/r.pkg.template/.github/workflows/links.yaml@main
+
+  vbump:
+    name: Version Bump 🤜🤛
+    if: github.event_name == 'push'
+    uses: insightsengineering/r.pkg.template/.github/workflows/version-bump.yaml@main
+    secrets:
+      REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
+
+  version:
+    name: Version Check 🏁
+    uses: insightsengineering/r.pkg.template/.github/workflows/version.yaml@main
+
+  licenses:
+    name: License Check 🃏
+    uses: insightsengineering/r.pkg.template/.github/workflows/licenses.yaml@main
+
+  grammar:
+    if: github.event_name != 'push'
+    name: Grammar Check 🔤
+    uses: insightsengineering/r.pkg.template/.github/workflows/grammar.yaml@main
+    
+  # coverage:
+  #   name: Coverage 📔
+  #   uses: insightsengineering/r.pkg.template/.github/workflows/test-coverage.yaml@main
+  #   secrets:
+  #     REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
+  #   with:
+  #     deps-installation-method: setup-r-dependencies
+  #     additional-env-vars: |
+  #       NOT_CRAN=true
