@@ -10,7 +10,7 @@
 [![version](https://img.shields.io/github/tag/JohnCoene/echarts4r.svg)](https://github.com/JohnCoene/echarts4r/releases) 
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/JohnCoene/echarts4r.svg)](https://github.com/JohnCoene/echarts4r/issues) 
 [![echarts4r](https://cranlogs.r-pkg.org/badges/echarts4r)](https://cranlogs.r-pkg.org/badges/echarts4r) [![code-size](https://img.shields.io/github/languages/code-size/JohnCoene/echarts4r.svg)](https://github.com/JohnCoene/echarts4r) 
-[![Code Coverage 📔](https://echarts4r.john-coene.com/coverage/coverage-badge.svg)](https://echarts4r.john-coene.com/coverage/)
+[![Code Coverage 📔](https://raw.githubusercontent.com/JohnCoene/echarts4r/refs/heads/gh-pages/coverage/coverage-badge.svg)](https://echarts4r.john-coene.com/coverage/)
 
 [Apache ECharts](https://echarts.apache.org/en/) version __6__ for R.
 
