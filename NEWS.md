@@ -1,5 +1,6 @@
 # echarts4r 0.5.1
 
+- Added standard evaluation functions to existing chart types: `e_barRange_()`, `e_contour_()`, `e_lineRange()`, `e_stage()`
 - Added crosstalk capability to `e_bar()`, `e_line()` and 11 other chart types [#214](https://github.com/JohnCoene/echarts4r/issues/214)
 
 # echarts4r 0.5.0

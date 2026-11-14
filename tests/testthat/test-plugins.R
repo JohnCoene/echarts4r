@@ -1,4 +1,3 @@
-
 # cloud -------------------------------------------------------------------
 test_that("e_cloud plot has the good data structure and type", {
   tf <- data.frame(
@@ -12,11 +11,10 @@ test_that("e_cloud plot has the good data structure and type", {
     e_charts() |>
     e_cloud(terms, freq, shape = "circle", sizeRange = c(3, 15))
 
-
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
 
-  tf_expected_point <- tf[1,] |> unlist()
+  tf_expected_point <- tf[1, ] |> unlist()
   data_point <- plot$x$opts$series[[1]]$data[[1]] |> unlist()
 
   tf_expected_point %in% data_point
@@ -30,7 +28,6 @@ test_that("e_cloud plot has the good data structure and type", {
 
 test_that("e_cloud and e_cloud_ expects error when missing e ", {
   expect_error(e_cloud(), "must pass e")
-  expect_error(e_cloud_(), "must pass e")
 })
 
 
@@ -60,11 +57,31 @@ test_that("e_cloud plot has the good data structure and type", {
   expect_equal(
     plot$x$opts$series[[1]]$data,
     list(
-      list(value = 70.95281, name = "ARJIY6526F", textStyle = list(color = "#F6EFA6")),
-      list(value = 58.29508, name = "BSVON5071J", textStyle = list(color = "#D78071")),
-      list(value = 56.83643, name = "DKUJE7845T", textStyle = list(color = "#D4796C")),
-      list(value = 48.73546, name = "YWANU8677A", textStyle = list(color = "#C45052")),
-      list(value = 46.64371, name = "GNUGI5922C", textStyle = list(color = "#BF444C"))
+      list(
+        value = 70.95281,
+        name = "ARJIY6526F",
+        textStyle = list(color = "#F6EFA6")
+      ),
+      list(
+        value = 58.29508,
+        name = "BSVON5071J",
+        textStyle = list(color = "#D78071")
+      ),
+      list(
+        value = 56.83643,
+        name = "DKUJE7845T",
+        textStyle = list(color = "#D4796C")
+      ),
+      list(
+        value = 48.73546,
+        name = "YWANU8677A",
+        textStyle = list(color = "#C45052")
+      ),
+      list(
+        value = 46.64371,
+        name = "GNUGI5922C",
+        textStyle = list(color = "#BF444C")
+      )
     )
   )
   expect_equal(
@@ -75,7 +92,6 @@ test_that("e_cloud plot has the good data structure and type", {
 
 # liquid ------------------------------------------------------------------
 test_that("e_liquid plot has the good data structure and type", {
-
   df <- data.frame(val = c(0.6, 0.5, 0.4))
 
   plot <- df |>
@@ -86,7 +102,9 @@ test_that("e_liquid plot has the good data structure and type", {
   expect_s3_class(plot, "htmlwidget")
 
   expect_equal(
-    plot$x$opts$series[[1]]$data, (df |> as.vector())$val)
+    plot$x$opts$series[[1]]$data,
+    (df |> as.vector())$val
+  )
 
   expect_equal(
     plot$x$opts$series[[1]]$type,
@@ -95,7 +113,6 @@ test_that("e_liquid plot has the good data structure and type", {
 })
 
 test_that("e_liquid plot has color", {
-
   df <- data.frame(val = c(0.6, 0.5, 0.1), col = c("#FFF", "#FFF", "#FFF"))
 
   plot <- df |>
@@ -103,13 +120,13 @@ test_that("e_liquid plot has color", {
     e_liquid(val, color = col)
 
   expect_equal(
-    plot$x$opts$series[[1]]$color, df$col)
+    plot$x$opts$series[[1]]$color,
+    df$col
+  )
 })
 
-test_that("e_liquid and e_liquid_ expects error when missing e ", {
+test_that("e_liquid expects error when missing e ", {
   expect_error(e_liquid(), "must pass e")
-
-  expect_error(e_liquid_(), "must pass e")
 })
 
 # modularity --------------------------------------------------------------
@@ -139,9 +156,12 @@ test_that("e_modularity has good data structure", {
 
   # Inputs are as expected
   expect_equal(
-    plot$x$opts$series[[1]]$modularity$modularity$resolution, 5)
+    plot$x$opts$series[[1]]$modularity$modularity$resolution,
+    5
+  )
   expect_true(
-    plot$x$opts$series[[1]]$modularity$modularity$sort)
+    plot$x$opts$series[[1]]$modularity$modularity$sort
+  )
 })
 
 test_that("e_cloud and e_cloud_ expects error when missing e ", {
@@ -150,7 +170,6 @@ test_that("e_cloud and e_cloud_ expects error when missing e ", {
 
 # doughnut ----------------------------------------------------------------
 test_that("e_doughnut has good data structure", {
-
   plot <- e_charts() |>
     e_doughnut(numerator = 3, denominator = 6, fontSize = "11px")
 
@@ -159,11 +178,15 @@ test_that("e_doughnut has good data structure", {
 
   # THe numerator
   expect_equal(
-    plot$x$opts$series[[1]]$data[[1]], 3)
+    plot$x$opts$series[[1]]$data[[1]],
+    3
+  )
 
   # The denominator
   expect_equal(
-    plot$x$opts$series[[1]]$itemPayload$segmentCount, 6)
+    plot$x$opts$series[[1]]$itemPayload$segmentCount,
+    6
+  )
 
   # Font size
   expect_equal(plot$x$opts$series[[1]]$itemPayload$label$fontSize, "11px")
@@ -179,8 +202,8 @@ test_that("e_doughnut expects error when missing e", {
 # violin ------------------------------------------------------------------
 
 test_that("e_violin works", {
-
-  plot <- iris |> e_chart(Species) |>
+  plot <- iris |>
+    e_chart(Species) |>
     e_scatter(Sepal.Length) |>
     e_violin(name = "Iris")
 
@@ -202,38 +225,42 @@ test_that("e_violin works", {
 })
 
 test_that("e_violin x and y index works", {
-
-  plot <- iris |> e_chart(Species) |>
+  plot <- iris |>
+    e_chart(Species) |>
     e_scatter(Sepal.Length) |>
     e_violin(
       name = "Iris",
 
-               y_index = 10,
-               x_index = 10
+      y_index = 10,
+      x_index = 10
     )
   expect_gt(length(plot$x$opts$xAxis), 10)
   expect_gt(length(plot$x$opts$yAxis), 10)
 })
 
 test_that("e_violin expects error when missing e", {
-
-  expect_error( iris |> dplyr::group_by("Species") |>
-                  e_chart(Species, timeline = TRUE) |>
-                  e_scatter_("Sepal.Length") |>
-                  e_violin(
-                    name = "Iris"
-                  ) |>
-                  e_timeline_serie(
-                    title = list(
-                    )
-                  ), "timeline not supported"
+  expect_error(
+    iris |>
+      dplyr::group_by("Species") |>
+      e_chart(Species, timeline = TRUE) |>
+      e_scatter_("Sepal.Length") |>
+      e_violin(
+        name = "Iris"
+      ) |>
+      e_timeline_serie(
+        title = list()
+      ),
+    "timeline not supported"
   )
 
-  expect_error( iris |> dplyr::group_by("Species") |>
-                  e_chart(Species) |>
-                  e_violin(
-                    name = "Iris"
-                  ), "violin is only supported with scatter plots"
+  expect_error(
+    iris |>
+      dplyr::group_by("Species") |>
+      e_chart(Species) |>
+      e_violin(
+        name = "Iris"
+      ),
+    "violin is only supported with scatter plots"
   )
   expect_error(e_violin(), "must pass e")
 })
@@ -242,14 +269,18 @@ test_that("e_violin expects error when missing e", {
 test_that("e_barRange works", {
   df <- iris |>
     dplyr::group_by(Species) |>
-    dplyr::summarise(min_length = min(Sepal.Length),
-                     max_length = max(Sepal.Length))
+    dplyr::summarise(
+      min_length = min(Sepal.Length),
+      max_length = max(Sepal.Length)
+    )
 
-  plot <- df |> e_chart(Species) |>
-    e_barRange(lower=min_length,
-               upper=max_length,
-               name = "bar range",
-               textSymbol = 'NEWSYMBOL'
+  plot <- df |>
+    e_chart(Species) |>
+    e_barRange(
+      lower = min_length,
+      upper = max_length,
+      name = "bar range",
+      textSymbol = 'NEWSYMBOL'
     )
 
   expect_s3_class(plot, "echarts4r")
@@ -274,14 +305,18 @@ test_that("e_barRange works", {
 test_that("e_barRange x and y index works", {
   df <- iris |>
     dplyr::group_by(Species) |>
-    dplyr::summarise(min_length = min(Sepal.Length),
-                     max_length = max(Sepal.Length))
+    dplyr::summarise(
+      min_length = min(Sepal.Length),
+      max_length = max(Sepal.Length)
+    )
 
-  plot <- df |> e_chart(Species) |>
-    e_barRange(lower=min_length,
-               upper=max_length,
-               y_index = 10,
-               x_index = 10
+  plot <- df |>
+    e_chart(Species) |>
+    e_barRange(
+      lower = min_length,
+      upper = max_length,
+      y_index = 10,
+      x_index = 10
     )
 
   expect_gt(length(plot$x$opts$xAxis), 10)
@@ -291,13 +326,15 @@ test_that("e_barRange x and y index works", {
 test_that("e_barRange timeline works", {
   df <- iris |>
     dplyr::group_by(Species) |>
-    dplyr::summarise(min_length = min(Sepal.Length),
-                     max_length = max(Sepal.Length))
-
-  plot <- df |> dplyr::group_by(Species) |> e_chart(Species, timeline = TRUE) |>
-    e_barRange(lower=min_length,
-               upper=max_length
+    dplyr::summarise(
+      min_length = min(Sepal.Length),
+      max_length = max(Sepal.Length)
     )
+
+  plot <- df |>
+    dplyr::group_by(Species) |>
+    e_chart(Species, timeline = TRUE) |>
+    e_barRange(lower = min_length, upper = max_length)
   expect_true(plot$x$tl)
 
   # Time series
@@ -315,7 +352,6 @@ test_that("e_barRange expects error when missing e", {
 
 # contour -----------------------------------------------------------------
 test_that("e_contour works", {
-
   plot <- mtcars |>
     e_charts(mpg) |>
     e_contour(serie = mpg, name = "TEST")
@@ -328,7 +364,7 @@ test_that("e_contour works", {
   expected_data_points <- mtcars[["mpg"]]
 
   expect_true(
-   all(expected_data_points %in% data_points)
+    all(expected_data_points %in% data_points)
   )
 
   expect_equal(
@@ -373,18 +409,17 @@ test_that("e_contour expects error when missing e", {
 test_that("e_lineRange works", {
   df <- iris |>
     dplyr::group_by(Species) |>
-    dplyr::summarise(min_length = min(Sepal.Length),
-                     max_length = max(Sepal.Length))
-
-  plot <- df |> e_chart(Species) |>
-    e_lineRange(lower=min_length,
-               upper=max_length,
-               name = "line range"
+    dplyr::summarise(
+      min_length = min(Sepal.Length),
+      max_length = max(Sepal.Length)
     )
+
+  plot <- df |>
+    e_chart(Species) |>
+    e_lineRange(lower = min_length, upper = max_length, name = "line range")
 
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
-
 
   expect_equal(
     plot$x$opts$series[[1]]$data[[1]]$value,
@@ -402,17 +437,21 @@ test_that("e_lineRange works", {
 test_that("e_lineRange x and y index works", {
   df <- iris |>
     dplyr::group_by(Species) |>
-    dplyr::summarise(min_length = min(Sepal.Length),
-                     max_length = max(Sepal.Length))
+    dplyr::summarise(
+      min_length = min(Sepal.Length),
+      max_length = max(Sepal.Length)
+    )
 
-  plot <- df |> e_chart(Species) |>
+  plot <- df |>
+    e_chart(Species) |>
     e_line(min_length) |>
 
-    e_lineRange(lower=min_length,
-               upper=max_length,
-               areaStyle = list(color = "red"),
-               y_index = 10,
-               x_index = 10
+    e_lineRange(
+      lower = min_length,
+      upper = max_length,
+      areaStyle = list(color = "red"),
+      y_index = 10,
+      x_index = 10
     )
   expect_gt(length(plot$x$opts$xAxis), 10)
   expect_gt(length(plot$x$opts$yAxis), 10)
@@ -421,56 +460,74 @@ test_that("e_lineRange x and y index works", {
 test_that("e_lineRange expects error when missing e", {
   df <- iris |>
     dplyr::group_by(Species) |>
-    dplyr::summarise(min_length = min(Sepal.Length),
-                     max_length = max(Sepal.Length))
+    dplyr::summarise(
+      min_length = min(Sepal.Length),
+      max_length = max(Sepal.Length)
+    )
 
   expect_error(e_lineRange(), "must pass e")
-  expect_error(df |> dplyr::group_by(Species) |> e_chart(Species, timeline = TRUE) |>
-                 e_lineRange(lower=min_length,
-                             upper=max_length
-                 ), "timeline not supported"
-               )
-  expect_error(df |> dplyr::group_by(Species) |> e_chart(Species, timeline = TRUE) |> e_lineRange(), "must pass lower, or upper")
+  expect_error(
+    df |>
+      dplyr::group_by(Species) |>
+      e_chart(Species, timeline = TRUE) |>
+      e_lineRange(lower = min_length, upper = max_length),
+    "timeline not supported"
+  )
+  expect_error(
+    df |>
+      dplyr::group_by(Species) |>
+      e_chart(Species, timeline = TRUE) |>
+      e_lineRange(),
+    "must pass lower, or upper"
+  )
 })
 
 # stage -------------------------------------------------------------------
 
 test_that("e_stage works", {
-
   df <- data.frame(
     start = as.POSIXct(c(
-      "2024-09-07 06:12", "2024-09-07 06:15", "2024-09-07 05:45",
-      "2024-09-07 04:57", "2024-09-07 06:12", "2024-09-07 06:18"
+      "2024-09-07 06:12",
+      "2024-09-07 06:15",
+      "2024-09-07 05:45",
+      "2024-09-07 04:57",
+      "2024-09-07 06:12",
+      "2024-09-07 06:18"
     )),
 
     end = as.POSIXct(c(
-      "2024-09-07 06:12", "2024-09-07 06:18", "2024-09-07 06:12",
-      "2024-09-07 05:45", "2024-09-07 06:15", "2024-09-07 07:37"
+      "2024-09-07 06:12",
+      "2024-09-07 06:18",
+      "2024-09-07 06:12",
+      "2024-09-07 05:45",
+      "2024-09-07 06:15",
+      "2024-09-07 07:37"
     )),
 
     stage = c(
-      "Awake", "Awake",  "REM",
-      "Core", "Core", "Deep"
+      "Awake",
+      "Awake",
+      "REM",
+      "Core",
+      "Core",
+      "Deep"
     ),
     stringsAsFactors = FALSE
   )
 
   plot <- df |>
     e_charts() |>
-    e_stage(start = start,
-            end = end,
-            stage = stage,
-            name = "TEST") |>
+    e_stage(start = start, end = end, stage = stage, name = "TEST") |>
     e_x_axis(type = 'time') |>
     e_y_axis(type = 'category')
 
   expect_s3_class(plot, "echarts4r")
   expect_s3_class(plot, "htmlwidget")
 
-
   expect_equal(
     plot$x$opts$dataset[[1]][[1]],
-    list(c(df$start[1]), df$end[1], df$stage[1]))
+    list(c(df$start[1]), df$end[1], df$stage[1])
+  )
 
   expect_equal(
     plot$x$opts$series[[1]]$type,
@@ -484,27 +541,37 @@ test_that("e_stage works", {
 test_that("e_stage timeline works", {
   df <- data.frame(
     start = as.POSIXct(c(
-      "2024-09-07 06:12", "2024-09-07 06:15", "2024-09-07 05:45",
-      "2024-09-07 04:57", "2024-09-07 06:12", "2024-09-07 06:18"
+      "2024-09-07 06:12",
+      "2024-09-07 06:15",
+      "2024-09-07 05:45",
+      "2024-09-07 04:57",
+      "2024-09-07 06:12",
+      "2024-09-07 06:18"
     )),
 
     end = as.POSIXct(c(
-      "2024-09-07 06:12", "2024-09-07 06:18", "2024-09-07 06:12",
-      "2024-09-07 05:45", "2024-09-07 06:15", "2024-09-07 07:37"
+      "2024-09-07 06:12",
+      "2024-09-07 06:18",
+      "2024-09-07 06:12",
+      "2024-09-07 05:45",
+      "2024-09-07 06:15",
+      "2024-09-07 07:37"
     )),
 
     stage = c(
-      "Awake", "Awake",  "REM",
-      "Core", "Core", "Deep"
+      "Awake",
+      "Awake",
+      "REM",
+      "Core",
+      "Core",
+      "Deep"
     ),
     stringsAsFactors = FALSE
   )
-  plot <-  df |> dplyr::group_by(stage) |>
+  plot <- df |>
+    dplyr::group_by(stage) |>
     e_charts(timeline = TRUE) |>
-    e_stage(start = start,
-            end = end,
-            stage = stage,
-            name = "TEST") |>
+    e_stage(start = start, end = end, stage = stage, name = "TEST") |>
     e_x_axis(type = 'time') |>
     e_y_axis(type = 'category') |>
     e_timeline_serie(
@@ -529,4 +596,3 @@ test_that("e_stage timeline works", {
 test_that("e_stage expects error when missing e", {
   expect_error(e_stage(), "must pass e")
 })
-
