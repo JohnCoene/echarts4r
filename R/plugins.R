@@ -439,7 +439,7 @@ e_contour <- function(e,
 #'                    upper = max(Sepal.Length))
 #' df |>
 #'   e_chart(Species) |>
-#'   e_lineRange_(lower = lower, upper = upper)
+#'   e_lineRange_(lower = "lower", upper = "upper")
 #' @seealso \href{https://github.com/apache/echarts-custom-series/tree/main/custom-series/lineRange}{official documentation}
 #'
 #' @rdname e_lineRange
