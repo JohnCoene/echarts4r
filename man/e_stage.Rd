@@ -87,7 +87,7 @@ stage_order = c( "Deep", "Core","REM", "Awake")
 
 df |>
   e_charts() |>
-  e_stage_(start = start,
+  e_stage(start = start,
           end = end,
           stage = stage) |>
           e_x_axis(type = 'time') |>

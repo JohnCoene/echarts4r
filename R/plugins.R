@@ -38,7 +38,15 @@ e_cloud <- function(e, word, freq, color, rm_x = TRUE, rm_y = TRUE, ...) {
     cl <- NULL
   }
 
-  e_cloud_(e, deparse(substitute(word)), deparse(substitute(freq)), cl, rm_x, rm_y, ...)
+  e_cloud_(
+    e,
+    deparse(substitute(word)),
+    deparse(substitute(freq)),
+    cl,
+    rm_x,
+    rm_y,
+    ...
+  )
 }
 
 #' Liquid fill
@@ -64,9 +72,9 @@ e_liquid <- function(e, serie, color, rm_x = TRUE, rm_y = TRUE, ...) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-  if(e$x$tl)(
-    stop("timeline not supported")
-  )
+  if (e$x$tl) {
+    (stop("timeline not supported"))
+  }
 
   if (!missing(color)) {
     cl <- deparse(substitute(color))
@@ -130,7 +138,10 @@ e_modularity <- function(e, modularity = TRUE) {
   e$x$opts$series[[length(e$x$opts$series)]]$modularity <- clu
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
+  path <- system.file(
+    "htmlwidgets/lib/echarts-6.1.0/plugins",
+    package = "echarts4r"
+  )
   dep <- htmltools::htmlDependency(
     name = "echarts-modularity",
     version = "1.0.0",
@@ -164,18 +175,19 @@ e_modularity <- function(e, modularity = TRUE) {
 #'
 #' @rdname e_doughnut
 #' @export
-e_doughnut <- function(e,
-                        numerator = NULL,
-                        denominator = NULL,
-                        formatter = "{c}/{b}",
-                        fontSize = "10em",
-                        fontColor = "#555",
-                        center = c("50%","50%"),
-                        radius = c("50%","65%"),
-                        rm_x = TRUE,
-                        rm_y = TRUE,
-                        ...) {
-
+e_doughnut <- function(
+  e,
+  numerator = NULL,
+  denominator = NULL,
+  formatter = "{c}/{b}",
+  fontSize = "10em",
+  fontColor = "#555",
+  center = c("50%", "50%"),
+  radius = c("50%", "65%"),
+  rm_x = TRUE,
+  rm_y = TRUE,
+  ...
+) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
@@ -187,15 +199,16 @@ e_doughnut <- function(e,
     type = "custom",
     renderItem = "segmentedDoughnut",
     coordinateSystem = "none",
-    itemPayload = list(center = as.list(center),
-                       radius = as.list(radius),
-                       segmentCount = denominator,
-                       label = list(
-                         show = TRUE,
-                         formatter = formatter,
-                         fontSize = fontSize,
-                         color = fontColor
-                       )
+    itemPayload = list(
+      center = as.list(center),
+      radius = as.list(radius),
+      segmentCount = denominator,
+      label = list(
+        show = TRUE,
+        formatter = formatter,
+        fontSize = fontSize,
+        color = fontColor
+      )
     ),
     data = list(numerator),
     ...
@@ -204,12 +217,16 @@ e_doughnut <- function(e,
   e$x$opts$series <- append(e$x$opts$series, list(serie))
 
   # add dependency
-  path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
+  path <- system.file(
+    "htmlwidgets/lib/echarts-6.1.0/plugins",
+    package = "echarts4r"
+  )
   dep <- htmltools::htmlDependency(
     name = "echarts-doughnut",
     version = "1.0.0",
     src = c(file = path),
-    script = "echarts-doughnut.js")
+    script = "echarts-doughnut.js"
+  )
 
   e$dependencies <- append(e$dependencies, list(dep))
 
@@ -237,16 +254,18 @@ e_doughnut <- function(e,
 #'
 #' @rdname e_violin
 #' @export
-e_violin <- function(e,
-                     name = "violin",
-                     legend = TRUE,
-                     y_index = 0,
-                     x_index = 0,
-                     symbolSize = 10,
-                     areaOpacity = 0.5,
-                     binCount = 100,
-                     bandWidthScale = 1,
-                     ...){
+e_violin <- function(
+  e,
+  name = "violin",
+  legend = TRUE,
+  y_index = 0,
+  x_index = 0,
+  symbolSize = 10,
+  areaOpacity = 0.5,
+  binCount = 100,
+  bandWidthScale = 1,
+  ...
+) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
@@ -259,17 +278,18 @@ e_violin <- function(e,
   tl <- e$x$opts$baseOption$series[[1]]$type
   is_scatter <- identical(no_tl, "scatter") || identical(tl, "scatter")
 
-  if (is_scatter == FALSE & (is.null(no_tl) & is.null(tl))
-  ) {
+  if (is_scatter == FALSE & (is.null(no_tl) & is.null(tl))) {
     stop("violin is only supported with scatter plots", call. = FALSE)
   }
 
- for (i in seq_along(e$x$opts$series)) {
-
-  # adjust scatter data to necessary format for violin polygons
+  for (i in seq_along(e$x$opts$series)) {
+    # adjust scatter data to necessary format for violin polygons
     vector <- list()
-    for(j in seq_along(e$x$opts$series[[i]]$data)){
-      vector <- append(vector,list(as.list(e$x$opts$series[[i]]$data[[j]]$value)))
+    for (j in seq_along(e$x$opts$series[[i]]$data)) {
+      vector <- append(
+        vector,
+        list(as.list(e$x$opts$series[[i]]$data[[j]]$value))
+      )
     }
     e_serie <- list(data = vector)
 
@@ -280,41 +300,45 @@ e_violin <- function(e,
     if (x_index != 0) {
       e <- .set_x_axis(e, x_index, i)
     }
-      serie <- list(
-        type = "custom",
-        renderItem = 'violin',
-        silent = TRUE,
-        itemPayload = list(
-          symbolSize = symbolSize,
-          areaOpacity = areaOpacity,
-          binCount = binCount,
-          bandWidthScale = bandWidthScale
-        ),
-        ...
-      )
+    serie <- list(
+      type = "custom",
+      renderItem = 'violin',
+      silent = TRUE,
+      itemPayload = list(
+        symbolSize = symbolSize,
+        areaOpacity = areaOpacity,
+        binCount = binCount,
+        bandWidthScale = bandWidthScale
+      ),
+      ...
+    )
 
-      e$x$opts$series <- append(e$x$opts$series, list(serie))
+    e$x$opts$series <- append(e$x$opts$series, list(serie))
 
-      if (isTRUE(legend)) {
-        # Adding these 2 lines and legend is added
-        current_trace <- length(e$x$opts$series)
-        e$x$opts$series[[current_trace]]$name <- name
-        e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
-      }
-      e$x$opts$dataset <- list(source = vector)
+    if (isTRUE(legend)) {
+      # Adding these 2 lines and legend is added
+      current_trace <- length(e$x$opts$series)
+      e$x$opts$series[[current_trace]]$name <- name
+      e$x$opts$legend$data <- append(e$x$opts$legend$data, list(name))
+    }
+    e$x$opts$dataset <- list(source = vector)
   }
 
-    # add dependency
-    path <- system.file("htmlwidgets/lib/echarts-6.1.0/plugins", package = "echarts4r")
-    dep <- htmltools::htmlDependency(
-      name = "echarts-violin",
-      version = "1.0.0",
-      src = c(file = path),
-      script = "echarts-violin.js")
+  # add dependency
+  path <- system.file(
+    "htmlwidgets/lib/echarts-6.1.0/plugins",
+    package = "echarts4r"
+  )
+  dep <- htmltools::htmlDependency(
+    name = "echarts-violin",
+    version = "1.0.0",
+    src = c(file = path),
+    script = "echarts-violin.js"
+  )
 
-    e$dependencies <- append(e$dependencies, list(dep))
+  e$dependencies <- append(e$dependencies, list(dep))
 
-    e
+  e
 }
 
 #' Bar range chart
@@ -342,36 +366,38 @@ e_violin <- function(e,
 #'
 #' @rdname e_barRange
 #' @export
-e_barRange <- function(e,
-                       lower,
-                       upper,
-                       name = "barRange",
-                       legend = TRUE,
-                       y_index = 0,
-                       x_index = 0,
-                       barWidth = 10,
-                       borderRadius = 5,
-                       margin = 10,
-                       textSymbol = "F",
-                       ...){
-
+e_barRange <- function(
+  e,
+  lower,
+  upper,
+  name = "barRange",
+  legend = TRUE,
+  y_index = 0,
+  x_index = 0,
+  barWidth = 10,
+  borderRadius = 5,
+  margin = 10,
+  textSymbol = "F",
+  ...
+) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-  
-  e_barRange_(e,
-      deparse(substitute(lower)),
-      deparse(substitute(upper)),
-      name, 
-      legend, 
-      y_index,
-      x_index,
-      barWidth,
-      borderRadius,
-      margin,
-      textSymbol,
-        ...)
 
+  e_barRange_(
+    e,
+    deparse(substitute(lower)),
+    deparse(substitute(upper)),
+    name,
+    legend,
+    y_index,
+    x_index,
+    barWidth,
+    borderRadius,
+    margin,
+    textSymbol,
+    ...
+  )
 }
 
 #' Contour chart
@@ -394,33 +420,34 @@ e_barRange <- function(e,
 #'
 #' @rdname e_contour
 #' @export
-e_contour <- function(e,
-                      serie,
-                      name = "contour",
-                      legend = TRUE,
-                      thresholds = 8,
-                      bandwidth = 20,
-                      lineStyle = list(opacity = 0.3, color = "black", width=1),
-                      contourOpacity = 0.8,
-                      contourColors = list('#5470c6', '#91cc75', '#fac858', '#ee6666'),
-                       ...){
-
+e_contour <- function(
+  e,
+  serie,
+  name = "contour",
+  legend = TRUE,
+  thresholds = 8,
+  bandwidth = 20,
+  lineStyle = list(opacity = 0.3, color = "black", width = 1),
+  contourOpacity = 0.8,
+  contourColors = list('#5470c6', '#91cc75', '#fac858', '#ee6666'),
+  ...
+) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
 
-  e_contour_(e,
-           deparse(substitute(serie)),
-           name,
-           legend,
-           thresholds,
-           bandwidth,
-           lineStyle,
-           contourOpacity,
-           contourColors,
-           ...
+  e_contour_(
+    e,
+    deparse(substitute(serie)),
+    name,
+    legend,
+    thresholds,
+    bandwidth,
+    lineStyle,
+    contourOpacity,
+    contourColors,
+    ...
   )
-  
 }
 
 #' Line range chart
@@ -444,17 +471,18 @@ e_contour <- function(e,
 #'
 #' @rdname e_lineRange
 #' @export
-e_lineRange <- function(e,
-                       lower,
-                       upper,
-                       name = "lineRange",
-                       legend = TRUE,
-                       y_index = 0,
-                       x_index = 0,
-                       lineStyle = list(opacity = 0.3, color = "#000", width=1),
-                       areaStyle = list(opacity = 0.3, color = "#032", width=1),
-                       ...){
-
+e_lineRange <- function(
+  e,
+  lower,
+  upper,
+  name = "lineRange",
+  legend = TRUE,
+  y_index = 0,
+  x_index = 0,
+  lineStyle = list(opacity = 0.3, color = "#000", width = 1),
+  areaStyle = list(opacity = 0.3, color = "#032", width = 1),
+  ...
+) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
@@ -466,17 +494,18 @@ e_lineRange <- function(e,
     stop("timeline not supported", call. = FALSE)
   }
 
-    e_lineRange_(e,
-           deparse(substitute(lower)),
-           deparse(substitute(upper)),
-           name,
-           legend,
-           y_index,
-           x_index,
-           lineStyle,
-           areaStyle,
-           ...
-    )
+  e_lineRange_(
+    e,
+    deparse(substitute(lower)),
+    deparse(substitute(upper)),
+    name,
+    legend,
+    y_index,
+    x_index,
+    lineStyle,
+    areaStyle,
+    ...
+  )
 }
 
 #' Stage chart
@@ -518,7 +547,7 @@ e_lineRange <- function(e,
 #'
 #' df |>
 #'   e_charts() |>
-#'   e_stage_(start = start,
+#'   e_stage(start = start,
 #'           end = end,
 #'           stage = stage) |>
 #'           e_x_axis(type = 'time') |>
@@ -528,33 +557,40 @@ e_lineRange <- function(e,
 #'
 #' @rdname e_stage
 #' @export
-e_stage <- function(e,
-                      start,
-                      end,
-                      stage,
-                      name = "stage",
-                      legend = TRUE,                      
-                      borderRadius = 8,
-                      verticalMargin = 10,
-                      minHorizontalSize = 3,
-                      envelope = list(show = TRUE, color = "#888", opacity = 0.25, externalRadius = 8 ),
-                      axisLabel = list(formatter = NULL, color = "#8A8A8A"),
-                      ...){
-
+e_stage <- function(
+  e,
+  start,
+  end,
+  stage,
+  name = "stage",
+  legend = TRUE,
+  borderRadius = 8,
+  verticalMargin = 10,
+  minHorizontalSize = 3,
+  envelope = list(
+    show = TRUE,
+    color = "#888",
+    opacity = 0.25,
+    externalRadius = 8
+  ),
+  axisLabel = list(formatter = NULL, color = "#8A8A8A"),
+  ...
+) {
   if (missing(e)) {
     stop("must pass e", call. = FALSE)
   }
-    e_stage_(e,
-           deparse(substitute(start)),
-           deparse(substitute(end)),
-           deparse(substitute(stage)),
-           name,
-           legend,
-           borderRadius,
-           verticalMargin,
-           minHorizontalSize,
-           envelope,
-           axisLabel,
-           ...
-    )
+  e_stage_(
+    e,
+    deparse(substitute(start)),
+    deparse(substitute(end)),
+    deparse(substitute(stage)),
+    name,
+    legend,
+    borderRadius,
+    verticalMargin,
+    minHorizontalSize,
+    envelope,
+    axisLabel,
+    ...
+  )
 }
