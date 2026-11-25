@@ -124,6 +124,7 @@ export(e_band2_)
 export(e_band_)
 export(e_bar)
 export(e_barRange)
+export(e_barRange_)
 export(e_bar_)
 export(e_bar_3d)
 export(e_bar_3d_)
@@ -151,6 +152,7 @@ export(e_common)
 export(e_connect)
 export(e_connect_group)
 export(e_contour)
+export(e_contour_)
 export(e_correlations)
 export(e_country_names)
 export(e_country_names_)
@@ -228,6 +230,7 @@ export(e_legend_toggle_select)
 export(e_legend_unselect)
 export(e_line)
 export(e_lineRange)
+export(e_lineRange_)
 export(e_line_)
 export(e_line_3d)
 export(e_line_3d_)
@@ -313,6 +316,7 @@ export(e_showtip)
 export(e_showtip_p)
 export(e_single_axis)
 export(e_stage)
+export(e_stage_)
 export(e_step)
 export(e_step_)
 export(e_sunburst)
@@ -372,13 +376,17 @@ export(renderEcharts4r)
 export(renderEcharts4rBox)
 import(htmlwidgets)
 importFrom(dplyr,group_by)
-importFrom(grDevices,boxplot.stats)
-importFrom(grDevices,colorRampPalette)
-importFrom(grDevices,n2mfrow)
+importFrom(grDevices,
+  boxplot.stats,
+  colorRampPalette,
+  n2mfrow
+)
 importFrom(graphics,hist)
-importFrom(stats,as.formula)
-importFrom(stats,complete.cases)
-importFrom(stats,glm)
-importFrom(stats,lm)
-importFrom(stats,loess)
-importFrom(stats,predict)
+importFrom(stats,
+  as.formula,
+  complete.cases,
+  glm,
+  lm,
+  loess,
+  predict
+)
